@@ -1,13 +1,12 @@
 <script lang="ts">
+    import BaseNav from "../components/BaseNav.svelte";
+    import BaseFooter from "../components/BaseFooter.svelte";
+
     let { children } = $props();
 </script>
 
-<nav>
-    <a href="/">Studio</a>
-    <a href="/gallery">Gallery</a>
-    <a href="/sizes">Sizes</a>
-</nav>
+<BaseNav/>
 
 {@render children()}
 
-<footer>Made by Juno Nguyen</footer>
+<BaseFooter/>
