@@ -5,8 +5,25 @@
     let { children } = $props();
 </script>
 
-<BaseNav/>
+<main>
+    <BaseNav/>
+    <section class="tab-container">
+        {@render children()}
+    </section>
+    <BaseFooter/>
+</main>
 
-{@render children()}
+<style>
+    main {
+        max-width: 1000px;
+        margin: auto;
+        min-height: 95vmin;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-<BaseFooter/>
+    .tab-container {
+        flex-grow: 10;
+    }
+</style>
