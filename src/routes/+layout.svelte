@@ -24,6 +24,7 @@
     }
 
     .tab-container {
+        width: 100%;
         flex-grow: 10;
     }
 </style>
