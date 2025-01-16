@@ -25,3 +25,9 @@ export type RgbColour = {
     green: number,
     blue: number,
 };
+
+export enum RgbChannel {
+    R = "red",
+    G = "green",
+    B = "blue"
+};
