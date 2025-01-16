@@ -1,4 +1,5 @@
 <script lang="ts">
+    import BaseHeader from "src/components/BaseHeader.svelte";
     import BaseNav from "src/components/BaseNav.svelte";
     import BaseFooter from "src/components/BaseFooter.svelte";
 
@@ -6,6 +7,7 @@
 </script>
 
 <main>
+    <BaseHeader/>
     <BaseNav/>
     <div class="TabContent">
         {@render children()}
