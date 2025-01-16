@@ -1,0 +1,78 @@
+[
+    {
+        "name": "Dark Wine Red",
+        "hexCode": "902E43"
+    },
+    {
+        "name": "Viridian",
+        "hexCode": "40826D"
+    },
+    {
+        "hexCode": "F1DDCF",
+        "name": "Champagne Pink"
+    },
+    {
+        "hexCode": "E7CD8A",
+        "name": "Mellow"
+    },
+    {
+        "hexCode": "E91E63",
+        "name": "Fandango"
+    },
+    {
+        "hexCode": "DA70D6",
+        "name": "Orchid"
+    },
+    {
+        "hexCode": "688FB3",
+        "name": "ME Blue"
+    },
+    {
+        "hexCode": "00BCD4",
+        "name": "CMYK Lead"
+    },
+    {
+        "hexCode": "009688",
+        "name": "Classic Teal"
+    },
+    {
+        "hexCode": "BFFF00",
+        "name": "Lime"
+    },
+    {
+        "hexCode": "F88379",
+        "name": "Tea Rose"
+    },
+    {
+        "hexCode": "F28500",
+        "name": "Tangerine"
+    },
+    {
+        "hexCode": "242424",
+        "name": "SL Dark"
+    },
+    {
+        "hexCode": "546E7A",
+        "name": "Bluish Graphite"
+    },
+    {
+        "hexCode": "CAA483",
+        "name": "Not Pink"
+    },
+    {
+        "hexCode": "74A383",
+        "name": "Dark Minty"
+    },
+    {
+        "hexCode": "FFB7C5",
+        "name": "Cherry Blossom"
+    },
+    {
+        "hexCode": "FFCCC1",
+        "name": "Salmon"
+    },
+    {
+        "hexCode": "19DCBC",
+        "name": "Spring Green"
+    }
+]
