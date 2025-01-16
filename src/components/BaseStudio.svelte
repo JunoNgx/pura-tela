@@ -1,5 +1,5 @@
 <script lang="ts">
-    import BaseHexCodeInput from "src/components/BaseHexCodeInput.svelte";
+    import BaseColourInput from "src/components/BaseColourInput.svelte";
     import BaseDimensionSelection from "src/components/BaseDimensionSelection.svelte";
 </script>
 
@@ -9,7 +9,7 @@
     </div>
     <div class="Studio__Control">
         <div class="Studio__Colour">
-            <BaseHexCodeInput/>
+            <BaseColourInput/>
         </div>
         <div class="Studio__Size">
             <BaseDimensionSelection/>
