@@ -15,7 +15,7 @@
 
 <style>
     main {
-        max-width: 1000px;
+        max-width: 800px;
         margin: auto;
         min-height: 95vmin;
         display: flex;
