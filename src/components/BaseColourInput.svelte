@@ -21,24 +21,20 @@
     }
 
     const handleRgbChange = (channel: RgbChannel, value: string) => {
-        console.log(channel, value, {...rgb, green: parseInt(value, 10)})
         switch (channel) {
         case RgbChannel.R:
-            console.log("red")
             rgb = {
                 ...rgb,
                 red: parseRgbChannelValue(value)
             };
             break;
         case RgbChannel.G:
-            console.log("reen")
             rgb = {
                 ...rgb,
                 green: parseRgbChannelValue(value)
             };
             break;
         case RgbChannel.B:
-            console.log("blue")
             rgb = {
                 ...rgb,
                 blue: parseRgbChannelValue(value)
