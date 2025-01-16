@@ -1,3 +1,56 @@
+<script lang="ts">
+	import { RgbChannel, type RgbColour } from "src/lib/types.js";
+	import { convertHexToRgb, convertRgbToHex, isHexCodeValid, parseRgbChannelValue } from "src/lib/utils.js";
+
+    let hexCode: string = "FFFFFF";
+    // TODO: implement derived state
+    // let isHexCodeValid = true;
+    let rgb: RgbColour = {
+        red: 255,
+        green: 255,
+        blue: 255
+    };
+
+    const handleHexCodeChange = (hexStr: string) => {
+        if (!isHexCodeValid(hexStr)) {
+            return;
+        }
+
+        hexCode = hexStr;
+        rgb = convertHexToRgb(hexCode);
+    }
+
+    const handleRgbChange = (channel: RgbChannel, value: string) => {
+        console.log(channel, value, {...rgb, green: parseInt(value, 10)})
+        switch (channel) {
+        case RgbChannel.R:
+            console.log("red")
+            rgb = {
+                ...rgb,
+                red: parseRgbChannelValue(value)
+            };
+            break;
+        case RgbChannel.G:
+            console.log("reen")
+            rgb = {
+                ...rgb,
+                green: parseRgbChannelValue(value)
+            };
+            break;
+        case RgbChannel.B:
+            console.log("blue")
+            rgb = {
+                ...rgb,
+                blue: parseRgbChannelValue(value)
+            };
+            break;
+        }
+
+        hexCode = convertRgbToHex(rgb);
+    }
+
+</script>
+
 <section class="ColourInput">
 
     <h3>Colour</h3>
@@ -10,6 +63,8 @@
                 type="text"
                 minlength="3"
                 maxlength="6"
+                bind:value={hexCode}
+                on:input={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>
         <button>pick</button>
@@ -23,6 +78,8 @@
                 type="number"
                 min="0"
                 max="255"
+                bind:value={rgb.red}
+                on:input={e => handleRgbChange(RgbChannel.R, (e.target as HTMLInputElement).value)}
             />
         </div>
         <div class="ColourInput__Rgb">
@@ -32,6 +89,8 @@
                 type="number"
                 min="0"
                 max="255"
+                bind:value={rgb.green}
+                on:input={e => handleRgbChange(RgbChannel.G, (e.target as HTMLInputElement).value)}
             />
         </div>
         <div class="ColourInput__Rgb">
@@ -41,6 +100,8 @@
                 type="number"
                 min="0"
                 max="255"
+                bind:value={rgb.blue}
+                on:input={e => handleRgbChange(RgbChannel.B, (e.target as HTMLInputElement).value)}
             />
         </div>
     </div>
