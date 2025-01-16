@@ -1,5 +1,6 @@
 <script lang="ts">
-    import BaseHexCodeInput from "./BaseHexCodeInput.svelte";
+    import BaseHexCodeInput from "src/components/BaseHexCodeInput.svelte";
+    import BaseDimensionSelection from "src/components/BaseDimensionSelection.svelte";
 </script>
 
 <div class="studio">
@@ -11,14 +12,7 @@
             <BaseHexCodeInput/>
         </div>
         <div class="studio__size">
-            <h3>
-                <label for="size">Dimensions</label>
-            </h3>
-            <select>
-                <option>mobile</option>
-                <option>desktop</option>
-                <option>square</option>
-            </select>
+            <BaseDimensionSelection/>
         </div>
         <div class="studio__buttons">
             <button>download</button>
