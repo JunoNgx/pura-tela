@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Mobile",
+        "width": "1080",
+        "height": "1920"
+    },
+    {
+        "name": "Desktop 2K",
+        "width": "2650",
+        "height": "1440"
+    },
+    {
+        "name": "Desktop 4K",
+        "width": "3840",
+        "height": "2160"
+    },
+    {
+        "name": "Mobile 2K",
+        "width": "1440",
+        "height": "2650"
+    },
+    {
+        "name": "Square (tiny)",
+        "width": "640",
+        "height": "640"
+    },
+    {
+        "name": "Square (small)",
+        "width": "1200",
+        "height": "1200"
+    },
+    {
+        "name": "Square (medium)",
+        "width": "2400",
+        "height": "2400"
+    },
+    {
+        "name": "Square (extra large)",
+        "width": "4000",
+        "height": "4000"
+    },
+    {
+        "name": "4:3 (3200 x 2400)",
+        "width": "4000",
+        "height": "4000"
+    }
+]
