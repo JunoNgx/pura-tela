@@ -7,7 +7,7 @@
 
 <main>
     <BaseNav/>
-    <div class="tab-content">
+    <div class="TabContent">
         {@render children()}
     </div>
     <BaseFooter/>
@@ -23,7 +23,7 @@
         align-items: center;
     }
 
-    .tab-content {
+    .TabContent {
         width: 100%;
         flex-grow: 10;
     }
