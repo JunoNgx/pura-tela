@@ -5,13 +5,15 @@
     <div class="studio__control">
         <div class="studio__colour">
             <div class="studio__hex-code">
-                <label for="hexCode">#</label>
-                <input
-                    name="hexCode"
-                    type="text"
-                    minlength="3"
-                    maxlength="6"
-                />
+                <div class="studio__hex-code-input">
+                    <label for="hexCode">#</label>
+                    <input
+                        name="hexCode"
+                        type="text"
+                        minlength="3"
+                        maxlength="6"
+                    />
+                </div>
                 <button>pick</button>
                 <button>choose</button>
                 <button>randomise</button>
@@ -48,10 +50,18 @@
 
         </div>
         <div class="studio__size">
-
+            <h3>
+                <label for="size">Dimensions</label>
+            </h3>
+            <select>
+                <option>mobile</option>
+                <option>desktop</option>
+                <option>square</option>
+            </select>
         </div>
         <div class="studio__buttons">
-
+            <button>download</button>
+            <button>save colour to gallery</button>
         </div>
     </div>
 </div>
@@ -76,5 +86,19 @@
 
     .studio__colour {
 
+    }
+
+    .studio__hex-code {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .studio__rgb {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 </style>
