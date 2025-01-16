@@ -16,7 +16,6 @@
         </div>
         <div class="Studio__Buttons">
             <button>download</button>
-            <button>save colour to gallery</button>
         </div>
     </div>
 </div>
