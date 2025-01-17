@@ -1,4 +1,5 @@
 import type { RgbColour } from "./types.js";
+import { browser } from "$app/environment";
 
 export const isHexCodeValid = (str: string): boolean => {
     const validHexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
@@ -48,6 +49,10 @@ export const convertRgbToHex = (rgb: RgbColour): string => {
 export const loadFromLocalStorage = <T>({key, defaultValue}:
     {key: string, defaultValue: T}
 ): T => {
+    if (!browser) {
+        return defaultValue;
+    }
+
     try {
         const fallback = () => {
             localStorage.setItem(key, JSON.stringify(defaultValue));
