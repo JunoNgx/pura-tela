@@ -50,7 +50,7 @@ export const loadFromLocalStorage = <T>({key, defaultValue}:
 ): T => {
     try {
         const fallback = () => {
-            localStorage.set(key, JSON.stringify(defaultValue));
+            localStorage.setItem(key, JSON.stringify(defaultValue));
             return defaultValue;
         };
 
@@ -69,7 +69,7 @@ export const loadFromLocalStorage = <T>({key, defaultValue}:
         return parsedContent;
     } catch (error) {
         console.warn(`Unable to retrieve key ${key} from localStorage`);
-        localStorage.set(key, JSON.stringify(defaultValue));
+        localStorage.setItem(key, JSON.stringify(defaultValue));
         return defaultValue;
     }
 };
