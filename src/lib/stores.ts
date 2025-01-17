@@ -38,13 +38,11 @@ export const currHexCode = writable(loadFromLocalStorage({
 }));
 // TODO: add this logic to createLocalStorageSyncedStore()
 currHexCode.subscribe(value => {
-    if (typeof window !== 'undefined') {
-        if (!browser) {
-            return;
-        }
-
-        localStorage.setItem("currHexCode", value);
+    if (!browser) {
+        return;
     }
+
+    localStorage.setItem("currHexCode", value);
 });
 
 export const currRgbColour: Writable<RgbColour> = writable(
