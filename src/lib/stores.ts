@@ -1,26 +1,40 @@
-import { writable } from "svelte/store";
+import { derived, writable } from "svelte/store";
 import type { Writable } from "svelte/store";
 import { ThemeMode, type RgbColour } from "./types.js";
 
-// TODO: load settings from localStorage, fallback to auto
-export const themeMode = writable(ThemeMode.AUTO);
+import defaultColourGallery from "src/data/colours.json" with { type: "json"};
+import defaultSizeOptions from "src/data/sizes.json" with { type: "json"};
 
-// TODO: load gallery from localStorage
-// export const colourGallery =
+import { convertHexToRgb, loadFromLocalStorage } from "./utils.js";
+
+export const themeMode = writable(loadFromLocalStorage({
+    key: "themeMode",
+    defaultValue: ThemeMode.AUTO,
+}));
+
+export const colourGallery = writable(loadFromLocalStorage({
+    key: "colourGallery",
+    defaultValue: defaultColourGallery,
+}));
 
 // TODO: load from localStorage
-// export const sizeOptions =
+export const sizeOptions = writable(loadFromLocalStorage({
+    key: "sizeOptions",
+    defaultValue: defaultSizeOptions,
+}));
 
-// TODO: load from storage
 export const sizeOptionIndex = writable(0);
-// export const currSizeOption = derived(sizeOptions, sizeOptionIndex
-//      => sizeOptions[sizeOptionIndex];
+export const currSizeOption = derived(
+    [sizeOptions, sizeOptionIndex],
+    ([$sizeOptions, $sizeOptionIndex]) => $sizeOptions[$sizeOptionIndex]
+)
 
-// TODO: load from localStorage, fallback to gallery[0]
-export const currHexCode = writable("#FFF")
-// TODO: calculate from hex code
-export const currRgbColour: Writable<RgbColour> = writable({
-    red: 255,
-    green: 255,
-    blue: 255,
-});
+const firstColour = defaultColourGallery[0];
+const firstHexCode = firstColour.hexCode;
+export const currHexCode = writable(loadFromLocalStorage({
+    key: "currHexCode",
+    defaultValue: firstHexCode,
+}));
+
+export const currRgbColour: Writable<RgbColour> = writable(
+    convertHexToRgb(firstHexCode));
