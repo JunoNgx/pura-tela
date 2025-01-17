@@ -34,7 +34,7 @@ export const parseRgbChannelValue = (str: string): number => {
 export const convertRgbToHex = (rgb: RgbColour): string => {
     const toHex = (number: number): string => {
         const clampedValue = clamp8bit(number);
-        const hexStr = clampedValue.toString(16);
+        const hexStr = clampedValue.toString(16).toUpperCase();
         const procesedHexStr = hexStr.length === 1
             ? `0${hexStr}`
             : hexStr;
