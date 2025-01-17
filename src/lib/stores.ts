@@ -36,6 +36,7 @@ export const currHexCode = writable(loadFromLocalStorage({
     key: "currHexCode",
     defaultValue: firstHexCode,
 }));
+// TODO: add this logic to createLocalStorageSyncedStore()
 currHexCode.subscribe(value => {
     if (typeof window !== 'undefined') {
         if (!browser) {
