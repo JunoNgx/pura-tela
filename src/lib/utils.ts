@@ -44,3 +44,33 @@ export const convertRgbToHex = (rgb: RgbColour): string => {
     return toHex(rgb.red) + toHex(rgb.green) + toHex(rgb.blue);
 };
 
+// TODO: add param: validateFunc
+export const loadFromLocalStorage = <T>({key, defaultValue}:
+    {key: string, defaultValue: T}
+): T => {
+    try {
+        const fallback = () => {
+            localStorage.set(key, JSON.stringify(defaultValue));
+            return defaultValue;
+        };
+
+        const existingContent = localStorage.get(key);
+
+        if (existingContent === null) {
+            return fallback();
+        }
+
+        const parsedContent = JSON.parse(existingContent) as T;
+
+        if (!parsedContent) {
+            return fallback();
+        }
+    
+        return parsedContent;
+    } catch (error) {
+        console.warn(`Unable to retrieve key ${key} from localStorage`);
+        localStorage.set(key, JSON.stringify(defaultValue));
+        return defaultValue;
+    }
+};
+
