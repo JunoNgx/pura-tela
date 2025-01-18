@@ -6,8 +6,8 @@
 
     const handleChooseColour = () => {
         currHexCode.set(colourItem.hexCode);
-        goto("/")
-    }
+        goto("/");
+    };
 
     const handleDeleteColour = () => {
         const isConfirmed = window.confirm("Please confirm the colour deletion.");
@@ -23,7 +23,7 @@
         }
 
         colourGallery.set(colourGallery.val.toSpliced(index, 1));
-    }
+    };
 </script>
 
 <li class="ColourItem">

@@ -12,7 +12,7 @@
         }
 
         currSizeOptionIndex.set(newIndex);
-    }
+    };
 </script>
 
 <section class="SizeSelection">

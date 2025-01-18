@@ -68,7 +68,7 @@ export const createState = <T>(
         get val() { return state; },
         set: (v: T) => { state = v;}
     }
-}
+};
 
 export const isColourGalleryValid = (data: any[]) => {
     if (!data) {
@@ -129,7 +129,7 @@ export const isCurrSizeOptionIndexValid = (data: any) => {
     } catch (err) {
         return false;
     }
-}
+};
 
 export const isThemeModeValid = (data: any) => {
     if ( data !== ThemeMode.AUTO
@@ -140,4 +140,4 @@ export const isThemeModeValid = (data: any) => {
     }
 
     return true;
-}
+};

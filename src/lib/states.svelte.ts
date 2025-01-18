@@ -44,7 +44,7 @@ export const currSizeOptionIndex = createLocalStorageSyncedState({
 export const getCurrSizeOption = () => {
     const option = $derived<SizeItem>(sizeOptions[currSizeOptionIndex.val]);
     return option;
-}
+};
 
 const firstColour = defaultColourGallery[0];
 const firstHexCode = firstColour.hexCode;
@@ -59,4 +59,4 @@ export let currRgbColour = createState<RgbColour>(
 
 export const resetGallery = () => {
     colourGallery.set(defaultColourGallery);
-}
+};

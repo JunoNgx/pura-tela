@@ -24,11 +24,11 @@ export const convertHexToRgb = (hexStr: string): RgbColour => {
 
 const clamp8bit = (number: number): number => {
     return Math.max(0, Math.min(number, 255));
-}
+};
 
 export const parseRgbChannelValue = (str: string): number => {
     return clamp8bit(parseInt(str, 10))
-}
+};
 
 export const convertRgbToHex = (rgb: RgbColour): string => {
     const toHex = (number: number): string => {
@@ -63,4 +63,4 @@ export const getColourName = (
     }
 
     return gallery[index].name;
-}
+};

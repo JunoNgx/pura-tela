@@ -13,7 +13,7 @@
 
         currHexCode.set(hexStr);
         currRgbColour.set(convertHexToRgb(currHexCode.val));
-    }
+    };
 
     const handleRgbChange = (channel: RgbChannel, value: string) => {
         switch (channel) {
@@ -38,17 +38,17 @@
         }
 
         currHexCode.set(convertRgbToHex(currRgbColour.val));
-    }
+    };
 
     const handleColorPickerChange = (hexCode: string) => {
         currHexCode.set(
             hexCode.replace("#", "").toUpperCase());
         currRgbColour.set(convertHexToRgb(currHexCode.val));
-    }
+    };
 
     const handleRandomise = () => {
         currHexCode.set(getRandomHexCode());
-    }
+    };
 
     const tryCreateNewColour = () => {
         if (!browser) {
@@ -71,7 +71,7 @@
             console.error(error);
             window.alert("Error adding new colour to gallery. Please see the console for more info.")
         }
-    }
+    };
 
 </script>
 
