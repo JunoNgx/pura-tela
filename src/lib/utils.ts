@@ -1,4 +1,4 @@
-import type { RgbColour } from "./types.js";
+import type { ColourItem, RgbColour } from "./types.js";
 
 export const isHexCodeValid = (str: string): boolean => {
     const validHexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
@@ -51,3 +51,16 @@ export const getRandomHexCode = () => {
 
     return str;
 };
+
+export const getColourName = (
+    hexCode: string, gallery: ColourItem[]
+) => {
+    const index = gallery.findIndex(
+        item => item.hexCode === hexCode);
+    
+    if (index === -1) {
+        return `#${hexCode}`;
+    }
+
+    return gallery[index].name;
+}
