@@ -20,7 +20,7 @@
         }
 
         const hexCode = colourItem.hexCode
-        const index = colourGallery.val.find(item => item.hexCode === hexCode);
+        const index = colourGallery.val.findIndex(item => item.hexCode === hexCode);
 
         if (index === -1) {
             console.error("ERROR: failed to delete colour");
