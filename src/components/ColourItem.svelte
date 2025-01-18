@@ -1,7 +1,9 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
-    import { currHexCode, currRgbColour, colourGallery } from "src/lib/states.svelte.ts";
+    import { currHexCode, currRgbColour, colourGallery } from "src/lib/states.svelte";
 	import { convertHexToRgb } from "src/lib/utils.js";
+    import MaterialSymbolsLightDeleteSharp from "~icons/material-symbols-light/delete-sharp";
+    import MaterialSymbolsLightColorizeSharp from '~icons/material-symbols-light/colorize-sharp';
 
     let { colourItem } = $props();
 
@@ -39,8 +41,16 @@
         {`#${colourItem.hexCode}`}
     </div>
     <div class="ColourItem__Buttons">
-        <button onclick={handleChooseColour}>pick</button>
-        <button onclick={handleDeleteColour}>delete</button>
+        <button onclick={handleChooseColour}
+            title={"Choose this colour"}
+        >
+            <MaterialSymbolsLightColorizeSharp/>
+        </button>
+        <button onclick={handleDeleteColour}
+            title={"Delete"}
+        >
+            <MaterialSymbolsLightDeleteSharp/>
+        </button>
     </div>
 </li>
 
