@@ -1,9 +1,10 @@
 <script lang="ts">
+    import { browser } from "$app/environment";
 	import ColorPicker from 'svelte-awesome-color-picker';
 
-	import { RgbChannel, type RgbColour } from "src/lib/types.js";
+	import { RgbChannel } from "src/lib/types.js";
 	import { convertHexToRgb, convertRgbToHex, getRandomHexCode, isHexCodeValid, parseRgbChannelValue } from "src/lib/utils.js";
-    import { currHexCode, currRgbColour } from "src/lib/states.svelte.js";
+    import { colourGallery, currHexCode, currRgbColour } from "src/lib/states.svelte.js";
 
     const handleHexCodeChange = (hexStr: string) => {
         if (!isHexCodeValid(hexStr)) {
@@ -47,6 +48,29 @@
 
     const handleRandomise = () => {
         currHexCode.set(getRandomHexCode());
+    }
+
+    const tryCreateNewColour = () => {
+        if (!browser) {
+            return;
+        }
+
+        const colourName = window.prompt("Enter name for new colour", `#${currHexCode.val}`)
+        if (!colourName) {
+            return;
+        }
+
+        try {
+            const newColour = {
+                name: colourName,
+                hexCode: currHexCode.val
+            }
+    
+            colourGallery.set([...colourGallery.val, newColour]);
+        } catch(error) {
+            console.error(error);
+            window.alert("Error adding new colour to gallery. Please see the console for more info.")
+        }
     }
 
 </script>
@@ -126,7 +150,9 @@
         <button on:click={handleRandomise}>
             randomise
         </button>
-        <button>save colour</button>
+        <button on:click={tryCreateNewColour}>
+            save colour
+        </button>
     </div>
 
 </section>
