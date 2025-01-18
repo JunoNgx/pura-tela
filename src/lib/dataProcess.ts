@@ -1,7 +1,7 @@
 import { browser } from "$app/environment";
 import { writable, type Writable } from "svelte/store";
 import { isHexCodeValid } from "./utils.js";
-import type { SizeItem } from "./types.js";
+import { ThemeMode, type SizeItem } from "./types.js";
 
 export const createLocalStorageSyncedStore = <T>(
     { key, defaultValue }:
@@ -108,4 +108,15 @@ export const validateCurrSizeOptionIndex = (
     } catch (err) {        
         return false;
     }
+}
+
+export const validateThemeMode = (data: any) => {
+    if ( data !== ThemeMode.AUTO
+        && data !== ThemeMode.DARK
+        && data !== ThemeMode.LIGHT
+    ) {
+        return false
+    }
+
+    return true;
 }
