@@ -88,20 +88,20 @@
                 minlength="3"
                 maxlength="6"
                 value={currHexCode.val}
-                on:input={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
+                oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>
         <!-- <input
             type="color"
             value={currHexCode.val}
-            on:input={e => handleColorPickerChange((e.target as HTMLInputElement).value)}
+            oninput={e => handleColorPickerChange((e.target as HTMLInputElement).value)}
         /> -->
         <ColorPicker
             label=""
             hex={`#${currHexCode.val}`}
             isAlpha={false}
             position="responsive"
-            on:input={e => handleColorPickerChange(e.detail.hex as string)}
+            oninput={e => handleColorPickerChange(e.detail.hex as string)}
             --input-size="24px"
             --focus-color="green"
             --slider-width="24px"
@@ -119,7 +119,7 @@
                 min="0"
                 max="255"
                 value={currRgbColour.val.red}
-                on:input={e => handleRgbChange(RgbChannel.R, (e.target as HTMLInputElement).value)}
+                oninput={e => handleRgbChange(RgbChannel.R, (e.target as HTMLInputElement).value)}
             />
         </div>
         <div class="ColourInput__Rgb">
@@ -130,7 +130,7 @@
                 min="0"
                 max="255"
                 value={currRgbColour.val.green}
-                on:input={e => handleRgbChange(RgbChannel.G, (e.target as HTMLInputElement).value)}
+                oninput={e => handleRgbChange(RgbChannel.G, (e.target as HTMLInputElement).value)}
             />
         </div>
         <div class="ColourInput__Rgb">
@@ -141,16 +141,16 @@
                 min="0"
                 max="255"
                 value={currRgbColour.val.blue}
-                on:input={e => handleRgbChange(RgbChannel.B, (e.target as HTMLInputElement).value)}
+                oninput={e => handleRgbChange(RgbChannel.B, (e.target as HTMLInputElement).value)}
             />
         </div>
     </div>
 
     <div class="ColourInput__Buttons">
-        <button on:click={handleRandomise}>
+        <button onclick={handleRandomise}>
             randomise
         </button>
-        <button on:click={tryCreateNewColour}>
+        <button onclick={tryCreateNewColour}>
             save colour
         </button>
     </div>

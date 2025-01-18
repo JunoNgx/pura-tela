@@ -30,7 +30,7 @@
             <BaseDimensionsSelection/>
         </div>
         <div class="Studio__Buttons">
-            <button on:click={handleDownloadClick}>
+            <button onclick={handleDownloadClick}>
                 download
             </button>
         </div>

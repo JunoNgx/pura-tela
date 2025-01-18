@@ -21,7 +21,7 @@
     </h3>
     <select
         value={currSizeOptionIndex.val}
-        on:input={(e) => handleSizeOptionChange((e.target as HTMLSelectElement).value)}
+        oninput={(e) => handleSizeOptionChange((e.target as HTMLSelectElement).value)}
     >
         {#each sizeOptions as sizeOptionItem, index}
             <option value={index}>{sizeOptionItem.name}</option>
