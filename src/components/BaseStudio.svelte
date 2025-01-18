@@ -41,9 +41,10 @@
     .Studio {
         display: flex;
         flex-direction: row;
-        justify-content: stretch;
-        align-items: center;
+        justify-content: center;
+        align-items: stretch;
         width: 100%;
+        gap: 16px;
     }
 
     .Studio__Canvas {

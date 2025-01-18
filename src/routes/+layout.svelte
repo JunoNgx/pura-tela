@@ -27,6 +27,7 @@
 
     .TabContent {
         width: 100%;
+        padding: 5px;
         flex-grow: 10;
     }
 </style>
