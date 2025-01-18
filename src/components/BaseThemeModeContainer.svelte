@@ -5,16 +5,31 @@
     import MaterialSymbolsLightLightModeOutline from '~icons/material-symbols-light/light-mode-outline';
     import MaterialSymbolsLightModeNight from '~icons/material-symbols-light/mode-night';
     import MaterialSymbolsLightModeNightOutline from '~icons/material-symbols-light/mode-night-outline';
+
+    import { themeMode } from 'src/lib/states.svelte.js';
+	import { ThemeMode } from 'src/lib/types.js';
+	import { handleThemeModeChange } from 'src/lib/nightMode.js';
+
+    const handleClickOnThemeMode = (newThemeModeVal: ThemeMode) => {
+        themeMode.set(newThemeModeVal);
+        handleThemeModeChange();
+    };
 </script>
 
 <div class="ThemeMode">
-    <button class="ThemeMode__Item">
+    <button class="ThemeMode__Item"
+        onclick={() => handleClickOnThemeMode(ThemeMode.AUTO)}
+    >
         <MaterialSymbolsLightSettingsOutline />
     </button>
-    <button class="ThemeMode__Item">
+    <button class="ThemeMode__Item"
+        onclick={() => handleClickOnThemeMode(ThemeMode.LIGHT)}
+    >
         <MaterialSymbolsLightLightModeOutline />
     </button>
-    <button class="ThemeMode__Item">
+    <button class="ThemeMode__Item"
+        onclick={() => handleClickOnThemeMode(ThemeMode.DARK)}
+    >
         <MaterialSymbolsLightModeNightOutline />
     </button>
 </div>

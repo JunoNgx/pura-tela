@@ -4,8 +4,11 @@
     import BaseFooter from "src/components/BaseFooter.svelte";
 
     import "src/styles.css";
+	import { handleThemeModeChange } from "src/lib/nightMode.js";
 
     let { children } = $props();
+
+    handleThemeModeChange();
 </script>
 
 <main>
