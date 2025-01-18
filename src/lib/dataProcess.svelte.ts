@@ -53,7 +53,7 @@ export const createLocalStorageSyncedState = <T>(
         return createStateWithSyncEffect(parsedData);
 
     } catch (error) {
-        console.warn(`Unable to retrieve key ${key} from localStorage`);
+        console.warn(`WARN: Unable to retrieve key ${key} from localStorage`, error);
         localStorage.setItem(key, JSON.stringify(defaultValue));
         return createStateWithSyncEffect(defaultValue);
     }
