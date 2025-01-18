@@ -44,4 +44,10 @@ export const convertRgbToHex = (rgb: RgbColour): string => {
     return toHex(rgb.red) + toHex(rgb.green) + toHex(rgb.blue);
 };
 
+export const getRandomHexCode = () => {
+    const randomHexNum = Math.floor(Math.random() * 0xffffff);
+    const str = randomHexNum.toString(16)
+        .padStart(6, "0").toUpperCase();
 
+    return str;
+};
