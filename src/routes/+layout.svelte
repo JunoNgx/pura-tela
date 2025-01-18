@@ -3,6 +3,8 @@
     import BaseNav from "src/components/BaseNav.svelte";
     import BaseFooter from "src/components/BaseFooter.svelte";
 
+    import "src/styles.css";
+
     let { children } = $props();
 </script>
 
