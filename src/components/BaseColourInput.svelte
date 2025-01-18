@@ -4,7 +4,7 @@
 
 	import { RgbChannel } from "src/lib/types.js";
 	import { convertHexToRgb, convertRgbToHex, getRandomHexCode, isHexCodeValid, parseRgbChannelValue } from "src/lib/utils.js";
-    import { colourGallery, currHexCode, currRgbColour } from "src/lib/states.svelte.js";
+    import { colourGallery, currHexCode, currRgbColour } from "src/lib/states.svelte.ts";
 
     const handleHexCodeChange = (hexStr: string) => {
         if (!isHexCodeValid(hexStr)) {
