@@ -38,7 +38,7 @@ export const createLocalStorageSyncedState = <T>(
     }
 
     try {
-        const existingData = localStorage.get(key);
+        const existingData = localStorage.getItem(key);
         if (existingData === null) {
             console.log(`INFO: localStorage data for ${key} is empty, using fallback data`)
             return createStateWithSyncEffect(defaultValue);
