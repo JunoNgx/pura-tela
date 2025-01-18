@@ -114,7 +114,7 @@ export const isSizeOptionsValid = (data: any[]) => {
 };
 
 export const isCurrSizeOptionIndexValid = (data: any) => {
-    if (!data || !sizeOptions) {
+    if (data === null || data === undefined || !sizeOptions) {
         return false;
     }
 
@@ -126,7 +126,7 @@ export const isCurrSizeOptionIndexValid = (data: any) => {
         }
 
         return true;
-    } catch (err) {        
+    } catch (err) {
         return false;
     }
 }
