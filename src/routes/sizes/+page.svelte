@@ -1,3 +1,7 @@
-<h1>Sizes</h1>
+<script lang="ts">
+    import BaseSizeList from "src/components/BaseSizeList.svelte";
+</script>
 
-<p>List of sizes</p>
+<h1>Size Presets Details</h1>
+<BaseSizeList/>
+<p>Adding new size preset is under development.</p>
