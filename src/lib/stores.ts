@@ -1,6 +1,7 @@
 import { derived, writable } from "svelte/store";
-import type { Writable } from "svelte/store";
-import { ThemeMode, type RgbColour } from "./types.js";
+import type { Writable, Readable } from "svelte/store";
+import type { SizeItem, RgbColour } from "./types.js";
+import { ThemeMode } from "./types.js";
 
 import defaultColourGallery from "src/data/colours.json" with { type: "json"};
 import defaultSizeOptions from "src/data/sizes.json" with { type: "json"};
@@ -18,14 +19,23 @@ export const colourGallery = writable(loadFromLocalStorage({
     defaultValue: defaultColourGallery,
 }));
 
-// TODO: load from localStorage
-export const sizeOptions = writable(loadFromLocalStorage({
-    key: "sizeOptions",
-    defaultValue: defaultSizeOptions,
-}));
+type rawParseSizeOptionItem = {
+    name: string,
+    width: string,
+    height: string
+};
+const generateSizeOptions = (rawOptions: rawParseSizeOptionItem[]) => {
+    return rawOptions.map(sizeOption => ({
+        name: sizeOption.name,
+        width: parseInt(sizeOption.width),
+        height: parseInt(sizeOption.height)
+    }));
+};
+export const sizeOptions = writable(
+    generateSizeOptions(defaultSizeOptions));
 
 export const sizeOptionIndex = writable(0);
-export const currSizeOption = derived(
+export const currSizeOption: Readable<SizeItem> = derived(
     [sizeOptions, sizeOptionIndex],
     ([$sizeOptions, $sizeOptionIndex]) => $sizeOptions[$sizeOptionIndex]
 )
