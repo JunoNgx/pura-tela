@@ -3,7 +3,11 @@
     import { resetGallery } from "src/lib/states.svelte.ts";
 
     const handleResetGallery = () => {
-        window.confirm("Please confirm gallery reset. Your data will be unrecoverably lost.");
+        const isConfirmed = window.confirm("Please confirm gallery reset. Your data will be unrecoverably lost.");
+        if (!isConfirmed) {
+            return;
+        }
+
         resetGallery();
     }
 </script>
