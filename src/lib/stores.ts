@@ -34,12 +34,12 @@ const generateSizeOptions = (rawOptions: rawParseSizeOptionItem[]) => {
 export const sizeOptions = writable(
     generateSizeOptions(defaultSizeOptions));
 
-export const sizeOptionIndex = createLocalStorageSyncedStore({
+export const currSizeOptionIndex = createLocalStorageSyncedStore({
     key: "sizeOptionsIndex",
     defaultValue: 0
 });
 export const currSizeOption: Readable<SizeItem> = derived(
-    [sizeOptions, sizeOptionIndex],
+    [sizeOptions, currSizeOptionIndex],
     ([$sizeOptions, $sizeOptionIndex]) => $sizeOptions[$sizeOptionIndex]
 )
 
