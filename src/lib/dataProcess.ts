@@ -1,5 +1,7 @@
 import { browser } from "$app/environment";
 import { writable, type Writable } from "svelte/store";
+import { isHexCodeValid } from "./utils.js";
+import type { SizeItem } from "./types.js";
 
 export const createLocalStorageSyncedStore = <T>(
     { key, defaultValue }:
@@ -32,11 +34,13 @@ export const createLocalStorageSyncedStore = <T>(
     try {
         const existingData = localStorage.get(key);
         if (existingData === null) {
+            console.log(`INFO: localStorage data for ${key} is empty, using fallback data`)
             return fallback();
         }
 
         const parsedData = JSON.parse(existingData) as T;
         if (!parsedData) {
+            console.warn(`WARN: localStorage data for ${key} is invalid, using fallback data`)
             return fallback();
         }
     
@@ -48,3 +52,60 @@ export const createLocalStorageSyncedStore = <T>(
         return createStoreWithSubscription(defaultValue);
     }
 };
+
+export const validateColourGallery = (data: any[]) => {
+    if (!data) {
+        return false;
+    }
+
+    try {
+        for (const item of data) {
+            if (!item.name) {
+                return false;
+            }
+
+            if (!isHexCodeValid(item.hexCode)) {
+                return false;
+            }
+        }
+    } catch (err) {        
+        return false;
+    }
+};
+
+export const validateSizeOptions = (data: any[]) => {
+    if (!data) {
+        return false;
+    }
+
+    try {
+        for (const item of data) {
+            if (!item.name) {
+                return false;
+            }
+
+            parseInt(item.width);
+            parseInt(item.height);
+        }
+    } catch (err) {        
+        return false;
+    }
+};
+
+export const validateCurrSizeOptionIndex = (
+    data: any, sizeOptions: SizeItem[]
+) => {
+    if (!data || !sizeOptions) {
+        return false;
+    }
+
+    try {
+        parseInt(data);
+
+        if (data < 0 || data > sizeOptions.length - 1) {
+            return false;
+        }
+    } catch (err) {        
+        return false;
+    }
+}
