@@ -33,24 +33,27 @@
 <li class="ColourItem">
     <div class="ColourItem__Preview"
         style={`background-color: #${colourItem.hexCode};`}
-    ></div>
-    <div class="ColourItem__Name">
-        {colourItem.name}
+    >
+        <div class="ColourItem__Name">
+            {colourItem.name}
+        </div>
     </div>
-    <div class="ColourItem__HexCode">
-        {`#${colourItem.hexCode}`}
-    </div>
-    <div class="ColourItem__Buttons">
-        <button onclick={handleChooseColour}
-            title={"Choose this colour"}
-        >
-            <MaterialSymbolsLightColorizeSharp/>
-        </button>
-        <button onclick={handleDeleteColour}
-            title={"Delete"}
-        >
-            <MaterialSymbolsLightDeleteSharp/>
-        </button>
+    <div class="ColourItem__Footer">
+        <div class="ColourItem__HexCode">
+            {`#${colourItem.hexCode}`}
+        </div>
+        <div class="ColourItem__Buttons">
+            <button onclick={handleChooseColour}
+                title={"Choose this colour"}
+            >
+                <MaterialSymbolsLightColorizeSharp/>
+            </button>
+            <button onclick={handleDeleteColour}
+                title={"Delete"}
+            >
+                <MaterialSymbolsLightDeleteSharp/>
+            </button>
+        </div>
     </div>
 </li>
 
@@ -65,6 +68,22 @@
     .ColourItem__Preview {
         aspect-ratio: 1;
         width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .ColourItem__Name {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+    }
+
+    .ColourItem__Footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 5px;
     }
 
     .ColourItem__Buttons {
