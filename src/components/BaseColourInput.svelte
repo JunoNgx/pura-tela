@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ColorPicker from 'svelte-awesome-color-picker';
+
 	import { RgbChannel, type RgbColour } from "src/lib/types.js";
 	import { convertHexToRgb, convertRgbToHex, getRandomHexCode, isHexCodeValid, parseRgbChannelValue } from "src/lib/utils.js";
     import { currHexCode, currRgbColour } from "src/lib/states.svelte.js";
@@ -37,14 +39,16 @@
         currHexCode.set(convertRgbToHex(currRgbColour.val));
     }
 
-    const handleColorPickerChange = (value: string) => {
-        currHexCode.set(value.replace("#", ""));
+    const handleColorPickerChange = (hexCode: string) => {
+        currHexCode.set(
+            hexCode.replace("#", "").toUpperCase());
     }
 
     const handleRandomise = () => {
         currHexCode.set(getRandomHexCode());
     }
 
+    let hex = "#968449"
 </script>
 
 <section class="ColourInput">
@@ -63,10 +67,17 @@
                 on:input={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>
-        <input
+        <!-- <input
             type="color"
             value={currHexCode.val}
             on:input={e => handleColorPickerChange((e.target as HTMLInputElement).value)}
+        /> -->
+        <ColorPicker
+            label=""
+            hex={`#${currHexCode.val}`}
+            isAlpha={false}
+            position="responsive"
+            on:input={e => handleColorPickerChange(e.detail.hex as string)}
         />
     </div>
 
