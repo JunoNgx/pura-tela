@@ -1,12 +1,14 @@
 import { browser } from "$app/environment";
 import { isHexCodeValid } from "./utils.js";
-import { ThemeMode, type SizeItem, type State } from "./types.js";
+import { ThemeMode, type State } from "./types.js";
+import { sizeOptions } from "./states.svelte.js";
 
 export const createLocalStorageSyncedState = <T>(
-    { key, defaultValue }:
+    { key, defaultValue, validationFunc = () => true }:
     {
         key: string,
         defaultValue: T
+        validationFunc?: (data: any) => boolean
     } 
 ): State<T> => {
 
@@ -48,7 +50,7 @@ export const createLocalStorageSyncedState = <T>(
         }
 
         const parsedData = JSON.parse(existingData) as T;
-        if (parsedData === null || parsedData === undefined) {
+        if (!validationFunc(parsedData)) {
             console.warn(`WARN: localStorage data for ${key} is invalid, using fallback data`)
             return createStateWithSyncEffect(defaultValue);
         }
@@ -116,9 +118,7 @@ export const isSizeOptionsValid = (data: any[]) => {
     }
 };
 
-export const isCurrSizeOptionIndexValid = (
-    data: any, sizeOptions: SizeItem[]
-) => {
+export const isCurrSizeOptionIndexValid = (data: any) => {
     if (!data || !sizeOptions) {
         return false;
     }

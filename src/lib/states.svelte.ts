@@ -7,17 +7,19 @@ import defaultColourGallery from "src/data/colours.json";
 // @ts-ignore
 import defaultSizeOptions from "src/data/sizes.json";
 
-import { convertHexToRgb } from "./utils.js";
-import { createLocalStorageSyncedState, createState } from "./dataProcess.svelte.js";
+import { convertHexToRgb, isHexCodeValid } from "./utils.js";
+import { createLocalStorageSyncedState, createState, isColourGalleryValid, isSizeOptionsValid, isThemeModeValid } from "./dataProcess.svelte.js";
 
 export const themeMode = createLocalStorageSyncedState({
     key: "themeMode",
     defaultValue: ThemeMode.AUTO,
+    validationFunc: isThemeModeValid,
 }) as State<ThemeMode>;
 
 export const colourGallery = createLocalStorageSyncedState({
     key: "colourGallery",
     defaultValue: defaultColourGallery,
+    validationFunc: isColourGalleryValid,
 }) as State<ColourItem[]>;
 
 type rawParseSizeOptionItem = {
@@ -35,7 +37,8 @@ const generateSizeOptions = (rawOptions: rawParseSizeOptionItem[]) => {
 export const sizeOptions = generateSizeOptions(defaultSizeOptions);
 export const currSizeOptionIndex = createLocalStorageSyncedState({
     key: "sizeOptionsIndex",
-    defaultValue: 0
+    defaultValue: 0,
+    validationFunc: isSizeOptionsValid,
 }) as State<number>;
  
 export const getCurrSizeOption = () => {
@@ -48,6 +51,7 @@ const firstHexCode = firstColour.hexCode;
 export const currHexCode = createLocalStorageSyncedState({
     key: "currHexCode",
     defaultValue: firstHexCode,
+    validationFunc: isHexCodeValid,
 }) as State<string>;
 
 export let currRgbColour = createState<RgbColour>(
