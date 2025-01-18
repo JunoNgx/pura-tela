@@ -1,10 +1,14 @@
+<script>
+    import { sizeOptions } from "src/lib/states.svelte";
+</script>
+
 <section class="SizeSelection">
     <h3>
         <label for="size">Dimensions</label>
     </h3>
     <select>
-        <option>mobile</option>
-        <option>desktop</option>
-        <option>square</option>
+        {#each sizeOptions as sizeOptionItem}
+            <option>{sizeOptionItem.name}</option>
+        {/each}
     </select>
 </section>
