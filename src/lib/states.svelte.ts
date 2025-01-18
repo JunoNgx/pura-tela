@@ -56,3 +56,7 @@ export const currHexCode = createLocalStorageSyncedState({
 
 export let currRgbColour = createState<RgbColour>(
     convertHexToRgb(currHexCode.val));
+
+export const resetGallery = () => {
+    colourGallery.set(defaultColourGallery);
+}
