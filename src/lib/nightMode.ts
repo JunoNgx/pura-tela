@@ -7,11 +7,11 @@ export const setupAutoSettingsListener = () => {
     const preferDarkQueryList = window.matchMedia?.("(prefers-color-scheme: dark)")
 
     if (themeMode.val === ThemeMode.AUTO) {
-        preferDarkQueryList.addEventListener("change", handleThemeModeChange);
+        preferDarkQueryList.addEventListener("change", handlePreferDarkQueryChange);
         return;
     }
         
-    preferDarkQueryList.removeEventListener("change", handleThemeModeChange);
+    preferDarkQueryList.removeEventListener("change", handlePreferDarkQueryChange);
 };
 
 export const computeThemeMode = (): ThemeMode.LIGHT | ThemeMode.DARK => {
@@ -26,14 +26,25 @@ export const computeThemeMode = (): ThemeMode.LIGHT | ThemeMode.DARK => {
         : ThemeMode.LIGHT;
 }
 
+const handlePreferDarkQueryChange = () => {
+    if (!browser) {
+        return;
+    }
+
+    writeDocumentAttribute();
+};
+
+const writeDocumentAttribute = () => {
+    const computedThemeMode = computeThemeMode();
+    document.documentElement.setAttribute(
+        "data-theme-mode", computedThemeMode);
+};
+
 export const handleThemeModeChange = () => {
     if (!browser) {
         return;
     }
 
     setupAutoSettingsListener();
-
-    const computedThemeMode = computeThemeMode();
-    document.documentElement.setAttribute(
-        "data-theme-mode", computedThemeMode);
+    writeDocumentAttribute();
 };
