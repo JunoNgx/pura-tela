@@ -7,18 +7,17 @@ import defaultColourGallery from "src/data/colours.json" with { type: "json"};
 import defaultSizeOptions from "src/data/sizes.json" with { type: "json"};
 
 import { convertHexToRgb } from "./utils.js";
-import { loadFromLocalStorage } from "./dataProcess.js";
-import { browser } from "$app/environment";
+import { createLocalStorageSyncedStore } from "./dataProcess.js";
 
-export const themeMode = writable(loadFromLocalStorage({
+export const themeMode = createLocalStorageSyncedStore({
     key: "themeMode",
     defaultValue: ThemeMode.AUTO,
-}));
+});
 
-export const colourGallery = writable(loadFromLocalStorage({
+export const colourGallery = createLocalStorageSyncedStore({
     key: "colourGallery",
     defaultValue: defaultColourGallery,
-}));
+});
 
 type rawParseSizeOptionItem = {
     name: string,
@@ -35,7 +34,10 @@ const generateSizeOptions = (rawOptions: rawParseSizeOptionItem[]) => {
 export const sizeOptions = writable(
     generateSizeOptions(defaultSizeOptions));
 
-export const sizeOptionIndex = writable(0);
+export const sizeOptionIndex = createLocalStorageSyncedStore({
+    key: "sizeOptionsIndex",
+    defaultValue: 0
+});
 export const currSizeOption: Readable<SizeItem> = derived(
     [sizeOptions, sizeOptionIndex],
     ([$sizeOptions, $sizeOptionIndex]) => $sizeOptions[$sizeOptionIndex]
@@ -43,17 +45,9 @@ export const currSizeOption: Readable<SizeItem> = derived(
 
 const firstColour = defaultColourGallery[0];
 const firstHexCode = firstColour.hexCode;
-export const currHexCode = writable(loadFromLocalStorage({
+export const currHexCode = createLocalStorageSyncedStore({
     key: "currHexCode",
     defaultValue: firstHexCode,
-}));
-// TODO: add this logic to createLocalStorageSyncedStore()
-currHexCode.subscribe(value => {
-    if (!browser) {
-        return;
-    }
-
-    localStorage.setItem("currHexCode", value);
 });
 
 export const currRgbColour: Writable<RgbColour> = writable(
