@@ -53,7 +53,7 @@ export const createLocalStorageSyncedStore = <T>(
     }
 };
 
-export const validateColourGallery = (data: any[]) => {
+export const isColourGalleryValid = (data: any[]) => {
     if (!data) {
         return false;
     }
@@ -73,7 +73,7 @@ export const validateColourGallery = (data: any[]) => {
     }
 };
 
-export const validateSizeOptions = (data: any[]) => {
+export const isSizeOptionsValid = (data: any[]) => {
     if (!data) {
         return false;
     }
@@ -92,7 +92,7 @@ export const validateSizeOptions = (data: any[]) => {
     }
 };
 
-export const validateCurrSizeOptionIndex = (
+export const isCurrSizeOptionIndexValid = (
     data: any, sizeOptions: SizeItem[]
 ) => {
     if (!data || !sizeOptions) {
@@ -110,7 +110,7 @@ export const validateCurrSizeOptionIndex = (
     }
 }
 
-export const validateThemeMode = (data: any) => {
+export const isThemeModeValid = (data: any) => {
     if ( data !== ThemeMode.AUTO
         && data !== ThemeMode.DARK
         && data !== ThemeMode.LIGHT
