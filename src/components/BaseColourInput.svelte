@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { RgbChannel, type RgbColour } from "src/lib/types.js";
-	import { convertHexToRgb, convertRgbToHex, isHexCodeValid, parseRgbChannelValue } from "src/lib/utils.js";
+	import { convertHexToRgb, convertRgbToHex, getRandomHexCode, isHexCodeValid, parseRgbChannelValue } from "src/lib/utils.js";
     import { currHexCode, currRgbColour } from "src/lib/states.svelte.js";
 
     const handleHexCodeChange = (hexStr: string) => {
@@ -35,6 +35,10 @@
         }
 
         currHexCode.set(convertRgbToHex(currRgbColour.val));
+    }
+
+    const handleRandomise = () => {
+        currHexCode.set(getRandomHexCode());
     }
 
 </script>
@@ -95,7 +99,9 @@
     </div>
 
     <div class="ColourInput__Buttons">
-        <button>randomise</button>
+        <button on:click={handleRandomise}>
+            randomise
+        </button>
         <button>save colour</button>
     </div>
 
