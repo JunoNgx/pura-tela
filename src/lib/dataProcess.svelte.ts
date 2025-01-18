@@ -33,11 +33,6 @@ export const createLocalStorageSyncedState = <T>(
         };
     }
 
-    // const fallback = () => {
-    //     localStorage.setItem(key, JSON.stringify(defaultValue));
-    //     return createStateWithSyncEffect(defaultValue);
-    // };
-
     if (!browser) {
         return createStateWithSyncEffect(defaultValue);
     }
