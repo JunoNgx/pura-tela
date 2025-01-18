@@ -101,7 +101,7 @@
             hex={`#${currHexCode.val}`}
             isAlpha={false}
             position="responsive"
-            oninput={e => handleColorPickerChange(e.detail.hex as string)}
+            on:input={e => handleColorPickerChange(e.detail.hex as string)}
             --input-size="24px"
             --focus-color="green"
             --slider-width="24px"
