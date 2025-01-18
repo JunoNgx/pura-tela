@@ -1,11 +1,13 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
-    import { currHexCode, colourGallery } from "src/lib/states.svelte.ts";
-    
+    import { currHexCode, currRgbColour, colourGallery } from "src/lib/states.svelte.ts";
+	import { convertHexToRgb } from "src/lib/utils.js";
+
     let { colourItem } = $props();
 
     const handleChooseColour = () => {
         currHexCode.set(colourItem.hexCode);
+        currRgbColour.set(convertHexToRgb(colourItem.hexCode));
         goto("/");
     };
 
