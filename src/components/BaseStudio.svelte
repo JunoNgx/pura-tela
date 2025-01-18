@@ -1,6 +1,17 @@
 <script lang="ts">
     import BaseColourInput from "src/components/BaseColourInput.svelte";
     import BaseDimensionSelection from "src/components/BaseDimensionSelection.svelte";
+	import { generateImage } from "src/lib/canvas.js";
+	import { currHexCode, currSizeOption } from "src/lib/stores.js";
+
+    const handleDownloadClick = () => {
+        generateImage({
+            width: $currSizeOption.width,
+            height: $currSizeOption.height,
+            bgHex: $currHexCode,
+            filename: $currHexCode
+        });
+    };
 </script>
 
 <div class="Studio">
@@ -15,7 +26,9 @@
             <BaseDimensionSelection/>
         </div>
         <div class="Studio__Buttons">
-            <button>download</button>
+            <button on:click={handleDownloadClick}>
+                download
+            </button>
         </div>
     </div>
 </div>
