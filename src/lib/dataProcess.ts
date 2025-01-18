@@ -68,6 +68,8 @@ export const isColourGalleryValid = (data: any[]) => {
                 return false;
             }
         }
+
+        return true;
     } catch (err) {        
         return false;
     }
@@ -87,6 +89,8 @@ export const isSizeOptionsValid = (data: any[]) => {
             parseInt(item.width);
             parseInt(item.height);
         }
+
+        return true;
     } catch (err) {        
         return false;
     }
@@ -105,6 +109,8 @@ export const isCurrSizeOptionIndexValid = (
         if (data < 0 || data > sizeOptions.length - 1) {
             return false;
         }
+
+        return true;
     } catch (err) {        
         return false;
     }
