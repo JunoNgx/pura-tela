@@ -1,4 +1,7 @@
+/* Global config */
+
 :root {
+    --fontFamily: "Geist Mono", system-ui, sans-serif;
     --fontSizeMd: 14px;
     --fontSizeLg: 18px;
     --fontSizeSm: 12px;
@@ -13,4 +16,18 @@
 :root[data-theme-mode="dark"] {
     --colPri: #FFF;
     --colBg: #000;
+}
+
+@font-face {
+	font-family: "Geist Mono";
+	font-style: normal;
+	font-weight: 400;
+	src: url("/GeistMono.ttf") format("truetype");
+}
+
+/* Global rules */
+
+html {
+    font-family: var(--fontFamily);
+    background-color: var(--colBg);
 }
