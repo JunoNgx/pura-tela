@@ -5,6 +5,10 @@
     --fontSizeMd: 14px;
     --fontSizeLg: 18px;
     --fontSizeSm: 12px;
+    --lineThickness: 1px;
+
+    --colPri: #000;
+    --colBg: #f1f0f4;
 }
 
 :root[data-theme-mode="light"] {
@@ -30,4 +34,11 @@
 html {
     font-family: var(--fontFamily);
     background-color: var(--colBg);
+}
+
+button {
+    background-color: transparent;
+    border-radius: 0;
+    line-height: 0;
+    border: var(--lineThickness) solid var(--colPri);
 }
