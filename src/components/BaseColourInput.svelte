@@ -49,7 +49,6 @@
         currHexCode.set(getRandomHexCode());
     }
 
-    let hex = "#968449"
 </script>
 
 <section class="ColourInput">
