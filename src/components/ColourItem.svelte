@@ -1,5 +1,13 @@
 <script lang="ts">
+    import { goto } from '$app/navigation';
+    import { currHexCode } from "src/lib/states.svelte.ts";
+    
     let { colourItem } = $props();
+
+    const handleChooseColour = () => {
+        currHexCode.set(colourItem.hexCode);
+        goto("/")
+    }
 </script>
 
 <li class="ColourItem">
@@ -13,7 +21,7 @@
         {`#${colourItem.hexCode}`}
     </div>
     <div class="ColourItem__Buttons">
-        <button>pick</button>
+        <button onclick={handleChooseColour}>pick</button>
         <button>delete</button>
     </div>
 </li>
