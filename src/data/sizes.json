@@ -5,6 +5,11 @@
         "height": "1920"
     },
     {
+        "name": "Mobile 2K",
+        "width": "1440",
+        "height": "2650"
+    },
+    {
         "name": "Desktop 2K",
         "width": "2650",
         "height": "1440"
@@ -15,9 +20,9 @@
         "height": "2160"
     },
     {
-        "name": "Mobile 2K",
-        "width": "1440",
-        "height": "2650"
+        "name": "3:2",
+        "width": "3000",
+        "height": "2000"
     },
     {
         "name": "Square (tiny)",
@@ -36,11 +41,6 @@
     },
     {
         "name": "Square (extra large)",
-        "width": "4000",
-        "height": "4000"
-    },
-    {
-        "name": "4:3 (3200 x 2400)",
         "width": "4000",
         "height": "4000"
     }
