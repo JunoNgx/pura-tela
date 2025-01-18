@@ -59,19 +59,17 @@ export const loadFromLocalStorage = <T>({key, defaultValue}:
             return defaultValue;
         };
 
-        const existingContent = localStorage.get(key);
-
-        if (existingContent === null) {
+        const existingData = localStorage.get(key);
+        if (existingData === null) {
             return fallback();
         }
 
-        const parsedContent = JSON.parse(existingContent) as T;
-
-        if (!parsedContent) {
+        const parsedData = JSON.parse(existingData) as T;
+        if (!parsedData) {
             return fallback();
         }
     
-        return parsedContent;
+        return parsedData;
     } catch (error) {
         console.warn(`Unable to retrieve key ${key} from localStorage`);
         localStorage.setItem(key, JSON.stringify(defaultValue));
