@@ -55,4 +55,4 @@ export const currHexCode = createLocalStorageSyncedState({
 }) as State<string>;
 
 export let currRgbColour = createState<RgbColour>(
-    convertHexToRgb(firstHexCode));
+    convertHexToRgb(currHexCode.val));
