@@ -1,57 +1,77 @@
 import { browser } from "$app/environment";
-import { writable, type Writable } from "svelte/store";
 import { isHexCodeValid } from "./utils.js";
-import { ThemeMode, type SizeItem } from "./types.js";
+import { ThemeMode, type SizeItem, type State } from "./types.js";
 
-export const createLocalStorageSyncedStore = <T>(
+export const createLocalStorageSyncedState = <T>(
     { key, defaultValue }:
     {
         key: string,
         defaultValue: T
     } 
-): Writable<T> => {
-    const fallback = () => {
-        localStorage.setItem(key, JSON.stringify(defaultValue));
-        return writable(defaultValue);
-    };
+): State<T> => {
 
-    const createStoreWithSubscription = (verifiedData: T) => {
-        const store = writable(verifiedData);
-        store.subscribe(value => {
-            if (!browser) {
-                return;
+    const createStateWithSyncEffect = (verifiedData: T) => {
+        let state = $state<T>(verifiedData);
+
+        if (browser) {
+            localStorage.setItem(key, JSON.stringify(state));
+        }
+
+        return {
+            get val() { return state; },
+            set: (newVal: T) => {
+                state = newVal;
+
+                if (!browser) {
+                    return;
+                }
+
+                localStorage.setItem(key, JSON.stringify(state));
             }
-    
-            localStorage.setItem(key, JSON.stringify(value));
-        });
-        return store;
-    };
+        };
+    }
+
+    // const fallback = () => {
+    //     localStorage.setItem(key, JSON.stringify(defaultValue));
+    //     return createStateWithSyncEffect(defaultValue);
+    // };
 
     if (!browser) {
-        return writable(defaultValue);
+        return createStateWithSyncEffect(defaultValue);
     }
 
     try {
         const existingData = localStorage.get(key);
         if (existingData === null) {
             console.log(`INFO: localStorage data for ${key} is empty, using fallback data`)
-            return fallback();
+            return createStateWithSyncEffect(defaultValue);
         }
 
         const parsedData = JSON.parse(existingData) as T;
-        if (!parsedData) {
+        if (parsedData === null || parsedData === undefined) {
             console.warn(`WARN: localStorage data for ${key} is invalid, using fallback data`)
-            return fallback();
+            return createStateWithSyncEffect(defaultValue);
         }
     
-        return createStoreWithSubscription(parsedData);
+        return createStateWithSyncEffect(parsedData);
 
     } catch (error) {
         console.warn(`Unable to retrieve key ${key} from localStorage`);
         localStorage.setItem(key, JSON.stringify(defaultValue));
-        return createStoreWithSubscription(defaultValue);
+        return createStateWithSyncEffect(defaultValue);
     }
 };
+
+export const createState = <T>(
+    defaultValue: T
+): State<T> => {
+    let state = $state<T>(defaultValue);
+
+    return {
+        get val() { return state; },
+        set: (v: T) => { state = v;}
+    }
+}
 
 export const isColourGalleryValid = (data: any[]) => {
     if (!data) {

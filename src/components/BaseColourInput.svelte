@@ -1,40 +1,40 @@
 <script lang="ts">
 	import { RgbChannel, type RgbColour } from "src/lib/types.js";
 	import { convertHexToRgb, convertRgbToHex, isHexCodeValid, parseRgbChannelValue } from "src/lib/utils.js";
-    import { currHexCode, currRgbColour } from "src/lib/stores.js";
+    import { currHexCode, currRgbColour } from "src/lib/states.svelte.js";
 
     const handleHexCodeChange = (hexStr: string) => {
         if (!isHexCodeValid(hexStr)) {
             return;
         }
 
-        $currHexCode = hexStr;
-        $currRgbColour = convertHexToRgb($currHexCode);
+        currHexCode.set(hexStr);
+        currRgbColour.set(convertHexToRgb(currHexCode.val));
     }
 
     const handleRgbChange = (channel: RgbChannel, value: string) => {
         switch (channel) {
         case RgbChannel.R:
-            $currRgbColour = {
-                ...$currRgbColour,
+            currRgbColour.set({
+                ...currRgbColour.val,
                 red: parseRgbChannelValue(value)
-            };
+            });
             break;
         case RgbChannel.G:
-            $currRgbColour = {
-                ...$currRgbColour,
+            currRgbColour.set({
+                ...currRgbColour.val,
                 green: parseRgbChannelValue(value)
-            };
+            });
             break;
         case RgbChannel.B:
-            $currRgbColour = {
-                ...$currRgbColour,
+            currRgbColour.set({
+                ...currRgbColour.val,
                 blue: parseRgbChannelValue(value)
-            };
+            });
             break;
         }
 
-        $currHexCode = convertRgbToHex($currRgbColour);
+        currHexCode.set(convertRgbToHex(currRgbColour.val));
     }
 
 </script>
@@ -51,7 +51,7 @@
                 type="text"
                 minlength="3"
                 maxlength="6"
-                bind:value={$currHexCode}
+                value={currHexCode.val}
                 on:input={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>
@@ -66,7 +66,7 @@
                 type="number"
                 min="0"
                 max="255"
-                bind:value={$currRgbColour.red}
+                value={currRgbColour.val.red}
                 on:input={e => handleRgbChange(RgbChannel.R, (e.target as HTMLInputElement).value)}
             />
         </div>
@@ -77,7 +77,7 @@
                 type="number"
                 min="0"
                 max="255"
-                bind:value={$currRgbColour.green}
+                value={currRgbColour.val.green}
                 on:input={e => handleRgbChange(RgbChannel.G, (e.target as HTMLInputElement).value)}
             />
         </div>
@@ -88,7 +88,7 @@
                 type="number"
                 min="0"
                 max="255"
-                bind:value={$currRgbColour.blue}
+                value={currRgbColour.val.blue}
                 on:input={e => handleRgbChange(RgbChannel.B, (e.target as HTMLInputElement).value)}
             />
         </div>

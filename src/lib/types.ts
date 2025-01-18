@@ -31,3 +31,8 @@ export enum RgbChannel {
     G = "green",
     B = "blue"
 };
+
+export type State<T> = {
+    readonly val: T;
+    set: (newValue: T) => void,
+};

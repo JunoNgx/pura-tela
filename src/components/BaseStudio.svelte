@@ -2,14 +2,14 @@
     import BaseColourInput from "src/components/BaseColourInput.svelte";
     import BaseDimensionSelection from "src/components/BaseDimensionSelection.svelte";
 	import { generateImage } from "src/lib/canvas.js";
-	import { currHexCode, currSizeOption } from "src/lib/stores.js";
+	import { currHexCode, getCurrSizeOption } from "src/lib/states.svelte.js";
 
     const handleDownloadClick = () => {
         generateImage({
-            width: $currSizeOption.width,
-            height: $currSizeOption.height,
-            bgHex: $currHexCode,
-            filename: $currHexCode
+            width: getCurrSizeOption().width,
+            height: getCurrSizeOption().height,
+            bgHex: currHexCode.val,
+            filename: currHexCode.val
         });
     };
 </script>
