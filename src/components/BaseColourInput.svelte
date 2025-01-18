@@ -42,6 +42,7 @@
     const handleColorPickerChange = (hexCode: string) => {
         currHexCode.set(
             hexCode.replace("#", "").toUpperCase());
+        currRgbColour.set(convertHexToRgb(currHexCode.val));
     }
 
     const handleRandomise = () => {
