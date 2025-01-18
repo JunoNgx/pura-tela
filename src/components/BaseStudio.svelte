@@ -57,7 +57,7 @@
     }
 
     .Studio__PreviewBlock {
-        aspect-ratio: 1/1;
+        aspect-ratio: 1;
         height: 100%;
         border: 1px solid #000;
     }

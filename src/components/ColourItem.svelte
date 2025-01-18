@@ -53,7 +53,7 @@
     }
 
     .ColourItem__Preview {
-        aspect-ratio: 1/1;
+        aspect-ratio: 1;
         width: 100%;
     }
 
