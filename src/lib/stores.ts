@@ -6,7 +6,8 @@ import { ThemeMode } from "./types.js";
 import defaultColourGallery from "src/data/colours.json" with { type: "json"};
 import defaultSizeOptions from "src/data/sizes.json" with { type: "json"};
 
-import { convertHexToRgb, loadFromLocalStorage } from "./utils.js";
+import { convertHexToRgb } from "./utils.js";
+import { loadFromLocalStorage } from "./dataProcess.js";
 import { browser } from "$app/environment";
 
 export const themeMode = writable(loadFromLocalStorage({
