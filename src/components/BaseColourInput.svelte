@@ -78,6 +78,11 @@
             isAlpha={false}
             position="responsive"
             on:input={e => handleColorPickerChange(e.detail.hex as string)}
+            --input-size="24px"
+            --focus-color="green"
+            --slider-width="24px"
+            --picker-indicator-size="10px"
+            --picker-z-index="10"
         />
     </div>
 
