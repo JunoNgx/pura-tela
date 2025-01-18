@@ -37,6 +37,10 @@
         currHexCode.set(convertRgbToHex(currRgbColour.val));
     }
 
+    const handleColorPickerChange = (value: string) => {
+        currHexCode.set(value.replace("#", ""));
+    }
+
     const handleRandomise = () => {
         currHexCode.set(getRandomHexCode());
     }
@@ -59,7 +63,11 @@
                 on:input={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>
-        <button>pick</button>
+        <input
+            type="color"
+            value={currHexCode.val}
+            on:input={e => handleColorPickerChange((e.target as HTMLInputElement).value)}
+        />
     </div>
 
     <div class="ColourInput__Rgb">
