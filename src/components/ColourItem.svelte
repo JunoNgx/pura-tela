@@ -1,12 +1,28 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
-    import { currHexCode } from "src/lib/states.svelte.ts";
+    import { currHexCode, colourGallery } from "src/lib/states.svelte.ts";
     
     let { colourItem } = $props();
 
     const handleChooseColour = () => {
         currHexCode.set(colourItem.hexCode);
         goto("/")
+    }
+
+    const handleDeleteColour = () => {
+        const isConfirmed = window.confirm("Please confirm the colour deletion.");
+        if (!isConfirmed) {
+            return;
+        }
+
+        const hexCode = colourItem.hexCode
+        const index = colourGallery.val.find(item => item.hexCode === hexCode);
+
+        if (index === -1) {
+            console.error("ERROR: failed to delete colour");
+        }
+
+        colourGallery.set(colourGallery.val.toSpliced(index, 1));
     }
 </script>
 
@@ -22,7 +38,7 @@
     </div>
     <div class="ColourItem__Buttons">
         <button onclick={handleChooseColour}>pick</button>
-        <button>delete</button>
+        <button onclick={handleDeleteColour}>delete</button>
     </div>
 </li>
 
