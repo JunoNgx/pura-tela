@@ -186,6 +186,7 @@
     }
 
     .ColourInput__Rgb {
+        justify-content: space-around;
         margin: 0.25rem 0;
         gap: 2rem;
     }
