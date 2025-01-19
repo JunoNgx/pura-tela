@@ -1,0 +1,22 @@
+@import "src/styles/global.css";
+
+@font-face {
+	font-family: "Geist Mono";
+	font-style: normal;
+	font-weight: 400;
+	src: url("/GeistMono.ttf") format("truetype");
+}
+
+html {
+    font-family: var(--fontFamily);
+    font-size: var(--fontSizeMd);
+
+    background-color: var(--colBg);
+    color: var(--colPri);
+}
+
+button {
+    background-color: transparent;
+    border-radius: 0;
+    border: var(--lineThickness) solid var(--colPri);
+}

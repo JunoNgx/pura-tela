@@ -3,7 +3,7 @@
     import BaseNav from "src/components/BaseNav.svelte";
     import BaseFooter from "src/components/BaseFooter.svelte";
 
-    import "src/styles.css";
+    import "src/styles/global.css";
 	import { handleThemeModeChange } from "src/lib/nightMode.js";
 
     let { children } = $props();
