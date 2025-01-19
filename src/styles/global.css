@@ -21,15 +21,19 @@ body {
 }
 
 button {
+    cursor: pointer;
     background-color: transparent;
     border-radius: 0;
     border: var(--lineThickness) solid var(--colPri);
+    color: var(--colPri);
+    transition: all ease-in-out var(--transTime);
+}
+
+button:hover {
+    color: var(--colBg);
+    background-color: var(--colPri);
 }
 
 h1 {
     margin: 0;
-}
-
-svg {
-    color: var(--colPri);
 }
