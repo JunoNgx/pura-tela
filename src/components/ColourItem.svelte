@@ -63,12 +63,12 @@
     .ColourItem {
         list-style: none;
         border-bottom: 1px solid var(--colPri);
-        width: 20%;
+        min-width: 150px;
         padding: 0.25rem;
     }
 
     .ColourItem__Preview {
-        aspect-ratio: 1;
+        height: 150px;
         width: 100%;
         position: relative;
         display: flex;
