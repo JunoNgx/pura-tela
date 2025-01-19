@@ -10,9 +10,10 @@
 html {
     font-family: var(--fontFamily);
     font-size: var(--fontSizeMd);
-
     background-color: var(--colBg2);
     color: var(--colPri);
+
+    scrollbar-gutter: stable both-edges;
 }
 
 body {
