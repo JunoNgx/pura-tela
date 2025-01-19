@@ -21,6 +21,6 @@
 
 :root[data-theme-mode="dark"] {
     --colPri: #FFF;
-    --colBg: #333;
-    --colBg2: #000;
+    --colBg: #2D2D2D;
+    --colBg2: #373737;
 }
