@@ -2,6 +2,9 @@
     import { browser } from "$app/environment";
 	import ColorPicker from 'svelte-awesome-color-picker';
 
+    import MaterialSymbolsLightSaveOutline from '~icons/material-symbols-light/save-outline';
+    import MaterialSymbolsLightShuffle from '~icons/material-symbols-light/shuffle';
+
 	import { RgbChannel } from "src/lib/types.js";
 	import { convertHexToRgb, convertRgbToHex, getRandomHexCode, isHexCodeValid, parseRgbChannelValue } from "src/lib/utils.js";
     import { colourGallery, currHexCode, currRgbColour } from "src/lib/states.svelte";
@@ -108,6 +111,16 @@
             --picker-indicator-size="10px"
             --picker-z-index="10"
         />
+        <button class="ColourInput__ColourActionBtn"
+            onclick={handleRandomise}
+        >
+            <MaterialSymbolsLightShuffle/>
+        </button>
+        <button class="ColourInput__ColourActionBtn"
+            onclick={tryCreateNewColour}
+        >
+            <MaterialSymbolsLightSaveOutline/>
+        </button>
     </div>
 
     <div class="ColourInput__Rgb">
@@ -145,16 +158,6 @@
             />
         </div>
     </div>
-
-    <div class="ColourInput__Buttons">
-        <button onclick={handleRandomise}>
-            Randomise
-        </button>
-        <button onclick={tryCreateNewColour}>
-            Save to gallery
-        </button>
-    </div>
-
 </section>
 
 <style>
@@ -171,7 +174,13 @@
     }
 
     .ColourInput__HexInput {
-        width: 7rem;
+        width: 5rem;
+    }
+
+    .ColourInput__ColourActionBtn {
+        font-size: 20px;
+        line-height: 0;
+        padding: 0;
     }
 
     .ColourInput__Rgb {
@@ -181,10 +190,6 @@
 
     .ColourInput__RgbInput {
         width: 2rem;
-    }
-
-    .ColourInput__Buttons {
-        margin-top: 1rem;
     }
 
     /* Colour picker customisation */
