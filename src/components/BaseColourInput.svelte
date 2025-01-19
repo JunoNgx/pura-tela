@@ -186,8 +186,8 @@
     }
 
     .ColourInput__Buttons {
-        /* Hacky solution to align this with the colour picker button */
-        margin-top: 4px;
+        display: flex;
+        gap: 1rem;
     }
 
     .ColourInput__ColourActionBtn {
