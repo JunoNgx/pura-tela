@@ -64,6 +64,11 @@
         border: 1px solid var(--colPri);
     }
 
+    .Studio__Buttons {
+        display: flex;
+        justify-content: flex-start;
+    }
+
     .Studio_DownloadBtn {
         margin-top: 3rem;
         padding: 1rem 2rem;
@@ -97,6 +102,10 @@
         .Studio__PreviewBlock {
             aspect-ratio: unset;
             width: 100%;
+        }
+
+        .Studio__Buttons {
+            justify-content: center;
         }
     }
 
