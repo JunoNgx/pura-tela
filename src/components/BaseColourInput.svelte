@@ -113,11 +113,13 @@
         />
         <button class="ColourInput__ColourActionBtn"
             onclick={handleRandomise}
+            title="Generate a randomised colour"
         >
             <MaterialSymbolsLightShuffle/>
         </button>
         <button class="ColourInput__ColourActionBtn"
             onclick={tryCreateNewColour}
+            title="Save colour to gallery"
         >
             <MaterialSymbolsLightSaveOutline/>
         </button>
