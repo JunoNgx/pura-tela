@@ -12,7 +12,8 @@
                     style={`aspect-ratio: ${SizeItem.width} / ${SizeItem.height};`}
                 ></div>
             </div>
-            {SizeItem.name}: {SizeItem.width} × {SizeItem.height}
+            <p class="SizeItem__Label">{SizeItem.name}</p>
+            <p class="SizeItem__SizeInfo">{SizeItem.width} × {SizeItem.height}</p>
         </li>
     {/each}
 </ul>
@@ -21,20 +22,22 @@
     .SizeList {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
         gap: 20px;
+        padding-left: 0;
     }
 
     .SizeItem {
         list-style: none;
         width: 30%;
-        border: 1px solid #000;
+        border-bottom: 1px solid var(--colPri);
         padding: 5px;
     }
 
     .SizeItem__PreviewContainer {
         aspect-ratio: 1;
         max-width: 100%;
-        /* background-color: SpringGreen; */
+        background-color: Khaki;
         padding: 25px;
         display: grid;
         place-items: center;
@@ -43,11 +46,25 @@
     .SizeItem__PreviewScreen {
         width: 100%;
         height: auto;
-        background-color: #000;
+        background-color: DodgerBlue;
     }
 
     .SizeItem__PreviewScreen--IsPortraitMode {
         width: auto;
         height: 100%;
     }
+
+    .SizeItem__Label,
+    .SizeItem__SizeInfo {
+        margin: 0;
+    }
+
+    .SizeItem__Label {
+        margin-top: 0.25rem;
+    }
+    
+    .SizeItem__SizeInfo {
+        font-size: var(--fontSizeSm);
+    }
+
 </style>
