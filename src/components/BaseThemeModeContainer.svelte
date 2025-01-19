@@ -42,8 +42,9 @@
     }
 
     .ThemeMode__Item {
-        font-size: 16px;
+        font-size: 18px;
         cursor: pointer;
         border: none;
+        line-height: 0;
     }
 </style>

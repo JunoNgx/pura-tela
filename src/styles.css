@@ -41,6 +41,5 @@ html {
 button {
     background-color: transparent;
     border-radius: 0;
-    line-height: 0;
     border: var(--lineThickness) solid var(--colPri);
 }
