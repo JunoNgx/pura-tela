@@ -11,12 +11,20 @@ html {
     font-family: var(--fontFamily);
     font-size: var(--fontSizeMd);
 
-    background-color: var(--colBg);
+    background-color: var(--colBg2);
     color: var(--colPri);
+}
+
+body {
+    margin: 0;
 }
 
 button {
     background-color: transparent;
     border-radius: 0;
     border: var(--lineThickness) solid var(--colPri);
+}
+
+h1 {
+    margin: 0;
 }

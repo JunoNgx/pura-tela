@@ -4,15 +4,16 @@
     --fontSizeLg: 18px;
     --fontSizeSm: 12px;
     --lineThickness: 1px;
-
+/* 
     --colPri: #000;
-    --colBg: #F1F0F4;
-    --colBg2: #FFF;
+    --colBg: #FFF;
+    --colBg2: #F1F0F4; */
 }
 
 :root[data-theme-mode="light"] {
     --colPri: #000;
-    --colBg: #F1F0F4;
+    --colBg: #FFF;
+    --colBg2: #F1F0F4;
 }
 
 :root[data-theme-mode="dark"] {

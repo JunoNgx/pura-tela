@@ -12,22 +12,32 @@
 </script>
 
 <main>
-    <BaseHeader/>
-    <BaseNav/>
-    <div class="TabContent">
-        {@render children()}
+    <div class="CardWrapper">
+        <BaseHeader/>
+        <BaseNav/>
+        <div class="TabContent">
+            {@render children()}
+        </div>
     </div>
-    <BaseFooter/>
 </main>
-
+    
+<BaseFooter/>
 <style>
+    @import "src/styles/vars.css";
+
     main {
+        min-height: 92vmin;
+    }
+
+    .CardWrapper {
         max-width: 800px;
-        margin: auto;
-        min-height: 95vmin;
+        margin: 1rem auto;
+        padding: 1rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: var(--colBg);
+        box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.2)   
     }
 
     .TabContent {
