@@ -58,5 +58,6 @@
         cursor: pointer;
         border: none;
         line-height: 0;
+        padding: 1px 4px;
     }
 </style>

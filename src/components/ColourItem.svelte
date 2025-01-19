@@ -103,6 +103,7 @@
         border: none;
         line-height: 0;
         font-size: 16px;
+        padding: 1px 4px;
     }
 
     .ColourItem__ActionBtn--Delete {

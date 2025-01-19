@@ -27,6 +27,7 @@ button {
     border: var(--lineThickness) solid var(--colPri);
     color: var(--colPri);
     font-size: var(--fontSizeMd);
+    padding: 0.5rem 2rem;
     transition: all ease-in-out var(--transTime);
 }
 
