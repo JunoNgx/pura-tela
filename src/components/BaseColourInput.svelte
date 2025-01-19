@@ -83,34 +83,36 @@
     <h3>Colour</h3>
 
     <div class="ColourInput__Top">
-        <div class="ColourInput__Hex">
-            <label for="hexCode">#</label>
-            <input class="ColourInput__HexInput"
-                name="hexCode"
-                type="text"
-                minlength="3"
-                maxlength="6"
+        <div class="ColourInput__TopLeft">
+            <div class="ColourInput__Hex">
+                <label for="hexCode">#</label>
+                <input class="ColourInput__HexInput"
+                    name="hexCode"
+                    type="text"
+                    minlength="3"
+                    maxlength="6"
+                    value={currHexCode.val}
+                    oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
+                />
+            </div>
+            <!-- <input
+                type="color"
                 value={currHexCode.val}
-                oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
+                oninput={e => handleColorPickerChange((e.target as HTMLInputElement).value)}
+            /> -->
+            <ColorPicker
+                label=""
+                hex={`#${currHexCode.val}`}
+                isAlpha={false}
+                position="responsive"
+                on:input={e => handleColorPickerChange(e.detail.hex as string)}
+                --input-size="24px"
+                --focus-color="green"
+                --slider-width="24px"
+                --picker-indicator-size="10px"
+                --picker-z-index="10"
             />
         </div>
-        <!-- <input
-            type="color"
-            value={currHexCode.val}
-            oninput={e => handleColorPickerChange((e.target as HTMLInputElement).value)}
-        /> -->
-        <ColorPicker
-            label=""
-            hex={`#${currHexCode.val}`}
-            isAlpha={false}
-            position="responsive"
-            on:input={e => handleColorPickerChange(e.detail.hex as string)}
-            --input-size="24px"
-            --focus-color="green"
-            --slider-width="24px"
-            --picker-indicator-size="10px"
-            --picker-z-index="10"
-        />
         <div class="ColourInput__Buttons">
             <button class="ColourInput__ColourActionBtn"
                 onclick={handleRandomise}
@@ -166,6 +168,7 @@
 
 <style>
     .ColourInput__Top,
+    .ColourInput__TopLeft,
     .ColourInput__Rgb {
         display: flex;
         flex-direction: row;
@@ -173,12 +176,18 @@
         align-items: center;
     }
 
-    .ColourInput__Top {
+    .ColourInput__Top,
+    .ColourInput__TopLeft {
         gap: 1rem;
     }
 
     .ColourInput__HexInput {
         width: 5rem;
+    }
+
+    .ColourInput__Buttons {
+        /* Hacky solution to align this with the colour picker button */
+        margin-top: 4px;
     }
 
     .ColourInput__ColourActionBtn {
