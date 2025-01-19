@@ -37,7 +37,7 @@
         flex-direction: column;
         align-items: center;
         background-color: var(--colBg);
-        box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.2)   
+        box-shadow: 4px 8px 16px 0px rgba(0, 0, 0, 0.2)   
     }
 
     .TabContent {
