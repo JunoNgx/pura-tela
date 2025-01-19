@@ -61,7 +61,7 @@
     .Studio__PreviewBlock {
         aspect-ratio: 1;
         height: 100%;
-        border: 1px solid #000;
+        border: 1px solid var(--colPri);
     }
 
     .Studio_DownloadBtn {
