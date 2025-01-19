@@ -16,4 +16,10 @@
         flex-direction: row;
         justify-content: space-evenly;
     }
+
+    @media screen and (width < 500px) {
+        nav {
+            margin-top: 1rem;
+        }
+    }
 </style>
