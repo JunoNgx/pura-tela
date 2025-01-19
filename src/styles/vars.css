@@ -7,10 +7,10 @@
     --transTime: 0.3s;
 
     --colDanger: #FF4647;
-/* 
+
     --colPri: #000;
     --colBg: #FFF;
-    --colBg2: #F1F0F4; */
+    --colBg2: #F1F0F4;
 }
 
 :root[data-theme-mode="light"] {
