@@ -20,17 +20,29 @@
     <button class="ThemeMode__Item"
         onclick={() => handleClickOnThemeMode(ThemeMode.AUTO)}
     >
-        <MaterialSymbolsLightSettingsOutline />
+        {#if themeMode.val === ThemeMode.AUTO}
+            <MaterialSymbolsLightSettings/>
+        {:else}
+            <MaterialSymbolsLightSettingsOutline/>
+        {/if}
     </button>
     <button class="ThemeMode__Item"
         onclick={() => handleClickOnThemeMode(ThemeMode.LIGHT)}
     >
-        <MaterialSymbolsLightLightModeOutline />
+        {#if themeMode.val === ThemeMode.LIGHT}
+            <MaterialSymbolsLightLightMode/>
+        {:else}
+            <MaterialSymbolsLightLightModeOutline/>
+        {/if}
     </button>
     <button class="ThemeMode__Item"
         onclick={() => handleClickOnThemeMode(ThemeMode.DARK)}
     >
-        <MaterialSymbolsLightModeNightOutline />
+        {#if themeMode.val === ThemeMode.DARK}
+            <MaterialSymbolsLightModeNight/>
+        {:else}
+            <MaterialSymbolsLightModeNightOutline/>
+        {/if}
     </button>
 </div>
 
