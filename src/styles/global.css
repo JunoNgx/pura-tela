@@ -20,6 +20,12 @@ body {
     margin: 0;
 }
 
+a,
+a:hover,
+a:visited {
+    color: var(--colPri);
+}
+
 button {
     cursor: pointer;
     font-family: var(--fontFamily);
