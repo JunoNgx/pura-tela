@@ -78,4 +78,26 @@
         color: var(--colPri);
         background-color: var(--colBg);
     }
+
+    @media screen and (width < 500px) {
+        .Studio {
+            /* flex-wrap: wrap; */
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            padding: 0;
+        }
+
+        .Studio__Canvas {
+            max-width: none;
+            height: 180px;
+            width: 100%;
+        }
+
+        .Studio__PreviewBlock {
+            aspect-ratio: unset;
+            width: 100%;
+        }
+    }
+
 </style>
