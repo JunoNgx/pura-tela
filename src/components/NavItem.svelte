@@ -25,9 +25,7 @@
         border-bottom-color: var(--colPri);
     }
 
-    .NavItem,
-    .NavItem:visited {
-        color: var(--colPri);
+    .NavItem {
         text-decoration: none;
         transition: all ease-in-out var(--transTime);
     }
