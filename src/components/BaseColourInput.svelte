@@ -187,4 +187,9 @@
         margin-top: 1rem;
     }
 
+    /* Colour picker customisation */
+    :global(.color-picker .color) {
+        border-radius: 0 !important;
+    }
+
 </style>
