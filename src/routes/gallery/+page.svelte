@@ -1,4 +1,6 @@
 <script lang="ts">
+    import MaterialSymbolsLightResetSettingsRounded from '~icons/material-symbols-light/reset-settings-rounded';
+
     import BaseColourList from "src/components/BaseColourList.svelte";
     import { resetGallery } from "src/lib/states.svelte";
 
@@ -14,4 +16,19 @@
 
 <h2 class="VisuallyHidden">Gallery</h2>
 <BaseColourList/>
-<button onclick={handleResetGallery}>Reset gallery</button>
+<button class="ResetButton"
+    onclick={handleResetGallery}
+>
+    <MaterialSymbolsLightResetSettingsRounded/>
+    Reset gallery
+</button>
+
+<style>
+
+    .ResetButton {
+        display: flex;
+        gap: 0.5rem;
+        color: var(--colDanger);
+        float: right;
+    }
+</style>
