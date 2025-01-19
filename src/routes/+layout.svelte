@@ -26,7 +26,7 @@
     @import "src/styles/vars.css";
 
     main {
-        min-height: 92vmin;
+        min-height: 90vmin;
     }
 
     .CardWrapper {
