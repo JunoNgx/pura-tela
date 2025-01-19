@@ -159,7 +159,6 @@
 
 <style>
     .ColourInput__Top,
-    .ColourInput__Hex,
     .ColourInput__Rgb {
         display: flex;
         flex-direction: row;
@@ -169,10 +168,6 @@
 
     .ColourInput__Top {
         gap: 1rem;
-    }
-
-    .ColourInput__Hex {
-        gap: 0.25rem;
     }
 
     .ColourInput__HexInput {
