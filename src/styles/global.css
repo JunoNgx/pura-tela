@@ -21,12 +21,12 @@ body {
 }
 
 button {
-    font-family: var(--fontFamily);
     cursor: pointer;
+    font-family: var(--fontFamily);
+    color: var(--colPri);
     background-color: transparent;
     border-radius: 0;
     border: var(--lineThickness) solid var(--colPri);
-    color: var(--colPri);
     font-size: var(--fontSizeMd);
     padding: 0.5rem 1rem;
     transition: all ease-in-out var(--transTime);
