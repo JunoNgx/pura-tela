@@ -66,10 +66,10 @@
     .Studio__Buttons {
         display: flex;
         justify-content: flex-start;
+        margin-top: 2rem;
     }
 
     .Studio_DownloadBtn {
-        margin-top: 3rem;
         padding: 1rem 2rem;
         display: block;
         width: 100%;

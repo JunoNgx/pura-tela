@@ -30,7 +30,7 @@
         list-style: none;
         min-width: 150px;
         border-bottom: 1px solid var(--colPri);
-        padding: 0.5rem;
+        padding: 0.25rem;
     }
 
     .SizeItem__PreviewContainer {

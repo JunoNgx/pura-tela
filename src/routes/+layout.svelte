@@ -28,7 +28,7 @@
     main {
         min-height: 90vh;
         max-width: 800px;
-        margin: 1rem auto;
+        margin: 1rem auto 2rem;
     }
 
     .CardWrapper {
@@ -51,6 +51,7 @@
     @media screen and (width < 500px) {
         main {
             margin-top: 0;
+            margin-bottom: 1rem;
         }
 
         .CardWrapper {
