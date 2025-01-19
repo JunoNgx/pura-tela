@@ -111,18 +111,20 @@
             --picker-indicator-size="10px"
             --picker-z-index="10"
         />
-        <button class="ColourInput__ColourActionBtn"
-            onclick={handleRandomise}
-            title="Generate a randomised colour"
-        >
-            <MaterialSymbolsLightShuffle/>
-        </button>
-        <button class="ColourInput__ColourActionBtn"
-            onclick={tryCreateNewColour}
-            title="Save colour to gallery"
-        >
-            <MaterialSymbolsLightSaveOutline/>
-        </button>
+        <div class="ColourInput__Buttons">
+            <button class="ColourInput__ColourActionBtn"
+                onclick={handleRandomise}
+                title="Generate a randomised colour"
+            >
+                <MaterialSymbolsLightShuffle/>
+            </button>
+            <button class="ColourInput__ColourActionBtn"
+                onclick={tryCreateNewColour}
+                title="Save colour to gallery"
+            >
+                <MaterialSymbolsLightSaveOutline/>
+            </button>
+        </div>
     </div>
 
     <div class="ColourInput__Rgb">
