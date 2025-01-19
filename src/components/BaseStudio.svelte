@@ -30,8 +30,10 @@
             <BaseSizeSelect/>
         </div>
         <div class="Studio__Buttons">
-            <button onclick={handleDownloadClick}>
-                download
+            <button class="Studio_DownloadBtn"
+                onclick={handleDownloadClick}
+            >
+                Download
             </button>
         </div>
     </div>
@@ -41,24 +43,39 @@
     .Studio {
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        align-items: stretch;
+        justify-content: space-evenly;
+        align-items: center;
         width: 100%;
         gap: 16px;
+        padding-bottom: 2rem;
     }
 
     .Studio__Canvas {
         flex-grow: 1;
-        /* background-color: aqua; */
+        max-width: 300px;
     }
 
-    .Studio__Control {
-        flex-grow: 1;
-    }
+    /* .Studio__Control {
+    } */
 
     .Studio__PreviewBlock {
         aspect-ratio: 1;
         height: 100%;
         border: 1px solid #000;
+    }
+
+    .Studio_DownloadBtn {
+        margin-top: 3rem;
+        padding: 1rem 2rem;
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        color: var(--colBg);
+        background-color: var(--colPri);
+    }
+
+    .Studio_DownloadBtn:hover {
+        color: var(--colPri);
+        background-color: var(--colBg);
     }
 </style>

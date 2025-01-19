@@ -19,7 +19,7 @@
     <h3>
         <label for="size">Dimensions</label>
     </h3>
-    <select
+    <select class="SizeSelection__Select"
         value={currSizeOptionIndex.val}
         oninput={(e) => handleSizeOptionChange((e.target as HTMLSelectElement).value)}
     >
@@ -28,3 +28,15 @@
         {/each}
     </select>
 </section>
+
+<style>
+    .SizeSelection {
+        margin-top: 2rem;
+    }
+
+    .SizeSelection__Select {
+        width: auto;
+        padding: 0.25rem 0;
+        margin-top: 0.5rem;
+    }
+</style>

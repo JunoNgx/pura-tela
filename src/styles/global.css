@@ -21,13 +21,14 @@ body {
 }
 
 button {
+    font-family: var(--fontFamily);
     cursor: pointer;
     background-color: transparent;
     border-radius: 0;
     border: var(--lineThickness) solid var(--colPri);
     color: var(--colPri);
     font-size: var(--fontSizeMd);
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 1rem;
     transition: all ease-in-out var(--transTime);
 }
 
@@ -36,6 +37,47 @@ button:hover {
     background-color: var(--colPri);
 }
 
+input {
+    font-family: var(--fontFamily);
+    color: var(--colPri);
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--colPri);
+}
+
+/* Hide spin buttons */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Firefox only */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+select {
+    font-family: var(--fontFamily);
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--colPri);
+    background-color: transparent;
+    color: var(--colPri);
+    cursor: pointer;
+}
+
+option {
+    cursor: pointer;
+}
+
 h1 {
+    margin: 0;
+}
+
+h3 {
     margin: 0;
 }

@@ -82,7 +82,7 @@
     <div class="ColourInput__Top">
         <div class="ColourInput__Hex">
             <label for="hexCode">#</label>
-            <input
+            <input class="ColourInput__HexInput"
                 name="hexCode"
                 type="text"
                 minlength="3"
@@ -113,7 +113,7 @@
     <div class="ColourInput__Rgb">
         <div class="ColourInput__RgbItem">
             <label for="red">R</label>
-            <input
+            <input class="ColourInput__RgbInput"
                 name="red"
                 type="number"
                 min="0"
@@ -122,9 +122,9 @@
                 oninput={e => handleRgbChange(RgbChannel.R, (e.target as HTMLInputElement).value)}
             />
         </div>
-        <div class="ColourInput__Rgb">
+        <div class="ColourInput__RgbItem">
             <label for="green">G</label>
-            <input
+            <input class="ColourInput__RgbInput"
                 name="red"
                 type="number"
                 min="0"
@@ -133,9 +133,9 @@
                 oninput={e => handleRgbChange(RgbChannel.G, (e.target as HTMLInputElement).value)}
             />
         </div>
-        <div class="ColourInput__Rgb">
+        <div class="ColourInput__RgbItem">
             <label for="blue">B</label>
-            <input
+            <input class="ColourInput__RgbInput"
                 name="blue"
                 type="number"
                 min="0"
@@ -148,10 +148,10 @@
 
     <div class="ColourInput__Buttons">
         <button onclick={handleRandomise}>
-            randomise
+            Randomise
         </button>
         <button onclick={tryCreateNewColour}>
-            save colour
+            Save to gallery
         </button>
     </div>
 
@@ -165,11 +165,31 @@
         flex-direction: row;
         justify-content: flex-start;
         align-items: center;
-        gap: 16px;
     }
 
     .ColourInput__Top {
-        justify-content: flex-start;
-        gap: 15px;
+        gap: 1rem;
     }
+
+    .ColourInput__Hex {
+        gap: 0.25rem;
+    }
+
+    .ColourInput__HexInput {
+        width: 7rem;
+    }
+
+    .ColourInput__Rgb {
+        margin: 0.25rem 0;
+        gap: 2rem;
+    }
+
+    .ColourInput__RgbInput {
+        width: 2rem;
+    }
+
+    .ColourInput__Buttons {
+        margin-top: 1rem;
+    }
+
 </style>
