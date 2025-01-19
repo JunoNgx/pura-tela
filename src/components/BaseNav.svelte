@@ -1,20 +1,19 @@
+<script lang="ts">
+	import NavItem from "src/components/NavItem.svelte";
+</script>
+
 <nav>
-    <a class="nav-item" href="/">Studio</a>
-    <a class="nav-item" href="/gallery">Gallery</a>
-    <a class="nav-item" href="/sizes">Sizes</a>
+    <NavItem route={"/"} label={"Studio"} />
+    <NavItem route={"/gallery"} label={"Gallery"} />
+    <NavItem route={"/sizes"} label={"Sizes"} />
 </nav>
 
 <style>
     nav {
+        margin-top: 2rem;
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-    }
-
-    .nav-item {
-        display: block;
-        text-align: center;
-        flex-grow: 10;
     }
 </style>

@@ -42,7 +42,8 @@
 
     .TabContent {
         width: 100%;
-        padding: 5px;
+        padding-top: 1rem;
         flex-grow: 10;
+        border-top: 1px solid var(--colPri);
     }
 </style>
