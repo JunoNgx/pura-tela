@@ -211,4 +211,14 @@
         border-radius: 0 !important;
     }
 
+    @media screen and (width < 500px) {
+        .ColourInput__Top {
+            justify-content: space-between;
+        }
+
+        .ColourInput__Rgb {
+            justify-content: space-between;
+        }
+    }
+
 </style>
