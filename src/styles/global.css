@@ -46,6 +46,13 @@ input {
     border-bottom: 1px solid var(--colPri);
 }
 
+input:focus {
+    border: none;
+    border-bottom: 1px solid var(--colPri);
+    outline: 1px solid var(--colPri);
+    outline-offset: 3px;
+}
+
 /* Hide spin buttons */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
