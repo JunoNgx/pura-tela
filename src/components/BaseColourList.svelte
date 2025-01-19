@@ -12,7 +12,9 @@
 <style>
     .ColourList {
         display: flex;
+        justify-content: space-between;
         flex-wrap: wrap;
         gap: 15px;
+        padding-left: 0;
     }
 </style>

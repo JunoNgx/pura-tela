@@ -34,21 +34,23 @@
     <div class="ColourItem__Preview"
         style={`background-color: #${colourItem.hexCode};`}
     >
-        <div class="ColourItem__Name">
+        <div class="ColourItem__Title">
             {colourItem.name}
         </div>
     </div>
     <div class="ColourItem__Footer">
-        <div class="ColourItem__HexCode">
+        <div class="ColourItem__Subtitle">
             {`#${colourItem.hexCode}`}
         </div>
         <div class="ColourItem__Buttons">
-            <button onclick={handleChooseColour}
+            <button class="ColourItem__ActionBtn"
+                onclick={handleChooseColour}
                 title={"Choose this colour"}
             >
                 <MaterialSymbolsLightColorizeSharp/>
             </button>
-            <button onclick={handleDeleteColour}
+            <button class="ColourItem__ActionBtn ColourItem__ActionBtn--Delete"
+                onclick={handleDeleteColour}
                 title={"Delete"}
             >
                 <MaterialSymbolsLightDeleteSharp/>
@@ -60,9 +62,9 @@
 <style>
     .ColourItem {
         list-style: none;
-        border: 1px solid #000;
+        border-bottom: 1px solid var(--colPri);
         width: 20%;
-        padding: 4px;
+        padding: 0.25rem;
     }
 
     .ColourItem__Preview {
@@ -74,7 +76,8 @@
         justify-content: flex-end;
     }
 
-    .ColourItem__Name {
+    .ColourItem__Title {
+        padding: 0.25rem;
         background-color: rgba(0, 0, 0, 0.5);
         color: white;
     }
@@ -86,9 +89,23 @@
         padding-top: 5px;
     }
 
+    .ColourItem__Subtitle {
+        font-size: var(--fontSizeSm);
+    }
+
     .ColourItem__Buttons {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+    }
+
+    .ColourItem__ActionBtn {
+        border: none;
+        line-height: 0;
+        font-size: 16px;
+    }
+
+    .ColourItem__ActionBtn--Delete {
+        color: var(--colDanger);
     }
 </style>
