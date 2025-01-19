@@ -47,4 +47,15 @@
         flex-grow: 10;
         border-top: 1px solid var(--colPri);
     }
+
+    @media screen and (width < 500px) {
+        main {
+            margin-top: 0;
+        }
+
+        .CardWrapper {
+            margin: 0;
+            box-shadow: none;
+        }
+    }
 </style>
