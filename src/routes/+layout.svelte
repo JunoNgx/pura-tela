@@ -26,12 +26,13 @@
     @import "src/styles/vars.css";
 
     main {
-        min-height: 90vmin;
+        min-height: 90vh;
+        max-width: 800px;
+        margin: 1rem auto;
     }
 
     .CardWrapper {
-        max-width: 800px;
-        margin: 1rem auto;
+        margin: 1rem;
         padding: 1rem;
         display: flex;
         flex-direction: column;
