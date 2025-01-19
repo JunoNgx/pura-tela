@@ -47,7 +47,7 @@
         align-items: center;
         width: 100%;
         gap: 16px;
-        padding-bottom: 2rem;
+        padding: 2rem 0;
     }
 
     .Studio__Canvas {
