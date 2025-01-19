@@ -77,7 +77,7 @@
     }
 
     .ColourItem__Title {
-        padding: 0.25rem;
+        padding: 0.5rem 0.25rem;
         background-color: rgba(0, 0, 0, 0.5);
         color: white;
     }
@@ -86,7 +86,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-top: 5px;
+        padding-top: 0.25rem;
     }
 
     .ColourItem__Subtitle {
@@ -103,7 +103,7 @@
         border: none;
         line-height: 0;
         font-size: 16px;
-        padding: 1px 4px;
+        padding: 0.1rem 0.25rem;
     }
 
     .ColourItem__ActionBtn--Delete {
