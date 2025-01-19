@@ -4,4 +4,4 @@
 
 <h2 class="VisuallyHidden">Size Presets Details</h2>
 <BaseSizeList/>
-<p>Editing new size presets is under development.</p>
+<p>Editing size presets is under development.</p>
