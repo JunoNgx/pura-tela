@@ -20,25 +20,24 @@
 
 <style>
     .SizeList {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
         padding-left: 0;
     }
 
     .SizeItem {
         list-style: none;
-        width: 30%;
+        min-width: 150px;
         border-bottom: 1px solid var(--colPri);
-        padding: 5px;
+        padding: 0.5rem;
     }
 
     .SizeItem__PreviewContainer {
         aspect-ratio: 1;
         max-width: 100%;
         background-color: Khaki;
-        padding: 25px;
+        padding: 2rem;
         display: grid;
         place-items: center;
     }
@@ -65,6 +64,18 @@
     
     .SizeItem__SizeInfo {
         font-size: var(--fontSizeSm);
+    }
+
+    @media screen and (width < 600px) {
+        .SizeList {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media screen and (width < 375px) {
+        .SizeList {
+            grid-template-columns: 1fr;
+        }
     }
 
 </style>
