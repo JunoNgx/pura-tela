@@ -1,6 +1,6 @@
 <script lang="ts">
     import BaseColourInput from "src/components/BaseColourInput.svelte";
-    import BaseDimensionsSelection from "src/components/BaseDimensionsSelection.svelte";
+    import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
 	import { generateImage } from "src/lib/canvas.js";
 	import { colourGallery, currHexCode, getCurrSizeOption } from "src/lib/states.svelte.js";
 	import { getColourName } from "src/lib/utils.js";
@@ -27,7 +27,7 @@
             <BaseColourInput/>
         </div>
         <div class="Studio__Size">
-            <BaseDimensionsSelection/>
+            <BaseSizeSelect/>
         </div>
         <div class="Studio__Buttons">
             <button onclick={handleDownloadClick}>
