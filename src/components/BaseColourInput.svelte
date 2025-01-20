@@ -92,6 +92,8 @@
                     type="text"
                     minlength="3"
                     maxlength="6"
+                    spellcheck="false"
+                    title="Requires a valid hex code"
                     value={currHexCode.val}
                     oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
                 />
