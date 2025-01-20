@@ -26,7 +26,7 @@
     @import "src/styles/vars.css";
 
     main {
-        min-height: 90dvh;
+        min-height: 85dvh;
         max-width: 800px;
         margin: 1rem auto 2rem;
     }
