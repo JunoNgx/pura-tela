@@ -43,13 +43,18 @@
             {`#${colourItem.hexCode}`}
         </div>
         <div class="ColourItem__Buttons">
-            <button class="ColourItem__ActionBtn"
+            <button class="ColourItem__ActionBtn
+                IconButton
+                "
                 onclick={handleChooseColour}
                 title={"Choose this colour"}
             >
                 <MaterialSymbolsLightColorizeSharp/>
             </button>
-            <button class="ColourItem__ActionBtn ColourItem__ActionBtn--Delete"
+            <button class="ColourItem__ActionBtn
+                ColourItem__ActionBtn--Delete
+                IconButton
+                "
                 onclick={handleDeleteColour}
                 title={"Delete"}
             >
@@ -77,9 +82,15 @@
     }
 
     .ColourItem__Title {
-        padding: 0.5rem 0.25rem;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
+        padding: 0.25rem;
+        background-color: rgba(var(--colBlack), 0.5);
+        color: var(--colWhite);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+
     }
 
     .ColourItem__Footer {
@@ -87,9 +98,11 @@
         justify-content: space-between;
         align-items: center;
         padding-top: 0.25rem;
+        gap: 0.5rem;
     }
 
     .ColourItem__Subtitle {
+        /* max-width: calc(60%); */
         font-size: var(--fontSizeSm);
     }
 
@@ -97,13 +110,11 @@
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+        gap: 0.5rem;
     }
 
     .ColourItem__ActionBtn {
         border: none;
-        line-height: 0;
-        font-size: 16px;
-        padding: 0.1rem;
     }
 
     .ColourItem__ActionBtn--Delete {

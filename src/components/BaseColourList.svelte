@@ -12,15 +12,9 @@
 <style>
     .ColourList {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
         padding-left: 0;
-    }
-
-    @media screen and (width < 750px) {
-        .ColourList {
-            grid-template-columns: repeat(3, 1fr);
-        }
     }
 
     @media screen and (width < 600px) {
