@@ -106,7 +106,7 @@
                 isAlpha={false}
                 position="responsive"
                 on:input={e => handleColorPickerChange(e.detail.hex as string)}
-                --input-size="24px"
+                --input-size="32px"
                 --focus-color="green"
                 --slider-width="24px"
                 --picker-indicator-size="10px"
@@ -114,13 +114,13 @@
             />
         </div>
         <div class="ColourInput__Buttons">
-            <button class="ColourInput__ColourActionBtn"
+            <button class="ColourInput__ColourActionBtn IconButton"
                 onclick={handleRandomise}
                 title="Generate a randomised colour"
             >
                 <MaterialSymbolsLightShuffle/>
             </button>
-            <button class="ColourInput__ColourActionBtn"
+            <button class="ColourInput__ColourActionBtn IconButton"
                 onclick={tryCreateNewColour}
                 title="Save colour to gallery"
             >
@@ -182,7 +182,7 @@
     }
 
     .ColourInput__HexInput {
-        width: 5rem;
+        width: 4rem;
     }
 
     .ColourInput__Buttons {
@@ -190,15 +190,9 @@
         gap: 1rem;
     }
 
-    .ColourInput__ColourActionBtn {
-        font-size: 20px;
-        line-height: 0;
-        padding: 0;
-    }
-
     .ColourInput__Rgb {
         justify-content: space-around;
-        margin: 0.25rem 0;
+        margin: 0.5rem 0 0.25rem;
         gap: 2rem;
     }
 

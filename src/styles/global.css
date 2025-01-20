@@ -113,3 +113,9 @@ h3 {
         background-color: var(--colBg);
     }
 }
+
+.IconButton {
+    font-size: var(--fontSizeIconBtn);
+    padding: 0.25rem;
+    line-height: 0;
+}

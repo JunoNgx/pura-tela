@@ -17,7 +17,7 @@
 </script>
 
 <div class="ThemeMode">
-    <button class="ThemeMode__Item"
+    <button class="ThemeMode__Item IconButton"
         onclick={() => handleClickOnThemeMode(ThemeMode.AUTO)}
     >
         {#if themeMode.val === ThemeMode.AUTO}
@@ -26,7 +26,7 @@
             <MaterialSymbolsLightSettingsOutline/>
         {/if}
     </button>
-    <button class="ThemeMode__Item"
+    <button class="ThemeMode__Item IconButton"
         onclick={() => handleClickOnThemeMode(ThemeMode.LIGHT)}
     >
         {#if themeMode.val === ThemeMode.LIGHT}
@@ -35,7 +35,7 @@
             <MaterialSymbolsLightLightModeOutline/>
         {/if}
     </button>
-    <button class="ThemeMode__Item"
+    <button class="ThemeMode__Item IconButton"
         onclick={() => handleClickOnThemeMode(ThemeMode.DARK)}
     >
         {#if themeMode.val === ThemeMode.DARK}
@@ -54,10 +54,14 @@
     }
 
     .ThemeMode__Item {
-        font-size: var(--fontSizeIconBtn);
-        cursor: pointer;
         border: none;
-        line-height: 0;
-        padding: 0.25rem;
+    }
+
+    @media screen and (width < 600px) {
+        .ThemeMode__Item:hover {
+            transition: none;
+            color: var(--colPri);
+            background-color: var(--colBg);
+        }
     }
 </style>
