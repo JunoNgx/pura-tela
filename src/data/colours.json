@@ -8,75 +8,103 @@
         "hexCode": "40826D"
     },
     {
-        "hexCode": "F1DDCF",
-        "name": "Champagne Pink"
+        "name": "Dark Shores",
+        "hexCode": "006699"
     },
     {
-        "hexCode": "E7CD8A",
-        "name": "Mellow"
+        "name": "Azure Core",
+        "hexCode": "33CCCC"
     },
     {
-        "hexCode": "E91E63",
-        "name": "Fandango"
+        "name": "Rebecca",
+        "hexCode": "663399"
     },
     {
-        "hexCode": "DA70D6",
-        "name": "Orchid"
+        "name": "Champagne Pink",
+        "hexCode": "F1DDCF"
     },
     {
-        "hexCode": "688FB3",
-        "name": "ME Blue"
+        "name": "Emperor",
+        "hexCode": "FADA5E"
     },
     {
-        "hexCode": "00BCD4",
-        "name": "CMYK Lead"
+        "name": "Mulberry",
+        "hexCode": "C54B8C"
     },
     {
-        "hexCode": "009688",
-        "name": "Classic Teal"
+        "name": "Dark Minty",
+        "hexCode": "74A383"
     },
     {
-        "hexCode": "BFFF00",
-        "name": "Lime"
+        "name": "Fandango",
+        "hexCode": "E91E63"
     },
     {
-        "hexCode": "F88379",
-        "name": "Tea Rose"
+        "name": "Not Pink",
+        "hexCode": "CAA483"
     },
     {
-        "hexCode": "F28500",
-        "name": "Tangerine"
+        "name": "Graphite",
+        "hexCode": "41424C"
     },
     {
-        "hexCode": "242424",
-        "name": "SL Dark"
+        "name": "Silver Lake",
+        "hexCode": "5D89BA"
     },
     {
-        "hexCode": "546E7A",
-        "name": "Bluish Graphite"
+        "name": "Printer",
+        "hexCode": "00BCD4"
     },
     {
-        "hexCode": "CAA483",
-        "name": "Not Pink"
+        "name": "Teal",
+        "hexCode": "008080"
     },
     {
-        "hexCode": "74A383",
-        "name": "Dark Minty"
+        "name": "Zarqa",
+        "hexCode": "FF4500"
     },
     {
-        "hexCode": "FFB7C5",
-        "name": "Cherry Blossom"
+        "name": "Lime",
+        "hexCode": "BFFF00"
     },
     {
-        "hexCode": "FFCCC1",
-        "name": "Salmon"
+        "name": "Tea Rose",
+        "hexCode": "F88379"
     },
     {
-        "hexCode": "19DCBC",
-        "name": "Spring Green"
+        "name": "Tangerine",
+        "hexCode": "F28500"
     },
     {
-        "hexCode": "43E1A4",
-        "name": "Aquamarine"
+        "name": "Aquamarine",
+        "hexCode": "43E08D"
+    },
+    {
+        "name": "SL Dark",
+        "hexCode": "242424"
+    },
+    {
+        "name": "Orchid",
+        "hexCode": "DA70D6"
+    },
+    {
+        "name": "Salmon",
+        "hexCode": "FFCCC1"
+    },
+    {
+        "name": "Cerulean",
+        "hexCode": "007BA7"
+    },
+    {
+        "name": "Spring Green",
+        "hexCode": "19DCBC"
+    },
+    {
+        "name": "Cordovan",
+        "hexCode": "893F45"
+    },
+    {
+        "name": "Mellow",
+        "hexCode": "E7CD8A"
     }
 ]
