@@ -61,8 +61,11 @@
     }
 
     @media screen and (width < 600px) {
-        .ThemeMode__Item:hover {
+        .ThemeMode__Item {
             transition: none;
+        }
+
+        .ThemeMode__Item:hover {
             color: var(--colPri);
             background-color: var(--colBg);
         }

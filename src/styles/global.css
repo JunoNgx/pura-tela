@@ -35,12 +35,17 @@ button {
     border: var(--lineThickness) solid var(--colPri);
     font-size: var(--fontSizeMd);
     padding: 0.5rem 1rem;
+    -webkit-tap-highlight-color: transparent;
     transition: all ease-in-out var(--transTime);
 }
 
 button:hover {
     color: var(--colBg);
     background-color: var(--colPri);
+}
+
+button:focus {
+    outline: none;
 }
 
 input {
@@ -118,4 +123,5 @@ h3 {
     font-size: var(--fontSizeIconBtn);
     padding: 0.25rem;
     line-height: 0;
+    user-select: none;
 }
