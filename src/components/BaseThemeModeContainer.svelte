@@ -54,7 +54,7 @@
     }
 
     .ThemeMode__Item {
-        font-size: 20px;
+        font-size: var(--fontSizeIconBtn);
         cursor: pointer;
         border: none;
         line-height: 0;
