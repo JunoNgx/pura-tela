@@ -4,11 +4,6 @@ export enum ThemeMode {
     AUTO = "auto"
 }
 
-export enum ComputedThemeMode {
-    LIGHT = "light",
-    DARK = "dark"
-}
-
 export type ColourItem = {
     name: string,
     hexCode: string,
