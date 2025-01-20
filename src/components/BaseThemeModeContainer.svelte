@@ -54,10 +54,10 @@
     }
 
     .ThemeMode__Item {
-        font-size: 18px;
+        font-size: 20px;
         cursor: pointer;
         border: none;
         line-height: 0;
-        padding: 0.1rem 0.25rem;
+        padding: 0.25rem;
     }
 </style>

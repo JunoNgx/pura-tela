@@ -18,4 +18,10 @@
         align-items: center;
         width: 100%;
     }
+
+    @media screen and (width < 600px) {
+        h1 {
+            font-size: 24px;
+        }
+    }
 </style>
