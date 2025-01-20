@@ -32,6 +32,7 @@
         <div class="Studio__Buttons">
             <button class="Studio_DownloadBtn"
                 onclick={handleDownloadClick}
+                aria-label="Download"
             >
                 Download
             </button>

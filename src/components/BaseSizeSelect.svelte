@@ -20,6 +20,7 @@
         <label for="size">Dimensions</label>
     </h3>
     <select class="SizeSelection__Select"
+        id="size"
         value={currSizeOptionIndex.val}
         oninput={(e) => handleSizeOptionChange((e.target as HTMLSelectElement).value)}
     >

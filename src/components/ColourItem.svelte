@@ -48,7 +48,8 @@
                 "
                 onclick={handleChooseColour}
                 title={"Choose this colour"}
-            >
+                aria-label="Choose this colour"
+        >
                 <MaterialSymbolsLightColorizeSharp/>
             </button>
             <button class="ColourItem__ActionBtn
@@ -56,7 +57,8 @@
                 IconButton
                 "
                 onclick={handleDeleteColour}
-                title={"Delete"}
+                title={"Delete this colour"}
+                aria-label="Delete this colour"
             >
                 <MaterialSymbolsLightDeleteSharp/>
             </button>

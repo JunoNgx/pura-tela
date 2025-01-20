@@ -18,6 +18,7 @@
 <BaseColourList/>
 <button class="ResetButton"
     onclick={handleResetGallery}
+    aria-label="Reset colour gallery"
 >
     <MaterialSymbolsLightResetSettingsRounded/>
     Reset gallery

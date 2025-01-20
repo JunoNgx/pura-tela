@@ -87,6 +87,7 @@
             <div class="ColourInput__Hex">
                 <label for="hexCode">#</label>
                 <input class="ColourInput__HexInput"
+                    id="hexCode"
                     name="hexCode"
                     type="text"
                     minlength="3"
@@ -117,12 +118,14 @@
             <button class="ColourInput__ColourActionBtn IconButton"
                 onclick={handleRandomise}
                 title="Generate a randomised colour"
-            >
+                aria-label="Create a random colour"
+        >
                 <MaterialSymbolsLightShuffle/>
             </button>
             <button class="ColourInput__ColourActionBtn IconButton"
                 onclick={tryCreateNewColour}
                 title="Save colour to gallery"
+                aria-label="Save colour to gallery"
             >
                 <MaterialSymbolsLightSaveOutline/>
             </button>
@@ -133,6 +136,7 @@
         <div class="ColourInput__RgbItem">
             <label for="red">R</label>
             <input class="ColourInput__RgbInput"
+                id="red"
                 name="red"
                 type="number"
                 min="0"
@@ -144,7 +148,8 @@
         <div class="ColourInput__RgbItem">
             <label for="green">G</label>
             <input class="ColourInput__RgbInput"
-                name="red"
+                id="green"
+                name="green"
                 type="number"
                 min="0"
                 max="255"
@@ -155,6 +160,7 @@
         <div class="ColourInput__RgbItem">
             <label for="blue">B</label>
             <input class="ColourInput__RgbInput"
+                id="blue"
                 name="blue"
                 type="number"
                 min="0"
