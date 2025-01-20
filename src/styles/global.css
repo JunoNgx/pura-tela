@@ -143,6 +143,10 @@ select:focus {
     outline-offset: 3px;
 }
 
+label {
+    -webkit-tap-highlight-color: transparent;
+}
+
 option {
     cursor: pointer;
 }
