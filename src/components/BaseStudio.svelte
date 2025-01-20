@@ -45,6 +45,7 @@
         flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
+        gap: 1rem;
         width: 100%;
         padding: 2rem 0;
     }
@@ -90,7 +91,6 @@
             justify-content: flex-start;
             align-items: stretch;
             padding: 0;
-            gap: 1rem;
         }
 
         .Studio__Canvas {
