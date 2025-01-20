@@ -15,6 +15,10 @@ export const setupAutoSettingsListener = () => {
 };
 
 export const computeThemeMode = (): ThemeMode.LIGHT | ThemeMode.DARK => {
+    if (!browser) {
+        return ThemeMode.LIGHT;
+    }
+
     if (themeMode.val !== ThemeMode.AUTO) {
         return themeMode.val;
     }
