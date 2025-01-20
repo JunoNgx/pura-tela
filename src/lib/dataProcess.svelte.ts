@@ -143,8 +143,8 @@ export const isThemeModeValid = (data: any) => {
 };
 
 export const isShouldShowSampleTextValid = (data: any) => {
-    if ( data !== "true"
-        && data !== "false"
+    if ( data !== true
+        && data !== false
     ) {
         return false
     }
