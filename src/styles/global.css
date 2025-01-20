@@ -138,6 +138,11 @@ select {
     cursor: pointer;
 }
 
+select:focus {
+    outline: 1px solid var(--colPri);
+    outline-offset: 3px;
+}
+
 option {
     cursor: pointer;
 }
