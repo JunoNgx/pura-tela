@@ -29,4 +29,11 @@
     --colPri: #FFF;
     --colBg: #2D2D2D;
     --colBg2: #373737;
+
+    /* Colour picker variables */
+    --cp-bg-color: var(--colBg2);
+    --cp-border-color: var(--colPri);
+    --cp-text-color: var(--colPri);
+    --cp-input-color: var(--colBg);
+    --cp-button-hover-color: #555;
 }

@@ -106,8 +106,8 @@
                 isAlpha={false}
                 position="responsive"
                 on:input={e => handleColorPickerChange(e.detail.hex as string)}
+                --focus-color="var(--colPri)"
                 --input-size="32px"
-                --focus-color="green"
                 --slider-width="24px"
                 --picker-indicator-size="10px"
                 --picker-z-index="10"
@@ -201,9 +201,19 @@
     }
 
     /* Colour picker customisation */
-    :global(.color-picker .color) {
+    :global(.color-picker .color),
+    :global(.color-picker .picker),
+    :global(.color-picker .track),
+    :global(.color-picker input),
+    :global(.color-picker button) {
         border-radius: 0 !important;
     }
+
+    :global(.color-picker .wrapper) {
+        border-radius: 0 !important;
+    }
+
+
 
     @media screen and (width < 600px) {
         .ColourInput__Top {
