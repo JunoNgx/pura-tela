@@ -11,8 +11,9 @@
     --colWhite: #FFF;
     --colBlack: 0, 0, 0;
 
-    --colSizeScreen: DodgerBlue;
-    --colSizeBg: Khaki;
+    --colSizeScreen: #219EBC;
+    --colSizeBg: #FFB703;
+    /* Third colour: #023047 */
 
     --colPri: #000;
     --colBg: #FFF;
