@@ -91,7 +91,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: stretch;
-            padding: 0;
+            padding: 1rem 0;
         }
 
         .Studio__Canvas {

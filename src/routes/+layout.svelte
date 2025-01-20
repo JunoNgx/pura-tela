@@ -43,7 +43,6 @@
 
     .TabContent {
         width: 100%;
-        padding-top: 1rem;
         flex-grow: 10;
         border-top: 1px solid var(--colPri);
     }
@@ -57,6 +56,10 @@
         .CardWrapper {
             margin: 0;
             box-shadow: none;
+        }
+
+        .TabContent {
+            padding-top: 0;
         }
     }
 </style>
