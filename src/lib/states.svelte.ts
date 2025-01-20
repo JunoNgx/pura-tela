@@ -8,7 +8,7 @@ import defaultColourGallery from "src/data/colours.json";
 import defaultSizeOptions from "src/data/sizes.json";
 
 import { convertHexToRgb, isHexCodeValid } from "./utils.js";
-import { createLocalStorageSyncedState, createState, isColourGalleryValid, isCurrSizeOptionIndexValid, isSizeOptionsValid, isThemeModeValid } from "./dataProcess.svelte.js";
+import { createLocalStorageSyncedState, createState, isColourGalleryValid, isCurrSizeOptionIndexValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid } from "./dataProcess.svelte.js";
 
 export const themeMode = createLocalStorageSyncedState({
     key: "themeMode",
@@ -60,3 +60,9 @@ export let currRgbColour = createState<RgbColour>(
 export const resetGallery = () => {
     colourGallery.set(defaultColourGallery);
 };
+
+export const shouldShowSampleText = createLocalStorageSyncedState({
+    key: "shouldShowSampleText",
+    defaultValue: false,
+    validationFunc: isShouldShowSampleTextValid,
+}) as State<boolean>;

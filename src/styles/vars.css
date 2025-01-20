@@ -4,12 +4,14 @@
     --fontSizeMd: 16px;
     --fontSizeLg: 18px;
     --fontSizeIconBtn: 20px;
+    --sizeCheckbox: 16px;
     --lineThickness: 1px;
     --transTime: 0.3s;
 
     --colDanger: #FF4647;
     --colWhite: #FFF;
-    --colBlack: 0, 0, 0;
+    --colBlack: #000;
+    --colBlackRgb: 0, 0, 0;
 
     --colSizeScreen: #219EBC;
     --colSizeBg: #FFB703;

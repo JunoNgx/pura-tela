@@ -85,7 +85,7 @@
 
     .ColourItem__Title {
         padding: 0.25rem;
-        background-color: rgba(var(--colBlack), 0.5);
+        background-color: rgba(var(--colBlackRgb), 0.5);
         color: var(--colWhite);
         display: -webkit-box;
         -webkit-line-clamp: 3;
