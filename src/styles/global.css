@@ -45,7 +45,7 @@ button:hover {
 
 input {
     font-family: var(--fontFamily);
-    font-size: var(fontSizeMd);
+    font-size: var(--fontSizeMd);
     color: var(--colPri);
     background-color: transparent;
     border-radius: 0;
