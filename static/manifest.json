@@ -1,0 +1,25 @@
+{
+    "name": "Pura Tela",
+    "short_name": "Pura Tela",
+    "description": "A minimalist solid wallpaper generator",
+    "categories": ["personalization", "utilities"],
+    "orientation": "portrait-primary",
+    "display": "standalone",
+    "theme_color": "#219EBC",
+    "background_color": "#F1F0F4",
+    "start_url": "https:/pura-tela.vercel.app",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "/512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/1024x1024.png",
+            "sizes": "1024x1024",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
