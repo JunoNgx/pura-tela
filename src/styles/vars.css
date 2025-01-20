@@ -1,8 +1,8 @@
 :root {
     --fontFamily: "Geist Mono", system-ui, monospace;
-    --fontSizeMd: 14px;
+    --fontSizeSm: 14px;
+    --fontSizeMd: 16px;
     --fontSizeLg: 18px;
-    --fontSizeSm: 12px;
     --lineThickness: 1px;
     --transTime: 0.3s;
 
