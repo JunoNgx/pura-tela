@@ -108,7 +108,7 @@ h3 {
     border: 0;
 }
 
-@media screen and (width < 500px) {
+@media screen and (width < 600px) {
     html {
         background-color: var(--colBg);
     }

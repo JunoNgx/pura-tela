@@ -211,7 +211,7 @@
         border-radius: 0 !important;
     }
 
-    @media screen and (width < 500px) {
+    @media screen and (width < 600px) {
         .ColourInput__Top {
             justify-content: space-between;
         }

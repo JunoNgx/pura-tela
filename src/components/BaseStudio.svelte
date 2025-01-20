@@ -84,7 +84,7 @@
         background-color: var(--colBg);
     }
 
-    @media screen and (width < 500px) {
+    @media screen and (width < 600px) {
         .Studio {
             /* flex-wrap: wrap; */
             flex-direction: column;

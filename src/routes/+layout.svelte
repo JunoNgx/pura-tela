@@ -48,7 +48,7 @@
         border-top: 1px solid var(--colPri);
     }
 
-    @media screen and (width < 500px) {
+    @media screen and (width < 600px) {
         main {
             margin-top: 0;
             margin-bottom: 1rem;

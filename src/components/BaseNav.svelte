@@ -17,7 +17,7 @@
         justify-content: space-evenly;
     }
 
-    @media screen and (width < 500px) {
+    @media screen and (width < 600px) {
         nav {
             margin-top: 1rem;
         }

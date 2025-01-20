@@ -23,13 +23,13 @@
         }
     }
 
-    @media screen and (width < 550px) {
+    @media screen and (width < 600px) {
         .ColourList {
             grid-template-columns: repeat(2, 1fr);
         }
     }
 
-    @media screen and (width < 350px) {
+    @media screen and (width < 360px) {
         .ColourList {
             grid-template-columns: 1fr;
         }
