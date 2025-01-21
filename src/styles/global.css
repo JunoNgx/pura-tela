@@ -26,6 +26,7 @@ body {
 }
 
 :focus-visible {
+    outline-offset: var(--outlineOffset);
     outline: 1px solid var(--colPri);
 }
 
@@ -49,7 +50,7 @@ button {
     font-size: var(--fontSizeMd);
     padding: 0.5rem 1rem;
     -webkit-tap-highlight-color: transparent;
-    outline-offset: 3px;
+    outline-offset: var(--outlineOffset);
     transition: all ease-in-out var(--transTime);
 }
 
@@ -72,7 +73,7 @@ input:focus {
     border: none;
     border-bottom: 1px solid var(--colPri);
     outline: 1px solid var(--colPri);
-    outline-offset: 3px;
+    outline-offset: var(--outlineOffset);
 }
 
 input[type="checkbox"] {
@@ -144,6 +145,11 @@ select {
     background-color: transparent;
     color: var(--colPri);
     cursor: pointer;
+}
+
+select:focus {
+    outline-offset: var(--outlineOffset);
+    outline: 1px solid var(--colPri);
 }
 
 label {
