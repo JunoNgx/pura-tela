@@ -61,5 +61,14 @@
         h1 {
             font-size: 22px;
         }
+
+        .Header__HelpBtn {
+            transition: none;
+        }
+
+        .Header__HelpBtn:hover {
+            color: var(--colPri);
+            background-color: var(--colBg);
+        }
     }
 </style>
