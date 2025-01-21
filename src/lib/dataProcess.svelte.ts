@@ -57,19 +57,12 @@ export const createState = <T>(
 };
 
 export const isColourGalleryValid = (data: any[]) => {
-    if (!data) {
-        return false;
-    }
+    if (!data) return false;
 
     try {
         for (const item of data) {
-            if (!item.name) {
-                return false;
-            }
-
-            if (!isHexCodeValid(item.hexCode)) {
-                return false;
-            }
+            if (!item.name) return false;
+            if (!isHexCodeValid(item.hexCode)) return false;
         }
 
         return true;
@@ -79,15 +72,11 @@ export const isColourGalleryValid = (data: any[]) => {
 };
 
 export const isSizeOptionsValid = (data: any[]) => {
-    if (!data) {
-        return false;
-    }
+    if (!data) return false;
 
     try {
         for (const item of data) {
-            if (!item.name) {
-                return false;
-            }
+            if (!item.name) return false;
 
             parseInt(item.width);
             parseInt(item.height);
