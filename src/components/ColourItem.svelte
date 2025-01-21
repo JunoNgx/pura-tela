@@ -102,7 +102,6 @@
     }
 
     .ColourItem__Subtitle {
-        /* max-width: calc(60%); */
         font-size: var(--fontSizeSm);
         padding-left: 0.25rem;
     }

@@ -96,11 +96,6 @@ input[type="checkbox"]:checked {
     background-color: transparent;
 }
 
-/* input[type="checkbox"]:disabled {
-    opacity: 0.5;
-    pointer-events: none;
-} */
-
 input[type="checkbox"]:after {
     content: '';
     position: relative;
@@ -117,11 +112,6 @@ input[type="checkbox"]:after {
 input[type="checkbox"]:checked:after {
     display: block;
 }
-
-/* 
-input[type="checkbox"]:disabled:after {
-    border-color: #7b7b7b;
-} */
 
 input[type="checkbox"],
 input[type="checkbox"]+label{
