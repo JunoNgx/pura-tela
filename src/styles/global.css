@@ -21,6 +21,14 @@ body {
     margin: 0;
 }
 
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 1px solid var(--colPri);
+}
+
 a,
 a:hover,
 a:visited {
@@ -46,10 +54,6 @@ button:hover {
     background-color: var(--colPri);
 }
 
-button:focus {
-    outline: 1px solid var(--colPri);
-}
-
 input {
     font-family: var(--fontFamily);
     font-size: var(--fontSizeMd);
@@ -71,7 +75,6 @@ input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    outline: 0;
     vertical-align: bottom;
     background: transparent;
     height: var(--sizeCheckbox);
@@ -137,11 +140,6 @@ select {
     background-color: transparent;
     color: var(--colPri);
     cursor: pointer;
-}
-
-select:focus {
-    outline: 1px solid var(--colPri);
-    outline-offset: 3px;
 }
 
 label {
