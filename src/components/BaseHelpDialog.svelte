@@ -7,12 +7,12 @@
 <dialog class="HelpDialog"
     id="helpDialog"
 >
+    <button class="HelpDialog__CloseBtn IconButton"
+        onclick={() => { closeDialog() }}
+    >
+        <MaterialSymbolsLightClose/>
+    </button>
     <article class="HelpDialog__Wrapper">
-        <button class="HelpDialog__CloseBtn IconButton"
-            onclick={() => { closeDialog() }}
-        >
-            <MaterialSymbolsLightClose/>
-        </button>
         <h2>Welcome to Pura Tela</h2>
 
         <h3>What is this?</h3>
@@ -62,12 +62,12 @@
 
         <p>After tapping on the <strong>Download</strong> button in the Studio tab, the image will be generated and passed to your device. The image file will be in the PNG format and named after either the colour name (if available) or the hex code used.</p>
 
-        <p>The save location varies according to your device configuration, but is typically your designated Download directory and should be accessible from your Photo browser app.</p>
+        <p>The save location varies according to your device configuration, but is typically your designated Download directory and should be accessible from your Photo browser app. This image is free for you to keep forever as you see fit, without the need for this app again.</p>
 
         <h3>Installing</h3>
         <p>Pura Tela is deployed as a <strong>Progressive Web App</strong>, and is installable to your device to be launched in a manner similar to a native app. If you do not see a prompt, check your browser guide for the appropriate steps.</p>
 
-        <h3>Who</h3>
+        <h3>Authors</h3>
         <p>Pura Tela is developed by <a href="https://www.junongx.com/" target="_blank" rel="noopener noreferrer">Juno Nguyen</a> with much design input from <a href="https://caseykwokdinata.webflow.io/" target="_blank" rel="noopener noreferrer">Casey Kwokdinata</a>.</p>
 
         <p>The project is made for personal use following the delisting of a similarly-functioned Android native app.</p>
@@ -84,21 +84,21 @@
 
 <style>
     .HelpDialog {
-        position: relative;
-        font-size: var(--fontSizeXs);
         border: none;
         background-color: transparent;
+        padding: 0;
     }
 
     .HelpDialog__Wrapper {
+        position: relative;
+        font-size: var(--fontSizeSm);
         overflow: scroll;
         border: 1px solid var(--colPri);
         color: var(--colPri);
         background-color: var(--colBg);
-        max-width: 640px;
+        max-width: 480px;
         max-height: 85dvh;
         padding: 1rem;
-        /* word-break: break-all; */
         -webkit-hyphens: auto;
         -moz-hyphens: auto;
         -ms-hyphens: auto;
@@ -107,9 +107,11 @@
 
     .HelpDialog__CloseBtn {
         position: absolute;
-        top: 1.25rem;
-        right: 1.25rem;
+        top: 0.5rem;
+        right: 0.5rem;
         padding: 0.1rem;
         border: none;
+        color: var(--colPri);
+        z-index: 2;
     }
 </style>

@@ -38,11 +38,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: 0.5rem;
         width: 100%;
     }
 
     .Header__Left {
         display: flex;
+        justify-content: flex-start;
         gap: 1rem;
         align-items: center;
     }
@@ -52,8 +54,12 @@
     }
 
     @media screen and (width < 600px) {
+        .Header__Left {
+            gap: 0.5rem;
+        }
+
         h1 {
-            font-size: 24px;
+            font-size: 22px;
         }
     }
 </style>
