@@ -1,8 +1,9 @@
 <script lang="ts">
+    import { beforeNavigate, afterNavigate } from '$app/navigation'
     import MaterialSymbolsLightResetSettingsRounded from '~icons/material-symbols-light/reset-settings-rounded';
 
     import BaseColourList from "src/components/BaseColourList.svelte";
-    import { resetGallery } from "src/lib/states.svelte";
+    import { galleryScrollPos, resetGallery } from "src/lib/states.svelte";
 
     const handleResetGallery = () => {
         const isConfirmed = window.confirm("Please confirm gallery reset. Your data will be unrecoverably lost.");
@@ -12,6 +13,16 @@
 
         resetGallery();
     };
+
+    beforeNavigate(({ from }) => {
+        if (from?.url.pathname !== "/gallery") return;
+        galleryScrollPos.set(window.scrollY);
+    })
+
+    afterNavigate(({ to }) => {
+        if (to?.url.pathname !== "/gallery") return;
+        scrollTo(0, galleryScrollPos.val);
+    })
 </script>
 
 <h2 class="VisuallyHidden">Gallery</h2>

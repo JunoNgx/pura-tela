@@ -66,3 +66,13 @@ export const shouldShowSampleText = createLocalStorageSyncedState({
     defaultValue: false,
     validationFunc: isShouldShowSampleTextValid,
 }) as State<boolean>;
+
+const createGalleryScrollPositionState = () => {
+    let scrollingPosition = $state(0);
+
+    return {
+        get val() { return scrollingPosition },
+        set: (newVal: number) => { scrollingPosition = newVal }
+    };
+};
+export const galleryScrollPos = createGalleryScrollPositionState();
