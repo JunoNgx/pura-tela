@@ -21,6 +21,11 @@ body {
     margin: 0;
 }
 
+::selection {
+    color: var(--colBg);
+    background-color: var(--colPri);
+}
+
 :focus:not(:focus-visible) {
     outline: none;
 }
