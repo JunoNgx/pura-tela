@@ -37,6 +37,7 @@ button {
     font-size: var(--fontSizeMd);
     padding: 0.5rem 1rem;
     -webkit-tap-highlight-color: transparent;
+    outline-offset: 3px;
     transition: all ease-in-out var(--transTime);
 }
 
@@ -46,7 +47,7 @@ button:hover {
 }
 
 button:focus {
-    outline: none;
+    outline: 1px solid var(--colPri);
 }
 
 input {
