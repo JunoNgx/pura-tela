@@ -7,9 +7,7 @@
 
     const handleResetGallery = () => {
         const isConfirmed = window.confirm("Please confirm gallery reset. Your data will be unrecoverably lost.");
-        if (!isConfirmed) {
-            return;
-        }
+        if (!isConfirmed) return;
 
         resetGallery();
     };

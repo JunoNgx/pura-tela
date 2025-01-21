@@ -15,9 +15,7 @@
 
     const handleDeleteColour = () => {
         const isConfirmed = window.confirm("Please confirm the colour deletion.");
-        if (!isConfirmed) {
-            return;
-        }
+        if (!isConfirmed) return;
 
         const hexCode = colourItem.hexCode
         const index = colourGallery.val.findIndex(item => item.hexCode === hexCode);

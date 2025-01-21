@@ -9,9 +9,7 @@
     import { colourGallery, currHexCode, currRgbColour } from "src/lib/states.svelte";
 
     const handleHexCodeChange = (hexStr: string) => {
-        if (!isHexCodeValid(hexStr)) {
-            return;
-        }
+        if (!isHexCodeValid(hexStr)) return;
 
         currHexCode.set(hexStr);
         currRgbColour.set(convertHexToRgb(currHexCode.val));
@@ -54,9 +52,7 @@
 
     const tryCreateNewColour = () => {
         const colourName = window.prompt("Enter name for new colour", `#${currHexCode.val}`)
-        if (!colourName) {
-            return;
-        }
+        if (!colourName) return;
 
         try {
             const newColour = {

@@ -15,17 +15,13 @@ export const generateImage = (
     canvas.height = height;
 
     const ctx = canvas.getContext("2d");
-    if (!ctx) {
-        return;
-    }
+    if (!ctx) return;
 
     ctx.fillStyle = `#${bgHex}`;
     ctx.fillRect(0, 0, width, height);
 
     canvas.toBlob((blob) => {
-        if (blob === null) {
-            return;
-        }
+        if (blob === null) return;
 
         const url = URL.createObjectURL(blob);
 
