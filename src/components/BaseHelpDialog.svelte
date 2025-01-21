@@ -2,7 +2,6 @@
     import MaterialSymbolsLightClose from '~icons/material-symbols-light/close';
 
     let { closeDialog } = $props();
-    closeDialog()
 </script>
 
 <dialog class="HelpDialog"
