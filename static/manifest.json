@@ -7,7 +7,7 @@
     "display": "standalone",
     "theme_color": "#219EBC",
     "background_color": "#F1F0F4",
-    "start_url": "https:/pura-tela.vercel.app",
+    "start_url": "https:/pura-tela.vercel.app/",
     "prefer_related_applications": false,
     "icons": [
         {
