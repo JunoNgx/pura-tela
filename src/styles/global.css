@@ -35,6 +35,10 @@ a:visited {
     color: var(--colPri);
 }
 
+li {
+    list-style: square;
+}
+
 button {
     cursor: pointer;
     font-family: var(--fontFamily);
