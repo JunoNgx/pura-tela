@@ -1,4 +1,3 @@
-import { browser } from "$app/environment";
 import { isHexCodeValid } from "./utils.js";
 import { ThemeMode, type State } from "./types.js";
 import { sizeOptions } from "./states.svelte.js";
@@ -15,26 +14,13 @@ export const createLocalStorageSyncedState = <T>(
     const createStateWithSyncEffect = (verifiedData: T) => {
         let state = $state<T>(verifiedData);
 
-        if (browser) {
-            localStorage.setItem(key, JSON.stringify(state));
-        }
-
         return {
             get val() { return state; },
             set: (newVal: T) => {
                 state = newVal;
-
-                if (!browser) {
-                    return;
-                }
-
                 localStorage.setItem(key, JSON.stringify(state));
             }
         };
-    }
-
-    if (!browser) {
-        return createStateWithSyncEffect(defaultValue);
     }
 
     try {

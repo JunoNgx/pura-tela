@@ -1,5 +1,3 @@
-import { browser } from "$app/environment";
-
 import { themeMode } from "./states.svelte.js";
 import { ThemeMode } from "./types.js";
 
@@ -15,10 +13,6 @@ export const setupAutoSettingsListener = () => {
 };
 
 export const computeThemeMode = (): ThemeMode.LIGHT | ThemeMode.DARK => {
-    if (!browser) {
-        return ThemeMode.LIGHT;
-    }
-
     if (themeMode.val !== ThemeMode.AUTO) {
         return themeMode.val;
     }
@@ -31,10 +25,6 @@ export const computeThemeMode = (): ThemeMode.LIGHT | ThemeMode.DARK => {
 }
 
 const handlePreferDarkQueryChange = () => {
-    if (!browser) {
-        return;
-    }
-
     writeDocumentAttribute();
 };
 
@@ -45,10 +35,6 @@ const writeDocumentAttribute = () => {
 };
 
 export const handleThemeModeChange = () => {
-    if (!browser) {
-        return;
-    }
-
     setupAutoSettingsListener();
     writeDocumentAttribute();
 };

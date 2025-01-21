@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { browser } from "$app/environment";
 	import ColorPicker from 'svelte-awesome-color-picker';
 
     import MaterialSymbolsLightSaveOutline from '~icons/material-symbols-light/save-outline';
@@ -54,10 +53,6 @@
     };
 
     const tryCreateNewColour = () => {
-        if (!browser) {
-            return;
-        }
-
         const colourName = window.prompt("Enter name for new colour", `#${currHexCode.val}`)
         if (!colourName) {
             return;
