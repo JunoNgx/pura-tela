@@ -2,8 +2,6 @@
     import MaterialSymbolsLightHelpOutline from "~icons/material-symbols-light/help-outline";
     import BaseThemeModeContainer from "src/components/BaseThemeModeContainer.svelte";
 	import BaseHelpDialog from "src/components/BaseHelpDialog.svelte";
-    import { onMount } from 'svelte';
-
 
     const getHelpDialog = () => {
         return document.getElementById("helpDialog") as HTMLDialogElement;
@@ -18,10 +16,6 @@
         const helpDialog = getHelpDialog();
         helpDialog?.close();
     };
-
-    onMount(() => {
-        showDialog()
-    })
 </script>
 
 <header class="Header">
