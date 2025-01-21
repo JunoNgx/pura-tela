@@ -111,7 +111,6 @@
         right: 0.5rem;
         padding: 0.1rem;
         border: none;
-        color: var(--colPri);
         z-index: 2;
     }
 </style>
