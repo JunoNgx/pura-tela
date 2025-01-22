@@ -12,7 +12,7 @@
     >
         <MaterialSymbolsLightClose/>
     </button>
-    <article class="HelpDialog__Wrapper">
+    <article class="HelpDialog__Article">
         <h2>Welcome to Pura Tela</h2>
 
         <h3>What is this?</h3>
@@ -89,7 +89,7 @@
         padding: 0;
     }
 
-    .HelpDialog__Wrapper {
+    .HelpDialog__Article {
         position: relative;
         font-size: var(--fontSizeSm);
         overflow: scroll;
