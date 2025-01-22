@@ -19,7 +19,11 @@
 
     afterNavigate(({ to }) => {
         if (to?.url.pathname !== "/gallery") return;
-        scrollTo(0, galleryScrollPos.val);
+        scrollTo({
+            top: galleryScrollPos.val,
+            left: 0,
+            behavior: "smooth",
+        });
     })
 </script>
 
