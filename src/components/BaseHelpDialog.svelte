@@ -46,7 +46,7 @@
         <h3>Gallery and loading colours</h3>
         <p>Pura Tela starts with a list of pre-created and curated colours for you to start with. The list is displayed in the <strong>Gallery</strong> tab.
 
-        <p>To load a colour, tap on the "eyedropper" icon on the bottom right of the colour card. This colour will then be loaded into the Studio.</p>
+        <p>To load a colour, tap on the "eyedropper" icon on the bottom right of the colour card. This colour will then be loaded into the Studio. Upon returning to the Gallery, you will be brought back to your last scroll position.</p>
 
         <p>Colours can also be removed. This process is permanent and irreversible.</p>
 
