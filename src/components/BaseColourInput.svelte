@@ -96,14 +96,19 @@
             /> -->
             <ColorPicker
                 label=""
+                texts={{
+                    changeTo: "to",
+                }}
                 hex={`#${currHexCode.val}`}
                 isAlpha={false}
                 position="responsive"
                 on:input={e => handleColorPickerChange(e.detail.hex as string)}
+                --picker-height="100px"
+                --picker-width="100px"
                 --focus-color="var(--colPri)"
                 --input-size="32px"
-                --slider-width="24px"
-                --picker-indicator-size="10px"
+                --slider-width="12px"
+                --picker-indicator-size="8px"
                 --picker-z-index="10"
             />
         </div>
