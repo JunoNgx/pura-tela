@@ -92,7 +92,8 @@
     .HelpDialog__Article {
         position: relative;
         font-size: var(--fontSizeSm);
-        overflow: scroll;
+        overflow-y: scroll;
+        scrollbar-width: thin;
         border: 1px solid var(--colPri);
         color: var(--colPri);
         background-color: var(--colBg);
