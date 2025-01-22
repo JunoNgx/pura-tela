@@ -106,7 +106,7 @@
                 --picker-height="100px"
                 --picker-width="100px"
                 --focus-color="var(--colPri)"
-                --input-size="32px"
+                --input-size="24px"
                 --slider-width="12px"
                 --picker-indicator-size="8px"
                 --picker-z-index="10"
@@ -205,6 +205,10 @@
     }
 
     /* Colour picker customisation */
+    :global(.color-picker) {
+        border: 1px solid var(--colPri);
+    }
+
     :global(.color-picker .color),
     :global(.color-picker .picker),
     :global(.color-picker .track),
@@ -216,8 +220,6 @@
     :global(.color-picker .wrapper) {
         border-radius: 0 !important;
     }
-
-
 
     @media screen and (width < 600px) {
         .ColourInput__Top {
