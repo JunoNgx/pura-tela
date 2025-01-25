@@ -127,7 +127,7 @@
     .Studio__Buttons {
         display: flex;
         justify-content: flex-start;
-        margin-top: 2rem;
+        margin-top: 3rem;
     }
 
     .Studio_DownloadBtn {
