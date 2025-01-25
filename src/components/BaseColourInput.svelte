@@ -88,8 +88,8 @@
             isAlpha={false}
             position="responsive"
             on:input={e => handleColorPickerChange(e.detail.hex as string)}
-            --picker-height="100px"
-            --picker-width="100px"
+            --picker-width="200px"
+            --picker-height="200px"
             --focus-color="var(--colPri)"
             --input-size="24px"
             --slider-width="12px"
