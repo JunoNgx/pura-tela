@@ -134,6 +134,7 @@ input[type="number"] {
 
 select {
     font-family: var(--fontFamily);
+    font-size: var(--fontSizeMd);
     border-radius: 0;
     border: none;
     border-bottom: 1px solid var(--colPri);
