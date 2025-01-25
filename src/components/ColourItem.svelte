@@ -96,7 +96,7 @@
     }
 
     .ColourItem__Title {
-        padding: 0.25rem;
+        padding: 0.5rem;
         background-color: rgba(var(--colBlackRgb), 0.5);
         color: var(--colWhite);
         display: -webkit-box;
@@ -117,7 +117,7 @@
 
     .ColourItem__Subtitle {
         font-size: var(--fontSizeSm);
-        padding-left: 0.25rem;
+        padding-left: 0.5rem;
     }
 
     .ColourItem__Buttons {
