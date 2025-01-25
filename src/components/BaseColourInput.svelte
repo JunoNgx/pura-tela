@@ -114,7 +114,11 @@
 
     <div class="ColourInput__Rgb">
         <div class="ColourInput__RgbItem">
-            <label for="red">R</label>
+            <label class="ColourInput__RgbLabel"
+                for="red"
+            >
+                R
+            </label>
             <input class="ColourInput__RgbInput"
                 id="red"
                 name="red"
@@ -126,7 +130,11 @@
             />
         </div>
         <div class="ColourInput__RgbItem">
-            <label for="green">G</label>
+            <label class="ColourInput__RgbLabel"
+                for="green"
+            >
+                G
+            </label>
             <input class="ColourInput__RgbInput"
                 id="green"
                 name="green"
@@ -138,7 +146,11 @@
             />
         </div>
         <div class="ColourInput__RgbItem">
-            <label for="blue">B</label>
+            <label class="ColourInput__RgbLabel"
+                for="blue"
+            >
+                B
+            </label>
             <input class="ColourInput__RgbInput"
                 id="blue"
                 name="blue"
@@ -186,7 +198,7 @@
     .ColourInput__Hex {
         flex-grow: 5;
         display: flex;
-        gap: 0.5rem;
+        gap: 1rem;
     }
 
     .ColourInput__HexInput {
@@ -207,8 +219,18 @@
         gap: 2rem;
     }
 
+    .ColourInput__RgbItem {
+        display: flex;
+        gap: 1rem;
+
+        label {
+            font-weight: 700;
+        }
+    }
+
     .ColourInput__RgbInput {
-        width: 2rem;
+        width: 2.5rem;
+        text-align: center;
     }
 
     /* Colour picker customisation */
