@@ -187,3 +187,25 @@ h3 {
     line-height: 0;
     user-select: none;
 }
+
+.IconButton:hover {
+    color: var(--colPri);
+    background-color: transparent;
+}
+
+.IconButton .IconButton__RegularIcon {
+    display: block;
+}
+
+.IconButton .IconButton__HoverIcon {
+    display: none;
+}
+
+.IconButton:hover .IconButton__RegularIcon {
+    display: none;
+}
+
+.IconButton:hover .IconButton__HoverIcon {
+    display: block;
+}
+
