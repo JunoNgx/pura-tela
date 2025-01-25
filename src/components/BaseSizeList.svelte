@@ -53,19 +53,15 @@
         height: 100%;
     }
 
-    .SizeItem__Label,
-    .SizeItem__SizeInfo {
-        margin: 0;
+    .SizeItem__Label {
+        margin: 0.75rem 0 0 0.25rem;
+        font-weight: 700;
     }
 
-    .SizeItem__Label {
-        margin-top: 0.25rem;
+    .SizeItem__SizeInfo {
+        margin: 0.5rem 0 0.5rem 0.25rem;
     }
     
-    .SizeItem__SizeInfo {
-        font-size: var(--fontSizeSm);
-    }
-
     @media screen and (width < 600px) {
         .SizeList {
             grid-template-columns: repeat(2, 1fr);
