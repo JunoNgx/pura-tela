@@ -152,19 +152,19 @@
     </div>
 
     <div class="ColourInput__Buttons">
-        <button class="ColourInput__ColourActionBtn IconButton"
+        <button class="ColourInput__ColourActionBtn"
             onclick={handleRandomise}
             title="Generate a randomised colour"
             aria-label="Create a random colour"
     >
-            <MaterialSymbolsLightShuffle/>
+            Randomise
         </button>
-        <button class="ColourInput__ColourActionBtn IconButton"
+        <button class="ColourInput__ColourActionBtn"
             onclick={tryCreateNewColour}
             title="Save colour to gallery"
             aria-label="Save colour to gallery"
         >
-            <MaterialSymbolsLightSaveOutline/>
+            Save to Gallery
         </button>
     </div>
 </section>
@@ -195,7 +195,9 @@
 
     .ColourInput__Buttons {
         display: flex;
+        justify-content: space-around;
         gap: 1rem;
+        margin-top: 2rem;
     }
 
     .ColourInput__Rgb {
@@ -224,7 +226,7 @@
     }
 
     @media screen and (width < 600px) {
-        
+
     }
 
 </style>
