@@ -6,7 +6,7 @@
     import { galleryScrollPos, resetGallery } from "src/lib/states.svelte";
 
     const handleResetGallery = () => {
-        const isConfirmed = window.confirm("Please confirm gallery reset. Your data will be unrecoverably lost.");
+        const isConfirmed = window.confirm("Reset the gallery to default colours? This action cannot be undone.");
         if (!isConfirmed) return;
 
         resetGallery();
