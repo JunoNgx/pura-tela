@@ -74,59 +74,41 @@
     <h3>Colour</h3>
 
     <div class="ColourInput__Top">
-        <div class="ColourInput__TopLeft">
-            <div class="ColourInput__Hex">
-                <label for="hexCode">#</label>
-                <input class="ColourInput__HexInput"
-                    id="hexCode"
-                    name="hexCode"
-                    type="text"
-                    minlength="3"
-                    maxlength="6"
-                    spellcheck="false"
-                    title="Requires a valid hex code"
-                    value={currHexCode.val}
-                    oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
-                />
-            </div>
-            <!-- <input
-                type="color"
+        <!-- <input
+            type="color"
+            value={currHexCode.val}
+            oninput={e => handleColorPickerChange((e.target as HTMLInputElement).value)}
+        /> -->
+        <ColorPicker
+            label=""
+            texts={{
+                changeTo: "to",
+            }}
+            hex={`#${currHexCode.val}`}
+            isAlpha={false}
+            position="responsive"
+            on:input={e => handleColorPickerChange(e.detail.hex as string)}
+            --picker-height="100px"
+            --picker-width="100px"
+            --focus-color="var(--colPri)"
+            --input-size="24px"
+            --slider-width="12px"
+            --picker-indicator-size="8px"
+            --picker-z-index="10"
+        />
+        <div class="ColourInput__Hex">
+            <label for="hexCode">#</label>
+            <input class="ColourInput__HexInput"
+                id="hexCode"
+                name="hexCode"
+                type="text"
+                minlength="3"
+                maxlength="6"
+                spellcheck="false"
+                title="Requires a valid hex code"
                 value={currHexCode.val}
-                oninput={e => handleColorPickerChange((e.target as HTMLInputElement).value)}
-            /> -->
-            <ColorPicker
-                label=""
-                texts={{
-                    changeTo: "to",
-                }}
-                hex={`#${currHexCode.val}`}
-                isAlpha={false}
-                position="responsive"
-                on:input={e => handleColorPickerChange(e.detail.hex as string)}
-                --picker-height="100px"
-                --picker-width="100px"
-                --focus-color="var(--colPri)"
-                --input-size="24px"
-                --slider-width="12px"
-                --picker-indicator-size="8px"
-                --picker-z-index="10"
+                oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
-        </div>
-        <div class="ColourInput__Buttons">
-            <button class="ColourInput__ColourActionBtn IconButton"
-                onclick={handleRandomise}
-                title="Generate a randomised colour"
-                aria-label="Create a random colour"
-        >
-                <MaterialSymbolsLightShuffle/>
-            </button>
-            <button class="ColourInput__ColourActionBtn IconButton"
-                onclick={tryCreateNewColour}
-                title="Save colour to gallery"
-                aria-label="Save colour to gallery"
-            >
-                <MaterialSymbolsLightSaveOutline/>
-            </button>
         </div>
     </div>
 
@@ -168,11 +150,27 @@
             />
         </div>
     </div>
+
+    <div class="ColourInput__Buttons">
+        <button class="ColourInput__ColourActionBtn IconButton"
+            onclick={handleRandomise}
+            title="Generate a randomised colour"
+            aria-label="Create a random colour"
+    >
+            <MaterialSymbolsLightShuffle/>
+        </button>
+        <button class="ColourInput__ColourActionBtn IconButton"
+            onclick={tryCreateNewColour}
+            title="Save colour to gallery"
+            aria-label="Save colour to gallery"
+        >
+            <MaterialSymbolsLightSaveOutline/>
+        </button>
+    </div>
 </section>
 
 <style>
     .ColourInput__Top,
-    .ColourInput__TopLeft,
     .ColourInput__Rgb {
         display: flex;
         flex-direction: row;
@@ -180,13 +178,19 @@
         align-items: center;
     }
 
-    .ColourInput__Top,
-    .ColourInput__TopLeft {
+    .ColourInput__Top {
+        margin-top: 1rem;
         gap: 1rem;
     }
 
+    .ColourInput__Hex {
+        flex-grow: 5;
+        display: flex;
+        gap: 0.5rem;
+    }
+
     .ColourInput__HexInput {
-        width: 4rem;
+        flex-grow: 5;
     }
 
     .ColourInput__Buttons {
@@ -195,8 +199,9 @@
     }
 
     .ColourInput__Rgb {
-        justify-content: space-around;
-        margin: 0.5rem 0 0.25rem;
+        justify-content: space-between;
+        margin: 1rem 0 0.25rem;
+        padding-left: 0.75rem;
         gap: 2rem;
     }
 
@@ -205,9 +210,6 @@
     }
 
     /* Colour picker customisation */
-    :global(.color-picker) {
-        border: 1px solid var(--colPri);
-    }
 
     :global(.color-picker .color),
     :global(.color-picker .picker),
@@ -222,13 +224,7 @@
     }
 
     @media screen and (width < 600px) {
-        .ColourInput__Top {
-            justify-content: space-between;
-        }
-
-        .ColourInput__Rgb {
-            justify-content: space-between;
-        }
+        
     }
 
 </style>
