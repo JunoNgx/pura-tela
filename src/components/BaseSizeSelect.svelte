@@ -32,11 +32,11 @@
 
 <style>
     .SizeSelection {
-        margin-top: 2rem;
+        margin-top: 3rem;
     }
 
     .SizeSelection__Select {
-        width: auto;
+        width: 100%;
         padding: 0.25rem 0;
         margin-top: 0.5rem;
     }
