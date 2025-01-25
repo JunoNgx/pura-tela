@@ -7,12 +7,13 @@
 <dialog class="HelpDialog"
     id="helpDialog"
 >
-    <button class="HelpDialog__CloseBtn IconButton"
-        onclick={() => { closeDialog() }}
-    >
-        <MaterialSymbolsLightClose/>
-    </button>
     <article class="HelpDialog__Article">
+        <button class="HelpDialog__CloseBtn IconButton"
+            onclick={() => { closeDialog() }}
+        >
+            <MaterialSymbolsLightClose/>
+        </button>
+
         <h2>Welcome to Pura Tela</h2>
 
         <h3>What is this?</h3>
@@ -103,9 +104,11 @@
     }
 
     .HelpDialog__CloseBtn {
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
+        position: sticky;
+        top: 0;
+        left: 100%;
+        /* Mildly hacky fix to move it beyond the container */
+        transform: translate(0.5rem, -0.5rem);
         padding: 0.1rem;
         border: none;
         z-index: 2;
