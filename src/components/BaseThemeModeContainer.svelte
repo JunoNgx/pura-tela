@@ -21,32 +21,50 @@
         onclick={() => handleClickOnThemeMode(ThemeMode.AUTO)}
         aria-label="Auto setting theme mode button"
     >
-        {#if themeMode.val === ThemeMode.AUTO}
+        <div class="IconButton__RegularIcon">
+            {#if themeMode.val === ThemeMode.AUTO}
+                <MaterialSymbolsLightSettings/>
+            {:else}
+                <MaterialSymbolsLightSettingsOutline/>
+            {/if}
+        </div>
+        <div class="IconButton__HoverIcon">
             <MaterialSymbolsLightSettings/>
-        {:else}
-            <MaterialSymbolsLightSettingsOutline/>
-        {/if}
+        </div>
     </button>
+
     <button class="ThemeMode__Item IconButton"
         onclick={() => handleClickOnThemeMode(ThemeMode.LIGHT)}
         aria-label="Light theme mode button"
     >
-        {#if themeMode.val === ThemeMode.LIGHT}
+        <div class="IconButton__RegularIcon">
+            {#if themeMode.val === ThemeMode.LIGHT}
+                <MaterialSymbolsLightLightMode/>
+            {:else}
+                <MaterialSymbolsLightLightModeOutline/>
+            {/if}
+        </div>
+        <div class="IconButton__HoverIcon">
             <MaterialSymbolsLightLightMode/>
-        {:else}
-            <MaterialSymbolsLightLightModeOutline/>
-        {/if}
+        </div>
     </button>
+
     <button class="ThemeMode__Item IconButton"
         onclick={() => handleClickOnThemeMode(ThemeMode.DARK)}
         aria-label="Dark theme mode button"
     >
-        {#if themeMode.val === ThemeMode.DARK}
+        <div class="IconButton__RegularIcon">
+            {#if themeMode.val === ThemeMode.DARK}
+                <MaterialSymbolsLightModeNight/>
+            {:else}
+                <MaterialSymbolsLightModeNightOutline/>
+            {/if}
+        </div>
+        <div class="IconButton__HoverIcon">
             <MaterialSymbolsLightModeNight/>
-        {:else}
-            <MaterialSymbolsLightModeNightOutline/>
-        {/if}
+        </div>
     </button>
+
 </div>
 
 <style>

@@ -1,4 +1,5 @@
 <script lang="ts">
+    import MaterialSymbolsLightHelp from "~icons/material-symbols-light/help";
     import MaterialSymbolsLightHelpOutline from "~icons/material-symbols-light/help-outline";
     import BaseThemeModeContainer from "src/components/BaseThemeModeContainer.svelte";
 	import BaseHelpDialog from "src/components/BaseHelpDialog.svelte";
@@ -24,7 +25,12 @@
         <button class="Header__HelpBtn IconButton"
             onclick={showDialog}
         >
-            <MaterialSymbolsLightHelpOutline/>
+            <div class="IconButton__RegularIcon">
+                <MaterialSymbolsLightHelpOutline/>
+            </div>
+            <div class="IconButton__HoverIcon">
+                <MaterialSymbolsLightHelp/>
+            </div>
         </button>
         <BaseHelpDialog closeDialog={hideDialog}/>
     </div>
