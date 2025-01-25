@@ -2,8 +2,10 @@
     import { goto } from '$app/navigation';
     import { currHexCode, currRgbColour, colourGallery } from "src/lib/states.svelte";
 	import { convertHexToRgb } from "src/lib/utils.js";
-    import MaterialSymbolsLightDeleteSharp from "~icons/material-symbols-light/delete-sharp";
-    import MaterialSymbolsLightColorizeSharp from '~icons/material-symbols-light/colorize-sharp';
+    import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
+    import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
+    import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
+    import MaterialSymbolsLightDeleteOutline from '~icons/material-symbols-light/delete-outline';
 
     let { colourItem } = $props();
 
@@ -47,9 +49,16 @@
                 onclick={handleChooseColour}
                 title={"Choose this colour"}
                 aria-label="Choose this colour"
-        >
-                <MaterialSymbolsLightColorizeSharp/>
+            >       
+                <div class="IconButton__RegularIcon">
+                    <MaterialSymbolsLightColorizeOutline/>
+                </div>
+                <div class="IconButton__HoverIcon">
+                    <MaterialSymbolsLightColorize/>
+                </div>
+                
             </button>
+
             <button class="ColourItem__ActionBtn
                 ColourItem__ActionBtn--Delete
                 IconButton
@@ -58,7 +67,12 @@
                 title={"Delete this colour"}
                 aria-label="Delete this colour"
             >
-                <MaterialSymbolsLightDeleteSharp/>
+                <div class="IconButton__RegularIcon">
+                    <MaterialSymbolsLightDeleteOutline/>
+                </div>
+                <div class="IconButton__HoverIcon">
+                    <MaterialSymbolsLightDelete/>
+                </div>
             </button>
         </div>
     </div>
@@ -110,11 +124,7 @@
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
-        gap: 0.5rem;
-    }
-
-    .ColourItem__ActionBtn {
-        border: none;
+        gap: 0.1rem;
     }
 
     .ColourItem__ActionBtn--Delete {
