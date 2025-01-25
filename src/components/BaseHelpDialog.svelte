@@ -100,10 +100,6 @@
         max-width: 480px;
         max-height: 85dvh;
         padding: 1rem;
-        -webkit-hyphens: auto;
-        -moz-hyphens: auto;
-        -ms-hyphens: auto;
-        hyphens: auto;
     }
 
     .HelpDialog__CloseBtn {
