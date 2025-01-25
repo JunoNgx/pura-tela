@@ -182,31 +182,45 @@ h3 {
 }
 
 .IconButton {
+    position: relative;
     font-size: var(--fontSizeIconBtn);
     padding: 0.25rem;
     line-height: 0;
     user-select: none;
     border: none;
+    width: 2rem;
+    height: 2rem;
+
+    .IconButton__RegularIcon,
+    .IconButton__HoverIcon {
+        position: absolute;
+        top: 0.25rem;
+        transition: all ease-in-out var(--transTime);
+    }
+
+    .IconButton__RegularIcon {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .IconButton__HoverIcon {
+        visibility: hidden;
+        opacity: 0;
+    }
 }
 
 .IconButton:hover {
     color: var(--colPri);
     background-color: transparent;
-}
 
-.IconButton .IconButton__RegularIcon {
-    display: block;
-}
+    .IconButton__RegularIcon {
+        visibility: hidden;
+        opacity: 0;
+    }
 
-.IconButton .IconButton__HoverIcon {
-    display: none;
+    .IconButton__HoverIcon {
+        visibility: visible;
+        opacity: 1;
+    }
+    
 }
-
-.IconButton:hover .IconButton__RegularIcon {
-    display: none;
-}
-
-.IconButton:hover .IconButton__HoverIcon {
-    display: block;
-}
-
