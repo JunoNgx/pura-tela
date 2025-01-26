@@ -110,7 +110,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-top: 0.25rem;
         gap: 0.5rem;
     }
 
