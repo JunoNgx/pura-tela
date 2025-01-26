@@ -83,7 +83,6 @@
         list-style: none;
         border-bottom: 1px solid var(--colPri);
         min-width: 120px;
-        padding: 0.25rem;
     }
 
     .ColourItem__Preview {
