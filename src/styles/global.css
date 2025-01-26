@@ -35,6 +35,10 @@ body {
     outline: 1px solid var(--colPri);
 }
 
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 a,
 a:hover,
 a:visited {
