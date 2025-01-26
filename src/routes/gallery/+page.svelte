@@ -44,5 +44,7 @@
         gap: 0.5rem;
         color: var(--colDanger);
         float: right;
+        margin-top: 2rem;
+        margin-left: auto;
     }
 </style>
