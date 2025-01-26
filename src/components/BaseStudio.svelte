@@ -75,7 +75,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        gap: 3rem;
+        gap: 2rem;
         padding: 1.5rem 0;
     }
 
