@@ -73,16 +73,16 @@
     .Studio {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: center;
-        gap: 1rem;
+        gap: 3rem;
         width: 100%;
-        padding: 2rem 0;
+        padding: 1.5rem 0;
     }
 
     .Studio__Canvas {
         flex-grow: 1;
-        max-width: 300px;
+        max-width: 350px;
         position: relative;
     }
 
@@ -124,6 +124,10 @@
         color: var(--colBlack);
     }
 
+    .Studio__SampleTextCheckBox {
+        margin-left: 0;
+    }
+
     .Studio__Buttons {
         display: flex;
         justify-content: flex-start;
@@ -134,7 +138,6 @@
         padding: 1rem 2rem;
         display: block;
         width: 100%;
-        max-width: 300px;
         color: var(--colBg);
         background-color: var(--colPri);
     }
@@ -149,7 +152,7 @@
             flex-direction: column;
             justify-content: flex-start;
             align-items: stretch;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             gap: 4rem;
         }
 

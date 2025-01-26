@@ -15,6 +15,7 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
         padding-left: 0;
+        margin-top: 1.5rem;
     }
 
     @media screen and (width < 600px) {

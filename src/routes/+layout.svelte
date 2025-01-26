@@ -33,12 +33,12 @@
 
     .CardWrapper {
         margin: 1rem;
-        padding: 1rem;
+        padding: 1.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: var(--colBg);
-        box-shadow: 4px 8px 16px 0px rgba(0, 0, 0, 0.2)   
+        box-shadow: 4px 8px 8px 0px rgba(0, 0, 0, 0.2)   
     }
 
     .TabContent {
