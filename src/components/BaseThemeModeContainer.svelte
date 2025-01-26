@@ -3,8 +3,8 @@
     import MaterialSymbolsLightSettingsOutline from '~icons/material-symbols-light/settings-outline';
     import MaterialSymbolsLightLightMode from '~icons/material-symbols-light/light-mode';
     import MaterialSymbolsLightLightModeOutline from '~icons/material-symbols-light/light-mode-outline';
-    import MaterialSymbolsLightModeNight from '~icons/material-symbols-light/mode-night';
-    import MaterialSymbolsLightModeNightOutline from '~icons/material-symbols-light/mode-night-outline';
+    import MaterialSymbolsLightDarkMode from '~icons/material-symbols-light/dark-mode';
+    import MaterialSymbolsLightDarkModeOutline from '~icons/material-symbols-light/dark-mode-outline';
 
     import { themeMode } from 'src/lib/states.svelte.js';
 	import { ThemeMode } from 'src/lib/types.js';
@@ -55,13 +55,13 @@
     >
         <div class="IconButton__RegularIcon">
             {#if themeMode.val === ThemeMode.DARK}
-                <MaterialSymbolsLightModeNight/>
+                <MaterialSymbolsLightDarkMode/>
             {:else}
-                <MaterialSymbolsLightModeNightOutline/>
+                <MaterialSymbolsLightDarkModeOutline/>
             {/if}
         </div>
         <div class="IconButton__HoverIcon">
-            <MaterialSymbolsLightModeNight/>
+            <MaterialSymbolsLightDarkMode/>
         </div>
     </button>
 
