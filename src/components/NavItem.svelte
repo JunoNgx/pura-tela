@@ -21,17 +21,14 @@
         border-bottom: 0.25rem solid transparent;
     }
 
+    .NavItem {
+        text-decoration: none;
+        transition: border ease-in-out var(--transTime);
+    }
+
+    .NavItem:hover,
     .NavItem--IsActive {
         border-bottom-color: var(--colPri);
     }
 
-    .NavItem {
-        text-decoration: none;
-        transition: all ease-in-out var(--transTime);
-    }
-
-    .NavItem:hover {
-        color: var(--colBg);
-        background-color: var(--colPri);
-    }
 </style>
