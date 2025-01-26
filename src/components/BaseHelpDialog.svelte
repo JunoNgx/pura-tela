@@ -33,7 +33,7 @@
             <li>A hex code</li>
             <li>A colour picker (triggered by the colour block next to the hex input)</li>
             <li>RGB colour elements</li>
-            <li>A colour randomiser (triggered by the button with the "shuffle" icon)</li>
+            <li>A colour randomiser</li>
             <li>A pre-created gallery (more on this later)</li>
         </ul>
 
@@ -42,7 +42,7 @@
 
         <p>You may also display sample text against this colour to make sure that a desireable contrast readability is achieved.</p>
 
-        <p>Once satisfied, click on the "Save" button (represented by the floppy disk icon). Once a name is entered, the colour will be appended to the Gallery (see below).</p>
+        <p>Once satisfied, click on the "Save to Gallery" button. Once a name is entered, the colour will be appended to the Gallery (see below).</p>
 
         <h3>Gallery and loading colours</h3>
         <p>Pura Tela starts with a list of pre-created and curated colours for you to start with. The list is displayed in the <strong>Gallery</strong> tab.
