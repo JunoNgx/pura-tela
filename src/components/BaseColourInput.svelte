@@ -216,7 +216,7 @@
         justify-content: space-between;
         margin: 1rem 0 0.25rem;
         padding-left: 0.75rem;
-        gap: 2rem;
+        gap: 1rem;
     }
 
     .ColourInput__RgbItem {
