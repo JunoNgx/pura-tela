@@ -13,7 +13,7 @@
     .ColourList {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+        gap: 1.5rem;
         padding-left: 0;
         margin-top: 1.5rem;
     }

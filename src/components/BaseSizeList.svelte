@@ -22,7 +22,7 @@
     .SizeList {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+        gap: 1.5rem;
         padding-left: 0;
         margin-top: 1.5rem;
     }
@@ -31,7 +31,6 @@
         list-style: none;
         min-width: 150px;
         border-bottom: 1px solid var(--colPri);
-        padding: 0.25rem;
     }
 
     .SizeItem__PreviewContainer {
