@@ -55,6 +55,10 @@
         align-items: center;
     }
 
+    h1 {
+        font-size: var(--fontSizeXl);
+    }
+
     .Header__HelpBtn {
         border: none;
     }
@@ -62,10 +66,6 @@
     @media screen and (width < 600px) {
         .Header__Left {
             gap: 0.5rem;
-        }
-
-        h1 {
-            font-size: 22px;
         }
 
         .Header__HelpBtn {
