@@ -20,7 +20,7 @@
 </script>
 
 <div class="Studio">
-    <div class="Studio__Canvas">
+    <div class="Studio__PreviewContainer">
         <!-- <canvas id="PreviewCanvas"></canvas> -->
         <div class="Studio__PreviewBlock"
             style={`background-color: #${currHexCode.val};`}
@@ -76,11 +76,10 @@
         justify-content: space-between;
         align-items: center;
         gap: 3rem;
-        width: 100%;
         padding: 1.5rem 0;
     }
 
-    .Studio__Canvas {
+    .Studio__PreviewContainer {
         flex-grow: 1;
         max-width: 350px;
         position: relative;
@@ -88,19 +87,15 @@
 
     .Studio__PreviewBlock {
         aspect-ratio: 1;
+        width: 100%;
+        height: auto;
         border: 1px solid var(--colPri);
         box-sizing: border-box;
     }
 
-    .Studio__PreviewSettings {
-        padding-top: 1rem;
-        text-align: center;
-    }
-
     .Studio__SampleTextContainer {
+        aspect-ratio: 1;
         width: 100%;
-        /* Height doesn't fully match up, because parent also containts the checkbox */
-        height: 88%;
         position: absolute;
         top: 0;
         left: 0;
@@ -126,6 +121,11 @@
 
     .Studio__SampleTextCheckBox {
         margin-left: 0;
+    }
+
+    .Studio__PreviewSettings {
+        padding-top: 1rem;
+        text-align: center;
     }
 
     .Studio__Buttons {
@@ -156,7 +156,7 @@
             gap: 4rem;
         }
 
-        .Studio__Canvas {
+        .Studio__PreviewContainer {
             max-width: none;
             height: 180px;
             width: 100%;
