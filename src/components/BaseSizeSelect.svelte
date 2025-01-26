@@ -38,6 +38,6 @@
     .SizeSelection__Select {
         width: 100%;
         padding: 0.25rem 0;
-        margin-top: 0.5rem;
+        margin-top: 1rem;
     }
 </style>
