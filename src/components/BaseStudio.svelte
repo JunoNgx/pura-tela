@@ -129,13 +129,13 @@
     }
 
     .Studio__Size {
-        margin-top: 3rem;
+        margin-top: 2.5rem;
     }
 
     .Studio__Buttons {
         display: flex;
         justify-content: flex-start;
-        margin-top: 3rem;
+        margin-top: 2.5rem;
     }
 
     .Studio_DownloadBtn {

@@ -209,7 +209,7 @@
         display: flex;
         justify-content: space-around;
         gap: 1rem;
-        margin-top: 2rem;
+        margin-top: 1.5rem;
     }
 
     .ColourInput__Rgb {

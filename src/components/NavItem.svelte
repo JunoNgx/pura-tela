@@ -16,7 +16,7 @@
         flex-grow: 10;
         display: block;
         text-align: center;
-        padding: 0.75rem;
+        padding: 0.5rem;
         padding-top: 1rem;
         border-bottom: 0.25rem solid transparent;
     }
