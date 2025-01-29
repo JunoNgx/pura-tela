@@ -128,6 +128,10 @@
         text-align: center;
     }
 
+    .Studio__Size {
+        margin-top: 3rem;
+    }
+
     .Studio__Buttons {
         display: flex;
         justify-content: flex-start;

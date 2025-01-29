@@ -31,10 +31,6 @@
 </section>
 
 <style>
-    .SizeSelection {
-        margin-top: 3rem;
-    }
-
     .SizeSelection__Select {
         width: 100%;
         padding: 0.25rem 0;
