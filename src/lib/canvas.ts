@@ -10,7 +10,7 @@ export const renderPreviewCanvas = (
     canvas.width = size.width;
     canvas.height = size.height;
 
-    setCanvasFitMode(canvas, size);
+    setCanvasFitMode(canvas);
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -19,7 +19,7 @@ export const renderPreviewCanvas = (
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
-const setCanvasFitMode = (canvas: HTMLCanvasElement, size: SizeItem) => {
+const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
     const container = document.getElementById("CanvasContainer");
     if (!container) return;
 
