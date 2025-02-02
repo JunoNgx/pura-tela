@@ -1,7 +1,7 @@
 <script lang="ts">
     import BaseColourInput from "src/components/BaseColourInput.svelte";
     import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
-	import { generateImage } from "src/lib/canvas.js";
+	import { generateImage, renderPreviewCanvas } from "src/lib/canvas.js";
 	import { colourGallery, currHexCode, getCurrSizeOption, shouldShowSampleText } from "src/lib/states.svelte.js";
 	import { getColourName } from "src/lib/utils.js";
 
@@ -17,14 +17,22 @@
     const handleCheckboxSwitch = () => {
         shouldShowSampleText.set(!shouldShowSampleText.val);
     };
+
+    $effect(() => {
+        renderPreviewCanvas({
+            size: getCurrSizeOption(),
+            colours: [currHexCode.val]
+        })
+        console.log("effect", getCurrSizeOption())
+    });
 </script>
 
 <div class="Studio">
     <div class="Studio__PreviewContainer">
-        <!-- <canvas id="PreviewCanvas"></canvas> -->
-        <div class="Studio__PreviewBlock"
-            style={`background-color: #${currHexCode.val};`}
-        >
+        <div class="Studio__PreviewBlock">
+            <canvas class="Studio__Canvas"
+                id="Canvas"
+            ></canvas>
             <div class="Studio__SampleTextContainer"
                 class:Studio__SampleTextContainer--IsDisplayed={shouldShowSampleText.val}
             >
@@ -91,6 +99,11 @@
         height: auto;
         border: 1px solid var(--colPri);
         box-sizing: border-box;
+    }
+
+    .Studio__Canvas {
+        /* width: 100%; */
+        /* height: 100%; */
     }
 
     .Studio__SampleTextContainer {
