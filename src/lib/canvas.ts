@@ -2,6 +2,11 @@ import type { SizeItem } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
+/**
+ * Using array of hex colours to setup for future complex features,
+ * where multiple colours are involved.
+ */
+// TODO: to refactor to ColourItem[]
 export const renderPreviewCanvas = (
     { size, colours }: { size: SizeItem, colours: string[] }
 ) => {
