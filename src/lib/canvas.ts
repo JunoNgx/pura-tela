@@ -25,6 +25,13 @@ export const renderPreviewCanvas = (
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
+export const updateCanvasFitMode = () => {
+    const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
+    if (!canvas) return;
+
+    setCanvasFitMode(canvas);
+};
+
 const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
     const container = document.getElementById("CanvasContainer");
     if (!container) return;

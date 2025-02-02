@@ -2,7 +2,7 @@
 	import { onDestroy, onMount } from "svelte";
     import BaseColourInput from "src/components/BaseColourInput.svelte";
     import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
-	import { generateImage, renderPreviewCanvas } from "src/lib/canvas.js";
+	import { generateImage, renderPreviewCanvas, updateCanvasFitMode } from "src/lib/canvas.js";
 	import { colourGallery, currHexCode, getCurrSizeOption, shouldShowSampleText } from "src/lib/states.svelte.js";
 	import { getColourName } from "src/lib/utils.js";
 
@@ -14,23 +14,23 @@
         shouldShowSampleText.set(!shouldShowSampleText.val);
     };
 
-    const updatePreviewCanvas = () => {
+    const handleResizeEvent = () => {
+        updateCanvasFitMode();
+    };
+
+    onMount(() => {
+        window.addEventListener("resize", handleResizeEvent);
+    });
+
+    onDestroy(() => {
+        window.removeEventListener("resize", handleResizeEvent);
+    });
+
+    $effect(() => {
         renderPreviewCanvas({
             size: getCurrSizeOption(),
             colours: [currHexCode.val]
         });
-    };
-
-    onMount(() => {
-        window.addEventListener("resize", updatePreviewCanvas);
-    });
-
-    onDestroy(() => {
-        window.removeEventListener("resize", updatePreviewCanvas);
-    });
-
-    $effect(() => {
-        updatePreviewCanvas();
     });
 </script>
 
