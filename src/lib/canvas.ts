@@ -10,7 +10,7 @@ export const renderPreviewCanvas = (
     canvas.width = size.width;
     canvas.height = size.height;
 
-    setCanvasFitMode(canvas);
+    setCanvasFitMode(canvas, size);
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -19,13 +19,23 @@ export const renderPreviewCanvas = (
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
-const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
+const setCanvasFitMode = (canvas: HTMLCanvasElement, size: SizeItem) => {
     const container = document.getElementById("CanvasContainer");
     if (!container) return;
 
-    if (canvas.width <= canvas.height)
+    const isContainerWide = container.clientWidth > container.clientHeight;
+    const isCanvasWide = canvas.width > canvas.height;
+
+    if (isContainerWide && isCanvasWide) {
         setCanvasFitToHeight(canvas);
-    else setCanvasFitToWidth(canvas);
+    } else if (isContainerWide && !isCanvasWide) {
+        setCanvasFitToHeight(canvas);
+    } else if (!isContainerWide && isCanvasWide) {
+        setCanvasFitToWidth(canvas)
+    } else if (!isContainerWide && !isCanvasWide) {
+        setCanvasFitToHeight(canvas);
+    }
+
 };
 
 const setCanvasFitToWidth = (canvas: HTMLCanvasElement) => {
