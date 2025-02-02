@@ -7,12 +7,7 @@
 	import { getColourName } from "src/lib/utils.js";
 
     const handleDownloadClick = () => {
-        generateImage({
-            width: getCurrSizeOption().width,
-            height: getCurrSizeOption().height,
-            bgHex: currHexCode.val,
-            filename: getColourName(currHexCode.val, colourGallery.val)
-        });
+        generateImage(getColourName(currHexCode.val, colourGallery.val));
     };
 
     const handleCheckboxSwitch = () => {
