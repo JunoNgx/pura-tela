@@ -72,9 +72,8 @@ export const generateImage = (filename: string) => {
         anchorEl.click();
         document.body.removeChild(anchorEl);
 
-
         setTimeout(() => {
             URL.revokeObjectURL(url);
-        })
+        });
     });
 };
