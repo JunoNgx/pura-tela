@@ -26,16 +26,9 @@ const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
     const isContainerWide = container.clientWidth > container.clientHeight;
     const isCanvasWide = canvas.width > canvas.height;
 
-    if (isContainerWide && isCanvasWide) {
-        setCanvasFitToHeight(canvas);
-    } else if (isContainerWide && !isCanvasWide) {
-        setCanvasFitToHeight(canvas);
-    } else if (!isContainerWide && isCanvasWide) {
+    if (!isContainerWide && isCanvasWide)
         setCanvasFitToWidth(canvas)
-    } else if (!isContainerWide && !isCanvasWide) {
-        setCanvasFitToHeight(canvas);
-    }
-
+    else setCanvasFitToHeight(canvas);
 };
 
 const setCanvasFitToWidth = (canvas: HTMLCanvasElement) => {
