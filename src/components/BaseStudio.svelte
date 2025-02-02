@@ -14,16 +14,16 @@
         shouldShowSampleText.set(!shouldShowSampleText.val);
     };
 
-    const handleResizeEvent = () => {
+    const handleResize = () => {
         refitCanvasToContainer();
     };
 
     onMount(() => {
-        window.addEventListener("resize", handleResizeEvent);
+        window.addEventListener("resize", handleResize);
     });
 
     onDestroy(() => {
-        window.removeEventListener("resize", handleResizeEvent);
+        window.removeEventListener("resize", handleResize);
     });
 
     $effect(() => {
