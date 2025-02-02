@@ -10,24 +10,33 @@ export const renderPreviewCanvas = (
     canvas.width = size.width;
     canvas.height = size.height;
 
-    canvas.style.aspectRatio = (size.width/size.height).toString();
-    if (size.width >= size.height) {
-        canvas.style.width = "90%";
-        canvas.style.height = "";
-    } else {
-        canvas.style.width = "";
-        canvas.style.height = "90%";
-    }
+    setCanvasFitMode(canvas);
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     ctx.fillStyle = `#${colours[0]}`;
     ctx.fillRect(0, 0, size.width, size.height);
+};
 
-    ctx.fillStyle = `#fff`;
-    ctx.fillRect(0, 0, 20, 20);
-}
+const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
+    const container = document.getElementById("CanvasContainer");
+    if (!container) return;
+
+    if (canvas.width <= canvas.height)
+        setCanvasFitToHeight(canvas);
+    else setCanvasFitToWidth(canvas);
+};
+
+const setCanvasFitToWidth = (canvas: HTMLCanvasElement) => {
+    canvas.style.width = "95%";
+    canvas.style.height = "";
+};
+
+const setCanvasFitToHeight = (canvas: HTMLCanvasElement) => {
+    canvas.style.width = "";
+    canvas.style.height = "95%";
+};
 
 export const generateImage = (
     {width, height, bgHex, filename}:

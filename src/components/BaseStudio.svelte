@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onDestroy, onMount } from "svelte";
     import BaseColourInput from "src/components/BaseColourInput.svelte";
     import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
 	import { generateImage, renderPreviewCanvas } from "src/lib/canvas.js";
@@ -18,18 +19,31 @@
         shouldShowSampleText.set(!shouldShowSampleText.val);
     };
 
-    $effect(() => {
+    const updatePreviewCanvas = () => {
         renderPreviewCanvas({
             size: getCurrSizeOption(),
             colours: [currHexCode.val]
-        })
-        console.log("effect", getCurrSizeOption())
+        });
+    };
+
+    onMount(() => {
+        window.addEventListener("resize", updatePreviewCanvas);
+    });
+
+    onDestroy(() => {
+        window.removeEventListener("resize", updatePreviewCanvas);
+    });
+
+    $effect(() => {
+        updatePreviewCanvas();
     });
 </script>
 
 <div class="Studio">
     <div class="Studio__PreviewContainer">
-        <div class="Studio__PreviewBlock">
+        <div class="Studio__PreviewBlock"
+            id="CanvasContainer"    
+        >
             <canvas class="Studio__Canvas"
                 id="Canvas"
             ></canvas>
@@ -99,11 +113,16 @@
         height: auto;
         border: 1px solid var(--colPri);
         box-sizing: border-box;
+
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
     }
 
     .Studio__Canvas {
         /* width: 100%; */
         /* height: 100%; */
+        /* position: absolute; */
     }
 
     .Studio__SampleTextContainer {
@@ -186,6 +205,7 @@
         
         .Studio__SampleTextContainer {
             height: 100%;
+            font-size: var(--fontSizeSm);
         }
 
         .Studio__Buttons {
