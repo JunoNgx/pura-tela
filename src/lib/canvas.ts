@@ -7,7 +7,7 @@ const CANVAS_ID = "Canvas";
  * where multiple colours are involved.
  */
 // TODO: to refactor to ColourItem[]
-export const renderPreviewCanvas = (
+export const renderCanvas = (
     { size, colours }: { size: SizeItem, colours: string[] }
 ) => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
