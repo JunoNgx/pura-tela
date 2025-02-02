@@ -2,7 +2,7 @@
 	import { onDestroy, onMount } from "svelte";
     import BaseColourInput from "src/components/BaseColourInput.svelte";
     import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
-	import { generateImage, renderCanvas, updateCanvasFitMode } from "src/lib/canvas.js";
+	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { colourGallery, currHexCode, getCurrSizeOption, shouldShowSampleText } from "src/lib/states.svelte.js";
 	import { getColourName } from "src/lib/utils.js";
 
@@ -15,7 +15,7 @@
     };
 
     const handleResizeEvent = () => {
-        updateCanvasFitMode();
+        refitCanvasToContainer();
     };
 
     onMount(() => {

@@ -26,7 +26,7 @@ export const renderCanvas = (
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
-export const updateCanvasFitMode = () => {
+export const refitCanvasToContainer = () => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
     if (!canvas) return;
 
