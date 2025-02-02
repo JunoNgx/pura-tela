@@ -114,12 +114,6 @@
         align-items: center;
     }
 
-    .Studio__Canvas {
-        /* width: 100%; */
-        /* height: 100%; */
-        /* position: absolute; */
-    }
-
     .Studio__SampleTextContainer {
         aspect-ratio: 1;
         width: 100%;
