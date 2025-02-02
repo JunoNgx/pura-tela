@@ -21,6 +21,7 @@ export const renderCanvas = (
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // TODO: handle multiple wallpaper modes
     ctx.fillStyle = `#${colours[0]}`;
     ctx.fillRect(0, 0, size.width, size.height);
 };
