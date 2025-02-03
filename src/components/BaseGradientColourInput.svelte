@@ -16,7 +16,7 @@
 
 <section class="ColourInput">
 
-    <h3>Colour</h3>
+    <h3>Colours</h3>
 
     <div class="ColourInput__Main">
         <div class="ColourInput__ColourItem">
