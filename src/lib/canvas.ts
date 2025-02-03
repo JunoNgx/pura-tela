@@ -1,10 +1,10 @@
-import type { SizeItem } from "./types.js";
+import { WallpaperMode, type CanvasRenderOptions } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
 // TODO: to refactor to ColourItem[]
 export const renderCanvas = (
-    { size, colours }: { size: SizeItem, colours: string[] }
+    { size, colours, mode }: CanvasRenderOptions
 ) => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
     if (!canvas) return;
@@ -17,8 +17,40 @@ export const renderCanvas = (
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // TODO: handle multiple wallpaper modes
-    ctx.fillStyle = `#${colours[0]}`;
+    switch(mode) {
+    case WallpaperMode.GRADIENT:
+        renderForGradientMode({ ctx, size, colours, mode });
+        break;
+
+    case WallpaperMode.SOLID:
+    default:
+        renderForSolidMode({ ctx, size, colours, mode });
+    }
+};
+
+const renderForGradientMode = (
+    { ctx, colours, size }: CanvasRenderOptions & {
+        ctx: CanvasRenderingContext2D,
+    }
+) => {
+    console.log("gradient", colours)
+    const midXPoint = size.width / 2;
+    const gradient = ctx.createLinearGradient(
+        midXPoint, 0, midXPoint, size.height);
+
+    gradient.addColorStop(0, colours[0]);
+    gradient.addColorStop(1, colours[1]);
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size.width, size.height);
+};
+
+const renderForSolidMode = (
+    { ctx, colours, size }: CanvasRenderOptions & {
+        ctx: CanvasRenderingContext2D,
+    }
+) => {
+    ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
