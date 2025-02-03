@@ -8,7 +8,7 @@ import defaultColourGallery from "src/data/colours.json";
 import defaultSizeOptions from "src/data/sizes.json";
 
 import { convertHexToRgb, isHexCodeValid } from "./utils.js";
-import { createLocalStorageSyncedState, createState, isColourGalleryValid, isCurrSizeOptionIndexValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid } from "./dataProcess.svelte.js";
+import { createLocalStorageSyncedState, createState, isColourGalleryValid, isCurrSizeOptionIndexValid, isHexCodeListValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid } from "./dataProcess.svelte.js";
 
 /**
  * Theme Mode
@@ -61,13 +61,42 @@ export const resetGallery = () => {
 /**
  * Current colour data
  */
-const firstColour = defaultColourGallery[0];
-const firstHexCode = firstColour.hexCode;
-export const currHexCode = createLocalStorageSyncedState({
-    key: "currHexCode",
-    defaultValue: firstHexCode,
-    validationFunc: isHexCodeValid,
-}) as State<string>;
+const defaultCurrColoursValue = [
+    defaultColourGallery[0].hexCode,
+    defaultColourGallery[1].hexCode
+];
+export const currColours = createLocalStorageSyncedState({
+    key: "currColours",
+    defaultValue: defaultCurrColoursValue,
+    validationFunc: isHexCodeListValid,
+}) as State<string[]>;
+
+/**
+ * Colour utils functions
+ * 
+ * Solid mode uses only one colour at index 0
+ */
+export const getSolidColour = () => {
+    return getCurrColoursAtIndex(0);
+};
+export const setSolidColour = (newValue: string) => {
+    return setCurrColoursAtIndex(0, newValue);
+}
+export const getCurrColoursAtIndex = (index: number) => {
+    if (index < 0 || currColours.val.length < index)
+        throw new Error("Invalid array index");
+
+    return currColours.val[index];
+};
+export const setCurrColoursAtIndex = (index: number, newValue: string) => {
+    if (index < 0 || currColours.val.length < index)
+        return;
+
+    const tempList = [...currColours.val];
+    tempList[index] = newValue;
+
+    currColours.set(tempList);
+};
 
 /**
  * The rgb version of the first colour
@@ -75,7 +104,7 @@ export const currHexCode = createLocalStorageSyncedState({
  * Only relevant when one colour is in use
  */
 export let currRgbColour = createState<RgbColour>(
-    convertHexToRgb(currHexCode.val));
+    convertHexToRgb(currColours.val[0]));
 
 /**
  * Sample text setting

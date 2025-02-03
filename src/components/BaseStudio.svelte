@@ -3,11 +3,11 @@
     import BaseColourInput from "src/components/BaseColourInput.svelte";
     import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
-	import { colourGallery, currHexCode, getCurrSizeOption, shouldShowSampleText } from "src/lib/states.svelte.js";
+	import { colourGallery, getSolidColour, getCurrSizeOption, shouldShowSampleText } from "src/lib/states.svelte.js";
 	import { getColourName } from "src/lib/utils.js";
 
     const handleDownloadClick = () => {
-        generateImage(getColourName(currHexCode.val, colourGallery.val));
+        generateImage(getColourName(getSolidColour(), colourGallery.val));
     };
 
     const handleCheckboxSwitch = () => {
@@ -29,7 +29,7 @@
     $effect(() => {
         renderCanvas({
             size: getCurrSizeOption(),
-            colours: [currHexCode.val]
+            colours: [getSolidColour()]
         });
     });
 </script>

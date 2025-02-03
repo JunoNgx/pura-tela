@@ -1,6 +1,6 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
-    import { currHexCode, currRgbColour, colourGallery } from "src/lib/states.svelte";
+    import { setSolidColour, currRgbColour, colourGallery } from "src/lib/states.svelte";
 	import { convertHexToRgb } from "src/lib/utils.js";
     import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
     import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
@@ -10,7 +10,7 @@
     let { colourItem } = $props();
 
     const handleChooseColour = () => {
-        currHexCode.set(colourItem.hexCode);
+        setSolidColour(colourItem.hexCode);
         currRgbColour.set(convertHexToRgb(colourItem.hexCode));
         goto("/");
     };

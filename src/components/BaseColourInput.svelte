@@ -6,13 +6,13 @@
 
 	import { RgbChannel } from "src/lib/types.js";
 	import { convertHexToRgb, convertRgbToHex, getRandomHexCode, isHexCodeValid, parseRgbChannelValue } from "src/lib/utils.js";
-    import { colourGallery, currHexCode, currRgbColour } from "src/lib/states.svelte";
+    import { colourGallery, getSolidColour, setSolidColour, currRgbColour } from "src/lib/states.svelte";
 
     const handleHexCodeChange = (hexStr: string) => {
         if (!isHexCodeValid(hexStr)) return;
 
-        currHexCode.set(hexStr);
-        currRgbColour.set(convertHexToRgb(currHexCode.val));
+        setSolidColour(hexStr);
+        currRgbColour.set(convertHexToRgb(getSolidColour()));
     };
 
     const handleRgbChange = (channel: RgbChannel, value: string) => {
@@ -37,27 +37,26 @@
             break;
         }
 
-        currHexCode.set(convertRgbToHex(currRgbColour.val));
+        setSolidColour(convertRgbToHex(currRgbColour.val));
     };
 
     const handleColorPickerChange = (hexCode: string) => {
-        currHexCode.set(
-            hexCode.replace("#", "").toUpperCase());
-        currRgbColour.set(convertHexToRgb(currHexCode.val));
+        setSolidColour(hexCode.replace("#", "").toUpperCase());
+        currRgbColour.set(convertHexToRgb(getSolidColour()));
     };
 
     const handleRandomise = () => {
-        currHexCode.set(getRandomHexCode());
+        setSolidColour(getRandomHexCode());
     };
 
     const tryCreateNewColour = () => {
-        const colourName = window.prompt("Enter name for new colour", `#${currHexCode.val}`)
+        const colourName = window.prompt("Enter name for new colour", `#${getSolidColour()}`)
         if (!colourName) return;
 
         try {
             const newColour = {
                 name: colourName,
-                hexCode: currHexCode.val
+                hexCode: getSolidColour()
             }
     
             colourGallery.set([...colourGallery.val, newColour]);
@@ -76,7 +75,7 @@
     <div class="ColourInput__Top">
         <!-- <input
             type="color"
-            value={currHexCode.val}
+            value={getSolidColour()}
             oninput={e => handleColorPickerChange((e.target as HTMLInputElement).value)}
         /> -->
         <ColorPicker
@@ -84,7 +83,7 @@
             texts={{
                 changeTo: "to",
             }}
-            hex={`#${currHexCode.val}`}
+            hex={`#${getSolidColour()}`}
             isAlpha={false}
             position="responsive"
             on:input={e => handleColorPickerChange(e.detail.hex as string)}
@@ -106,7 +105,7 @@
                 maxlength="6"
                 spellcheck="false"
                 title="Requires a valid hex code"
-                value={currHexCode.val}
+                value={getSolidColour()}
                 oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>

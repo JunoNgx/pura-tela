@@ -71,6 +71,22 @@ export const isColourGalleryValid = (data: any[]) => {
     }
 };
 
+
+export const isHexCodeListValid = (data: string[]) => {
+    if (!data) return false;
+
+    try {
+        for (const item of data) {
+            if (!item) return false;
+            if (!isHexCodeValid(item)) return false;
+        }
+
+        return true;
+    } catch (err) {
+        return false;
+    }
+};
+
 export const isSizeOptionsValid = (data: any[]) => {
     if (!data) return false;
 
