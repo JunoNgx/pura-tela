@@ -66,6 +66,14 @@ export const currWallpaperMode = createLocalStorageSyncedState({
     defaultValue: WallpaperMode.SOLID,
     validationFunc: isWallpaperModeValid,
 }) as State<WallpaperMode>;
+export const isSolidMode = () => { 
+    const isSolid = $derived(currWallpaperMode.val === WallpaperMode.SOLID);
+    return isSolid;
+};
+export const isGradientMode = () => {
+    const isGradient = $derived(currWallpaperMode.val === WallpaperMode.GRADIENT);
+    return isGradient;
+};
 
 /**
  * Current colour data
