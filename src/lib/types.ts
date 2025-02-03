@@ -36,3 +36,9 @@ export enum WallpaperMode {
     SOLID = "solid",
     GRADIENT = "gradient"
 };
+
+export type CanvasRenderOptions = {
+    size: SizeItem,
+    colours: string[],
+    mode: WallpaperMode,
+};
