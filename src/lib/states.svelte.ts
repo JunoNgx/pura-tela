@@ -10,18 +10,27 @@ import defaultSizeOptions from "src/data/sizes.json";
 import { convertHexToRgb, isHexCodeValid } from "./utils.js";
 import { createLocalStorageSyncedState, createState, isColourGalleryValid, isCurrSizeOptionIndexValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid } from "./dataProcess.svelte.js";
 
+/**
+ * Theme Mode
+ */
 export const themeMode = createLocalStorageSyncedState({
     key: "themeMode",
     defaultValue: ThemeMode.AUTO,
     validationFunc: isThemeModeValid,
 }) as State<ThemeMode>;
 
+/**
+ * Colour gallery list
+ */
 export const colourGallery = createLocalStorageSyncedState({
     key: "colourGallery",
     defaultValue: defaultColourGallery,
     validationFunc: isColourGalleryValid,
 }) as State<ColourItem[]>;
 
+/**
+ * Size gallery list
+ */
 type rawParseSizeOptionItem = {
     name: string,
     width: string,
@@ -46,6 +55,9 @@ export const getCurrSizeOption = () => {
     return option;
 };
 
+/**
+ * Current colour data
+ */
 const firstColour = defaultColourGallery[0];
 const firstHexCode = firstColour.hexCode;
 export const currHexCode = createLocalStorageSyncedState({
@@ -61,12 +73,18 @@ export const resetGallery = () => {
     colourGallery.set(defaultColourGallery);
 };
 
+/**
+ * Sample text setting
+ */
 export const shouldShowSampleText = createLocalStorageSyncedState({
     key: "shouldShowSampleText",
     defaultValue: false,
     validationFunc: isShouldShowSampleTextValid,
 }) as State<boolean>;
 
+/**
+ * Gallery scrolling position
+ */
 const createGalleryScrollPositionState = () => {
     let scrollingPosition = $state(0);
 
