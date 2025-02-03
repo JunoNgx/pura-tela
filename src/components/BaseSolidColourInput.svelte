@@ -225,20 +225,6 @@
         text-align: center;
     }
 
-    /* Colour picker customisation */
-
-    :global(.color-picker .color),
-    :global(.color-picker .picker),
-    :global(.color-picker .track),
-    :global(.color-picker input),
-    :global(.color-picker button) {
-        border-radius: 0 !important;
-    }
-
-    :global(.color-picker .wrapper) {
-        border-radius: 0 !important;
-    }
-
     @media screen and (width < 600px) {
 
     }
