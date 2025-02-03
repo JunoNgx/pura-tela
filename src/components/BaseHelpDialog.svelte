@@ -68,6 +68,9 @@
         <h3>Installing</h3>
         <p>Pura Tela is deployed as a <strong>Progressive Web App</strong>, and is installable to your device to be launched in a manner similar to a native app. If you do not see a prompt, check your browser guide for the appropriate steps.</p>
 
+        <h3>Privacy and tracking</h3>
+        <p>Pura Tela does not track your usage and activities in any way. Your changes and states are entirely stored via the web <code>localStorage</code> API. Your data is your data, and nothing is collected more than the hosting platform (Vercel) requires for minimum functioning.</p>
+
         <h3>Authors</h3>
         <p>Pura Tela is developed by <a href="https://www.junongx.com/" target="_blank" rel="noopener noreferrer">Juno Nguyen</a> with much design input from <a href="https://caseykwokdinata.webflow.io/" target="_blank" rel="noopener noreferrer">Casey Kwokdinata</a>.</p>
 
