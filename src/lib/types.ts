@@ -31,3 +31,8 @@ export type State<T> = {
     readonly val: T;
     set: (newValue: T) => void,
 };
+
+export enum WallpaperMode {
+    SOLID = "solid",
+    GRADIENT = "gradient"
+};
