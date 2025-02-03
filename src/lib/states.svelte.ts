@@ -54,6 +54,9 @@ export const getCurrSizeOption = () => {
     const option = $derived<SizeItem>(sizeOptions[currSizeOptionIndex.val]);
     return option;
 };
+export const resetGallery = () => {
+    colourGallery.set(defaultColourGallery);
+};
 
 /**
  * Current colour data
@@ -68,10 +71,6 @@ export const currHexCode = createLocalStorageSyncedState({
 
 export let currRgbColour = createState<RgbColour>(
     convertHexToRgb(currHexCode.val));
-
-export const resetGallery = () => {
-    colourGallery.set(defaultColourGallery);
-};
 
 /**
  * Sample text setting
