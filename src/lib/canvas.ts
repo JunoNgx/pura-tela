@@ -33,7 +33,6 @@ const renderForGradientMode = (
         ctx: CanvasRenderingContext2D,
     }
 ) => {
-    console.log("gradient", colours)
     const midXPoint = size.width / 2;
     const gradient = ctx.createLinearGradient(
         midXPoint, 0, midXPoint, size.height);
