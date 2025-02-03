@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
-    import BaseColourInput from "src/components/BaseColourInput.svelte";
+    import BaseSolidColourInput from "src/components/BaseSolidColourInput.svelte";
     import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { colourGallery, getSolidColour, getCurrSizeOption, shouldShowSampleText } from "src/lib/states.svelte.js";
@@ -70,7 +70,7 @@
     </div>
     <div class="Studio__Control">
         <div class="Studio__Colour">
-            <BaseColourInput/>
+            <BaseSolidColourInput/>
         </div>
         <div class="Studio__Size">
             <BaseSizeSelect/>
