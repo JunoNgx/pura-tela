@@ -1,4 +1,4 @@
-import type { ColourItem, RgbColour } from "./types.js";
+import { WallpaperMode, type ColourItem, type RgbColour } from "./types.js";
 
 export const isHexCodeValid = (str: string): boolean => {
     const validHexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
@@ -50,6 +50,29 @@ export const getRandomHexCode = () => {
         .padStart(6, "0").toUpperCase();
 
     return str;
+};
+
+export const computeColourName = (
+    { colours, gallery, mode }:
+    {
+        colours: string[],
+        gallery: ColourItem[],
+        mode: WallpaperMode,
+    }
+) => {
+
+    switch (mode) {
+    case WallpaperMode.GRADIENT: {
+        const colour1 = getColourName(colours[0], gallery);
+        const colour2 = getColourName(colours[1], gallery);
+
+        return `${colour1}-${colour2}`;
+    }
+
+    case WallpaperMode.SOLID:
+    default:
+        return getColourName(colours[0], gallery);
+    }
 };
 
 export const getColourName = (
