@@ -1,5 +1,5 @@
 import { isHexCodeValid } from "./utils.js";
-import { ThemeMode, type State } from "./types.js";
+import { ThemeMode, WallpaperMode, type State } from "./types.js";
 import { sizeOptions } from "./states.svelte.js";
 
 export const createLocalStorageSyncedState = <T>(
@@ -136,6 +136,16 @@ export const isThemeModeValid = (data: any) => {
 export const isShouldShowSampleTextValid = (data: any) => {
     if ( data !== true
         && data !== false
+    ) {
+        return false
+    }
+
+    return true;
+};
+
+export const isWallpaperModeValid = (data: any) => {
+    if ( data !== WallpaperMode.SOLID
+        && data !== WallpaperMode.GRADIENT
     ) {
         return false
     }

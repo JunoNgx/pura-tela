@@ -87,13 +87,6 @@
             isAlpha={false}
             position="responsive"
             on:input={e => handleColorPickerChange(e.detail.hex as string)}
-            --picker-width="150px"
-            --picker-height="150px"
-            --focus-color="var(--colPri)"
-            --input-size="24px"
-            --slider-width="12px"
-            --picker-indicator-size="8px"
-            --picker-z-index="10"
         />
         <div class="ColourInput__Hex">
             <label for="hexCode">#</label>

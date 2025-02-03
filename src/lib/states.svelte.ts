@@ -1,5 +1,5 @@
 import type { SizeItem, RgbColour, ColourItem, State } from "./types.js";
-import { ThemeMode } from "./types.js";
+import { ThemeMode, WallpaperMode } from "./types.js";
 
 // Syntax somehow breaks SvelteKit in a `*.svelte.ts*` file
 // @ts-ignore
@@ -8,7 +8,7 @@ import defaultColourGallery from "src/data/colours.json";
 import defaultSizeOptions from "src/data/sizes.json";
 
 import { convertHexToRgb, isHexCodeValid } from "./utils.js";
-import { createLocalStorageSyncedState, createState, isColourGalleryValid, isCurrSizeOptionIndexValid, isHexCodeListValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid } from "./dataProcess.svelte.js";
+import { createLocalStorageSyncedState, createState, isColourGalleryValid, isCurrSizeOptionIndexValid, isHexCodeListValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid } from "./dataProcess.svelte.js";
 
 /**
  * Theme Mode
@@ -57,6 +57,15 @@ export const getCurrSizeOption = () => {
 export const resetGallery = () => {
     colourGallery.set(defaultColourGallery);
 };
+
+/**
+ * Wallpaper mode data
+ */
+export const currWallpaperMode = createLocalStorageSyncedState({
+    key: "wallpaperMode",
+    defaultValue: WallpaperMode.SOLID,
+    validationFunc: isWallpaperModeValid,
+}) as State<WallpaperMode>;
 
 /**
  * Current colour data
