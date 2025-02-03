@@ -5,6 +5,7 @@
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { colourGallery, getSolidColour, getCurrSizeOption, shouldShowSampleText } from "src/lib/states.svelte.js";
 	import { getColourName } from "src/lib/utils.js";
+	import BaseModeSelector from "./BaseModeSelector.svelte";
 
     const handleDownloadClick = () => {
         generateImage(getColourName(getSolidColour(), colourGallery.val));
@@ -35,59 +36,65 @@
 </script>
 
 <div class="Studio">
-    <div class="Studio__PreviewContainer">
-        <div class="Studio__PreviewBlock"
-            id="CanvasContainer"    
-        >
-            <canvas class="Studio__Canvas"
-                id="Canvas"
-            ></canvas>
-            <div class="Studio__SampleTextContainer"
-                class:Studio__SampleTextContainer--IsDisplayed={shouldShowSampleText.val}
+    <div class="Studio__ModeContainer">
+        <BaseModeSelector/>
+    </div>
+    <div class="Studio__Bottom">
+        <div class="Studio__PreviewContainer">
+            <div class="Studio__PreviewBlock"
+                id="CanvasContainer"    
             >
-                <p class="Studio__SampleText Studio__SampleText--White">
-                    White text
-                </p>
-                <p class="Studio__SampleText Studio__SampleText--Black">
-                    Black text
-                </p>
+                <canvas class="Studio__Canvas"
+                    id="Canvas"
+                ></canvas>
+                <div class="Studio__SampleTextContainer"
+                    class:Studio__SampleTextContainer--IsDisplayed={shouldShowSampleText.val}
+                >
+                    <p class="Studio__SampleText Studio__SampleText--White">
+                        White text
+                    </p>
+                    <p class="Studio__SampleText Studio__SampleText--Black">
+                        Black text
+                    </p>
+                </div>
+            </div>
+
+            <div class="Studio__PreviewSettings">
+                <input class="Studio__SampleTextCheckBox"
+                    id="shouldShowSampleText"
+                    type=checkbox
+                    checked={shouldShowSampleText.val}
+                    onclick={handleCheckboxSwitch}
+                >
+                <label class="Studio__SampleTextLabel"
+                    for="shouldShowSampleText"
+                >
+                    Show sample texts
+                </label>
+            </div>
+        </div>
+        <div class="Studio__Control">
+            <div class="Studio__Colour">
+                <BaseSolidColourInput/>
+            </div>
+            <div class="Studio__Size">
+                <BaseSizeSelect/>
+            </div>
+            <div class="Studio__Buttons">
+                <button class="Studio_DownloadBtn"
+                    onclick={handleDownloadClick}
+                    aria-label="Download"
+                >
+                    Download
+                </button>
             </div>
         </div>
 
-        <div class="Studio__PreviewSettings">
-            <input class="Studio__SampleTextCheckBox"
-                id="shouldShowSampleText"
-                type=checkbox
-                checked={shouldShowSampleText.val}
-                onclick={handleCheckboxSwitch}
-            >
-            <label class="Studio__SampleTextLabel"
-                for="shouldShowSampleText"
-            >
-                Show sample texts
-            </label>
-        </div>
-    </div>
-    <div class="Studio__Control">
-        <div class="Studio__Colour">
-            <BaseSolidColourInput/>
-        </div>
-        <div class="Studio__Size">
-            <BaseSizeSelect/>
-        </div>
-        <div class="Studio__Buttons">
-            <button class="Studio_DownloadBtn"
-                onclick={handleDownloadClick}
-                aria-label="Download"
-            >
-                Download
-            </button>
-        </div>
     </div>
 </div>
 
 <style>
-    .Studio {
+    .Studio__Bottom {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -173,7 +180,7 @@
     }
 
     @media screen and (width < 600px) {
-        .Studio {
+        .Studio__Bottom {
             flex-direction: column;
             justify-content: flex-start;
             align-items: stretch;
