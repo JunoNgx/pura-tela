@@ -69,6 +69,11 @@ export const currHexCode = createLocalStorageSyncedState({
     validationFunc: isHexCodeValid,
 }) as State<string>;
 
+/**
+ * The rgb version of the first colour
+ *
+ * Only relevant when one colour is in use
+ */
 export let currRgbColour = createState<RgbColour>(
     convertHexToRgb(currHexCode.val));
 
