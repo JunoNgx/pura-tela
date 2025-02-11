@@ -21,7 +21,13 @@
 
 <header class="Header">
     <div class="Header__Left">
-        <h1>Pura Tela</h1>
+        <div class="Header__LogoContainer">
+            <img class="Header__LogoIcon"
+                src="/logo-vector.svg"
+                alt="PuraTela logo"
+            />
+            <h1 class="Header__LogoText">PuraTela</h1>
+        </div>
         <button class="Header__HelpBtn IconButton"
             onclick={showDialog}
         >
@@ -55,7 +61,19 @@
         align-items: center;
     }
 
-    h1 {
+    .Header__LogoContainer {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .Header__LogoIcon {
+        width: 2rem;
+        height: 2rem;   
+    }
+
+    .Header__LogoText {
         font-size: var(--fontSizeXl);
     }
 
@@ -66,6 +84,15 @@
     @media screen and (width < 600px) {
         .Header__Left {
             gap: 0.5rem;
+        }
+
+        .Header__LogoIcon {
+            width: 1.5rem;
+            height: 1.5rem;   
+        }
+
+        .Header__LogoText {
+            font-size: var(--fontSizeLg);
         }
 
         .Header__HelpBtn {

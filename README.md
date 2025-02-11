@@ -1,4 +1,4 @@
-# Pura Tela
+# PuraTela
 A minimalist solid colour wallpaper generator, created for the web.
 
 ## Origin

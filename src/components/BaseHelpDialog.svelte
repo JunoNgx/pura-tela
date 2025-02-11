@@ -14,10 +14,10 @@
             <MaterialSymbolsLightClose/>
         </button>
 
-        <h2>Welcome to Pura Tela</h2>
+        <h2>Welcome to PuraTela</h2>
 
         <h3>What is this?</h3>
-        <p>You are looking at <strong>Pura Tela</strong>, a simple web application to generate wallpaper of solid colours of your choice.</p>
+        <p>You are looking at <strong>PuraTela</strong>, a simple web application to generate wallpaper of solid colours of your choice.</p>
 
         <h3>How?</h3>
         <p>Generate a wallpaper is a simple three-step process:</p>
@@ -45,7 +45,7 @@
         <p>Once satisfied, click on the "Save to Gallery" button. Once a name is entered, the colour will be appended to the Gallery (see below).</p>
 
         <h3>Gallery and loading colours</h3>
-        <p>Pura Tela starts with a list of pre-created and curated colours for you to start with. The list is displayed in the <strong>Gallery</strong> tab.
+        <p>PuraTela starts with a list of pre-created and curated colours for you to start with. The list is displayed in the <strong>Gallery</strong> tab.
 
         <p>To load a colour, tap on the "eyedropper" icon on the bottom right of the colour card. This colour will then be loaded into the Studio. Upon returning to the Gallery, you will be brought back to your last scroll position.</p>
 
@@ -66,18 +66,18 @@
         <p>The save location varies according to your device configuration, but is typically your designated Download directory and should be accessible from your Photo browser app. This image is free for you to keep forever as you see fit, without the need for this app again.</p>
 
         <h3>Installing</h3>
-        <p>Pura Tela is deployed as a <strong>Progressive Web App</strong>, and is installable to your device to be launched in a manner similar to a native app. If you do not see a prompt, check your browser guide for the appropriate steps.</p>
+        <p>PuraTela is deployed as a <strong>Progressive Web App</strong>, and is installable to your device to be launched in a manner similar to a native app. If you do not see a prompt, check your browser guide for the appropriate steps.</p>
 
         <h3>Privacy and tracking</h3>
-        <p>Pura Tela does not track your usage and activities in any way. Your changes and states are entirely stored via the web <code>localStorage</code> API. Your data is your data, and nothing is collected more than the hosting platform (Vercel) requires for minimum functioning.</p>
+        <p>PuraTela does not track your usage and activities in any way. Your changes and states are entirely stored via the web <code>localStorage</code> API. Your data is your data, and nothing is collected more than the hosting platform (Vercel) requires for minimum functioning.</p>
 
         <h3>Authors</h3>
-        <p>Pura Tela is developed by <a href="https://www.junongx.com/" target="_blank" rel="noopener noreferrer">Juno Nguyen</a> with much design input from <a href="https://caseykwokdinata.webflow.io/" target="_blank" rel="noopener noreferrer">Casey Kwokdinata</a>.</p>
+        <p>PuraTela is developed by <a href="https://www.junongx.com/" target="_blank" rel="noopener noreferrer">Juno Nguyen</a> with much design input from <a href="https://caseykwokdinata.webflow.io/" target="_blank" rel="noopener noreferrer">Casey Kwokdinata</a>.</p>
 
         <p>The project is made for personal use following the delisting of a similarly-functioned Android native app.</p>
 
         <h3>Acknowledgement and contribution</h3>
-        <p>Pura Tela is made with a minimal stack of tools, including <a href="https://svelte.dev/" target="_blank" rel="noopener noreferrer">SvelteKit</a>, TypeScript, and <a href="https://svelte-awesome-color-picker.vercel.app/" target="_blank" rel="noopener noreferrer">Svelte Awesome Color Picker</a> (yes, not even SASS).</p>
+        <p>PuraTela is made with a minimal stack of tools, including <a href="https://svelte.dev/" target="_blank" rel="noopener noreferrer">SvelteKit</a>, TypeScript, and <a href="https://svelte-awesome-color-picker.vercel.app/" target="_blank" rel="noopener noreferrer">Svelte Awesome Color Picker</a> (yes, not even SASS).</p>
 
         <p>The project is <a href="https://github.com/JunoNgx/pura-tela/" target="_blank" rel="noopener noreferrer">open-source</a> and released under <strong>MIT License</strong>.</p>
 
