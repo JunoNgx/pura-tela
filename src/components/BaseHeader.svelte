@@ -21,7 +21,7 @@
 
 <header class="Header">
     <div class="Header__Left">
-        <h1>Pura Tela</h1>
+        <h1>PuraTela</h1>
         <button class="Header__HelpBtn IconButton"
             onclick={showDialog}
         >

@@ -1,6 +1,6 @@
 {
-    "name": "Pura Tela",
-    "short_name": "Pura Tela",
+    "name": "PuraTela",
+    "short_name": "PuraTela",
     "description": "A minimalist solid wallpaper generator",
     "categories": ["personalization", "utilities"],
     "orientation": "portrait-primary",
