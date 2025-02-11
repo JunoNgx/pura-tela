@@ -21,7 +21,13 @@
 
 <header class="Header">
     <div class="Header__Left">
-        <h1>PuraTela</h1>
+        <div class="Header__LogoContainer">
+            <img class="Header__LogoIcon"
+                src="/logo-vector.svg"
+                alt="PuraTela logo"
+            />
+            <h1>PuraTela</h1>
+        </div>
         <button class="Header__HelpBtn IconButton"
             onclick={showDialog}
         >
@@ -53,6 +59,18 @@
         justify-content: flex-start;
         gap: 1rem;
         align-items: center;
+    }
+
+    .Header__LogoContainer {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .Header__LogoIcon {
+        width: 2rem;
+        height: 2rem;   
     }
 
     h1 {
