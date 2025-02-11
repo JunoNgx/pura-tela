@@ -26,7 +26,7 @@
                 src="/logo-vector.svg"
                 alt="PuraTela logo"
             />
-            <h1>PuraTela</h1>
+            <h1 class="Header__LogoText">PuraTela</h1>
         </div>
         <button class="Header__HelpBtn IconButton"
             onclick={showDialog}
@@ -73,7 +73,7 @@
         height: 2rem;   
     }
 
-    h1 {
+    .Header__LogoText {
         font-size: var(--fontSizeXl);
     }
 
@@ -84,6 +84,15 @@
     @media screen and (width < 600px) {
         .Header__Left {
             gap: 0.5rem;
+        }
+
+        .Header__LogoIcon {
+            width: 1.5rem;
+            height: 1.5rem;   
+        }
+
+        .Header__LogoText {
+            font-size: var(--fontSizeLg);
         }
 
         .Header__HelpBtn {
