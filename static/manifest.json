@@ -11,12 +11,19 @@
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "/512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
+            "src": "/icon-180x180.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "maskable"
         },
         {
-            "src": "/1024x1024.png",
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/icon-1024x1024.png",
             "sizes": "1024x1024",
             "type": "image/png",
             "purpose": "maskable"
