@@ -55,6 +55,7 @@
 
         .CardWrapper {
             margin: 0;
+            padding: 1rem;
             box-shadow: none;
         }
 

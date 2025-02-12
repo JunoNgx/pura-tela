@@ -5,18 +5,31 @@
     "categories": ["personalization", "utilities"],
     "orientation": "portrait-primary",
     "display": "standalone",
-    "theme_color": "#219EBC",
-    "background_color": "#F1F0F4",
+    "theme_color": "#FFFFFF",
+    "background_color": "#212226",
     "start_url": "/",
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "/512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
+            "src": "/icon-180x180.png",
+            "sizes": "180x180",
+            "type": "image/png",
+            "purpose": "maskable"
         },
         {
-            "src": "/1024x1024.png",
+            "src": "/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/icon-1024x1024.png",
             "sizes": "1024x1024",
             "type": "image/png",
             "purpose": "maskable"
