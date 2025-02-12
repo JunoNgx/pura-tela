@@ -24,9 +24,9 @@
         <div class="Header__LogoContainer">
             <img class="Header__LogoIcon"
                 src="/logo-vector.svg"
-                alt="PuraTela logo"
+                alt="Pura Tela logo"
             />
-            <h1 class="Header__LogoText">PuraTela</h1>
+            <h1 class="Header__LogoText">Pura Tela</h1>
         </div>
         <button class="Header__HelpBtn IconButton"
             onclick={showDialog}
