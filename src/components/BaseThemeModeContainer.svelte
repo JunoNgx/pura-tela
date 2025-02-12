@@ -80,7 +80,7 @@
 
     @media screen and (width < 600px) {
         .ThemeMode {
-            gap: 0.25rem;
+            gap: 0;
         }
 
         .ThemeMode__Item {
