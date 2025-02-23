@@ -11,10 +11,10 @@
     handleThemeModeChange();
 </script>
 
-<main>
+<main class="MainWrapper">
+    <BaseNav/>
     <div class="CardWrapper">
         <BaseHeader/>
-        <BaseNav/>
         <div class="TabContent">
             {@render children()}
         </div>
@@ -25,13 +25,18 @@
 <style>
     @import "src/styles/vars.css";
 
-    main {
+    .MainWrapper {
         min-height: 85dvh;
         max-width: 800px;
         margin: 1rem auto 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
     }
 
     .CardWrapper {
+        flex-grow: 1;
         margin: 1rem;
         padding: 0 1.5rem 1.5rem;
         display: flex;
@@ -44,7 +49,7 @@
     .TabContent {
         width: 100%;
         flex-grow: 10;
-        border-top: 1px solid var(--colPri);
+        /* border-top: 1px solid var(--colPri); */
     }
 
     @media screen and (width < 600px) {

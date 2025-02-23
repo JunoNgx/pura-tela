@@ -10,11 +10,12 @@
 
 <style>
     nav {
-        margin-top: 2rem;
-        width: 100%;
+        margin-top: 6rem;
+        /* width: 100%; */
         display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
     }
 
     @media screen and (width < 600px) {
