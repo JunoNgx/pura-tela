@@ -74,8 +74,11 @@
         gap: 0.5rem;
     }
 
-    .ThemeMode__Item {
+    .ThemeMode__Item,
+    .ThemeMode__Item:hover {
         border: none;
+        background-color: none;
+        color: var(--colBg);
     }
 
     @media screen and (width < 600px) {
@@ -87,9 +90,9 @@
             transition: none;
         }
 
+        /* remove hover state in mobile */
         .ThemeMode__Item:hover {
-            color: var(--colPri);
-            background-color: var(--colBg);
+            color: var(--colBg);
         }
     }
 </style>

@@ -33,7 +33,7 @@
 
     .CardWrapper {
         margin: 1rem;
-        padding: 1.5rem;
+        padding: 0 1.5rem 1.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -55,7 +55,7 @@
 
         .CardWrapper {
             margin: 0;
-            padding: 1rem;
+            padding: 0 1rem 1rem;
             box-shadow: none;
         }
 
