@@ -53,7 +53,7 @@
     }
 
     @media screen and (width < 600px) {
-        main {
+        .MainWrapper {
             margin-top: 0;
             margin-bottom: 1rem;
         }
