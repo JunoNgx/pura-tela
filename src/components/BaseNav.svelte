@@ -41,6 +41,8 @@
         justify-content: flex-end;
         gap: 0.5rem;
         align-items: center;
+        border-bottom: 1px solid var(--colPri);
+        padding-bottom: 1rem;
     }
 
     .Nav__LogoIcon {
@@ -57,7 +59,12 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        padding-left: 0.5rem
+        padding-left: 0.5rem;
+    }
+
+    .Nav__ThemeModeSettings {
+        border-top: 1px solid var(--colPri);
+        padding-top: 1rem;
     }
 
     @media screen and (width < 600px) {
