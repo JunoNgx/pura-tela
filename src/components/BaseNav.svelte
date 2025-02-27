@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { afterNavigate } from "$app/navigation";
 	import MaterialSymbolsLightViewSidebarOutlineSharp from "~icons/material-symbols-light/view-sidebar-outline-sharp";
+    import MaterialSymbolsLightClose from '~icons/material-symbols-light/close';
+
     import NavItem from "src/components/NavItem.svelte";
 	import BaseThemeModeContainer from "./BaseThemeModeContainer.svelte";
 
@@ -62,6 +64,12 @@
         <div class="Nav__ThemeModeSettings">
             <BaseThemeModeContainer/>
         </div>
+
+        <button class="Nav__CloseSidebarBtn IconButton"
+            onclick={closeSidebar}
+        >
+            <MaterialSymbolsLightClose/>
+        </button>
     </nav>
 </div>
 
@@ -80,8 +88,11 @@
         gap: 2rem;
     }
 
-
     .Nav__SwitchContainer {
+        display: none;
+    }
+
+    .Nav__CloseSidebarBtn {
         display: none;
     }
 
@@ -150,12 +161,21 @@
             height: 3rem;
         }
 
+        .Nav__CloseSidebarBtn {
+            display: block;
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+        }
+
         .Nav__Content {
             position: absolute;
+            box-sizing: border-box;
             top: 0;
             left: -100%;
             height: 100dvh;
             min-width: 60vw;
+            padding-bottom: 0;
             transition: left ease-in-out var(--transTimeFast);
         }
 
