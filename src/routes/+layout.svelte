@@ -15,9 +15,7 @@
     <BaseNav/>
     <div class="MainContent Card">
         <!-- <BaseHeader/> -->
-        <div class="TabContent">
             {@render children()}
-        </div>
     </div>
 </main>
     
@@ -40,12 +38,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .TabContent {
-        width: 100%;
-        flex-grow: 10;
-        /* border-top: 1px solid var(--colPri); */
     }
 
     @media screen and (width < 600px) {
