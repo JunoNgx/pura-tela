@@ -9,6 +9,7 @@
     --sizeCheckbox: 16px;
     --lineThickness: 1px;
     --transTime: 0.3s;
+    --transTimeFast: 0.2s;
     --outlineOffset: 3px;
 
     --colDanger: #FF4647;
