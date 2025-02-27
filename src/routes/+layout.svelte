@@ -35,9 +35,9 @@
 
     .MainContent {
         flex-grow: 1;
-        display: flex;
+        /* display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center; */
     }
 
     @media screen and (width < 850px) {
