@@ -130,6 +130,8 @@
             background-color: rgba(var(--colBlackRgb) 0.5);
             backdrop-filter: blur(10px);
             opacity: 0;
+            visibility: hidden;
+            transition: all ease-in-out var(--transTimeFast);
         }
 
         .Nav__SwitchContainer {
@@ -145,9 +147,8 @@
             top: 0;
             left: -100%;
             height: 100dvh;
-            /* left: -100%; */
-            /* width: 75vh; */
-            /* margin-top: 1rem; */
+            min-width: 60vw;
+            transition: left ease-in-out var(--transTimeFast);
         }
 
         .Nav--IsExpanded {
@@ -156,7 +157,8 @@
             }
 
             .Nav__OverlayBg {
-                display: block;
+                opacity: 1;
+                visibility: visible;
             }
         }
 
