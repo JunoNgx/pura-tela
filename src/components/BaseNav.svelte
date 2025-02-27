@@ -1,5 +1,6 @@
 <script lang="ts">
 	import NavItem from "src/components/NavItem.svelte";
+	import BaseThemeModeContainer from "./BaseThemeModeContainer.svelte";
 </script>
 
 <nav class="Nav Card">
@@ -16,6 +17,10 @@
         <NavItem route={"/gallery"} label={"Gallery"} />
         <NavItem route={"/sizes"} label={"Sizes"} />
     </div>
+
+    <div class="Nav__ThemeModeSettings">
+        <BaseThemeModeContainer/>
+    </div>
 </nav>
 
 <style>
@@ -26,6 +31,7 @@
         flex-direction: column;
         /* justify-content: flex-end; */
         /* align-items: flex-end; */
+        gap: 2rem;
     }
 
     .Nav__LogoContainer {
