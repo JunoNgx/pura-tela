@@ -16,6 +16,9 @@ html {
     color: var(--colPri);
 
     scrollbar-gutter: stable both-edges;
+
+    transition: color ease-in-out var(--transTimeFast),
+        background-color ease-in-out var(--transTimeFast);
 }
 
 body {
