@@ -88,7 +88,7 @@
         color: var(--colBg);
     }
 
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
         .Header {
             width: calc(100% + 1rem);
             padding: 0.5rem;

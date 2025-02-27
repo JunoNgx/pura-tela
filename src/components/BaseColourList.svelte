@@ -16,7 +16,7 @@
         gap: 1.5rem;
     }
 
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
         .ColourList {
             grid-template-columns: repeat(2, 1fr);
         }

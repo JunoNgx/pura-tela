@@ -40,7 +40,7 @@
         align-items: center;
     }
 
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
         .Wrapper {
             margin-top: 0;
             margin-bottom: 1rem;

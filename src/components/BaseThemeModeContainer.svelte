@@ -82,7 +82,7 @@
         /* color: var(--colBg); */
     }
 
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
         .ThemeMode {
             gap: 0.25rem;
         }

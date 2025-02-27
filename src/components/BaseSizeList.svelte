@@ -60,7 +60,7 @@
         margin: 0.5rem 0 0.5rem 0.25rem;
     }
     
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
         .SizeList {
             grid-template-columns: repeat(2, 1fr);
         }
