@@ -3,7 +3,7 @@
     import ColourItem from "src/components/ColourItem.svelte";
 </script>
 
-<ul class="ColourList">
+<ul class="ColourList FlexList">
     {#each colourGallery.val as colourItem}
         <ColourItem colourItem={colourItem}/>
     {/each}
@@ -14,11 +14,9 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
-        padding-left: 0;
-        margin-top: 1.5rem;
     }
 
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
         .ColourList {
             grid-template-columns: repeat(2, 1fr);
         }

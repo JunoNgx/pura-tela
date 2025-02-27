@@ -225,7 +225,7 @@
         text-align: center;
     }
 
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
 
     }
 

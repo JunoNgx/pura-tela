@@ -27,7 +27,7 @@
 
 <style>
     .ModeSelect {
-        margin-top: 1.5rem;
+        /* margin-top: 1.5rem; */
     }
 
     .ModeSelect__Container {
@@ -39,15 +39,11 @@
     }
 
     .ModeSelect__ModeItem {
-        outline-offset: 3px;
-        outline-color: transparent;
-        outline-width: 2px;
-        outline-style: dashed;
         flex-grow: 1;
     }
 
     .ModeSelect__ModeItem--IsSelected {
-        outline-color: var(--colPri);
+        box-shadow: 0 0 0 4px var(--colPri);
     }
 
 </style>

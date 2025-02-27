@@ -195,7 +195,7 @@
         background-color: var(--colBg);
     }
 
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
         .Studio__Bottom {
             flex-direction: column;
             justify-content: flex-start;
