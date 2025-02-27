@@ -135,8 +135,7 @@
         .Nav {
             position: fixed;
             top: 0;
-            width: 100vh;
-            height: 100dvh;
+            overflow: visible;
         }
 
         .Nav__OverlayBg {
@@ -156,7 +155,7 @@
 
         .Nav__OpenSidebarBtn {
             display: block;
-            position: absolute;
+            position: fixed;
             bottom: 1rem;
             left: 1rem;
             background-color: var(--colBrand1);
@@ -177,7 +176,7 @@
         }
 
         .Nav__Content {
-            position: absolute;
+            position: fixed;
             box-sizing: border-box;
             top: 0;
             left: -100%;
