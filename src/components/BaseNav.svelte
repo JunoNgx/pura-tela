@@ -37,7 +37,7 @@
         onclick={closeSidebar}
     ></div>
     <div class="Nav__SwitchContainer">
-        <button class="IconButton"
+        <button class="Nav__ToggleSidebarBtn IconButton"
             onclick={toggleSidebar}
         >
             <MaterialSymbolsLightViewSidebarOutlineSharp/>
@@ -139,10 +139,15 @@
 
         .Nav__SwitchContainer {
             position: absolute;
-            bottom: 1.5rem;
-            left: 1.5rem;
-            padding: 0.5rem;
+            bottom: 1rem;
+            left: 1rem;
             background-color: var(--colBrand1);
+        }
+
+        .Nav__ToggleSidebarBtn {
+            padding: 0.5rem;
+            width: 3rem;
+            height: 3rem;
         }
 
         .Nav__Content {
