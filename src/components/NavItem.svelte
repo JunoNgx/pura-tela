@@ -26,6 +26,7 @@
 
     .NavItem__Background {
         position: absolute;
+        right: 0;
         height: 100%;
         width: 0;
         background-color: var(--colPri);
@@ -51,10 +52,6 @@
             width: 100%;
         }
         /* border-bottom-color: var(--colPri); */
-    }
-
-    .NavItem--IsActive {
-        margin-left: 1rem;
     }
 
 </style>

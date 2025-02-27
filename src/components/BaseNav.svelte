@@ -84,7 +84,7 @@
         display: flex;
         flex-direction: column;
         /* justify-content: flex-end; */
-        /* align-items: flex-end; */
+        align-items: flex-end;
         gap: 2rem;
     }
 
@@ -117,8 +117,8 @@
     .Nav__Router {
         display: flex;
         flex-direction: column;
+        align-items: flex-end;
         gap: 0.5rem;
-        padding-left: 0.5rem;
     }
 
     .Nav__ThemeModeSettings {
