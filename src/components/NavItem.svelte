@@ -13,9 +13,7 @@
 
 <style>
     .NavItem {
-        /* flex-grow: 10; */
         display: block;
-        text-align: right;
         padding: 0;
         padding-top: 1rem;
         border-bottom: 0.25rem solid transparent;
