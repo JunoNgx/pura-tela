@@ -78,7 +78,6 @@
     .ThemeMode__Item:hover {
         border: none;
         background-color: none;
-        padding: 0;
         /* color: var(--colBg); */
     }
 
