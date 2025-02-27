@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { afterNavigate } from "$app/navigation";
 	import MaterialSymbolsLightViewSidebarOutlineSharp from "~icons/material-symbols-light/view-sidebar-outline-sharp";
     import NavItem from "src/components/NavItem.svelte";
 	import BaseThemeModeContainer from "./BaseThemeModeContainer.svelte";
@@ -8,6 +9,10 @@
     const toggleSidebar = () => {
         isExpanded = !isExpanded;
     };
+
+    afterNavigate(({ to }) => {
+        isExpanded = false;
+    })
 </script>
 
 <div class="Nav"
