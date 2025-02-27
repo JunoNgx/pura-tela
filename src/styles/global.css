@@ -1,4 +1,5 @@
 @import "src/styles/vars.css";
+@import "src/styles/mixins.css";
 
 @font-face {
 	font-family: "Geist Mono";
@@ -168,66 +169,10 @@ h3 {
     margin: 0;
 }
 
-.VisuallyHidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
 @media screen and (width < 600px) {
     html {
         background-color: var(--colBg);
     }
-}
-
-.IconButton {
-    position: relative;
-    font-size: var(--fontSizeIconBtn);
-    padding: 0.25rem;
-    line-height: 0;
-    user-select: none;
-    border: none;
-    width: 2rem;
-    height: 2rem;
-
-    .IconButton__RegularIcon,
-    .IconButton__HoverIcon {
-        position: absolute;
-        top: 0.25rem;
-        transition: all ease-in-out var(--transTime);
-    }
-
-    .IconButton__RegularIcon {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .IconButton__HoverIcon {
-        visibility: hidden;
-        opacity: 0;
-    }
-}
-
-.IconButton:hover {
-    color: var(--colPri);
-    background-color: transparent;
-
-    .IconButton__RegularIcon {
-        visibility: hidden;
-        opacity: 0;
-    }
-
-    .IconButton__HoverIcon {
-        visibility: visible;
-        opacity: 1;
-    }
-    
 }
 
 /* Colour picker customisation */
