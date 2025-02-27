@@ -55,11 +55,15 @@
             <h1 class="Nav__LogoText">Pura Tela</h1>
         </div>
 
+        <hr class="Nav__Separator">
+
         <div class="Nav__Router">
             <NavItem route={"/"} label={"Studio"} />
             <NavItem route={"/gallery"} label={"Gallery"} />
             <NavItem route={"/sizes"} label={"Sizes"} />
         </div>
+
+        <hr class="Nav__Separator">
 
         <div class="Nav__ThemeModeSettings">
             <BaseThemeModeContainer/>
@@ -85,7 +89,7 @@
         flex-direction: column;
         /* justify-content: flex-end; */
         align-items: flex-end;
-        gap: 2rem;
+        gap: 1rem;
     }
 
     .Nav__SwitchContainer {
@@ -96,12 +100,18 @@
         display: none;
     }
 
+    .Nav__Separator {
+        /* flex-grow: 1; */
+        width: 100%;
+        margin: 0 0 1rem;
+    }
+
     .Nav__LogoContainer {
         display: flex;
         gap: 0.5rem;
         align-items: center;
-        border-bottom: 1px solid var(--colPri);
-        padding-bottom: 1rem;
+        /* border-bottom: 1px solid var(--colPri);
+        padding-bottom: 1rem; */
     }
 
     .Nav__LogoIcon {
@@ -121,10 +131,10 @@
         gap: 0.5rem;
     }
 
-    .Nav__ThemeModeSettings {
+    /* .Nav__ThemeModeSettings {
         border-top: 1px solid var(--colPri);
         padding-top: 1rem;
-    }
+    } */
 
     @media screen and (width < 850px) {
         .Nav {
