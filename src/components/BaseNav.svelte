@@ -10,6 +10,16 @@
         isExpanded = !isExpanded;
     };
 
+    const closeSidebar = () => {
+        isExpanded = false;
+    };
+
+    const handleKeydown = (event: KeyboardEvent) => {
+        if (event.key === "Esc") {
+            closeSidebar();
+        }
+    };
+
     afterNavigate(({ to }) => {
         isExpanded = false;
     })
@@ -19,7 +29,10 @@
     class:Nav--IsExpanded={isExpanded}
 >
     <div class="Nav__OverlayBg"
-        role="region"
+        role="button"
+        aria-label="Close sidebar"
+        tabindex="0"
+        onkeydown={handleKeydown}
         onclick={() => isExpanded = false}
     ></div>
     <div class="Nav__SwitchContainer">
