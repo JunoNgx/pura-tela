@@ -15,8 +15,9 @@
     };
 
     const handleKeydown = (event: KeyboardEvent) => {
-        if (event.key === "Esc") {
+        if (event.key === "Enter" || event.key === " ") {
             closeSidebar();
+            event.preventDefault();
         }
     };
 
