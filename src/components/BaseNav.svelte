@@ -117,7 +117,10 @@
 
     @media screen and (width < 850px) {
         .Nav {
-            position: static;
+            position: fixed;
+            top: 0;
+            width: 100vh;
+            height: 100dvh;
         }
 
         .Nav__OverlayBg {
