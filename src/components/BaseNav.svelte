@@ -53,6 +53,13 @@
         font-size: var(--fontSizeXl);
     }
 
+    .Nav__Router {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-left: 0.5rem
+    }
+
     @media screen and (width < 600px) {
         .Nav {
             margin-top: 1rem;
