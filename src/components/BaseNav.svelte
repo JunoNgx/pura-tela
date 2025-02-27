@@ -33,7 +33,7 @@
         aria-label="Close sidebar"
         tabindex="0"
         onkeydown={handleKeydown}
-        onclick={() => isExpanded = false}
+        onclick={closeSidebar}
     ></div>
     <div class="Nav__SwitchContainer">
         <button class="IconButton"
