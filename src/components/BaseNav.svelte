@@ -66,25 +66,9 @@
         gap: 2rem;
     }
 
-    .Nav__OverlayBg {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100dvh;
-        background-color: var(--colPri);
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(10px);
-    }
 
     .Nav__SwitchContainer {
         display: none;
-        position: absolute;
-        bottom: 1.5rem;
-        left: 1.5rem;
-        padding: 0.5rem;
-        background-color: var(--colBrand1);
     }
 
     .Nav__LogoContainer {
@@ -121,6 +105,26 @@
     @media screen and (width < 850px) {
         .Nav {
             position: static;
+        }
+
+        .Nav__OverlayBg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100dvh;
+            background-color: var(--colPri);
+            background-color: rgba(var(--colBlackRgb) 0.5);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+        }
+
+        .Nav__SwitchContainer {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            padding: 0.5rem;
+            background-color: var(--colBrand1);
         }
 
         .Nav__Content {
