@@ -4,6 +4,13 @@
     box-shadow: 2px 4px 8px 0px rgba(0, 0, 0, 0.1);
 }
 
+@media screen and (width < 600px) {
+    .Card {
+        padding: 1rem;
+        box-shadow: none;
+    }
+}
+
 .FlexList {
     margin-top: 0;
     padding-left: 0;

@@ -67,9 +67,9 @@
         padding-top: 1rem;
     }
 
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
         .Nav {
-            margin-top: 1rem;
+            /* margin-top: 1rem; */
         }
     }
 </style>

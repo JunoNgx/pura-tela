@@ -46,12 +46,6 @@
             margin-bottom: 1rem;
         }
 
-        .MainContent {
-            margin: 0;
-            padding: 0 1rem 1rem;
-            box-shadow: none;
-        }
-
         .TabContent {
             padding-top: 0;
         }
