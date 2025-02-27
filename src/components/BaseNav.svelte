@@ -25,6 +25,8 @@
 
 <style>
     .Nav {
+        position: sticky;
+        top: 1rem;
         /* margin-top: 1.5rem; */
         /* width: 100%; */
         display: flex;
