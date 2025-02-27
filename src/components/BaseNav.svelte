@@ -3,37 +3,54 @@
 	import BaseThemeModeContainer from "./BaseThemeModeContainer.svelte";
 </script>
 
-<nav class="Nav Card">
-    <div class="Nav__LogoContainer">
-        <img class="Nav__LogoIcon"
-            src="/logo-vector.svg"
-            alt="Pura Tela logo"
-        />
-        <h1 class="Nav__LogoText">Pura Tela</h1>
-    </div>
+<div class="Nav">
+    <div class="Nav__OverlayBg"></div>
+    <nav class="Nav__Content Card">
+        <div class="Nav__LogoContainer">
+            <img class="Nav__LogoIcon"
+                src="/logo-vector.svg"
+                alt="Pura Tela logo"
+            />
+            <h1 class="Nav__LogoText">Pura Tela</h1>
+        </div>
 
-    <div class="Nav__Router">
-        <NavItem route={"/"} label={"Studio"} />
-        <NavItem route={"/gallery"} label={"Gallery"} />
-        <NavItem route={"/sizes"} label={"Sizes"} />
-    </div>
+        <div class="Nav__Router">
+            <NavItem route={"/"} label={"Studio"} />
+            <NavItem route={"/gallery"} label={"Gallery"} />
+            <NavItem route={"/sizes"} label={"Sizes"} />
+        </div>
 
-    <div class="Nav__ThemeModeSettings">
-        <BaseThemeModeContainer/>
-    </div>
-</nav>
+        <div class="Nav__ThemeModeSettings">
+            <BaseThemeModeContainer/>
+        </div>
+    </nav>
+</div>
 
 <style>
     .Nav {
         position: sticky;
         top: 1rem;
-        /* margin-top: 1.5rem; */
-        /* width: 100%; */
+        z-index: 20;
+    }
+
+    .Nav__Content {
         display: flex;
         flex-direction: column;
         /* justify-content: flex-end; */
         /* align-items: flex-end; */
         gap: 2rem;
+    }
+
+    .Nav__OverlayBg {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100dvh;
+        background-color: var(--colPri);
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(10px);
     }
 
     .Nav__LogoContainer {
@@ -69,6 +86,11 @@
 
     @media screen and (width < 850px) {
         .Nav {
+            /* position: absolute;
+            top: 0;
+            height: 100dvh; */
+            /* left: -100%; */
+            /* width: 75vh; */
             /* margin-top: 1rem; */
         }
     }
