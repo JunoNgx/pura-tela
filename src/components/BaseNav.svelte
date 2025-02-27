@@ -8,8 +8,8 @@
 
     let isExpanded = $state(false);
 
-    const toggleSidebar = () => {
-        isExpanded = !isExpanded;
+    const openSidebar = () => {
+        isExpanded = true;
     };
 
     const closeSidebar = () => {
@@ -38,13 +38,11 @@
         onkeydown={handleKeydown}
         onclick={closeSidebar}
     ></div>
-    <div class="Nav__SwitchContainer">
-        <button class="Nav__ToggleSidebarBtn IconButton"
-            onclick={toggleSidebar}
-        >
-            <MaterialSymbolsLightViewSidebarOutlineSharp/>
-        </button>
-    </div>
+    <button class="Nav__OpenSidebarBtn IconButton"
+        onclick={openSidebar}
+    >
+        <MaterialSymbolsLightViewSidebarOutlineSharp/>
+    </button>
 
     <nav class="Nav__Content Card">
         <div class="Nav__LogoContainer">
@@ -92,10 +90,7 @@
         gap: 1rem;
     }
 
-    .Nav__SwitchContainer {
-        display: none;
-    }
-
+    .Nav__OpenSidebarBtn,
     .Nav__CloseSidebarBtn {
         display: none;
     }
@@ -158,17 +153,20 @@
             transition: all ease-in-out var(--transTimeFast);
         }
 
-        .Nav__SwitchContainer {
+
+        .Nav__OpenSidebarBtn {
+            display: block;
             position: absolute;
             bottom: 1rem;
             left: 1rem;
             background-color: var(--colBrand1);
-        }
-
-        .Nav__ToggleSidebarBtn {
             padding: 0.5rem;
             width: 3rem;
             height: 3rem;
+        }
+
+        .Nav__OpenSidebarBtn:hover {
+            background-color: var(--colBrand1);
         }
 
         .Nav__CloseSidebarBtn {
@@ -198,10 +196,6 @@
                 opacity: 1;
                 visibility: visible;
             }
-        }
-
-        .Nav__SwitchContainer {
-            display: block;
         }
     }
 </style>
