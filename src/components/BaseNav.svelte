@@ -156,12 +156,12 @@
         .Nav__OpenSidebarBtn {
             display: block;
             position: fixed;
-            bottom: 1rem;
-            left: 1rem;
+            bottom: 1.5rem;
+            left: 1.5rem;
             background-color: var(--colBrand1);
-            padding: 0.5rem;
             width: 3rem;
             height: 3rem;
+            font-size: 32px;
         }
 
         .Nav__OpenSidebarBtn:hover {
