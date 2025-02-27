@@ -13,7 +13,7 @@
 
 <main class="Wrapper">
     <BaseNav/>
-    <div class="MainContent">
+    <div class="MainContent Card">
         <!-- <BaseHeader/> -->
         <div class="TabContent">
             {@render children()}
@@ -37,13 +37,9 @@
 
     .MainContent {
         flex-grow: 1;
-        margin: 1rem;
-        padding: 0 1.5rem 1.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: var(--colBg);
-        box-shadow: 2px 4px 8px 0px rgba(0, 0, 0, 0.1)   
     }
 
     .TabContent {
