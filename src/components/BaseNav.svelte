@@ -87,7 +87,6 @@
 
     .Nav__LogoContainer {
         display: flex;
-        justify-content: flex-end;
         gap: 0.5rem;
         align-items: center;
         border-bottom: 1px solid var(--colPri);
