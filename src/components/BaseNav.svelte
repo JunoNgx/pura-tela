@@ -159,6 +159,7 @@
             left: -100%;
             height: 100dvh;
             min-width: 60vw;
+            padding-top: 3rem;
             padding-bottom: 0;
             border-right: 1px solid var(--colPri);
             transition: left ease-in-out var(--transTimeFast);
