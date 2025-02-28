@@ -2,6 +2,7 @@
     import BaseHeader from "src/components/BaseHeader.svelte";
     import BaseNav from "src/components/BaseNav.svelte";
     import BaseFooter from "src/components/BaseFooter.svelte";
+	import AppLogo from "src/components/AppLogo.svelte";
 
     import "src/styles/global.css";
 	import { handleThemeModeChange } from "src/lib/nightMode.js";
@@ -15,6 +16,9 @@
     <BaseNav/>
     <div class="MainContent Card">
         <!-- <BaseHeader/> -->
+            <div class="MobileLogoWrapper">
+                <AppLogo />
+            </div>
             {@render children()}
     </div>
 </main>
@@ -40,10 +44,20 @@
         align-items: center; */
     }
 
+    .MobileLogoWrapper {
+        display: none;
+    }
+
     @media screen and (width < 850px) {
         .Wrapper {
             margin-top: 0;
             margin-bottom: 1rem;
+        }
+
+        .MobileLogoWrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
         }
 
         .TabContent {
