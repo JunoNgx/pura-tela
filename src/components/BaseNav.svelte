@@ -5,6 +5,7 @@
 
     import NavItem from "src/components/NavItem.svelte";
 	import BaseThemeModeContainer from "./BaseThemeModeContainer.svelte";
+	import AppLogo from "./AppLogo.svelte";
 
     let isExpanded = $state(false);
 
@@ -45,13 +46,7 @@
     </button>
 
     <nav class="Nav__Content Card">
-        <div class="Nav__LogoContainer">
-            <img class="Nav__LogoIcon"
-                src="/logo-vector.svg"
-                alt="Pura Tela logo"
-            />
-            <h1 class="Nav__LogoText">Pura Tela</h1>
-        </div>
+        <AppLogo/>
 
         <hr class="Nav__Separator">
 
@@ -99,24 +94,6 @@
         /* flex-grow: 1; */
         width: 100%;
         margin: 0 0 1rem;
-    }
-
-    .Nav__LogoContainer {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-        /* border-bottom: 1px solid var(--colPri);
-        padding-bottom: 1rem; */
-    }
-
-    .Nav__LogoIcon {
-        width: 2rem;
-        height: 2rem;   
-    }
-
-    .Nav__LogoText {
-        white-space: nowrap;
-        font-size: var(--fontSizeXl);
     }
 
     .Nav__Router {
