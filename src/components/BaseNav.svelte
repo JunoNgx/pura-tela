@@ -183,6 +183,7 @@
             height: 100dvh;
             min-width: 60vw;
             padding-bottom: 0;
+            border-right: 1px solid var(--colPri);
             transition: left ease-in-out var(--transTimeFast);
         }
 
