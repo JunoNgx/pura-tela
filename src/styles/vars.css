@@ -27,6 +27,9 @@
     --colBg: #FFF;
     --colBg2: #F1F0F4;
 
+    /* Spacing variable */
+    --outerPaddingMobile: 1rem;
+
     /* Colour picker variables */
     --picker-width: 150px;
     --picker-height: 150px;

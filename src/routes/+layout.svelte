@@ -56,9 +56,7 @@
         }
 
         .MainContent {
-            /* 2rem: padding size */
-            /* TODO: use a variable */
-            max-width: calc(100% - 2rem);
+            max-width: calc(100% - 2* var(--outerPaddingMobile));
         }
 
         .MobileLogoWrapper {
