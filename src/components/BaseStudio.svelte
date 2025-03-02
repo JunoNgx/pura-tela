@@ -47,7 +47,7 @@
     <div class="Studio__ModeContainer">
         <BaseModeSelector/>
     </div>
-    <div class="Studio__Bottom">
+    <div class="Studio__Generator">
         <div class="Studio__PreviewContainer">
             <div class="Studio__PreviewBlock"
                 id="CanvasContainer"    
@@ -106,7 +106,7 @@
 </div>
 
 <style>
-    .Studio__Bottom {
+    .Studio__Generator {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -196,7 +196,7 @@
     }
 
     @media screen and (width < 850px) {
-        .Studio__Bottom {
+        .Studio__Generator {
             flex-direction: column;
             justify-content: flex-start;
             align-items: stretch;
