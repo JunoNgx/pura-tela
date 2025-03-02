@@ -108,16 +108,12 @@
 <style>
     .Studio__Generator {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
         gap: 2rem;
         padding: 1.5rem 0;
     }
 
     .Studio__PreviewContainer {
-        flex-grow: 1;
-        max-width: 350px;
         position: relative;
     }
 
@@ -197,28 +193,25 @@
 
     @media screen and (width < 850px) {
         .Studio__Generator {
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: stretch;
             padding: 1.5rem 0;
             gap: 4rem;
         }
 
         .Studio__PreviewContainer {
-            max-width: none;
-            height: 180px;
-            width: 100%;
+            /* max-width: none; */
+            /* height: 180px; */
+            /* width: 100%; */
         }
 
         .Studio__PreviewBlock {
-            aspect-ratio: unset;
-            height: 180px;
+            /* aspect-ratio: 1; */
+            /* height: 180px; */
         }
         
-        .Studio__SampleTextContainer {
+        /* .Studio__SampleTextContainer {
             height: 100%;
             font-size: var(--fontSizeSm);
-        }
+        } */
 
         .Studio__Buttons {
             justify-content: center;
