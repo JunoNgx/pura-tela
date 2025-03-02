@@ -59,9 +59,5 @@
             justify-content: center;
             margin-bottom: 1.5rem;
         }
-
-        .TabContent {
-            padding-top: 0;
-        }
     }
 </style>
