@@ -39,6 +39,7 @@
 
     .MainContent {
         flex-grow: 1;
+        max-width: 600px;
         /* display: flex;
         flex-direction: column;
         align-items: center; */
@@ -52,6 +53,12 @@
         .Wrapper {
             margin-top: 0;
             margin-bottom: 1rem;
+        }
+
+        .MainContent {
+            /* 2rem: padding size */
+            /* TODO: use a variable */
+            max-width: calc(100% - 2rem);
         }
 
         .MobileLogoWrapper {

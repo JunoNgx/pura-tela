@@ -115,11 +115,11 @@
 
     .Studio__PreviewContainer {
         position: relative;
+        width: 100%;
     }
 
     .Studio__PreviewBlock {
         aspect-ratio: 1;
-        width: 100%;
         height: auto;
         border: 1px solid var(--colPri);
         box-sizing: border-box;
