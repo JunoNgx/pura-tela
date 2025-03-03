@@ -82,7 +82,7 @@
             </div>
         </div>
         <div class="Studio__Control">
-            <div class="Studio__Colour">
+            <div class="Studio__ColourInputContainer">
                 {#if isSolidMode()}
                     <BaseSolidColourInput/>
                 {:else}
