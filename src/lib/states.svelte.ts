@@ -88,7 +88,7 @@ export const currColours = createLocalStorageSyncedState({
     validationFunc: isHexCodeListValid,
 }) as State<string[]>;
 // Add the hashmark to correctly turn data into proper hex codes
-export const currColoursAsHexCodes = () => {
+export const convertCurrColoursToArrayOfHexStrings = () => {
     const hexCodeList = $derived(currColours.val.map(item => `#${item}`));
     return hexCodeList;
 };

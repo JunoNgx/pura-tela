@@ -3,7 +3,7 @@
     import BaseSolidColourInput from "src/components/BaseSolidColourInput.svelte";
     import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
-	import { colourGallery, getCurrSizeOption, shouldShowSampleText, isSolidMode, currWallpaperMode, currColours, currColoursAsHexCodes } from "src/lib/states.svelte.js";
+	import { colourGallery, getCurrSizeOption, shouldShowSampleText, isSolidMode, currWallpaperMode, currColours, convertCurrColoursToArrayOfHexStrings } from "src/lib/states.svelte.js";
 	import { computeColourName } from "src/lib/utils.js";
 	import BaseModeSelector from "./BaseModeSelector.svelte";
 	import BaseGradientColourInput from "./BaseGradientColourInput.svelte";
@@ -37,7 +37,7 @@
     $effect(() => {
         renderCanvas({
             size: getCurrSizeOption(),
-            colours: currColoursAsHexCodes(),
+            colours: convertCurrColoursToArrayOfHexStrings(),
             mode: currWallpaperMode.val,
         });
     });
