@@ -82,19 +82,21 @@
     </div>
 
     <div class="ColourInput__Buttons">
-        <button class="ColourInput__ColourActionBtn IconButton"
+        <button class="ColourInput__ColourActionBtn"
             onclick={handleRandomise}
             title="Generate a randomised colour"
             aria-label="Create a random colour"
         >
             <MaterialSymbolsLightShuffle />
+            <span class="ColourInput__BtnLabelText">Random</span>
         </button>
-        <button class="ColourInput__ColourActionBtn IconButton"
+        <button class="ColourInput__ColourActionBtn"
             onclick={trySaveColour}
             title="Save colour to gallery"
             aria-label="Save colour to gallery"
         >
             <MaterialSymbolsLightSaveOutline/>
+            <span class="ColourInput__BtnLabelText">Save</span>
         </button>
     </div>
 </li>
@@ -109,6 +111,7 @@
 
     .ColourInput__LeftSide {
         display: flex;
+        align-items: center;
         gap: 1.5rem;
     }
 
@@ -122,12 +125,32 @@
         width: 6rem;
     }
 
+    .ColourInput__Buttons {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        gap: 1rem;
+    }
+
     .ColourInput__ColourActionBtn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
         border: 1px solid var(--colPri);
     }
 
     .ColourInput__ColourActionBtn:hover {
         color: var(--colBg);
         background-color: var(--colPri);
+    }
+
+    @media screen and (width <= 500px) {
+        .ColourInput__ColourActionBtn {
+            padding: 0.5rem;
+        }
+
+        .ColourInput__BtnLabelText {
+            display: none;
+        }
     }
 </style>
