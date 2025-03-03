@@ -60,8 +60,13 @@
                 }}
             />
         </div>
-        <div class="ColourInput__Hex">
-            <label for="hexCode">#</label>
+        <div class="ColourInput__HexInputContainer">
+            <label class="ColourInput__HexLabel"
+                for="hexCode"
+                aria-label="Hex colour code"
+            >
+                #
+            </label>
             <input class="ColourInput__HexInput"
                 id="hexCode"
                 name="hexCode"
@@ -107,7 +112,7 @@
         gap: 1.5rem;
     }
 
-    .ColourInput__Hex {
+    .ColourInput__HexInputContainer {
         display: flex;
         align-items: center;
         gap: 0.5rem;
