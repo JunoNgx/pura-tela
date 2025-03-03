@@ -1,8 +1,8 @@
 <script lang="ts">
     import ColorPicker from 'svelte-awesome-color-picker';
     
-    import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
+    import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     
 	import { getCurrColourAtIndex, getCurrColourAtIndexAsHex, setCurrColourAtIndex } from 'src/lib/states.svelte.js';
 	import { isHexCodeValid } from 'src/lib/utils.js';
@@ -72,5 +72,22 @@
             value={getCurrColourAtIndex(index)}
             oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
         />
+    </div>
+
+    <div class="ColourInput__Buttons">
+        <button class="ColourInput__ColourActionBtn"
+            onclick={handleRandomise}
+            title="Generate a randomised colour"
+            aria-label="Create a random colour"
+        >
+            <MaterialSymbolsLightShuffle />
+        </button>
+        <button class="ColourInput__ColourActionBtn"
+            onclick={trySaveColour}
+            title="Save colour to gallery"
+            aria-label="Save colour to gallery"
+        >
+            <MaterialSymbolsLightSaveOutline/>
+        </button>
     </div>
 </div>
