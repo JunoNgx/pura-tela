@@ -152,3 +152,21 @@ export const isWallpaperModeValid = (data: any) => {
 
     return true;
 };
+
+export const isColourCountValid = (data: any) => {
+    if (data === null || data === undefined || !sizeOptions) {
+        return false;
+    }
+
+    try {
+        parseInt(data);
+
+        if (data < 0 || data > 5) {
+            return false;
+        }
+
+        return true;
+    } catch (err) {
+        return false;
+    }
+};
