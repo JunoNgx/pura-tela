@@ -74,6 +74,15 @@ export const isGradientMode = () => {
     const isGradient = $derived(currWallpaperMode.val === WallpaperMode.GRADIENT);
     return isGradient;
 };
+export const getMaxColourCount = () => {
+    switch (currWallpaperMode.val) {
+    case WallpaperMode.GRADIENT:
+        return 5;
+    case WallpaperMode.SOLID:
+    default:
+        return 1;
+    }
+};
 
 /**
  * Current colour data
