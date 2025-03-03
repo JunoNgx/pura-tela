@@ -23,20 +23,20 @@
     };
 
     const trySaveColour = () => {
-        // const colourName = window.prompt("Enter name for new colour", `#${getSolidColour()}`)
-        // if (!colourName) return;
+        const colourName = window.prompt("Enter name for new colour", `#${getCurrColourAtIndex(index)}`)
+        if (!colourName) return;
 
-        // try {
-        //     const newColour = {
-        //         name: colourName,
-        //         hexCode: getSolidColour()
-        //     }
+        try {
+            const newColour = {
+                name: colourName,
+                hexCode: getSolidColour()
+            }
     
-        //     colourGallery.set([...colourGallery.val, newColour]);
-        // } catch(error) {
-        //     console.error(error);
-        //     window.alert("Error adding new colour to gallery. Please see the console for more info.")
-        // }
+            colourGallery.set([...colourGallery.val, newColour]);
+        } catch(error) {
+            console.error(error);
+            window.alert("Error adding new colour to gallery. Please see the console for more info.")
+        }
     };
 
 </script>
