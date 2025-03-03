@@ -130,7 +130,7 @@ const isColourIndexValid = (index: number) => {
 };
 export const getCurrColourAtIndex = (index: number) => {
     if (!isColourIndexValid(index)) {
-        console.error("ERROR: attempt to retrieve colour with an invalid index");
+        throw new Error("ERROR: attempt to retrieve colour with an invalid index");
         return;
     }
 
@@ -138,12 +138,12 @@ export const getCurrColourAtIndex = (index: number) => {
 };
 export const setCurrColourAtIndex = (index: number, newValue: string) => {
     if (!isColourIndexValid(index)) {
-        console.error("ERROR: attempt to set colour with an invalid index");
+        throw new Error("ERROR: attempt to set colour with an invalid index");
         return;
     }
 
     if (!isHexCodeValid(newValue)) {
-        console.error("ERROR: attempt to set colour with an invalid value");
+        throw new Error("ERROR: attempt to set colour with an invalid value");
         return;
     }
 
