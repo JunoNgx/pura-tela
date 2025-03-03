@@ -15,9 +15,7 @@
 
     const handleHexCodeChange = (hexStr: string) => {
         if (!isHexCodeValid(hexStr)) return;
-
-        // setSolidColour(hexStr);
-        // currRgbColour.set(convertHexToRgb(getSolidColour()));
+        setCurrColourAtIndex(index, hexStr.replace("#", "").toUpperCase());
     };
 
     const handleRandomise = () => {
