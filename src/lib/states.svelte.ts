@@ -127,7 +127,6 @@ export const convertCurrColoursToArrayOfHexStrings = () => {
 const isColourIndexValid = (index: number) => {
     return (0 < index && index < currColours.val.length - 1);
 };
-
 export const getCurrColourAtIndex = (index: number) => {
     if (!isColourIndexValid(index)) {
         console.error("ERROR: attempt to retrieve colour with an invalid index");
@@ -136,7 +135,6 @@ export const getCurrColourAtIndex = (index: number) => {
 
     return currColours.val[index];
 };
-
 export const setCurrColourAtIndex = (index: number, newValue: string) => {
     if (!isColourIndexValid(index)) {
         console.error("ERROR: attempt to set colour with an invalid index");
@@ -152,7 +150,6 @@ export const setCurrColourAtIndex = (index: number, newValue: string) => {
     tempArr[index] = newValue;
     currColours.set(tempArr);
 };
-
 export const getCurrColourAtIndexAsHex = (index: number) => {
     return `#${getCurrColourAtIndex(index)}`;
 };
