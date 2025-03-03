@@ -118,6 +118,10 @@
         gap: 0.5rem;
     }
 
+    .ColourInput__HexInput {
+        width: 6rem;
+    }
+
     .ColourInput__ColourActionBtn {
         border: 1px solid var(--colPri);
     }
