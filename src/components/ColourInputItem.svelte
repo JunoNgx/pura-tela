@@ -5,7 +5,7 @@
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     
 	import { getCurrColourAtIndex, getCurrColourAtIndexAsHex, setCurrColourAtIndex } from 'src/lib/states.svelte.js';
-	import { isHexCodeValid } from 'src/lib/utils.js';
+	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
 
     let { index } = $props();
 
@@ -19,7 +19,7 @@
     };
 
     const handleRandomise = () => {
-        // setSolidColour(getRandomHexCode());
+        setCurrColourAtIndex(index, getRandomHexCode());
     };
 
     const trySaveColour = () => {
