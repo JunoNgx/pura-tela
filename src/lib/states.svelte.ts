@@ -93,7 +93,8 @@ export const currColourInUseCount = createLocalStorageSyncedState({
     validationFunc: isColourCountValid
 }) as State<number>;
 export const getCurrColourInUseCount = () => {
-    return currColourInUseCount.val;
+    const currCount = $derived(currColourInUseCount.val);
+    return currCount;
 }
 export const setCurrColourInUseCount = (newValue: number) => {
     if (!isColourCountValid(newValue)) {
@@ -151,7 +152,13 @@ export const setCurrColourAtIndex = (index: number, newValue: string) => {
     currColours.set(tempArr);
 };
 export const getCurrColourAtIndexAsHex = (index: number) => {
-    return `#${getCurrColourAtIndex(index)}`;
+    const outputString = $derived(`#${getCurrColourAtIndex(index)}`);
+    return outputString;
+};
+export const getColoursInUse = () => {
+    const colourCount = getCurrColourInUseCount();
+    const colourList = $derived(currColours.val.slice(0, colourCount));
+    return colourList;
 };
 
 // TODO: comment out below
