@@ -8,7 +8,7 @@ import defaultColourGallery from "src/data/colours.json";
 import defaultSizeOptions from "src/data/sizes.json";
 
 import { convertHexToRgb, isHexCodeValid } from "./utils.js";
-import { createLocalStorageSyncedState, createState, isColourGalleryValid, isCurrSizeOptionIndexValid, isHexCodeListValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid } from "./dataProcess.svelte.js";
+import { createLocalStorageSyncedState, createState, isColourCountValid, isColourGalleryValid, isCurrSizeOptionIndexValid, isHexCodeListValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid } from "./dataProcess.svelte.js";
 
 /**
  * Theme Mode
@@ -83,6 +83,25 @@ export const getMaxColourCount = () => {
         return 1;
     }
 };
+
+/**
+ * Colour-in-use count
+ */
+export const currColourInUseCount = createLocalStorageSyncedState({
+    key: "currColourInUseCount",
+    defaultValue: 1,
+    validationFunc: isColourCountValid
+}) as State<number>;
+export const getCurrColourInUseCount = () => {
+    return currColourInUseCount.val;
+}
+export const setCurrColourInUseCount = (newValue: number) => {
+    if (!isColourCountValid(newValue)) {
+        throw new Error("Invalid colour in use count");
+    }
+
+    currColourInUseCount.set(newValue);
+}
 
 /**
  * Current colour data
