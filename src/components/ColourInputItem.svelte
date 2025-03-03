@@ -43,46 +43,48 @@
 
 </script>
 
-<div class="ColourInput">
-    <div class="ColourInput__Picker">
-        <ColorPicker
-            label=""
-            texts={{
-                changeTo: "to",
-            }}
-            hex={getCurrColourAtIndexAsHex(index)}
-            isAlpha={false}
-            position="responsive"
-            on:input={e => {
-                const newValue = e.detail.hex?.replace("#", "") as string;
-                setCurrColourAtIndex(index, newValue);
-            }}
-        />
-    </div>
-    <div class="ColourInput__Hex">
-        <label for="hexCode">#</label>
-        <input class="ColourInput__HexInput"
-            id="hexCode"
-            name="hexCode"
-            type="text"
-            minlength="3"
-            maxlength="6"
-            spellcheck="false"
-            title="Requires a valid hex code"
-            value={getCurrColourAtIndex(index)}
-            oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
-        />
+<li class="ColourInput">
+    <div class="ColourInput__LeftSide">
+        <div class="ColourInput__Picker">
+            <ColorPicker
+                label=""
+                texts={{
+                    changeTo: "to",
+                }}
+                hex={getCurrColourAtIndexAsHex(index)}
+                isAlpha={false}
+                position="responsive"
+                on:input={e => {
+                    const newValue = e.detail.hex?.replace("#", "") as string;
+                    setCurrColourAtIndex(index, newValue);
+                }}
+            />
+        </div>
+        <div class="ColourInput__Hex">
+            <label for="hexCode">#</label>
+            <input class="ColourInput__HexInput"
+                id="hexCode"
+                name="hexCode"
+                type="text"
+                minlength="3"
+                maxlength="6"
+                spellcheck="false"
+                title="Requires a valid hex code"
+                value={getCurrColourAtIndex(index)}
+                oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
+            />
+        </div>
     </div>
 
     <div class="ColourInput__Buttons">
-        <button class="ColourInput__ColourActionBtn"
+        <button class="ColourInput__ColourActionBtn IconButton"
             onclick={handleRandomise}
             title="Generate a randomised colour"
             aria-label="Create a random colour"
         >
             <MaterialSymbolsLightShuffle />
         </button>
-        <button class="ColourInput__ColourActionBtn"
+        <button class="ColourInput__ColourActionBtn IconButton"
             onclick={trySaveColour}
             title="Save colour to gallery"
             aria-label="Save colour to gallery"
@@ -90,4 +92,33 @@
             <MaterialSymbolsLightSaveOutline/>
         </button>
     </div>
-</div>
+</li>
+
+<style>
+    .ColourInput {
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        padding-left: none;
+    }
+
+    .ColourInput__LeftSide {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .ColourInput__Hex {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .ColourInput__ColourActionBtn {
+        border: 1px solid var(--colPri);
+    }
+
+    .ColourInput__ColourActionBtn:hover {
+        color: var(--colBg);
+        background-color: var(--colPri);
+    }
+</style>

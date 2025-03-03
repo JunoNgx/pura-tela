@@ -13,3 +13,9 @@
         {/each}
     </ul>
 </div>
+
+<style>
+    .ColourInputContainer__MainList {
+        padding-left: 0;
+    }
+</style>
