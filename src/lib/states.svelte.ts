@@ -126,7 +126,7 @@ export const convertCurrColoursToArrayOfHexStrings = () => {
  * Colour utils setters and getters
  */
 const isColourIndexValid = (index: number) => {
-    return (0 <= index && index < currColours.val.length - 1);
+    return (0 <= index && index <= currColours.val.length - 1);
 };
 export const getCurrColourAtIndex = (index: number) => {
     if (!isColourIndexValid(index)) {
