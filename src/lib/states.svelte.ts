@@ -125,6 +125,10 @@ export const setCurrColourAtIndex = (index: number, newValue: string) => {
     currColours.set(tempArr);
 };
 
+export const getCurrColourAtIndexAsHex = (index: number) => {
+    return `#${getCurrColourAtIndex(index)}`;
+};
+
 // TODO: comment out below
 export const getSolidColour = () => {
     return getCurrColoursAtIndex(0);
