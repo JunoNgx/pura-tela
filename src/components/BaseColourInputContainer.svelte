@@ -1,5 +1,5 @@
 <script lang="ts">
-    import MaterialSymbolsLightRemoveRounded from "~icons/material-symbols-light/remove-rounded";
+    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
 
 	import { getColoursInUse } from "src/lib/states.svelte.js";
 
@@ -21,7 +21,7 @@
                 <button class="ColourInputContainer__RemoveBtn IconButton"
                     onclick={handleColourRemoval}
                 >
-                    <MaterialSymbolsLightRemoveRounded />
+                    <MaterialSymbolsLightRemove />
                 </button>
             </li>
         {/each}
