@@ -102,6 +102,7 @@
         flex-grow: 1;
         display: flex;
         justify-content: space-between;
+        gap: 1rem;
     }
 
     .ColourInput__LeftSide {
@@ -140,6 +141,10 @@
     } */
 
     @media screen and (width <= 500px) {
+
+        .ColourInput__LeftSide {
+            gap: 0.5rem;
+        }
 
         .ColourInput__HexInput {
             width: 4rem;
