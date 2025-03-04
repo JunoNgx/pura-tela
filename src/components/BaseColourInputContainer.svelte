@@ -6,8 +6,6 @@
 
     import ColourInputItem from "src/components/ColourInputItem.svelte";
 
-    const coloursInUse = $derived(getColoursInUse());
-
     const handleRemoveColour = (index: number) => {
         retractCurrColourAtIndex(index);
     };
@@ -19,10 +17,9 @@
 
 <div class="ColourInputContainer">
     <ul class="ColourInputContainer__List">
-        {#each coloursInUse as _, index}
+        {#each getColoursInUse() as _, index}
             <li class="ColourInputContainer__Item">
                 <ColourInputItem index={index}/>
-                <!-- TODO: if has more than one colour -->
                 {#if getCurrColourInUseCount() > getMinColourInUseCount()}
                     <button class="ColourInputContainer__RemoveBtn IconButton"
                         onclick={() => {handleRemoveColour(index)}}
