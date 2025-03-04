@@ -78,7 +78,7 @@
     </div>
 
     <div class="ColourInput__Buttons">
-        <button class="ColourInput__ColourActionBtn"
+        <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
             onclick={handleRandomise}
             title="Generate a randomised colour"
             aria-label="Create a random colour"
@@ -86,7 +86,7 @@
             <MaterialSymbolsLightShuffle />
             <span class="ColourInput__BtnLabelText">Random</span>
         </button>
-        <button class="ColourInput__ColourActionBtn"
+        <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
             onclick={trySaveColour}
             title="Save colour to gallery"
             aria-label="Save colour to gallery"
@@ -127,7 +127,7 @@
         gap: 1rem;
     }
 
-    .ColourInput__ColourActionBtn {
+    /* .ColourInput__ColourActionBtn {
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -137,7 +137,7 @@
     .ColourInput__ColourActionBtn:hover {
         color: var(--colBg);
         background-color: var(--colPri);
-    }
+    } */
 
     @media screen and (width <= 500px) {
 
