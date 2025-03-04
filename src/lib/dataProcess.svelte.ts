@@ -72,7 +72,7 @@ export const isColourGalleryValid = (data: any[]) => {
 };
 
 
-export const isHexCodeListValid = (data: string[]) => {
+export const isCurrColoursValid = (data: string[]) => {
     if (!data) return false;
     if (data.length !== 5) return false;
 

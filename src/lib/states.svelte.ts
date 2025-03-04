@@ -8,7 +8,7 @@ import defaultColourGallery from "src/data/colours.json";
 import defaultSizeOptions from "src/data/sizes.json";
 
 import { convertHexToRgb, getRandomHexCode, isHexCodeValid } from "./utils.js";
-import { createLocalStorageSyncedState, createState, isColourCountValid, isColourGalleryValid, isCurrSizeOptionIndexValid, isHexCodeListValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid } from "./dataProcess.svelte.js";
+import { createLocalStorageSyncedState, createState, isColourCountValid, isColourGalleryValid, isCurrSizeOptionIndexValid, isCurrColoursValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid } from "./dataProcess.svelte.js";
 
 /**
  * Theme Mode
@@ -151,7 +151,7 @@ const defaultCurrColoursValue = [
 export const currColours = createLocalStorageSyncedState({
     key: "currColours",
     defaultValue: defaultCurrColoursValue,
-    validationFunc: isHexCodeListValid,
+    validationFunc: isCurrColoursValid,
 }) as State<string[]>;
 // Add the hashmark to correctly turn data into proper hex codes
 export const convertCurrColoursToArrayOfHexStrings = () => {
