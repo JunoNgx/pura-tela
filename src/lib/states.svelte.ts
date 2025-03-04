@@ -87,7 +87,7 @@ export const getMaxColourCount = () => {
 /**
  * Colour-in-use count
  */
-export const currColourInUseCount = createLocalStorageSyncedState({
+const currColourInUseCount = createLocalStorageSyncedState({
     key: "currColourInUseCount",
     defaultValue: 1,
     validationFunc: isColourCountValid
