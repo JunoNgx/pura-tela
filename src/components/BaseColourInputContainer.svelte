@@ -17,6 +17,7 @@
 </script>
 
 <div class="ColourInputContainer">
+    <h3 class="ColourInputContainer__Heading">Colour options</h3>
     <ul class="ColourInputContainer__List">
         {#each getColoursInUse() as _, index}
             <li class="ColourInputContainer__Item">
