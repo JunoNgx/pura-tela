@@ -103,6 +103,13 @@ export const setCurrColourInUseCount = (newValue: number) => {
 
     currColourInUseCount.set(newValue);
 }
+export const increaseCurrColourInUseCount = () => {
+    if (currColourInUseCount.val === 5) {
+        throw new Error("Maximum colour in use count reached");
+    }
+
+    currColourInUseCount.set(currColourInUseCount.val + 1);
+}
 
 /**
  * Current colour data
