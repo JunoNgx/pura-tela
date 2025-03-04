@@ -71,3 +71,15 @@
     }
     
 }
+
+.IconButtonWithLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--colPri);
+}
+
+.IconButtonWithLabel:hover {
+    color: var(--colBg);
+    background-color: var(--colPri);
+}
