@@ -237,8 +237,8 @@ export const setCurrColoursAtIndex = (index: number, newValue: string) => {
  *
  * Only relevant when one colour is in use
  */
-export let currRgbColour = createState<RgbColour>(
-    convertHexToRgb(currColours.val[0]));
+// export let currRgbColour = createState<RgbColour>(
+//     convertHexToRgb(currColours.val[0]));
 
 /**
  * Sample text setting
