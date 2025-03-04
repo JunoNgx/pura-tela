@@ -84,7 +84,7 @@
             aria-label="Create a random colour"
         >
             <MaterialSymbolsLightShuffle />
-            <span class="ColourInput__BtnLabelText">Random</span>
+            <span class="ColourInput__BtnLabelText">Randomise</span>
         </button>
         <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
             onclick={trySaveColour}
