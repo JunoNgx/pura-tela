@@ -23,11 +23,13 @@
             <li class="ColourInputContainer__Item">
                 <ColourInputItem index={index}/>
                 <!-- TODO: if has more than one colour -->
-                <button class="ColourInputContainer__RemoveBtn IconButton"
-                    onclick={() => {handleRemoveColour(index)}}
-                >
-                    <MaterialSymbolsLightRemove />
-                </button>
+                {#if getCurrColourInUseCount() > 1}
+                    <button class="ColourInputContainer__RemoveBtn IconButton"
+                        onclick={() => {handleRemoveColour(index)}}
+                    >
+                        <MaterialSymbolsLightRemove />
+                    </button>
+                {/if}
             </li>
         {/each}
     </ul>
