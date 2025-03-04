@@ -1,7 +1,8 @@
 <script lang="ts">
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
+    import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
 
-	import { getColoursInUse } from "src/lib/states.svelte.js";
+	import { getColoursInUse, getCurrColourInUseCount, getMaxColourCount, increaseCurrColourInUseCount } from "src/lib/states.svelte.js";
 
     import ColourInputItem from "src/components/ColourInputItem.svelte";
 
@@ -9,6 +10,10 @@
 
     const handleColourRemoval = () => {
         // TODO: removeCurrColourAtIndex(index)
+    };
+
+    const handleAddColour = () => {
+        increaseCurrColourInUseCount();
     };
 </script>
 
@@ -26,6 +31,16 @@
             </li>
         {/each}
     </ul>
+    <div class="ColourInputContainer__ActionContainer">
+        {#if getCurrColourInUseCount() < getMaxColourCount()}
+            <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+                onclick={handleAddColour}
+            >
+                <MaterialSymbolsLightAdd />
+                <span>Add colour</span>
+            </button>
+        {/if}
+    </div>
 </div>
 
 <style>
