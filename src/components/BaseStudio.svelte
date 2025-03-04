@@ -68,33 +68,35 @@
             </div>
 
             <div class="Studio__PreviewSettings">
-                <input class="Studio__SampleTextCheckBox"
-                    id="shouldShowSampleText"
-                    type=checkbox
-                    checked={shouldShowSampleText.val}
-                    onclick={handleCheckboxSwitch}
-                >
-                <label class="Studio__SampleTextLabel"
-                    for="shouldShowSampleText"
-                >
-                    Show sample texts
-                </label>
-            </div>
-        </div>
-        <div class="Studio__Control">
-            <div class="Studio__ColourInputContainer">
-                <BaseColourInputContainer />
-            </div>
-            <div class="Studio__Size">
-                <BaseSizeSelect/>
-            </div>
-            <div class="Studio__Buttons">
+                <div class="Studio__SampleTextSetting">
+                    <input class="Studio__SampleTextCheckBox"
+                        id="shouldShowSampleText"
+                        type=checkbox
+                        checked={shouldShowSampleText.val}
+                        onclick={handleCheckboxSwitch}
+                    >
+                    <label class="Studio__SampleTextLabel"
+                        for="shouldShowSampleText"
+                    >
+                        Show sample texts
+                    </label>
+                </div>
+
                 <button class="Studio_DownloadBtn"
                     onclick={handleDownloadClick}
                     aria-label="Download"
                 >
                     Download
                 </button>
+            </div>
+        </div>
+
+        <div class="Studio__Control">
+            <div class="Studio__ColourInputContainer">
+                <BaseColourInputContainer />
+            </div>
+            <div class="Studio__Size">
+                <BaseSizeSelect/>
             </div>
         </div>
 
@@ -156,8 +158,12 @@
     }
 
     .Studio__PreviewSettings {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         padding-top: 1rem;
-        text-align: center;
+        /* text-align: center; */
     }
 
     .Studio__Control {
@@ -168,23 +174,24 @@
         margin-top: 3rem;
     }
 
-    .Studio__Buttons {
+    /* .Studio__Buttons {
         display: flex;
         justify-content: flex-start;
         margin-top: 3rem;
-    }
+    } */
 
     .Studio_DownloadBtn {
         padding: 1rem 2rem;
         display: block;
-        width: 100%;
         color: var(--colBg);
-        background-color: var(--colPri);
+        background-color: var(--colBrand1);
+        border-color: var(--colBrand1);
     }
 
     .Studio_DownloadBtn:hover {
         color: var(--colPri);
         background-color: var(--colBg);
+        border-color: var(--colPri);
     }
 
     @media screen and (width < 850px) {
@@ -209,9 +216,9 @@
             font-size: var(--fontSizeSm);
         } */
 
-        .Studio__Buttons {
+        /* .Studio__Buttons {
             justify-content: center;
-        }
+        } */
     }
 
 </style>
