@@ -162,27 +162,27 @@ export const getColoursInUse = () => {
 };
 
 // TODO: comment out below
-export const getSolidColour = () => {
-    return getCurrColoursAtIndex(0);
-};
-export const setSolidColour = (newValue: string) => {
-    return setCurrColoursAtIndex(0, newValue);
-}
-export const getCurrColoursAtIndex = (index: number) => {
-    if (index < 0 || currColours.val.length < index)
-        throw new Error("Invalid array index");
+// export const getSolidColour = () => {
+//     return getCurrColoursAtIndex(0);
+// };
+// export const setSolidColour = (newValue: string) => {
+//     return setCurrColoursAtIndex(0, newValue);
+// }
+// export const getCurrColoursAtIndex = (index: number) => {
+//     if (index < 0 || currColours.val.length < index)
+//         throw new Error("Invalid array index");
 
-    return currColours.val[index];
-};
-export const setCurrColoursAtIndex = (index: number, newValue: string) => {
-    if (index < 0 || currColours.val.length < index)
-        return;
+//     return currColours.val[index];
+// };
+// export const setCurrColoursAtIndex = (index: number, newValue: string) => {
+//     if (index < 0 || currColours.val.length < index)
+//         return;
 
-    const tempList = [...currColours.val];
-    tempList[index] = newValue;
+//     const tempList = [...currColours.val];
+//     tempList[index] = newValue;
 
-    currColours.set(tempList);
-};
+//     currColours.set(tempList);
+// };
 
 /**
  * The rgb version of the first colour
