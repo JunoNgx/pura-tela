@@ -1,11 +1,11 @@
 <script lang="ts">
     import { WallpaperMode } from "src/lib/types.js";
-    import { currWallpaperMode, getCurrColourInUseCount, getMaxColourCount, isGradientMode, isSolidMode, setCurrColourInUseCount } from "src/lib/states.svelte.js";
+    import { currWallpaperMode, getCurrColourInUseCount, getMaxColourInUseCount, isGradientMode, isSolidMode, setCurrColourInUseCount } from "src/lib/states.svelte.js";
 
     const handleWallpaperModeChange = (newValue: WallpaperMode) => {
         currWallpaperMode.set(newValue);
 
-        const currMaxColourCount = getMaxColourCount();
+        const currMaxColourCount = getMaxColourInUseCount();
         if (getCurrColourInUseCount() > currMaxColourCount) {
             setCurrColourInUseCount(currMaxColourCount);
         }

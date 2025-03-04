@@ -74,7 +74,7 @@ export const isGradientMode = () => {
     const isGradient = $derived(currWallpaperMode.val === WallpaperMode.GRADIENT);
     return isGradient;
 };
-export const getMaxColourCount = () => {
+export const getMaxColourInUseCount = () => {
     switch (currWallpaperMode.val) {
     case WallpaperMode.GRADIENT:
         return 5;

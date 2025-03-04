@@ -2,7 +2,7 @@
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
 
-	import { getColoursInUse, getCurrColourInUseCount, getMaxColourCount, increaseCurrColourInUseCount, retractCurrColourAtIndex } from "src/lib/states.svelte.js";
+	import { getColoursInUse, getCurrColourInUseCount, getMaxColourInUseCount, increaseCurrColourInUseCount, retractCurrColourAtIndex } from "src/lib/states.svelte.js";
 
     import ColourInputItem from "src/components/ColourInputItem.svelte";
 
@@ -34,7 +34,7 @@
         {/each}
     </ul>
     <div class="ColourInputContainer__ActionContainer">
-        {#if getCurrColourInUseCount() < getMaxColourCount()}
+        {#if getCurrColourInUseCount() < getMaxColourInUseCount()}
             <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
                 onclick={handleAddColour}
             >
