@@ -4,7 +4,7 @@
     import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     
-	import { getCurrColourAtIndex, getCurrColourAtIndexAsHex, setCurrColourAtIndex } from 'src/lib/states.svelte.js';
+	import { colourGallery, getCurrColourAtIndex, getCurrColourAtIndexAsHex, setCurrColourAtIndex } from 'src/lib/states.svelte.js';
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
 
     let { index } = $props();
@@ -25,7 +25,7 @@
         try {
             const newColour = {
                 name: colourName,
-                hexCode: getSolidColour()
+                hexCode: getCurrColourAtIndexAsHex(index),
             }
     
             colourGallery.set([...colourGallery.val, newColour]);
