@@ -161,7 +161,7 @@ export const isColourCountValid = (data: any) => {
     try {
         parseInt(data);
 
-        if (data < 0 || data > 5) {
+        if (data < 1 || data > 5) {
             return false;
         }
 
