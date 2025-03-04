@@ -14,9 +14,9 @@
             <li class="ColourInputContainer__Item">
                 <ColourInputItem index={index}/>
                 <!-- TODO: if has more than one colour -->
-                <div class="ColourInputContainer__RemoveBtn">
+                <button class="ColourInputContainer__RemoveBtn IconButton">
                     <MaterialSymbolsLightRemoveRounded />
-                </div>
+                </button>
             </li>
         {/each}
     </ul>
