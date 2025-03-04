@@ -7,7 +7,7 @@ import defaultColourGallery from "src/data/colours.json";
 // @ts-ignore
 import defaultSizeOptions from "src/data/sizes.json";
 
-import { convertHexToRgb, isHexCodeValid } from "./utils.js";
+import { convertHexToRgb, getRandomHexCode, isHexCodeValid } from "./utils.js";
 import { createLocalStorageSyncedState, createState, isColourCountValid, isColourGalleryValid, isCurrSizeOptionIndexValid, isHexCodeListValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid } from "./dataProcess.svelte.js";
 
 /**
@@ -161,6 +161,15 @@ export const setCurrColourAtIndex = (index: number, newValue: string) => {
 export const getCurrColourAtIndexAsHex = (index: number) => {
     const outputString = $derived(`#${getCurrColourAtIndex(index)}`);
     return outputString;
+};
+/**
+ * This pulls the colour at the target index, and adds another random colour to
+ * the end, to maintain the amount of `currColours`.
+ * @param index The target index
+ */
+export const retractCurrColourAtIndex = (index: number) => {
+    const arrayValWithRetraction = [...currColours.val].slice(index, 1);
+    currColours.set([...arrayValWithRetraction, getRandomHexCode()])
 };
 export const getColoursInUse = () => {
     const colourCount = getCurrColourInUseCount();
