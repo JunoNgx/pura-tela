@@ -183,15 +183,15 @@
     .Studio_DownloadBtn {
         padding: 1rem 2rem;
         display: block;
-        color: var(--colBg);
+        color: var(--colPri);
         background-color: var(--colBrand1);
         border-color: var(--colBrand1);
     }
 
     .Studio_DownloadBtn:hover {
-        color: var(--colPri);
-        background-color: var(--colBg);
-        border-color: var(--colPri);
+        color: var(--colBg);
+        background-color: var(--colPri);
+        border-color: var(--colBg);
     }
 
     @media screen and (width < 850px) {
