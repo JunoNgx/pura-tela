@@ -142,6 +142,11 @@
     }
 
     @media screen and (width <= 500px) {
+
+        .ColourInput__HexInput {
+            width: 4rem;
+        }
+
         .ColourInput__ColourActionBtn {
             padding: 0.5rem;
         }
