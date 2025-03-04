@@ -101,6 +101,15 @@ export const increaseCurrColourInUseCount = () => {
 
     currColourInUseCount.set(currColourInUseCount.val + 1);
 }
+export const getMinColourInUseCount = () => {
+    switch (currWallpaperMode.val) {
+    case WallpaperMode.GRADIENT:
+        return 2;
+    case WallpaperMode.SOLID:
+    default:
+        return 1;
+    }
+};
 export const getMaxColourInUseCount = () => {
     switch (currWallpaperMode.val) {
     case WallpaperMode.GRADIENT:
