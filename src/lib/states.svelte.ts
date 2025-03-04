@@ -116,7 +116,10 @@ export const increaseCurrColourInUseCount = () => {
  */
 const defaultCurrColoursValue = [
     defaultColourGallery[0].hexCode,
-    defaultColourGallery[1].hexCode
+    defaultColourGallery[1].hexCode,
+    defaultColourGallery[2].hexCode,
+    defaultColourGallery[3].hexCode,
+    defaultColourGallery[4].hexCode,
 ];
 export const currColours = createLocalStorageSyncedState({
     key: "currColours",
