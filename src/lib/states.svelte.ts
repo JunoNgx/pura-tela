@@ -101,6 +101,13 @@ export const increaseCurrColourInUseCount = () => {
 
     currColourInUseCount.set(currColourInUseCount.val + 1);
 }
+export const decreaseCurrColourInUseCount = () => {
+    if (currColourInUseCount.val === getMinColourInUseCount()) {
+        throw new Error("Maximum colour in use count reached");
+    }
+
+    currColourInUseCount.set(currColourInUseCount.val - 1);
+}
 export const readjustCurrColourInUseCount = () => {
     const currMinColourCount = getMinColourInUseCount();
     if (getCurrColourInUseCount() < currMinColourCount) {
