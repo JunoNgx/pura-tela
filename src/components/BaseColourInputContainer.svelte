@@ -37,6 +37,6 @@
     }
 
     .ColourInputContainer__RemoveBtn {
-
+        color: var(--colDanger);
     }
 </style>
