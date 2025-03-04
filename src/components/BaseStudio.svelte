@@ -86,6 +86,9 @@
             <div class="Studio__ColourInputContainer">
                 <BaseColourInputContainer />
             </div>
+            <div class="Studio__Size">
+                <BaseSizeSelect/>
+            </div>
             <div class="Studio__Buttons">
                 <button class="Studio_DownloadBtn"
                     onclick={handleDownloadClick}
