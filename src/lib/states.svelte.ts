@@ -101,6 +101,17 @@ export const increaseCurrColourInUseCount = () => {
 
     currColourInUseCount.set(currColourInUseCount.val + 1);
 }
+export const readjustCurrColourInUseCount = () => {
+    const currMinColourCount = getMinColourInUseCount();
+    if (getCurrColourInUseCount() < currMinColourCount) {
+        setCurrColourInUseCount(currMinColourCount);
+    }
+
+    const currMaxColourCount = getMaxColourInUseCount();
+    if (getCurrColourInUseCount() > currMaxColourCount) {
+        setCurrColourInUseCount(currMaxColourCount);
+    }
+};
 export const getMinColourInUseCount = () => {
     switch (currWallpaperMode.val) {
     case WallpaperMode.SOLID:
