@@ -2,7 +2,7 @@
 	import { onDestroy, onMount } from "svelte";
     import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
-	import { colourGallery, getCurrSizeOption, shouldShowSampleText, isSolidMode, currWallpaperMode, currColours, convertCurrColoursToArrayOfHexStrings } from "src/lib/states.svelte.js";
+	import { colourGallery, getCurrSizeOption, shouldShowSampleText, currWallpaperMode, currColours, convertCurrColoursToArrayOfHexStrings, getCurrColourInUseCount } from "src/lib/states.svelte.js";
 	import { computeColourName, getColourName } from "src/lib/utils.js";
 	import BaseModeSelector from "./BaseModeSelector.svelte";
 	import BaseColourInputContainer from "./BaseColourInputContainer.svelte";
@@ -37,6 +37,7 @@
         renderCanvas({
             size: getCurrSizeOption(),
             colours: convertCurrColoursToArrayOfHexStrings(),
+            colourCount: getCurrColourInUseCount(),
             mode: currWallpaperMode.val,
         });
     });

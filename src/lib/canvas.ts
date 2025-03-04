@@ -11,7 +11,7 @@ export type CanvasRenderOptions = {
 
 // TODO: to refactor to ColourItem[]
 export const renderCanvas = (
-    { size, colours, mode }: CanvasRenderOptions
+    { size, colours, colourCount, mode }: CanvasRenderOptions
 ) => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
     if (!canvas) return;
@@ -24,25 +24,29 @@ export const renderCanvas = (
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const renderOptions = { ctx, size, colours, colourCount, mode };
+
     switch(mode) {
     case WallpaperMode.GRADIENT:
-        renderForGradientMode({ ctx, size, colours, mode });
+        renderForGradientMode(renderOptions);
         break;
 
     case WallpaperMode.SOLID:
     default:
-        renderForSolidMode({ ctx, size, colours, mode });
+        renderForSolidMode(renderOptions);
     }
 };
 
 const renderForGradientMode = (
-    { ctx, colours, size }: CanvasRenderOptions & {
+    { ctx, colours, colourCount, size }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
 ) => {
     const midXPoint = size.width / 2;
     const gradient = ctx.createLinearGradient(
         midXPoint, 0, midXPoint, size.height);
+
+    // TODO: use multiple colours
 
     gradient.addColorStop(0, colours[0]);
     gradient.addColorStop(1, colours[1]);
