@@ -2,7 +2,7 @@
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
 
-	import { getColoursInUse, getCurrColourInUseCount, getMaxColourInUseCount, increaseCurrColourInUseCount, retractCurrColourAtIndex } from "src/lib/states.svelte.js";
+	import { getColoursInUse, getCurrColourInUseCount, getMaxColourInUseCount, getMinColourInUseCount, increaseCurrColourInUseCount, retractCurrColourAtIndex } from "src/lib/states.svelte.js";
 
     import ColourInputItem from "src/components/ColourInputItem.svelte";
 
@@ -23,7 +23,7 @@
             <li class="ColourInputContainer__Item">
                 <ColourInputItem index={index}/>
                 <!-- TODO: if has more than one colour -->
-                {#if getCurrColourInUseCount() > 1}
+                {#if getCurrColourInUseCount() > getMinColourInUseCount()}
                     <button class="ColourInputContainer__RemoveBtn IconButton"
                         onclick={() => {handleRemoveColour(index)}}
                     >
