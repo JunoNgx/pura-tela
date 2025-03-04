@@ -95,7 +95,7 @@ export const setCurrColourInUseCount = (newValue: number) => {
     currColourInUseCount.set(newValue);
 }
 export const increaseCurrColourInUseCount = () => {
-    if (currColourInUseCount.val === 5) {
+    if (currColourInUseCount.val === getMaxColourInUseCount()) {
         throw new Error("Maximum colour in use count reached");
     }
 
