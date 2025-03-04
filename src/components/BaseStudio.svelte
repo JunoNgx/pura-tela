@@ -1,12 +1,10 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
-    import BaseSolidColourInput from "src/components/BaseSolidColourInput.svelte";
     import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { colourGallery, getCurrSizeOption, shouldShowSampleText, isSolidMode, currWallpaperMode, currColours, convertCurrColoursToArrayOfHexStrings } from "src/lib/states.svelte.js";
 	import { computeColourName, getColourName } from "src/lib/utils.js";
 	import BaseModeSelector from "./BaseModeSelector.svelte";
-	import BaseGradientColourInput from "./BaseGradientColourInput.svelte";
 	import BaseColourInputContainer from "./BaseColourInputContainer.svelte";
 
     const handleDownloadClick = () => {
