@@ -191,8 +191,10 @@ export const getCurrColourAtIndexAsHex = (index: number) => {
  * @param index The target index
  */
 export const retractCurrColourAtIndex = (index: number) => {
-    const arrayValWithRetraction = [...currColours.val].slice(index, 1);
-    currColours.set([...arrayValWithRetraction, getRandomHexCode()])
+    const befPortion = currColours.val.slice(0, index);
+    const aftPortion = currColours.val.slice(index + 1);
+    const newRandomisedColour = getRandomHexCode();
+    currColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
 };
 export const getColoursInUse = () => {
     const colourCount = getCurrColourInUseCount();
