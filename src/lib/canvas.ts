@@ -45,11 +45,13 @@ const renderForGradientMode = (
     const midXPoint = size.width / 2;
     const gradient = ctx.createLinearGradient(
         midXPoint, 0, midXPoint, size.height);
+    const intervalGap = 1 / (colourCount - 1);
 
-    // TODO: use multiple colours
-
-    gradient.addColorStop(0, colours[0]);
-    gradient.addColorStop(1, colours[1]);
+    for (let i = 0; i < colourCount; i++) {
+        const position = intervalGap * i;
+        const colour = colours[i];
+        gradient.addColorStop(position, colour);
+    }
 
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, size.width, size.height);
