@@ -1,6 +1,13 @@
-import { WallpaperMode, type CanvasRenderOptions } from "./types.js";
+import { WallpaperMode, type SizeItem } from "./types.js";
 
 const CANVAS_ID = "Canvas";
+
+export type CanvasRenderOptions = {
+    size: SizeItem,
+    colours: string[],
+    colourCount: number,
+    mode: WallpaperMode,
+};
 
 // TODO: to refactor to ColourItem[]
 export const renderCanvas = (
