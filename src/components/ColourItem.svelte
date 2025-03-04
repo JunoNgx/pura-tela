@@ -10,6 +10,7 @@
     let { colourItem } = $props();
 
     const handleChooseColour = () => {
+        // TODO: implement passing from gallery to currColours
         setSolidColour(colourItem.hexCode);
         goto("/");
     };
