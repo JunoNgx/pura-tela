@@ -5,7 +5,10 @@
     const handleWallpaperModeChange = (newValue: WallpaperMode) => {
         currWallpaperMode.set(newValue);
 
-        // TODO: trim currColour array
+        const currMaxColourCount = getMaxColourCount();
+        if (getCurrColourInUseCount() > currMaxColourCount) {
+            setCurrColourInUseCount(currMaxColourCount);
+        }
     }
 </script>
 
