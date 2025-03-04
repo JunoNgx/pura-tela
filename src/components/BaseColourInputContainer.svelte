@@ -31,16 +31,16 @@
             </li>
         {/each}
     </ul>
-    <div class="ColourInputContainer__ActionContainer">
-        {#if getCurrColourInUseCount() < getMaxColourInUseCount()}
+    {#if getCurrColourInUseCount() < getMaxColourInUseCount()}
+        <div class="ColourInputContainer__ActionContainer">
             <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
                 onclick={handleAddColour}
             >
                 <MaterialSymbolsLightAdd />
                 <span>Add colour</span>
             </button>
-        {/if}
-    </div>
+        </div>
+    {/if}
 </div>
 
 <style>
@@ -58,6 +58,12 @@
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
+    }
+
+    .ColourInputContainer__ActionContainer {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
     }
 
     .ColourInputContainer__RemoveBtn {
