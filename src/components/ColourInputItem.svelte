@@ -41,7 +41,7 @@
 
 </script>
 
-<li class="ColourInput">
+<div class="ColourInput">
     <div class="ColourInput__LeftSide">
         <div class="ColourInput__Picker">
             <ColorPicker
@@ -97,14 +97,13 @@
             <span class="ColourInput__BtnLabelText">Save</span>
         </button>
     </div>
-</li>
+</div>
 
 <style>
     .ColourInput {
+        flex-grow: 1;
         display: flex;
         justify-content: space-between;
-        list-style: none;
-        padding-left: none;
     }
 
     .ColourInput__LeftSide {
