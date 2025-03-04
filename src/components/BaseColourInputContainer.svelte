@@ -2,12 +2,13 @@
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
 
-	import { getColoursInUse, getCurrColourInUseCount, getMaxColourInUseCount, getMinColourInUseCount, increaseCurrColourInUseCount, retractCurrColourAtIndex } from "src/lib/states.svelte.js";
+	import { decreaseCurrColourInUseCount, getColoursInUse, getCurrColourInUseCount, getMaxColourInUseCount, getMinColourInUseCount, increaseCurrColourInUseCount, retractCurrColourAtIndex } from "src/lib/states.svelte.js";
 
     import ColourInputItem from "src/components/ColourInputItem.svelte";
 
     const handleRemoveColour = (index: number) => {
         retractCurrColourAtIndex(index);
+        decreaseCurrColourInUseCount();
     };
 
     const handleAddColour = () => {
