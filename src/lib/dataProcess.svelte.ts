@@ -74,6 +74,7 @@ export const isColourGalleryValid = (data: any[]) => {
 
 export const isHexCodeListValid = (data: string[]) => {
     if (!data) return false;
+    if (data.length !== 5) return false;
 
     try {
         for (const item of data) {
