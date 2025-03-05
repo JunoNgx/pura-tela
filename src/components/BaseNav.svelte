@@ -54,6 +54,7 @@
             <NavItem route={"/"} label={"Studio"} />
             <NavItem route={"/gallery"} label={"Gallery"} />
             <NavItem route={"/sizes"} label={"Sizes"} />
+            <NavItem route={"/about"} label={"About"} />
         </div>
 
         <hr class="Nav__Separator">
