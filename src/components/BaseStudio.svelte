@@ -44,6 +44,7 @@
 </script>
 
 <div class="Studio">
+    <h2 class="VisuallyHidden">Create Wallpaper</h2>
     <div class="Studio__ModeContainer">
         <BaseModeSelector/>
     </div>
