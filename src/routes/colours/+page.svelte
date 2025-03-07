@@ -27,7 +27,7 @@
     })
 </script>
 
-<h2 class="VisuallyHidden">Gallery</h2>
+<h2 class="VisuallyHidden">Colour Gallery</h2>
 <BaseColourList/>
 <button class="ResetButton"
     onclick={handleResetGallery}
