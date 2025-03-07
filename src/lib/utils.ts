@@ -52,14 +52,13 @@ export const getRandomHexCode = () => {
     return str;
 };
 
-export const computeColourName = (
-    { colours, gallery, mode }:
-    {
-        colours: string[],
-        gallery: ColourItem[],
-        mode: WallpaperMode,
-    }
-) => {
+export const computeColourName = ({
+    colours, gallery, mode
+}: {
+    colours: string[],
+    gallery: ColourItem[],
+    mode: WallpaperMode,
+}) => {
 
     switch (mode) {
     case WallpaperMode.GRADIENT: {
