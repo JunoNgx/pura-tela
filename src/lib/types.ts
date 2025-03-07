@@ -9,6 +9,11 @@ export type ColourItem = {
     hexCode: string,
 };
 
+export type PaletteItem = {
+    name: string,
+    colours: string[],
+};
+
 export type SizeItem = {
     name: string,
     width: number,
