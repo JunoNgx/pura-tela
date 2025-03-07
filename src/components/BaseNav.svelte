@@ -53,6 +53,7 @@
         <div class="Nav__Router">
             <NavItem route={"/"} label={"Create Wallpaper"} />
             <NavItem route={"/colours"} label={"Colour Gallery"} />
+            <NavItem route={"/palettes"} label={"Palette Gallery"} />
             <NavItem route={"/sizes"} label={"Size Info"} />
             <NavItem route={"/about"} label={"About"} />
         </div>
