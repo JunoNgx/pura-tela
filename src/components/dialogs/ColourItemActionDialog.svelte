@@ -5,6 +5,7 @@
     import DialogBase from "src/components/dialogs/DialogBase.svelte";
 
     let { shouldShowDialog = $bindable(), inputColour } = $props();
+    let dialogBase: DialogBase | undefined = $state();
 
     const handlePassColour = (targetIndex: number) => {
         setCurrColoursAtIndex(targetIndex, inputColour);
@@ -14,9 +15,10 @@
 
 <DialogBase className="ColourActionDialog"
     bind:shouldShowDialog
+    bind:this={dialogBase}
 >
     <h3 class="ColourActionDialog__Title">Would you like to pass #{inputColour} to Wallpaper Generator?</h3>
-    <div class="ColourActionDialog__ActionContainer">
+    <div class="ColourActionDialog__ActionContainer ColourActionDialog__ActionContainer--MainActions">
         {#each getColoursInUse() as colour, index}
             <button class="ColourActionDialog__ActionBtn"
                 onclick={() => handlePassColour(index)}
@@ -25,14 +27,28 @@
             </button>
         {/each}
     </div>
+    <div class="ColourActionDialog__ActionContainer ColourActionDialog__ActionContainer--Exit">
+        <button class="ColourActionDialog__ActionBtn"
+            onclick={() => { dialogBase?.closeDialog() }}
+        >
+            Cancel
+        </button>
+    </div>
 </DialogBase>
 
 <style>
     .ColourActionDialog__ActionContainer {
-        margin-top: 3rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .ColourActionDialog__ActionContainer--MainActions {
+        margin-top: 3rem;
         gap: 1rem;
+    }
+
+    .ColourActionDialog__ActionContainer--Exit {
+        margin-top: 2rem;
     }
 </style>

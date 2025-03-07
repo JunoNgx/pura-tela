@@ -20,6 +20,10 @@
         if (shouldShowDialog) dialog?.showModal();
     });
 
+    export const closeDialog = () => {
+        dialog?.close();
+    };
+
     const handleKeydown = (event: KeyboardEvent) => {
         if (event.key === "Esc") {
             dialog?.close();
