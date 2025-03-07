@@ -51,7 +51,7 @@
         <hr class="Nav__Separator">
 
         <div class="Nav__Router">
-            <NavItem route={"/"} label={"Studio"} />
+            <NavItem route={"/"} label={"Create Wallpaper"} />
             <NavItem route={"/colours"} label={"Colour Gallery"} />
             <NavItem route={"/sizes"} label={"Sizes"} />
             <NavItem route={"/about"} label={"About"} />
