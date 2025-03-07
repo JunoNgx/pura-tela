@@ -1,7 +1,6 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import { setSolidColour, colourGallery } from "src/lib/states.svelte";
-	import { convertHexToRgb } from "src/lib/utils.js";
     import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
     import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
