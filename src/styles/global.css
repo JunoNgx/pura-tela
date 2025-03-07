@@ -180,6 +180,7 @@ dialog {
 
 dialog::backdrop {
     background-color: rgba(var(--colBlackRgb), 0.75);
+    backdrop-filter: blur(10px);
 }
 
 dialog[open] {
