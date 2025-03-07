@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { type ColourItem } from "src/lib/types.js";
+
     import { goto } from '$app/navigation';
     import { setSolidColour, colourGallery } from "src/lib/states.svelte";
     import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
@@ -6,7 +8,11 @@
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
     import MaterialSymbolsLightDeleteOutline from '~icons/material-symbols-light/delete-outline';
 
-    let { colourItem } = $props();
+    type ColourItemProps = {
+        colourItem: ColourItem,
+    } ;
+
+    let { colourItem }: ColourItemProps = $props();
 
     const handleChooseColour = () => {
         // TODO: implement passing from gallery to currColours
