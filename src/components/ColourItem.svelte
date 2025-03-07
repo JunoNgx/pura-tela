@@ -16,7 +16,6 @@
     let { colourItem, showColourActionDialog = $bindable() }: ColourItemProps = $props();
 
     const handleChooseColour = () => {
-        // TODO: implement passing from gallery to currColours
         if (getCurrColourInUseCount() === 1) {
             setCurrColourAtIndex(0, colourItem.hexCode);
             goto("/");
