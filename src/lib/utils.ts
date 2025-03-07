@@ -75,8 +75,10 @@ export const computeFilename = ({
         if (index === -1) {
             return `#${hexCode}`;
         }
+
+        const colourName = gallery[index].name;
     
-        return gallery[index].name;
+        return colourName.replace(" ", "");
     };
 
     const computeColourNamePortion = (
