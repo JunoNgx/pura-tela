@@ -179,7 +179,7 @@ dialog {
 }
 
 dialog::backdrop {
-    background-color: rgba(var(--colBlackRgb, 0.3));
+    background-color: rgba(var(--colBlackRgb), 0.75);
 }
 
 dialog[open] {
