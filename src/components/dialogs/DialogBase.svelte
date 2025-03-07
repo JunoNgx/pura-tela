@@ -1,5 +1,18 @@
 <script lang="ts">
-    let { shouldShowDialog = $bindable(), children } = $props();
+	import type { Snippet } from "svelte";
+
+    type DialogBaseProps = {
+        shouldShowDialog: boolean,
+        className?: string,
+        children?: Snippet,
+    };
+
+    let {
+        shouldShowDialog = $bindable(),
+        className,
+        children,
+    }: DialogBaseProps = $props();
+
     let dialog: HTMLDialogElement | undefined= $state();
 
     $effect(() => {
@@ -17,6 +30,7 @@
 <!-- TODO: see if there is a better way to implement this -->
 <!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
 <dialog
+    class={className}
     bind:this={dialog}
     onclose={() => { shouldShowDialog = false;}}
     onclick={(e) => { if (e.target === dialog) dialog.close(); } }
