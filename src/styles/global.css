@@ -195,7 +195,7 @@ dialog[open]::backdrop {
 @keyframes DialogOpen {
     from {
         opacity: 0;
-        transform: translateY(5rem);
+        transform: translateY(2rem);
     } to {
         opacity: 1;
         transform: translateY(0);
