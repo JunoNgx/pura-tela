@@ -12,13 +12,27 @@
     };
 </script>
 
-<DialogBase bind:shouldShowDialog>
-    <h3>Pass #{inputColour} to Wallpaper Generator position</h3>
-    {#each getColoursInUse() as colour, index}
-        <button
-            onclick={() => handlePassColour(index)}
-        >
-            Replace #{colour} at position {index}
-        </button>
-    {/each}
+<DialogBase className="ColourActionDialog"
+    bind:shouldShowDialog
+>
+    <h3 class="ColourActionDialog__Title">Would you like to pass #{inputColour} to Wallpaper Generator?</h3>
+    <div class="ColourActionDialog__ActionContainer">
+        {#each getColoursInUse() as colour, index}
+            <button class="ColourActionDialog__ActionBtn"
+                onclick={() => handlePassColour(index)}
+            >
+                Replace #{colour} at position {index + 1}
+            </button>
+        {/each}
+    </div>
 </DialogBase>
+
+<style>
+    .ColourActionDialog__ActionContainer {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+</style>
