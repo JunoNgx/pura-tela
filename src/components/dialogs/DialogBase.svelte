@@ -3,7 +3,6 @@
     let dialog: HTMLDialogElement | undefined= $state();
 
     $effect(() => {
-        console.log("effect", shouldShowDialog)
         if (shouldShowDialog) dialog?.showModal();
     });
 
