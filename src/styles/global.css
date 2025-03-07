@@ -172,6 +172,42 @@ h3 {
     margin: 0;
 }
 
+dialog {
+    max-width: 32rem;
+    border: none;
+    padding: 0;
+}
+
+dialog::backdrop {
+    background-color: rgba(var(--colBlackRgb, 0.3));
+}
+
+dialog[open] {
+    animation: DialogOpen var(--transTime) ease-in-out;
+}
+
+dialog[open]::backdrop {
+    animation: DialogBackDropFadeIn var(--transTime) ease-in-out;
+}
+
+@keyframes DialogOpen {
+    from {
+        opacity: 0;
+        transform: translateY(5rem);
+    } to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes DialogBackdropFadeIn {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
 @media screen and (width < 850px) {
     html {
         background-color: var(--colBg);
