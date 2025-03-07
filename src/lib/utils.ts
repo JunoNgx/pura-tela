@@ -58,7 +58,7 @@ export const capitaliseFirstLetter = (str: string) => {
     return firstChatCapped + remainingChars;
 }
 
-export const computeColourName = ({
+export const computeFilename = ({
     colours, gallery, mode
 }: {
     colours: string[],
@@ -66,29 +66,31 @@ export const computeColourName = ({
     mode: WallpaperMode,
 }) => {
 
-    switch (mode) {
-    case WallpaperMode.GRADIENT: {
-        const colour1 = getColourName(colours[0], gallery);
-        const colour2 = getColourName(colours[1], gallery);
-
-        return `${colour1}-${colour2}`;
-    }
-
-    case WallpaperMode.SOLID:
-    default:
-        return getColourName(colours[0], gallery);
-    }
-};
-
-export const getColourName = (
-    hexCode: string, gallery: ColourItem[]
-) => {
-    const index = gallery.findIndex(
-        item => item.hexCode === hexCode);
+    const getColourName = (
+        hexCode: string, gallery: ColourItem[]
+    ) => {
+        const index = gallery.findIndex(
+            item => item.hexCode === hexCode);
+        
+        if (index === -1) {
+            return `#${hexCode}`;
+        }
     
-    if (index === -1) {
-        return `#${hexCode}`;
-    }
+        return gallery[index].name;
+    };
 
-    return gallery[index].name;
+    const computeColourNamePortion = (
+        colours: string[], gallery: ColourItem[]
+    ) => {
+        const colourNames = colours
+            .map(colour => getColourName(colour, gallery));
+        const colourNamesStr = colourNames.join("-");
+
+        return colourNamesStr;
+    }
+    
+    const modeStr = capitaliseFirstLetter(mode);
+    const coloursStr = computeColourNamePortion(colours, gallery);
+    
+    return `Pura-${modeStr}-${coloursStr}`;
 };
