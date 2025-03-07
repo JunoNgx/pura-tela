@@ -10,16 +10,20 @@
 
     type ColourItemProps = {
         colourItem: ColourItem,
+        showColourActionDialog: (colourInput: string) => void,
     } ;
 
-    let { colourItem }: ColourItemProps = $props();
+    let { colourItem, showColourActionDialog = $bindable() }: ColourItemProps = $props();
 
     const handleChooseColour = () => {
         // TODO: implement passing from gallery to currColours
         if (getCurrColourInUseCount() === 1) {
             setCurrColoursAtIndex(0, colourItem.hexCode);
             goto("/");
+            return;
         }
+
+        showColourActionDialog(colourItem.hexCode);
     };
 
     const handleDeleteColour = () => {
