@@ -52,6 +52,12 @@ export const getRandomHexCode = () => {
     return str;
 };
 
+export const capitaliseFirstLetter = (str: string) => {
+    const firstChatCapped = str.charAt(0).toUpperCase();
+    const remainingChars = str.slice(1);
+    return firstChatCapped + remainingChars;
+}
+
 export const computeColourName = ({
     colours, gallery, mode
 }: {
