@@ -173,10 +173,8 @@ h3 {
 }
 
 dialog {
-    color: var(--colPri);
-    background-color: var(--colBg);
-    border: 1px solid var(--colPri);
-    padding: 3rem 2rem 2rem;
+    background-color: transparent;
+    border: none;
 }
 
 dialog::backdrop {

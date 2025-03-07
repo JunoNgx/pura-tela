@@ -37,10 +37,12 @@
     onclick={(e) => { if (e.target === dialog) dialog.close(); } }
     onkeydown={handleKeydown}
 >
-    <button class="DialogCloseBtn"
-        onclick={() => { dialog?.close(); }}
-    >
-        <MaterialSymbolsLightClose/>
-    </button>
-    {@render children?.()}
+    <div class="MainDialogContent">
+        <button class="DialogCloseBtn"
+            onclick={() => { dialog?.close(); }}
+        >
+            <MaterialSymbolsLightClose/>
+        </button>
+        {@render children?.()}
+    </div>
 </dialog>

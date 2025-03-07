@@ -84,6 +84,15 @@
     background-color: var(--colPri);
 }
 
+.MainDialogContent {
+    position: relative;
+    margin: 1rem;
+    color: var(--colPri);
+    background-color: var(--colBg);
+    border: 1px solid var(--colPri);
+    padding: 3rem 2rem 2rem;
+}
+
 .DialogCloseBtn {
     position: absolute;
     top: 0.5rem;
