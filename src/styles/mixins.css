@@ -83,3 +83,13 @@
     color: var(--colBg);
     background-color: var(--colPri);
 }
+
+.DialogCloseBtn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.2rem;
+    border: none;
+    display: grid;
+    place-items: center;
+}

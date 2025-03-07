@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
+    import MaterialSymbolsLightClose from "~icons/material-symbols-light/close";
 
     type DialogBaseProps = {
         shouldShowDialog: boolean,
@@ -36,5 +37,10 @@
     onclick={(e) => { if (e.target === dialog) dialog.close(); } }
     onkeydown={handleKeydown}
 >
+    <button class="DialogCloseBtn"
+        onclick={() => { dialog?.close(); }}
+    >
+        <MaterialSymbolsLightClose/>
+    </button>
     {@render children?.()}
 </dialog>
