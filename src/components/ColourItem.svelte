@@ -2,7 +2,7 @@
     import { type ColourItem } from "src/lib/types.js";
 
     import { goto } from '$app/navigation';
-    import { colourGallery, getCurrColourInUseCount, setCurrColoursAtIndex } from "src/lib/states.svelte";
+    import { colourGallery, getCurrColourInUseCount, setCurrColourAtIndex } from "src/lib/states.svelte";
     import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
     import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
@@ -18,7 +18,7 @@
     const handleChooseColour = () => {
         // TODO: implement passing from gallery to currColours
         if (getCurrColourInUseCount() === 1) {
-            setCurrColoursAtIndex(0, colourItem.hexCode);
+            setCurrColourAtIndex(0, colourItem.hexCode);
             goto("/");
             return;
         }
