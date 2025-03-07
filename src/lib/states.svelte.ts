@@ -54,7 +54,7 @@ export const getCurrSizeOption = () => {
     const option = $derived<SizeItem>(sizeOptions[currSizeOptionIndex.val]);
     return option;
 };
-export const resetGallery = () => {
+export const resetColourGallery = () => {
     colourGallery.set(defaultColourGallery);
 };
 

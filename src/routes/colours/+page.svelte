@@ -3,13 +3,13 @@
     import MaterialSymbolsLightResetSettingsRounded from '~icons/material-symbols-light/reset-settings-rounded';
 
     import BaseColourList from "src/components/BaseColourList.svelte";
-    import { galleryScrollPos, resetGallery } from "src/lib/states.svelte";
+    import { galleryScrollPos, resetColourGallery } from "src/lib/states.svelte";
 
     const handleResetGallery = () => {
         const isConfirmed = window.confirm("Reset the gallery to default colours? This action cannot be undone.");
         if (!isConfirmed) return;
 
-        resetGallery();
+        resetColourGallery();
     };
 
     beforeNavigate(({ from }) => {
