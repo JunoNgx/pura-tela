@@ -185,11 +185,11 @@ dialog::backdrop {
 }
 
 dialog[open] {
-    animation: DialogOpen var(--transTime) ease-in-out;
+    animation: DialogOpen var(--transTimeFast) ease-in-out;
 }
 
 dialog[open]::backdrop {
-    animation: DialogBackDropFadeIn var(--transTime) ease-in-out;
+    animation: DialogBackDropFadeIn var(--transTimeFast) ease-in-out;
 }
 
 @keyframes DialogOpen {
