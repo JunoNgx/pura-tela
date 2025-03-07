@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Moss",
+        "colours": ["deefb7","98dfaf","386150","58b09c","caf7e2"]
+    },
+    {
+        "name": "Douce",
+        "colours": ["292f36","4ecdc4","f7fff7","ff6b6b","ffe66d"]
+    },
+    {
+        "name": "Dawn",
+        "colours": ["ffcdb2","ffb4a2","e5989b","b5838d","6d6875"]
+    },
+    {
+        "name": "Wasabi Inquisition",
+        "colours": ["111111","902e43","e7cd8a","78b47d","f7f7f7"]
+    },
+    {
+        "name": "Neon",
+        "colours": ["114b5f","028090","e4fde1","456990","f45b69"]
+    },
+    {
+        "name": "Neon Sequel",
+        "colours": ["292f36","4ecdc4","f7fff7","ff6b6b","ffe66d"]
+    },
+    {
+        "name": "Neo-Neon",
+        "colours": ["fcfcfc","f7567c","fffae3","99e1d9","5d576b"]
+    },
+    {
+        "name": "Ink ship in the sea",
+        "colours": ["6dcad1","9f0810","dfcb98","e4e5e0","c3c6bd"]
+    },
+    {
+        "name": "Jukebox",
+        "colours": ["c87f92","86f4bb","f3f6e2"]
+    },
+    {
+        "name": "Northern Calm Depths",
+        "colours": ["3f3f3f","475b7a","0e9dcd"]
+    }
+]
