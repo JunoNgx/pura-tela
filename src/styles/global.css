@@ -173,9 +173,10 @@ h3 {
 }
 
 dialog {
-    max-width: 32rem;
-    border: none;
-    padding: 0;
+    color: var(--colPri);
+    background-color: var(--colBg);
+    border: 1px solid var(--colPri);
+    padding: 2rem;
 }
 
 dialog::backdrop {
