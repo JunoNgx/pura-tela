@@ -4,7 +4,7 @@
     import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     
-	import { colourGallery, getCurrColourAtIndex, getCurrColourAtIndexAsHex, setCurrColourAtIndex } from 'src/lib/states.svelte.js';
+	import { addToColourGallery, getCurrColourAtIndex, setCurrColourAtIndex } from 'src/lib/states.svelte.js';
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
 
     let { index } = $props();
@@ -28,18 +28,11 @@
     const trySaveColour = () => {
         const colourName = window.prompt("Enter name for new colour", `#${getCurrColourAtIndex(index)}`)
         if (!colourName) return;
-
-        try {
-            const newColour = {
-                name: colourName,
-                hexCode: getCurrColourAtIndexAsHex(index),
-            }
-    
-            colourGallery.set([...colourGallery.val, newColour]);
-        } catch(error) {
-            console.error(error);
-            window.alert("Error adding new colour to gallery. Please see the console for more info.")
+        if (!colourCode) {
+            throw new Error("Unable to find colour from colour input at index:", index);
         }
+
+        addToColourGallery(colourName, colourCode);
     };
 
 </script>
