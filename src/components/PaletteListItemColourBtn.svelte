@@ -1,12 +1,38 @@
 <script lang="ts">
+	import { onDestroy } from "svelte";
+
     let { colourItem } = $props();
+    let hasBeenCopied = $state(false);
+    let copyRestoreStatusTimeout: number | undefined = $state();
+
+    const copyColourCode = async (colourCode: string) => {
+        try {
+            await navigator.clipboard.writeText(colourCode);
+            hasBeenCopied = true;
+
+            copyRestoreStatusTimeout = setTimeout(() => {
+                hasBeenCopied = false;
+            }, 1000);
+        } catch(error) {
+            throw new Error("Unable to copy colour code to clipboard")
+        }
+    };
+
+    onDestroy(() => {
+        clearTimeout(copyRestoreStatusTimeout);
+    })
 </script>
 
 <button class="PaletteListColourBtn"
     style="{`background-color: #${colourItem}`}"
+    onclick={() => {copyColourCode(colourItem)}}
 >
     <span class="PaletteListColourBtn__Label">
-        {colourItem}
+        {#if hasBeenCopied}
+            Copied
+        {:else}
+            {colourItem}
+        {/if}
     </span>
 </button>
 
