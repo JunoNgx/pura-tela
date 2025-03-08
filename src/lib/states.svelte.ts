@@ -302,6 +302,12 @@ export const palGenColours = createLocalStorageSyncedState({
     validationFunc: isPalGenColoursValid,
 });
 
+export const togglePalGenColoursLockAtIndex = (index: number) => {
+    const tempVal = [...palGenColours.val];
+    tempVal[index].isLocked = !tempVal[index].isLocked;
+    palGenColours.set(tempVal);
+};
+
 /**
  * Sample text setting
  */
