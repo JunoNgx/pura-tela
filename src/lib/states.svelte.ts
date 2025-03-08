@@ -7,8 +7,8 @@ import defaultColourGallery from "src/data/colours.json";
 // @ts-ignore
 import defaultSizeOptions from "src/data/sizes.json";
 
-import { convertHexToRgb, getRandomHexCode, isHexCodeValid } from "./utils.js";
-import { createLocalStorageSyncedState, createState, isColourCountValid, isColourGalleryValid, isCurrSizeOptionIndexValid, isCurrColoursValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid } from "./dataProcess.svelte.js";
+import { getRandomHexCode, isHexCodeValid } from "./utils.js";
+import { createLocalStorageSyncedState, isColourCountValid, isColourGalleryValid, isCurrSizeOptionIndexValid, isCurrColoursValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid } from "./dataProcess.svelte.js";
 
 /**
  * Theme Mode
