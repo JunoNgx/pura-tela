@@ -308,6 +308,12 @@ export const togglePalGenColoursLockAtIndex = (index: number) => {
     palGenColours.set(tempVal);
 };
 
+export const removePalGenColoursLockAtIndex = (index: number) => {
+    const befPortion = palGenColours.val.slice(0, index);
+    const aftPortion = palGenColours.val.slice(index + 1);
+    palGenColours.set([...befPortion, ...aftPortion]);
+};
+
 /**
  * Sample text setting
  */
