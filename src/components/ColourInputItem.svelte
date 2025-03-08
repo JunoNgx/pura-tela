@@ -9,6 +9,9 @@
 
     let { index } = $props();
 
+    let colourCode = $derived(getCurrColourAtIndex(index));
+    let colourCodeWithHash = $derived("#" + colourCode);
+
     const handlePickerValueChange = (hexStr: string) => {
         setCurrColourAtIndex(index, hexStr.replace("#", "").toUpperCase());
     };
@@ -49,7 +52,7 @@
                 texts={{
                     changeTo: "to",
                 }}
-                hex={getCurrColourAtIndexAsHex(index)}
+                hex={colourCodeWithHash}
                 isAlpha={false}
                 position="responsive"
                 on:input={e => { 
@@ -73,7 +76,7 @@
                 maxlength="6"
                 spellcheck="false"
                 title="Requires a valid hex code"
-                value={getCurrColourAtIndex(index)}
+                value={colourCode}
                 oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>
