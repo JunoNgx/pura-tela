@@ -148,6 +148,10 @@
         .PalGenItem__ActionPanel {
             flex-direction: row;
         }
+
+        .PalGenItem__PickerContainer {
+            margin-right: 0.2rem;
+        }
     }
 </style>
 
