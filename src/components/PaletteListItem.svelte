@@ -5,8 +5,14 @@
     import MaterialSymbolsLightDeleteOutline from '~icons/material-symbols-light/delete-outline';
 
 	import PaletteListItemColourBtn from "./PaletteListItemColourBtn.svelte";
+	import type { PaletteItem } from 'src/lib/types.js';
 
-    let { paletteItem } = $props();
+    type PaletteListItemProps = {
+        paletteItem: PaletteItem,
+        index: number,
+    }
+
+    let { paletteItem, index }: PaletteListItemProps = $props();
 
     const handleChoosePalette = () => {
 

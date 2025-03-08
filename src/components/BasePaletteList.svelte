@@ -4,8 +4,9 @@
 </script>
 
 <ul class="PaletteList FlexList">
-    {#each paletteGallery.val as paletteItem}
+    {#each paletteGallery.val as paletteItem, index}
         <PaletteListItem
+            index={index}
             paletteItem={paletteItem}
         />
     {/each}
