@@ -54,6 +54,20 @@ export const resetColourGallery = () => {
     colourGallery.set(defaultColourGallery);
 };
 
+export const passPaletteToWallpaperGenerator = (paletteIndex: number) => {
+    try {
+        const palette = paletteGallery.val[paletteIndex];
+        const newColours = palette.colours;
+        const coloursToBeKept = currColours.val.slice(newColours.length);
+
+        currColours.set([...newColours, ...coloursToBeKept]);
+        setCurrColourInUseCount(newColours.length);
+        readjustCurrColourInUseCount();
+    } catch(error) {
+        throw new Error("Failed to pass palette to Wallpaper generator");
+    }
+}
+
 /**
  * Palette gallery list
  */
