@@ -26,13 +26,11 @@
     };
 
     const trySaveColour = () => {
-        const colourName = window.prompt("Enter name for new colour", `#${getCurrColourAtIndex(index)}`)
-        if (!colourName) return;
         if (!colourCode) {
             throw new Error("Unable to find colour from colour input at index:", index);
         }
-
-        addToColourGallery(colourName, colourCode);
+        
+        addToColourGallery(colourCode);
     };
 
 </script>
