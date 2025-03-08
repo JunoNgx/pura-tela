@@ -65,6 +65,10 @@
             margin-bottom: 1rem;
         }
 
+        .InnerWrapper {
+            margin: 0;
+        }
+
         .MainContent {
             max-width: calc(100% - 2* var(--outerPaddingMobile));
         }
