@@ -69,10 +69,7 @@
                 
             </button>
 
-            <button class="ColourListItem__ActionBtn
-                ColourListItem__ActionBtn--Delete
-                IconButton
-                "
+            <button class="ColourListItem__ActionBtn IconButton Danger"
                 onclick={handleDeleteColour}
                 title={"Delete this colour"}
                 aria-label="Delete this colour"
@@ -133,9 +130,5 @@
         flex-direction: row;
         justify-content: flex-end;
         gap: 0.1rem;
-    }
-
-    .ColourListItem__ActionBtn--Delete {
-        color: var(--colDanger);
     }
 </style>
