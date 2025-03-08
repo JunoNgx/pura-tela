@@ -3,6 +3,7 @@
 
 	import { getColoursInUse, setCurrColourAtIndex } from "src/lib/states.svelte.js";
     import DialogBase from "src/components/dialogs/DialogBase.svelte";
+	import ColourSpan from '../ColourSpan.svelte';
 
     let { shouldShowDialog = $bindable(), inputColour } = $props();
     let dialogBase: DialogBase | undefined = $state();
@@ -17,13 +18,13 @@
     bind:shouldShowDialog
     bind:this={dialogBase}
 >
-    <h3 class="ColourActionDialog__Title">Would you like to pass #{inputColour} to Wallpaper Generator?</h3>
+    <h3 class="ColourActionDialog__Title">Confirm passing <ColourSpan colour={inputColour}/> to Wallpaper Generator?</h3>
     <div class="ColourActionDialog__ActionContainer ColourActionDialog__ActionContainer--MainActions">
         {#each getColoursInUse() as colour, index}
             <button class="ColourActionDialog__ActionBtn"
                 onclick={() => handlePassColour(index)}
             >
-                Replace #{colour} at position {index + 1}
+                Replace <ColourSpan colour={colour}/> at position {index + 1}
             </button>
         {/each}
     </div>
