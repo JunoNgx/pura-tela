@@ -56,7 +56,7 @@
     .PaletteGenerator__ActionsContainer {
         margin-top: 2rem;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         gap: 2rem;
     }
 
