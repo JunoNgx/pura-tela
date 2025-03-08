@@ -73,6 +73,11 @@ button:hover {
     background-color: var(--colPri);
 }
 
+button:disabled,
+button:disabled:hover {
+    color: var(--colSec);
+}
+
 input {
     font-family: var(--fontFamily);
     font-size: var(--fontSizeMd);
