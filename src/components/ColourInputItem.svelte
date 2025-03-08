@@ -9,6 +9,10 @@
 
     let { index } = $props();
 
+    const handlePickerValueChange = (hexStr: string) => {
+        setCurrColourAtIndex(index, hexStr.replace("#", "").toUpperCase());
+    };
+
     const handleHexCodeChange = (hexStr: string) => {
         if (!isHexCodeValid(hexStr)) return;
         setCurrColourAtIndex(index, hexStr.replace("#", "").toUpperCase());
@@ -48,11 +52,9 @@
                 hex={getCurrColourAtIndexAsHex(index)}
                 isAlpha={false}
                 position="responsive"
-                on:input={e => {
+                on:input={e => { 
                     // TODO: find out how to import this type and implement this separately in `<script>`
-                    const rawValue = e.detail.hex as string;
-                    const newHexCode = rawValue?.replace("#", "").toUpperCase();
-                    setCurrColourAtIndex(index, newHexCode);
+                    handlePickerValueChange(e.detail.hex as string);
                 }}
             />
         </div>
