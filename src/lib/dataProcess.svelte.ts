@@ -200,15 +200,16 @@ export const isPalGenColoursValid = (data: any) => {
 
     try {
         if (data.length < 2 || data.length > 5) {
+            console.log(0)
             return false;
         }
 
         for (const palGenItem of data) {
-            if (isValidBoolean(palGenItem.isLocked)) {
+            if (!isValidBoolean(palGenItem.isLocked)) {
                 return false;
             }
 
-            if (isHexCodeValid(palGenItem.colour)) {
+            if (!isHexCodeValid(palGenItem.colour)) {
                 return false;
             }
         }
