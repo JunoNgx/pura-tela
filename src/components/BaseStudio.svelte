@@ -117,8 +117,12 @@
         width: 100%;
     }
 
-    .Studio__PreviewBlock {
+    .Studio__PreviewBlock,
+    .Studio__SampleTextContainer {
         aspect-ratio: 3/2;
+    }
+
+    .Studio__PreviewBlock {
         height: auto;
         border: 1px solid var(--colPri);
         box-sizing: border-box;
@@ -130,7 +134,6 @@
     }
 
     .Studio__SampleTextContainer {
-        aspect-ratio: 1;
         width: 100%;
         position: absolute;
         top: 0;
@@ -202,15 +205,9 @@
             gap: 4rem;
         }
 
-        .Studio__PreviewContainer {
-            /* max-width: none; */
-            /* height: 180px; */
-            /* width: 100%; */
-        }
-
-        .Studio__PreviewBlock {
-            aspect-ratio: 7/8;
-            /* height: 180px; */
+        .Studio__PreviewBlock,
+        .Studio__SampleTextContainer {
+            aspect-ratio: 1;
         }
         
         /* .Studio__SampleTextContainer {
