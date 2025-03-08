@@ -24,6 +24,7 @@
     --colBrand2: #FC5D85;
 
     --colPri: #000;
+    --colSec: #777;
     --colBg: #FFF;
     --colBg2: #F1F0F4;
 
@@ -42,12 +43,14 @@
 
 :root[data-theme-mode="light"] {
     --colPri: #000;
+    --colSec: #666;
     --colBg: #FFF;
     --colBg2: #F1F0F4;
 }
 
 :root[data-theme-mode="dark"] {
     --colPri: #FFF;
+    --colSec: #777;
     --colBg: #2D2D2D;
     --colBg2: #373737;
 
