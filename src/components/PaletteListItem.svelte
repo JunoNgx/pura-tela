@@ -76,6 +76,8 @@
         border-bottom: 1px solid var(--colPri);
         min-width: 120px;
         padding-left: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     .PaletteListItem__PaletteBox {
@@ -91,5 +93,6 @@
         justify-content: space-between;
         align-items: center;
         gap: 0.5rem;
+        flex-grow: 1;
     }
 </style>
