@@ -50,6 +50,10 @@ export const deleteColourAtIndex = (index: number) => {
     colourGallery.set([...befPortion, ...aftPortion]);
 };
 
+export const resetColourGallery = () => {
+    colourGallery.set(defaultColourGallery);
+};
+
 /**
  * Palette gallery list
  */
@@ -105,9 +109,6 @@ export const currSizeOptionIndex = createLocalStorageSyncedState({
 export const getCurrSizeOption = () => {
     const option = $derived<SizeItem>(sizeOptions[currSizeOptionIndex.val]);
     return option;
-};
-export const resetColourGallery = () => {
-    colourGallery.set(defaultColourGallery);
 };
 
 /**
