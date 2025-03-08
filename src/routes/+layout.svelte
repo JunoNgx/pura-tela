@@ -12,14 +12,16 @@
     handleThemeModeChange();
 </script>
 
-<main class="Wrapper">
-    <BaseNav/>
-    <div class="MainContent Card">
-        <!-- <BaseHeader/> -->
-            <div class="MobileLogoWrapper">
-                <AppLogo />
-            </div>
-            {@render children()}
+<main class="OuterWrapper">
+    <div class="InnerWrapper">
+        <BaseNav/>
+        <div class="MainContent Card">
+            <!-- <BaseHeader/> -->
+                <div class="MobileLogoWrapper">
+                    <AppLogo />
+                </div>
+                {@render children()}
+        </div>
     </div>
 </main>
     
@@ -27,10 +29,14 @@
 <style>
     @import "src/styles/vars.css";
 
-    .Wrapper {
+    .OuterWrapper {
         min-height: 85dvh;
         max-width: 1200px;
-        margin: 1rem auto 2rem;
+        margin: auto;
+    }
+
+    .InnerWrapper {
+        margin: 1rem;
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -54,7 +60,7 @@
     }
 
     @media screen and (width < 850px) {
-        .Wrapper {
+        .OuterWrapper {
             margin-top: 0;
             margin-bottom: 1rem;
         }
