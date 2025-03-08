@@ -1,11 +1,16 @@
 <script lang="ts">
     import MaterialSymbolsLightGesture from '~icons/material-symbols-light/gesture';
+    import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
 
-	import { palGenColours, randomiseUnlockedColoursForPalGen } from "src/lib/states.svelte.js";
+	import { addToPaletteGalleryFromPaletteGenerator, palGenColours, randomiseUnlockedColoursForPalGen } from "src/lib/states.svelte.js";
 	import PaletteGeneratorItem from "./PaletteGeneratorItem.svelte";
 
     const generatePalette = () => {
         randomiseUnlockedColoursForPalGen();
+    };
+
+    const savePalette = () => {
+        addToPaletteGalleryFromPaletteGenerator();
     };
 </script>
 
@@ -28,6 +33,15 @@
             <MaterialSymbolsLightGesture />
             <span>Generate</span>
         </button>
+
+        <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"
+            onclick={savePalette}
+            title={"Save current palette"}
+            aria-label={"Save current palette"}
+        >
+            <MaterialSymbolsLightPaletteOutline />
+            <span>Save palette</span>
+        </button>
     </div>
 </div>
 
@@ -43,6 +57,7 @@
         margin-top: 2rem;
         display: flex;
         justify-content: center;
+        gap: 2rem;
     }
 
     @media screen and (width < 850px) {
