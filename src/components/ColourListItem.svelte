@@ -2,7 +2,7 @@
     import { type ColourItem } from "src/lib/types.js";
 
     import { goto } from '$app/navigation';
-    import { colourGallery, deleteColourAtIndex, getCurrColourInUseCount, setCurrColourAtIndex } from "src/lib/states.svelte";
+    import { deleteColourAtIndex, getCurrColourInUseCount, setCurrColourAtIndex } from "src/lib/states.svelte";
     import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
     import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
