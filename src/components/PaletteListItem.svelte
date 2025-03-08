@@ -22,9 +22,6 @@
     };
 
     const handleDeletePalette = () => {
-        const isConfirmed = window.confirm("Delete this colour from the gallery?");
-        if (!isConfirmed) return;
-
         deletePaletteAtIndex(index)
     };
 </script>
