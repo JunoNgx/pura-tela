@@ -84,6 +84,24 @@ export const addToPaletteGalleryFromWallpaperGenerator = () => {
     }
 };
 
+export const addToPaletteGalleryFromPaletteGenerator = () => {
+    const name = window.prompt("Enter name for new palette");
+    if (!name) return;
+
+    try {
+        const colours = palGenColours.val.map(palGenItem => palGenItem.colour);
+        const newPalette = {
+            name,
+            colours,
+        };
+
+        paletteGallery.set([...paletteGallery.val, newPalette]);
+    } catch(error) {
+        console.error(error);
+        window.alert("Error adding new palette to gallery. Please see the console for more info.")
+    }
+};
+
 export const deletePaletteAtIndex = (index: number) => {
     const isConfirmed = window.confirm("Delete this palette from the gallery?");
     if (!isConfirmed) return;
