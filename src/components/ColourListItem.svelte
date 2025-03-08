@@ -40,20 +40,20 @@
     };
 </script>
 
-<li class="ColourItem">
-    <div class="ColourItem__Preview"
+<li class="ColourListItem">
+    <div class="ColourListItem__Preview"
         style={`background-color: #${colourItem.hexCode};`}
     >
-        <div class="ColourItem__Title">
+        <div class="ColourListItem__Title">
             {colourItem.name}
         </div>
     </div>
-    <div class="ColourItem__Footer">
-        <div class="ColourItem__Subtitle">
+    <div class="ColourListItem__Footer">
+        <div class="ColourListItem__Subtitle">
             {`#${colourItem.hexCode}`}
         </div>
-        <div class="ColourItem__Buttons">
-            <button class="ColourItem__ActionBtn
+        <div class="ColourListItem__Buttons">
+            <button class="ColourListItem__ActionBtn
                 IconButton
                 "
                 onclick={handleChooseColour}
@@ -69,8 +69,8 @@
                 
             </button>
 
-            <button class="ColourItem__ActionBtn
-                ColourItem__ActionBtn--Delete
+            <button class="ColourListItem__ActionBtn
+                ColourListItem__ActionBtn--Delete
                 IconButton
                 "
                 onclick={handleDeleteColour}
@@ -89,13 +89,13 @@
 </li>
 
 <style>
-    .ColourItem {
+    .ColourListItem {
         list-style: none;
         border-bottom: 1px solid var(--colPri);
         min-width: 120px;
     }
 
-    .ColourItem__Preview {
+    .ColourListItem__Preview {
         height: 150px;
         width: 100%;
         position: relative;
@@ -104,7 +104,7 @@
         justify-content: flex-end;
     }
 
-    .ColourItem__Title {
+    .ColourListItem__Title {
         padding: 0.5rem;
         background-color: rgba(var(--colBlackRgb), 0.5);
         color: var(--colWhite);
@@ -116,26 +116,26 @@
 
     }
 
-    .ColourItem__Footer {
+    .ColourListItem__Footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 0.5rem;
     }
 
-    .ColourItem__Subtitle {
+    .ColourListItem__Subtitle {
         font-size: var(--fontSizeSm);
         padding-left: 0.5rem;
     }
 
-    .ColourItem__Buttons {
+    .ColourListItem__Buttons {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
         gap: 0.1rem;
     }
 
-    .ColourItem__ActionBtn--Delete {
+    .ColourListItem__ActionBtn--Delete {
         color: var(--colDanger);
     }
 </style>
