@@ -28,6 +28,12 @@
     border: 0;
 }
 
+.Danger,
+.Danger:hover,
+.IconButton.Danger:hover {
+    color: var(--colDanger);
+}
+
 .IconButton {
     position: relative;
     font-size: var(--fontSizeIconBtn);
