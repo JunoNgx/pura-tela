@@ -47,7 +47,20 @@
             </div>
             <div class="IconButton__HoverIcon">
                 <MaterialSymbolsLightLockSharp/>
-            </div>   
+            </div>
+        </button>
+
+        <button class="PalGenItem__ActionButton IconButton"
+            onclick={toggleLockColour}
+            title={"Unlock this colour"}
+            aria-label={"Unlock this colour"}
+        >
+            <div class="IconButton__RegularIcon">
+                <MaterialSymbolsLightLockOpenOutlineSharp/>
+            </div>
+            <div class="IconButton__HoverIcon">
+                <MaterialSymbolsLightLockOpenSharp/>
+            </div>
         </button>
     </div>
 </div>
@@ -68,7 +81,15 @@
         position: absolute;
         bottom: 0;
         right: 0;
+        display: flex;
+        flex-direction: column;
         background-color: rgba(var(--colBlackRgb), 0.5);
+    }
+
+    @media screen and (width < 850px) {
+        .PalGenItem__ActionPanel {
+            flex-direction: row;
+        }
     }
 </style>
 
