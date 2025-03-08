@@ -10,7 +10,7 @@ import defaultPaletteGallery from "src/data/palettes.json";
 import defaultSizeOptions from "src/data/sizes.json";
 
 import { getRandomHexCode, isHexCodeValid } from "./utils.js";
-import { createLocalStorageSyncedState, isColourCountValid, isColourGalleryValid, isCurrSizeOptionIndexValid, isCurrColoursValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid, isPaletteGalleryValid } from "./dataProcess.svelte.js";
+import { createLocalStorageSyncedState, isColourCountValid, isColourGalleryValid, isCurrSizeOptionIndexValid, isCurrColoursValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid, isPaletteGalleryValid, isPalGenColoursValid } from "./dataProcess.svelte.js";
 
 /**
  * Theme Mode
@@ -284,6 +284,23 @@ export const getColoursInUse = () => {
     const colourList = $derived(currColours.val.slice(0, colourCount));
     return colourList;
 };
+
+/**
+ * Palette generator's colours
+ */
+const generateDefaultPalGenColours = () => {
+    return defaultPaletteGallery[0].colours
+        .map(colour => ({
+            colour,
+            isLocked: false,
+        }));
+};
+
+export const palGenColours = createLocalStorageSyncedState({
+    key: "palGenColours",
+    defaultValue: generateDefaultPalGenColours(),
+    validationFunc: isPalGenColoursValid,
+});
 
 /**
  * Sample text setting
