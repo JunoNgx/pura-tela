@@ -333,6 +333,10 @@ export const togglePalGenColoursLockAtIndex = (index: number) => {
 };
 
 export const removePalGenColoursLockAtIndex = (index: number) => {
+    if (palGenColours.val.length <= 2) {
+        throw new Error("Cannot have less than two colours in the palette");
+    }
+
     const befPortion = palGenColours.val.slice(0, index);
     const aftPortion = palGenColours.val.slice(index + 1);
     palGenColours.set([...befPortion, ...aftPortion]);
