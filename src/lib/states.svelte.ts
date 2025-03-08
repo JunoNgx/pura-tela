@@ -74,6 +74,12 @@ export const addToPaletteGallery = (name: string, hexCode: string) => {
     }
 };
 
+export const deletePaletteAtIndex = (index: number) => {
+    const befPortion = paletteGallery.val.slice(0, index);
+    const aftPortion = paletteGallery.val.slice(index + 1);
+    paletteGallery.set([...befPortion, ...aftPortion]);
+};
+
 /**
  * Size gallery list
  */
