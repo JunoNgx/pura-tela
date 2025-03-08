@@ -1,6 +1,8 @@
 <script lang="ts">
     import MaterialSymbolsLightResetSettingsRounded from "~icons/material-symbols-light/reset-settings-rounded";
 
+    import BasePaletteList from "src/components/BasePaletteList.svelte";
+
     const handleResetGallery = () => {
         const isConfirmed = window.confirm("Reset the gallery to default colours? This action cannot be undone.");
         if (!isConfirmed) return;
@@ -11,7 +13,7 @@
 </script>
 
 <h2 class="VisuallyHidden">Palette Gallery</h2>
-
+<BasePaletteList/>
 <button class="ResetButton"
     onclick={handleResetGallery}
     aria-label="Reset colour gallery"
