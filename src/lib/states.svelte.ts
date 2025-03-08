@@ -262,10 +262,6 @@ export const setCurrColourAtIndex = (index: number, newValue: string) => {
     tempArr[index] = newValue;
     currColours.set(tempArr);
 };
-// export const getCurrColourAtIndexAsHex = (index: number) => {
-//     const outputString = $derived(`#${getCurrColourAtIndex(index)}`);
-//     return outputString;
-// };
 /**
  * This pulls the colour at the target index, and adds another random colour to
  * the end, to maintain the amount of `currColours`.
@@ -282,14 +278,6 @@ export const getColoursInUse = () => {
     const colourList = $derived(currColours.val.slice(0, colourCount));
     return colourList;
 };
-
-/**
- * The rgb version of the first colour
- *
- * Only relevant when one colour is in use
- */
-// export let currRgbColour = createState<RgbColour>(
-//     convertHexToRgb(currColours.val[0]));
 
 /**
  * Sample text setting
