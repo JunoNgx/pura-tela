@@ -14,7 +14,7 @@
     import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
 
 	import type { PalGenItem } from "src/lib/types.js";
-	import { removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/lib/states.svelte.js";
+	import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/lib/states.svelte.js";
 	import ColorPicker from "svelte-awesome-color-picker";
 
     type PaletteGeneratorItemProps = {
@@ -96,6 +96,7 @@
         </div>
 
         <button class="PalGenItem__ActionButton IconButton"
+            disabled={palGenColours.val.length <= 2}
             onclick={removeColour}
             title={"Remove colour"}
             aria-label={"Remove colour"}
