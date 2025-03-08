@@ -41,3 +41,8 @@ export enum WallpaperMode {
     SOLID = "solid",
     GRADIENT = "gradient"
 };
+
+export type PalGenItem = {
+    colour: string,
+    isLocked: boolean,
+};
