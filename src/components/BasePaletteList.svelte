@@ -18,7 +18,7 @@
         gap: 1.5rem;
     }
 
-    @media screen and (width < 350px) {
+    @media screen and (width < 600px) {
         .PaletteList {
             grid-template-columns: 1fr;
         }
