@@ -1,6 +1,6 @@
 <script lang="ts">
     import { colourGallery } from "src/lib/states.svelte.js";
-    import ColourItem from "src/components/ColourItem.svelte";
+    import ColourListItem from "src/components/ColourListItem.svelte";
     import ColourItemActionDialog from "src/components/dialogs/ColourItemActionDialog.svelte";
     
     let shouldShowDialog = $state(false);
@@ -18,7 +18,7 @@
         inputColour={inputColour}
     />
     {#each colourGallery.val as colourItem}
-        <ColourItem
+        <ColourListItem
             showColourActionDialog={showColourActionDialog}
             colourItem={colourItem}
         />
