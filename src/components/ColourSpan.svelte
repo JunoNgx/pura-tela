@@ -1,12 +1,9 @@
 <script lang="ts">
-	import type { ColourItem } from "src/lib/types.js";
-
     type ColourSpanProps = {
         colour: string,
     };
 
     let { colour }: ColourSpanProps = $props();
-
 </script>
 
 <span class="ColourSpan">
