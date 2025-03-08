@@ -4,27 +4,29 @@
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
     import MaterialSymbolsLightDeleteOutline from '~icons/material-symbols-light/delete-outline';
 
+	import { goto } from '$app/navigation';
 	import PaletteListItemColourBtn from "./PaletteListItemColourBtn.svelte";
 	import type { PaletteItem } from 'src/lib/types.js';
-	import { deletePaletteAtIndex } from 'src/lib/states.svelte.js';
+	import { deletePaletteAtIndex, passPaletteToWallpaperGenerator } from 'src/lib/states.svelte.js';
 
     type PaletteListItemProps = {
         paletteItem: PaletteItem,
         index: number,
-    }
+    };
 
     let { paletteItem, index }: PaletteListItemProps = $props();
 
     const handleChoosePalette = () => {
-        
-    }
+        passPaletteToWallpaperGenerator(index);
+        goto("/");
+    };
 
     const handleDeletePalette = () => {
         const isConfirmed = window.confirm("Delete this colour from the gallery?");
         if (!isConfirmed) return;
 
         deletePaletteAtIndex(index)
-    }
+    };
 </script>
 
 <ul class="PaletteListItem">
