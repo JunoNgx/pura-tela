@@ -10,10 +10,11 @@
 
     type ColourItemProps = {
         colourItem: ColourItem,
+        index: number,
         showColourActionDialog: (colourInput: string) => void,
     } ;
 
-    let { colourItem, showColourActionDialog = $bindable() }: ColourItemProps = $props();
+    let { colourItem, index, showColourActionDialog = $bindable() }: ColourItemProps = $props();
 
     const handleChooseColour = () => {
         if (getCurrColourInUseCount() === 1) {

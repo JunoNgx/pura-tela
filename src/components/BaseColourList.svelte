@@ -17,10 +17,11 @@
         bind:shouldShowDialog
         inputColour={inputColour}
     />
-    {#each colourGallery.val as colourItem}
+    {#each colourGallery.val as colourItem, index}
         <ColourListItem
             showColourActionDialog={showColourActionDialog}
             colourItem={colourItem}
+            index={index}
         />
     {/each}
 </ul>
