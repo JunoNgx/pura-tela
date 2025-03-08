@@ -16,6 +16,7 @@ html {
     color: var(--colPri);
 
     scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
 
     transition: color ease-in-out var(--transTimeFast),
         background-color ease-in-out var(--transTimeFast);
