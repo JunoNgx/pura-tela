@@ -302,6 +302,12 @@ export const palGenColours = createLocalStorageSyncedState({
     validationFunc: isPalGenColoursValid,
 });
 
+export const setPalGenColoursHexAtIndex = (index: number, newValue: string) => {
+    const tempVal = [...palGenColours.val];
+    tempVal[index].colour = newValue;
+    palGenColours.set(tempVal);
+};
+
 export const togglePalGenColoursLockAtIndex = (index: number) => {
     const tempVal = [...palGenColours.val];
     tempVal[index].isLocked = !tempVal[index].isLocked;
