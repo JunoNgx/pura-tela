@@ -59,6 +59,21 @@ export const paletteGallery = createLocalStorageSyncedState({
     validationFunc: isPaletteGalleryValid,
 });
 
+export const addToPaletteGallery = (name: string, hexCode: string) => {
+    try {
+        const colours = getColoursInUse();
+        const newPalette = {
+            name,
+            colours,
+        };
+
+        paletteGallery.set([...paletteGallery.val, newPalette]);
+    } catch(error) {
+        console.error(error);
+        window.alert("Error adding new palette to gallery. Please see the console for more info.")
+    }
+};
+
 /**
  * Size gallery list
  */
