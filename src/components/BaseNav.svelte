@@ -107,7 +107,7 @@
         flex-direction: column;
         align-items: flex-end;
         gap: 0.5rem;
-        width: 80%;
+        width: 8rem;
     }
 
     .Nav__CategoryTitle {
