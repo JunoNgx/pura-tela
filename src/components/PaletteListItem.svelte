@@ -5,11 +5,13 @@
 <ul class="PaletteListItem">
     <div class="PaletteListItem__PaletteBox">
         {#each paletteItem.colours as colourItem}
-            <div class="PaletteListItem__PaletteColourItem"
+            <button class="PaletteListItem__PaletteColourItem"
                 style="{`background-color: #${colourItem}`}"
             >
-                <!-- ${colourItem} -->
-            </div>
+                <span class="PaletteListItem__PaletteColourCode">
+                    {colourItem}
+                </span>
+            </button>
         {/each}
     </div>
     <div class="PaletteListItem__Name">{paletteItem.name}</div>
@@ -31,8 +33,28 @@
     }
 
     .PaletteListItem__PaletteColourItem {
-        /* flex-basis: 1; */
         flex-grow: 1;
+        border: none;
+        transition: all var(--transTime) ease-in-out;
+        padding: 0;
     }
 
+    .PaletteListItem__PaletteColourCode {
+        opacity: 0;
+        padding: 0.25rem;
+        color: var(--colWhite);
+        background-color: rgba(var(--colBlackRgb), 0.5);
+        transition: all var(--transTime) ease-in-out;
+    }
+
+    .PaletteListItem__PaletteColourItem:focus,
+    .PaletteListItem__PaletteColourItem:hover {
+        flex-grow: 5;
+        z-index: 30;
+
+        .PaletteListItem__PaletteColourCode {
+            margin: 0 0.5rem;
+            opacity: 1;
+        }
+    }
 </style>
