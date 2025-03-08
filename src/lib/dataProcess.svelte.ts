@@ -193,6 +193,28 @@ export const isColourCountValid = (data: any) => {
     }
 };
 
+export const isPalGenColoursValid = (data: any) => {
+    if (!data) {
+        return false;
+    }
+
+    try {
+        for (const palGenItem of data) {
+            if (isValidBoolean(palGenItem.isLocked)) {
+                return false;
+            }
+
+            if (isHexCodeValid(palGenItem.colour)) {
+                return false;
+            }
+        }
+
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
+
 export const isValidBoolean = (data: any) => {
     if (data === null || data === undefined) {
         return false;
