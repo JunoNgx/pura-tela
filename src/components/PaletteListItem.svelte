@@ -6,6 +6,7 @@
 
 	import PaletteListItemColourBtn from "./PaletteListItemColourBtn.svelte";
 	import type { PaletteItem } from 'src/lib/types.js';
+	import { deletePaletteAtIndex } from 'src/lib/states.svelte.js';
 
     type PaletteListItemProps = {
         paletteItem: PaletteItem,
@@ -15,11 +16,14 @@
     let { paletteItem, index }: PaletteListItemProps = $props();
 
     const handleChoosePalette = () => {
-
+        
     }
 
     const handleDeletePalette = () => {
+        const isConfirmed = window.confirm("Delete this colour from the gallery?");
+        if (!isConfirmed) return;
 
+        deletePaletteAtIndex(index)
     }
 </script>
 
