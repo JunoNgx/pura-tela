@@ -1,8 +1,8 @@
 <script lang="ts">
     import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
 
-    import MaterialSymbolsLightLockOpenSharp from '~icons/material-symbols-light/lock-open-sharp';
-    import MaterialSymbolsLightLockOpenOutlineSharp from "~icons/material-symbols-light/lock-open-outline-sharp";
+    import MaterialSymbolsLightLockOpenRightOutlineSharp from "~icons/material-symbols-light/lock-open-right-outline-sharp";
+    import MaterialSymbolsLightLockOpenRightSharp from "~icons/material-symbols-light/lock-open-right-sharp";
 
     import MaterialSymbolsLightLockSharp from "~icons/material-symbols-light/lock-sharp";
     import MaterialSymbolsLightLockOutlineSharp from "~icons/material-symbols-light/lock-outline-sharp";
@@ -57,10 +57,10 @@
                 aria-label={"Unlock this colour"}
             >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightLockOpenOutlineSharp/>
+                    <MaterialSymbolsLightLockOpenRightOutlineSharp/>
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightLockOpenSharp/>
+                    <MaterialSymbolsLightLockOpenRightSharp/>
                 </div>
             </button>
         {/if}
