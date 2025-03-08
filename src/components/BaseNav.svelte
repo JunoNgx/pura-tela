@@ -52,6 +52,7 @@
 
         <div class="Nav__Router">
             <NavItem route={"/"} label={"Create Wallpaper"} />
+            <NavItem route={"/generate"} label={"Generate Palette"} />
             <NavItem route={"/colours"} label={"Colour Gallery"} />
             <NavItem route={"/palettes"} label={"Palette Gallery"} />
             <NavItem route={"/sizes"} label={"Size Info"} />
