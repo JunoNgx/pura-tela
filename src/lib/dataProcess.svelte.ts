@@ -192,3 +192,15 @@ export const isColourCountValid = (data: any) => {
         return false;
     }
 };
+
+export const isValidBoolean = (data: any) => {
+    if (data === null || data === undefined) {
+        return false;
+    }
+
+    if (data !== true && data !== false) {
+        return false;
+    }
+
+    return true;
+}
