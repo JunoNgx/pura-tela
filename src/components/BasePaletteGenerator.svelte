@@ -3,11 +3,11 @@
     import MaterialSymbolsLightGesture from '~icons/material-symbols-light/gesture';
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
 
-	import { addToPaletteGalleryFromPaletteGenerator, palGenColours, randomiseUnlockedColoursForPalGen } from "src/lib/states.svelte.js";
+	import { addToPaletteGalleryFromPaletteGenerator, addToPalGenColours, palGenColours, randomiseUnlockedColoursForPalGen } from "src/lib/states.svelte.js";
 	import PaletteGeneratorItem from "./PaletteGeneratorItem.svelte";
 
     const addColour = () => {
-
+        addToPalGenColours();
     };
 
     const generatePalette = () => {
