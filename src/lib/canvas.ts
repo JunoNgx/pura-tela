@@ -87,13 +87,11 @@ const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
 };
 
 const setCanvasFitToWidth = (canvas: HTMLCanvasElement) => {
-    console.log("fit to width")
     canvas.style.width = "95%";
     canvas.style.height = "";
 };
 
 const setCanvasFitToHeight = (canvas: HTMLCanvasElement) => {
-    console.log("fit to height")
     canvas.style.width = "";
     canvas.style.height = "95%";
 };
