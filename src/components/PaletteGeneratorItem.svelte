@@ -14,7 +14,8 @@
     import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
 
 	import type { PalGenItem } from "src/lib/types.js";
-	import { palGenColours, removePalGenColoursLockAtIndex, togglePalGenColoursLockAtIndex } from "src/lib/states.svelte.js";
+	import { removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/lib/states.svelte.js";
+	import ColorPicker from "svelte-awesome-color-picker";
 
     type PaletteGeneratorItemProps = {
         palGenItem: PalGenItem,
@@ -22,6 +23,7 @@
     };
 
     let { palGenItem, index }: PaletteGeneratorItemProps = $props();
+    // let isPickerOpen = $state(false);
 
     const toggleLockColour = () => {
         togglePalGenColoursLockAtIndex(index);
@@ -29,6 +31,14 @@
 
     const removeColour = () => {
         removePalGenColoursLockAtIndex(index);
+    };
+
+    // const togglePickerOpen = () => {
+    //     isPickerOpen = !isPickerOpen;
+    // };
+
+    const handlePickerValueChange = (hexStr: string) => {
+        setPalGenColoursHexAtIndex(index, hexStr.replace("#", "").toUpperCase());
     };
 
 </script>
@@ -69,8 +79,23 @@
             </button>
         {/if}
 
+        <div class="PalGenItem__PickerContainer">
+            <ColorPicker
+                label=""
+                texts={{
+                    changeTo: "to",
+                }}
+                hex={`#${palGenItem.colour}`}
+                isAlpha={false}
+                position="responsive"
+                on:input={e => { 
+                    handlePickerValueChange(e.detail.hex as string);
+                }}
+                --input-size="18px"
+            />
+        </div>
+
         <button class="PalGenItem__ActionButton IconButton"
-            disabled={palGenColours.val.length <= 2}
             onclick={removeColour}
             title={"Remove colour"}
             aria-label={"Remove colour"}
@@ -103,7 +128,13 @@
         right: 0;
         display: flex;
         flex-direction: column;
+        align-items: center;
         background-color: rgba(var(--colBlackRgb), 0.5);
+    }
+
+    :global(.PalGenItem__PickerContainer .color-picker label) {
+        border: 1px solid var(--colPri);
+        border-radius: 0;
     }
 
     @media screen and (width < 850px) {
