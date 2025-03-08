@@ -332,6 +332,18 @@ export const togglePalGenColoursLockAtIndex = (index: number) => {
     palGenColours.set(tempVal);
 };
 
+export const addToPalGenColours = () => {
+    if (palGenColours.val.length >= 5) {
+        throw new Error("Cannot have more than five colours in the palette");
+    }
+
+    const newColour = {
+        isLocked: false,
+        colour: getRandomHexCode(),
+    };
+    palGenColours.set([...palGenColours.val, newColour]);
+};
+
 export const removePalGenColoursLockAtIndex = (index: number) => {
     if (palGenColours.val.length <= 2) {
         throw new Error("Cannot have less than two colours in the palette");
