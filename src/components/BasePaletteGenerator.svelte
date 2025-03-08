@@ -31,6 +31,7 @@
 
     <div class="PaletteGenerator__ActionsContainerUpper">
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            disabled={palGenColours.val.length >= 5}
             onclick={addColour}
             title={"Add colour"}
             aria-label={"Add colour"}
