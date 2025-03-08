@@ -1,7 +1,20 @@
 <script lang="ts">
+    import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
+    import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
+    import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
+    import MaterialSymbolsLightDeleteOutline from '~icons/material-symbols-light/delete-outline';
+
 	import PaletteListItemColourBtn from "./PaletteListItemColourBtn.svelte";
 
     let { paletteItem } = $props();
+
+    const handleChoosePalette = () => {
+
+    }
+
+    const handleDeletePalette = () => {
+
+    }
 </script>
 
 <ul class="PaletteListItem">
@@ -10,7 +23,42 @@
             <PaletteListItemColourBtn colourItem={colourItem} />
         {/each}
     </div>
-    <div class="PaletteListItem__Name">{paletteItem.name}</div>
+    <div class="PaletteListItem__Footer">
+        <div class="PaletteListItem__Name">
+            {paletteItem.name}
+        </div>
+
+        <div class="PaletteListItem__Buttons">
+            <button class="PaletteListItem__ActionBtn
+                IconButton
+                "
+                onclick={handleChoosePalette}
+                title={"Pass this palette to Wallpaper Generator"}
+                aria-label="Pass this palette to Wallpaper Generator"
+            >       
+                <div class="IconButton__RegularIcon">
+                    <MaterialSymbolsLightColorizeOutline/>
+                </div>
+                <div class="IconButton__HoverIcon">
+                    <MaterialSymbolsLightColorize/>
+                </div>
+                
+            </button>
+
+            <button class="PaletteListItem__ActionBtn Danger IconButton"
+                onclick={handleDeletePalette}
+                title={"Delete this palette"}
+                aria-label="Delete this palette"
+            >
+                <div class="IconButton__RegularIcon">
+                    <MaterialSymbolsLightDeleteOutline/>
+                </div>
+                <div class="IconButton__HoverIcon">
+                    <MaterialSymbolsLightDelete/>
+                </div>
+            </button>
+        </div>
+    </div>
 </ul>
 
 <style>
@@ -27,5 +75,12 @@
         border: 1px solid var(--colPri);
         display: flex;
         flex-direction: row;
+    }
+
+    .PaletteListItem__Footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
     }
 </style>
