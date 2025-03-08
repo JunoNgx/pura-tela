@@ -83,8 +83,8 @@
         {:else}
             <button class="PalGenItem__ActionBtn IconButton"
                 onclick={toggleLockColour}
-                title={"Lock this colour"}
-                aria-label={"Lock this colour"}
+                title={"Lock colour"}
+                aria-label={"Lock colour"}
             >
                 <div class="IconButton__RegularIcon">
                     <MaterialSymbolsLightLockOpenRightOutlineSharp/>
