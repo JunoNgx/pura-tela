@@ -5,10 +5,12 @@ import { ThemeMode, WallpaperMode } from "./types.js";
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
 // @ts-ignore
+import defaultPaletteGallery from "src/data/palettes.json";
+// @ts-ignore
 import defaultSizeOptions from "src/data/sizes.json";
 
 import { getRandomHexCode, isHexCodeValid } from "./utils.js";
-import { createLocalStorageSyncedState, isColourCountValid, isColourGalleryValid, isCurrSizeOptionIndexValid, isCurrColoursValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid } from "./dataProcess.svelte.js";
+import { createLocalStorageSyncedState, isColourCountValid, isColourGalleryValid, isCurrSizeOptionIndexValid, isCurrColoursValid, isShouldShowSampleTextValid, isSizeOptionsValid, isThemeModeValid, isWallpaperModeValid, isPaletteGalleryValid } from "./dataProcess.svelte.js";
 
 /**
  * Theme Mode
@@ -27,6 +29,15 @@ export const colourGallery = createLocalStorageSyncedState({
     defaultValue: defaultColourGallery,
     validationFunc: isColourGalleryValid,
 }) as State<ColourItem[]>;
+
+/**
+ * Palette gallery list
+ */
+export const paletteGallery = createLocalStorageSyncedState({
+    key: "paletteGallery",
+    defaultValue: defaultPaletteGallery,
+    validationFunc: isPaletteGalleryValid,
+});
 
 /**
  * Size gallery list
