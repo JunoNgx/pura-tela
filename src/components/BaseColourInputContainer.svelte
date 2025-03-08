@@ -1,8 +1,9 @@
 <script lang="ts">
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
+    import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
-	import { decreaseCurrColourInUseCount, getColoursInUse, getCurrColourInUseCount, getMaxColourInUseCount, getMinColourInUseCount, increaseCurrColourInUseCount, retractCurrColourAtIndex } from "src/lib/states.svelte.js";
+	import { addToPaletteGalleryFromWallpaperGenerator, decreaseCurrColourInUseCount, getColoursInUse, getCurrColourInUseCount, getMaxColourInUseCount, getMinColourInUseCount, increaseCurrColourInUseCount, retractCurrColourAtIndex } from "src/lib/states.svelte.js";
 
     import ColourInputItem from "src/components/ColourInputItem.svelte";
 
@@ -13,6 +14,10 @@
 
     const handleAddColour = () => {
         increaseCurrColourInUseCount();
+    };
+
+    const handleSavePalette = () => {
+        addToPaletteGalleryFromWallpaperGenerator();
     };
 </script>
 
@@ -34,6 +39,15 @@
     </ul>
     {#if getCurrColourInUseCount() < getMaxColourInUseCount()}
         <div class="ColourInputContainer__ActionContainer">
+            {#if getCurrColourInUseCount() > 1}
+                <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+                    onclick={handleSavePalette}
+                >
+                    <MaterialSymbolsLightCalendarViewWeekSharp />
+                    <span>Save palette</span>
+                </button>
+            {/if}
+
             <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
                 onclick={handleAddColour}
             >
@@ -65,6 +79,7 @@
         margin-top: 2rem;
         display: flex;
         justify-content: center;
+        gap: 1rem;
     }
 
     .ColourInputContainer__RemoveBtn {

@@ -66,7 +66,10 @@ export const paletteGallery = createLocalStorageSyncedState({
     validationFunc: isPaletteGalleryValid,
 });
 
-export const addToPaletteGallery = (name: string, hexCode: string) => {
+export const addToPaletteGalleryFromWallpaperGenerator = () => {
+    const name = window.prompt("Enter name for new palette");
+    if (!name) return;
+
     try {
         const colours = getColoursInUse();
         const newPalette = {
