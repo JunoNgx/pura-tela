@@ -2,7 +2,7 @@
     import { type ColourItem } from "src/lib/types.js";
 
     import { goto } from '$app/navigation';
-    import { colourGallery, getCurrColourInUseCount, setCurrColourAtIndex } from "src/lib/states.svelte";
+    import { colourGallery, deleteColourAtIndex, getCurrColourInUseCount, setCurrColourAtIndex } from "src/lib/states.svelte";
     import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
     import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
@@ -30,14 +30,7 @@
         const isConfirmed = window.confirm("Delete this colour from the gallery?");
         if (!isConfirmed) return;
 
-        const hexCode = colourItem.hexCode
-        const index = colourGallery.val.findIndex(item => item.hexCode === hexCode);
-
-        if (index === -1) {
-            console.error("ERROR: failed to delete colour");
-        }
-
-        colourGallery.set(colourGallery.val.toSpliced(index, 1));
+        deleteColourAtIndex(index);
     };
 </script>
 
