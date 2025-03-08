@@ -1,11 +1,11 @@
 <script lang="ts">
     import MaterialSymbolsLightGesture from '~icons/material-symbols-light/gesture';
 
-	import { palGenColours } from "src/lib/states.svelte.js";
+	import { palGenColours, randomiseUnlockedColoursForPalGen } from "src/lib/states.svelte.js";
 	import PaletteGeneratorItem from "./PaletteGeneratorItem.svelte";
 
     const generatePalette = () => {
-
+        randomiseUnlockedColoursForPalGen();
     };
 </script>
 

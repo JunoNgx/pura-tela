@@ -320,6 +320,21 @@ export const removePalGenColoursLockAtIndex = (index: number) => {
     palGenColours.set([...befPortion, ...aftPortion]);
 };
 
+export const randomiseUnlockedColoursForPalGen = () => {
+    const newVal = palGenColours.val.map(palGenItem => {
+        if (palGenItem.isLocked) {
+            return palGenItem;
+        }
+
+        return {
+            isLocked: false,
+            colour: getRandomHexCode(),
+        };
+    });
+
+    palGenColours.set(newVal);
+};
+
 /**
  * Sample text setting
  */
