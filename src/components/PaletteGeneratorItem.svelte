@@ -51,6 +51,22 @@
     </div>
 
     <div class="PalGenItem__ActionPanel">
+        <div class="PalGenItem__PickerContainer">
+            <ColorPicker
+                label=""
+                texts={{
+                    changeTo: "to",
+                }}
+                hex={`#${palGenItem.colour}`}
+                isAlpha={false}
+                position="responsive"
+                on:input={e => { 
+                    handlePickerValueChange(e.detail.hex as string);
+                }}
+                --input-size="18px"
+            />
+        </div>
+
         {#if palGenItem.isLocked}
             <button class="PalGenItem__ActionBtn IconButton"
                 onclick={toggleLockColour}
@@ -78,22 +94,6 @@
                 </div>
             </button>
         {/if}
-
-        <div class="PalGenItem__PickerContainer">
-            <ColorPicker
-                label=""
-                texts={{
-                    changeTo: "to",
-                }}
-                hex={`#${palGenItem.colour}`}
-                isAlpha={false}
-                position="responsive"
-                on:input={e => { 
-                    handlePickerValueChange(e.detail.hex as string);
-                }}
-                --input-size="18px"
-            />
-        </div>
 
         <button class="PalGenItem__ActionBtn IconButton"
             disabled={palGenColours.val.length <= 2}
