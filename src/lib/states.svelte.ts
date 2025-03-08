@@ -30,6 +30,20 @@ export const colourGallery = createLocalStorageSyncedState({
     validationFunc: isColourGalleryValid,
 }) as State<ColourItem[]>;
 
+export const addToColourGallery = (name: string, hexCode: string) => {
+    try {
+        const newColour = {
+            name,
+            hexCode,
+        };
+
+        colourGallery.set([...colourGallery.val, newColour]);
+    } catch(error) {
+        console.error(error);
+        window.alert("Error adding new colour to gallery. Please see the console for more info.")
+    }
+};
+
 /**
  * Palette gallery list
  */
