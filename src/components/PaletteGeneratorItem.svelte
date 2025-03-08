@@ -40,8 +40,8 @@
         {#if palGenItem.isLocked}
             <button class="PalGenItem__ActionButton IconButton"
                 onclick={toggleLockColour}
-                title={"Lock this colour"}
-                aria-label={"Lock this colour"}
+                title={"Unlock colour"}
+                aria-label={"Unlock colour"}
             >
                 <div class="IconButton__RegularIcon">
                     <MaterialSymbolsLightLockOutlineSharp/>
@@ -53,8 +53,8 @@
         {:else}
             <button class="PalGenItem__ActionButton IconButton"
                 onclick={toggleLockColour}
-                title={"Unlock this colour"}
-                aria-label={"Unlock this colour"}
+                title={"Lock this colour"}
+                aria-label={"Lock this colour"}
             >
                 <div class="IconButton__RegularIcon">
                     <MaterialSymbolsLightLockOpenRightOutlineSharp/>
