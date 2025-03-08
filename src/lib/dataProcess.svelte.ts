@@ -199,6 +199,10 @@ export const isPalGenColoursValid = (data: any) => {
     }
 
     try {
+        if (data.length < 2 || data.length > 5) {
+            return false;
+        }
+
         for (const palGenItem of data) {
             if (isValidBoolean(palGenItem.isLocked)) {
                 return false;
