@@ -19,7 +19,7 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        min-height: 25rem;
+        min-height: 40rem;
         background-color: aquamarine;
     }
 
