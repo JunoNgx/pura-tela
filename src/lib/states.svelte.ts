@@ -44,6 +44,12 @@ export const addToColourGallery = (name: string, hexCode: string) => {
     }
 };
 
+export const deleteColourAtIndex = (index: number) => {
+    const befPortion = colourGallery.val.slice(0, index);
+    const aftPortion = colourGallery.val.slice(index + 1);
+    colourGallery.set([...befPortion, ...aftPortion]);
+};
+
 /**
  * Palette gallery list
  */
