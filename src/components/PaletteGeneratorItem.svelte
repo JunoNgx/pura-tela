@@ -14,6 +14,7 @@
     import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
 
 	import type { PalGenItem } from "src/lib/types.js";
+	import { togglePalGenColoursLockAtIndex } from "src/lib/states.svelte.js";
 
     type PaletteGeneratorItemProps = {
         palGenItem: PalGenItem,
@@ -21,10 +22,9 @@
     };
 
     let { palGenItem, index }: PaletteGeneratorItemProps = $props();
-    let lockStatusText = $derived(palGenItem.isLocked ? "locked" : "unlocked");
 
     const toggleLockColour = () => {
-
+        togglePalGenColoursLockAtIndex(index);
     };
 
 </script>
@@ -37,31 +37,33 @@
     </div>
 
     <div class="PalGenItem__ActionPanel">
-        <button class="PalGenItem__ActionButton IconButton"
-            onclick={toggleLockColour}
-            title={"Lock this colour"}
-            aria-label={"Lock this colour"}
-        >
-            <div class="IconButton__RegularIcon">
-                <MaterialSymbolsLightLockOutlineSharp/>
-            </div>
-            <div class="IconButton__HoverIcon">
-                <MaterialSymbolsLightLockSharp/>
-            </div>
-        </button>
-
-        <button class="PalGenItem__ActionButton IconButton"
-            onclick={toggleLockColour}
-            title={"Unlock this colour"}
-            aria-label={"Unlock this colour"}
-        >
-            <div class="IconButton__RegularIcon">
-                <MaterialSymbolsLightLockOpenOutlineSharp/>
-            </div>
-            <div class="IconButton__HoverIcon">
-                <MaterialSymbolsLightLockOpenSharp/>
-            </div>
-        </button>
+        {#if palGenItem.isLocked}
+            <button class="PalGenItem__ActionButton IconButton"
+                onclick={toggleLockColour}
+                title={"Lock this colour"}
+                aria-label={"Lock this colour"}
+            >
+                <div class="IconButton__RegularIcon">
+                    <MaterialSymbolsLightLockOutlineSharp/>
+                </div>
+                <div class="IconButton__HoverIcon">
+                    <MaterialSymbolsLightLockSharp/>
+                </div>
+            </button>
+        {:else}
+            <button class="PalGenItem__ActionButton IconButton"
+                onclick={toggleLockColour}
+                title={"Unlock this colour"}
+                aria-label={"Unlock this colour"}
+            >
+                <div class="IconButton__RegularIcon">
+                    <MaterialSymbolsLightLockOpenOutlineSharp/>
+                </div>
+                <div class="IconButton__HoverIcon">
+                    <MaterialSymbolsLightLockOpenSharp/>
+                </div>
+            </button>
+        {/if}
     </div>
 </div>
 
