@@ -52,7 +52,7 @@
 
     <div class="PalGenItem__ActionPanel">
         {#if palGenItem.isLocked}
-            <button class="PalGenItem__ActionButton IconButton"
+            <button class="PalGenItem__ActionBtn IconButton"
                 onclick={toggleLockColour}
                 title={"Unlock colour"}
                 aria-label={"Unlock colour"}
@@ -65,7 +65,7 @@
                 </div>
             </button>
         {:else}
-            <button class="PalGenItem__ActionButton IconButton"
+            <button class="PalGenItem__ActionBtn IconButton"
                 onclick={toggleLockColour}
                 title={"Lock this colour"}
                 aria-label={"Lock this colour"}
@@ -95,7 +95,7 @@
             />
         </div>
 
-        <button class="PalGenItem__ActionButton IconButton"
+        <button class="PalGenItem__ActionBtn IconButton"
             disabled={palGenColours.val.length <= 2}
             onclick={removeColour}
             title={"Remove colour"}
@@ -119,6 +119,7 @@
 
     .PalGenItem__HexCode {
         padding: 0.25rem;
+        color: var(--colWhite);
         background-color: rgba(var(--colBlackRgb), 0.5);
         width: fit-content;
     }
@@ -133,8 +134,13 @@
         background-color: rgba(var(--colBlackRgb), 0.5);
     }
 
+    .PalGenItem__ActionBtn,
+    .PalGenItem__ActionBtn:hover {
+        color: var(--colWhite);
+    }
+
     :global(.PalGenItem__PickerContainer .color-picker label) {
-        border: 1px solid var(--colPri);
+        border: 1px solid var(--colWhite);
         border-radius: 0;
     }
 
