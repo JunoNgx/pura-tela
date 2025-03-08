@@ -72,6 +72,27 @@ export const isColourGalleryValid = (data: any[]) => {
 };
 
 
+export const isPaletteGalleryValid = (data: any[]) => {
+    if (!data) return false;
+
+    try {
+        for (const item of data) {
+            if (!item.name) return false;
+            if (!item.colours) return false;
+            if (item.colours.length < 2 || item.colours.length > 5) return false;
+
+            for (const colour of item.colours) {
+                if (!isHexCodeValid(colour)) return false;
+            }
+        }
+
+        return true;
+    } catch (err) {        
+        return false;
+    }
+};
+
+
 export const isCurrColoursValid = (data: string[]) => {
     if (!data) return false;
     if (data.length !== 5) return false;
