@@ -2,7 +2,6 @@
     import MaterialSymbolsLightHelp from "~icons/material-symbols-light/help";
     import MaterialSymbolsLightHelpOutline from "~icons/material-symbols-light/help-outline";
     import BaseThemeModeContainer from "src/components/BaseThemeModeContainer.svelte";
-	import BaseHelpDialog from "src/components/BaseHelpDialog.svelte";
 
     const getHelpDialog = () => {
         return document.getElementById("helpDialog") as HTMLDialogElement;
@@ -38,7 +37,6 @@
                 <MaterialSymbolsLightHelp/>
             </div>
         </button>
-        <BaseHelpDialog closeDialog={hideDialog}/>
     </div>
     <div class="Header_Right">
         <BaseThemeModeContainer/>
