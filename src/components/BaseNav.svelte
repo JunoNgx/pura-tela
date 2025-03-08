@@ -51,12 +51,15 @@
         <hr class="Nav__Separator">
 
         <div class="Nav__Router">
-            <NavItem route={"/"} label={"Create Wallpaper"} />
-            <NavItem route={"/generate"} label={"Generate Palette"} />
-            <NavItem route={"/colours"} label={"Colour Gallery"} />
-            <NavItem route={"/palettes"} label={"Palette Gallery"} />
-            <NavItem route={"/sizes"} label={"Size Info"} />
-            <NavItem route={"/about"} label={"About"} />
+            <span class="Nav__CategoryTitle">Create</span>
+            <NavItem route={"/"} label={"wallpaper"} />
+            <NavItem route={"/generate"} label={"palette"} />
+            <span class="Nav__CategoryTitle">Gallery</span>
+            <NavItem route={"/colours"} label={"colours"} />
+            <NavItem route={"/palettes"} label={"palettes"} />
+            <span class="Nav__CategoryTitle">Info</span>
+            <NavItem route={"/sizes"} label={"size"} />
+            <NavItem route={"/about"} label={"about"} />
         </div>
 
         <hr class="Nav__Separator">
@@ -104,6 +107,14 @@
         flex-direction: column;
         align-items: flex-end;
         gap: 0.5rem;
+        width: 80%;
+    }
+
+    .Nav__CategoryTitle {
+        color: var(--colSec);
+        text-transform: uppercase;
+        align-self: flex-start;
+        margin-top: 1rem;
     }
 
     /* .Nav__ThemeModeSettings {
