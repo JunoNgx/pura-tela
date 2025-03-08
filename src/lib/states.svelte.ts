@@ -213,10 +213,10 @@ export const setCurrColourAtIndex = (index: number, newValue: string) => {
     tempArr[index] = newValue;
     currColours.set(tempArr);
 };
-export const getCurrColourAtIndexAsHex = (index: number) => {
-    const outputString = $derived(`#${getCurrColourAtIndex(index)}`);
-    return outputString;
-};
+// export const getCurrColourAtIndexAsHex = (index: number) => {
+//     const outputString = $derived(`#${getCurrColourAtIndex(index)}`);
+//     return outputString;
+// };
 /**
  * This pulls the colour at the target index, and adds another random colour to
  * the end, to maintain the amount of `currColours`.
