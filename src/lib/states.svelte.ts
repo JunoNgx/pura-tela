@@ -84,6 +84,10 @@ export const deletePaletteAtIndex = (index: number) => {
     paletteGallery.set([...befPortion, ...aftPortion]);
 };
 
+export const resetPaletteGallery = () => {
+    paletteGallery.set(defaultPaletteGallery);
+};
+
 /**
  * Size gallery list
  */
