@@ -118,10 +118,11 @@
     }
 
     .Studio__PreviewBlock {
-        aspect-ratio: 1;
+        aspect-ratio: 3/2;
         height: auto;
         border: 1px solid var(--colPri);
         box-sizing: border-box;
+        overflow: hidden;
 
         display: flex;
         justify-content: space-around;
@@ -208,7 +209,7 @@
         }
 
         .Studio__PreviewBlock {
-            /* aspect-ratio: 1; */
+            aspect-ratio: 7/8;
             /* height: 180px; */
         }
         

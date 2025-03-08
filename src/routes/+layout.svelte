@@ -29,7 +29,7 @@
 
     .Wrapper {
         min-height: 85dvh;
-        max-width: 800px;
+        max-width: 1200px;
         margin: 1rem auto 2rem;
         display: flex;
         justify-content: space-between;
@@ -39,14 +39,18 @@
 
     .MainContent {
         flex-grow: 1;
-        max-width: 600px;
-        /* display: flex;
-        flex-direction: column;
-        align-items: center; */
+        /* This one means "Don't use any more space than available". Sly. */
+        min-width: 0;
     }
 
     .MobileLogoWrapper {
         display: none;
+    }
+
+    @media screen and (width < 1200px) {
+        .Wrapper {
+            max-width: 100vw;
+        }
     }
 
     @media screen and (width < 850px) {
