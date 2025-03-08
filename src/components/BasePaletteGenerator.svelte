@@ -1,9 +1,14 @@
 <script lang="ts">
+    import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightGesture from '~icons/material-symbols-light/gesture';
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
 
 	import { addToPaletteGalleryFromPaletteGenerator, palGenColours, randomiseUnlockedColoursForPalGen } from "src/lib/states.svelte.js";
 	import PaletteGeneratorItem from "./PaletteGeneratorItem.svelte";
+
+    const addColour = () => {
+
+    };
 
     const generatePalette = () => {
         randomiseUnlockedColoursForPalGen();
@@ -22,6 +27,17 @@
                 index={index}
             />
         {/each}
+    </div>
+
+    <div class="PaletteGenerator__ActionsContainerUpper">
+        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            onclick={addColour}
+            title={"Add colour"}
+            aria-label={"Add colour"}
+        >
+            <MaterialSymbolsLightAdd />
+            <span>Add colour</span>
+        </button>
     </div>
 
     <div class="PaletteGenerator__ActionsContainer">
@@ -51,6 +67,12 @@
         flex-direction: row;
         width: 100%;
         min-height: 40rem;
+    }
+
+    .PaletteGenerator__ActionsContainerUpper {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .PaletteGenerator__ActionsContainer {
