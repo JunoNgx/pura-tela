@@ -80,7 +80,7 @@
     .Nav {
         position: sticky;
         top: 1rem;
-        z-index: 20;
+        z-index: 50;
     }
 
     .Nav__Content {
