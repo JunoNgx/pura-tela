@@ -37,6 +37,8 @@
         border: none;
         transition: all var(--transTime) ease-in-out;
         padding: 0;
+        /* Stop the content (hexCode) from restricting min-width when not focused*/
+        width: 0px;
     }
 
     .PaletteListItem__PaletteColourCode {
@@ -49,11 +51,10 @@
 
     .PaletteListItem__PaletteColourItem:focus,
     .PaletteListItem__PaletteColourItem:hover {
-        flex-grow: 5;
+        flex-grow: 2;
         z-index: 30;
 
         .PaletteListItem__PaletteColourCode {
-            margin: 0 0.5rem;
             opacity: 1;
         }
     }
