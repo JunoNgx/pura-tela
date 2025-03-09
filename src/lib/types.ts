@@ -41,6 +41,7 @@ export enum WallpaperMode {
     SOLID = "solid",
     GRADIENT = "gradient",
     POP_ART_SQUARE = "popArtSquare",
+    PALETTE_ROW = "paletteRow",
 };
 
 export type PalGenItem = {
