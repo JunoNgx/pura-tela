@@ -39,7 +39,8 @@ export type State<T> = {
 
 export enum WallpaperMode {
     SOLID = "solid",
-    GRADIENT = "gradient"
+    GRADIENT = "gradient",
+    POP_ART_SQUARE = "popArtSquare",
 };
 
 export type PalGenItem = {
