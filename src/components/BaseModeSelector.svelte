@@ -44,10 +44,6 @@
         margin-top: 1rem;
     }
 
-    .ModeSelect__ModeItem {
-        flex-grow: 1;
-    }
-
     .ModeSelect__ModeItem--IsSelected {
         box-shadow: 0 0 0 4px var(--colPri);
     }
