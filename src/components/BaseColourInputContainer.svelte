@@ -37,25 +37,25 @@
             </li>
         {/each}
     </ul>
-    {#if getCurrColourInUseCount() < getMaxColourInUseCount()}
-        <div class="ColourInputContainer__ActionContainer">
-            {#if getCurrColourInUseCount() > 1}
-                <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-                    onclick={handleSavePalette}
-                >
-                    <MaterialSymbolsLightCalendarViewWeekSharp />
-                    <span>Save palette</span>
-                </button>
-            {/if}
 
+    <div class="ColourInputContainer__ActionContainer">
+        {#if getCurrColourInUseCount() > 1}
             <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-                onclick={handleAddColour}
+                onclick={handleSavePalette}
             >
-                <MaterialSymbolsLightAdd />
-                <span>Add colour</span>
+                <MaterialSymbolsLightCalendarViewWeekSharp />
+                <span>Save palette</span>
             </button>
-        </div>
-    {/if}
+        {/if}
+
+        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            disabled={getCurrColourInUseCount() >= getMaxColourInUseCount()}
+            onclick={handleAddColour}
+        >
+            <MaterialSymbolsLightAdd />
+            <span>Add colour</span>
+        </button>
+    </div>
 </div>
 
 <style>
