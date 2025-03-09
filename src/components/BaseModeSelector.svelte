@@ -1,6 +1,6 @@
 <script lang="ts">
     import { WallpaperMode } from "src/lib/types.js";
-    import { currWallpaperMode, isGradientMode, isPopArtSquareMode, isSolidMode, readjustCurrColourInUseCount } from "src/lib/states.svelte.js";
+    import { currWallpaperMode, isGradientMode, isPaletteRowMode, isPopArtSquareMode, isSolidMode, readjustCurrColourInUseCount } from "src/lib/states.svelte.js";
 
     const handleWallpaperModeChange = (newValue: WallpaperMode) => {
         currWallpaperMode.set(newValue);
@@ -28,6 +28,12 @@
             onclick={() => { handleWallpaperModeChange(WallpaperMode.POP_ART_SQUARE); }}
         >
             Pop Art Square
+        </button>
+        <button class="ModeSelect__ModeItem"
+            class:ModeSelect__ModeItem--IsSelected={isPaletteRowMode()}
+            onclick={() => { handleWallpaperModeChange(WallpaperMode.PALETTE_ROW); }}
+        >
+            Palette Row
         </button>
     </div>
 </section>
