@@ -45,20 +45,6 @@
         </div>
 
         <div class="PaletteListItem__Buttons">
-            <button class="PaletteListItem__ActionBtn IconButton"
-                onclick={passToPalGen}
-                title={"Pass this palette to Palette Generator"}
-                aria-label="Pass this palette to Palette Generator"
-            >
-                <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightPaletteOutline/>
-                </div>
-                <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightPalette/>
-                </div>
-            </button>
-
-
             <button class="PaletteListItem__ActionBtn
                 IconButton
                 "
@@ -72,7 +58,19 @@
                 <div class="IconButton__HoverIcon">
                     <MaterialSymbolsLightColorize/>
                 </div>
-                
+            </button>
+
+            <button class="PaletteListItem__ActionBtn IconButton"
+                onclick={passToPalGen}
+                title={"Pass this palette to Palette Generator"}
+                aria-label="Pass this palette to Palette Generator"
+            >
+                <div class="IconButton__RegularIcon">
+                    <MaterialSymbolsLightPaletteOutline/>
+                </div>
+                <div class="IconButton__HoverIcon">
+                    <MaterialSymbolsLightPalette/>
+                </div>
             </button>
 
             <button class="PaletteListItem__ActionBtn Danger IconButton"
