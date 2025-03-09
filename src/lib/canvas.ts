@@ -106,7 +106,7 @@ const renderForPopArtSquareMode = (
     // Draw top right square
     drawSquare({
         colour: colours[2],
-        x: mainSquareX + secSquareSize,
+        x: mainSquareX + (mainSquareSize / 2),
         y: mainSquareY,
         size: secSquareSize,
     }); 
@@ -114,8 +114,8 @@ const renderForPopArtSquareMode = (
     // Draw bottom right square
     drawSquare({
         colour: colours[3],
-        x: mainSquareX + secSquareSize,
-        y: mainSquareY + secSquareSize,
+        x: mainSquareX + (mainSquareSize / 2),
+        y: mainSquareY + (mainSquareSize / 2),
         size: secSquareSize,
     }); 
 };
