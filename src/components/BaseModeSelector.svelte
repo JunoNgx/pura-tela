@@ -1,6 +1,6 @@
 <script lang="ts">
     import { WallpaperMode } from "src/lib/types.js";
-    import { currWallpaperMode, isGradientMode, isSolidMode, readjustCurrColourInUseCount } from "src/lib/states.svelte.js";
+    import { currWallpaperMode, isGradientMode, isPopArtSquareMode, isSolidMode, readjustCurrColourInUseCount } from "src/lib/states.svelte.js";
 
     const handleWallpaperModeChange = (newValue: WallpaperMode) => {
         currWallpaperMode.set(newValue);
@@ -22,6 +22,12 @@
             onclick={() => { handleWallpaperModeChange(WallpaperMode.GRADIENT); }}
         >
             Gradient wallpaper
+        </button>
+        <button class="ModeSelect__ModeItem"
+            class:ModeSelect__ModeItem--IsSelected={isPopArtSquareMode()}
+            onclick={() => { handleWallpaperModeChange(WallpaperMode.POP_ART_SQUARE); }}
+        >
+            Pop Art Square
         </button>
     </div>
 </section>
