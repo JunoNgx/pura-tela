@@ -102,9 +102,22 @@ const renderForPopArtSquareMode = (
         size: mainSquareSize,
     });
 
+    const secSquareSize = mainSquareSize / 2;
     // Draw top right square
+    drawSquare({
+        colour: colours[2],
+        x: mainSquareX + secSquareSize,
+        y: mainSquareY,
+        size: secSquareSize,
+    }); 
 
     // Draw bottom right square
+    drawSquare({
+        colour: colours[3],
+        x: mainSquareX + secSquareSize,
+        y: mainSquareY + secSquareSize,
+        size: secSquareSize,
+    }); 
 };
 
 export const refitCanvasToContainer = () => {
