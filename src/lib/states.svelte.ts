@@ -129,6 +129,20 @@ export const passPaletteToWallpaperGenerator = (paletteIndex: number) => {
     }
 }
 
+export const passPaletteToPaletteGenerator = (paletteIndex: number) => {
+    try {
+        const palette = paletteGallery.val[paletteIndex];
+        const newVal = palette.colours.map(colour => ({
+            colour,
+            isLocked: false,
+        }));
+
+        palGenColours.set([...newVal]);
+    } catch(error) {
+        throw new Error("Failed to pass palette to Palette Generator");
+    }
+}
+
 /**
  * Size gallery list
  */
