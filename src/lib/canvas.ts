@@ -93,10 +93,12 @@ const renderForPopArtSquareMode = (
 
     // Draw main square
     const mainSquareSize = smallerSide / 2;
+    const mainSquareX = (size.width - mainSquareSize) / 2;
+    const mainSquareY = (size.height - mainSquareSize) / 2;
     drawSquare({
         colour: colours[1],
-        x: (size.width - mainSquareSize) / 2,
-        y: (size.height - mainSquareSize) / 2,
+        x: mainSquareX,
+        y: mainSquareY,
         size: mainSquareSize,
     });
 
