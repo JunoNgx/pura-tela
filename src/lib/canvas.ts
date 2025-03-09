@@ -48,6 +48,10 @@ export const renderCanvas = (
         renderForPopArtSquareMode(renderOptions);
         break;
 
+    case WallpaperMode.PALETTE_ROW:
+        renderForPaletteRowMode(renderOptions);
+        break;
+
     case WallpaperMode.SOLID:
     default:
         renderForSolidMode(renderOptions);
@@ -124,6 +128,35 @@ const renderForPopArtSquareMode = (
         y: mainSquareY + (mainSquareSize / 2),
         size: secSquareSize,
     }); 
+};
+
+const renderForPaletteRowMode = (
+    { ctx, colours, colourCount, size }: CanvasRenderOptions & {
+        ctx: CanvasRenderingContext2D,
+    }
+) => {
+    // Draw background
+    ctx.fillStyle = colours[0];
+    ctx.fillRect(0, 0, size.width, size.height);
+
+    const drawSquare = ({ colour, x, y, size}: squareProps) => {
+        ctx.fillStyle = colour;
+        ctx.fillRect(x, y, size, size);
+    }
+
+    const mainColours = colours.slice(1, colourCount);
+    const baseSize = size.width / (mainColours.length + 2)
+    const commonY = (size.height / 2) - baseSize/2;
+
+    for (let i = 0; i < mainColours.length; i++) {
+        drawSquare({
+            ctx,
+            colour: mainColours[i],
+            x: baseSize * (1 + i),
+            y: commonY,
+            size: baseSize,
+        });
+    };
 };
 
 export const refitCanvasToContainer = () => {
