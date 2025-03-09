@@ -172,6 +172,10 @@ export const isGradientMode = () => {
     const isGradient = $derived(currWallpaperMode.val === WallpaperMode.GRADIENT);
     return isGradient;
 };
+export const isPopArtSquareMode = () => {
+    const isPopArtSquareMode = $derived(currWallpaperMode.val === WallpaperMode.POP_ART_SQUARE);
+    return isPopArtSquareMode;
+};
 
 /**
  * Colour-in-use count
@@ -221,6 +225,8 @@ export const getMinColourInUseCount = () => {
     switch (currWallpaperMode.val) {
     case WallpaperMode.SOLID:
         return 1;
+    case WallpaperMode.POP_ART_SQUARE:
+        return 4;
     case WallpaperMode.GRADIENT:
     default:
         return 2;
@@ -230,6 +236,8 @@ export const getMaxColourInUseCount = () => {
     switch (currWallpaperMode.val) {
     case WallpaperMode.SOLID:
         return 1;
+    case WallpaperMode.POP_ART_SQUARE:
+        return 4;
     case WallpaperMode.GRADIENT:
     default:
         return 5;
