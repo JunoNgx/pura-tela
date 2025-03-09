@@ -31,6 +31,10 @@ export const renderCanvas = (
         renderForGradientMode(renderOptions);
         break;
 
+    case WallpaperMode.POP_ART_SQUARE:
+        renderForPopArtSquareMode(renderOptions);
+        break;
+
     case WallpaperMode.SOLID:
     default:
         renderForSolidMode(renderOptions);
@@ -64,6 +68,41 @@ const renderForSolidMode = (
 ) => {
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
+};
+
+const renderForPopArtSquareMode = (
+    { ctx, colours, size }: CanvasRenderOptions & {
+        ctx: CanvasRenderingContext2D,
+    }
+) => {
+    // Draw background
+    ctx.fillStyle = colours[0];
+    ctx.fillRect(0, 0, size.width, size.height);
+
+    const smallerSide = Math.min(size.width, size.height);
+    type squareProps = {
+        colour: string,
+        x: number,
+        y: number,
+        size: number,
+    };
+    const drawSquare = ({ colour, x, y, size}: squareProps) => {
+        ctx.fillStyle = colour;
+        ctx.fillRect(x, y, size, size);
+    }
+
+    // Draw main square
+    const mainSquareSize = smallerSide / 2;
+    drawSquare({
+        colour: colours[1],
+        x: (size.width - mainSquareSize) / 2,
+        y: (size.height - mainSquareSize) / 2,
+        size: mainSquareSize,
+    });
+
+    // Draw top right square
+
+    // Draw bottom right square
 };
 
 export const refitCanvasToContainer = () => {
