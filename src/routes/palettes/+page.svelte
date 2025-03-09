@@ -13,6 +13,7 @@
 </script>
 
 <h2 class="VisuallyHidden">Palette Gallery</h2>
+<div class="PaletteRouteNotice">Click on any colour to copy its hex code.</div>
 <BasePaletteList/>
 <button class="ResetButton"
     onclick={handleResetGallery}
@@ -21,3 +22,9 @@
     <MaterialSymbolsLightResetSettingsRounded/>
     Reset gallery
 </button>
+
+<style>
+    .PaletteRouteNotice {
+        margin-bottom: 2rem;
+    }
+</style>
