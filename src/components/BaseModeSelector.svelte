@@ -1,6 +1,6 @@
 <script lang="ts">
     import { WallpaperMode } from "src/lib/types.js";
-    import { currWallpaperMode, isGradientMode, isSolidMode, readjustCurrColourInUseCount } from "src/lib/states.svelte.js";
+    import { currWallpaperMode, isGradientMode, isPaletteRowMode, isPopArtSquareMode, isSolidMode, readjustCurrColourInUseCount } from "src/lib/states.svelte.js";
 
     const handleWallpaperModeChange = (newValue: WallpaperMode) => {
         currWallpaperMode.set(newValue);
@@ -23,6 +23,18 @@
         >
             Gradient wallpaper
         </button>
+        <button class="ModeSelect__ModeItem"
+            class:ModeSelect__ModeItem--IsSelected={isPopArtSquareMode()}
+            onclick={() => { handleWallpaperModeChange(WallpaperMode.POP_ART_SQUARE); }}
+        >
+            Pop Art Square
+        </button>
+        <button class="ModeSelect__ModeItem"
+            class:ModeSelect__ModeItem--IsSelected={isPaletteRowMode()}
+            onclick={() => { handleWallpaperModeChange(WallpaperMode.PALETTE_ROW); }}
+        >
+            Palette Row
+        </button>
     </div>
 </section>
 
@@ -32,15 +44,10 @@
     }
 
     .ModeSelect__Container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         margin-top: 1rem;
-    }
-
-    .ModeSelect__ModeItem {
-        flex-grow: 1;
     }
 
     .ModeSelect__ModeItem--IsSelected {

@@ -9,6 +9,19 @@ export type CanvasRenderOptions = {
     mode: WallpaperMode,
 };
 
+type squareProps = {
+    ctx: CanvasRenderingContext2D,
+    colour: string,
+    x: number,
+    y: number,
+    size: number,
+};
+
+const drawSquare = ({ ctx, colour, x, y, size}: squareProps) => {
+    ctx.fillStyle = colour;
+    ctx.fillRect(x, y, size, size);
+}
+
 // TODO: to refactor to ColourItem[]
 export const renderCanvas = (
     { size, colours, colourCount, mode }: CanvasRenderOptions
@@ -29,6 +42,14 @@ export const renderCanvas = (
     switch(mode) {
     case WallpaperMode.GRADIENT:
         renderForGradientMode(renderOptions);
+        break;
+
+    case WallpaperMode.POP_ART_SQUARE:
+        renderForPopArtSquareMode(renderOptions);
+        break;
+
+    case WallpaperMode.PALETTE_ROW:
+        renderForPaletteRowMode(renderOptions);
         break;
 
     case WallpaperMode.SOLID:
@@ -64,6 +85,78 @@ const renderForSolidMode = (
 ) => {
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
+};
+
+const renderForPopArtSquareMode = (
+    { ctx, colours, size }: CanvasRenderOptions & {
+        ctx: CanvasRenderingContext2D,
+    }
+) => {
+    // Draw background
+    ctx.fillStyle = colours[0];
+    ctx.fillRect(0, 0, size.width, size.height);
+
+    const smallerSide = Math.min(size.width, size.height);
+
+    // Draw main square
+    const mainSquareSize = smallerSide / 2;
+    const mainSquareX = (size.width - mainSquareSize) / 2;
+    const mainSquareY = (size.height - mainSquareSize) / 2;
+    drawSquare({
+        ctx,
+        colour: colours[1],
+        x: mainSquareX,
+        y: mainSquareY,
+        size: mainSquareSize,
+    });
+
+    const secSquareSize = mainSquareSize / 2;
+    // Draw top right square
+    drawSquare({
+        ctx,
+        colour: colours[2],
+        x: mainSquareX + (mainSquareSize / 2),
+        y: mainSquareY,
+        size: secSquareSize,
+    }); 
+
+    // Draw bottom right square
+    drawSquare({
+        ctx,
+        colour: colours[3],
+        x: mainSquareX + (mainSquareSize / 2),
+        y: mainSquareY + (mainSquareSize / 2),
+        size: secSquareSize,
+    }); 
+};
+
+const renderForPaletteRowMode = (
+    { ctx, colours, colourCount, size }: CanvasRenderOptions & {
+        ctx: CanvasRenderingContext2D,
+    }
+) => {
+    // Draw background
+    ctx.fillStyle = colours[0];
+    ctx.fillRect(0, 0, size.width, size.height);
+
+    const drawSquare = ({ colour, x, y, size}: squareProps) => {
+        ctx.fillStyle = colour;
+        ctx.fillRect(x, y, size, size);
+    }
+
+    const mainColours = colours.slice(1, colourCount);
+    const baseSize = size.width / (mainColours.length + 2)
+    const commonY = (size.height / 2) - baseSize/2;
+
+    for (let i = 0; i < mainColours.length; i++) {
+        drawSquare({
+            ctx,
+            colour: mainColours[i],
+            x: baseSize * (1 + i),
+            y: commonY,
+            size: baseSize,
+        });
+    };
 };
 
 export const refitCanvasToContainer = () => {

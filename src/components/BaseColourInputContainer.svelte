@@ -37,25 +37,24 @@
             </li>
         {/each}
     </ul>
-    {#if getCurrColourInUseCount() < getMaxColourInUseCount()}
-        <div class="ColourInputContainer__ActionContainer">
-            {#if getCurrColourInUseCount() > 1}
-                <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-                    onclick={handleSavePalette}
-                >
-                    <MaterialSymbolsLightCalendarViewWeekSharp />
-                    <span>Save palette</span>
-                </button>
-            {/if}
 
-            <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-                onclick={handleAddColour}
-            >
-                <MaterialSymbolsLightAdd />
-                <span>Add colour</span>
-            </button>
-        </div>
-    {/if}
+    <div class="ColourInputContainer__ActionContainer">
+        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            disabled={getCurrColourInUseCount() <= 1}
+            onclick={handleSavePalette}
+        >
+            <MaterialSymbolsLightCalendarViewWeekSharp />
+            <span>Save palette</span>
+        </button>
+
+        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            disabled={getCurrColourInUseCount() >= getMaxColourInUseCount()}
+            onclick={handleAddColour}
+        >
+            <MaterialSymbolsLightAdd />
+            <span>Add colour</span>
+        </button>
+    </div>
 </div>
 
 <style>
@@ -78,7 +77,7 @@
     .ColourInputContainer__ActionContainer {
         margin-top: 2rem;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         gap: 1rem;
     }
 

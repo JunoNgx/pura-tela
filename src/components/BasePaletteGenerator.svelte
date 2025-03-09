@@ -67,7 +67,7 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        min-height: 40rem;
+        min-height: 35rem;
     }
 
     .PaletteGenerator__ActionsContainerUpper {

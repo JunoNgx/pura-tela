@@ -75,7 +75,9 @@ button:hover {
 
 button:disabled,
 button:disabled:hover {
+    cursor: not-allowed;
     color: var(--colSec);
+    border-color: var(--colSec);
 }
 
 input {
