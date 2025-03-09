@@ -9,6 +9,19 @@ export type CanvasRenderOptions = {
     mode: WallpaperMode,
 };
 
+type squareProps = {
+    ctx: CanvasRenderingContext2D,
+    colour: string,
+    x: number,
+    y: number,
+    size: number,
+};
+
+const drawSquare = ({ ctx, colour, x, y, size}: squareProps) => {
+    ctx.fillStyle = colour;
+    ctx.fillRect(x, y, size, size);
+}
+
 // TODO: to refactor to ColourItem[]
 export const renderCanvas = (
     { size, colours, colourCount, mode }: CanvasRenderOptions
@@ -80,22 +93,13 @@ const renderForPopArtSquareMode = (
     ctx.fillRect(0, 0, size.width, size.height);
 
     const smallerSide = Math.min(size.width, size.height);
-    type squareProps = {
-        colour: string,
-        x: number,
-        y: number,
-        size: number,
-    };
-    const drawSquare = ({ colour, x, y, size}: squareProps) => {
-        ctx.fillStyle = colour;
-        ctx.fillRect(x, y, size, size);
-    }
 
     // Draw main square
     const mainSquareSize = smallerSide / 2;
     const mainSquareX = (size.width - mainSquareSize) / 2;
     const mainSquareY = (size.height - mainSquareSize) / 2;
     drawSquare({
+        ctx,
         colour: colours[1],
         x: mainSquareX,
         y: mainSquareY,
@@ -105,6 +109,7 @@ const renderForPopArtSquareMode = (
     const secSquareSize = mainSquareSize / 2;
     // Draw top right square
     drawSquare({
+        ctx,
         colour: colours[2],
         x: mainSquareX + (mainSquareSize / 2),
         y: mainSquareY,
@@ -113,6 +118,7 @@ const renderForPopArtSquareMode = (
 
     // Draw bottom right square
     drawSquare({
+        ctx,
         colour: colours[3],
         x: mainSquareX + (mainSquareSize / 2),
         y: mainSquareY + (mainSquareSize / 2),
