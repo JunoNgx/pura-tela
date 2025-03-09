@@ -3,6 +3,8 @@
     import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
     import MaterialSymbolsLightDeleteOutline from '~icons/material-symbols-light/delete-outline';
+    import MaterialSymbolsLightPalette from "~icons/material-symbols-light/palette";
+    import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
 
 	import { goto } from '$app/navigation';
 	import PaletteListItemColourBtn from "./PaletteListItemColourBtn.svelte";
@@ -18,6 +20,11 @@
 
     const handleChoosePalette = () => {
         passPaletteToWallpaperGenerator(index);
+        goto("/");
+    };
+
+    const passToPalGen = () => {
+        // passPaletteToPaletteGenerator(index);
         goto("/");
     };
 
@@ -38,6 +45,20 @@
         </div>
 
         <div class="PaletteListItem__Buttons">
+            <button class="PaletteListItem__ActionBtn IconButton"
+                onclick={passToPalGen}
+                title={"Pass this palette to Palette Generator"}
+                aria-label="Pass this palette to Palette Generator"
+            >
+                <div class="IconButton__RegularIcon">
+                    <MaterialSymbolsLightPaletteOutline/>
+                </div>
+                <div class="IconButton__HoverIcon">
+                    <MaterialSymbolsLightPalette/>
+                </div>
+            </button>
+
+
             <button class="PaletteListItem__ActionBtn
                 IconButton
                 "
