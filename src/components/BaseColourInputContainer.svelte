@@ -39,14 +39,13 @@
     </ul>
 
     <div class="ColourInputContainer__ActionContainer">
-        {#if getCurrColourInUseCount() > 1}
-            <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-                onclick={handleSavePalette}
-            >
-                <MaterialSymbolsLightCalendarViewWeekSharp />
-                <span>Save palette</span>
-            </button>
-        {/if}
+        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            disabled={getCurrColourInUseCount() <= 1}
+            onclick={handleSavePalette}
+        >
+            <MaterialSymbolsLightCalendarViewWeekSharp />
+            <span>Save palette</span>
+        </button>
 
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
             disabled={getCurrColourInUseCount() >= getMaxColourInUseCount()}
