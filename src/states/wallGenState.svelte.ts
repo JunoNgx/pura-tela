@@ -44,7 +44,7 @@ const isColourIndexValid = (index: number) => {
     return (0 <= index && index <= wallGenColours.val.length - 1);
 };
 
-export const getCurrColourAtIndex = (index: number) => {
+export const getWallGenColoursAtIndex = (index: number) => {
     if (!isColourIndexValid(index)) {
         throw new Error("ERROR: attempt to retrieve colour with an invalid index");
         return;
@@ -53,7 +53,7 @@ export const getCurrColourAtIndex = (index: number) => {
     return wallGenColours.val[index];
 };
 
-export const setCurrColourAtIndex = (index: number, newValue: string) => {
+export const setWallGenColoursAtIndex = (index: number, newValue: string) => {
     if (!isColourIndexValid(index)) {
         throw new Error("ERROR: attempt to set colour with an invalid index");
         return;
@@ -73,7 +73,7 @@ export const setCurrColourAtIndex = (index: number, newValue: string) => {
  * the end, to maintain the amount of `wallGenColours`.
  * @param index The target index
  */
-export const retractCurrColourAtIndex = (index: number) => {
+export const retractWallGenColoursAtIndex = (index: number) => {
     const befPortion = wallGenColours.val.slice(0, index);
     const aftPortion = wallGenColours.val.slice(index + 1);
     const newRandomisedColour = getRandomHexCode();
