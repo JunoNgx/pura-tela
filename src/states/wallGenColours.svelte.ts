@@ -12,7 +12,7 @@ const defaultCurrColoursValue = [
     defaultColourGallery[4].hexCode,
 ];
 
-export const isCurrColoursValid = (data: string[]) => {
+const isCurrColoursValid = (data: string[]) => {
     if (!data) return false;
     if (data.length !== 5) return false;
 
