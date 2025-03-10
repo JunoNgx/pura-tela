@@ -1,6 +1,6 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
-import { createLocalStorageSyncedState } from "src/states/stateUtils.js";
+import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
 import { type State } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 

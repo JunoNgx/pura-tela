@@ -1,5 +1,5 @@
 import { ThemeMode, type State } from "src/lib/types.js";
-import { createLocalStorageSyncedState } from "./stateUtils.js";
+import { createLocalStorageSyncedState } from "./stateUtils.svelte.js";
 
 const isThemeModeValid = (data: any) => {
     if ( data !== ThemeMode.AUTO
