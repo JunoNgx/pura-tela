@@ -12,7 +12,7 @@ export const createLocalStorageSyncedState = <T>({
 
         return {
             get val() { return state; },
-            set set(newVal: T) {
+            set(newVal: T) {
                 state = newVal;
                 localStorage.setItem(key, JSON.stringify(state));
             }
@@ -48,7 +48,7 @@ export const createState = <T>(
 
     return {
         get val() { return state; },
-        set set(v: T) { state = v;}
+        set(v: T) { state = v;}
     }
 };
 
