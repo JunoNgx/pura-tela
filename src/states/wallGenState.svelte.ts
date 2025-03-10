@@ -4,7 +4,7 @@ import { createLocalStorageSyncedState } from "src/states/stateUtils.js";
 import { type State } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 
-const defaultCurrColoursValue = [
+const defaultWallGenColoursValue = [
     defaultColourGallery[0].hexCode,
     defaultColourGallery[1].hexCode,
     defaultColourGallery[2].hexCode,
@@ -30,7 +30,7 @@ const isCurrColoursValid = (data: string[]) => {
 
 export const wallGenColours = createLocalStorageSyncedState({
     key: "currColours",
-    defaultValue: defaultCurrColoursValue,
+    defaultValue: defaultWallGenColoursValue,
     validationFunc: isCurrColoursValid,
 }) as State<string[]>;
 
