@@ -12,7 +12,7 @@ const defaultWallGenColoursValue = [
     defaultColourGallery[4].hexCode,
 ];
 
-const isCurrColoursValid = (data: string[]) => {
+const isWallGenColoursValid = (data: string[]) => {
     if (!data) return false;
     if (data.length !== 5) return false;
 
@@ -31,7 +31,7 @@ const isCurrColoursValid = (data: string[]) => {
 export const wallGenColours = createLocalStorageSyncedState({
     key: "currColours",
     defaultValue: defaultWallGenColoursValue,
-    validationFunc: isCurrColoursValid,
+    validationFunc: isWallGenColoursValid,
 }) as State<string[]>;
 
 // TODO: maybe use getColoursInUse() instead
