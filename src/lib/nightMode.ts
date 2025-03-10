@@ -1,4 +1,4 @@
-import { themeMode } from "./states.svelte.js";
+import { themeMode } from "src/states/themeModeState.svelte.js";
 import { ThemeMode } from "./types.js";
 
 export const setupAutoSettingsListener = () => {
