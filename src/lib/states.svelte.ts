@@ -15,11 +15,11 @@ import { createLocalStorageSyncedState, isColourCountValid, isColourGalleryValid
 /**
  * Theme Mode
  */
-export const themeMode = createLocalStorageSyncedState({
-    key: "themeMode",
-    defaultValue: ThemeMode.AUTO,
-    validationFunc: isThemeModeValid,
-}) as State<ThemeMode>;
+// export const themeMode = createLocalStorageSyncedState({
+//     key: "themeMode",
+//     defaultValue: ThemeMode.AUTO,
+//     validationFunc: isThemeModeValid,
+// }) as State<ThemeMode>;
 
 /**
  * Colour gallery list
