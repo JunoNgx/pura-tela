@@ -2,7 +2,7 @@
 A minimalist solid colour wallpaper generator, created for the web.
 
 ## release/prime 
-This branch is a special snapshot of the early version of this app. For the latest version, check the main branch, 
+This branch is a special snapshot of the early version (`v1.0`) of this app. For the latest version, check the main branch, 
 
 ## Origin
 This is a spin-off/enhanced remake of [Pura](https://github.com/JunoNgx/flutter-pura), a native Android app made with Flutter, which was delisted shortly before this project started.
