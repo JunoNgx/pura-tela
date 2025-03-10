@@ -34,12 +34,6 @@ export const wallGenColours = createLocalStorageSyncedState({
     validationFunc: isWallGenColoursValid,
 }) as State<string[]>;
 
-// TODO: maybe use getColoursInUse() instead
-export const convertWallGensColoursToArrayOfHex = () => {
-    const hexCodeList = $derived(wallGenColours.val.map(item => `#${item}`));
-    return hexCodeList;
-};
-
 const isColourIndexValid = (index: number) => {
     return (0 <= index && index <= wallGenColours.val.length - 1);
 };
@@ -78,6 +72,12 @@ export const retractWallGenColoursAtIndex = (index: number) => {
     const aftPortion = wallGenColours.val.slice(index + 1);
     const newRandomisedColour = getRandomHexCode();
     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
+};
+
+// TODO: maybe use getColoursInUse() instead
+export const convertWallGensColoursToArrayOfHex = () => {
+    const hexCodeList = $derived(wallGenColours.val.map(item => `#${item}`));
+    return hexCodeList;
 };
 
 // export const getColoursInUse = () => {
