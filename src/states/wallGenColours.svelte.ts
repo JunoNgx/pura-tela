@@ -33,3 +33,8 @@ export const wallGenColours = createLocalStorageSyncedState({
     defaultValue: defaultCurrColoursValue,
     validationFunc: isCurrColoursValid,
 }) as State<string[]>;
+
+export const convertWallGensColoursToArrayOfHex = () => {
+    const hexCodeList = $derived(wallGenColours.val.map(item => `#${item}`));
+    return hexCodeList;
+};
