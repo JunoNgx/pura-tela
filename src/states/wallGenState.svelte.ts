@@ -1,9 +1,9 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { WallpaperMode, type State } from "src/lib/types.js";
+import { WallpaperMode, type SizeItem, type State } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
-import { sizeOptions } from "./sizeGalleryState.svelte.js";
+import { sizeGallery, sizeOptions } from "./sizeGalleryState.svelte.js";
 
 /**
  * Wallpaper Generator current colours
@@ -226,7 +226,7 @@ export const getMaxWallGenColoursInUseCount = () => {
 };
 
 /**
- * sizeOptionIndex
+ * Wallpaper Generator size option index
  */
 const isCurrSizeOptionIndexValid = (data: any) => {
     if (data === null || data === undefined || !sizeOptions) {
@@ -246,11 +246,16 @@ const isCurrSizeOptionIndexValid = (data: any) => {
     }
 };
 
-export const currSizeOptionIndex = createLocalStorageSyncedState({
+export const wallGenSizeOptionIndex = createLocalStorageSyncedState({
     key: "sizeOptionsIndex",
     defaultValue: 0,
     validationFunc: isCurrSizeOptionIndexValid,
 }) as State<number>;
+ 
+export const getWallGenSizeOptionIndex = () => {
+    const option = $derived<SizeItem>(sizeGallery[wallGenSizeOptionIndex.val]);
+    return option;
+};
 
 /**
  * Sample text setting

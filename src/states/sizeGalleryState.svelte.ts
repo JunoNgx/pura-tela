@@ -23,14 +23,14 @@ const generateSizeGallery = (rawOptions: rawParseSizeOptionItem[]) => {
 };
 
 const isSizeGalleryValid = (data: any) => {
-    if (data === null || data === undefined || !sizeOptions) {
+    if (data === null || data === undefined || !sizeGallery) {
         return false;
     }
 
     try {
         parseInt(data);
 
-        if (data < 0 || data > sizeOptions.length - 1) {
+        if (data < 0 || data > sizeGallery.length - 1) {
             return false;
         }
 
@@ -40,15 +40,4 @@ const isSizeGalleryValid = (data: any) => {
     }
 };
 
-export const sizeOptions = generateSizeGallery(defaultSizeOptions);
-
-export const sizeGallery = createLocalStorageSyncedState({
-    key: "sizeOptionsIndex",
-    defaultValue: 0,
-    validationFunc: isSizeGalleryValid,
-}) as State<number>;
- 
-export const getCurrSizeOption = () => {
-    const option = $derived<SizeItem>(sizeOptions[currSizeOptionIndex.val]);
-    return option;
-};
+export const sizeGallery = generateSizeGallery(defaultSizeOptions);
