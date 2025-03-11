@@ -115,12 +115,19 @@ export const tryParseFromStringToPalGen = (inputStr: string) => {
 
     try {
         for (const separator of allowedSeparators) {
-            const arr = inputStr.split(separator, MAX_COLOUR_COUNT).map(
-                colour => colour
-                    .replaceAll("\"", "")
+            const arr = inputStr.split(separator, MAX_COLOUR_COUNT).map(colour => {
+                const strippedStr = colour.replaceAll("\"", "")
                     .replaceAll("\'", "")
-                    .replaceAll("#", "")
-            );
+                    .replaceAll("#", "");
+
+                if (strippedStr.length === 3) {
+                    // Attempt to convert 3-char hex codes to 6-char hex codes
+                    return strippedStr
+                        .split("")
+                        .map(char => char + char)
+                        .join("");
+                } else return strippedStr;
+            });
 
             if (isArrayOfHexCodesValid(arr)) {
                 isSuccessful = true;
@@ -136,6 +143,7 @@ export const tryParseFromStringToPalGen = (inputStr: string) => {
         if (!isSuccessful) {
             throw new Error("Data is invalid");
         }
+
     } catch(error) {
         console.error(error);
         window.alert(error);
