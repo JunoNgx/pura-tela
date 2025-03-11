@@ -3,6 +3,7 @@ import defaultColourGallery from "src/data/colours.json";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
 import { WallpaperMode, type State } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
+import { sizeOptions } from "./sizeOptionsState.svelte.js";
 
 const defaultWallGenColoursValue = [
     defaultColourGallery[0].hexCode,
@@ -123,4 +124,100 @@ export const isPopArtSquareMode = () => {
 export const isPaletteRowMode = () => {
     const isPaletteRowMode = $derived(wallGenMode.val === WallpaperMode.PALETTE_ROW);
     return isPaletteRowMode;
+};
+
+/**
+ * Colour-in-use count
+ */
+export const isWallGenColoursInUseCountValid = (data: any) => {
+    if (data === null || data === undefined || !sizeOptions) {
+        return false;
+    }
+
+    try {
+        parseInt(data);
+
+        if (data < 1 || data > 5) {
+            return false;
+        }
+
+        return true;
+    } catch (err) {
+        return false;
+    }
+};
+
+const wallGenColoursInUseCount = createLocalStorageSyncedState({
+    key: "currColourInUseCount",
+    defaultValue: 1,
+    validationFunc: isWallGenColoursInUseCountValid
+}) as State<number>;
+
+export const getWallGenColourInUseCount = () => {
+    const currCount = $derived(wallGenColoursInUseCount.val);
+    return currCount;
+};
+
+export const setWallGenColourInUseCount = (newValue: number) => {
+    if (!isWallGenColoursInUseCountValid(newValue)) {
+        throw new Error("Invalid colour in use count");
+    }
+
+    wallGenColoursInUseCount.set(newValue);
+};
+
+export const increaseWallGenColourInUseCount = () => {
+    if (wallGenColoursInUseCount.val === getMaxColourInUseCount()) {
+        throw new Error("Maximum colour in use count reached");
+    }
+
+    wallGenColoursInUseCount.set(wallGenColoursInUseCount.val + 1);
+};
+
+export const decreaseWallGenColourInUseCount = () => {
+    if (wallGenColoursInUseCount.val === getMinColourInUseCount()) {
+        throw new Error("Maximum colour in use count reached");
+    }
+
+    wallGenColoursInUseCount.set(wallGenColoursInUseCount.val - 1);
+};
+
+export const readjustCurrColourInUseCount = () => {
+    const currMinColourCount = getMinColourInUseCount();
+    if (getWallGenColourInUseCount() < currMinColourCount) {
+        setWallGenColourInUseCount(currMinColourCount);
+    }
+
+    const currMaxColourCount = getMaxColourInUseCount();
+    if (getWallGenColourInUseCount() > currMaxColourCount) {
+        setWallGenColourInUseCount(currMaxColourCount);
+    }
+};
+
+export const getMinColourInUseCount = () => {
+    switch (wallGenMode.val) {
+    case WallpaperMode.SOLID:
+        return 1;
+    case WallpaperMode.POP_ART_SQUARE:
+        return 4;
+    case WallpaperMode.POP_ART_SQUARE:
+        return 2;
+    case WallpaperMode.GRADIENT:
+    default:
+        return 2;
+    }
+};
+
+export const getMaxColourInUseCount = () => {
+    switch (wallGenMode.val) {
+    case WallpaperMode.SOLID:
+        return 1;
+    case WallpaperMode.POP_ART_SQUARE:
+        return 4;
+    case WallpaperMode.POP_ART_SQUARE:
+        return 5;
+    case WallpaperMode.GRADIENT:
+    default:
+        return 5;
+    }
 };
