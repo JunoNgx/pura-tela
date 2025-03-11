@@ -221,3 +221,22 @@ export const getMaxColourInUseCount = () => {
         return 5;
     }
 };
+
+/**
+ * Sample text setting
+ */
+const isShouldShowSampleTextValid = (data: any) => {
+    if ( data !== true
+        && data !== false
+    ) {
+        return false
+    }
+
+    return true;
+};
+
+export const shouldShowSampleText = createLocalStorageSyncedState({
+    key: "shouldShowSampleText",
+    defaultValue: false,
+    validationFunc: isShouldShowSampleTextValid,
+}) as State<boolean>;
