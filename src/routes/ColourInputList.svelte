@@ -44,6 +44,18 @@
         {/each}
     </ul>
 
+    <div class="ColourInputContainer__ActionsContainerUpper">
+        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            disabled={getWallGenColourInUseCount() >= getMaxWallGenColoursInUseCount()}
+            onclick={handleAddColour}
+            title="Add another colour to this wallpaper"
+            aria-label="Add another colour to this wallpaper"
+        >
+            <MaterialSymbolsLightAdd />
+            <span>Add colour</span>
+        </button>
+    </div>
+
     <div class="ColourInputContainer__ActionContainer">
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
             disabled={getWallGenColourInUseCount() <= 1}
@@ -64,16 +76,6 @@
             <MaterialSymbolsLightPaletteOutline />
             <span>Pass to Palette Generator</span>
         </button>
-
-        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-            disabled={getWallGenColourInUseCount() >= getMaxWallGenColoursInUseCount()}
-            onclick={handleAddColour}
-            title="Add another colour to this wallpaper"
-            aria-label="Add another colour to this wallpaper"
-        >
-            <MaterialSymbolsLightAdd />
-            <span>Add colour</span>
-        </button>
     </div>
 </div>
 
@@ -92,6 +94,12 @@
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
+    }
+
+    .ColourInputContainer__ActionsContainerUpper {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .ColourInputContainer__ActionContainer {
