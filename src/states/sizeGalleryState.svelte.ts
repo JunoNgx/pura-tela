@@ -1,9 +1,6 @@
 
 // @ts-ignore
 import defaultSizeOptions from "src/data/sizes.json";
-import type { SizeItem, State } from "src/lib/types.js";
-import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { currSizeOptionIndex } from "./wallGenState.svelte.js";
 
 /**
  * Size gallery
