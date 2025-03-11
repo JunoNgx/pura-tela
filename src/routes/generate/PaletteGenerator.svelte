@@ -7,9 +7,10 @@
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
 	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
-	import { addToPalGenColours, palGenColours, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
+	import { addToPalGenColours, exportToStringFromPalGen, palGenColours, tryParseFromStringToPalGen, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
 	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { passPalGenToWallpaperGenerator } from "src/states/wallGenState.svelte.js";
+	import SharePanel from "src/components/SharePanel.svelte";
 
     const addColour = () => {
         addToPalGenColours();
@@ -27,6 +28,13 @@
     const savePalette = () => {
         addToPaletteGalleryFromPaletteGenerator();
     };
+
+    const parseFromString = () => {
+        const inputData = window.prompt("Enter palette data. This should be a list of hex codes, with or without the hash sign, with or without double quotes, separated by either dash or comma. Refer to help for more details.");
+        if (!inputData) return;
+
+        tryParseFromStringToPalGen(inputData);
+    };
 </script>
 
 <div class="PaletteGenerator">
@@ -40,6 +48,15 @@
     </div>
 
     <div class="PaletteGenerator__ActionsContainerUpper">
+        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            onclick={parseFromString}
+            title={"Enter a string of data to access a palette"}
+            aria-label={"Enter a string of data to access a palette"}
+        >
+            <MaterialSymbolsLightAdd />
+            <span>Import from string</span>
+        </button>
+
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
             disabled={palGenColours.val.length >= 5}
             onclick={addColour}
@@ -79,6 +96,12 @@
             <span>Save palette</span>
         </button>
     </div>
+
+    <SharePanel
+        title="Share this palette"
+        desc="Save this or send it to someone. Choose [Import from string] to re-access this palette."
+        content={exportToStringFromPalGen()}
+    />
 </div>
 
 <style>
@@ -89,10 +112,13 @@
         min-height: 35rem;
     }
 
+    /* .PaletteGenerator__ActionsContainerLower, */
     .PaletteGenerator__ActionsContainerUpper {
         margin-top: 1rem;
         display: flex;
+        flex-wrap: wrap;
         justify-content: flex-end;
+        gap: 2rem;
     }
 
     .PaletteGenerator__ActionsContainer {
