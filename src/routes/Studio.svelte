@@ -6,7 +6,7 @@
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
 	import ModeSelector from "src/routes/ModeSelector.svelte";
-	import BaseColourInputContainer from "./ColourInputList.svelte";
+	import ColourInputList from "./ColourInputList.svelte";
     import SizeSelector from "src/routes/SizeSelector.svelte";
     
     const handleDownloadClick = () => {
@@ -95,7 +95,7 @@
 
         <div class="Studio__Control">
             <div class="Studio__ColourInputContainer">
-                <BaseColourInputContainer />
+                <ColourInputList />
             </div>
             <div class="Studio__Size">
                 <SizeSelector/>
