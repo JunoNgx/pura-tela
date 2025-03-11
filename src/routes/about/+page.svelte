@@ -30,7 +30,6 @@
     .HelpArticle__Logo {
         max-width: 256px;
         display: block;
-        margin: auto;
-        margin-bottom: 3rem;
+        margin: 3rem auto;
     }
 </style>
