@@ -1,36 +1,36 @@
 <script lang="ts">
     import { WallpaperMode } from "src/lib/types.js";
-    import { currWallpaperMode, isGradientMode, isPaletteRowMode, isPopArtSquareMode, isSolidMode, readjustCurrColourInUseCount } from "src/lib/states.svelte.js";
+	import { isGradientMode, isPaletteRowMode, isPopArtSquareMode, isSolidMode, readjustWallGenColoursInUseCount, wallGenMode } from "src/states/wallGenState.svelte.js";
 
     const handleWallpaperModeChange = (newValue: WallpaperMode) => {
-        currWallpaperMode.set(newValue);
-        readjustCurrColourInUseCount();
+        wallGenMode.set(newValue);
+        readjustWallGenColoursInUseCount();
     }
 </script>
 
-<section class="ModeSelect">
+<section class="ModeSelector">
     <h3>Wallpaper Style</h3>
-    <div class="ModeSelect__Container">
-        <button class="ModeSelect__ModeItem"
-            class:ModeSelect__ModeItem--IsSelected={isSolidMode()}
+    <div class="ModeSelector__Container">
+        <button class="ModeSelector__ModeItem"
+            class:ModeSelector__ModeItem--IsSelected={isSolidMode()}
             onclick={() => { handleWallpaperModeChange(WallpaperMode.SOLID); }}
         >
             Solid wallpaper
         </button>
-        <button class="ModeSelect__ModeItem"
-            class:ModeSelect__ModeItem--IsSelected={isGradientMode()}
+        <button class="ModeSelector__ModeItem"
+            class:ModeSelector__ModeItem--IsSelected={isGradientMode()}
             onclick={() => { handleWallpaperModeChange(WallpaperMode.GRADIENT); }}
         >
             Gradient wallpaper
         </button>
-        <button class="ModeSelect__ModeItem"
-            class:ModeSelect__ModeItem--IsSelected={isPopArtSquareMode()}
+        <button class="ModeSelector__ModeItem"
+            class:ModeSelector__ModeItem--IsSelected={isPopArtSquareMode()}
             onclick={() => { handleWallpaperModeChange(WallpaperMode.POP_ART_SQUARE); }}
         >
             Pop Art Square
         </button>
-        <button class="ModeSelect__ModeItem"
-            class:ModeSelect__ModeItem--IsSelected={isPaletteRowMode()}
+        <button class="ModeSelector__ModeItem"
+            class:ModeSelector__ModeItem--IsSelected={isPaletteRowMode()}
             onclick={() => { handleWallpaperModeChange(WallpaperMode.PALETTE_ROW); }}
         >
             Palette Row
@@ -39,18 +39,14 @@
 </section>
 
 <style>
-    .ModeSelect {
-        /* margin-top: 1.5rem; */
-    }
-
-    .ModeSelect__Container {
+    .ModeSelector__Container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         margin-top: 1rem;
     }
 
-    .ModeSelect__ModeItem--IsSelected {
+    .ModeSelector__ModeItem--IsSelected {
         box-shadow: 0 0 0 4px var(--colPri);
     }
 

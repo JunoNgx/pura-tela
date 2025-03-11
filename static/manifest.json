@@ -1,7 +1,7 @@
 {
-    "name": "Pura Tela Stag",
-    "short_name": "Pura Tela Stag",
-    "description": "A minimalist solid wallpaper generator",
+    "name": "Pura Tela Staging",
+    "short_name": "Pura Tela",
+    "description": "A minimalist wallpaper generator and a simple colour toolkit",
     "categories": ["personalization", "utilities"],
     "orientation": "portrait-primary",
     "display": "standalone",

@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { paletteGallery } from "src/lib/states.svelte.js";
-    import PaletteListItem from "./PaletteListItem.svelte";    
+	import { paletteGallery } from "src/states/paletteGalleryState.svelte.js";
+    import PaletteListItem from "src/routes/palettes/PaletteListItem.svelte";    
 </script>
 
 <ul class="PaletteList FlexList">

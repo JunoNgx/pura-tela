@@ -2,11 +2,12 @@
     import { type ColourItem } from "src/lib/types.js";
 
     import { goto } from '$app/navigation';
-    import { deleteColourAtIndex, getCurrColourInUseCount, setCurrColourAtIndex } from "src/lib/states.svelte";
     import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
     import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
     import MaterialSymbolsLightDeleteOutline from '~icons/material-symbols-light/delete-outline';
+	import { getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+	import { deleteColourAtIndex } from "src/states/colourGalleryState.svelte.js";
 
     type ColourItemProps = {
         colourItem: ColourItem,
@@ -17,8 +18,8 @@
     let { colourItem, index, showColourActionDialog = $bindable() }: ColourItemProps = $props();
 
     const handleChooseColour = () => {
-        if (getCurrColourInUseCount() === 1) {
-            setCurrColourAtIndex(0, colourItem.hexCode);
+        if (getWallGenColourInUseCount() === 1) {
+            setWallGenColoursAtIndex(0, colourItem.hexCode);
             goto("/");
             return;
         }

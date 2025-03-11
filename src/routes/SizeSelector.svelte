@@ -1,5 +1,7 @@
 <script lang="ts">
-    import { currSizeOptionIndex, sizeOptions } from "src/lib/states.svelte";
+	import { sizeGallery } from "src/states/sizeGalleryState.svelte.js";
+	import { wallGenSizeOptionIndex } from "src/states/wallGenState.svelte.js";
+
 
     const handleSizeOptionChange = (rawNewIndex: string) => {
         let newIndex;
@@ -11,7 +13,7 @@
             return;
         }
 
-        currSizeOptionIndex.set(newIndex);
+        wallGenSizeOptionIndex.set(newIndex);
     };
 </script>
 
@@ -21,10 +23,10 @@
     </h3>
     <select class="SizeSelection__Select"
         id="size"
-        value={currSizeOptionIndex.val}
+        value={wallGenSizeOptionIndex.val}
         oninput={(e) => handleSizeOptionChange((e.target as HTMLSelectElement).value)}
     >
-        {#each sizeOptions as sizeOptionItem, index}
+        {#each sizeGallery as sizeOptionItem, index}
             <option value={index}>{sizeOptionItem.name}</option>
         {/each}
     </select>

@@ -1,9 +1,9 @@
 <script lang="ts">
-    import { sizeOptions } from "src/lib/states.svelte.js";
+	import { sizeGallery } from "src/states/sizeGalleryState.svelte.js";
 </script>
 
 <ul class="SizeList FlexList">
-    {#each sizeOptions as SizeItem}
+    {#each sizeGallery as SizeItem}
         <li class="SizeItem">
             <div class="SizeItem__PreviewContainer">
                 <div class="SizeItem__PreviewScreen"

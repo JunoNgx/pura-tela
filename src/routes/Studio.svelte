@@ -1,17 +1,19 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
-    import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
-	import { colourGallery, getCurrSizeOption, shouldShowSampleText, currWallpaperMode, getColoursInUse, convertCurrColoursToArrayOfHexStrings, getCurrColourInUseCount, } from "src/lib/states.svelte.js";
 	import { computeFilename } from "src/lib/utils.js";
-	import BaseModeSelector from "./BaseModeSelector.svelte";
-	import BaseColourInputContainer from "./BaseColourInputContainer.svelte";
-
+	import { getHexColourCodesInUse, getColoursInUse, getWallGenColourInUseCount, getWallGenSizeOption, shouldShowSampleText, wallGenMode } from "src/states/wallGenState.svelte.js";
+	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
+    
+	import ModeSelector from "src/routes/ModeSelector.svelte";
+	import ColourInputList from "./ColourInputList.svelte";
+    import SizeSelector from "src/routes/SizeSelector.svelte";
+    
     const handleDownloadClick = () => {
         const fileName = computeFilename({
             colours: getColoursInUse(),
             gallery: colourGallery.val,
-            mode: currWallpaperMode.val,
+            mode: wallGenMode.val,
         });
 
         generateImage(fileName);
@@ -35,10 +37,9 @@
 
     $effect(() => {
         renderCanvas({
-            size: getCurrSizeOption(),
-            colours: convertCurrColoursToArrayOfHexStrings(),
-            colourCount: getCurrColourInUseCount(),
-            mode: currWallpaperMode.val,
+            size: getWallGenSizeOption(),
+            colours: getHexColourCodesInUse(),
+            mode: wallGenMode.val,
         });
     });
 </script>
@@ -46,7 +47,7 @@
 <div class="Studio">
     <h2 class="VisuallyHidden">Create Wallpaper</h2>
     <div class="Studio__ModeContainer">
-        <BaseModeSelector/>
+        <ModeSelector/>
     </div>
     <div class="Studio__Generator">
         <div class="Studio__PreviewContainer">
@@ -94,10 +95,10 @@
 
         <div class="Studio__Control">
             <div class="Studio__ColourInputContainer">
-                <BaseColourInputContainer />
+                <ColourInputList />
             </div>
             <div class="Studio__Size">
-                <BaseSizeSelect/>
+                <SizeSelector/>
             </div>
         </div>
 

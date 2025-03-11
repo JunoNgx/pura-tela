@@ -1,10 +1,15 @@
 <script lang="ts">
-    import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
-    import MaterialSymbolsLightGesture from '~icons/material-symbols-light/gesture';
-    import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
+	import { goto } from "$app/navigation";
 
-	import { addToPaletteGalleryFromPaletteGenerator, addToPalGenColours, palGenColours, randomiseUnlockedColoursForPalGen } from "src/lib/states.svelte.js";
-	import PaletteGeneratorItem from "./PaletteGeneratorItem.svelte";
+    import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
+    import MaterialSymbolsLightGesture from "~icons/material-symbols-light/gesture";    
+    import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
+    import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
+
+	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
+	import { addToPalGenColours, palGenColours, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
+	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
+	import { passPalGenToWallpaperGenerator } from "src/states/wallGenState.svelte.js";
 
     const addColour = () => {
         addToPalGenColours();
@@ -12,6 +17,11 @@
 
     const generatePalette = () => {
         randomiseUnlockedColoursForPalGen();
+    };
+
+    const passToWallpaperGenerator = () => {
+        passPalGenToWallpaperGenerator(palGenColours.val);
+        goto("/");
     };
 
     const savePalette = () => {
@@ -52,11 +62,20 @@
         </button>
 
         <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"
+            onclick={passToWallpaperGenerator}
+            title={"Pass the palette to Wallpaper Generator"}
+            aria-label={"Pass the palette to Wallpaper Generator"}
+        >
+            <MaterialSymbolsLightColorize />
+            <span>Pass to Wallpaper Generator</span>
+        </button>
+
+        <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"
             onclick={savePalette}
             title={"Save current palette"}
             aria-label={"Save current palette"}
         >
-            <MaterialSymbolsLightPaletteOutline />
+            <MaterialSymbolsLightCalendarViewWeekSharp />
             <span>Save palette</span>
         </button>
     </div>
@@ -79,6 +98,7 @@
     .PaletteGenerator__ActionsContainer {
         margin-top: 2rem;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-around;
         gap: 2rem;
     }

@@ -6,7 +6,7 @@
     import MaterialSymbolsLightDarkMode from '~icons/material-symbols-light/dark-mode';
     import MaterialSymbolsLightDarkModeOutline from '~icons/material-symbols-light/dark-mode-outline';
 
-    import { themeMode } from 'src/lib/states.svelte.js';
+    import { themeMode } from 'src/states/themeModeState.svelte.js';
 	import { ThemeMode } from 'src/lib/types.js';
 	import { handleThemeModeChange } from 'src/lib/nightMode.js';
 
