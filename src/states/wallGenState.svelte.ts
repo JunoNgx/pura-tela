@@ -78,9 +78,8 @@ export const retractWallGenColoursAtIndex = (index: number) => {
     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
 };
 
-// TODO: refactor this, pass an array of colours without colour count
-export const convertWallGensColoursToArrayOfHex = () => {
-    const hexCodeList = $derived(wallGenColours.val.map(item => `#${item}`));
+export const getHexColourCodesInUse = () => {
+    const hexCodeList = $derived(getColoursInUse().map(item => `#${item}`));
     return hexCodeList;
 };
 
