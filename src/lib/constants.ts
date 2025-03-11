@@ -1,0 +1,1 @@
+export const MAX_COLOUR_COUNT = 5;
