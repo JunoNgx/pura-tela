@@ -4,13 +4,16 @@ import defaultSizeOptions from "src/data/sizes.json";
 import type { SizeItem, State } from "src/lib/types.js";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
 
+/**
+ * Size gallery
+ */
 type rawParseSizeOptionItem = {
     name: string,
     width: string,
     height: string
 };
 
-const generateSizeOptions = (rawOptions: rawParseSizeOptionItem[]) => {
+const generateSizeGallery = (rawOptions: rawParseSizeOptionItem[]) => {
     return rawOptions.map(sizeOption => ({
         name: sizeOption.name,
         width: parseInt(sizeOption.width),
@@ -18,7 +21,7 @@ const generateSizeOptions = (rawOptions: rawParseSizeOptionItem[]) => {
     }));
 };
 
-const isCurrSizeOptionIndexValid = (data: any) => {
+const isSizeGalleryValid = (data: any) => {
     if (data === null || data === undefined || !sizeOptions) {
         return false;
     }
@@ -36,12 +39,12 @@ const isCurrSizeOptionIndexValid = (data: any) => {
     }
 };
 
-export const sizeOptions = generateSizeOptions(defaultSizeOptions);
+export const sizeOptions = generateSizeGallery(defaultSizeOptions);
 
-export const currSizeOptionIndex = createLocalStorageSyncedState({
+export const sizeGallery = createLocalStorageSyncedState({
     key: "sizeOptionsIndex",
     defaultValue: 0,
-    validationFunc: isCurrSizeOptionIndexValid,
+    validationFunc: isSizeGalleryValid,
 }) as State<number>;
  
 export const getCurrSizeOption = () => {
