@@ -133,7 +133,7 @@ export const isPaletteRowMode = () => {
  * Colour-in-use count
  */
 export const isWallGenColoursInUseCountValid = (data: any) => {
-    if (data === null || data === undefined || !sizeOptions) {
+    if (data === null || data === undefined || !sizeGallery) {
         return false;
     }
 
@@ -229,14 +229,14 @@ export const getMaxWallGenColoursInUseCount = () => {
  * Wallpaper Generator size option index
  */
 const isCurrSizeOptionIndexValid = (data: any) => {
-    if (data === null || data === undefined || !sizeOptions) {
+    if (data === null || data === undefined || !sizeGallery) {
         return false;
     }
 
     try {
         parseInt(data);
 
-        if (data < 0 || data > sizeOptions.length - 1) {
+        if (data < 0 || data > sizeGallery.length - 1) {
             return false;
         }
 
