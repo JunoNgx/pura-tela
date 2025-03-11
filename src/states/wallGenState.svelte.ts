@@ -1,7 +1,7 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { type State } from "src/lib/types.js";
+import { WallpaperMode, type State } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 
 const defaultWallGenColoursValue = [
@@ -85,3 +85,42 @@ export const convertWallGensColoursToArrayOfHex = () => {
 //     const colourList = $derived(wallGenColours.val.slice(0, colourCount));
 //     return colourList;
 // };
+
+/**
+ * Wallpaper mode data
+ */
+const isWallGenModeValid = (data: any) => {
+    if ( data !== WallpaperMode.SOLID
+        && data !== WallpaperMode.GRADIENT
+    ) {
+        return false
+    }
+
+    return true;
+};
+
+export const wallGenMode = createLocalStorageSyncedState({
+    key: "wallpaperMode",
+    defaultValue: WallpaperMode.SOLID,
+    validationFunc: isWallGenModeValid,
+}) as State<WallpaperMode>;
+
+export const isSolidMode = () => { 
+    const isSolid = $derived(wallGenMode.val === WallpaperMode.SOLID);
+    return isSolid;
+};
+
+export const isGradientMode = () => {
+    const isGradient = $derived(wallGenMode.val === WallpaperMode.GRADIENT);
+    return isGradient;
+};
+
+export const isPopArtSquareMode = () => {
+    const isPopArtSquareMode = $derived(wallGenMode.val === WallpaperMode.POP_ART_SQUARE);
+    return isPopArtSquareMode;
+};
+
+export const isPaletteRowMode = () => {
+    const isPaletteRowMode = $derived(wallGenMode.val === WallpaperMode.PALETTE_ROW);
+    return isPaletteRowMode;
+};
