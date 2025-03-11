@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { beforeNavigate, afterNavigate } from '$app/navigation'
+    // import { beforeNavigate, afterNavigate } from '$app/navigation'
     import MaterialSymbolsLightResetSettingsRounded from '~icons/material-symbols-light/reset-settings-rounded';
 
-    import BaseColourList from "src/components/BaseColourList.svelte";
+    import ColourList from "src/routes/colours/ColourList.svelte";
 	import { resetColourGallery } from 'src/states/colourGalleryState.svelte.js';
 
     const handleResetGallery = () => {
@@ -28,7 +28,7 @@
 </script>
 
 <h2 class="VisuallyHidden">Colour Gallery</h2>
-<BaseColourList/>
+<ColourList/>
 <button class="ResetButton"
     onclick={handleResetGallery}
     aria-label="Reset colour gallery"
