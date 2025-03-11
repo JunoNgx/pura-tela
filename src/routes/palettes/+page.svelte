@@ -2,7 +2,7 @@
     import MaterialSymbolsLightResetSettingsRounded from "~icons/material-symbols-light/reset-settings-rounded";
 
     import BasePaletteList from "src/components/BasePaletteList.svelte";
-	import { resetPaletteGallery } from "src/lib/states.svelte.js";
+	import { resetPaletteGallery } from "src/states/paletteGalleryState.svelte.js";
 
     const handleResetGallery = () => {
         const isConfirmed = window.confirm("Reset the gallery to default colours? This action cannot be undone.");

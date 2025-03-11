@@ -4,25 +4,26 @@
     import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     
-	import { addToColourGallery, getCurrColourAtIndex, setCurrColourAtIndex } from 'src/lib/states.svelte.js';
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
+	import { addToColourGallery } from 'src/states/colourGalleryState.svelte.js';
+	import { getWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 
     let { index } = $props();
 
-    let colourCode = $derived(getCurrColourAtIndex(index));
+    let colourCode = $derived(getWallGenColoursAtIndex(index));
     let colourCodeWithHash = $derived("#" + colourCode);
 
     const handlePickerValueChange = (hexStr: string) => {
-        setCurrColourAtIndex(index, hexStr.replace("#", "").toUpperCase());
+        setWallGenColoursAtIndex(index, hexStr.replace("#", "").toUpperCase());
     };
 
     const handleHexCodeChange = (hexStr: string) => {
         if (!isHexCodeValid(hexStr)) return;
-        setCurrColourAtIndex(index, hexStr.replace("#", "").toUpperCase());
+        setWallGenColoursAtIndex(index, hexStr.replace("#", "").toUpperCase());
     };
 
     const handleRandomise = () => {
-        setCurrColourAtIndex(index, getRandomHexCode());
+        setWallGenColoursAtIndex(index, getRandomHexCode());
     };
 
     const trySaveColour = () => {

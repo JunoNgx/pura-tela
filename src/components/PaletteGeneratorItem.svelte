@@ -14,8 +14,8 @@
     import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
 
 	import type { PalGenItem } from "src/lib/types.js";
-	import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/lib/states.svelte.js";
 	import ColorPicker from "svelte-awesome-color-picker";
+	import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/states/palGenState.svelte.js";
 
     type PaletteGeneratorItemProps = {
         palGenItem: PalGenItem,

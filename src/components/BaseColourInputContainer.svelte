@@ -3,17 +3,18 @@
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
-	import { addToPaletteGalleryFromWallpaperGenerator, decreaseCurrColourInUseCount, getColoursInUse, getCurrColourInUseCount, getMaxColourInUseCount, getMinColourInUseCount, increaseCurrColourInUseCount, retractCurrColourAtIndex } from "src/lib/states.svelte.js";
 
     import ColourInputItem from "src/components/ColourInputItem.svelte";
+	import { decreaseWallGenColourInUseCount, getColoursInUse, getMaxWallGenColoursInUseCount, getMinWallGenColoursInUseCount, getWallGenColourInUseCount, increaseWallGenColourInUseCount, retractWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 
     const handleRemoveColour = (index: number) => {
-        retractCurrColourAtIndex(index);
-        decreaseCurrColourInUseCount();
+        retractWallGenColoursAtIndex(index);
+        decreaseWallGenColourInUseCount();
     };
 
     const handleAddColour = () => {
-        increaseCurrColourInUseCount();
+        increaseWallGenColourInUseCount();
     };
 
     const handleSavePalette = () => {
@@ -27,7 +28,7 @@
         {#each getColoursInUse() as _, index}
             <li class="ColourInputContainer__Item">
                 <ColourInputItem index={index}/>
-                {#if getCurrColourInUseCount() > getMinColourInUseCount()}
+                {#if getWallGenColourInUseCount() > getMinWallGenColoursInUseCount()}
                     <button class="ColourInputContainer__RemoveBtn IconButton"
                         onclick={() => {handleRemoveColour(index)}}
                     >
@@ -40,7 +41,7 @@
 
     <div class="ColourInputContainer__ActionContainer">
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-            disabled={getCurrColourInUseCount() <= 1}
+            disabled={getWallGenColourInUseCount() <= 1}
             onclick={handleSavePalette}
         >
             <MaterialSymbolsLightCalendarViewWeekSharp />
@@ -48,7 +49,7 @@
         </button>
 
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-            disabled={getCurrColourInUseCount() >= getMaxColourInUseCount()}
+            disabled={getWallGenColourInUseCount() >= getMaxWallGenColoursInUseCount()}
             onclick={handleAddColour}
         >
             <MaterialSymbolsLightAdd />

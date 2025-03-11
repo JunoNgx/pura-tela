@@ -3,8 +3,9 @@
     import MaterialSymbolsLightGesture from '~icons/material-symbols-light/gesture';
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
 
-	import { addToPaletteGalleryFromPaletteGenerator, addToPalGenColours, palGenColours, randomiseUnlockedColoursForPalGen } from "src/lib/states.svelte.js";
 	import PaletteGeneratorItem from "./PaletteGeneratorItem.svelte";
+	import { addToPalGenColours, palGenColours, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
+	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 
     const addColour = () => {
         addToPalGenColours();

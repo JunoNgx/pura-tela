@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { paletteGallery } from "src/lib/states.svelte.js";
+	import { paletteGallery } from "src/states/paletteGalleryState.svelte.js";
     import PaletteListItem from "./PaletteListItem.svelte";    
 </script>
 

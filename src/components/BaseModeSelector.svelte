@@ -1,10 +1,10 @@
 <script lang="ts">
     import { WallpaperMode } from "src/lib/types.js";
-    import { currWallpaperMode, isGradientMode, isPaletteRowMode, isPopArtSquareMode, isSolidMode, readjustCurrColourInUseCount } from "src/lib/states.svelte.js";
+	import { isGradientMode, isPaletteRowMode, isPopArtSquareMode, isSolidMode, readjustWallGenColoursInUseCount, wallGenMode } from "src/states/wallGenState.svelte.js";
 
     const handleWallpaperModeChange = (newValue: WallpaperMode) => {
-        currWallpaperMode.set(newValue);
-        readjustCurrColourInUseCount();
+        wallGenMode.set(newValue);
+        readjustWallGenColoursInUseCount();
     }
 </script>
 

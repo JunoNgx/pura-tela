@@ -2,16 +2,17 @@
 	import { onDestroy, onMount } from "svelte";
     import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
-	import { colourGallery, getCurrSizeOption, shouldShowSampleText, currWallpaperMode, getColoursInUse, convertCurrColoursToArrayOfHexStrings, getCurrColourInUseCount, } from "src/lib/states.svelte.js";
 	import { computeFilename } from "src/lib/utils.js";
 	import BaseModeSelector from "./BaseModeSelector.svelte";
 	import BaseColourInputContainer from "./BaseColourInputContainer.svelte";
+	import { convertWallGensColoursToArrayOfHex, getColoursInUse, getWallGenColourInUseCount, getWallGenSizeOption, shouldShowSampleText, wallGenMode } from "src/states/wallGenState.svelte.js";
+	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
 
     const handleDownloadClick = () => {
         const fileName = computeFilename({
             colours: getColoursInUse(),
             gallery: colourGallery.val,
-            mode: currWallpaperMode.val,
+            mode: wallGenMode.val,
         });
 
         generateImage(fileName);
@@ -35,10 +36,10 @@
 
     $effect(() => {
         renderCanvas({
-            size: getCurrSizeOption(),
-            colours: convertCurrColoursToArrayOfHexStrings(),
-            colourCount: getCurrColourInUseCount(),
-            mode: currWallpaperMode.val,
+            size: getWallGenSizeOption(),
+            colours: convertWallGensColoursToArrayOfHex(),
+            colourCount: getWallGenColourInUseCount(),
+            mode: wallGenMode.val,
         });
     });
 </script>

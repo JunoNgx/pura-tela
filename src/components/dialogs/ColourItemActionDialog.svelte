@@ -1,15 +1,15 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
 
-	import { getColoursInUse, setCurrColourAtIndex } from "src/lib/states.svelte.js";
     import DialogBase from "src/components/dialogs/DialogBase.svelte";
 	import ColourSpan from '../ColourSpan.svelte';
+	import { getColoursInUse, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 
     let { shouldShowDialog = $bindable(), inputColour } = $props();
     let dialogBase: DialogBase | undefined = $state();
 
     const handlePassColour = (targetIndex: number) => {
-        setCurrColourAtIndex(targetIndex, inputColour);
+        setWallGenColoursAtIndex(targetIndex, inputColour);
         goto("/");
     };
 </script>
