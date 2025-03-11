@@ -81,11 +81,11 @@ export const convertWallGensColoursToArrayOfHex = () => {
     return hexCodeList;
 };
 
-// export const getColoursInUse = () => {
-//     const colourCount = getCurrColourInUseCount();
-//     const colourList = $derived(wallGenColours.val.slice(0, colourCount));
-//     return colourList;
-// };
+export const getColoursInUse = () => {
+    const colourCount = getWallGenColourInUseCount();
+    const colourList = $derived(wallGenColours.val.slice(0, colourCount));
+    return colourList;
+};
 
 /**
  * Wallpaper mode data
