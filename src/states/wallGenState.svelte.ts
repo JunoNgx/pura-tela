@@ -5,6 +5,9 @@ import { WallpaperMode, type State } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeOptions } from "./sizeGalleryState.svelte.js";
 
+/**
+ * Wallpaper Generator current colours
+ */
 const defaultWallGenColoursValue = [
     defaultColourGallery[0].hexCode,
     defaultColourGallery[1].hexCode,
