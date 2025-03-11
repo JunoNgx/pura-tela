@@ -4,7 +4,7 @@ import { createLocalStorageSyncedState, isHexCodeValid } from "src/states/stateU
 import { getColoursInUse, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, wallGenColours } from "./wallGenState.svelte.js";
 import { palGenColours } from "./palGenState.svelte.js";
 
-export const isPaletteGalleryValid = (data: any[]) => {
+const isPaletteGalleryValid = (data: any[]) => {
     if (!data) return false;
 
     try {

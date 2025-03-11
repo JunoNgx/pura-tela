@@ -4,7 +4,7 @@ import type { ColourItem, State } from "src/lib/types.js";
 import { isHexCodeValid } from "src/lib/utils.js";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
 
-export const isColourGalleryValid = (data: any[]) => {
+const isColourGalleryValid = (data: any[]) => {
     if (!data) return false;
 
     try {
