@@ -95,3 +95,14 @@ export const randomiseUnlockedColoursForPalGen = () => {
 
     palGenColours.set(newVal);
 };
+
+export const exportToStringFromPalGen = () => {
+    const hexListString = $derived.by(() => {
+        const colourList = palGenColours.val.map(palGenItem => palGenItem.colour);
+        const outputString = colourList.join("-");
+    
+        return outputString;
+    });
+
+    return hexListString;
+}
