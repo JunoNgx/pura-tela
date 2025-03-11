@@ -1,3 +1,4 @@
+import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 import { ThemeMode, WallpaperMode, type State } from "src/lib/types.js";
 
 export const createLocalStorageSyncedState = <T>({
@@ -67,4 +68,18 @@ export const isValidBoolean = (data: any) => {
 export const isHexCodeValid = (str: string): boolean => {
     const validHexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
     return validHexRegex.test(str);
+};
+
+export const isArrayOfHexCodesValid = (arr: string[]): boolean => {
+    if (arr.length < 2 || arr.length > MAX_COLOUR_COUNT) {
+        return false;
+    }
+
+    for (const colour in arr) {
+        if (!isHexCodeValid(colour)) {
+            return false;
+        }
+    }
+
+    return true;
 };
