@@ -2,6 +2,7 @@
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightGesture from "~icons/material-symbols-light/gesture";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
+    import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
 	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
 	import { addToPalGenColours, palGenColours, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
@@ -57,7 +58,7 @@
             title={"Save current palette"}
             aria-label={"Save current palette"}
         >
-            <MaterialSymbolsLightPaletteOutline />
+            <MaterialSymbolsLightCalendarViewWeekSharp />
             <span>Save palette</span>
         </button>
     </div>
