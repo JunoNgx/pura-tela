@@ -1,6 +1,6 @@
 
 // @ts-ignore
-import defaultSizeOptions from "src/data/sizes.json";
+import defaultSizeGallery from "src/data/sizes.json";
 
 /**
  * Size gallery
@@ -37,4 +37,4 @@ const isSizeGalleryValid = (data: any) => {
     }
 };
 
-export const sizeGallery = generateSizeGallery(defaultSizeOptions);
+export const sizeGallery = generateSizeGallery(defaultSizeGallery);
