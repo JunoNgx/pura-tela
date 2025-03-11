@@ -106,3 +106,16 @@ export const passPaletteToPaletteGenerator = (paletteIndex: number) => {
         throw new Error("Failed to pass palette to Palette Generator");
     }
 }
+
+export const passWallGenToPaletteGenerator = (colours: string[]) => {
+    try {
+        const newVal = colours.map(colour => ({
+            colour,
+            isLocked: false,
+        }));
+
+        palGenColours.set([...newVal]);
+    } catch(error) {
+        throw new Error("Failed to pass palette to Palette Generator");
+    }
+};

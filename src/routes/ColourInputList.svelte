@@ -1,13 +1,14 @@
 <script lang="ts">
+    import { goto } from "$app/navigation";
+
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
-
     import ColourInputItem from "src/routes/ColourInputItem.svelte";
 	import { decreaseWallGenColourInUseCount, getColoursInUse, getMaxWallGenColoursInUseCount, getMinWallGenColoursInUseCount, getWallGenColourInUseCount, increaseWallGenColourInUseCount, retractWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
-	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
+	import { addToPaletteGalleryFromWallpaperGenerator, passWallGenToPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 
     const handleRemoveColour = (index: number) => {
         retractWallGenColoursAtIndex(index);
@@ -19,7 +20,8 @@
     };
 
     const passColoursToPaletteGenerator = () => {
-        // TODO
+        passWallGenToPaletteGenerator(getColoursInUse());
+        goto("/generate");
     };
 
     const handleSavePalette = () => {
