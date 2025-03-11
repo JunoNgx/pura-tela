@@ -1,6 +1,7 @@
 <script lang="ts">
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
+    import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
 
@@ -15,6 +16,10 @@
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
+    };
+
+    const passColoursToPaletteGenerator = () => {
+        // TODO
     };
 
     const handleSavePalette = () => {
@@ -51,6 +56,16 @@
         </button>
 
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            disabled={getWallGenColourInUseCount() < 2}
+            onclick={passColoursToPaletteGenerator}
+            title="Pass the current colours to the Palette Generator"
+            aria-label="Pass the current colours to the Palette Generator"
+        >
+            <MaterialSymbolsLightPaletteOutline />
+            <span>Pass to Palette Generator</span>
+        </button>
+
+        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
             disabled={getWallGenColourInUseCount() >= getMaxWallGenColoursInUseCount()}
             onclick={handleAddColour}
             title="Add another colour to this wallpaper"
@@ -83,6 +98,7 @@
         margin-top: 2rem;
         display: flex;
         justify-content: space-around;
+        flex-wrap: wrap;
         gap: 1rem;
     }
 
