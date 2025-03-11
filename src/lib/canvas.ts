@@ -21,7 +21,6 @@ const drawSquare = ({ ctx, colour, x, y, size}: squareProps) => {
     ctx.fillRect(x, y, size, size);
 }
 
-// TODO: to refactor to ColourItem[]
 export const renderCanvas = (
     { size, colours, mode }: CanvasRenderOptions
 ) => {
