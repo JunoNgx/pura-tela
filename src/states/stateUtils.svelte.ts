@@ -63,3 +63,8 @@ export const isValidBoolean = (data: any) => {
 
     return true;
 }
+
+export const isHexCodeValid = (str: string): boolean => {
+    const validHexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+    return validHexRegex.test(str);
+};
