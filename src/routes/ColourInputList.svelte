@@ -43,6 +43,8 @@
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
             disabled={getWallGenColourInUseCount() <= 1}
             onclick={handleSavePalette}
+            title="Save the current colours as a Palette"
+            aria-label="Save the current colours as a Palette"
         >
             <MaterialSymbolsLightCalendarViewWeekSharp />
             <span>Save palette</span>
@@ -51,6 +53,8 @@
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
             disabled={getWallGenColourInUseCount() >= getMaxWallGenColoursInUseCount()}
             onclick={handleAddColour}
+            title="Add another colour to this wallpaper"
+            aria-label="Add another colour to this wallpaper"
         >
             <MaterialSymbolsLightAdd />
             <span>Add colour</span>
