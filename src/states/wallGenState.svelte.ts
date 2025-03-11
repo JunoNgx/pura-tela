@@ -167,7 +167,7 @@ export const setWallGenColourInUseCount = (newValue: number) => {
 };
 
 export const increaseWallGenColourInUseCount = () => {
-    if (wallGenColoursInUseCount.val === getMaxColourInUseCount()) {
+    if (wallGenColoursInUseCount.val === getMaxWallGenColoursInUseCount()) {
         throw new Error("Maximum colour in use count reached");
     }
 
@@ -175,26 +175,26 @@ export const increaseWallGenColourInUseCount = () => {
 };
 
 export const decreaseWallGenColourInUseCount = () => {
-    if (wallGenColoursInUseCount.val === getMinColourInUseCount()) {
+    if (wallGenColoursInUseCount.val === getMinWallGenColoursInUseCount()) {
         throw new Error("Maximum colour in use count reached");
     }
 
     wallGenColoursInUseCount.set(wallGenColoursInUseCount.val - 1);
 };
 
-export const readjustCurrColourInUseCount = () => {
-    const currMinColourCount = getMinColourInUseCount();
+export const readjustWallGenColoursInUseCount = () => {
+    const currMinColourCount = getMinWallGenColoursInUseCount();
     if (getWallGenColourInUseCount() < currMinColourCount) {
         setWallGenColourInUseCount(currMinColourCount);
     }
 
-    const currMaxColourCount = getMaxColourInUseCount();
+    const currMaxColourCount = getMaxWallGenColoursInUseCount();
     if (getWallGenColourInUseCount() > currMaxColourCount) {
         setWallGenColourInUseCount(currMaxColourCount);
     }
 };
 
-export const getMinColourInUseCount = () => {
+export const getMinWallGenColoursInUseCount = () => {
     switch (wallGenMode.val) {
     case WallpaperMode.SOLID:
         return 1;
@@ -208,7 +208,7 @@ export const getMinColourInUseCount = () => {
     }
 };
 
-export const getMaxColourInUseCount = () => {
+export const getMaxWallGenColoursInUseCount = () => {
     switch (wallGenMode.val) {
     case WallpaperMode.SOLID:
         return 1;
