@@ -223,6 +223,33 @@ export const getMaxColourInUseCount = () => {
 };
 
 /**
+ * sizeOptionIndex
+ */
+const isCurrSizeOptionIndexValid = (data: any) => {
+    if (data === null || data === undefined || !sizeOptions) {
+        return false;
+    }
+
+    try {
+        parseInt(data);
+
+        if (data < 0 || data > sizeOptions.length - 1) {
+            return false;
+        }
+
+        return true;
+    } catch (err) {
+        return false;
+    }
+};
+
+export const currSizeOptionIndex = createLocalStorageSyncedState({
+    key: "sizeOptionsIndex",
+    defaultValue: 0,
+    validationFunc: isCurrSizeOptionIndexValid,
+}) as State<number>;
+
+/**
  * Sample text setting
  */
 const isShouldShowSampleTextValid = (data: any) => {
