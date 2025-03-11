@@ -1,7 +1,7 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { WallpaperMode, type SizeItem, type State } from "src/lib/types.js";
+import { WallpaperMode, type PalGenItem, type SizeItem, type State } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
 
@@ -76,6 +76,19 @@ export const retractWallGenColoursAtIndex = (index: number) => {
     const aftPortion = wallGenColours.val.slice(index + 1);
     const newRandomisedColour = getRandomHexCode();
     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
+};
+
+export const passPalGenToWallpaperGenerator = (palette: PalGenItem[]) => {
+    try {
+        const newColours = palette.map(item => item.colour);
+        const coloursToBeKept = wallGenColours.val.slice(newColours.length);
+
+        wallGenColours.set([...newColours, ...coloursToBeKept]);
+        setWallGenColourInUseCount(newColours.length);
+        readjustWallGenColoursInUseCount();
+    } catch(error) {
+        throw new Error("Failed to pass palette to Wallpaper generator");
+    }
 };
 
 export const getHexColourCodesInUse = () => {
