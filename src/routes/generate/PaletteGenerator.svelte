@@ -7,9 +7,10 @@
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
 	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
-	import { addToPalGenColours, palGenColours, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
+	import { addToPalGenColours, exportToStringFromPalGen, palGenColours, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
 	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { passPalGenToWallpaperGenerator } from "src/states/wallGenState.svelte.js";
+	import SharePanel from "src/components/SharePanel.svelte";
 
     const addColour = () => {
         addToPalGenColours();
@@ -79,6 +80,12 @@
             <span>Save palette</span>
         </button>
     </div>
+
+    <SharePanel
+        title="Share this palette"
+        desc="Save this or send it to someone. Choose [Import from string] to re-access this palette."
+        content={exportToStringFromPalGen()}
+    />
 </div>
 
 <style>
