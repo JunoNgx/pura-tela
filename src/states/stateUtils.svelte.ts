@@ -75,7 +75,7 @@ export const isArrayOfHexCodesValid = (arr: string[]): boolean => {
         return false;
     }
 
-    for (const colour in arr) {
+    for (const colour of arr) {
         if (!isHexCodeValid(colour)) {
             return false;
         }
