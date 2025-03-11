@@ -252,7 +252,7 @@ export const wallGenSizeOptionIndex = createLocalStorageSyncedState({
     validationFunc: isCurrSizeOptionIndexValid,
 }) as State<number>;
  
-export const getWallGenSizeOptionIndex = () => {
+export const getWallGenSizeOption = () => {
     const option = $derived<SizeItem>(sizeGallery[wallGenSizeOptionIndex.val]);
     return option;
 };
