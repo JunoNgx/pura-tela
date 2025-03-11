@@ -1,6 +1,6 @@
 <script lang="ts">
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
-    import MaterialSymbolsLightGesture from '~icons/material-symbols-light/gesture';
+    import MaterialSymbolsLightGesture from "~icons/material-symbols-light/gesture";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
 
 	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
