@@ -1,8 +1,8 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
 
-    import DialogBase from "src/components/dialogs/DialogBase.svelte";
-	import ColourSpan from '../ColourSpan.svelte';
+    import DialogBase from "src/components/DialogBase.svelte";
+	import ColourSpan from 'src/components/ColourSpan.svelte';
 	import { getColoursInUse, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 
     let { shouldShowDialog = $bindable(), inputColour } = $props();
