@@ -125,18 +125,6 @@
         gap: 1rem;
     }
 
-    /* .ColourInput__ColourActionBtn {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        border: 1px solid var(--colPri);
-    }
-
-    .ColourInput__ColourActionBtn:hover {
-        color: var(--colBg);
-        background-color: var(--colPri);
-    } */
-
     @media screen and (width <= 500px) {
 
         .ColourInput__LeftSide {

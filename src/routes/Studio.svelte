@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
-    import SizeSelector from "src/routes/SizeSelector.svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { computeFilename } from "src/lib/utils.js";
-	import ModeSelector from "src/routes/ModeSelector.svelte";
-	import BaseColourInputContainer from "./ColourInputList.svelte";
 	import { convertWallGensColoursToArrayOfHex, getColoursInUse, getWallGenColourInUseCount, getWallGenSizeOption, shouldShowSampleText, wallGenMode } from "src/states/wallGenState.svelte.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
-
+    
+	import ModeSelector from "src/routes/ModeSelector.svelte";
+	import BaseColourInputContainer from "./ColourInputList.svelte";
+    import SizeSelector from "src/routes/SizeSelector.svelte";
+    
     const handleDownloadClick = () => {
         const fileName = computeFilename({
             colours: getColoursInUse(),
