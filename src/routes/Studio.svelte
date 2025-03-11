@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
-    import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
+    import SizeSelector from "src/routes/SizeSelector.svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { computeFilename } from "src/lib/utils.js";
-	import BaseModeSelector from "./BaseModeSelector.svelte";
-	import BaseColourInputContainer from "./BaseColourInputContainer.svelte";
+	import ModeSelector from "src/routes/ModeSelector.svelte";
+	import BaseColourInputContainer from "./ColourInputList.svelte";
 	import { convertWallGensColoursToArrayOfHex, getColoursInUse, getWallGenColourInUseCount, getWallGenSizeOption, shouldShowSampleText, wallGenMode } from "src/states/wallGenState.svelte.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
 
@@ -47,7 +47,7 @@
 <div class="Studio">
     <h2 class="VisuallyHidden">Create Wallpaper</h2>
     <div class="Studio__ModeContainer">
-        <BaseModeSelector/>
+        <ModeSelector/>
     </div>
     <div class="Studio__Generator">
         <div class="Studio__PreviewContainer">
@@ -98,7 +98,7 @@
                 <BaseColourInputContainer />
             </div>
             <div class="Studio__Size">
-                <BaseSizeSelect/>
+                <SizeSelector/>
             </div>
         </div>
 

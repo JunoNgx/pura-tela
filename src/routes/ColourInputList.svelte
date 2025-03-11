@@ -4,7 +4,7 @@
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
 
-    import ColourInputItem from "src/components/ColourInputItem.svelte";
+    import ColourInputItem from "src/routes/ColourInputItem.svelte";
 	import { decreaseWallGenColourInUseCount, getColoursInUse, getMaxWallGenColoursInUseCount, getMinWallGenColoursInUseCount, getWallGenColourInUseCount, increaseWallGenColourInUseCount, retractWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 
