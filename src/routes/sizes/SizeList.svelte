@@ -1,9 +1,20 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
+
+    import MaterialSymbolsLightGestureSelectSharp from "~icons/material-symbols-light/gesture-select-sharp";
+    import MaterialSymbolsLightGestureSelectOutlineSharp from "~icons/material-symbols-light/gesture-select-outline-sharp";
+
 	import { sizeGallery } from "src/states/sizeGalleryState.svelte.js";
+	import { setWallGenSizeFromSizeGalleryIndex } from "src/states/wallGenState.svelte.js";
+
+    const handlePassToWallgen = (index: number) => {
+        setWallGenSizeFromSizeGalleryIndex(index);
+        goto("/");
+    };
 </script>
 
 <ul class="SizeList FlexList">
-    {#each sizeGallery as SizeItem}
+    {#each sizeGallery as SizeItem, index}
         <li class="SizeItem">
             <div class="SizeItem__PreviewContainer">
                 <div class="SizeItem__PreviewScreen"
@@ -12,8 +23,27 @@
                     style={`aspect-ratio: ${SizeItem.width} / ${SizeItem.height};`}
                 ></div>
             </div>
-            <p class="SizeItem__Label">{SizeItem.name}</p>
-            <p class="SizeItem__SizeInfo">{SizeItem.width} × {SizeItem.height}</p>
+            <div class="SizeItem__Footer">
+                <div class="SizeItem__Info">
+                    <p class="SizeItem__Label">{SizeItem.name}</p>
+                    <p class="SizeItem__SizeInfo">{SizeItem.width} × {SizeItem.height}</p>
+                </div>
+
+                <div class="SizeItem__ActionContainer">
+                    <button class="SizeItem__ActionBtn IconButton"
+                        onclick={() => { handlePassToWallgen(index) }}
+                        title="Pass this size preset to Wallpaper Generator"
+                        aria-label="Pass this size preset to Wallpaper Generator"
+                    >
+                        <div class="IconButton__RegularIcon">
+                            <MaterialSymbolsLightGestureSelectOutlineSharp/>
+                        </div>
+                        <div class="IconButton__HoverIcon">
+                            <MaterialSymbolsLightGestureSelectSharp/>
+                        </div>
+                    </button>
+                </div>
+            </div>
         </li>
     {/each}
 </ul>
@@ -51,6 +81,13 @@
         height: 100%;
     }
 
+    .SizeItem__Footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
     .SizeItem__Label {
         margin: 0.75rem 0 0 0.25rem;
         font-weight: 700;
@@ -58,6 +95,13 @@
 
     .SizeItem__SizeInfo {
         margin: 0.5rem 0 0.5rem 0.25rem;
+    }
+
+    .SizeItem__ActionBtn {
+        font-size: 2rem;
+        width: 3rem;
+        height: 3rem;
+        margin-right: 0.25rem;
     }
     
     @media screen and (width < 850px) {
