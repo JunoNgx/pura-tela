@@ -4,6 +4,7 @@ import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
 import { WallpaperStyle, type PalGenItem, type SizeItem, type State } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
+import { MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
 
 /**
  * Wallpaper Generator current colours
@@ -269,6 +270,37 @@ export const getWallGenSizeOption = () => {
     const option = $derived<SizeItem>(sizeGallery[wallGenSizeOptionIndex.val]);
     return option;
 };
+
+/**
+ * Wallpaper Genarator current size
+ */
+const isWallGenSizeValid = (data: any) => {
+    if (data === null || data === undefined) {
+        return false;
+    }
+
+    try {
+        const sizeData = JSON.parse(data);
+
+        if (sizeData.width <= 0 || sizeData.width > MAX_WIDTH) {
+            return false;
+        }
+
+        if (sizeData.height <= 0 || sizeData.height > MAX_HEIGHT) {
+            return false;
+        }
+
+        return true;
+    } catch (err) {
+        return false;
+    }
+};
+
+export const wallGenSize = createLocalStorageSyncedState({
+    key: "size",
+    defaultValue: { width: 1080, height: 1920 },
+    validationFunc: isColourIndexValid,
+});
 
 /**
  * Sample text setting
