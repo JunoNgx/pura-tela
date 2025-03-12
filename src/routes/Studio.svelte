@@ -34,7 +34,7 @@
 
         if (topLevelDomain === "localhost") {
             return `http://localhost:${page.url.port}`
-        } else return topLevelDomain;
+        } else return `https://${topLevelDomain}`;
     };
 
     const computeShareableUrl = () => {
