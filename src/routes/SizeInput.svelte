@@ -17,11 +17,11 @@
     };
 </script>
 
-<section class="SizeSelection">
+<section class="SizeInput">
     <h3>
         <label for="size">Dimensions</label>
     </h3>
-    <select class="SizeSelection__Select"
+    <select class="SizeInput__Select"
         id="size"
         value={wallGenSizeOptionIndex.val}
         oninput={(e) => handleSizeOptionChange((e.target as HTMLSelectElement).value)}
@@ -33,7 +33,7 @@
 </section>
 
 <style>
-    .SizeSelection__Select {
+    .SizeInput__Select {
         padding: 0.25rem 0;
         margin-top: 1rem;
     }

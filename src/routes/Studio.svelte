@@ -7,7 +7,7 @@
     
 	import StyleSelector from "src/routes/StyleSelector.svelte";
 	import ColourInputList from "./ColourInputList.svelte";
-    import SizeSelector from "src/routes/SizeSelector.svelte";
+    import SizeInput from "src/routes/SizeInput.svelte";
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
@@ -98,7 +98,7 @@
                 <ColourInputList />
             </div>
             <div class="Studio__Size">
-                <SizeSelector/>
+                <SizeInput/>
             </div>
         </div>
 
