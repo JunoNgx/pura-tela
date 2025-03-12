@@ -20,6 +20,11 @@ export type SizeItem = {
     height: number,
 };
 
+export type SizeData = {
+    width: number,
+    height: number,
+};
+
 export type RgbColour = {
     red: number,
     green: number,
@@ -37,7 +42,7 @@ export type State<T> = {
     set: (newValue: T) => void,
 };
 
-export enum WallpaperMode {
+export enum WallpaperStyle {
     SOLID = "solid",
     GRADIENT = "gradient",
     POP_ART_SQUARE = "popArtSquare",

@@ -2,18 +2,20 @@
 	import { onDestroy, onMount } from "svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { computeFilename } from "src/lib/utils.js";
-	import { getHexColourCodesInUse, getColoursInUse, getWallGenColourInUseCount, getWallGenSizeOption, shouldShowSampleText, wallGenMode } from "src/states/wallGenState.svelte.js";
+	import { getHexColourCodesInUse, getColoursInUse, shouldShowSampleText, wallGenStyle, wallGenSize } from "src/states/wallGenState.svelte.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
-	import ModeSelector from "src/routes/ModeSelector.svelte";
+	import StyleSelector from "src/routes/StyleSelector.svelte";
 	import ColourInputList from "./ColourInputList.svelte";
-    import SizeSelector from "src/routes/SizeSelector.svelte";
+    import SizeInput from "src/routes/SizeInput.svelte";
+	import SharePanel from "src/components/SharePanel.svelte";
+	import { page } from "$app/state";
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
             colours: getColoursInUse(),
             gallery: colourGallery.val,
-            mode: wallGenMode.val,
+            mode: wallGenStyle.val,
         });
 
         generateImage(fileName);
@@ -27,6 +29,24 @@
         refitCanvasToContainer();
     };
 
+    const computeBaseUrl = () => {
+        const topLevelDomain = page.url.hostname;
+
+        if (topLevelDomain === "localhost") {
+            return `http://localhost:${page.url.port}`
+        } else return topLevelDomain;
+    };
+
+    const computeShareableUrl = () => {
+        const url = new URL(computeBaseUrl());
+        url.searchParams.append("style", wallGenStyle.val);
+        url.searchParams.append("colours", getColoursInUse().toString());
+        url.searchParams.append("width", wallGenSize.val.width.toString());
+        url.searchParams.append("height", wallGenSize.val.height.toString());
+
+        return url.toString();
+    };
+
     onMount(() => {
         window.addEventListener("resize", handleResize);
     });
@@ -37,9 +57,9 @@
 
     $effect(() => {
         renderCanvas({
-            size: getWallGenSizeOption(),
+            size: wallGenSize.val,
             colours: getHexColourCodesInUse(),
-            mode: wallGenMode.val,
+            style: wallGenStyle.val,
         });
     });
 </script>
@@ -47,7 +67,7 @@
 <div class="Studio">
     <h2 class="VisuallyHidden">Create Wallpaper</h2>
     <div class="Studio__ModeContainer">
-        <ModeSelector/>
+        <StyleSelector/>
     </div>
     <div class="Studio__Generator">
         <div class="Studio__PreviewContainer">
@@ -98,11 +118,17 @@
                 <ColourInputList />
             </div>
             <div class="Studio__Size">
-                <SizeSelector/>
+                <SizeInput/>
             </div>
         </div>
 
     </div>
+
+    <SharePanel
+        title="Share this wallpaper"
+        desc="Access this url to retrieve the same wallpaper settings."
+        content={computeShareableUrl()}
+    />
 </div>
 
 <style>

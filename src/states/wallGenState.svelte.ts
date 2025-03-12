@@ -1,9 +1,10 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { WallpaperMode, type PalGenItem, type SizeItem, type State } from "src/lib/types.js";
+import { WallpaperStyle, type PalGenItem, type SizeItem, type State } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
+import { MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
 
 /**
  * Wallpaper Generator current colours
@@ -105,40 +106,41 @@ export const getColoursInUse = () => {
 /**
  * Wallpaper mode data
  */
-const isWallGenModeValid = (data: any) => {
-    if ( data !== WallpaperMode.SOLID
-        && data !== WallpaperMode.GRADIENT
-    ) {
-        return false
+const isWallGenStyleValid = (data: any) => {
+    for (const key in WallpaperStyle) {
+        const value = WallpaperStyle[key as keyof typeof WallpaperStyle];
+        if (data === value) {
+            return true;
+        }
     }
 
-    return true;
+    return false;
 };
 
-export const wallGenMode = createLocalStorageSyncedState({
-    key: "wallpaperMode",
-    defaultValue: WallpaperMode.SOLID,
-    validationFunc: isWallGenModeValid,
-}) as State<WallpaperMode>;
+export const wallGenStyle = createLocalStorageSyncedState({
+    key: "wallpaperStyle",
+    defaultValue: WallpaperStyle.SOLID,
+    validationFunc: isWallGenStyleValid,
+}) as State<WallpaperStyle>;
 
-export const isSolidMode = () => { 
-    const isSolid = $derived(wallGenMode.val === WallpaperMode.SOLID);
+export const isSolidStyle = () => { 
+    const isSolid = $derived(wallGenStyle.val === WallpaperStyle.SOLID);
     return isSolid;
 };
 
-export const isGradientMode = () => {
-    const isGradient = $derived(wallGenMode.val === WallpaperMode.GRADIENT);
+export const isGradientStyle = () => {
+    const isGradient = $derived(wallGenStyle.val === WallpaperStyle.GRADIENT);
     return isGradient;
 };
 
-export const isPopArtSquareMode = () => {
-    const isPopArtSquareMode = $derived(wallGenMode.val === WallpaperMode.POP_ART_SQUARE);
-    return isPopArtSquareMode;
+export const isPopArtSquareStyle = () => {
+    const isPopArtSquareStyle = $derived(wallGenStyle.val === WallpaperStyle.POP_ART_SQUARE);
+    return isPopArtSquareStyle;
 };
 
-export const isPaletteRowMode = () => {
-    const isPaletteRowMode = $derived(wallGenMode.val === WallpaperMode.PALETTE_ROW);
-    return isPaletteRowMode;
+export const isPaletteRowStyle = () => {
+    const isPaletteRowStyle = $derived(wallGenStyle.val === WallpaperStyle.PALETTE_ROW);
+    return isPaletteRowStyle;
 };
 
 /**
@@ -210,63 +212,81 @@ export const readjustWallGenColoursInUseCount = () => {
 };
 
 export const getMinWallGenColoursInUseCount = () => {
-    switch (wallGenMode.val) {
-    case WallpaperMode.SOLID:
+    switch (wallGenStyle.val) {
+    case WallpaperStyle.SOLID:
         return 1;
-    case WallpaperMode.POP_ART_SQUARE:
+    case WallpaperStyle.POP_ART_SQUARE:
         return 4;
-    case WallpaperMode.POP_ART_SQUARE:
+    case WallpaperStyle.PALETTE_ROW:
         return 2;
-    case WallpaperMode.GRADIENT:
+    case WallpaperStyle.GRADIENT:
     default:
         return 2;
     }
 };
 
 export const getMaxWallGenColoursInUseCount = () => {
-    switch (wallGenMode.val) {
-    case WallpaperMode.SOLID:
+    switch (wallGenStyle.val) {
+    case WallpaperStyle.SOLID:
         return 1;
-    case WallpaperMode.POP_ART_SQUARE:
+    case WallpaperStyle.POP_ART_SQUARE:
         return 4;
-    case WallpaperMode.POP_ART_SQUARE:
+    case WallpaperStyle.PALETTE_ROW:
         return 5;
-    case WallpaperMode.GRADIENT:
+    case WallpaperStyle.GRADIENT:
     default:
         return 5;
     }
 };
 
 /**
- * Wallpaper Generator size option index
+ * Wallpaper Genarator current size
  */
-const isCurrSizeOptionIndexValid = (data: any) => {
-    if (data === null || data === undefined || !sizeGallery) {
+const isWallGenSizeValid = (data: any) => {
+    if (data === null || data === undefined) {
         return false;
     }
 
     try {
-        parseInt(data);
+        if (data.width <= 0 || data.width > MAX_WIDTH) {
+            return false;
+        }
 
-        if (data < 0 || data > sizeGallery.length - 1) {
+        if (data.height <= 0 || data.height > MAX_HEIGHT) {
             return false;
         }
 
         return true;
+
     } catch (err) {
         return false;
     }
 };
 
-export const wallGenSizeOptionIndex = createLocalStorageSyncedState({
-    key: "sizeOptionsIndex",
-    defaultValue: 0,
-    validationFunc: isCurrSizeOptionIndexValid,
-}) as State<number>;
- 
-export const getWallGenSizeOption = () => {
-    const option = $derived<SizeItem>(sizeGallery[wallGenSizeOptionIndex.val]);
-    return option;
+export const wallGenSize = createLocalStorageSyncedState({
+    key: "size",
+    defaultValue: { width: 1080, height: 1920 },
+    validationFunc: isWallGenSizeValid,
+});
+
+export const setWallGenSize = (width: number, height: number) => {
+    wallGenSize.set({ width, height });
+};
+
+export const setWallGenSizeFromSizeGalleryIndex = (index: number) => {
+    const isSizeGalleryIndexValid = (index: number) => {
+        return (0 <= index && index <= sizeGallery.length - 1);
+    };
+
+    if (!isSizeGalleryIndexValid(index)) {
+        throw new Error("Invalid size gallery index")
+    }
+
+    const sizeGalleryItem = sizeGallery[index];
+    wallGenSize.set({
+        width: sizeGalleryItem.width,
+        height: sizeGalleryItem.height,
+    });
 };
 
 /**
