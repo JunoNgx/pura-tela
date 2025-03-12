@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { WallpaperMode } from "src/lib/types.js";
+    import { WallpaperStyle } from "src/lib/types.js";
 	import { isGradientMode, isPaletteRowMode, isPopArtSquareMode, isSolidMode, readjustWallGenColoursInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
 
-    const handleWallpaperModeChange = (newValue: WallpaperMode) => {
+    const handleWallpaperStyleChange = (newValue: WallpaperStyle) => {
         wallGenStyle.set(newValue);
         readjustWallGenColoursInUseCount();
     }
@@ -13,25 +13,25 @@
     <div class="ModeSelector__Container">
         <button class="ModeSelector__ModeItem"
             class:ModeSelector__ModeItem--IsSelected={isSolidMode()}
-            onclick={() => { handleWallpaperModeChange(WallpaperMode.SOLID); }}
+            onclick={() => { handleWallpaperStyleChange(WallpaperStyle.SOLID); }}
         >
             Solid wallpaper
         </button>
         <button class="ModeSelector__ModeItem"
             class:ModeSelector__ModeItem--IsSelected={isGradientMode()}
-            onclick={() => { handleWallpaperModeChange(WallpaperMode.GRADIENT); }}
+            onclick={() => { handleWallpaperStyleChange(WallpaperStyle.GRADIENT); }}
         >
             Gradient wallpaper
         </button>
         <button class="ModeSelector__ModeItem"
             class:ModeSelector__ModeItem--IsSelected={isPopArtSquareMode()}
-            onclick={() => { handleWallpaperModeChange(WallpaperMode.POP_ART_SQUARE); }}
+            onclick={() => { handleWallpaperStyleChange(WallpaperStyle.POP_ART_SQUARE); }}
         >
             Pop Art Square
         </button>
         <button class="ModeSelector__ModeItem"
             class:ModeSelector__ModeItem--IsSelected={isPaletteRowMode()}
-            onclick={() => { handleWallpaperModeChange(WallpaperMode.PALETTE_ROW); }}
+            onclick={() => { handleWallpaperStyleChange(WallpaperStyle.PALETTE_ROW); }}
         >
             Palette Row
         </button>

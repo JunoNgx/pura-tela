@@ -1,11 +1,11 @@
-import { WallpaperMode, type SizeItem } from "./types.js";
+import { WallpaperStyle, type SizeItem } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
 export type CanvasRenderOptions = {
     size: SizeItem,
     colours: string[],
-    mode: WallpaperMode,
+    mode: WallpaperStyle,
 };
 
 type squareProps = {
@@ -38,19 +38,19 @@ export const renderCanvas = (
     const renderOptions = { ctx, size, colours, mode };
 
     switch(mode) {
-    case WallpaperMode.GRADIENT:
+    case WallpaperStyle.GRADIENT:
         renderForGradientMode(renderOptions);
         break;
 
-    case WallpaperMode.POP_ART_SQUARE:
+    case WallpaperStyle.POP_ART_SQUARE:
         renderForPopArtSquareMode(renderOptions);
         break;
 
-    case WallpaperMode.PALETTE_ROW:
+    case WallpaperStyle.PALETTE_ROW:
         renderForPaletteRowMode(renderOptions);
         break;
 
-    case WallpaperMode.SOLID:
+    case WallpaperStyle.SOLID:
     default:
         renderForSolidMode(renderOptions);
     }

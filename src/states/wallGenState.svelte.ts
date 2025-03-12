@@ -1,7 +1,7 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { WallpaperMode, type PalGenItem, type SizeItem, type State } from "src/lib/types.js";
+import { WallpaperStyle, type PalGenItem, type SizeItem, type State } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
 
@@ -106,8 +106,8 @@ export const getColoursInUse = () => {
  * Wallpaper mode data
  */
 const isWallGenStyleValid = (data: any) => {
-    if ( data !== WallpaperMode.SOLID
-        && data !== WallpaperMode.GRADIENT
+    if ( data !== WallpaperStyle.SOLID
+        && data !== WallpaperStyle.GRADIENT
     ) {
         return false
     }
@@ -116,28 +116,28 @@ const isWallGenStyleValid = (data: any) => {
 };
 
 export const wallGenStyle = createLocalStorageSyncedState({
-    key: "wallpaperMode",
-    defaultValue: WallpaperMode.SOLID,
+    key: "WallpaperStyle",
+    defaultValue: WallpaperStyle.SOLID,
     validationFunc: isWallGenStyleValid,
-}) as State<WallpaperMode>;
+}) as State<WallpaperStyle>;
 
 export const isSolidMode = () => { 
-    const isSolid = $derived(wallGenStyle.val === WallpaperMode.SOLID);
+    const isSolid = $derived(wallGenStyle.val === WallpaperStyle.SOLID);
     return isSolid;
 };
 
 export const isGradientMode = () => {
-    const isGradient = $derived(wallGenStyle.val === WallpaperMode.GRADIENT);
+    const isGradient = $derived(wallGenStyle.val === WallpaperStyle.GRADIENT);
     return isGradient;
 };
 
 export const isPopArtSquareMode = () => {
-    const isPopArtSquareMode = $derived(wallGenStyle.val === WallpaperMode.POP_ART_SQUARE);
+    const isPopArtSquareMode = $derived(wallGenStyle.val === WallpaperStyle.POP_ART_SQUARE);
     return isPopArtSquareMode;
 };
 
 export const isPaletteRowMode = () => {
-    const isPaletteRowMode = $derived(wallGenStyle.val === WallpaperMode.PALETTE_ROW);
+    const isPaletteRowMode = $derived(wallGenStyle.val === WallpaperStyle.PALETTE_ROW);
     return isPaletteRowMode;
 };
 
@@ -211,13 +211,13 @@ export const readjustWallGenColoursInUseCount = () => {
 
 export const getMinWallGenColoursInUseCount = () => {
     switch (wallGenStyle.val) {
-    case WallpaperMode.SOLID:
+    case WallpaperStyle.SOLID:
         return 1;
-    case WallpaperMode.POP_ART_SQUARE:
+    case WallpaperStyle.POP_ART_SQUARE:
         return 4;
-    case WallpaperMode.POP_ART_SQUARE:
+    case WallpaperStyle.POP_ART_SQUARE:
         return 2;
-    case WallpaperMode.GRADIENT:
+    case WallpaperStyle.GRADIENT:
     default:
         return 2;
     }
@@ -225,13 +225,13 @@ export const getMinWallGenColoursInUseCount = () => {
 
 export const getMaxWallGenColoursInUseCount = () => {
     switch (wallGenStyle.val) {
-    case WallpaperMode.SOLID:
+    case WallpaperStyle.SOLID:
         return 1;
-    case WallpaperMode.POP_ART_SQUARE:
+    case WallpaperStyle.POP_ART_SQUARE:
         return 4;
-    case WallpaperMode.POP_ART_SQUARE:
+    case WallpaperStyle.POP_ART_SQUARE:
         return 5;
-    case WallpaperMode.GRADIENT:
+    case WallpaperStyle.GRADIENT:
     default:
         return 5;
     }

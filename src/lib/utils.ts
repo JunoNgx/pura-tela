@@ -1,4 +1,4 @@
-import { WallpaperMode, type ColourItem, type RgbColour } from "./types.js";
+import { WallpaperStyle, type ColourItem, type RgbColour } from "./types.js";
 
 export const isHexCodeValid = (str: string): boolean => {
     const validHexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
@@ -63,7 +63,7 @@ export const computeFilename = ({
 }: {
     colours: string[],
     gallery: ColourItem[],
-    mode: WallpaperMode,
+    mode: WallpaperStyle,
 }) => {
 
     const getColourName = (
