@@ -59,7 +59,7 @@
                     Height
                 </label>
                 <input class="SizeInput__Input"
-                    id="wallGenWidth"
+                    id="wallGenHeight"
                     name="sizeHeight"
                     type="number"
                     min=0
