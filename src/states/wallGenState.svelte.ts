@@ -105,7 +105,7 @@ export const getColoursInUse = () => {
 /**
  * Wallpaper mode data
  */
-const isWallGenModeValid = (data: any) => {
+const isWallGenStyleValid = (data: any) => {
     if ( data !== WallpaperMode.SOLID
         && data !== WallpaperMode.GRADIENT
     ) {
@@ -115,29 +115,29 @@ const isWallGenModeValid = (data: any) => {
     return true;
 };
 
-export const wallGenMode = createLocalStorageSyncedState({
+export const wallGenStyle = createLocalStorageSyncedState({
     key: "wallpaperMode",
     defaultValue: WallpaperMode.SOLID,
-    validationFunc: isWallGenModeValid,
+    validationFunc: isWallGenStyleValid,
 }) as State<WallpaperMode>;
 
 export const isSolidMode = () => { 
-    const isSolid = $derived(wallGenMode.val === WallpaperMode.SOLID);
+    const isSolid = $derived(wallGenStyle.val === WallpaperMode.SOLID);
     return isSolid;
 };
 
 export const isGradientMode = () => {
-    const isGradient = $derived(wallGenMode.val === WallpaperMode.GRADIENT);
+    const isGradient = $derived(wallGenStyle.val === WallpaperMode.GRADIENT);
     return isGradient;
 };
 
 export const isPopArtSquareMode = () => {
-    const isPopArtSquareMode = $derived(wallGenMode.val === WallpaperMode.POP_ART_SQUARE);
+    const isPopArtSquareMode = $derived(wallGenStyle.val === WallpaperMode.POP_ART_SQUARE);
     return isPopArtSquareMode;
 };
 
 export const isPaletteRowMode = () => {
-    const isPaletteRowMode = $derived(wallGenMode.val === WallpaperMode.PALETTE_ROW);
+    const isPaletteRowMode = $derived(wallGenStyle.val === WallpaperMode.PALETTE_ROW);
     return isPaletteRowMode;
 };
 
@@ -210,7 +210,7 @@ export const readjustWallGenColoursInUseCount = () => {
 };
 
 export const getMinWallGenColoursInUseCount = () => {
-    switch (wallGenMode.val) {
+    switch (wallGenStyle.val) {
     case WallpaperMode.SOLID:
         return 1;
     case WallpaperMode.POP_ART_SQUARE:
@@ -224,7 +224,7 @@ export const getMinWallGenColoursInUseCount = () => {
 };
 
 export const getMaxWallGenColoursInUseCount = () => {
-    switch (wallGenMode.val) {
+    switch (wallGenStyle.val) {
     case WallpaperMode.SOLID:
         return 1;
     case WallpaperMode.POP_ART_SQUARE:

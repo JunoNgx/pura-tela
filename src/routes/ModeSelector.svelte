@@ -1,9 +1,9 @@
 <script lang="ts">
     import { WallpaperMode } from "src/lib/types.js";
-	import { isGradientMode, isPaletteRowMode, isPopArtSquareMode, isSolidMode, readjustWallGenColoursInUseCount, wallGenMode } from "src/states/wallGenState.svelte.js";
+	import { isGradientMode, isPaletteRowMode, isPopArtSquareMode, isSolidMode, readjustWallGenColoursInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
 
     const handleWallpaperModeChange = (newValue: WallpaperMode) => {
-        wallGenMode.set(newValue);
+        wallGenStyle.set(newValue);
         readjustWallGenColoursInUseCount();
     }
 </script>

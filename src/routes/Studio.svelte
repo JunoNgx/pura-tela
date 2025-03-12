@@ -2,7 +2,7 @@
 	import { onDestroy, onMount } from "svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { computeFilename } from "src/lib/utils.js";
-	import { getHexColourCodesInUse, getColoursInUse, getWallGenColourInUseCount, getWallGenSizeOption, shouldShowSampleText, wallGenMode } from "src/states/wallGenState.svelte.js";
+	import { getHexColourCodesInUse, getColoursInUse, getWallGenColourInUseCount, getWallGenSizeOption, shouldShowSampleText, wallGenStyle } from "src/states/wallGenState.svelte.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
 	import ModeSelector from "src/routes/ModeSelector.svelte";
@@ -13,7 +13,7 @@
         const fileName = computeFilename({
             colours: getColoursInUse(),
             gallery: colourGallery.val,
-            mode: wallGenMode.val,
+            mode: wallGenStyle.val,
         });
 
         generateImage(fileName);
@@ -39,7 +39,7 @@
         renderCanvas({
             size: getWallGenSizeOption(),
             colours: getHexColourCodesInUse(),
-            mode: wallGenMode.val,
+            mode: wallGenStyle.val,
         });
     });
 </script>
