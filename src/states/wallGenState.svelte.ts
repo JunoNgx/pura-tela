@@ -302,6 +302,29 @@ export const wallGenSize = createLocalStorageSyncedState({
     validationFunc: isColourIndexValid,
 });
 
+
+export const setWallGenSizeWidth = (newVal: number) => {
+    if (newVal <= 0 || newVal > MAX_WIDTH) {
+        throw new Error("An invalid wallpaper width value");
+    }
+
+    wallGenSize.set({
+        ...wallGenSize.val,
+        width: newVal,
+    });
+};
+
+export const setWallGenSizeHeight = (newVal: number) => {
+    if (newVal <= 0 || newVal > MAX_HEIGHT) {
+        throw new Error("An invalid wallpaper height value");
+    }
+
+    wallGenSize.set({
+        ...wallGenSize.val,
+        height: newVal,
+    });
+};
+
 /**
  * Sample text setting
  */
