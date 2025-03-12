@@ -106,13 +106,13 @@ export const getColoursInUse = () => {
  * Wallpaper mode data
  */
 const isWallGenStyleValid = (data: any) => {
-    if ( data !== WallpaperStyle.SOLID
-        && data !== WallpaperStyle.GRADIENT
-    ) {
-        return false
+    for (const value in WallpaperStyle) {
+        if (data === value) {
+            return true;
+        }
     }
 
-    return true;
+    return false;
 };
 
 export const wallGenStyle = createLocalStorageSyncedState({
