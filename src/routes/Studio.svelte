@@ -29,10 +29,16 @@
         refitCanvasToContainer();
     };
 
-    const computeShareableUrl = () => {
+    const computeBaseUrl = () => {
         const topLevelDomain = page.url.hostname;
-        console.log(topLevelDomain)
-        const url = new URL(`http://${topLevelDomain}`);
+
+        if (topLevelDomain === "localhost") {
+            return `http://localhost:${page.url.port}`
+        } else return topLevelDomain;
+    };
+
+    const computeShareableUrl = () => {
+        const url = new URL(computeBaseUrl());
         url.searchParams.append("style", wallGenStyle.val);
         url.searchParams.append("colours", getColoursInUse().toString());
         url.searchParams.append("width", wallGenSize.val.width.toString());
