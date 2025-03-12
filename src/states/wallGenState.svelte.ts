@@ -240,38 +240,6 @@ export const getMaxWallGenColoursInUseCount = () => {
 };
 
 /**
- * Wallpaper Generator size option index
- */
-const isCurrSizeOptionIndexValid = (data: any) => {
-    if (data === null || data === undefined || !sizeGallery) {
-        return false;
-    }
-
-    try {
-        parseInt(data);
-
-        if (data < 0 || data > sizeGallery.length - 1) {
-            return false;
-        }
-
-        return true;
-    } catch (err) {
-        return false;
-    }
-};
-
-export const wallGenSizeOptionIndex = createLocalStorageSyncedState({
-    key: "sizeOptionsIndex",
-    defaultValue: 0,
-    validationFunc: isCurrSizeOptionIndexValid,
-}) as State<number>;
- 
-export const getWallGenSizeOption = () => {
-    const option = $derived<SizeItem>(sizeGallery[wallGenSizeOptionIndex.val]);
-    return option;
-};
-
-/**
  * Wallpaper Genarator current size
  */
 const isWallGenSizeValid = (data: any) => {
