@@ -106,7 +106,8 @@ export const getColoursInUse = () => {
  * Wallpaper mode data
  */
 const isWallGenStyleValid = (data: any) => {
-    for (const value in WallpaperStyle) {
+    for (const key in WallpaperStyle) {
+        const value = WallpaperStyle[key as keyof typeof WallpaperStyle];
         if (data === value) {
             return true;
         }
