@@ -39,24 +39,24 @@ export const renderCanvas = (
 
     switch(style) {
     case WallpaperStyle.GRADIENT:
-        renderForGradientMode(renderOptions);
+        renderForGradientStyle(renderOptions);
         break;
 
     case WallpaperStyle.POP_ART_SQUARE:
-        renderForPopArtSquareMode(renderOptions);
+        renderForPopArtSquareStyle(renderOptions);
         break;
 
     case WallpaperStyle.PALETTE_ROW:
-        renderForPaletteRowMode(renderOptions);
+        renderForPaletteRowStyle(renderOptions);
         break;
 
     case WallpaperStyle.SOLID:
     default:
-        renderForSolidMode(renderOptions);
+        renderForSolidStyle(renderOptions);
     }
 };
 
-const renderForGradientMode = (
+const renderForGradientStyle = (
     { ctx, colours, size }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
@@ -77,7 +77,7 @@ const renderForGradientMode = (
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
-const renderForSolidMode = (
+const renderForSolidStyle = (
     { ctx, colours, size }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
@@ -86,7 +86,7 @@ const renderForSolidMode = (
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
-const renderForPopArtSquareMode = (
+const renderForPopArtSquareStyle = (
     { ctx, colours, size }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
@@ -129,7 +129,7 @@ const renderForPopArtSquareMode = (
     }); 
 };
 
-const renderForPaletteRowMode = (
+const renderForPaletteRowStyle = (
     { ctx, colours, size }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
