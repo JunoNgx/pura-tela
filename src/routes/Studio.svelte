@@ -39,7 +39,7 @@
         renderCanvas({
             size: getWallGenSizeOption(),
             colours: getHexColourCodesInUse(),
-            mode: wallGenStyle.val,
+            style: wallGenStyle.val,
         });
     });
 </script>

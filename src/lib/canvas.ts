@@ -5,7 +5,7 @@ const CANVAS_ID = "Canvas";
 export type CanvasRenderOptions = {
     size: SizeItem,
     colours: string[],
-    mode: WallpaperStyle,
+    style: WallpaperStyle,
 };
 
 type squareProps = {
@@ -22,7 +22,7 @@ const drawSquare = ({ ctx, colour, x, y, size}: squareProps) => {
 }
 
 export const renderCanvas = (
-    { size, colours, mode }: CanvasRenderOptions
+    { size, colours, style }: CanvasRenderOptions
 ) => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
     if (!canvas) return;
@@ -35,9 +35,9 @@ export const renderCanvas = (
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const renderOptions = { ctx, size, colours, mode };
+    const renderOptions = { ctx, size, colours, style };
 
-    switch(mode) {
+    switch(style) {
     case WallpaperStyle.GRADIENT:
         renderForGradientMode(renderOptions);
         break;
