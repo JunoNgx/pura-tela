@@ -8,6 +8,8 @@
 	import StyleSelector from "src/routes/StyleSelector.svelte";
 	import ColourInputList from "./ColourInputList.svelte";
     import SizeInput from "src/routes/SizeInput.svelte";
+	import SharePanel from "src/components/SharePanel.svelte";
+	import { page } from "$app/state";
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
@@ -25,6 +27,18 @@
 
     const handleResize = () => {
         refitCanvasToContainer();
+    };
+
+    const computeShareableUrl = () => {
+        const topLevelDomain = page.url.hostname;
+        console.log(topLevelDomain)
+        const url = new URL(`http://${topLevelDomain}`);
+        url.searchParams.append("style", wallGenStyle.val);
+        url.searchParams.append("colours", getColoursInUse().toString());
+        url.searchParams.append("width", wallGenSize.val.width.toString());
+        url.searchParams.append("height", wallGenSize.val.height.toString());
+
+        return url.toString();
     };
 
     onMount(() => {
@@ -103,6 +117,12 @@
         </div>
 
     </div>
+
+    <SharePanel
+        title="Share this wallpaper"
+        desc="Access this url to retrieve the same wallpaper settings."
+        content={computeShareableUrl()}
+    />
 </div>
 
 <style>
