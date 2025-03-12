@@ -325,6 +325,22 @@ export const setWallGenSizeHeight = (newVal: number) => {
     });
 };
 
+export const setWallGenSizeFromSizeGalleryIndex = (index: number) => {
+    const isSizeGalleryIndexValid = (index: number) => {
+        return (0 <= index && index <= sizeGallery.length - 1);
+    };
+
+    if (!isSizeGalleryIndexValid(index)) {
+        throw new Error("Invalid size gallery index")
+    }
+
+    const sizeGalleryItem = sizeGallery[index];
+    wallGenSize.set({
+        width: sizeGalleryItem.width,
+        height: sizeGalleryItem.height,
+    });
+};
+
 /**
  * Sample text setting
  */
