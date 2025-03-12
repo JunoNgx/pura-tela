@@ -2,7 +2,7 @@
 	import { onDestroy, onMount } from "svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { computeFilename } from "src/lib/utils.js";
-	import { getHexColourCodesInUse, getColoursInUse, getWallGenColourInUseCount, getWallGenSizeOption, shouldShowSampleText, wallGenStyle } from "src/states/wallGenState.svelte.js";
+	import { getHexColourCodesInUse, getColoursInUse, getWallGenColourInUseCount, getWallGenSizeOption, shouldShowSampleText, wallGenStyle, wallGenSize } from "src/states/wallGenState.svelte.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
 	import StyleSelector from "src/routes/StyleSelector.svelte";
@@ -37,7 +37,7 @@
 
     $effect(() => {
         renderCanvas({
-            size: getWallGenSizeOption(),
+            size: wallGenSize.val,
             colours: getHexColourCodesInUse(),
             style: wallGenStyle.val,
         });
