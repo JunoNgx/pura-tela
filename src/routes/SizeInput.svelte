@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from "$app/navigation";
 	import { MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
 	import { sizeGallery } from "src/states/sizeGalleryState.svelte.js";
 	import { setWallGenSizeHeight, setWallGenSizeWidth, wallGenSize, wallGenSizeOptionIndex } from "src/states/wallGenState.svelte.js";
@@ -23,6 +24,10 @@
 
     const onHeightChange = (newValue: string) => {
         setWallGenSizeHeight(newValue);
+    }
+
+    const goToSizeGallery = () => {
+        goto("/sizes")
     }
 </script>
 
@@ -73,6 +78,15 @@
         </div>
 
 
+        <div class="SizeInput__RightSide">
+            <button class="SizeInput__ActionBtn"
+                onclick={goToSizeGallery}
+                title="View list of size presets"
+                aria-label="View list of size presets"
+            >
+                View presets
+        </button>
+        </div>
     </div>
 </section>
 
@@ -80,6 +94,8 @@
     .SizeInput__MainContent {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         gap: 2rem;
         margin: 1rem 0;
     }
@@ -87,6 +103,7 @@
     .SizeInput__LeftSide {
         display: flex;
         flex-direction: row;
+        align-items: center;
         gap: 3rem;
     }
 
