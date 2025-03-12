@@ -59,8 +59,12 @@
         border: 1px solid var(--colPri);
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        gap: 2rem;
+        gap: 1rem;
         padding: 1rem;
+    }
+
+    .SharePanel__Content {
+        flex-shrink: 3;
+        word-break: break-all;
     }
 </style>
