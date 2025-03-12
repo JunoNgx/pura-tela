@@ -121,24 +121,24 @@ export const wallGenStyle = createLocalStorageSyncedState({
     validationFunc: isWallGenStyleValid,
 }) as State<WallpaperStyle>;
 
-export const isSolidMode = () => { 
+export const isSolidStyle = () => { 
     const isSolid = $derived(wallGenStyle.val === WallpaperStyle.SOLID);
     return isSolid;
 };
 
-export const isGradientMode = () => {
+export const isGradientStyle = () => {
     const isGradient = $derived(wallGenStyle.val === WallpaperStyle.GRADIENT);
     return isGradient;
 };
 
-export const isPopArtSquareMode = () => {
-    const isPopArtSquareMode = $derived(wallGenStyle.val === WallpaperStyle.POP_ART_SQUARE);
-    return isPopArtSquareMode;
+export const isPopArtSquareStyle = () => {
+    const isPopArtSquareStyle = $derived(wallGenStyle.val === WallpaperStyle.POP_ART_SQUARE);
+    return isPopArtSquareStyle;
 };
 
-export const isPaletteRowMode = () => {
-    const isPaletteRowMode = $derived(wallGenStyle.val === WallpaperStyle.PALETTE_ROW);
-    return isPaletteRowMode;
+export const isPaletteRowStyle = () => {
+    const isPaletteRowStyle = $derived(wallGenStyle.val === WallpaperStyle.PALETTE_ROW);
+    return isPaletteRowStyle;
 };
 
 /**
