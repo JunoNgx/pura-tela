@@ -280,17 +280,16 @@ const isWallGenSizeValid = (data: any) => {
     }
 
     try {
-        const sizeData = JSON.parse(data);
-
-        if (sizeData.width <= 0 || sizeData.width > MAX_WIDTH) {
+        if (data.width <= 0 || data.width > MAX_WIDTH) {
             return false;
         }
 
-        if (sizeData.height <= 0 || sizeData.height > MAX_HEIGHT) {
+        if (data.height <= 0 || data.height > MAX_HEIGHT) {
             return false;
         }
 
         return true;
+
     } catch (err) {
         return false;
     }
