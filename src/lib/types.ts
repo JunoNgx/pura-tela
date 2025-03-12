@@ -20,6 +20,11 @@ export type SizeItem = {
     height: number,
 };
 
+export type SizeData = {
+    width: number,
+    height: number,
+};
+
 export type RgbColour = {
     red: number,
     green: number,
