@@ -2,7 +2,7 @@
 	import { onDestroy, onMount } from "svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { computeFilename } from "src/lib/utils.js";
-	import { getHexColourCodesInUse, getColoursInUse, shouldShowSampleText, wallGenStyle, wallGenSize } from "src/states/wallGenState.svelte.js";
+	import { getHexColourCodesInUse, getColoursInUse, shouldShowSampleText, wallGenStyle, wallGenSize, readjustWallGenColoursInUseCount } from "src/states/wallGenState.svelte.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
 	import StyleSelector from "src/routes/StyleSelector.svelte";
@@ -49,6 +49,7 @@
 
     onMount(() => {
         window.addEventListener("resize", handleResize);
+        readjustWallGenColoursInUseCount();
     });
 
     onDestroy(() => {
