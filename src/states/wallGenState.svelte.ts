@@ -215,7 +215,7 @@ export const getMinWallGenColoursInUseCount = () => {
         return 1;
     case WallpaperStyle.POP_ART_SQUARE:
         return 4;
-    case WallpaperStyle.POP_ART_SQUARE:
+    case WallpaperStyle.PALETTE_ROW:
         return 2;
     case WallpaperStyle.GRADIENT:
     default:
@@ -229,7 +229,7 @@ export const getMaxWallGenColoursInUseCount = () => {
         return 1;
     case WallpaperStyle.POP_ART_SQUARE:
         return 4;
-    case WallpaperStyle.POP_ART_SQUARE:
+    case WallpaperStyle.PALETTE_ROW:
         return 5;
     case WallpaperStyle.GRADIENT:
     default:
