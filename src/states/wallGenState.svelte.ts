@@ -324,6 +324,10 @@ export const setWallGenSizeHeight = (newVal: number) => {
     });
 };
 
+export const setWallGenSize = (width: number, height: number) => {
+    wallGenSize.set({ width, height });
+};
+
 export const setWallGenSizeFromSizeGalleryIndex = (index: number) => {
     const isSizeGalleryIndexValid = (index: number) => {
         return (0 <= index && index <= sizeGallery.length - 1);
