@@ -1,30 +1,40 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
-	import { sizeGallery } from "src/states/sizeGalleryState.svelte.js";
-	import { setWallGenSizeHeight, setWallGenSizeWidth, wallGenSize, wallGenSizeOptionIndex } from "src/states/wallGenState.svelte.js";
+	import { setWallGenSize, wallGenSize } from "src/states/wallGenState.svelte.js";
 
+    let width = $state(wallGenSize.val.width);
+    let height = $state(wallGenSize.val.height);
+    let shouldShowIncorrectInput = $state(false);
 
-    const handleSizeOptionChange = (rawNewIndex: string) => {
-        let newIndex;
+    const onWidthChange = (value: string) => {
+        width = parseInt(value);
+        tryUpdateWallGenSize();
+    }
 
-        try {
-            newIndex = parseInt(rawNewIndex);
-        } catch (error) {
-            console.error("ERROR: invalid index value for size option")
+    const onHeightChange = (value: string) => {
+        height = parseInt(value);
+        tryUpdateWallGenSize();
+    }
+
+    const isInputValid = () => {
+        const isWidthValid = 1 < width && width < MAX_WIDTH;
+        const isHeightValid = 1 < height && height < MAX_HEIGHT;
+
+        return isWidthValid && isHeightValid;
+    }
+
+    const tryUpdateWallGenSize = () => {
+        if (!isInputValid()) {
+            shouldShowIncorrectInput = true;
             return;
         }
 
-        wallGenSizeOptionIndex.set(newIndex);
+        
+        console.log("is valid")
+        shouldShowIncorrectInput = false;
+        setWallGenSize(width, height);
     };
-
-    const onWidthChange = (newValue: string) => {
-        setWallGenSizeWidth(newValue);
-    }
-
-    const onHeightChange = (newValue: string) => {
-        setWallGenSizeHeight(newValue);
-    }
 
     const goToSizeGallery = () => {
         goto("/sizes")
@@ -35,6 +45,10 @@
     <h3>
         <label for="size">Dimensions</label>
     </h3>
+
+    {#if shouldShowIncorrectInput}
+        Wrong
+    {/if}
 
     <div class="SizeInput__MainContent">
         <div class="SizeInput__LeftSide">
@@ -48,12 +62,13 @@
                     id="wallGenWidth"
                     name="sizeWidth"
                     type="number"
-                    min=0
+                    min=1
                     max={MAX_WIDTH}
                     title="Width of the wallpaper"
                     aria-label="Width of the wallpaper"
-                    value={wallGenSize.val.width}
-                    oninput={e => onWidthChange((e.target as HTMLInputElement).value)}
+                    pattern="[0-9]*"
+                    value={width}
+                    oninput={e => {onWidthChange((e.target as HTMLInputElement).value)}}
                 />
             </div>
 
@@ -67,12 +82,12 @@
                     id="wallGenHeight"
                     name="sizeHeight"
                     type="number"
-                    min=0
+                    min=1
                     max={MAX_HEIGHT}
                     title="Height of the wallpaper"
                     aria-label="Height of the wallpaper"
-                    value={wallGenSize.val.height}
-                    oninput={e => onHeightChange((e.target as HTMLInputElement).value)}
+                    bind:value={height}
+                    oninput={e => {onHeightChange((e.target as HTMLInputElement).value)}}
                 />
             </div>
         </div>
