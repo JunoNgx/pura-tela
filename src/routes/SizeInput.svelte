@@ -85,7 +85,7 @@
                 aria-label="View list of size presets"
             >
                 View presets
-        </button>
+            </button>
         </div>
     </div>
 </section>
