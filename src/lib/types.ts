@@ -49,6 +49,12 @@ export enum WallpaperStyle {
     PALETTE_ROW = "paletteRow",
 };
 
+export type WallpaperStyleInfo = {
+    minColourCount: number,
+    maxColourCount: number,
+    defaultColourCount: number,
+};
+
 export type PalGenItem = {
     colour: string,
     isLocked: boolean,
