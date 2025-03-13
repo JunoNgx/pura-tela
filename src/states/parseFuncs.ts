@@ -45,8 +45,9 @@ export const tryParseColours = (inputStr: string) => {
             }
         }
 
+        return null;
+
     } catch(error) {
-        console.error("Invalid size data");
         return null;
     }
 };
