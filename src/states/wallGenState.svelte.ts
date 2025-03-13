@@ -144,38 +144,42 @@ export const isPaletteRowStyle = () => {
 };
 
 export const getCurrWallStyleInfo = (): WallpaperStyleInfo => {
-    switch (wallGenStyle.val) {
-    case WallpaperStyle.SOLID:
-        return {
-            defaultColourCount: 1,
-            minColourCount: 1,
-            maxColourCount: 1,
-        }
+    const info = $derived.by(() => {
+        switch (wallGenStyle.val) {
+        case WallpaperStyle.SOLID:
+            return {
+                defaultColourCount: 1,
+                minColourCount: 1,
+                maxColourCount: 1,
+            }
 
-    case WallpaperStyle.GRADIENT:
-        return {
-            defaultColourCount: 2,
-            minColourCount: 2,
-            maxColourCount: MAX_COLOUR_COUNT,
-        }
+        case WallpaperStyle.GRADIENT:
+            return {
+                defaultColourCount: 2,
+                minColourCount: 2,
+                maxColourCount: MAX_COLOUR_COUNT,
+            }
 
-    case WallpaperStyle.POP_ART_SQUARE:
-        return {
-            defaultColourCount: 4,
-            minColourCount: 4,
-            maxColourCount: 4,
-        }
+        case WallpaperStyle.POP_ART_SQUARE:
+            return {
+                defaultColourCount: 4,
+                minColourCount: 4,
+                maxColourCount: 4,
+            }
 
-    case WallpaperStyle.PALETTE_ROW:
-        return {
-            defaultColourCount: 2,
-            minColourCount: 5,
-            maxColourCount: MAX_COLOUR_COUNT,
-        }
+        case WallpaperStyle.PALETTE_ROW:
+            return {
+                defaultColourCount: 2,
+                minColourCount: 5,
+                maxColourCount: MAX_COLOUR_COUNT,
+            }
 
-    default:
-        throw new Error("Retrieving info; invalid wallpaper style not found")
-    }
+        default:
+            throw new Error("Retrieving info; invalid wallpaper style not found")
+        }
+    });
+
+    return info;
 };
 
 /**
