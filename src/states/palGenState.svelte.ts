@@ -3,6 +3,7 @@ import defaultPaletteGallery from "src/data/palettes.json";
 import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 import { getRandomHexCode } from "src/lib/utils.js";
 import { createLocalStorageSyncedState, isArrayOfHexCodesValid, isHexCodeValid, isValidBoolean } from "src/states/stateUtils.svelte.js";
+import { tryParseColours } from "./parseFuncs.js";
 
 /**
  * Palette generator's colours
@@ -109,44 +110,17 @@ export const exportToStringFromPalGen = () => {
 };
 
 export const tryParseFromStringToPalGen = (inputStr: string) => {
+    const newVal = tryParseColours(inputStr);
 
-    const allowedSeparators = ["-", ","];
-    let isSuccessful = false;
-
-    try {
-        for (const separator of allowedSeparators) {
-            const arr = inputStr.split(separator, MAX_COLOUR_COUNT).map(colour => {
-                const strippedStr = colour.replaceAll("\"", "")
-                    .replaceAll("\'", "")
-                    .replaceAll("#", "");
-
-                if (strippedStr.length === 3) {
-                    // Attempt to convert 3-char hex codes to 6-char hex codes
-                    return strippedStr
-                        .split("")
-                        .map(char => char + char)
-                        .join("");
-                } else return strippedStr;
-            });
-
-            if (isArrayOfHexCodesValid(arr)) {
-                isSuccessful = true;
-                const newValue = arr.map(colour => ({
-                    colour,
-                    isLocked: false,
-                }));
-                palGenColours.set([...newValue]);
-                break;
-            }
-        }
-
-        if (!isSuccessful) {
-            throw new Error("Data is invalid");
-        }
-
-    } catch(error) {
-        console.error(error);
-        window.alert(error);
+    if (!newVal) {
+        window.alert("Data is invalid")
+        return;
     }
+
+    const newValue = newVal.map(colour => ({
+        colour,
+        isLocked: false,
+    }));
+    palGenColours.set([...newValue]);
 };
 
