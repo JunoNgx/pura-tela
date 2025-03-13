@@ -219,7 +219,7 @@ export const setWallGenColourInUseCount = (newValue: number) => {
 };
 
 export const increaseWallGenColourInUseCount = () => {
-    if (wallGenColoursInUseCount.val === getMaxWallGenColoursInUseCount()) {
+    if (wallGenColoursInUseCount.val === getCurrWallStyleInfo().maxColourCount) {
         throw new Error("Maximum colour in use count reached");
     }
 
@@ -227,7 +227,7 @@ export const increaseWallGenColourInUseCount = () => {
 };
 
 export const decreaseWallGenColourInUseCount = () => {
-    if (wallGenColoursInUseCount.val === getMinWallGenColoursInUseCount()) {
+    if (wallGenColoursInUseCount.val === getCurrWallStyleInfo().minColourCount) {
         throw new Error("Minimum colour in use count reached");
     }
 
@@ -235,42 +235,14 @@ export const decreaseWallGenColourInUseCount = () => {
 };
 
 export const readjustWallGenColoursInUseCount = () => {
-    const currMinColourCount = getMinWallGenColoursInUseCount();
+    const currMinColourCount = getCurrWallStyleInfo().minColourCount;
     if (getWallGenColourInUseCount() < currMinColourCount) {
         setWallGenColourInUseCount(currMinColourCount);
     }
 
-    const currMaxColourCount = getMaxWallGenColoursInUseCount();
+    const currMaxColourCount = getCurrWallStyleInfo().maxColourCount;
     if (getWallGenColourInUseCount() > currMaxColourCount) {
         setWallGenColourInUseCount(currMaxColourCount);
-    }
-};
-
-export const getMinWallGenColoursInUseCount = () => {
-    switch (wallGenStyle.val) {
-    case WallpaperStyle.SOLID:
-        return 1;
-    case WallpaperStyle.POP_ART_SQUARE:
-        return 4;
-    case WallpaperStyle.PALETTE_ROW:
-        return 2;
-    case WallpaperStyle.GRADIENT:
-    default:
-        return 2;
-    }
-};
-
-export const getMaxWallGenColoursInUseCount = () => {
-    switch (wallGenStyle.val) {
-    case WallpaperStyle.SOLID:
-        return 1;
-    case WallpaperStyle.POP_ART_SQUARE:
-        return 4;
-    case WallpaperStyle.PALETTE_ROW:
-        return 5;
-    case WallpaperStyle.GRADIENT:
-    default:
-        return 5;
     }
 };
 
