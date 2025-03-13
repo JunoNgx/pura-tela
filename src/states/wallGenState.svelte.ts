@@ -143,7 +143,7 @@ export const isPaletteRowStyle = () => {
     return isPaletteRowStyle;
 };
 
-export const getWallGenStyleInfo = (): WallpaperStyleInfo => {
+export const getCurrWallStyleInfo = (): WallpaperStyleInfo => {
     switch (wallGenStyle.val) {
     case WallpaperStyle.SOLID:
         return {
