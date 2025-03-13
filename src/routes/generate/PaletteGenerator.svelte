@@ -9,7 +9,7 @@
 	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
 	import { addToPalGenColours, exportToStringFromPalGen, palGenColours, tryParseFromStringToPalGen, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
 	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
-	import { passPalGenToWallpaperGenerator } from "src/states/wallGenState.svelte.js";
+	import { passSomeColoursToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import SharePanel from "src/components/SharePanel.svelte";
 
     const addColour = () => {
@@ -21,7 +21,12 @@
     };
 
     const passToWallpaperGenerator = () => {
-        passPalGenToWallpaperGenerator(palGenColours.val);
+        const newColours = palGenColours.val.map(item => item.colour);
+
+        passSomeColoursToWallpaperGenerator(newColours);
+        setWallGenColourInUseCount(newColours.length);
+        readjustWallGenColoursInUseCount();
+
         goto("/");
     };
 
