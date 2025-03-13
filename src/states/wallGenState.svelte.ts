@@ -1,10 +1,10 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { WallpaperStyle, type PalGenItem, type SizeItem, type State } from "src/lib/types.js";
+import { WallpaperStyle, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
-import { MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
+import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
 
 /**
  * Wallpaper Generator current colours
@@ -141,6 +141,41 @@ export const isPopArtSquareStyle = () => {
 export const isPaletteRowStyle = () => {
     const isPaletteRowStyle = $derived(wallGenStyle.val === WallpaperStyle.PALETTE_ROW);
     return isPaletteRowStyle;
+};
+
+export const getWallGenStyleInfo = (): WallpaperStyleInfo => {
+    switch (wallGenStyle.val) {
+    case WallpaperStyle.SOLID:
+        return {
+            defaultColourCount: 1,
+            minColourCount: 1,
+            maxColourCount: 1,
+        }
+
+    case WallpaperStyle.GRADIENT:
+        return {
+            defaultColourCount: 2,
+            minColourCount: 2,
+            maxColourCount: MAX_COLOUR_COUNT,
+        }
+
+    case WallpaperStyle.POP_ART_SQUARE:
+        return {
+            defaultColourCount: 4,
+            minColourCount: 4,
+            maxColourCount: 4,
+        }
+
+    case WallpaperStyle.PALETTE_ROW:
+        return {
+            defaultColourCount: 2,
+            minColourCount: 5,
+            maxColourCount: MAX_COLOUR_COUNT,
+        }
+
+    default:
+        throw new Error("Retrieving info; invalid wallpaper style not found")
+    }
 };
 
 /**
