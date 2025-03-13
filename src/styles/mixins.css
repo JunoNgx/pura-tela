@@ -28,6 +28,7 @@
     border: 0;
 }
 
+.Error,
 .Danger,
 .Danger:hover,
 .IconButton.Danger:hover {
