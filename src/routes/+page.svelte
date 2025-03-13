@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { tryParseSize } from "src/lib/parseFuncs.js";
 	import type { WallGenQueryProps, WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
-	import { isWallGenStyleValid, wallGenStyle, } from "src/states/wallGenState.svelte.js";
+	import { isWallGenStyleValid, setWallGenSize, wallGenStyle, } from "src/states/wallGenState.svelte.js";
 
     export let data: WallGenQueryProps;
 
@@ -15,7 +16,22 @@
         }
     };
 
+    const tryParseSizeFromQueryToWallGen = () => {
+        if (!data.width || !data.height) {
+            return;
+        }
+
+        const sizeData = tryParseSize(data.width, data.height);
+
+        if (!sizeData) {
+            return;
+        }
+
+        setWallGenSize(sizeData.width, sizeData.height);
+    };
+
     tryParseStyleFromQueryToWallGen();
+    tryParseSizeFromQueryToWallGen();
 
 </script>
 
