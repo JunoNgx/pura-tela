@@ -53,3 +53,10 @@ export type PalGenItem = {
     colour: string,
     isLocked: boolean,
 };
+
+export type WallGenQueryProps = {
+    style: string | null,
+    colours: string | null,
+    width: string | null,
+    height: string | null,
+};
