@@ -79,17 +79,13 @@ export const retractWallGenColoursAtIndex = (index: number) => {
     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
 };
 
-export const passPalGenToWallpaperGenerator = (palette: PalGenItem[]) => {
-    try {
-        const newColours = palette.map(item => item.colour);
-        const coloursToBeKept = wallGenColours.val.slice(newColours.length);
-
-        wallGenColours.set([...newColours, ...coloursToBeKept]);
-        setWallGenColourInUseCount(newColours.length);
-        readjustWallGenColoursInUseCount();
-    } catch(error) {
-        throw new Error("Failed to pass palette to Wallpaper generator");
-    }
+/**
+ * Move the new colours onto WallGen, which might not completely fill up all colours
+ */
+export const passSomeColoursToWallpaperGenerator = (newColours: string[]) => {
+    // Data is internal, so this is assumed to have been validated
+    const coloursToBeKept = wallGenColours.val.slice(newColours.length);
+    wallGenColours.set([...newColours, ...coloursToBeKept]);
 };
 
 export const getHexColourCodesInUse = () => {
