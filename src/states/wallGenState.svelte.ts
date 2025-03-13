@@ -228,7 +228,7 @@ export const increaseWallGenColourInUseCount = () => {
 
 export const decreaseWallGenColourInUseCount = () => {
     if (wallGenColoursInUseCount.val === getMinWallGenColoursInUseCount()) {
-        throw new Error("Maximum colour in use count reached");
+        throw new Error("Minimum colour in use count reached");
     }
 
     wallGenColoursInUseCount.set(wallGenColoursInUseCount.val - 1);
