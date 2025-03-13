@@ -3,7 +3,7 @@ import defaultPaletteGallery from "src/data/palettes.json";
 import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 import { getRandomHexCode } from "src/lib/utils.js";
 import { createLocalStorageSyncedState, isArrayOfHexCodesValid, isHexCodeValid, isValidBoolean } from "src/states/stateUtils.svelte.js";
-import { tryParseColours } from "./parseFuncs.js";
+import { tryParseColours } from "src/lib/parseFuncs.js";
 
 /**
  * Palette generator's colours
