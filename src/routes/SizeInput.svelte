@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
+	import { tryParseSize } from "src/lib/parseFuncs.js";
 	import { setWallGenSize, wallGenSize } from "src/states/wallGenState.svelte.js";
 
     let width = $state(wallGenSize.val.width);
@@ -8,13 +9,11 @@
     let shouldShowIncorrectInput = $state(false);
 
     const onWidthChange = (value: string) => {
-        width = parseInt(value);
-        tryUpdateWallGenSize();
+        tryUpdateWallGenSize(value, height);
     }
 
     const onHeightChange = (value: string) => {
-        height = parseInt(value);
-        tryUpdateWallGenSize();
+        tryUpdateWallGenSize(width, value);
     }
 
     const isInputValid = () => {
@@ -24,16 +23,19 @@
         return isWidthValid && isHeightValid;
     }
 
-    const tryUpdateWallGenSize = () => {
-        if (!isInputValid()) {
+    const tryUpdateWallGenSize = (
+        widthStr: string | number,
+        heightStr: string | number
+    ) => {
+        const data = tryParseSize(widthStr, heightStr);
+
+        if (!data) {
             shouldShowIncorrectInput = true;
             return;
         }
 
-        
-        console.log("is valid")
         shouldShowIncorrectInput = false;
-        setWallGenSize(width, height);
+        setWallGenSize(data.width, data.height);
     };
 
     const goToSizeGallery = () => {
