@@ -49,7 +49,9 @@
     </h3>
 
     {#if shouldShowIncorrectInput}
-        Wrong
+        <p class="Error">
+            Dimension input is invalid. Please try again and consider using presets.
+        </p>
     {/if}
 
     <div class="SizeInput__MainContent">
