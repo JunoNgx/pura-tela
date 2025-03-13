@@ -1,5 +1,5 @@
 import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
-import { ThemeMode, WallpaperStyle, type State } from "src/lib/types.js";
+import { type State } from "src/lib/types.js";
 
 export const createLocalStorageSyncedState = <T>({
     key, defaultValue, validationFunc = () => true
@@ -24,6 +24,7 @@ export const createLocalStorageSyncedState = <T>({
         const existingData = localStorage.getItem(key);
         if (existingData === null) {
             console.log(`INFO: localStorage data for ${key} is empty, using fallback data`)
+            localStorage.setItem(key, JSON.stringify(defaultValue));
             return createStateWithSyncEffect(defaultValue);
         }
 

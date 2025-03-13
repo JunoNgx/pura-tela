@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
 	import { MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
+	import { tryParseSize } from "src/lib/parseFuncs.js";
 	import { setWallGenSize, wallGenSize } from "src/states/wallGenState.svelte.js";
 
     let width = $state(wallGenSize.val.width);
@@ -8,32 +9,26 @@
     let shouldShowIncorrectInput = $state(false);
 
     const onWidthChange = (value: string) => {
-        width = parseInt(value);
-        tryUpdateWallGenSize();
+        tryUpdateWallGenSize(value, height);
     }
 
     const onHeightChange = (value: string) => {
-        height = parseInt(value);
-        tryUpdateWallGenSize();
+        tryUpdateWallGenSize(width, value);
     }
 
-    const isInputValid = () => {
-        const isWidthValid = 1 < width && width < MAX_WIDTH;
-        const isHeightValid = 1 < height && height < MAX_HEIGHT;
+    const tryUpdateWallGenSize = (
+        widthStr: string | number,
+        heightStr: string | number
+    ) => {
+        const data = tryParseSize(widthStr, heightStr);
 
-        return isWidthValid && isHeightValid;
-    }
-
-    const tryUpdateWallGenSize = () => {
-        if (!isInputValid()) {
+        if (!data) {
             shouldShowIncorrectInput = true;
             return;
         }
 
-        
-        console.log("is valid")
         shouldShowIncorrectInput = false;
-        setWallGenSize(width, height);
+        setWallGenSize(data.width, data.height);
     };
 
     const goToSizeGallery = () => {
@@ -47,7 +42,9 @@
     </h3>
 
     {#if shouldShowIncorrectInput}
-        Wrong
+        <p class="Error">
+            Dimension input is invalid. Please try again and consider using presets.
+        </p>
     {/if}
 
     <div class="SizeInput__MainContent">
@@ -111,6 +108,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
         gap: 2rem;
         margin: 1rem 0;
     }

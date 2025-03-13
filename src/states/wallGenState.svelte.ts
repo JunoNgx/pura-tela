@@ -1,10 +1,10 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { WallpaperStyle, type PalGenItem, type SizeItem, type State } from "src/lib/types.js";
+import { WallpaperStyle, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
-import { MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
+import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
 
 /**
  * Wallpaper Generator current colours
@@ -79,17 +79,13 @@ export const retractWallGenColoursAtIndex = (index: number) => {
     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
 };
 
-export const passPalGenToWallpaperGenerator = (palette: PalGenItem[]) => {
-    try {
-        const newColours = palette.map(item => item.colour);
-        const coloursToBeKept = wallGenColours.val.slice(newColours.length);
-
-        wallGenColours.set([...newColours, ...coloursToBeKept]);
-        setWallGenColourInUseCount(newColours.length);
-        readjustWallGenColoursInUseCount();
-    } catch(error) {
-        throw new Error("Failed to pass palette to Wallpaper generator");
-    }
+/**
+ * Move the new colours onto WallGen, which might not completely fill up all colours
+ */
+export const passSomeColoursToWallpaperGenerator = (newColours: string[]) => {
+    // Data is internal, so this is assumed to have been validated
+    const coloursToBeKept = wallGenColours.val.slice(newColours.length);
+    wallGenColours.set([...newColours, ...coloursToBeKept]);
 };
 
 export const getHexColourCodesInUse = () => {
@@ -106,7 +102,7 @@ export const getColoursInUse = () => {
 /**
  * Wallpaper mode data
  */
-const isWallGenStyleValid = (data: any) => {
+export const isWallGenStyleValid = (data: any) => {
     for (const key in WallpaperStyle) {
         const value = WallpaperStyle[key as keyof typeof WallpaperStyle];
         if (data === value) {
@@ -141,6 +137,45 @@ export const isPopArtSquareStyle = () => {
 export const isPaletteRowStyle = () => {
     const isPaletteRowStyle = $derived(wallGenStyle.val === WallpaperStyle.PALETTE_ROW);
     return isPaletteRowStyle;
+};
+
+export const getCurrWallStyleInfo = (): WallpaperStyleInfo => {
+    const info = $derived.by(() => {
+        switch (wallGenStyle.val) {
+        case WallpaperStyle.SOLID:
+            return {
+                defaultColourCount: 1,
+                minColourCount: 1,
+                maxColourCount: 1,
+            }
+
+        case WallpaperStyle.GRADIENT:
+            return {
+                defaultColourCount: 2,
+                minColourCount: 2,
+                maxColourCount: MAX_COLOUR_COUNT,
+            }
+
+        case WallpaperStyle.POP_ART_SQUARE:
+            return {
+                defaultColourCount: 4,
+                minColourCount: 4,
+                maxColourCount: 4,
+            }
+
+        case WallpaperStyle.PALETTE_ROW:
+            return {
+                defaultColourCount: 4,
+                minColourCount: 2,
+                maxColourCount: MAX_COLOUR_COUNT,
+            }
+
+        default:
+            throw new Error("Retrieving info; invalid wallpaper style not found")
+        }
+    });
+
+    return info;
 };
 
 /**
@@ -184,7 +219,7 @@ export const setWallGenColourInUseCount = (newValue: number) => {
 };
 
 export const increaseWallGenColourInUseCount = () => {
-    if (wallGenColoursInUseCount.val === getMaxWallGenColoursInUseCount()) {
+    if (wallGenColoursInUseCount.val === getCurrWallStyleInfo().maxColourCount) {
         throw new Error("Maximum colour in use count reached");
     }
 
@@ -192,50 +227,22 @@ export const increaseWallGenColourInUseCount = () => {
 };
 
 export const decreaseWallGenColourInUseCount = () => {
-    if (wallGenColoursInUseCount.val === getMinWallGenColoursInUseCount()) {
-        throw new Error("Maximum colour in use count reached");
+    if (wallGenColoursInUseCount.val === getCurrWallStyleInfo().minColourCount) {
+        throw new Error("Minimum colour in use count reached");
     }
 
     wallGenColoursInUseCount.set(wallGenColoursInUseCount.val - 1);
 };
 
 export const readjustWallGenColoursInUseCount = () => {
-    const currMinColourCount = getMinWallGenColoursInUseCount();
+    const currMinColourCount = getCurrWallStyleInfo().minColourCount;
     if (getWallGenColourInUseCount() < currMinColourCount) {
         setWallGenColourInUseCount(currMinColourCount);
     }
 
-    const currMaxColourCount = getMaxWallGenColoursInUseCount();
+    const currMaxColourCount = getCurrWallStyleInfo().maxColourCount;
     if (getWallGenColourInUseCount() > currMaxColourCount) {
         setWallGenColourInUseCount(currMaxColourCount);
-    }
-};
-
-export const getMinWallGenColoursInUseCount = () => {
-    switch (wallGenStyle.val) {
-    case WallpaperStyle.SOLID:
-        return 1;
-    case WallpaperStyle.POP_ART_SQUARE:
-        return 4;
-    case WallpaperStyle.PALETTE_ROW:
-        return 2;
-    case WallpaperStyle.GRADIENT:
-    default:
-        return 2;
-    }
-};
-
-export const getMaxWallGenColoursInUseCount = () => {
-    switch (wallGenStyle.val) {
-    case WallpaperStyle.SOLID:
-        return 1;
-    case WallpaperStyle.POP_ART_SQUARE:
-        return 4;
-    case WallpaperStyle.PALETTE_ROW:
-        return 5;
-    case WallpaperStyle.GRADIENT:
-    default:
-        return 5;
     }
 };
 

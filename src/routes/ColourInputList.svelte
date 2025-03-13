@@ -7,7 +7,7 @@
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
     import ColourInputItem from "src/routes/ColourInputItem.svelte";
-	import { decreaseWallGenColourInUseCount, getColoursInUse, getMaxWallGenColoursInUseCount, getMinWallGenColoursInUseCount, getWallGenColourInUseCount, increaseWallGenColourInUseCount, retractWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+	import { decreaseWallGenColourInUseCount, getColoursInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, retractWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator, passWallGenToPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 
     const handleRemoveColour = (index: number) => {
@@ -35,7 +35,7 @@
         {#each getColoursInUse() as _, index}
             <li class="ColourInputContainer__Item">
                 <ColourInputItem index={index}/>
-                {#if getWallGenColourInUseCount() > getMinWallGenColoursInUseCount()}
+                {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
                     <button class="ColourInputContainer__RemoveBtn IconButton"
                         onclick={() => {handleRemoveColour(index)}}
                     >
@@ -48,7 +48,7 @@
 
     <div class="ColourInputContainer__ActionsContainerUpper">
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-            disabled={getWallGenColourInUseCount() >= getMaxWallGenColoursInUseCount()}
+            disabled={getWallGenColourInUseCount() >= getCurrWallStyleInfo().maxColourCount}
             onclick={handleAddColour}
             title="Add another colour to this wallpaper"
             aria-label="Add another colour to this wallpaper"
