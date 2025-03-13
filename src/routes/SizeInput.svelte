@@ -111,6 +111,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
         gap: 2rem;
         margin: 1rem 0;
     }
