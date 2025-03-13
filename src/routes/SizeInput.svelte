@@ -16,13 +16,6 @@
         tryUpdateWallGenSize(width, value);
     }
 
-    const isInputValid = () => {
-        const isWidthValid = 1 < width && width < MAX_WIDTH;
-        const isHeightValid = 1 < height && height < MAX_HEIGHT;
-
-        return isWidthValid && isHeightValid;
-    }
-
     const tryUpdateWallGenSize = (
         widthStr: string | number,
         heightStr: string | number
