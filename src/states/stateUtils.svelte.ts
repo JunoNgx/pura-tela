@@ -1,5 +1,5 @@
 import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
-import { ThemeMode, WallpaperStyle, type State } from "src/lib/types.js";
+import { type State } from "src/lib/types.js";
 
 export const createLocalStorageSyncedState = <T>({
     key, defaultValue, validationFunc = () => true
