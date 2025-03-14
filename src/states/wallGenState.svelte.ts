@@ -89,7 +89,12 @@ export const retractWallGenColoursAtIndex = (index: number) => {
 export const passSomeColoursToWallpaperGenerator = (newColours: string[]) => {
     // Data is internal, so this is assumed to have been validated
     const coloursToBeKept = wallGenColours.val.slice(newColours.length);
-    wallGenColours.set([...newColours, ...coloursToBeKept]);
+    const newColourObjList = newColours.map(colour => ({
+        id: uuidv4(),
+        colour,
+    }));
+
+    wallGenColours.set([...newColourObjList, ...coloursToBeKept]);
 };
 
 export const getHexColourCodesInUse = () => {
