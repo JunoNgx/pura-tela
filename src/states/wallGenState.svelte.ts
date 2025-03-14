@@ -1,4 +1,5 @@
 // @ts-ignore
+import { v4 as uuidv4 } from 'uuid';
 import defaultColourGallery from "src/data/colours.json";
 import { createColState, createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
 import { WallpaperStyle, type ColObj, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
@@ -64,7 +65,7 @@ export const setWallGenColoursAtIndex = (index: number, newValue: string) => {
     }
 
     const tempArr = [...wallGenColours.val];
-    tempArr[index] = newValue;
+    tempArr[index].colour = newValue;
     wallGenColours.set(tempArr);
 };
 /**
@@ -75,7 +76,10 @@ export const setWallGenColoursAtIndex = (index: number, newValue: string) => {
 export const retractWallGenColoursAtIndex = (index: number) => {
     const befPortion = wallGenColours.val.slice(0, index);
     const aftPortion = wallGenColours.val.slice(index + 1);
-    const newRandomisedColour = getRandomHexCode();
+    const newRandomisedColour = {
+        id: uuidv4(),
+        colour: getRandomHexCode(),
+    };
     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
 };
 
