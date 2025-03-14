@@ -16,6 +16,7 @@
 	import type { PalGenItem } from "src/lib/types.js";
 	import ColorPicker from "svelte-awesome-color-picker";
 	import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/states/palGenState.svelte.js";
+	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 
     type PaletteGeneratorItemProps = {
         palGenItem: PalGenItem,
@@ -91,7 +92,7 @@
         {/if}
 
         <button class="PalGenItem__ActionBtn IconButton"
-            disabled={palGenColours.val.length <= 2}
+            disabled={palGenColours.val.length <= MIN_COLOUR_COUNT_PALETTE}
             onclick={removeColour}
             title={"Remove colour"}
             aria-label={"Remove colour"}

@@ -11,6 +11,7 @@
 	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { passSomeColoursToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import SharePanel from "src/components/SharePanel.svelte";
+	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 
     const addColour = () => {
         addToPalGenColours();
@@ -63,7 +64,7 @@
         </button>
 
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-            disabled={palGenColours.val.length >= 5}
+            disabled={palGenColours.val.length >= MAX_COLOUR_COUNT}
             onclick={addColour}
             title={"Add colour"}
             aria-label={"Add colour"}

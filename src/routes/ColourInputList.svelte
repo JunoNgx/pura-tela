@@ -9,6 +9,7 @@
     import ColourInputItem from "src/routes/ColourInputItem.svelte";
 	import { decreaseWallGenColourInUseCount, getColoursInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, retractWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator, passWallGenToPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
+	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 
     const handleRemoveColour = (index: number) => {
         retractWallGenColoursAtIndex(index);
@@ -70,7 +71,7 @@
         </button>
 
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-            disabled={getWallGenColourInUseCount() < 2}
+            disabled={getWallGenColourInUseCount() < MIN_COLOUR_COUNT_PALETTE}
             onclick={passColoursToPaletteGenerator}
             title="Pass the current colours to the Palette Generator"
             aria-label="Pass the current colours to the Palette Generator"
