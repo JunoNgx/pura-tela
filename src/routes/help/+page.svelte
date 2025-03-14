@@ -59,6 +59,9 @@
         <li><code>04AE9C-"CCA5C6"- #CD4173-'7BFFB0'</code></li>
     </ul>
 
+    <h3>Sharing</h3>
+    <p>To restore the exact preset of settings for the <strong>Wallpaper Generator</strong>, store the url provided at the bottom of the page at a safe place and re-access. You are encourage to do so for either your own personal storage, or sharing with friends.</p>
+
     <h3>Installing</h3>
     <p>Pura Tela is deployed as a <strong>Progressive Web App</strong>, and is installable to your device to be launched in a manner similar to a native app. If you do not see a prompt, check your browser guide for the appropriate steps.</p>
 
