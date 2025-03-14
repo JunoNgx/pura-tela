@@ -40,6 +40,7 @@
         onclick={closeSidebar}
     ></div>
     <button class="Nav__OpenSidebarBtn IconButton"
+        aria-label="Open navigation sidebar"
         onclick={openSidebar}
     >
         <MaterialSymbolsLightViewSidebarOutlineSharp/>
@@ -70,6 +71,7 @@
         </div>
 
         <button class="Nav__CloseSidebarBtn IconButton"
+            aria-label="Close navigation sidebar"
             onclick={closeSidebar}
         >
             <MaterialSymbolsLightClose/>
