@@ -9,6 +9,18 @@ export type ColourItem = {
     hexCode: string,
 };
 
+// Colour object with hex code and UUID
+export type ColObj = {
+    id: string,
+    colour: string, // hexCode
+};
+
+// Palette generator colour object, with isLocked state
+export type PalGenColObj = ColObj & {
+    isLocked: boolean,
+};
+
+// TODO: comment out
 export type PalGenItem = {
     colour: string,
     isLocked: boolean,
