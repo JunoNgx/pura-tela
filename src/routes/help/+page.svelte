@@ -47,6 +47,13 @@
 
     <p>It should be noted that the separating character/delimited must either be consistently all dashes or all commas. Otherwise, the presentation of hex colour codes can be mixed, as long as they follow the rules above.</p>
 
+    <p>The following are valid data to be imported:</p>
+    <ul>
+        <li><code>"#04AE9C", "#CCA5C6", "#CD4173", "#7BFFB0", "#99E343", "#235646"</code></li>
+        <li><code>04AE9C-CCA5C6-CD4173-7BFFB0-99E343-235646</code></li>
+        <li><code>04AE9C-"CCA5C6"- #CD4173-'7BFFB0'</code></li>
+    </ul>
+
     <h3>Installing</h3>
     <p>Pura Tela is deployed as a <strong>Progressive Web App</strong>, and is installable to your device to be launched in a manner similar to a native app. If you do not see a prompt, check your browser guide for the appropriate steps.</p>
 
