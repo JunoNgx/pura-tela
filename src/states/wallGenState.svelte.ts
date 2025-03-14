@@ -1,7 +1,7 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { WallpaperStyle, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
+import { WallpaperStyle, type ColObj, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
 import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
@@ -17,14 +17,14 @@ const defaultWallGenColoursValue = [
     { colour: "99E343" },
     { colour: "235646" }
 ];
-const isWallGenColoursValid = (data: string[]) => {
+const isWallGenColoursValid = (data: ColObj[]) => {
     if (!data) return false;
     if (data.length !== MAX_COLOUR_COUNT) return false;
 
     try {
         for (const item of data) {
             if (!item) return false;
-            if (!isHexCodeValid(item)) return false;
+            if (!isHexCodeValid(item.colour)) return false;
         }
 
         return true;
