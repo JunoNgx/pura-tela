@@ -104,8 +104,9 @@ export const getHexColourCodesInUse = () => {
 
 export const getColoursInUse = () => {
     const colourCount = getWallGenColourInUseCount();
-    const colourList = $derived(wallGenColours.val.slice(0, colourCount));
-    return colourList;
+    const colourObjectsInUse = $derived(wallGenColours.val.slice(0, colourCount));
+    const colourListAsHexStrings = colourObjectsInUse.map(colObj => colObj.colour);
+    return colourListAsHexStrings;
 };
 
 /**
