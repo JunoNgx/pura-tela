@@ -20,7 +20,6 @@
         display: block;
         max-width: fit-content;
         text-decoration: none;
-        /* font-size: var(--fontSizeLg); */
         transition: margin ease-in-out var(--transTimeFast);
     }
 
@@ -51,7 +50,6 @@
         .NavItem__Background {
             width: 100%;
         }
-        /* border-bottom-color: var(--colPri); */
     }
 
 </style>
