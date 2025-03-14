@@ -34,6 +34,7 @@
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
     <ul class="ColourInputContainer__List">
         {#each getColoursInUse() as _, index}
+        <!-- TODO: if index < getWallGenColourInUseCount() -->
             <li class="ColourInputContainer__Item">
                 <ColourInputItem index={index}/>
                 {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
