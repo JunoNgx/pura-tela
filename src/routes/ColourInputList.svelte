@@ -38,6 +38,8 @@
                 <ColourInputItem index={index}/>
                 {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
                     <button class="ColourInputContainer__RemoveBtn IconButton"
+                        title="Remove this colour"
+                        aria-label="Remove this colour"
                         onclick={() => {handleRemoveColour(index)}}
                     >
                         <MaterialSymbolsLightRemove />
