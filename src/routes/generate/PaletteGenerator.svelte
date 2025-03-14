@@ -117,7 +117,6 @@
         min-height: 35rem;
     }
 
-    /* .PaletteGenerator__ActionsContainerLower, */
     .PaletteGenerator__ActionsContainerUpper {
         margin-top: 1rem;
         display: flex;
