@@ -36,6 +36,17 @@
 
     <p>The save location varies according to your device configuration, but is typically your designated <strong>Download</strong> directory and should be accessible from your Photo browser app. This image is free for you to keep forever as you see fit, without the need for this app again.</p>
 
+    <h3>Importing palette from external sources</h3>
+    <p>From certain screen in the app, it is possible to import colour palettes from an external source as a string. The format is required to follow the following rules:</p>
+    <ul>
+        <li>Each colour is represented by a hex code.</li>
+        <li>Colours is to be separated by either comma or dash. Whitespaces don't matter.</li>
+        <li>Colours can be surrounded by either single quote or doublequotes.</li>
+        <li>Colours either be preceeded by a hash sign or not.</li>
+    </ul>
+
+    <p>It should be noted that the separating character/delimited must either be consistently all dashes or all commas. Otherwise, the presentation of hex colour codes can be mixed, as long as they follow the rules above.</p>
+
     <h3>Installing</h3>
     <p>Pura Tela is deployed as a <strong>Progressive Web App</strong>, and is installable to your device to be launched in a manner similar to a native app. If you do not see a prompt, check your browser guide for the appropriate steps.</p>
 
