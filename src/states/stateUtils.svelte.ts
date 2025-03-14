@@ -6,7 +6,7 @@ export const createLocalStorageSyncedState = <T>({
 }: {
     key: string,
     defaultValue: T
-    validationFunc?: (data: any) => boolean
+    validationFunc: (data: any) => boolean
 }): State<T> => {
     const createStateWithSyncEffect = (verifiedData: T) => {
         let state = $state<T>(verifiedData);
