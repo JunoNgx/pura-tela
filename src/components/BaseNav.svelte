@@ -51,7 +51,7 @@
         <hr class="Nav__Separator">
 
         <div class="Nav__Router">
-            <span class="Nav__CategoryTitle">Create</span>
+            <span class="Nav__CategoryTitle">Generate</span>
             <NavItem route={"/"} label={"wallpaper"} />
             <NavItem route={"/generate"} label={"palette"} />
             <span class="Nav__CategoryTitle">Gallery</span>
