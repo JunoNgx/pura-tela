@@ -1,5 +1,5 @@
 import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
-import { type State } from "src/lib/types.js";
+import { type ColObj, type PalGenColObj, type State } from "src/lib/types.js";
 
 export const createLocalStorageSyncedState = <T>({
     key, defaultValue, validationFunc = () => true
@@ -41,6 +41,60 @@ export const createLocalStorageSyncedState = <T>({
         console.warn(`WARN: Unable to retrieve key ${key} from localStorage`, error);
         localStorage.setItem(key, JSON.stringify(defaultValue));
         return createStateWithSyncEffect(defaultValue);
+    }
+};
+
+type ColState = ColObj[] | PalGenColObj[];
+
+export const createColState = ({
+    key,
+    defaultValue,
+    validationFunc = () => true,
+}: {
+    key: string,
+    defaultValue: ColState,
+    validationFunc: (data: any) => boolean,
+    shouldHandleId?: boolean,
+}): State<ColState> => {
+
+    const createColStateWithSyncEffect = (verifiedData: ColState) => {
+        let state = $state<ColState>(verifiedData);
+
+        return {
+            get val() { return state; },
+            set(newVal: ColState) {
+                state = newVal;
+
+                const localStorageStoredVal = state.map(item => {
+                    const {id, ...rest} = item;
+                    return {...rest};
+                });
+
+                localStorage.setItem(key, JSON.stringify(localStorageStoredVal));
+            }
+        };
+    }
+
+    try {
+        const existingData = localStorage.getItem(key);
+        if (existingData === null) {
+            console.log(`INFO: localStorage data for ${key} is empty, using fallback data`)
+            localStorage.setItem(key, JSON.stringify(defaultValue));
+            return createColStateWithSyncEffect(defaultValue);
+        }
+
+        const parsedData = JSON.parse(existingData) as ColState;
+        if (!validationFunc(parsedData)) {
+            console.warn(`WARN: localStorage data for ${key} is invalid, using fallback data`)
+            return createColStateWithSyncEffect(defaultValue);
+        }
+    
+        return createColStateWithSyncEffect(parsedData);
+
+    } catch (error) {
+        console.warn(`WARN: Unable to retrieve key ${key} from localStorage`, error);
+        localStorage.setItem(key, JSON.stringify(defaultValue));
+        return createColStateWithSyncEffect(defaultValue);
     }
 };
 
