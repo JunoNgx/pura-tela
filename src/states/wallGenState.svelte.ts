@@ -9,7 +9,14 @@ import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
 /**
  * Wallpaper Generator current colours
  */
-const defaultWallGenColoursValue = ["04AE9C", "CCA5C6", "CD4173", "7BFFB0", "99E343", "235646"];
+const defaultWallGenColoursValue = [
+    { colour: "04AE9C" },
+    { colour: "CCA5C6" },
+    { colour: "CD4173" },
+    { colour: "7BFFB0" },
+    { colour: "99E343" },
+    { colour: "235646" }
+];
 const isWallGenColoursValid = (data: string[]) => {
     if (!data) return false;
     if (data.length !== MAX_COLOUR_COUNT) return false;
