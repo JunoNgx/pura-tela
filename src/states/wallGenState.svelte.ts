@@ -1,6 +1,6 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
-import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
+import { createColState, createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
 import { WallpaperStyle, type ColObj, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
@@ -33,11 +33,11 @@ const isWallGenColoursValid = (data: ColObj[]) => {
     }
 };
 
-export const wallGenColours = createLocalStorageSyncedState({
+export const wallGenColours = createColState({
     key: "currColours",
     defaultValue: defaultWallGenColoursValue,
     validationFunc: isWallGenColoursValid,
-}) as State<string[]>;
+}) as State<ColObj[]>;
 
 const isColourIndexValid = (index: number) => {
     return (0 <= index && index <= wallGenColours.val.length - 1);
