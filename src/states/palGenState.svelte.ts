@@ -1,6 +1,6 @@
 // @ts-ignore
 import defaultPaletteGallery from "src/data/palettes.json";
-import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
+import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 import { getRandomHexCode } from "src/lib/utils.js";
 import { createLocalStorageSyncedState, isArrayOfHexCodesValid, isHexCodeValid, isValidBoolean } from "src/states/stateUtils.svelte.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
@@ -14,8 +14,9 @@ const isPalGenColoursValid = (data: any) => {
     }
 
     try {
-        if (data.length < 2 || data.length > 5) {
-            console.log(0)
+        if (data.length < MIN_COLOUR_COUNT_PALETTE
+            || data.length > MAX_COLOUR_COUNT
+        ) {
             return false;
         }
 
@@ -62,7 +63,7 @@ export const togglePalGenColoursLockAtIndex = (index: number) => {
 };
 
 export const addToPalGenColours = () => {
-    if (palGenColours.val.length >= 5) {
+    if (palGenColours.val.length >= MAX_COLOUR_COUNT) {
         throw new Error("Cannot have more than five colours in the palette");
     }
 

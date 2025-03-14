@@ -207,12 +207,6 @@
         margin-top: 3rem;
     }
 
-    /* .Studio__Buttons {
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 3rem;
-    } */
-
     .Studio_DownloadBtn {
         padding: 1rem 2rem;
         display: block;
@@ -237,15 +231,6 @@
         .Studio__SampleTextContainer {
             aspect-ratio: 1;
         }
-        
-        /* .Studio__SampleTextContainer {
-            height: 100%;
-            font-size: var(--fontSizeSm);
-        } */
-
-        /* .Studio__Buttons {
-            justify-content: center;
-        } */
     }
 
 </style>

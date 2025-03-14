@@ -9,17 +9,10 @@ import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
 /**
  * Wallpaper Generator current colours
  */
-const defaultWallGenColoursValue = [
-    defaultColourGallery[0].hexCode,
-    defaultColourGallery[1].hexCode,
-    defaultColourGallery[2].hexCode,
-    defaultColourGallery[3].hexCode,
-    defaultColourGallery[4].hexCode,
-];
-
+const defaultWallGenColoursValue = ["04AE9C", "CCA5C6", "CD4173", "7BFFB0", "99E343", "235646"];
 const isWallGenColoursValid = (data: string[]) => {
     if (!data) return false;
-    if (data.length !== 5) return false;
+    if (data.length !== MAX_COLOUR_COUNT) return false;
 
     try {
         for (const item of data) {
@@ -115,7 +108,7 @@ export const isWallGenStyleValid = (data: any) => {
 
 export const wallGenStyle = createLocalStorageSyncedState({
     key: "wallpaperStyle",
-    defaultValue: WallpaperStyle.SOLID,
+    defaultValue: WallpaperStyle.PALETTE_ROW,
     validationFunc: isWallGenStyleValid,
 }) as State<WallpaperStyle>;
 
@@ -165,7 +158,7 @@ export const getCurrWallStyleInfo = (): WallpaperStyleInfo => {
 
         case WallpaperStyle.PALETTE_ROW:
             return {
-                defaultColourCount: 4,
+                defaultColourCount: 5,
                 minColourCount: 2,
                 maxColourCount: MAX_COLOUR_COUNT,
             }
@@ -189,7 +182,7 @@ export const isWallGenColoursInUseCountValid = (data: any) => {
     try {
         parseInt(data);
 
-        if (data < 1 || data > 5) {
+        if (data < 1 || data > MAX_COLOUR_COUNT) {
             return false;
         }
 

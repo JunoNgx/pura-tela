@@ -51,7 +51,7 @@
         <hr class="Nav__Separator">
 
         <div class="Nav__Router">
-            <span class="Nav__CategoryTitle">Create</span>
+            <span class="Nav__CategoryTitle">Generate</span>
             <NavItem route={"/"} label={"wallpaper"} />
             <NavItem route={"/generate"} label={"palette"} />
             <span class="Nav__CategoryTitle">Gallery</span>
@@ -87,7 +87,6 @@
     .Nav__Content {
         display: flex;
         flex-direction: column;
-        /* justify-content: flex-end; */
         align-items: flex-end;
         gap: 1rem;
     }
@@ -117,11 +116,6 @@
         align-self: flex-start;
         margin-top: 1rem;
     }
-
-    /* .Nav__ThemeModeSettings {
-        border-top: 1px solid var(--colPri);
-        padding-top: 1rem;
-    } */
 
     @media screen and (width < 850px) {
         .Nav {

@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+</script>
+
 <article class="AboutArticle">
     <h2>Help</h2>
 
@@ -17,7 +21,7 @@
     <p>Colours can also be removed. This process is permanent and irreversible. At any point of time, to reset the gallery to the default original state, use the "Reset gallery" button at the bottom of the list. In the event that this pre-created curated list changes in the future, this is also how you get access to new items.</p>
 
     <h3>Palettes</h3>
-    <p>A combination of colours is called a palette. While colour theory is a complex matter, the application starts with a number of default palette presets you can start using.</p>
+    <p>A combination of colours is called a palette. While colour theory is a complex matter, the application starts with a number of default palette presets you can start using. A palette is limited to have a minimum of {MIN_COLOUR_COUNT_PALETTE} and maximum of {MAX_COLOUR_COUNT} colours.</p>
 
     <p>Pura Tela comes with a dedicated <strong>Palette Generator</strong> route to assist with the composing process.</p>
 
@@ -35,6 +39,28 @@
     <p>Once satisfied with the settings, tapping on the <strong>Download</strong> button will create the ouput wallpaper image and should be downloaded to your device. The image file will be in the PNG format and named according to the mode and colours you used.</p>
 
     <p>The save location varies according to your device configuration, but is typically your designated <strong>Download</strong> directory and should be accessible from your Photo browser app. This image is free for you to keep forever as you see fit, without the need for this app again.</p>
+
+    <h3>Importing palette from external sources</h3>
+    <p>From certain screen in the app, it is possible to import colour palettes from an external source as a string. The format is required to follow the following rules:</p>
+    <ul>
+        <li>Each colour is represented by a hex code.</li>
+        <li>Colours is to be separated by either comma or dash. Whitespaces don't matter.</li>
+        <li>Colours can be surrounded by either single quote or doublequotes.</li>
+        <li>Colours either be preceeded by a hash sign or not.</li>
+        <li>The amount of colours must be at least {MIN_COLOUR_COUNT_PALETTE}. If more than {MAX_COLOUR_COUNT} is provided, the excessive colours will be ignored.</li>
+    </ul>
+
+    <p>It should be noted that the separating character/delimited must either be consistently all dashes or all commas. Otherwise, the presentation of hex colour codes can be mixed, as long as they follow the rules above.</p>
+
+    <p>The following are valid data to be imported:</p>
+    <ul>
+        <li><code>"#04AE9C", "#CCA5C6", "#CD4173", "#7BFFB0", "#99E343", "#235646"</code></li>
+        <li><code>04AE9C-CCA5C6-CD4173-7BFFB0-99E343-235646</code></li>
+        <li><code>04AE9C-"CCA5C6"- #CD4173-'7BFFB0'</code></li>
+    </ul>
+
+    <h3>Sharing</h3>
+    <p>To restore the exact preset of settings for the <strong>Wallpaper Generator</strong>, store the url provided at the bottom of the page at a safe place and re-access. You are encourage to do so for either your own personal storage, or sharing with friends.</p>
 
     <h3>Installing</h3>
     <p>Pura Tela is deployed as a <strong>Progressive Web App</strong>, and is installable to your device to be launched in a manner similar to a native app. If you do not see a prompt, check your browser guide for the appropriate steps.</p>

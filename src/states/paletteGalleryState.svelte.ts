@@ -3,6 +3,7 @@ import defaultPaletteGallery from "src/data/palettes.json";
 import { createLocalStorageSyncedState, isHexCodeValid } from "src/states/stateUtils.svelte.js";
 import { getColoursInUse, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, wallGenColours } from "./wallGenState.svelte.js";
 import { palGenColours } from "./palGenState.svelte.js";
+import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 
 const isPaletteGalleryValid = (data: any[]) => {
     if (!data) return false;
@@ -11,7 +12,11 @@ const isPaletteGalleryValid = (data: any[]) => {
         for (const item of data) {
             if (!item.name) return false;
             if (!item.colours) return false;
-            if (item.colours.length < 2 || item.colours.length > 5) return false;
+            if (item.colours.length < MIN_COLOUR_COUNT_PALETTE
+                || item.colours.length > MAX_COLOUR_COUNT
+            ) {
+                return false;
+            }
 
             for (const colour of item.colours) {
                 if (!isHexCodeValid(colour)) return false;

@@ -78,7 +78,6 @@
     .ThemeMode__Item:hover {
         border: none;
         background-color: none;
-        /* color: var(--colBg); */
     }
 
     @media screen and (width < 850px) {
@@ -89,10 +88,5 @@
         .ThemeMode__Item {
             transition: none;
         }
-
-        /* remove hover state in mobile */
-        /* .ThemeMode__Item:hover {
-            color: var(--colBg);
-        } */
     }
 </style>

@@ -30,9 +30,11 @@ export const tryParseColours = (inputStr: string) => {
     try {
         for (const separator of allowedSeparators) {
             const colourList = inputStr.split(separator, MAX_COLOUR_COUNT).map(colour => {
-                const strippedStr = colour.replaceAll("\"", "")
-                    .replaceAll("\'", "")
-                    .replaceAll("#", "");
+                const strippedStr = colour
+                    .replaceAll(" ", "")
+                    .replaceAll("#", "")
+                    .replaceAll("\"", "")
+                    .replaceAll("\'", "");
 
                 if (strippedStr.length === 3) {
                     // Attempt to convert 3-char hex codes to 6-char hex codes
