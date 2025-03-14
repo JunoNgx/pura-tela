@@ -15,24 +15,32 @@
     <div class="StyleSelector__Container">
         <button class="StyleSelector__ModeItem"
             class:StyleSelector__ModeItem--IsSelected={isSolidStyle()}
+            title="Switch to Wallpaper Style: Solid"
+            aria-label="Switch to Wallpaper Style: Solid"
             onclick={() => { handleWallpaperStyleChange(WallpaperStyle.SOLID); }}
         >
             Solid wallpaper
         </button>
         <button class="StyleSelector__ModeItem"
             class:StyleSelector__ModeItem--IsSelected={isGradientStyle()}
+            title="Switch to Wallpaper Style: Gradient"
+            aria-label="Switch to Wallpaper Style: Gradient"
             onclick={() => { handleWallpaperStyleChange(WallpaperStyle.GRADIENT); }}
         >
             Gradient wallpaper
         </button>
         <button class="StyleSelector__ModeItem"
             class:StyleSelector__ModeItem--IsSelected={isPopArtSquareStyle()}
+            title="Switch to Wallpaper Style: Pop Art Square"
+            aria-label="Switch to Wallpaper Style: Pop Art Square"
             onclick={() => { handleWallpaperStyleChange(WallpaperStyle.POP_ART_SQUARE); }}
         >
             Pop Art Square
         </button>
         <button class="StyleSelector__ModeItem"
             class:StyleSelector__ModeItem--IsSelected={isPaletteRowStyle()}
+            title="Switch to Wallpaper Style: Palette Row"
+            aria-label="Switch to Wallpaper Style: Palette Row"
             onclick={() => { handleWallpaperStyleChange(WallpaperStyle.PALETTE_ROW); }}
         >
             Palette Row
