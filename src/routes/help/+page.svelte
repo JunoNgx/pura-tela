@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+</script>
+
 <article class="AboutArticle">
     <h2>Help</h2>
 
@@ -17,7 +21,7 @@
     <p>Colours can also be removed. This process is permanent and irreversible. At any point of time, to reset the gallery to the default original state, use the "Reset gallery" button at the bottom of the list. In the event that this pre-created curated list changes in the future, this is also how you get access to new items.</p>
 
     <h3>Palettes</h3>
-    <p>A combination of colours is called a palette. While colour theory is a complex matter, the application starts with a number of default palette presets you can start using.</p>
+    <p>A combination of colours is called a palette. While colour theory is a complex matter, the application starts with a number of default palette presets you can start using. A palette is limited to have a minimum of {MIN_COLOUR_COUNT_PALETTE} and maximum of {MAX_COLOUR_COUNT} colours.</p>
 
     <p>Pura Tela comes with a dedicated <strong>Palette Generator</strong> route to assist with the composing process.</p>
 
@@ -43,6 +47,7 @@
         <li>Colours is to be separated by either comma or dash. Whitespaces don't matter.</li>
         <li>Colours can be surrounded by either single quote or doublequotes.</li>
         <li>Colours either be preceeded by a hash sign or not.</li>
+        <li>The amount of colours must be at least {MIN_COLOUR_COUNT_PALETTE}. If more than {MAX_COLOUR_COUNT} is provided, the excessive colours will be ignored.</li>
     </ul>
 
     <p>It should be noted that the separating character/delimited must either be consistently all dashes or all commas. Otherwise, the presentation of hex colour codes can be mixed, as long as they follow the rules above.</p>
