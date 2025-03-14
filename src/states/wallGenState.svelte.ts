@@ -10,12 +10,12 @@ import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
  * Wallpaper Generator current colours
  */
 const defaultWallGenColoursValue = [
-    { colour: "04AE9C" },
-    { colour: "CCA5C6" },
-    { colour: "CD4173" },
-    { colour: "7BFFB0" },
-    { colour: "99E343" },
-    { colour: "235646" }
+    { id: "2f8419a4-6198-46f6-9c10-befe72b737ec", colour: "04AE9C" },
+    { id: "f145701e-6b74-4059-97fd-6031aaa80614", colour: "CCA5C6" },
+    { id: "b9342bd5-75ae-4744-93e3-1004a7f21d0e", colour: "CD4173" },
+    { id: "ffce8aef-4506-47e9-a742-729e3d8e5574", colour: "7BFFB0" },
+    { id: "40941195-9884-43c7-882c-3b101dc1551a", colour: "99E343" },
+    { id: "98719184-73e2-4eb5-9881-b8f108e1aa75", colour: "235646" }
 ];
 const isWallGenColoursValid = (data: ColObj[]) => {
     if (!data) return false;
