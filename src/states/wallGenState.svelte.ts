@@ -1,5 +1,5 @@
-// @ts-ignore
 import { v4 as uuidv4 } from 'uuid';
+// @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
 import { createColState, createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
 import { WallpaperStyle, type ColObj, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
