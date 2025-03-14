@@ -43,6 +43,7 @@
 >
     <div class="MainDialogContent">
         <button class="DialogCloseBtn"
+            aria-label="Close dialog"
             onclick={() => { dialog?.close(); }}
         >
             <MaterialSymbolsLightClose/>
