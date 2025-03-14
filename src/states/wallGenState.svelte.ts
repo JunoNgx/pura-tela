@@ -158,7 +158,7 @@ export const getCurrWallStyleInfo = (): WallpaperStyleInfo => {
 
         case WallpaperStyle.PALETTE_ROW:
             return {
-                defaultColourCount: 4,
+                defaultColourCount: 5,
                 minColourCount: 2,
                 maxColourCount: MAX_COLOUR_COUNT,
             }
