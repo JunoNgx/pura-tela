@@ -1,5 +1,5 @@
 import type { State } from "src/lib/types.js";
-import { createState } from "./stateUtils.svelte.js";
+import { createState } from "./createState.svelte.js";
 
 /**
  * A dumb and simple id generator to keep track of instances of colour objects.

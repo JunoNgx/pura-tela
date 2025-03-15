@@ -98,17 +98,6 @@ export const createColState = ({
     }
 };
 
-export const createState = <T>(
-    defaultValue: T
-): State<T> => {
-    let state = $state<T>(defaultValue);
-
-    return {
-        get val() { return state; },
-        set(v: T) { state = v;}
-    }
-};
-
 export const isValidBoolean = (data: any) => {
     if (data === null || data === undefined) {
         return false;
