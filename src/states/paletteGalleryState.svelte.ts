@@ -1,7 +1,7 @@
 // @ts-ignore
 import defaultPaletteGallery from "src/data/palettes.json";
 import { createLocalStorageSyncedState, isHexCodeValid } from "src/states/stateUtils.svelte.js";
-import { getColoursInUse, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, wallGenColours } from "./wallGenState.svelte.js";
+import { getColourObjectsInUse, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, wallGenColours } from "./wallGenState.svelte.js";
 import { palGenColours } from "./palGenState.svelte.js";
 import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
@@ -42,7 +42,7 @@ export const addToPaletteGalleryFromWallpaperGenerator = () => {
     if (!name) return;
 
     try {
-        const colours = getColoursInUse().map(colourObj => colourObj.colour);
+        const colours = getColourObjectsInUse().map(colourObj => colourObj.colour);
         const newPalette = {
             name,
             colours,

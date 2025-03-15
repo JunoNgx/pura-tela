@@ -96,12 +96,12 @@ export const passSomeColoursToWallpaperGenerator = (newColours: string[]) => {
 };
 
 export const getHexColourCodesInUse = () => {
-    // const hexCodeList = $derived(getColoursInUse().map(item => `#${item}`));
-    const hexCodeList = $derived(getColoursInUse().map(colObj => `#${colObj.colour}`));
+    // const hexCodeList = $derived(getColourObjectsInUse().map(item => `#${item}`));
+    const hexCodeList = $derived(getColourObjectsInUse().map(colObj => `#${colObj.colour}`));
     return hexCodeList;
 };
 
-export const getColoursInUse = () => {
+export const getColourObjectsInUse = () => {
     const colourCount = getWallGenColourInUseCount();
     const colourObjectsInUse = $derived(wallGenColours.val.slice(0, colourCount));
     // const colourListAsHexStrings = colourObjectsInUse.map(colObj => colObj.colour);
