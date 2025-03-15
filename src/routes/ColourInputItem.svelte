@@ -18,7 +18,6 @@
 
     let { colourObj, index }: ColourInputItemProps = $props();
 
-    // let colourCode = $derived(getWallGenColoursAtIndex(index));
     let colourCodeWithHash = $derived("#" + colourObj.colour);
 
     const handlePickerValueChange = (hexStr: string) => {

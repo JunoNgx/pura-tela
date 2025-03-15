@@ -7,9 +7,6 @@
     import MaterialSymbolsLightLockSharp from "~icons/material-symbols-light/lock-sharp";
     import MaterialSymbolsLightLockOutlineSharp from "~icons/material-symbols-light/lock-outline-sharp";
 
-    import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
-    import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
-
     import MaterialSymbolsLightDelete from "~icons/material-symbols-light/delete";
     import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
 
