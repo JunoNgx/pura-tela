@@ -85,7 +85,7 @@ export const retractWallGenColoursAtIndex = (index: number) => {
 /**
  * Move the new colours onto WallGen, which might not completely fill up all colours
  */
-export const passSomeColoursToWallpaperGenerator = (newColours: string[]) => {
+export const passSomeColourStringsToWallpaperGenerator = (newColours: string[]) => {
     // Data is internal, so this is assumed to have been validated
     const coloursToBeKept = wallGenColours.val.slice(newColours.length);
     const newColourObjList = newColours.map(colour => ({
