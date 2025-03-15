@@ -11,13 +11,14 @@ import { generateId } from "./idGenState.svelte.js";
  * Wallpaper Generator current colours
  */
 const defaultWallGenColoursValue = [
-    { id: 1, colour: "04AE9C" },
-    { id: 2, colour: "CCA5C6" },
-    { id: 3, colour: "CD4173" },
-    { id: 4, colour: "7BFFB0" },
-    { id: 5, colour: "99E343" },
-    { id: 6, colour: "235646" },
-    { id: 7, colour: "F43606" }
+    // No idea, to emulate the data that would have been stored in LocalStorage
+    { colour: "04AE9C" },
+    { colour: "CCA5C6" },
+    { colour: "CD4173" },
+    { colour: "7BFFB0" },
+    { colour: "99E343" },
+    { colour: "235646" },
+    { colour: "F43606" }
 ];
 const isWallGenColoursValid = (data: ColObj[]) => {
     if (!data) return false;

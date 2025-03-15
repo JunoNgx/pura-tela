@@ -1,5 +1,6 @@
 import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 import { type ColObj, type PalGenColObj, type State } from "src/lib/types.js";
+import { generateId } from "./idGenState.svelte.js";
 
 export const createLocalStorageSyncedState = <T>({
     key, defaultValue, validationFunc = () => true
@@ -52,13 +53,18 @@ export const createColState = ({
     validationFunc = () => true,
 }: {
     key: string,
-    defaultValue: ColState,
+    defaultValue: { colour: string, isLocked?: boolean }[],
     validationFunc: (data: any) => boolean,
     shouldHandleId?: boolean,
 }): State<ColState> => {
 
     const createColStateWithSyncEffect = (verifiedData: ColState) => {
-        let state = $state<ColState>(verifiedData);
+        const dataWithId = verifiedData.map(item => ({
+            ...item,
+            id: generateId(),
+        }));
+
+        let state = $state<ColState>(dataWithId);
 
         return {
             get val() { return state; },
