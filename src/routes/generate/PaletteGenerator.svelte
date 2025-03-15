@@ -53,7 +53,7 @@
     onMount(() => {
         const sortableOptions = {
             animation: 150,
-            delay: 100,
+            delay: 0,
             handle: ".PalGenItem__ActionBtn",
             put: false,
             pull: false,
