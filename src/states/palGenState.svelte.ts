@@ -2,8 +2,10 @@
 import defaultPaletteGallery from "src/data/palettes.json";
 import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 import { getRandomHexCode } from "src/lib/utils.js";
-import { createLocalStorageSyncedState, isArrayOfHexCodesValid, isHexCodeValid, isValidBoolean } from "src/states/stateUtils.svelte.js";
+import { createColState, isHexCodeValid, isValidBoolean } from "src/states/stateUtils.svelte.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
+import { generateId } from "./idGenState.svelte.js";
+import type { PalGenColObj, State } from "src/lib/types.js";
 
 /**
  * Palette generator's colours
@@ -44,7 +46,7 @@ const generateDefaultPalGenColours = () => {
         }));
 };
 
-export const palGenColours = createLocalStorageSyncedState({
+export const palGenColours = <State<PalGenColObj[]>>createColState({
     key: "palGenColours",
     defaultValue: generateDefaultPalGenColours(),
     validationFunc: isPalGenColoursValid,
@@ -68,6 +70,7 @@ export const addToPalGenColours = () => {
     }
 
     const newColour = {
+        id: generateId(),
         isLocked: false,
         colour: getRandomHexCode(),
     };
@@ -91,6 +94,7 @@ export const randomiseUnlockedColoursForPalGen = () => {
         }
 
         return {
+            id: generateId(),
             isLocked: false,
             colour: getRandomHexCode(),
         };
@@ -119,6 +123,7 @@ export const tryParseFromStringToPalGen = (inputStr: string) => {
     }
 
     const newValue = newVal.map(colour => ({
+        id: generateId(),
         colour,
         isLocked: false,
     }));

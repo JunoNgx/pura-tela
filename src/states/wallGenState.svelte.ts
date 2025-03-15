@@ -36,11 +36,11 @@ const isWallGenColoursValid = (data: ColObj[]) => {
     }
 };
 
-export const wallGenColours = createColState({
+export const wallGenColours = <State<ColObj[]>>createColState({
     key: "currColours",
     defaultValue: defaultWallGenColoursValue,
     validationFunc: isWallGenColoursValid,
-}) as State<ColObj[]>;
+});
 
 const isColourIndexValid = (index: number) => {
     return (0 <= index && index <= wallGenColours.val.length - 1);
@@ -98,8 +98,8 @@ export const passSomeColourStringsToWallpaperGenerator = (newColours: string[]) 
 };
 
 export const passSomeColourObjectsToWallpaperGenerator = (newColours: ColObj[]) => {
-    const newColourObjList = newColours.map(colourObj => colourObj.colour);
-    passSomeColourStringsToWallpaperGenerator(newColourObjList);
+    const coloursToBeKept = wallGenColours.val.slice(newColours.length);
+    wallGenColours.set([...newColours, ...coloursToBeKept]);
 };
 
 export const getColourObjectsInUse = () => {
