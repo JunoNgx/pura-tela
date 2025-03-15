@@ -101,6 +101,11 @@ export const getHexColourCodesInUse = () => {
     return hexCodeList;
 };
 
+export const getColourStringsInUse = () => {
+    const colourStringList = $derived(getColourObjectsInUse().map(colObj => colObj.colour));
+    return colourStringList;
+};
+
 export const getColourObjectsInUse = () => {
     const colourCount = getWallGenColourInUseCount();
     const colourObjectsInUse = $derived(wallGenColours.val.slice(0, colourCount));
