@@ -98,8 +98,6 @@ export const passSomeColoursToWallpaperGenerator = (newColours: string[]) => {
 export const getColourObjectsInUse = () => {
     const colourCount = getWallGenColourInUseCount();
     const colourObjectsInUse = $derived(wallGenColours.val.slice(0, colourCount));
-    // const colourListAsHexStrings = colourObjectsInUse.map(colObj => colObj.colour);
-    // return colourListAsHexStrings;
     return colourObjectsInUse;
 };
 
