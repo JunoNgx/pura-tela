@@ -1,4 +1,4 @@
-import { WallpaperStyle, type ColourItem, type RgbColour } from "./types.js";
+import { WallpaperStyle, type ColObj, type ColourItem, type RgbColour } from "./types.js";
 
 export const isHexCodeValid = (str: string): boolean => {
     const validHexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
@@ -61,7 +61,7 @@ export const capitaliseFirstLetter = (str: string) => {
 export const computeFilename = ({
     colours, gallery, mode
 }: {
-    colours: string[],
+    colours: ColObj[],
     gallery: ColourItem[],
     mode: WallpaperStyle,
 }) => {
@@ -73,7 +73,7 @@ export const computeFilename = ({
             item => item.hexCode === hexCode);
         
         if (index === -1) {
-            return `#${hexCode}`;
+            return hexCode;
         }
 
         const colourName = gallery[index].name;
@@ -82,10 +82,10 @@ export const computeFilename = ({
     };
 
     const computeColourNamePortion = (
-        colours: string[], gallery: ColourItem[]
+        colours: ColObj[], gallery: ColourItem[]
     ) => {
         const colourNames = colours
-            .map(colour => getColourName(colour, gallery));
+            .map(colObj => getColourName(colObj.colour, gallery));
         const colourNamesStr = colourNames.join("-");
 
         return colourNamesStr;
