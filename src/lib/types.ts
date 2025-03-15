@@ -9,7 +9,7 @@ export type ColourItem = {
     hexCode: string,
 };
 
-// Colour object with hex code and UUID
+// Colour object with hex code and id
 export type ColObj = {
     id: number,
     colour: string, // hexCode
