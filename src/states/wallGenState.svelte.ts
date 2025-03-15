@@ -96,6 +96,11 @@ export const passSomeColourStringsToWallpaperGenerator = (newColours: string[]) 
     wallGenColours.set([...newColourObjList, ...coloursToBeKept]);
 };
 
+export const passSomeColourObjectsToWallpaperGenerator = (newColours: ColObj[]) => {
+    const newColourObjList = newColours.map(colourObj => colourObj.colour);
+    passSomeColourStringsToWallpaperGenerator(newColourObjList);
+};
+
 export const getColourObjectsInUse = () => {
     const colourCount = getWallGenColourInUseCount();
     const colourObjectsInUse = $derived(wallGenColours.val.slice(0, colourCount));
