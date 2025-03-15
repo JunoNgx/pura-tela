@@ -97,7 +97,7 @@ export const passSomeColoursToWallpaperGenerator = (newColours: string[]) => {
 
 export const getHexColourCodesInUse = () => {
     // const hexCodeList = $derived(getColoursInUse().map(item => `#${item}`));
-    const hexCodeList = $derived(getColoursInUse().map(colObj => colObj.colour));
+    const hexCodeList = $derived(getColoursInUse().map(colObj => `#${colObj.colour}`));
     return hexCodeList;
 };
 
