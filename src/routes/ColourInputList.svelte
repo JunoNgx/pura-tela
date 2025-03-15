@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Sortable from 'sortablejs';
+    import Sortable, { type SortableEvent } from 'sortablejs';
 
     import { goto } from "$app/navigation";
 
@@ -34,6 +34,9 @@
             animation: 150,
             delay: 100,
             handle: ".ColourInput__DragHandle",
+            onEnd: (e: SortableEvent) => {
+                console.log(e.oldIndex, e.newIndex)
+            },
         };
 
         sortableColourInput = new Sortable(inputList, sortableOptions);
