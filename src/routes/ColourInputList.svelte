@@ -1,4 +1,6 @@
 <script lang="ts">
+    import Sortable from 'sortablejs';
+
     import { goto } from "$app/navigation";
 
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
@@ -9,6 +11,7 @@
 	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator, passWallGenToPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+	import { onDestroy, onMount } from "svelte";
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
@@ -22,11 +25,30 @@
     const handleSavePalette = () => {
         addToPaletteGalleryFromWallpaperGenerator();
     };
+
+    let sortableColourInput: Sortable;
+    let inputList: HTMLUListElement;
+
+    onMount(() => {
+        const sortableOptions = {
+            animation: 150,
+            delay: 100,
+            handle: ".ColourInput__DragHandle",
+        };
+
+        sortableColourInput = new Sortable(inputList, sortableOptions);
+    });
+
+    onDestroy(() => {
+        sortableColourInput.destroy();
+    });
 </script>
 
 <div class="ColourInputContainer">
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
-    <ul class="ColourInputContainer__List">
+    <ul class="ColourInputContainer__List"
+        bind:this={inputList}
+    >
         {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
             <li class="ColourInputContainer__Item">
                 <ColourInputItem
