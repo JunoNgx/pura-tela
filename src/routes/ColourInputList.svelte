@@ -1,20 +1,14 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
 
-    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
     import ColourInputItem from "src/routes/ColourInputItem.svelte";
-	import { decreaseWallGenColourInUseCount, getColoursInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, retractWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+	import { getColoursInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator, passWallGenToPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
-
-    const handleRemoveColour = (index: number) => {
-        retractWallGenColoursAtIndex(index);
-        decreaseWallGenColourInUseCount();
-    };
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
@@ -34,18 +28,8 @@
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
     <ul class="ColourInputContainer__List">
         {#each getColoursInUse() as _, index}
-        <!-- TODO: if index < getWallGenColourInUseCount() -->
             <li class="ColourInputContainer__Item">
                 <ColourInputItem index={index}/>
-                {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
-                    <button class="ColourInputContainer__RemoveBtn IconButton"
-                        title="Remove this colour"
-                        aria-label="Remove this colour"
-                        onclick={() => {handleRemoveColour(index)}}
-                    >
-                        <MaterialSymbolsLightRemove />
-                    </button>
-                {/if}
             </li>
         {/each}
     </ul>
@@ -114,9 +98,5 @@
         justify-content: space-around;
         flex-wrap: wrap;
         gap: 1rem;
-    }
-
-    .ColourInputContainer__RemoveBtn {
-        color: var(--colDanger);
     }
 </style>

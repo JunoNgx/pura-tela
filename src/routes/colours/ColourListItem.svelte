@@ -1,12 +1,14 @@
 <script lang="ts">
+    import { goto } from '$app/navigation';
+
     import { type ColourItem } from "src/lib/types.js";
 
-    import { goto } from '$app/navigation';
+    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
     import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
     import MaterialSymbolsLightDeleteOutline from '~icons/material-symbols-light/delete-outline';
-	import { getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, retractWallGenColoursAtIndex, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
 	import { deleteColourAtIndex } from "src/states/colourGalleryState.svelte.js";
 
     type ColourItemProps = {
@@ -32,6 +34,11 @@
         if (!isConfirmed) return;
 
         deleteColourAtIndex(index);
+    };
+
+    const handleRemoveColour = (index: number) => {
+        retractWallGenColoursAtIndex(index);
+        decreaseWallGenColourInUseCount();
     };
 </script>
 
@@ -78,6 +85,16 @@
             </button>
         </div>
     </div>
+
+    {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
+        <button class="ColourListItem__RemoveBtn IconButton"
+            title="Remove this colour"
+            aria-label="Remove this colour"
+            onclick={() => {handleRemoveColour(index)}}
+        >
+            <MaterialSymbolsLightRemove />
+        </button>
+    {/if}
 </li>
 
 <style>
@@ -125,5 +142,9 @@
         flex-direction: row;
         justify-content: flex-end;
         gap: 0.1rem;
+    }
+
+    .ColourListItem__RemoveBtn {
+        color: var(--colDanger);
     }
 </style>
