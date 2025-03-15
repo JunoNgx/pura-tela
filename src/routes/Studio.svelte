@@ -40,7 +40,7 @@
     const computeShareableUrl = () => {
         const url = new URL(computeBaseUrl());
         url.searchParams.append("style", wallGenStyle.val);
-        url.searchParams.append("colours", getColourObjectsInUse().toString());
+        url.searchParams.append("colours", getColourStringsInUse().toString());
         url.searchParams.append("width", wallGenSize.val.width.toString());
         url.searchParams.append("height", wallGenSize.val.height.toString());
 
