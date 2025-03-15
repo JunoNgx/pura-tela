@@ -6,7 +6,7 @@
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
-	import { addToColourGallery } from 'src/states/colourGalleryState.svelte.js';
+	import { promptAddToColourGallery } from 'src/states/colourGalleryState.svelte.js';
 	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, getWallGenColoursAtIndex, retractWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 	import type { ColObj } from 'src/lib/types.js';
 
@@ -34,11 +34,7 @@
     };
 
     const trySaveColour = () => {
-        if (!colourCode) {
-            throw new Error("Unable to find colour from colour input at index:", index);
-        }
-        
-        addToColourGallery(colourCode);
+        promptAddToColourGallery(colourObj.colour);
     };
 
     const handleRemoveColour = (index: number) => {
