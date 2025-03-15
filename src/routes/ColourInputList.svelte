@@ -35,6 +35,7 @@
             animation: 150,
             delay: 0,
             handle: ".ColourInput__DragHandle",
+            dragClass: "ColourInput__IsDragged",
             put: false,
             pull: false,
             onEnd: (evt: SortableEvent) => {

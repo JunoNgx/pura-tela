@@ -124,6 +124,14 @@
         gap: 1rem;
     }
 
+    :global(.ColourInput__IsDragged) {
+        /* background-color: red; */
+
+        .ColourInput__Buttons {
+            display: none;
+        }
+    }
+
     .ColourInput__LeftSide {
         display: flex;
         align-items: center;
