@@ -43,8 +43,8 @@
         {palGenItem.colour}
     </div>
 
-    <div class="PalGenItem__ActionPanel">
-        <div class="PalGenItem__ActionBtn PalGenItem__DragHandle IconButton">
+    <div class="PalGenItem__ActionBtn PalGenItem__ActionPanel">
+        <div class="PalGenItem__DragHandle IconButton">
             <MaterialSymbolsLightDragIndicator />
         </div>
 
@@ -137,6 +137,8 @@
     }
 
     .PalGenItem__DragHandle {
+        height: 1.5rem;
+        height: 1.5rem;
         display: grid;
         place-items: center;
         cursor: grab;
