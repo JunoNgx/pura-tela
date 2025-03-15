@@ -42,7 +42,7 @@ export const addToPaletteGalleryFromWallpaperGenerator = () => {
     if (!name) return;
 
     try {
-        const colours = getColoursInUse();
+        const colours = getColoursInUse().map(colourObj => colourObj.colour);
         const newPalette = {
             name,
             colours,
