@@ -8,10 +8,11 @@
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
     import ColourInputItem from "src/routes/ColourInputItem.svelte";
-	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
+	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColoursToWallpaperGenerator, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator, passWallGenToPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 	import { onDestroy, onMount } from "svelte";
+	import { moveItemWithinArray } from 'src/states/stateUtils.svelte.js';
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
@@ -34,8 +35,27 @@
             animation: 150,
             delay: 100,
             handle: ".ColourInput__DragHandle",
-            onEnd: (e: SortableEvent) => {
-                console.log(e.oldIndex, e.newIndex)
+            put: false,
+            pull: false,
+            onEnd: (evt: SortableEvent) => {
+                if (evt.oldIndex === null
+                    || evt.oldIndex === undefined
+                    || evt.newIndex === null
+                    || evt.newIndex === undefined
+                ) {
+                    return;
+                }
+
+                if (evt.oldIndex === evt.newIndex) {
+                    return;
+                }
+
+                const newVal = moveItemWithinArray(
+                    wallGenColours.val,
+                    evt.oldIndex,
+                    evt.newIndex
+                );
+                // passSomeColoursToWallpaperGenerator(newVal);
             },
         };
 
@@ -52,7 +72,7 @@
     <ul class="ColourInputContainer__List"
         bind:this={inputList}
     >
-        {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
+        {#each getColourObjectsInUse() as colourObj, index}
             <li class="ColourInputContainer__Item">
                 <ColourInputItem
                     colourObj={colourObj}
