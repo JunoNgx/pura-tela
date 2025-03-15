@@ -72,13 +72,15 @@
     <ul class="ColourInputContainer__List"
         bind:this={inputList}
     >
-        {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
-            <li class="ColourInputContainer__Item">
-                <ColourInputItem
-                    colourObj={colourObj}
-                    index={index}
-                />
-            </li>
+        {#each wallGenColours.val as colourObj, index (colourObj.id)}
+            {#if index < getWallGenColourInUseCount()}
+                <li class="ColourInputContainer__Item">
+                    <ColourInputItem
+                        colourObj={colourObj}
+                        index={index}
+                    />
+                </li>
+            {/if}
         {/each}
     </ul>
 
