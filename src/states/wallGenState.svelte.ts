@@ -16,7 +16,8 @@ const defaultWallGenColoursValue = [
     { id: 3, colour: "CD4173" },
     { id: 4, colour: "7BFFB0" },
     { id: 5, colour: "99E343" },
-    { id: 6, colour: "235646" }
+    { id: 6, colour: "235646" },
+    { id: 7, colour: "F43606" }
 ];
 const isWallGenColoursValid = (data: ColObj[]) => {
     if (!data) return false;
