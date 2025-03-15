@@ -1,51 +1,88 @@
 <script lang="ts">
+    import Sortable, { type SortableEvent } from 'sortablejs';
+
     import { goto } from "$app/navigation";
 
-    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
     import ColourInputItem from "src/routes/ColourInputItem.svelte";
-	import { decreaseWallGenColourInUseCount, getColoursInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, retractWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
-	import { addToPaletteGalleryFromWallpaperGenerator, passWallGenToPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
+	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, wallGenColours } from "src/states/wallGenState.svelte.js";
+	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
-
-    const handleRemoveColour = (index: number) => {
-        retractWallGenColoursAtIndex(index);
-        decreaseWallGenColourInUseCount();
-    };
+	import { onDestroy, onMount } from "svelte";
+	import { moveItemWithinArray } from 'src/states/stateUtils.svelte.js';
+	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
     };
 
     const passColoursToPaletteGenerator = () => {
-        passWallGenToPaletteGenerator(getColoursInUse());
+        passWallGenToPaletteGenerator(getColourStringsInUse());
         goto("/generate");
     };
 
     const handleSavePalette = () => {
         addToPaletteGalleryFromWallpaperGenerator();
     };
+
+    let sortableColourInput: Sortable;
+    let inputList: HTMLUListElement;
+
+    onMount(() => {
+        const sortableOptions = {
+            animation: 150,
+            delay: 0,
+            handle: ".ColourInput__DragHandle",
+            dragClass: "ColourInput__IsDragged",
+            put: false,
+            pull: false,
+            onEnd: (evt: SortableEvent) => {
+                if (evt.oldIndex === null
+                    || evt.oldIndex === undefined
+                    || evt.newIndex === null
+                    || evt.newIndex === undefined
+                ) {
+                    return;
+                }
+
+                if (evt.oldIndex === evt.newIndex) {
+                    return;
+                }
+
+                const newVal = moveItemWithinArray(
+                    getColourObjectsInUse(),
+                    evt.oldIndex,
+                    evt.newIndex
+                );
+                passSomeColourObjectsToWallpaperGenerator(newVal);
+            },
+        };
+
+        sortableColourInput = new Sortable(inputList, sortableOptions);
+    });
+
+    onDestroy(() => {
+        sortableColourInput.destroy();
+    });
 </script>
 
 <div class="ColourInputContainer">
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
-    <ul class="ColourInputContainer__List">
-        {#each getColoursInUse() as _, index}
-            <li class="ColourInputContainer__Item">
-                <ColourInputItem index={index}/>
-                {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
-                    <button class="ColourInputContainer__RemoveBtn IconButton"
-                        title="Remove this colour"
-                        aria-label="Remove this colour"
-                        onclick={() => {handleRemoveColour(index)}}
-                    >
-                        <MaterialSymbolsLightRemove />
-                    </button>
-                {/if}
-            </li>
+    <ul class="ColourInputContainer__List"
+        bind:this={inputList}
+    >
+        {#each wallGenColours.val as colourObj, index (colourObj.id)}
+            {#if index < getWallGenColourInUseCount()}
+                <li class="ColourInputContainer__Item">
+                    <ColourInputItem
+                        colourObj={colourObj}
+                        index={index}
+                    />
+                </li>
+            {/if}
         {/each}
     </ul>
 
@@ -113,9 +150,5 @@
         justify-content: space-around;
         flex-wrap: wrap;
         gap: 1rem;
-    }
-
-    .ColourInputContainer__RemoveBtn {
-        color: var(--colDanger);
     }
 </style>

@@ -1,23 +1,33 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
-import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { WallpaperStyle, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
+import { createColState, createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
+import { WallpaperStyle, type ColObj, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
 import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
+import { generateId } from "./idGenState.svelte.js";
 
 /**
  * Wallpaper Generator current colours
  */
-const defaultWallGenColoursValue = ["04AE9C", "CCA5C6", "CD4173", "7BFFB0", "99E343", "235646"];
-const isWallGenColoursValid = (data: string[]) => {
+const defaultWallGenColoursValue = [
+    // No idea, to emulate the data that would have been stored in LocalStorage
+    { colour: "04AE9C" },
+    { colour: "CCA5C6" },
+    { colour: "CD4173" },
+    { colour: "7BFFB0" },
+    { colour: "99E343" },
+    { colour: "235646" },
+    { colour: "F43606" }
+];
+const isWallGenColoursValid = (data: ColObj[]) => {
     if (!data) return false;
     if (data.length !== MAX_COLOUR_COUNT) return false;
 
     try {
         for (const item of data) {
             if (!item) return false;
-            if (!isHexCodeValid(item)) return false;
+            if (!isHexCodeValid(item.colour)) return false;
         }
 
         return true;
@@ -26,11 +36,11 @@ const isWallGenColoursValid = (data: string[]) => {
     }
 };
 
-export const wallGenColours = createLocalStorageSyncedState({
+export const wallGenColours = <State<ColObj[]>>createColState({
     key: "currColours",
     defaultValue: defaultWallGenColoursValue,
     validationFunc: isWallGenColoursValid,
-}) as State<string[]>;
+});
 
 const isColourIndexValid = (index: number) => {
     return (0 <= index && index <= wallGenColours.val.length - 1);
@@ -48,16 +58,14 @@ export const getWallGenColoursAtIndex = (index: number) => {
 export const setWallGenColoursAtIndex = (index: number, newValue: string) => {
     if (!isColourIndexValid(index)) {
         throw new Error("ERROR: attempt to set colour with an invalid index");
-        return;
     }
 
     if (!isHexCodeValid(newValue)) {
         throw new Error("ERROR: attempt to set colour with an invalid value");
-        return;
     }
 
     const tempArr = [...wallGenColours.val];
-    tempArr[index] = newValue;
+    tempArr[index].colour = newValue;
     wallGenColours.set(tempArr);
 };
 /**
@@ -68,28 +76,46 @@ export const setWallGenColoursAtIndex = (index: number, newValue: string) => {
 export const retractWallGenColoursAtIndex = (index: number) => {
     const befPortion = wallGenColours.val.slice(0, index);
     const aftPortion = wallGenColours.val.slice(index + 1);
-    const newRandomisedColour = getRandomHexCode();
+    const newRandomisedColour = {
+        id: generateId(),
+        colour: getRandomHexCode(),
+    };
     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
 };
 
 /**
  * Move the new colours onto WallGen, which might not completely fill up all colours
  */
-export const passSomeColoursToWallpaperGenerator = (newColours: string[]) => {
+export const passSomeColourStringsToWallpaperGenerator = (newColours: string[]) => {
     // Data is internal, so this is assumed to have been validated
+    const coloursToBeKept = wallGenColours.val.slice(newColours.length);
+    const newColourObjList = newColours.map(colour => ({
+        id: generateId(),
+        colour,
+    }));
+
+    wallGenColours.set([...newColourObjList, ...coloursToBeKept]);
+};
+
+export const passSomeColourObjectsToWallpaperGenerator = (newColours: ColObj[]) => {
     const coloursToBeKept = wallGenColours.val.slice(newColours.length);
     wallGenColours.set([...newColours, ...coloursToBeKept]);
 };
 
-export const getHexColourCodesInUse = () => {
-    const hexCodeList = $derived(getColoursInUse().map(item => `#${item}`));
-    return hexCodeList;
+export const getColourObjectsInUse = () => {
+    const colourCount = getWallGenColourInUseCount();
+    const colourObjectsInUse = $derived(wallGenColours.val.slice(0, colourCount));
+    return colourObjectsInUse;
 };
 
-export const getColoursInUse = () => {
-    const colourCount = getWallGenColourInUseCount();
-    const colourList = $derived(wallGenColours.val.slice(0, colourCount));
-    return colourList;
+export const getColourStringsInUse = () => {
+    const colourStringList = $derived(getColourObjectsInUse().map(colObj => colObj.colour));
+    return colourStringList;
+};
+
+export const getHexColourCodesInUse = () => {
+    const hexCodeList = $derived(getColourStringsInUse().map(colour => `#${colour}`));
+    return hexCodeList;
 };
 
 /**

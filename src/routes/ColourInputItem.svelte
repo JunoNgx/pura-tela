@@ -1,17 +1,24 @@
 <script lang="ts">
     import ColorPicker from 'svelte-awesome-color-picker';
     
+    import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
+    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
-	import { addToColourGallery } from 'src/states/colourGalleryState.svelte.js';
-	import { getWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
+	import { promptAddToColourGallery } from 'src/states/colourGalleryState.svelte.js';
+	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, getWallGenColoursAtIndex, retractWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
+	import type { ColObj } from 'src/lib/types.js';
 
-    let { index } = $props();
+    type ColourInputItemProps = {
+        colourObj: ColObj,
+        index: number,
+    };
 
-    let colourCode = $derived(getWallGenColoursAtIndex(index));
-    let colourCodeWithHash = $derived("#" + colourCode);
+    let { colourObj, index }: ColourInputItemProps = $props();
+
+    let colourCodeWithHash = $derived("#" + colourObj.colour);
 
     const handlePickerValueChange = (hexStr: string) => {
         setWallGenColoursAtIndex(index, hexStr.replace("#", "").toUpperCase());
@@ -27,17 +34,22 @@
     };
 
     const trySaveColour = () => {
-        if (!colourCode) {
-            throw new Error("Unable to find colour from colour input at index:", index);
-        }
-        
-        addToColourGallery(colourCode);
+        promptAddToColourGallery(colourObj.colour);
     };
 
+    const handleRemoveColour = (index: number) => {
+        retractWallGenColoursAtIndex(index);
+        decreaseWallGenColourInUseCount();
+    };
 </script>
 
 <div class="ColourInput">
     <div class="ColourInput__LeftSide">
+        {#if getWallGenColourInUseCount() >= 2}
+            <div class="ColourInput__DragHandle">
+                <MaterialSymbolsLightDragIndicator />
+            </div>
+        {/if}
         <div class="ColourInput__Picker">
             <ColorPicker
                 label=""
@@ -68,7 +80,7 @@
                 maxlength="6"
                 spellcheck="false"
                 title="Requires a valid hex code"
-                value={colourCode}
+                value={colourObj.colour}
                 oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>
@@ -91,6 +103,16 @@
             <MaterialSymbolsLightSaveOutline/>
             <span class="ColourInput__BtnLabelText">Save</span>
         </button>
+
+        {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
+            <button class="ColourInput__RemoveBtn IconButton"
+                title="Remove this colour"
+                aria-label="Remove this colour"
+                onclick={() => {handleRemoveColour(index)}}
+            >
+                <MaterialSymbolsLightRemove />
+            </button>
+        {/if}
     </div>
 </div>
 
@@ -102,10 +124,22 @@
         gap: 1rem;
     }
 
+    :global(.ColourInput__IsDragged) {
+        /* background-color: red; */
+
+        .ColourInput__Buttons {
+            display: none;
+        }
+    }
+
     .ColourInput__LeftSide {
         display: flex;
         align-items: center;
         gap: 1.5rem;
+    }
+
+    .ColourInput__DragHandle {
+        cursor: grab;
     }
 
     .ColourInput__HexInputContainer {
@@ -123,6 +157,10 @@
         justify-content: flex-end;
         flex-wrap: nowrap;
         gap: 1rem;
+    }
+
+    .ColourInput__RemoveBtn {
+        color: var(--colDanger);
     }
 
     @media screen and (width <= 500px) {
