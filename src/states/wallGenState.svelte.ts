@@ -109,8 +109,7 @@ export const getColourStringsInUse = () => {
 };
 
 export const getHexColourCodesInUse = () => {
-    // const hexCodeList = $derived(getColourObjectsInUse().map(item => `#${item}`));
-    const hexCodeList = $derived(getColourObjectsInUse().map(colObj => `#${colObj.colour}`));
+    const hexCodeList = $derived(getColourStringsInUse().map(colour => `#${colour}`));
     return hexCodeList;
 };
 
