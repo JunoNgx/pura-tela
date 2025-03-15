@@ -5,6 +5,7 @@ import { getColoursInUse, readjustWallGenColoursInUseCount, setWallGenColourInUs
 import { palGenColours } from "./palGenState.svelte.js";
 import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
+import type { ColObj } from "src/lib/types.js";
 
 const isPaletteGalleryValid = (data: any[]) => {
     if (!data) return false;
@@ -116,10 +117,10 @@ export const passPaletteToPaletteGenerator = (paletteIndex: number) => {
     }
 }
 
-export const passWallGenToPaletteGenerator = (colours: string[]) => {
+export const passWallGenToPaletteGenerator = (colours: ColObj[]) => {
     try {
-        const newVal = colours.map(colour => ({
-            colour,
+        const newVal = colours.map(colourObj => ({
+            colour: colourObj.colour,
             isLocked: false,
         }));
 
