@@ -1,12 +1,13 @@
 <script lang="ts">
     import ColorPicker from 'svelte-awesome-color-picker';
     
+    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
 	import { addToColourGallery } from 'src/states/colourGalleryState.svelte.js';
-	import { getWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
+	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, getWallGenColoursAtIndex, retractWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 	import type { ColObj } from 'src/lib/types.js';
 
     type ColourInputItemProps = {
@@ -40,6 +41,10 @@
         addToColourGallery(colourCode);
     };
 
+    const handleRemoveColour = (index: number) => {
+        retractWallGenColoursAtIndex(index);
+        decreaseWallGenColourInUseCount();
+    };
 </script>
 
 <div class="ColourInput">
@@ -97,6 +102,16 @@
             <MaterialSymbolsLightSaveOutline/>
             <span class="ColourInput__BtnLabelText">Save</span>
         </button>
+
+        {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
+            <button class="ColourInput__RemoveBtn IconButton"
+                title="Remove this colour"
+                aria-label="Remove this colour"
+                onclick={() => {handleRemoveColour(index)}}
+            >
+                <MaterialSymbolsLightRemove />
+            </button>
+        {/if}
     </div>
 </div>
 
@@ -129,6 +144,10 @@
         justify-content: flex-end;
         flex-wrap: nowrap;
         gap: 1rem;
+    }
+
+    .ColourInput__RemoveBtn {
+        color: var(--colDanger);
     }
 
     @media screen and (width <= 500px) {
