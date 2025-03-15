@@ -6,6 +6,7 @@ import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
 import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
+import { tryParseColours } from "src/lib/parseFuncs.js";
 
 /**
  * Wallpaper Generator current colours
@@ -116,6 +117,21 @@ export const getColourStringsInUse = () => {
 export const getHexColourCodesInUse = () => {
     const hexCodeList = $derived(getColourStringsInUse().map(colour => `#${colour}`));
     return hexCodeList;
+};
+
+export const tryParseFromStringToWallGen = (inputStr: string) => {
+    const newVal = tryParseColours(inputStr);
+
+    if (!newVal) {
+        window.alert("Data is invalid")
+        return;
+    }
+
+    const newValue = newVal.map(colour => ({
+        id: generateId(),
+        colour,
+    }));
+    wallGenColours.set([...newValue]);
 };
 
 /**
