@@ -4,6 +4,7 @@ import { createLocalStorageSyncedState, isHexCodeValid } from "src/states/stateU
 import { getColoursInUse, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, wallGenColours } from "./wallGenState.svelte.js";
 import { palGenColours } from "./palGenState.svelte.js";
 import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+import { generateId } from "./idGenState.svelte.js";
 
 const isPaletteGalleryValid = (data: any[]) => {
     if (!data) return false;
@@ -87,11 +88,14 @@ export const resetPaletteGallery = () => {
 export const passPaletteToWallpaperGenerator = (paletteIndex: number) => {
     try {
         const palette = paletteGallery.val[paletteIndex];
-        const newColours = palette.colours;
-        const coloursToBeKept = wallGenColours.val.slice(newColours.length);
+        const newColoursObjList = palette.colours.map(colour => ({
+            id: generateId(),
+            colour,
+        }));
+        const coloursToBeKept = wallGenColours.val.slice(newColoursObjList.length);
 
-        wallGenColours.set([...newColours, ...coloursToBeKept]);
-        setWallGenColourInUseCount(newColours.length);
+        wallGenColours.set([...newColoursObjList, ...coloursToBeKept]);
+        setWallGenColourInUseCount(newColoursObjList.length);
         readjustWallGenColoursInUseCount();
     } catch(error) {
         throw new Error("Failed to pass palette to Wallpaper generator");
