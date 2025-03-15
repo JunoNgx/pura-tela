@@ -8,7 +8,7 @@
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
     import ColourInputItem from "src/routes/ColourInputItem.svelte";
-	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourStringsToWallpaperGenerator, wallGenColours } from "src/states/wallGenState.svelte.js";
+	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator, passWallGenToPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 	import { onDestroy, onMount } from "svelte";
@@ -33,7 +33,7 @@
     onMount(() => {
         const sortableOptions = {
             animation: 150,
-            delay: 100,
+            delay: 0,
             handle: ".ColourInput__DragHandle",
             put: false,
             pull: false,
@@ -51,11 +51,11 @@
                 }
 
                 const newVal = moveItemWithinArray(
-                    wallGenColours.val,
+                    getColourObjectsInUse(),
                     evt.oldIndex,
                     evt.newIndex
                 );
-                // passSomeColourStringsToWallpaperGenerator(newVal);
+                passSomeColourObjectsToWallpaperGenerator(newVal);
             },
         };
 
@@ -72,7 +72,7 @@
     <ul class="ColourInputContainer__List"
         bind:this={inputList}
     >
-        {#each getColourObjectsInUse() as colourObj, index}
+        {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
             <li class="ColourInputContainer__Item">
                 <ColourInputItem
                     colourObj={colourObj}
