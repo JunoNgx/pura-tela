@@ -6,6 +6,7 @@ import { createColState, isHexCodeValid, isValidBoolean } from "src/states/state
 import { tryParseColours } from "src/lib/parseFuncs.js";
 import { generateId } from "./idGenState.svelte.js";
 import type { PalGenColObj, State } from "src/lib/types.js";
+import { paletteGallery } from "./paletteGalleryState.svelte.js";
 
 /**
  * Palette generator's colours
@@ -130,3 +131,31 @@ export const tryParseFromStringToPalGen = (inputStr: string) => {
     palGenColours.set([...newValue]);
 };
 
+export const passPaletteToPaletteGenerator = (paletteIndex: number) => {
+    try {
+        const palette = paletteGallery.val[paletteIndex];
+        const newVal = palette.colours.map(colour => ({
+            id: generateId(),
+            colour,
+            isLocked: false,
+        }));
+
+        palGenColours.set([...newVal]);
+    } catch(error) {
+        throw new Error("Failed to pass palette to Palette Generator");
+    }
+}
+
+export const passWallGenToPaletteGenerator = (colours: string[]) => {
+    try {
+        const newVal = colours.map(colour => ({
+            id: generateId(),
+            colour,
+            isLocked: false,
+        }));
+
+        palGenColours.set([...newVal]);
+    } catch(error) {
+        throw new Error("Failed to pass palette to Palette Generator");
+    }
+};

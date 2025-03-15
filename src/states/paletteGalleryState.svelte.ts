@@ -5,7 +5,6 @@ import { getColourStringsInUse, readjustWallGenColoursInUseCount, setWallGenColo
 import { palGenColours } from "./palGenState.svelte.js";
 import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
-import type { ColObj } from "src/lib/types.js";
 
 const isPaletteGalleryValid = (data: any[]) => {
     if (!data) return false;
@@ -102,30 +101,3 @@ export const passPaletteToWallpaperGenerator = (paletteIndex: number) => {
         throw new Error("Failed to pass palette to Wallpaper generator");
     }
 }
-
-export const passPaletteToPaletteGenerator = (paletteIndex: number) => {
-    try {
-        const palette = paletteGallery.val[paletteIndex];
-        const newVal = palette.colours.map(colour => ({
-            colour,
-            isLocked: false,
-        }));
-
-        palGenColours.set([...newVal]);
-    } catch(error) {
-        throw new Error("Failed to pass palette to Palette Generator");
-    }
-}
-
-export const passWallGenToPaletteGenerator = (colours: string[]) => {
-    try {
-        const newVal = colours.map(colour => ({
-            colour,
-            isLocked: false,
-        }));
-
-        palGenColours.set([...newVal]);
-    } catch(error) {
-        throw new Error("Failed to pass palette to Palette Generator");
-    }
-};

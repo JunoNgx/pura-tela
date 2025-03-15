@@ -9,10 +9,11 @@
 
     import ColourInputItem from "src/routes/ColourInputItem.svelte";
 	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, wallGenColours } from "src/states/wallGenState.svelte.js";
-	import { addToPaletteGalleryFromWallpaperGenerator, passWallGenToPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
+	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 	import { onDestroy, onMount } from "svelte";
 	import { moveItemWithinArray } from 'src/states/stateUtils.svelte.js';
+	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
