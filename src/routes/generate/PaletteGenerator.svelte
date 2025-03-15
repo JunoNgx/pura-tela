@@ -1,4 +1,8 @@
 <script lang="ts">
+	import Sortable from "sortablejs";
+	import type { SortableEvent } from "sortablejs";
+
+	import { onDestroy, onMount } from "svelte";
 	import { goto } from "$app/navigation";
 
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
@@ -12,6 +16,7 @@
 	import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
+	import { moveItemWithinArray } from "src/states/stateUtils.svelte.js";
 
     const addColour = () => {
         addToPalGenColours();
@@ -41,11 +46,53 @@
 
         tryParseFromStringToPalGen(inputData);
     };
+
+    let sortableColourInput: Sortable;
+    let paletteItemContainer: HTMLDivElement;
+
+    onMount(() => {
+        const sortableOptions = {
+            animation: 150,
+            delay: 100,
+            handle: ".PalGenItem__ActionBtn",
+            put: false,
+            pull: false,
+            onEnd: (evt: SortableEvent) => {
+                if (evt.oldIndex === null
+                    || evt.oldIndex === undefined
+                    || evt.newIndex === null
+                    || evt.newIndex === undefined
+                ) {
+                    return;
+                }
+
+                if (evt.oldIndex === evt.newIndex) {
+                    return;
+                }
+
+                const newVal = moveItemWithinArray(
+                    palGenColours.val,
+                    evt.oldIndex,
+                    evt.newIndex
+                );
+
+                palGenColours.set(newVal);
+            },
+        };
+
+        sortableColourInput = new Sortable(paletteItemContainer, sortableOptions);
+    });
+
+    onDestroy(() => {
+        sortableColourInput.destroy();
+    });
 </script>
 
 <div class="PaletteGenerator">
-    <div class="PaletteGenerator__PaletteBox">
-        {#each palGenColours.val as palGenItem, index}
+    <div class="PaletteGenerator__PaletteBox"
+        bind:this={paletteItemContainer}
+    >
+        {#each palGenColours.val as palGenItem, index (palGenItem.id)}
             <PaletteGeneratorItem 
                 palGenItem={palGenItem}
                 index={index}
