@@ -95,10 +95,12 @@ export const passSomeColoursToWallpaperGenerator = (newColours: string[]) => {
     wallGenColours.set([...newColourObjList, ...coloursToBeKept]);
 };
 
-export const getHexColourCodesInUse = () => {
-    // const hexCodeList = $derived(getColourObjectsInUse().map(item => `#${item}`));
-    const hexCodeList = $derived(getColourObjectsInUse().map(colObj => `#${colObj.colour}`));
-    return hexCodeList;
+export const getColourObjectsInUse = () => {
+    const colourCount = getWallGenColourInUseCount();
+    const colourObjectsInUse = $derived(wallGenColours.val.slice(0, colourCount));
+    // const colourListAsHexStrings = colourObjectsInUse.map(colObj => colObj.colour);
+    // return colourListAsHexStrings;
+    return colourObjectsInUse;
 };
 
 export const getColourStringsInUse = () => {
@@ -106,12 +108,10 @@ export const getColourStringsInUse = () => {
     return colourStringList;
 };
 
-export const getColourObjectsInUse = () => {
-    const colourCount = getWallGenColourInUseCount();
-    const colourObjectsInUse = $derived(wallGenColours.val.slice(0, colourCount));
-    // const colourListAsHexStrings = colourObjectsInUse.map(colObj => colObj.colour);
-    // return colourListAsHexStrings;
-    return colourObjectsInUse;
+export const getHexColourCodesInUse = () => {
+    // const hexCodeList = $derived(getColourObjectsInUse().map(item => `#${item}`));
+    const hexCodeList = $derived(getColourObjectsInUse().map(colObj => `#${colObj.colour}`));
+    return hexCodeList;
 };
 
 /**
