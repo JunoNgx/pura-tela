@@ -46,6 +46,7 @@ export const createLocalStorageSyncedState = <T>({
 };
 
 type ColState = ColObj[] | PalGenColObj[];
+type ColStateStoreFormat = { colour: string, isLocked?: boolean }[];
 
 export const createColState = ({
     key,
@@ -58,7 +59,7 @@ export const createColState = ({
     shouldHandleId?: boolean,
 }): State<ColState> => {
 
-    const createColStateWithSyncEffect = (verifiedData: ColState) => {
+    const createColStateWithSyncEffect = (verifiedData: ColStateStoreFormat) => {
         const dataWithId = verifiedData.map(item => ({
             ...item,
             id: generateId(),
@@ -140,7 +141,7 @@ export const moveItemWithinArray = <T>(
     fromIndex: number,
     toIndex: number,
 ) => {
-    const newTempVal = [...arr];
+    const newTempVal = $state.snapshot(arr);
 
     const movedItem = newTempVal.splice(fromIndex, 1)[0];
     newTempVal.splice(toIndex, 0, movedItem);
