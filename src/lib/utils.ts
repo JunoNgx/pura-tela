@@ -61,7 +61,7 @@ export const capitaliseFirstLetter = (str: string) => {
 export const computeFilename = ({
     colours, gallery, mode
 }: {
-    colours: ColObj[],
+    colours: string[],
     gallery: ColourItem[],
     mode: WallpaperStyle,
 }) => {
@@ -73,7 +73,7 @@ export const computeFilename = ({
             item => item.hexCode === hexCode);
         
         if (index === -1) {
-            return hexCode;
+            return `#${hexCode}`;
         }
 
         const colourName = gallery[index].name;
@@ -82,10 +82,10 @@ export const computeFilename = ({
     };
 
     const computeColourNamePortion = (
-        colours: ColObj[], gallery: ColourItem[]
+        colours: string[], gallery: ColourItem[]
     ) => {
         const colourNames = colours
-            .map(colObj => getColourName(colObj.colour, gallery));
+            .map(colour => getColourName(colour, gallery));
         const colourNamesStr = colourNames.join("-");
 
         return colourNamesStr;
