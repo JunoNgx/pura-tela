@@ -139,3 +139,16 @@ export const isArrayOfHexCodesValid = (arr: string[]): boolean => {
 
     return true;
 };
+
+export const moveItemWithinArray = <T>(
+    arr: T[],
+    fromIndex: number,
+    toIndex: number,
+) => {
+    const newTempVal = [...arr];
+
+    const movedItem = newTempVal.splice(fromIndex, 1)[0];
+    newTempVal.splice(toIndex, 0, movedItem);
+
+    return newTempVal;
+};
