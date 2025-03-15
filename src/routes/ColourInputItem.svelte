@@ -7,11 +7,17 @@
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
 	import { addToColourGallery } from 'src/states/colourGalleryState.svelte.js';
 	import { getWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
+	import type { ColObj } from 'src/lib/types.js';
 
-    let { index } = $props();
+    type ColourInputItemProps = {
+        colourObj: ColObj,
+        index: number,
+    };
 
-    let colourCode = $derived(getWallGenColoursAtIndex(index));
-    let colourCodeWithHash = $derived("#" + colourCode);
+    let { colourObj, index }: ColourInputItemProps = $props();
+
+    // let colourCode = $derived(getWallGenColoursAtIndex(index));
+    let colourCodeWithHash = $derived("#" + colourObj.colour);
 
     const handlePickerValueChange = (hexStr: string) => {
         setWallGenColoursAtIndex(index, hexStr.replace("#", "").toUpperCase());
@@ -68,7 +74,7 @@
                 maxlength="6"
                 spellcheck="false"
                 title="Requires a valid hex code"
-                value={colourCode}
+                value={colourObj.colour}
                 oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>

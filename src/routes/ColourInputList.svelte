@@ -27,9 +27,12 @@
 <div class="ColourInputContainer">
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
     <ul class="ColourInputContainer__List">
-        {#each getColoursInUse() as _, index}
+        {#each getColoursInUse() as colourObj, index (colourObj.id)}
             <li class="ColourInputContainer__Item">
-                <ColourInputItem index={index}/>
+                <ColourInputItem
+                    colourObj={colourObj}
+                    index={index}
+                />
             </li>
         {/each}
     </ul>

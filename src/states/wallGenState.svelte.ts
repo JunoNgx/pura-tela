@@ -56,12 +56,10 @@ export const getWallGenColoursAtIndex = (index: number) => {
 export const setWallGenColoursAtIndex = (index: number, newValue: string) => {
     if (!isColourIndexValid(index)) {
         throw new Error("ERROR: attempt to set colour with an invalid index");
-        return;
     }
 
     if (!isHexCodeValid(newValue)) {
         throw new Error("ERROR: attempt to set colour with an invalid value");
-        return;
     }
 
     const tempArr = [...wallGenColours.val];
