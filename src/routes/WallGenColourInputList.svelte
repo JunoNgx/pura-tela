@@ -43,13 +43,11 @@
                     const idOrder = wallGenColours.val.map(
                         palGenItem => palGenItem.id.toString()
                     );
-                    console.log("get", idOrder)
                     return idOrder;
                 },
                 set(sortable: Sortable) {
                     // TODO: find a way to abstract and re-use this logic for both PalGen and WallGen
                     const newIdOrder = sortable.toArray();
-                    console.log("sort", newIdOrder)
                     const newValue = newIdOrder.map(id => {
                         const correspondingWalGenCol = wallGenColours.val
                             .find(wallGenCol => wallGenCol.id === parseInt(id));
