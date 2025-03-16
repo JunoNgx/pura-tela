@@ -74,15 +74,11 @@
     <ul class="ColourInputContainer__List"
         bind:this={inputList}
     >
-        {#each wallGenColours.val as colourObj, index (colourObj.id)}
-            {#if index < getWallGenColourInUseCount()}
-                <li class="ColourInputContainer__Item">
-                    <WallGenColourInputItem
-                        colourObj={colourObj}
-                        index={index}
-                    />
-                </li>
-            {/if}
+        {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
+            <WallGenColourInputItem
+                colourObj={colourObj}
+                index={index}
+            />
         {/each}
     </ul>
 
@@ -126,15 +122,6 @@
         padding-left: 0;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-    }
-
-    .ColourInputContainer__Item {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
         gap: 1rem;
     }
 

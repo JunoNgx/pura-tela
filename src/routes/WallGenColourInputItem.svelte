@@ -43,7 +43,7 @@
     };
 </script>
 
-<div class="ColourInput">
+<li class="ColourInput">
     <div class="ColourInput__LeftSide">
         {#if getWallGenColourInUseCount() >= 2}
             <div class="ColourInput__DragHandle">
@@ -114,19 +114,19 @@
             </button>
         {/if}
     </div>
-</div>
+</li>
 
 <style>
     .ColourInput {
-        flex-grow: 1;
+        list-style: none;
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         gap: 1rem;
     }
 
     :global(.ColourInput__IsDragged) {
-        /* background-color: red; */
-
         .ColourInput__Buttons {
             display: none;
         }
