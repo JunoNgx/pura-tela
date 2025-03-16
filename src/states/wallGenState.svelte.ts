@@ -38,7 +38,7 @@ const isWallGenColoursValid = (data: ColObj[]) => {
 };
 
 export const wallGenColours = <State<ColObj[]>>createColState({
-    key: "currColours",
+    key: "wallGenColours",
     defaultValue: defaultWallGenColoursValue,
     validationFunc: isWallGenColoursValid,
 });

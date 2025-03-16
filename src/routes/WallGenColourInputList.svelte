@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Sortable, { type SortableEvent } from 'sortablejs';
+    import Sortable from 'sortablejs';
 
     import { goto } from "$app/navigation";
 
@@ -80,10 +80,6 @@
     onDestroy(() => {
         sortableColourInput.destroy();
     });
-
-    $effect(() => {
-        $inspect(wallGenColours)
-    })
 </script>
 
 <div class="ColourInputContainer">
