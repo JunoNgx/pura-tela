@@ -12,7 +12,6 @@
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 	import { onDestroy, onMount } from "svelte";
-	import { moveItemWithinArray } from 'src/states/stateUtils.svelte.js';
 	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
 
     const handleAddColour = () => {
@@ -39,26 +38,32 @@
             dragClass: "ColourInput__IsDragged",
             put: false,
             pull: false,
-            onEnd: (evt: SortableEvent) => {
-                if (evt.oldIndex === null
-                    || evt.oldIndex === undefined
-                    || evt.newIndex === null
-                    || evt.newIndex === undefined
-                ) {
-                    return;
-                }
+            store: {
+                get(_sortable: Sortable) {
+                    const idOrder = wallGenColours.val.map(
+                        palGenItem => palGenItem.id.toString()
+                    );
+                    console.log("get", idOrder)
+                    return idOrder;
+                },
+                set(sortable: Sortable) {
+                    const newIdOrder = sortable.toArray();
+                    console.log("sort", newIdOrder)
+                    const newValue = newIdOrder.map(id => {
+                        const correspondingWalGenCol = wallGenColours.val
+                            .find(wallGenCol => wallGenCol.id === parseInt(id));
 
-                if (evt.oldIndex === evt.newIndex) {
-                    return;
-                }
+                        if (!correspondingWalGenCol) {
+                            throw new Error(
+                                "Cannot find corresponding wallpaper generator colour item while re-sorting after drag and drop");
+                        }
+                        
+                        return correspondingWalGenCol;
+                    });
 
-                const newVal = moveItemWithinArray(
-                    getColourObjectsInUse(),
-                    evt.oldIndex,
-                    evt.newIndex
-                );
-                passSomeColourObjectsToWallpaperGenerator(newVal);
-            },
+                    wallGenColours.set(newValue);
+                },
+            }
         };
 
         sortableColourInput = new Sortable(inputList, sortableOptions);
@@ -67,6 +72,10 @@
     onDestroy(() => {
         sortableColourInput.destroy();
     });
+
+    $effect(() => {
+        $inspect(wallGenColours)
+    })
 </script>
 
 <div class="ColourInputContainer">

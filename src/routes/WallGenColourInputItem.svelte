@@ -43,7 +43,9 @@
     };
 </script>
 
-<li class="ColourInput">
+<li class="ColourInput"
+    data-id={colourObj.id}
+>
     <div class="ColourInput__LeftSide">
         {#if getWallGenColourInUseCount() >= 2}
             <div class="ColourInput__DragHandle">
