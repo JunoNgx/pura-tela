@@ -47,6 +47,7 @@
                     return idOrder;
                 },
                 set(sortable: Sortable) {
+                    // TODO: find a way to abstract and re-use this logic for both PalGen and WallGen
                     const newIdOrder = sortable.toArray();
                     console.log("sort", newIdOrder)
                     const newValue = newIdOrder.map(id => {
