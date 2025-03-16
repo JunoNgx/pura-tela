@@ -43,6 +43,7 @@
     };
 </script>
 
+<!-- `data-id` is used by sortableJs -->
 <li class="ColourInput"
     data-id={colourObj.id}
 >
