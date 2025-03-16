@@ -72,7 +72,7 @@
 
                         if (!correspondingPalGenItem) {
                             throw new Error(
-                                "Cannot find corresponding palette generator while re-sorting after drag and drop");
+                                "Cannot find corresponding palette generator colour item while re-sorting after drag and drop");
                         }
                         
                         return correspondingPalGenItem;
