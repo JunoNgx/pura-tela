@@ -71,10 +71,6 @@
     onDestroy(() => {
         sortableColourInput.destroy();
     });
-
-    $effect(() => {
-        $inspect(wallGenColours)
-    })
 </script>
 
 <div class="ColourInputContainer">
