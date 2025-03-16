@@ -136,6 +136,7 @@ export const isArrayOfHexCodesValid = (arr: string[]): boolean => {
     return true;
 };
 
+// Unused, kept for potential future use
 export const moveItemWithinArray = <T>(
     arr: T[],
     fromIndex: number,
