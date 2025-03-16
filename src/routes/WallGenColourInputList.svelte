@@ -7,7 +7,7 @@
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
-    import ColourInputItem from "src/routes/ColourInputItem.svelte";
+    import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
 	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
@@ -77,7 +77,7 @@
         {#each wallGenColours.val as colourObj, index (colourObj.id)}
             {#if index < getWallGenColourInUseCount()}
                 <li class="ColourInputContainer__Item">
-                    <ColourInputItem
+                    <WallGenColourInputItem
                         colourObj={colourObj}
                         index={index}
                     />

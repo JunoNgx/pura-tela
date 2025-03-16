@@ -8,7 +8,7 @@
     
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
 	import { promptAddToColourGallery } from 'src/states/colourGalleryState.svelte.js';
-	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, getWallGenColoursAtIndex, retractWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
+	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, retractWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 	import type { ColObj } from 'src/lib/types.js';
 
     type ColourInputItemProps = {
