@@ -37,6 +37,7 @@
 </script>
 
 <div class="PalGenItem"
+    data-id={palGenItem.id}
     style={`background-color: #${palGenItem.colour}`}
 >
     <div class="PalGenItem__HexCode">
