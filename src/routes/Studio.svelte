@@ -2,11 +2,11 @@
 	import { onDestroy, onMount } from "svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { computeFilename } from "src/lib/utils.js";
-	import { getHexColourCodesInUse, getColourObjectsInUse, shouldShowSampleText, wallGenStyle, wallGenSize, readjustWallGenColoursInUseCount, getColourStringsInUse } from "src/states/wallGenState.svelte.js";
+	import { getHexColourCodesInUse, shouldShowSampleText, wallGenStyle, wallGenSize, readjustWallGenColoursInUseCount, getColourStringsInUse } from "src/states/wallGenState.svelte.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
 	import StyleSelector from "src/routes/StyleSelector.svelte";
-	import ColourInputList from "./ColourInputList.svelte";
+	import WallGenColourInputList from "./WallGenColourInputList.svelte";
     import SizeInput from "src/routes/SizeInput.svelte";
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { page } from "$app/state";
@@ -116,7 +116,7 @@
 
         <div class="Studio__Control">
             <div class="Studio__ColourInputContainer">
-                <ColourInputList />
+                <WallGenColourInputList />
             </div>
             <div class="Studio__Size">
                 <SizeInput/>

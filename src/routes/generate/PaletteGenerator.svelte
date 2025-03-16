@@ -66,26 +66,29 @@
             handle: ".PalGenItem__ActionBtn",
             put: false,
             pull: false,
-            onEnd: (evt: SortableEvent) => {
-                if (evt.oldIndex === null
-                    || evt.oldIndex === undefined
-                    || evt.newIndex === null
-                    || evt.newIndex === undefined
-                ) {
-                    return;
-                }
+            store: {
+                get(_sortable: Sortable) {
+                    const idOrder = palGenColours.val.map(
+                        palGenItem => palGenItem.id.toString()
+                    );
+                    return idOrder;
+                },
+                set(sortable: Sortable) {
+                    const newIdOrder = sortable.toArray();
+                    const newValue = newIdOrder.map(id => {
+                        const correspondingPalGenItem = palGenColours.val
+                            .find(palGenItem => palGenItem.id === parseInt(id));
 
-                if (evt.oldIndex === evt.newIndex) {
-                    return;
-                }
+                        if (!correspondingPalGenItem) {
+                            throw new Error(
+                                "Cannot find corresponding palette generator colour item while re-sorting after drag and drop");
+                        }
+                        
+                        return correspondingPalGenItem;
+                    });
 
-                const newVal = moveItemWithinArray(
-                    palGenColours.val,
-                    evt.oldIndex,
-                    evt.newIndex
-                );
-
-                palGenColours.set(newVal);
+                    palGenColours.set(newValue);
+                },
             },
         };
 

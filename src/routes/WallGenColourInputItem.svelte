@@ -8,7 +8,7 @@
     
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
 	import { promptAddToColourGallery } from 'src/states/colourGalleryState.svelte.js';
-	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, getWallGenColoursAtIndex, retractWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
+	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, retractWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 	import type { ColObj } from 'src/lib/types.js';
 
     type ColourInputItemProps = {
@@ -43,7 +43,10 @@
     };
 </script>
 
-<div class="ColourInput">
+<!-- `data-id` is used by sortableJs -->
+<li class="ColourInput"
+    data-id={colourObj.id}
+>
     <div class="ColourInput__LeftSide">
         {#if getWallGenColourInUseCount() >= 2}
             <div class="ColourInput__DragHandle">
@@ -114,19 +117,19 @@
             </button>
         {/if}
     </div>
-</div>
+</li>
 
 <style>
     .ColourInput {
-        flex-grow: 1;
+        list-style: none;
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         gap: 1rem;
     }
 
     :global(.ColourInput__IsDragged) {
-        /* background-color: red; */
-
         .ColourInput__Buttons {
             display: none;
         }
