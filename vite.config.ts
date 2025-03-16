@@ -13,6 +13,11 @@ export default defineConfig({
     test: {
         include: ['src/**/*.{test,spec}.{js,ts}']
     },
+
+    build: {
+        sourcemap: true,
+    },
+
     // Vite bug: https://github.com/vitejs/vite/discussions/17738
     // optimizeDeps: {
     //     exclude: ['node_modules/.cache']
