@@ -1,5 +1,5 @@
 import { isHexCodeValid } from "./utils.js";
-import { ThemeMode, type State } from "./types.js";
+import { ThemeMode, WallpaperMode, type State } from "./types.js";
 import { sizeOptions } from "./states.svelte.js";
 
 export const createLocalStorageSyncedState = <T>(
@@ -71,6 +71,44 @@ export const isColourGalleryValid = (data: any[]) => {
     }
 };
 
+
+export const isPaletteGalleryValid = (data: any[]) => {
+    if (!data) return false;
+
+    try {
+        for (const item of data) {
+            if (!item.name) return false;
+            if (!item.colours) return false;
+            if (item.colours.length < 2 || item.colours.length > 5) return false;
+
+            for (const colour of item.colours) {
+                if (!isHexCodeValid(colour)) return false;
+            }
+        }
+
+        return true;
+    } catch (err) {        
+        return false;
+    }
+};
+
+
+export const isCurrColoursValid = (data: string[]) => {
+    if (!data) return false;
+    if (data.length !== 5) return false;
+
+    try {
+        for (const item of data) {
+            if (!item) return false;
+            if (!isHexCodeValid(item)) return false;
+        }
+
+        return true;
+    } catch (err) {
+        return false;
+    }
+};
+
 export const isSizeOptionsValid = (data: any[]) => {
     if (!data) return false;
 
@@ -126,3 +164,70 @@ export const isShouldShowSampleTextValid = (data: any) => {
 
     return true;
 };
+
+export const isWallpaperModeValid = (data: any) => {
+    if ( data !== WallpaperMode.SOLID
+        && data !== WallpaperMode.GRADIENT
+    ) {
+        return false
+    }
+
+    return true;
+};
+
+export const isColourCountValid = (data: any) => {
+    if (data === null || data === undefined || !sizeOptions) {
+        return false;
+    }
+
+    try {
+        parseInt(data);
+
+        if (data < 1 || data > 5) {
+            return false;
+        }
+
+        return true;
+    } catch (err) {
+        return false;
+    }
+};
+
+export const isPalGenColoursValid = (data: any) => {
+    if (!data) {
+        return false;
+    }
+
+    try {
+        if (data.length < 2 || data.length > 5) {
+            console.log(0)
+            return false;
+        }
+
+        for (const palGenItem of data) {
+            if (!isValidBoolean(palGenItem.isLocked)) {
+                return false;
+            }
+
+            if (!isHexCodeValid(palGenItem.colour)) {
+                return false;
+            }
+        }
+
+        return true;
+    } catch (err) {
+        return false;
+    }
+}
+
+export const isValidBoolean = (data: any) => {
+    if (data === null || data === undefined) {
+        return false;
+    }
+
+    if (data !== true && data !== false) {
+        return false;
+    }
+
+    return true;
+}

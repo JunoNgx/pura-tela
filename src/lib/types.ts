@@ -9,6 +9,11 @@ export type ColourItem = {
     hexCode: string,
 };
 
+export type PaletteItem = {
+    name: string,
+    colours: string[],
+};
+
 export type SizeItem = {
     name: string,
     width: number,
@@ -30,4 +35,16 @@ export enum RgbChannel {
 export type State<T> = {
     readonly val: T;
     set: (newValue: T) => void,
+};
+
+export enum WallpaperMode {
+    SOLID = "solid",
+    GRADIENT = "gradient",
+    POP_ART_SQUARE = "popArtSquare",
+    PALETTE_ROW = "paletteRow",
+};
+
+export type PalGenItem = {
+    colour: string,
+    isLocked: boolean,
 };

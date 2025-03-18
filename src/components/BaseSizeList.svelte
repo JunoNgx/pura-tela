@@ -2,7 +2,7 @@
     import { sizeOptions } from "src/lib/states.svelte.js";
 </script>
 
-<ul class="SizeList">
+<ul class="SizeList FlexList">
     {#each sizeOptions as SizeItem}
         <li class="SizeItem">
             <div class="SizeItem__PreviewContainer">
@@ -23,8 +23,6 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
-        padding-left: 0;
-        margin-top: 1.5rem;
     }
 
     .SizeItem {
@@ -62,7 +60,7 @@
         margin: 0.5rem 0 0.5rem 0.25rem;
     }
     
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
         .SizeList {
             grid-template-columns: repeat(2, 1fr);
         }

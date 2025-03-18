@@ -1,11 +1,28 @@
 <script lang="ts">
     import { colourGallery } from "src/lib/states.svelte.js";
-    import ColourItem from "src/components/ColourItem.svelte";
+    import ColourListItem from "src/components/ColourListItem.svelte";
+    import ColourItemActionDialog from "src/components/dialogs/ColourItemActionDialog.svelte";
+    
+    let shouldShowDialog = $state(false);
+    let inputColour = $state("");
+
+    const showColourActionDialog = (newInputColour: string) => {
+        inputColour = newInputColour;
+        shouldShowDialog = true;
+    };
 </script>
 
-<ul class="ColourList">
-    {#each colourGallery.val as colourItem}
-        <ColourItem colourItem={colourItem}/>
+<ul class="ColourList FlexList">
+    <ColourItemActionDialog
+        bind:shouldShowDialog
+        inputColour={inputColour}
+    />
+    {#each colourGallery.val as colourItem, index}
+        <ColourListItem
+            showColourActionDialog={showColourActionDialog}
+            colourItem={colourItem}
+            index={index}
+        />
     {/each}
 </ul>
 
@@ -14,11 +31,9 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
-        padding-left: 0;
-        margin-top: 1.5rem;
     }
 
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
         .ColourList {
             grid-template-columns: repeat(2, 1fr);
         }
