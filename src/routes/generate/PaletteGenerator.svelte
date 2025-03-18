@@ -16,7 +16,6 @@
 	import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
-	import { moveItemWithinArray } from "src/states/stateUtils.svelte.js";
 
     const addColour = () => {
         addToPalGenColours();
