@@ -17,7 +17,6 @@
 	import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
-	import { moveItemWithinArray } from "src/states/stateUtils.svelte.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
 
     const addColour = () => {
@@ -66,26 +65,29 @@
             handle: ".PalGenItem__ActionBtn",
             put: false,
             pull: false,
-            onEnd: (evt: SortableEvent) => {
-                if (evt.oldIndex === null
-                    || evt.oldIndex === undefined
-                    || evt.newIndex === null
-                    || evt.newIndex === undefined
-                ) {
-                    return;
-                }
+            store: {
+                get(_sortable: Sortable) {
+                    const idOrder = palGenColours.val.map(
+                        palGenItem => palGenItem.id.toString()
+                    );
+                    return idOrder;
+                },
+                set(sortable: Sortable) {
+                    const newIdOrder = sortable.toArray();
+                    const newValue = newIdOrder.map(id => {
+                        const correspondingPalGenItem = palGenColours.val
+                            .find(palGenItem => palGenItem.id === parseInt(id));
 
-                if (evt.oldIndex === evt.newIndex) {
-                    return;
-                }
+                        if (!correspondingPalGenItem) {
+                            throw new Error(
+                                "Cannot find corresponding palette generator colour item while re-sorting after drag and drop");
+                        }
+                        
+                        return correspondingPalGenItem;
+                    });
 
-                const newVal = moveItemWithinArray(
-                    palGenColours.val,
-                    evt.oldIndex,
-                    evt.newIndex
-                );
-
-                palGenColours.set(newVal);
+                    palGenColours.set(newValue);
+                },
             },
         };
 
@@ -101,7 +103,10 @@
     <div class="PaletteGenerator__PaletteBox"
         bind:this={paletteItemContainer}
     >
-        {#each palGenColours.val as palGenItem, index (palGenItem.id)}
+        <!-- A very grotesque workaround, see issue #36 on GitHub -->
+        {#each palGenColours.val as palGenItem, index
+            (import.meta.env.PROD ? Math.random() : palGenItem.id)
+        }
             <PaletteGeneratorItem 
                 palGenItem={palGenItem}
                 index={index}

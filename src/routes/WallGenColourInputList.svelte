@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Sortable, { type SortableEvent } from 'sortablejs';
+    import Sortable from 'sortablejs';
 
     import { goto } from "$app/navigation";
 
@@ -8,12 +8,11 @@
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
     import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
 
-    import ColourInputItem from "src/routes/ColourInputItem.svelte";
+    import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
 	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 	import { onDestroy, onMount } from "svelte";
-	import { moveItemWithinArray } from 'src/states/stateUtils.svelte.js';
 	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
 	import { generatePaletteWithGemini } from 'src/states/geminiState.svelte.js';
 
@@ -48,26 +47,31 @@
             dragClass: "ColourInput__IsDragged",
             put: false,
             pull: false,
-            onEnd: (evt: SortableEvent) => {
-                if (evt.oldIndex === null
-                    || evt.oldIndex === undefined
-                    || evt.newIndex === null
-                    || evt.newIndex === undefined
-                ) {
-                    return;
-                }
+            store: {
+                get(_sortable: Sortable) {
+                    const idOrder = getColourObjectsInUse().map(
+                        palGenItem => palGenItem.id.toString()
+                    );
+                    return idOrder;
+                },
+                set(sortable: Sortable) {
+                    // TODO: find a way to abstract and re-use this logic for both PalGen and WallGen
+                    const newIdOrder = sortable.toArray();
+                    const newValue = newIdOrder.map(id => {
+                        const correspondingWalGenCol = wallGenColours.val
+                            .find(wallGenCol => wallGenCol.id === parseInt(id));
 
-                if (evt.oldIndex === evt.newIndex) {
-                    return;
-                }
+                        if (!correspondingWalGenCol) {
+                            throw new Error(
+                                "Cannot find corresponding wallpaper generator colour item while re-sorting after drag and drop");
+                        }
+                        
+                        return correspondingWalGenCol;
+                    });
 
-                const newVal = moveItemWithinArray(
-                    getColourObjectsInUse(),
-                    evt.oldIndex,
-                    evt.newIndex
-                );
-                passSomeColourObjectsToWallpaperGenerator(newVal);
-            },
+                    wallGenColours.set(newValue);
+                },
+            }
         };
 
         sortableColourInput = new Sortable(inputList, sortableOptions);
@@ -83,15 +87,14 @@
     <ul class="ColourInputContainer__List"
         bind:this={inputList}
     >
-        {#each wallGenColours.val as colourObj, index (colourObj.id)}
-            {#if index < getWallGenColourInUseCount()}
-                <li class="ColourInputContainer__Item">
-                    <ColourInputItem
-                        colourObj={colourObj}
-                        index={index}
-                    />
-                </li>
-            {/if}
+        <!-- A very grotesque workaround, see issue #36 on GitHub -->
+        {#each getColourObjectsInUse() as colourObj, index
+            (import.meta.env.PROD ? Math.random() : colourObj.id)
+        }
+            <WallGenColourInputItem
+                colourObj={colourObj}
+                index={index}
+            />
         {/each}
     </ul>
 
@@ -144,15 +147,6 @@
         padding-left: 0;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-    }
-
-    .ColourInputContainer__Item {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
         gap: 1rem;
     }
 

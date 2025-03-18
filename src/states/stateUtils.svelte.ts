@@ -136,6 +136,7 @@ export const isArrayOfHexCodesValid = (arr: string[]): boolean => {
     return true;
 };
 
+// Unused, kept for potential future use
 export const moveItemWithinArray = <T>(
     arr: T[],
     fromIndex: number,
@@ -147,4 +148,23 @@ export const moveItemWithinArray = <T>(
     newTempVal.splice(toIndex, 0, movedItem);
 
     return newTempVal;
+};
+
+// Unused, attempted to abstract `sortableJs`' `store.set` unsucessfully
+export const reorderColStateFromSortableJs = (
+    colState: State<ColObj[]>, idOrder: string[]
+) => {
+    const newValue = idOrder.map(id => {
+        const correspondingItem =
+            colState.val.find(palGenItem => palGenItem.id === parseInt(id));
+
+        if (!correspondingItem) {
+            throw new Error(
+                "Cannot find corresponding colour item while re-sorting after drag and drop");
+        }
+        
+        return correspondingItem;
+    });
+
+    colState.set(newValue); 
 };
