@@ -78,6 +78,7 @@
     <ul class="ColourInputContainer__List"
         bind:this={inputList}
     >
+        <!-- A very grotesque workaround, see issue #36 on GitHub -->
         {#each getColourObjectsInUse() as colourObj, index
             (import.meta.env.PROD ? Math.random() : colourObj.id)
         }
