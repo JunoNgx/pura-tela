@@ -2,18 +2,18 @@
 	import { onDestroy, onMount } from "svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
 	import { computeFilename } from "src/lib/utils.js";
-	import { getHexColourCodesInUse, getColoursInUse, shouldShowSampleText, wallGenStyle, wallGenSize, readjustWallGenColoursInUseCount } from "src/states/wallGenState.svelte.js";
+	import { getHexColourCodesInUse, shouldShowSampleText, wallGenStyle, wallGenSize, readjustWallGenColoursInUseCount, getColourStringsInUse } from "src/states/wallGenState.svelte.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
 	import StyleSelector from "src/routes/StyleSelector.svelte";
-	import ColourInputList from "./ColourInputList.svelte";
+	import WallGenColourInputList from "./WallGenColourInputList.svelte";
     import SizeInput from "src/routes/SizeInput.svelte";
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { page } from "$app/state";
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
-            colours: getColoursInUse(),
+            colours: getColourStringsInUse(),
             gallery: colourGallery.val,
             mode: wallGenStyle.val,
         });
@@ -40,7 +40,7 @@
     const computeShareableUrl = () => {
         const url = new URL(computeBaseUrl());
         url.searchParams.append("style", wallGenStyle.val);
-        url.searchParams.append("colours", getColoursInUse().toString());
+        url.searchParams.append("colours", getColourStringsInUse().toString());
         url.searchParams.append("width", wallGenSize.val.width.toString());
         url.searchParams.append("height", wallGenSize.val.height.toString());
 
@@ -116,7 +116,7 @@
 
         <div class="Studio__Control">
             <div class="Studio__ColourInputContainer">
-                <ColourInputList />
+                <WallGenColourInputList />
             </div>
             <div class="Studio__Size">
                 <SizeInput/>

@@ -4,7 +4,7 @@
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
     let shouldShowDialog = $state(false);
-    let inputColour = $state("");
+    let inputColour:string | null = $state(null);
 
     const showColourActionDialog = (newInputColour: string) => {
         inputColour = newInputColour;

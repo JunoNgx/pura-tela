@@ -9,6 +9,23 @@ export type ColourItem = {
     hexCode: string,
 };
 
+// Colour object with hex code and id
+export type ColObj = {
+    id: number,
+    colour: string, // hexCode
+};
+
+// Palette generator colour object, with isLocked state
+export type PalGenColObj = ColObj & {
+    isLocked: boolean,
+};
+
+// TODO: comment out
+export type PalGenItem = {
+    colour: string,
+    isLocked: boolean,
+};
+
 export type PaletteItem = {
     name: string,
     colours: string[],
@@ -53,11 +70,6 @@ export type WallpaperStyleInfo = {
     minColourCount: number,
     maxColourCount: number,
     defaultColourCount: number,
-};
-
-export type PalGenItem = {
-    colour: string,
-    isLocked: boolean,
 };
 
 export type WallGenQueryProps = {

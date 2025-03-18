@@ -7,19 +7,16 @@
     import MaterialSymbolsLightLockSharp from "~icons/material-symbols-light/lock-sharp";
     import MaterialSymbolsLightLockOutlineSharp from "~icons/material-symbols-light/lock-outline-sharp";
 
-    import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
-    import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
-
     import MaterialSymbolsLightDelete from "~icons/material-symbols-light/delete";
     import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
 
-	import type { PalGenItem } from "src/lib/types.js";
+	import type { PalGenColObj } from "src/lib/types.js";
 	import ColorPicker from "svelte-awesome-color-picker";
 	import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/states/palGenState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 
     type PaletteGeneratorItemProps = {
-        palGenItem: PalGenItem,
+        palGenItem: PalGenColObj,
         index: number,
     };
 
@@ -39,14 +36,20 @@
 
 </script>
 
+<!-- `data-id` is used by sortableJs -->
 <div class="PalGenItem"
+    data-id={palGenItem.id}
     style={`background-color: #${palGenItem.colour}`}
 >
     <div class="PalGenItem__HexCode">
         {palGenItem.colour}
     </div>
 
-    <div class="PalGenItem__ActionPanel">
+    <div class="PalGenItem__ActionBtn PalGenItem__ActionPanel">
+        <div class="PalGenItem__DragHandle IconButton">
+            <MaterialSymbolsLightDragIndicator />
+        </div>
+
         <div class="PalGenItem__PickerContainer">
             <ColorPicker
                 label=""
@@ -133,6 +136,14 @@
     .PalGenItem__ActionBtn,
     .PalGenItem__ActionBtn:hover {
         color: var(--colWhite);
+    }
+
+    .PalGenItem__DragHandle {
+        height: 1.5rem;
+        height: 1.5rem;
+        display: grid;
+        place-items: center;
+        cursor: grab;
     }
 
     :global(.PalGenItem__PickerContainer .color-picker label) {
