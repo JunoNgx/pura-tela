@@ -40,7 +40,7 @@
             pull: false,
             store: {
                 get(_sortable: Sortable) {
-                    const idOrder = wallGenColours.val.map(
+                    const idOrder = getColourObjectsInUse().map(
                         palGenItem => palGenItem.id.toString()
                     );
                     return idOrder;
