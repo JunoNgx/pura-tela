@@ -1,6 +1,6 @@
 <script lang="ts">
     import { WallpaperStyle } from "src/lib/types.js";
-	import { getCurrWallStyleInfo, isGradientStyle, isPaletteRowStyle, isPopArtSquareStyle, isSolidStyle, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
+	import { getCurrWallStyleInfo, isGradientStyle, isPaletteRowStyle, isPopArtSquareStyle, isSolidStyle, setWallGenColourInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
 
     const handleWallpaperStyleChange = (newValue: WallpaperStyle) => {
         wallGenStyle.set(newValue);
