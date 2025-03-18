@@ -3,7 +3,7 @@
 
     import DialogBase from "src/components/DialogBase.svelte";
 	import ColourSpan from 'src/components/ColourSpan.svelte';
-	import { getColourStringsInUse, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
+	import { getColoursInUse, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 
     let { shouldShowDialog = $bindable(), inputColour } = $props();
     let dialogBase: DialogBase | undefined = $state();
@@ -20,7 +20,7 @@
 >
     <h3 class="ColourActionDialog__Title">Confirm passing <ColourSpan colour={inputColour}/> to Wallpaper Generator?</h3>
     <div class="ColourActionDialog__ActionContainer ColourActionDialog__ActionContainer--MainActions">
-        {#each getColourStringsInUse() as colour, index}
+        {#each getColoursInUse() as colour, index}
             <button class="ColourActionDialog__ActionBtn"
                 onclick={() => handlePassColour(index)}
             >

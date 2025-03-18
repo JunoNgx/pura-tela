@@ -2,11 +2,8 @@
 import defaultPaletteGallery from "src/data/palettes.json";
 import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 import { getRandomHexCode } from "src/lib/utils.js";
-import { createColState, isHexCodeValid, isValidBoolean } from "src/states/stateUtils.svelte.js";
+import { createLocalStorageSyncedState, isArrayOfHexCodesValid, isHexCodeValid, isValidBoolean } from "src/states/stateUtils.svelte.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
-import { generateId } from "./idGenState.svelte.js";
-import type { PalGenColObj, State } from "src/lib/types.js";
-import { paletteGallery } from "./paletteGalleryState.svelte.js";
 
 /**
  * Palette generator's colours
@@ -47,7 +44,7 @@ const generateDefaultPalGenColours = () => {
         }));
 };
 
-export const palGenColours = <State<PalGenColObj[]>>createColState({
+export const palGenColours = createLocalStorageSyncedState({
     key: "palGenColours",
     defaultValue: generateDefaultPalGenColours(),
     validationFunc: isPalGenColoursValid,
@@ -71,7 +68,6 @@ export const addToPalGenColours = () => {
     }
 
     const newColour = {
-        id: generateId(),
         isLocked: false,
         colour: getRandomHexCode(),
     };
@@ -95,7 +91,6 @@ export const randomiseUnlockedColoursForPalGen = () => {
         }
 
         return {
-            id: generateId(),
             isLocked: false,
             colour: getRandomHexCode(),
         };
@@ -104,14 +99,15 @@ export const randomiseUnlockedColoursForPalGen = () => {
     palGenColours.set(newVal);
 };
 
-const derivedHexListString =  $derived.by(() => {
-    const colourList = palGenColours.val.map(palGenItem => palGenItem.colour);
-    const outputString = colourList.join("-");
-    return outputString;
-});
-
 export const exportToStringFromPalGen = () => {
-    return derivedHexListString;
+    const hexListString = $derived.by(() => {
+        const colourList = palGenColours.val.map(palGenItem => palGenItem.colour);
+        const outputString = colourList.join("-");
+    
+        return outputString;
+    });
+
+    return hexListString;
 };
 
 export const tryParseFromStringToPalGen = (inputStr: string) => {
@@ -123,38 +119,9 @@ export const tryParseFromStringToPalGen = (inputStr: string) => {
     }
 
     const newValue = newVal.map(colour => ({
-        id: generateId(),
         colour,
         isLocked: false,
     }));
     palGenColours.set([...newValue]);
 };
 
-export const passPaletteToPaletteGenerator = (paletteIndex: number) => {
-    try {
-        const palette = paletteGallery.val[paletteIndex];
-        const newVal = palette.colours.map(colour => ({
-            id: generateId(),
-            colour,
-            isLocked: false,
-        }));
-
-        palGenColours.set([...newVal]);
-    } catch(error) {
-        throw new Error("Failed to pass palette to Palette Generator");
-    }
-}
-
-export const passWallGenToPaletteGenerator = (colours: string[]) => {
-    try {
-        const newVal = colours.map(colour => ({
-            id: generateId(),
-            colour,
-            isLocked: false,
-        }));
-
-        palGenColours.set([...newVal]);
-    } catch(error) {
-        throw new Error("Failed to pass palette to Palette Generator");
-    }
-};

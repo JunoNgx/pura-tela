@@ -1,10 +1,9 @@
 // @ts-ignore
 import defaultPaletteGallery from "src/data/palettes.json";
 import { createLocalStorageSyncedState, isHexCodeValid } from "src/states/stateUtils.svelte.js";
-import { getColourStringsInUse, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, wallGenColours } from "./wallGenState.svelte.js";
+import { getColoursInUse, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, wallGenColours } from "./wallGenState.svelte.js";
 import { palGenColours } from "./palGenState.svelte.js";
 import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
-import { generateId } from "./idGenState.svelte.js";
 
 const isPaletteGalleryValid = (data: any[]) => {
     if (!data) return false;
@@ -41,7 +40,7 @@ export const addToPaletteGalleryFromWallpaperGenerator = () => {
     if (!name) return;
 
     try {
-        const colours = getColourStringsInUse();
+        const colours = getColoursInUse();
         const newPalette = {
             name,
             colours,
@@ -88,16 +87,40 @@ export const resetPaletteGallery = () => {
 export const passPaletteToWallpaperGenerator = (paletteIndex: number) => {
     try {
         const palette = paletteGallery.val[paletteIndex];
-        const newColoursObjList = palette.colours.map(colour => ({
-            id: generateId(),
-            colour,
-        }));
-        const coloursToBeKept = wallGenColours.val.slice(newColoursObjList.length);
+        const newColours = palette.colours;
+        const coloursToBeKept = wallGenColours.val.slice(newColours.length);
 
-        wallGenColours.set([...newColoursObjList, ...coloursToBeKept]);
-        setWallGenColourInUseCount(newColoursObjList.length);
+        wallGenColours.set([...newColours, ...coloursToBeKept]);
+        setWallGenColourInUseCount(newColours.length);
         readjustWallGenColoursInUseCount();
     } catch(error) {
         throw new Error("Failed to pass palette to Wallpaper generator");
     }
 }
+
+export const passPaletteToPaletteGenerator = (paletteIndex: number) => {
+    try {
+        const palette = paletteGallery.val[paletteIndex];
+        const newVal = palette.colours.map(colour => ({
+            colour,
+            isLocked: false,
+        }));
+
+        palGenColours.set([...newVal]);
+    } catch(error) {
+        throw new Error("Failed to pass palette to Palette Generator");
+    }
+}
+
+export const passWallGenToPaletteGenerator = (colours: string[]) => {
+    try {
+        const newVal = colours.map(colour => ({
+            colour,
+            isLocked: false,
+        }));
+
+        palGenColours.set([...newVal]);
+    } catch(error) {
+        throw new Error("Failed to pass palette to Palette Generator");
+    }
+};

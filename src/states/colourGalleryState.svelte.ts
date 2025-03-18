@@ -25,7 +25,7 @@ export const colourGallery = createLocalStorageSyncedState({
     validationFunc: isColourGalleryValid,
 }) as State<ColourItem[]>;
 
-export const promptAddToColourGallery = (colourCode: string) => {
+export const addToColourGallery = (colourCode: string) => {
     const colourName = window.prompt("Enter name for new colour", `#${colourCode}`)
     if (!colourName) return;
 

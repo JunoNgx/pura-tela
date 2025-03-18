@@ -1,91 +1,51 @@
 <script lang="ts">
-    import Sortable from 'sortablejs';
-
     import { goto } from "$app/navigation";
 
+    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
 
-    import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
-	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, wallGenColours } from "src/states/wallGenState.svelte.js";
-	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
+    import ColourInputItem from "src/routes/ColourInputItem.svelte";
+	import { decreaseWallGenColourInUseCount, getColoursInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, retractWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+	import { addToPaletteGalleryFromWallpaperGenerator, passWallGenToPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
-	import { onDestroy, onMount } from "svelte";
-	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
+
+    const handleRemoveColour = (index: number) => {
+        retractWallGenColoursAtIndex(index);
+        decreaseWallGenColourInUseCount();
+    };
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
     };
 
     const passColoursToPaletteGenerator = () => {
-        passWallGenToPaletteGenerator(getColourStringsInUse());
+        passWallGenToPaletteGenerator(getColoursInUse());
         goto("/generate");
     };
 
     const handleSavePalette = () => {
         addToPaletteGalleryFromWallpaperGenerator();
     };
-
-    let sortableColourInput: Sortable;
-    let inputList: HTMLUListElement;
-
-    onMount(() => {
-        const sortableOptions = {
-            animation: 150,
-            delay: 0,
-            handle: ".ColourInput__DragHandle",
-            dragClass: "ColourInput__IsDragged",
-            put: false,
-            pull: false,
-            store: {
-                get(_sortable: Sortable) {
-                    const idOrder = getColourObjectsInUse().map(
-                        palGenItem => palGenItem.id.toString()
-                    );
-                    return idOrder;
-                },
-                set(sortable: Sortable) {
-                    // TODO: find a way to abstract and re-use this logic for both PalGen and WallGen
-                    const newIdOrder = sortable.toArray();
-                    const newValue = newIdOrder.map(id => {
-                        const correspondingWalGenCol = wallGenColours.val
-                            .find(wallGenCol => wallGenCol.id === parseInt(id));
-
-                        if (!correspondingWalGenCol) {
-                            throw new Error(
-                                "Cannot find corresponding wallpaper generator colour item while re-sorting after drag and drop");
-                        }
-                        
-                        return correspondingWalGenCol;
-                    });
-
-                    wallGenColours.set(newValue);
-                },
-            }
-        };
-
-        sortableColourInput = new Sortable(inputList, sortableOptions);
-    });
-
-    onDestroy(() => {
-        sortableColourInput.destroy();
-    });
 </script>
 
 <div class="ColourInputContainer">
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
-    <ul class="ColourInputContainer__List"
-        bind:this={inputList}
-    >
-        <!-- A very grotesque workaround, see issue #36 on GitHub -->
-        {#each getColourObjectsInUse() as colourObj, index
-            (import.meta.env.PROD ? Math.random() : colourObj.id)
-        }
-            <WallGenColourInputItem
-                colourObj={colourObj}
-                index={index}
-            />
+    <ul class="ColourInputContainer__List">
+        {#each getColoursInUse() as _, index}
+            <li class="ColourInputContainer__Item">
+                <ColourInputItem index={index}/>
+                {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
+                    <button class="ColourInputContainer__RemoveBtn IconButton"
+                        title="Remove this colour"
+                        aria-label="Remove this colour"
+                        onclick={() => {handleRemoveColour(index)}}
+                    >
+                        <MaterialSymbolsLightRemove />
+                    </button>
+                {/if}
+            </li>
         {/each}
     </ul>
 
@@ -132,6 +92,15 @@
         gap: 1rem;
     }
 
+    .ColourInputContainer__Item {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
     .ColourInputContainer__ActionsContainerUpper {
         margin-top: 1rem;
         display: flex;
@@ -144,5 +113,9 @@
         justify-content: space-around;
         flex-wrap: wrap;
         gap: 1rem;
+    }
+
+    .ColourInputContainer__RemoveBtn {
+        color: var(--colDanger);
     }
 </style>

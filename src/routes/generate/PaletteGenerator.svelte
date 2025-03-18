@@ -1,8 +1,4 @@
 <script lang="ts">
-	import Sortable from "sortablejs";
-	import type { SortableEvent } from "sortablejs";
-
-	import { onDestroy, onMount } from "svelte";
 	import { goto } from "$app/navigation";
 
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
@@ -13,7 +9,7 @@
 	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
 	import { addToPalGenColours, exportToStringFromPalGen, palGenColours, tryParseFromStringToPalGen, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
 	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
-	import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
+	import { passSomeColoursToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 
@@ -28,7 +24,7 @@
     const passToWallpaperGenerator = () => {
         const newColours = palGenColours.val.map(item => item.colour);
 
-        passSomeColourStringsToWallpaperGenerator(newColours);
+        passSomeColoursToWallpaperGenerator(newColours);
         setWallGenColourInUseCount(newColours.length);
         readjustWallGenColoursInUseCount();
 
@@ -45,59 +41,11 @@
 
         tryParseFromStringToPalGen(inputData);
     };
-
-    let sortableColourInput: Sortable;
-    let paletteItemContainer: HTMLDivElement;
-
-    onMount(() => {
-        const sortableOptions = {
-            animation: 150,
-            delay: 0,
-            handle: ".PalGenItem__ActionBtn",
-            put: false,
-            pull: false,
-            store: {
-                get(_sortable: Sortable) {
-                    const idOrder = palGenColours.val.map(
-                        palGenItem => palGenItem.id.toString()
-                    );
-                    return idOrder;
-                },
-                set(sortable: Sortable) {
-                    const newIdOrder = sortable.toArray();
-                    const newValue = newIdOrder.map(id => {
-                        const correspondingPalGenItem = palGenColours.val
-                            .find(palGenItem => palGenItem.id === parseInt(id));
-
-                        if (!correspondingPalGenItem) {
-                            throw new Error(
-                                "Cannot find corresponding palette generator colour item while re-sorting after drag and drop");
-                        }
-                        
-                        return correspondingPalGenItem;
-                    });
-
-                    palGenColours.set(newValue);
-                },
-            },
-        };
-
-        sortableColourInput = new Sortable(paletteItemContainer, sortableOptions);
-    });
-
-    onDestroy(() => {
-        sortableColourInput.destroy();
-    });
 </script>
 
 <div class="PaletteGenerator">
-    <div class="PaletteGenerator__PaletteBox"
-        bind:this={paletteItemContainer}
-    >
-        <!-- A very grotesque workaround, see issue #36 on GitHub -->
-        {#each palGenColours.val as palGenItem, index
-            (import.meta.env.PROD ? Math.random() : palGenItem.id)
-        }
+    <div class="PaletteGenerator__PaletteBox">
+        {#each palGenColours.val as palGenItem, index}
             <PaletteGeneratorItem 
                 palGenItem={palGenItem}
                 index={index}
