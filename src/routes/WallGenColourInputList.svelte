@@ -78,7 +78,9 @@
     <ul class="ColourInputContainer__List"
         bind:this={inputList}
     >
-        {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
+        {#each getColourObjectsInUse() as colourObj, index
+            (import.meta.env.PROD ? Math.random() : colourObj.id)
+        }
             <WallGenColourInputItem
                 colourObj={colourObj}
                 index={index}

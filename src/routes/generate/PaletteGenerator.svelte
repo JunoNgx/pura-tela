@@ -94,7 +94,9 @@
     <div class="PaletteGenerator__PaletteBox"
         bind:this={paletteItemContainer}
     >
-        {#each palGenColours.val as palGenItem, index (palGenItem.id)}
+        {#each palGenColours.val as palGenItem, index
+            (import.meta.env.PROD ? Math.random() : palGenItem.id)
+        }
             <PaletteGeneratorItem 
                 palGenItem={palGenItem}
                 index={index}
