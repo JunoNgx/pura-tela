@@ -2,7 +2,6 @@
     import MaterialSymbolsLightHelp from "~icons/material-symbols-light/help";
     import MaterialSymbolsLightHelpOutline from "~icons/material-symbols-light/help-outline";
     import BaseThemeModeContainer from "src/components/BaseThemeModeContainer.svelte";
-	import BaseHelpDialog from "src/components/BaseHelpDialog.svelte";
 
     const getHelpDialog = () => {
         return document.getElementById("helpDialog") as HTMLDialogElement;
@@ -29,6 +28,7 @@
             <h1 class="Header__LogoText">Pura Tela</h1>
         </div>
         <button class="Header__HelpBtn IconButton"
+            aria-label="Open help dialog"
             onclick={showDialog}
         >
             <div class="IconButton__RegularIcon">
@@ -38,7 +38,6 @@
                 <MaterialSymbolsLightHelp/>
             </div>
         </button>
-        <BaseHelpDialog closeDialog={hideDialog}/>
     </div>
     <div class="Header_Right">
         <BaseThemeModeContainer/>
@@ -51,7 +50,11 @@
         justify-content: space-between;
         align-items: center;
         gap: 0.5rem;
-        width: 100%;
+        width: calc(100% + 3rem);
+        padding: 1rem;
+        background-color: red;
+        color: var(--colBg);
+        background-color: var(--colPri);
     }
 
     .Header__Left {
@@ -77,11 +80,19 @@
         font-size: var(--fontSizeXl);
     }
 
-    .Header__HelpBtn {
+    .Header__HelpBtn,
+    .Header__HelpBtn:hover {
         border: none;
+        background-color: none;
+        color: var(--colBg);
     }
 
-    @media screen and (width < 600px) {
+    @media screen and (width < 850px) {
+        .Header {
+            width: calc(100% + 1rem);
+            padding: 0.5rem;
+        }
+
         .Header__Left {
             gap: 0.5rem;
         }
@@ -97,11 +108,6 @@
 
         .Header__HelpBtn {
             transition: none;
-        }
-
-        .Header__HelpBtn:hover {
-            color: var(--colPri);
-            background-color: var(--colBg);
         }
     }
 </style>

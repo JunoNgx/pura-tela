@@ -1,7 +1,8 @@
 <script lang="ts">
-    import BaseHeader from "src/components/BaseHeader.svelte";
+    // import BaseHeader from "src/components/BaseHeader.svelte";
     import BaseNav from "src/components/BaseNav.svelte";
     import BaseFooter from "src/components/BaseFooter.svelte";
+	import AppLogo from "src/components/AppLogo.svelte";
 
     import "src/styles/global.css";
 	import { handleThemeModeChange } from "src/lib/nightMode.js";
@@ -11,12 +12,15 @@
     handleThemeModeChange();
 </script>
 
-<main>
-    <div class="CardWrapper">
-        <BaseHeader/>
+<main class="OuterWrapper">
+    <div class="InnerWrapper">
         <BaseNav/>
-        <div class="TabContent">
-            {@render children()}
+        <div class="MainContent Card">
+            <!-- <BaseHeader/> -->
+                <div class="MobileLogoWrapper">
+                    <AppLogo />
+                </div>
+                {@render children()}
         </div>
     </div>
 </main>
@@ -25,42 +29,48 @@
 <style>
     @import "src/styles/vars.css";
 
-    main {
+    .OuterWrapper {
         min-height: 85dvh;
-        max-width: 800px;
-        margin: 1rem auto 2rem;
+        max-width: 1200px;
+        margin: auto;
     }
 
-    .CardWrapper {
+    .InnerWrapper {
         margin: 1rem;
-        padding: 1.5rem;
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: var(--colBg);
-        box-shadow: 2px 4px 8px 0px rgba(0, 0, 0, 0.1)   
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
     }
 
-    .TabContent {
-        width: 100%;
-        flex-grow: 10;
-        border-top: 1px solid var(--colPri);
+    .MainContent {
+        flex-grow: 1;
+        /* This one means "Don't use any more space than available". Sly. */
+        min-width: 0;
     }
 
-    @media screen and (width < 600px) {
-        main {
+    .MobileLogoWrapper {
+        display: none;
+    }
+
+    @media screen and (width < 850px) {
+        .OuterWrapper {
             margin-top: 0;
             margin-bottom: 1rem;
         }
 
-        .CardWrapper {
+        .InnerWrapper {
             margin: 0;
-            padding: 1rem;
-            box-shadow: none;
         }
 
-        .TabContent {
-            padding-top: 0;
+        .MainContent {
+            max-width: calc(100% - 2* var(--outerPaddingMobile));
+        }
+
+        .MobileLogoWrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
         }
     }
 </style>
