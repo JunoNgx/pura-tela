@@ -1,14 +1,13 @@
 # Pura Tela
-A minimalist wallpaper generator and a simple colour toolkit, created for the web.
+A minimalist solid colour wallpaper generator, created for the web.
 
 ## Origin
 This is a spin-off/enhanced remake of [Pura](https://github.com/JunoNgx/flutter-pura), a native Android app made with Flutter, which was delisted shortly before this project started.
 
 ## Feature
-- Hex code, colour pickers, and randomiser
+- Hex code, RGB components, colour picker, and randomiser
 - Starting curated gallery of colours
-- Saving of colours and palettes for future use
-- Dedicated palette generator
+- Saving colours for future use
 - Size presets for multiple devices
 - Data persistence with localStorage
 - Progressive Web App deployment

@@ -1,6 +1,7 @@
 <script lang="ts">
-    import SizeList from "src/routes/sizes/SizeList.svelte";
+    import BaseSizeList from "src/components/BaseSizeList.svelte";
 </script>
 
 <h2 class="VisuallyHidden">Size Presets Details</h2>
-<SizeList/>
+<BaseSizeList/>
+<!-- <p>Editing size presets is under development.</p> -->

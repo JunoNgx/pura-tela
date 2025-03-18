@@ -1,4 +1,4 @@
-import { WallpaperStyle, type ColourItem, type RgbColour } from "./types.js";
+import type { ColourItem, RgbColour } from "./types.js";
 
 export const isHexCodeValid = (str: string): boolean => {
     const validHexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
@@ -52,47 +52,15 @@ export const getRandomHexCode = () => {
     return str;
 };
 
-export const capitaliseFirstLetter = (str: string) => {
-    const firstChatCapped = str.charAt(0).toUpperCase();
-    const remainingChars = str.slice(1);
-    return firstChatCapped + remainingChars;
-}
-
-export const computeFilename = ({
-    colours, gallery, mode
-}: {
-    colours: string[],
-    gallery: ColourItem[],
-    mode: WallpaperStyle,
-}) => {
-
-    const getColourName = (
-        hexCode: string, gallery: ColourItem[]
-    ) => {
-        const index = gallery.findIndex(
-            item => item.hexCode === hexCode);
-        
-        if (index === -1) {
-            return `#${hexCode}`;
-        }
-
-        const colourName = gallery[index].name;
+export const getColourName = (
+    hexCode: string, gallery: ColourItem[]
+) => {
+    const index = gallery.findIndex(
+        item => item.hexCode === hexCode);
     
-        return colourName.replace(" ", "");
-    };
-
-    const computeColourNamePortion = (
-        colours: string[], gallery: ColourItem[]
-    ) => {
-        const colourNames = colours
-            .map(colour => getColourName(colour, gallery));
-        const colourNamesStr = colourNames.join("-");
-
-        return colourNamesStr;
+    if (index === -1) {
+        return `#${hexCode}`;
     }
-    
-    const modeStr = capitaliseFirstLetter(mode);
-    const coloursStr = computeColourNamePortion(colours, gallery);
-    
-    return `Pura-${modeStr}-${coloursStr}`;
+
+    return gallery[index].name;
 };
