@@ -17,7 +17,6 @@
 	import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
-	import { moveItemWithinArray } from "src/states/stateUtils.svelte.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
 
     const addColour = () => {
@@ -104,7 +103,9 @@
     <div class="PaletteGenerator__PaletteBox"
         bind:this={paletteItemContainer}
     >
-        {#each palGenColours.val as palGenItem, index (palGenItem.id)}
+        {#each palGenColours.val as palGenItem, index
+            (import.meta.env.PROD ? Math.random() : palGenItem.id)
+        }
             <PaletteGeneratorItem 
                 palGenItem={palGenItem}
                 index={index}

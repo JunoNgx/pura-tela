@@ -49,7 +49,7 @@
             pull: false,
             store: {
                 get(_sortable: Sortable) {
-                    const idOrder = wallGenColours.val.map(
+                    const idOrder = getColourObjectsInUse().map(
                         palGenItem => palGenItem.id.toString()
                     );
                     return idOrder;
@@ -87,7 +87,9 @@
     <ul class="ColourInputContainer__List"
         bind:this={inputList}
     >
-        {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
+        {#each getColourObjectsInUse() as colourObj, index
+            (import.meta.env.PROD ? Math.random() : colourObj.id)
+        }
             <WallGenColourInputItem
                 colourObj={colourObj}
                 index={index}
