@@ -9,7 +9,6 @@
     --sizeCheckbox: 16px;
     --lineThickness: 1px;
     --transTime: 0.3s;
-    --transTimeFast: 0.2s;
     --outlineOffset: 3px;
 
     --colDanger: #FF4647;
@@ -20,37 +19,20 @@
     --colSizeScreen: #219EBC;
     --colSizeBg: #FFB703;
     /* Third colour: #023047 */
-    --colBrand1: #0093E2;
-    --colBrand2: #FC5D85;
 
     --colPri: #000;
-    --colSec: #777;
     --colBg: #FFF;
     --colBg2: #F1F0F4;
-
-    /* Spacing variable */
-    --outerPaddingMobile: 1rem;
-
-    /* Colour picker variables */
-    --picker-width: 150px;
-    --picker-height: 150px;
-    --focus-color: var(--colPri);
-    --input-size: 24px;
-    --slider-width: 12px;
-    --picker-indicator-size: 8px;
-    --picker-z-index: 10;
 }
 
 :root[data-theme-mode="light"] {
     --colPri: #000;
-    --colSec: #666;
     --colBg: #FFF;
     --colBg2: #F1F0F4;
 }
 
 :root[data-theme-mode="dark"] {
     --colPri: #FFF;
-    --colSec: #777;
     --colBg: #2D2D2D;
     --colBg2: #373737;
 

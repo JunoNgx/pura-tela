@@ -1,54 +1,49 @@
 <script lang="ts">
-    import { type ColourItem } from "src/lib/types.js";
-
     import { goto } from '$app/navigation';
+    import { currHexCode, currRgbColour, colourGallery } from "src/lib/states.svelte";
+	import { convertHexToRgb } from "src/lib/utils.js";
     import MaterialSymbolsLightColorize from '~icons/material-symbols-light/colorize';
     import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
     import MaterialSymbolsLightDeleteOutline from '~icons/material-symbols-light/delete-outline';
-	import { getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
-	import { deleteColourAtIndex } from "src/states/colourGalleryState.svelte.js";
 
-    type ColourItemProps = {
-        colourItem: ColourItem,
-        index: number,
-        showColourActionDialog: (colourInput: string) => void,
-    } ;
-
-    let { colourItem, index, showColourActionDialog = $bindable() }: ColourItemProps = $props();
+    let { colourItem } = $props();
 
     const handleChooseColour = () => {
-        if (getWallGenColourInUseCount() === 1) {
-            setWallGenColoursAtIndex(0, colourItem.hexCode);
-            goto("/");
-            return;
-        }
-
-        showColourActionDialog(colourItem.hexCode);
+        currHexCode.set(colourItem.hexCode);
+        currRgbColour.set(convertHexToRgb(colourItem.hexCode));
+        goto("/");
     };
 
     const handleDeleteColour = () => {
         const isConfirmed = window.confirm("Delete this colour from the gallery?");
         if (!isConfirmed) return;
 
-        deleteColourAtIndex(index);
+        const hexCode = colourItem.hexCode
+        const index = colourGallery.val.findIndex(item => item.hexCode === hexCode);
+
+        if (index === -1) {
+            console.error("ERROR: failed to delete colour");
+        }
+
+        colourGallery.set(colourGallery.val.toSpliced(index, 1));
     };
 </script>
 
-<li class="ColourListItem">
-    <div class="ColourListItem__Preview"
+<li class="ColourItem">
+    <div class="ColourItem__Preview"
         style={`background-color: #${colourItem.hexCode};`}
     >
-        <div class="ColourListItem__Title">
+        <div class="ColourItem__Title">
             {colourItem.name}
         </div>
     </div>
-    <div class="ColourListItem__Footer">
-        <div class="ColourListItem__Subtitle">
+    <div class="ColourItem__Footer">
+        <div class="ColourItem__Subtitle">
             {`#${colourItem.hexCode}`}
         </div>
-        <div class="ColourListItem__Buttons">
-            <button class="ColourListItem__ActionBtn
+        <div class="ColourItem__Buttons">
+            <button class="ColourItem__ActionBtn
                 IconButton
                 "
                 onclick={handleChooseColour}
@@ -64,7 +59,10 @@
                 
             </button>
 
-            <button class="ColourListItem__ActionBtn IconButton Danger"
+            <button class="ColourItem__ActionBtn
+                ColourItem__ActionBtn--Delete
+                IconButton
+                "
                 onclick={handleDeleteColour}
                 title={"Delete this colour"}
                 aria-label="Delete this colour"
@@ -81,13 +79,13 @@
 </li>
 
 <style>
-    .ColourListItem {
+    .ColourItem {
         list-style: none;
         border-bottom: 1px solid var(--colPri);
         min-width: 120px;
     }
 
-    .ColourListItem__Preview {
+    .ColourItem__Preview {
         height: 150px;
         width: 100%;
         position: relative;
@@ -96,7 +94,7 @@
         justify-content: flex-end;
     }
 
-    .ColourListItem__Title {
+    .ColourItem__Title {
         padding: 0.5rem;
         background-color: rgba(var(--colBlackRgb), 0.5);
         color: var(--colWhite);
@@ -108,22 +106,26 @@
 
     }
 
-    .ColourListItem__Footer {
+    .ColourItem__Footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
         gap: 0.5rem;
     }
 
-    .ColourListItem__Subtitle {
+    .ColourItem__Subtitle {
         font-size: var(--fontSizeSm);
         padding-left: 0.5rem;
     }
 
-    .ColourListItem__Buttons {
+    .ColourItem__Buttons {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
         gap: 0.1rem;
+    }
+
+    .ColourItem__ActionBtn--Delete {
+        color: var(--colDanger);
     }
 </style>

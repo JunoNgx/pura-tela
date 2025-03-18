@@ -6,7 +6,7 @@
     import MaterialSymbolsLightDarkMode from '~icons/material-symbols-light/dark-mode';
     import MaterialSymbolsLightDarkModeOutline from '~icons/material-symbols-light/dark-mode-outline';
 
-    import { themeMode } from 'src/states/themeModeState.svelte.js';
+    import { themeMode } from 'src/lib/states.svelte.js';
 	import { ThemeMode } from 'src/lib/types.js';
 	import { handleThemeModeChange } from 'src/lib/nightMode.js';
 
@@ -74,19 +74,22 @@
         gap: 0.5rem;
     }
 
-    .ThemeMode__Item,
-    .ThemeMode__Item:hover {
+    .ThemeMode__Item {
         border: none;
-        background-color: none;
     }
 
-    @media screen and (width < 850px) {
+    @media screen and (width < 600px) {
         .ThemeMode {
             gap: 0.25rem;
         }
 
         .ThemeMode__Item {
             transition: none;
+        }
+
+        .ThemeMode__Item:hover {
+            color: var(--colPri);
+            background-color: var(--colBg);
         }
     }
 </style>
