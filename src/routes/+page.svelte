@@ -2,7 +2,7 @@
 	import { tryParseColours, tryParseSize } from "src/lib/parseFuncs.js";
 	import type { WallGenQueryProps, WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
-	import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSize, wallGenStyle, } from "src/states/wallGenState.svelte.js";
+	import { isWallGenStyleValid, passSomeColoursToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSize, wallGenStyle, } from "src/states/wallGenState.svelte.js";
 
     export let data: WallGenQueryProps;
 
@@ -27,7 +27,7 @@
             return;
         }
 
-        passSomeColourStringsToWallpaperGenerator(coloursData);
+        passSomeColoursToWallpaperGenerator(coloursData);
         setWallGenColourInUseCount(coloursData.length);
         readjustWallGenColoursInUseCount();
     };

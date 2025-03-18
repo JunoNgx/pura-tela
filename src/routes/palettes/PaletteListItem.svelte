@@ -9,8 +9,7 @@
 	import { goto } from '$app/navigation';
 	import PaletteListItemColourBtn from "./PaletteListItemColourBtn.svelte";
 	import type { PaletteItem } from 'src/lib/types.js';
-	import { deletePaletteAtIndex, passPaletteToWallpaperGenerator } from 'src/states/paletteGalleryState.svelte.js';
-	import { passPaletteToPaletteGenerator } from 'src/states/palGenState.svelte.js';
+	import { deletePaletteAtIndex, passPaletteToPaletteGenerator, passPaletteToWallpaperGenerator } from 'src/states/paletteGalleryState.svelte.js';
 
     type PaletteListItemProps = {
         paletteItem: PaletteItem,
