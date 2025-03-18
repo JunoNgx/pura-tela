@@ -9,6 +9,7 @@
     import MaterialSymbolsLightGesture from "~icons/material-symbols-light/gesture";    
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
+    import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
 
 	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
 	import { addToPalGenColours, exportToStringFromPalGen, palGenColours, tryParseFromStringToPalGen, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
@@ -16,6 +17,7 @@
 	import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
+	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
 
     const addColour = () => {
         addToPalGenColours();
@@ -44,6 +46,13 @@
         if (!inputData) return;
 
         tryParseFromStringToPalGen(inputData);
+    };
+
+    const generatePaletteWithAi = async () => {
+        const response = await generatePaletteWithGemini();
+        if (!response) return;
+
+        tryParseFromStringToPalGen(response);
     };
 
     let sortableColourInput: Sortable;
@@ -143,6 +152,15 @@
         >
             <MaterialSymbolsLightColorize />
             <span>Pass to Wallpaper Generator</span>
+        </button>
+
+        <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"
+            onclick={generatePaletteWithAi}
+            title={"Generate a palette using AI"}
+            aria-label={"Generate a palette using AI"}
+        >
+            <MaterialSymbolsLightNetworkIntelligence />
+            <span>Generate with AI</span>
         </button>
 
         <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"

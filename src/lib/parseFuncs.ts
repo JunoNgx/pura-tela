@@ -31,6 +31,7 @@ export const tryParseColours = (inputStr: string) => {
         for (const separator of allowedSeparators) {
             const colourList = inputStr.split(separator, MAX_COLOUR_COUNT).map(colour => {
                 const strippedStr = colour
+                    .trim()
                     .replaceAll(" ", "")
                     .replaceAll("#", "")
                     .replaceAll("\"", "")

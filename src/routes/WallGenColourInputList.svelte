@@ -6,13 +6,15 @@
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
+    import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
 
     import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
-	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, wallGenColours } from "src/states/wallGenState.svelte.js";
+	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 	import { onDestroy, onMount } from "svelte";
 	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
+	import { generatePaletteWithGemini } from 'src/states/geminiState.svelte.js';
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
@@ -25,6 +27,13 @@
 
     const handleSavePalette = () => {
         addToPaletteGalleryFromWallpaperGenerator();
+    };
+
+    const generatePaletteWithAi = async () => {
+        const response = await generatePaletteWithGemini();
+        if (!response) return;
+
+        tryParseFromStringToWallGen(response);
     };
 
     let sortableColourInput: Sortable;
@@ -120,6 +129,15 @@
         >
             <MaterialSymbolsLightPaletteOutline />
             <span>Pass to Palette Generator</span>
+        </button>
+
+        <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"
+            onclick={generatePaletteWithAi}
+            title={"Generate a palette using AI"}
+            aria-label={"Generate a palette using AI"}
+        >
+            <MaterialSymbolsLightNetworkIntelligence />
+            <span>Generate with AI</span>
         </button>
     </div>
 </div>
