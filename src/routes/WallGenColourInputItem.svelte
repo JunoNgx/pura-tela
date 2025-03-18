@@ -8,7 +8,7 @@
     
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
 	import { promptAddToColourGallery } from 'src/states/colourGalleryState.svelte.js';
-	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, retractWallGenColoursAtIndex, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
+	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, retractWallGenColoursById, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 	import type { ColObj } from 'src/lib/types.js';
 
     type ColourInputItemProps = {
@@ -37,8 +37,8 @@
         promptAddToColourGallery(colourObj.colour);
     };
 
-    const handleRemoveColour = (index: number) => {
-        retractWallGenColoursAtIndex(index);
+    const handleRemoveColour = () => {
+        retractWallGenColoursById(colourObj.id);
         decreaseWallGenColourInUseCount();
     };
 </script>
@@ -111,7 +111,7 @@
             <button class="ColourInput__RemoveBtn IconButton"
                 title="Remove this colour"
                 aria-label="Remove this colour"
-                onclick={() => {handleRemoveColour(index)}}
+                onclick={handleRemoveColour}
             >
                 <MaterialSymbolsLightRemove />
             </button>
