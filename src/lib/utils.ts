@@ -1,4 +1,4 @@
-import { WallpaperStyle, type ColourItem, type RgbColour } from "./types.js";
+import { WallpaperStyle, type ColObj, type ColourItem, type RgbColour } from "./types.js";
 
 export const isHexCodeValid = (str: string): boolean => {
     const validHexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
