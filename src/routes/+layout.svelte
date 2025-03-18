@@ -1,5 +1,5 @@
 <script lang="ts">
-    import BaseHeader from "src/components/BaseHeader.svelte";
+    // import BaseHeader from "src/components/BaseHeader.svelte";
     import BaseNav from "src/components/BaseNav.svelte";
     import BaseFooter from "src/components/BaseFooter.svelte";
 	import AppLogo from "src/components/AppLogo.svelte";
@@ -51,12 +51,6 @@
 
     .MobileLogoWrapper {
         display: none;
-    }
-
-    @media screen and (width < 1200px) {
-        .Wrapper {
-            max-width: 100vw;
-        }
     }
 
     @media screen and (width < 850px) {

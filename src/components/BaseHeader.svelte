@@ -28,6 +28,7 @@
             <h1 class="Header__LogoText">Pura Tela</h1>
         </div>
         <button class="Header__HelpBtn IconButton"
+            aria-label="Open help dialog"
             onclick={showDialog}
         >
             <div class="IconButton__RegularIcon">

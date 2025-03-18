@@ -1,7 +1,7 @@
 {
     "name": "Pura Tela",
     "short_name": "Pura Tela",
-    "description": "A minimalist solid wallpaper generator",
+    "description": "A minimalist wallpaper generator and a simple colour toolkit",
     "categories": ["personalization", "utilities"],
     "orientation": "portrait-primary",
     "display": "standalone",

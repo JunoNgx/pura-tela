@@ -1,17 +1,21 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
-    import BaseSizeSelect from "src/components/BaseSizeSelect.svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
-	import { colourGallery, getCurrSizeOption, shouldShowSampleText, currWallpaperMode, getColoursInUse, convertCurrColoursToArrayOfHexStrings, getCurrColourInUseCount, } from "src/lib/states.svelte.js";
 	import { computeFilename } from "src/lib/utils.js";
-	import BaseModeSelector from "./BaseModeSelector.svelte";
-	import BaseColourInputContainer from "./BaseColourInputContainer.svelte";
-
+	import { getHexColourCodesInUse, getColoursInUse, shouldShowSampleText, wallGenStyle, wallGenSize, readjustWallGenColoursInUseCount } from "src/states/wallGenState.svelte.js";
+	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
+    
+	import StyleSelector from "src/routes/StyleSelector.svelte";
+	import ColourInputList from "./ColourInputList.svelte";
+    import SizeInput from "src/routes/SizeInput.svelte";
+	import SharePanel from "src/components/SharePanel.svelte";
+	import { page } from "$app/state";
+    
     const handleDownloadClick = () => {
         const fileName = computeFilename({
             colours: getColoursInUse(),
             gallery: colourGallery.val,
-            mode: currWallpaperMode.val,
+            mode: wallGenStyle.val,
         });
 
         generateImage(fileName);
@@ -25,8 +29,27 @@
         refitCanvasToContainer();
     };
 
+    const computeBaseUrl = () => {
+        const topLevelDomain = page.url.hostname;
+
+        if (topLevelDomain === "localhost") {
+            return `http://localhost:${page.url.port}`
+        } else return `https://${topLevelDomain}`;
+    };
+
+    const computeShareableUrl = () => {
+        const url = new URL(computeBaseUrl());
+        url.searchParams.append("style", wallGenStyle.val);
+        url.searchParams.append("colours", getColoursInUse().toString());
+        url.searchParams.append("width", wallGenSize.val.width.toString());
+        url.searchParams.append("height", wallGenSize.val.height.toString());
+
+        return url.toString();
+    };
+
     onMount(() => {
         window.addEventListener("resize", handleResize);
+        readjustWallGenColoursInUseCount();
     });
 
     onDestroy(() => {
@@ -35,10 +58,9 @@
 
     $effect(() => {
         renderCanvas({
-            size: getCurrSizeOption(),
-            colours: convertCurrColoursToArrayOfHexStrings(),
-            colourCount: getCurrColourInUseCount(),
-            mode: currWallpaperMode.val,
+            size: wallGenSize.val,
+            colours: getHexColourCodesInUse(),
+            style: wallGenStyle.val,
         });
     });
 </script>
@@ -46,7 +68,7 @@
 <div class="Studio">
     <h2 class="VisuallyHidden">Create Wallpaper</h2>
     <div class="Studio__ModeContainer">
-        <BaseModeSelector/>
+        <StyleSelector/>
     </div>
     <div class="Studio__Generator">
         <div class="Studio__PreviewContainer">
@@ -94,14 +116,20 @@
 
         <div class="Studio__Control">
             <div class="Studio__ColourInputContainer">
-                <BaseColourInputContainer />
+                <ColourInputList />
             </div>
             <div class="Studio__Size">
-                <BaseSizeSelect/>
+                <SizeInput/>
             </div>
         </div>
 
     </div>
+
+    <SharePanel
+        title="Share this wallpaper"
+        desc="Access this url to retrieve the same wallpaper settings."
+        content={computeShareableUrl()}
+    />
 </div>
 
 <style>
@@ -179,12 +207,6 @@
         margin-top: 3rem;
     }
 
-    /* .Studio__Buttons {
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 3rem;
-    } */
-
     .Studio_DownloadBtn {
         padding: 1rem 2rem;
         display: block;
@@ -209,15 +231,6 @@
         .Studio__SampleTextContainer {
             aspect-ratio: 1;
         }
-        
-        /* .Studio__SampleTextContainer {
-            height: 100%;
-            font-size: var(--fontSizeSm);
-        } */
-
-        /* .Studio__Buttons {
-            justify-content: center;
-        } */
     }
 
 </style>

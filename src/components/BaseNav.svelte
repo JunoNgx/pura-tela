@@ -40,6 +40,7 @@
         onclick={closeSidebar}
     ></div>
     <button class="Nav__OpenSidebarBtn IconButton"
+        aria-label="Open navigation sidebar"
         onclick={openSidebar}
     >
         <MaterialSymbolsLightViewSidebarOutlineSharp/>
@@ -51,14 +52,15 @@
         <hr class="Nav__Separator">
 
         <div class="Nav__Router">
-            <span class="Nav__CategoryTitle">Create</span>
+            <span class="Nav__CategoryTitle">Generate</span>
             <NavItem route={"/"} label={"wallpaper"} />
             <NavItem route={"/generate"} label={"palette"} />
             <span class="Nav__CategoryTitle">Gallery</span>
             <NavItem route={"/colours"} label={"colours"} />
             <NavItem route={"/palettes"} label={"palettes"} />
+            <NavItem route={"/sizes"} label={"sizes"} />
             <span class="Nav__CategoryTitle">Info</span>
-            <NavItem route={"/sizes"} label={"size"} />
+            <NavItem route={"/help"} label={"help"} />
             <NavItem route={"/about"} label={"about"} />
         </div>
 
@@ -69,6 +71,7 @@
         </div>
 
         <button class="Nav__CloseSidebarBtn IconButton"
+            aria-label="Close navigation sidebar"
             onclick={closeSidebar}
         >
             <MaterialSymbolsLightClose/>
@@ -86,7 +89,6 @@
     .Nav__Content {
         display: flex;
         flex-direction: column;
-        /* justify-content: flex-end; */
         align-items: flex-end;
         gap: 1rem;
     }
@@ -116,11 +118,6 @@
         align-self: flex-start;
         margin-top: 1rem;
     }
-
-    /* .Nav__ThemeModeSettings {
-        border-top: 1px solid var(--colPri);
-        padding-top: 1rem;
-    } */
 
     @media screen and (width < 850px) {
         .Nav {

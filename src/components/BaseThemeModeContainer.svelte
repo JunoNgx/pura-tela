@@ -6,7 +6,7 @@
     import MaterialSymbolsLightDarkMode from '~icons/material-symbols-light/dark-mode';
     import MaterialSymbolsLightDarkModeOutline from '~icons/material-symbols-light/dark-mode-outline';
 
-    import { themeMode } from 'src/lib/states.svelte.js';
+    import { themeMode } from 'src/states/themeModeState.svelte.js';
 	import { ThemeMode } from 'src/lib/types.js';
 	import { handleThemeModeChange } from 'src/lib/nightMode.js';
 
@@ -78,7 +78,6 @@
     .ThemeMode__Item:hover {
         border: none;
         background-color: none;
-        /* color: var(--colBg); */
     }
 
     @media screen and (width < 850px) {
@@ -89,10 +88,5 @@
         .ThemeMode__Item {
             transition: none;
         }
-
-        /* remove hover state in mobile */
-        /* .ThemeMode__Item:hover {
-            color: var(--colBg);
-        } */
     }
 </style>

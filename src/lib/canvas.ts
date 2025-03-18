@@ -1,12 +1,11 @@
-import { WallpaperMode, type SizeItem } from "./types.js";
+import { WallpaperStyle, type SizeData } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
 export type CanvasRenderOptions = {
-    size: SizeItem,
+    size: SizeData,
     colours: string[],
-    colourCount: number,
-    mode: WallpaperMode,
+    style: WallpaperStyle,
 };
 
 type squareProps = {
@@ -22,9 +21,8 @@ const drawSquare = ({ ctx, colour, x, y, size}: squareProps) => {
     ctx.fillRect(x, y, size, size);
 }
 
-// TODO: to refactor to ColourItem[]
 export const renderCanvas = (
-    { size, colours, colourCount, mode }: CanvasRenderOptions
+    { size, colours, style }: CanvasRenderOptions
 ) => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
     if (!canvas) return;
@@ -37,32 +35,33 @@ export const renderCanvas = (
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const renderOptions = { ctx, size, colours, colourCount, mode };
+    const renderOptions = { ctx, size, colours, style };
 
-    switch(mode) {
-    case WallpaperMode.GRADIENT:
-        renderForGradientMode(renderOptions);
+    switch(style) {
+    case WallpaperStyle.GRADIENT:
+        renderForGradientStyle(renderOptions);
         break;
 
-    case WallpaperMode.POP_ART_SQUARE:
-        renderForPopArtSquareMode(renderOptions);
+    case WallpaperStyle.POP_ART_SQUARE:
+        renderForPopArtSquareStyle(renderOptions);
         break;
 
-    case WallpaperMode.PALETTE_ROW:
-        renderForPaletteRowMode(renderOptions);
+    case WallpaperStyle.PALETTE_ROW:
+        renderForPaletteRowStyle(renderOptions);
         break;
 
-    case WallpaperMode.SOLID:
+    case WallpaperStyle.SOLID:
     default:
-        renderForSolidMode(renderOptions);
+        renderForSolidStyle(renderOptions);
     }
 };
 
-const renderForGradientMode = (
-    { ctx, colours, colourCount, size }: CanvasRenderOptions & {
+const renderForGradientStyle = (
+    { ctx, colours, size }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
 ) => {
+    const colourCount = colours.length;
     const midXPoint = size.width / 2;
     const gradient = ctx.createLinearGradient(
         midXPoint, 0, midXPoint, size.height);
@@ -78,7 +77,7 @@ const renderForGradientMode = (
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
-const renderForSolidMode = (
+const renderForSolidStyle = (
     { ctx, colours, size }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
@@ -87,7 +86,7 @@ const renderForSolidMode = (
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
-const renderForPopArtSquareMode = (
+const renderForPopArtSquareStyle = (
     { ctx, colours, size }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
@@ -130,11 +129,13 @@ const renderForPopArtSquareMode = (
     }); 
 };
 
-const renderForPaletteRowMode = (
-    { ctx, colours, colourCount, size }: CanvasRenderOptions & {
+const renderForPaletteRowStyle = (
+    { ctx, colours, size }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
 ) => {
+    const colourCount = colours.length;
+
     // Draw background
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
