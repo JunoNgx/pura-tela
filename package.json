@@ -60,7 +60,6 @@
 		"vitest": "^3.0.9"
 	},
 	"dependencies": {
-		"@google/generative-ai": "^0.24.0",
-		"sortablejs": "^1.15.6"
+		"@google/generative-ai": "^0.24.0"
 	}
 }
