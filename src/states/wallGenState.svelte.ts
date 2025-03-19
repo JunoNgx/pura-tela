@@ -1,6 +1,6 @@
 // @ts-ignore
 import defaultColourGallery from "src/data/colours.json";
-import { createColState, createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
+import { createColState, createLocalStorageSyncedState, moveItemWithinArray } from "src/states/stateUtils.svelte.js";
 import { WallpaperStyle, type ColObj, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
@@ -72,11 +72,28 @@ export const setWallGenColoursAtIndex = (index: number, newValue: string) => {
 /**
  * This pulls the colour at the target index, and adds another random colour to
  * the end, to maintain the amount of `wallGenColours`.
+ * 
+ * Also unused.
  * @param index The target index
  */
 export const retractWallGenColoursAtIndex = (index: number) => {
     const befPortion = wallGenColours.val.slice(0, index);
     const aftPortion = wallGenColours.val.slice(index + 1);
+    const newRandomisedColour = {
+        id: generateId(),
+        colour: getRandomHexCode(),
+    };
+    wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
+};
+
+export const retractWallGenColoursById = (id: number) => {
+    const targetIndex = wallGenColours.val.findIndex(colourObj => colourObj.id === id);
+    if (targetIndex === -1) {
+        throw new Error("Cannot find target colour for retracting in Wallpaper Generator");
+    }
+
+    const befPortion = wallGenColours.val.slice(0, targetIndex);
+    const aftPortion = wallGenColours.val.slice(targetIndex + 1);
     const newRandomisedColour = {
         id: generateId(),
         colour: getRandomHexCode(),
@@ -116,6 +133,24 @@ export const tryParseFromStringToWallGen = (inputStr: string) => {
         colour,
     }));
     wallGenColours.set([...newValue]);
+};
+
+export const moveWallGenColourItemUpAtIndex = (index: number) => {
+    if (index <= 0) {
+        throw new Error("Already at the first position");
+    }
+
+    const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index - 1);
+    passSomeColourObjectsToWallpaperGenerator(newValue);
+};
+
+export const moveWallGenColourItemDownAtIndex = (index: number) => {
+    if (index >= getWallGenColourInUseCount() - 1) {
+        throw new Error("Already at the last position");
+    }
+
+    const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index + 1);
+    passSomeColourObjectsToWallpaperGenerator(newValue);
 };
 
 /**

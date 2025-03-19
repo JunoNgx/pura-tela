@@ -1,4 +1,6 @@
-<script lang="ts">
+<!-- Currently unused under consideration for another UI revamp -->
+
+<!-- <script lang="ts">
     import MaterialSymbolsLightHelp from "~icons/material-symbols-light/help";
     import MaterialSymbolsLightHelpOutline from "~icons/material-symbols-light/help-outline";
     import BaseThemeModeContainer from "src/components/BaseThemeModeContainer.svelte";
@@ -110,4 +112,4 @@
             transition: none;
         }
     }
-</style>
+</style> -->
