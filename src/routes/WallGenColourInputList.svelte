@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createSwapy, type Swapy } from 'swapy';
+	import { createSwapy, type SlotItemMapArray, type Swapy, utils } from 'swapy';
     import { goto } from "$app/navigation";
 
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
@@ -11,7 +11,7 @@
 	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
-	import { onDestroy, onMount } from "svelte";
+	import { onDestroy, onMount, untrack } from "svelte";
 	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
 	import { generatePaletteWithGemini } from 'src/states/geminiState.svelte.js';
 
@@ -35,18 +35,48 @@
         tryParseFromStringToWallGen(response);
     };
 
+    let tempColourState = $state(getColourObjectsInUse())
+
     let swapy: Swapy | null = null;
-    let inputList: HTMLUListElement;
+    let container: HTMLUListElement;
+    let slotItemMap = $state(
+        utils.initSlotItemMap(tempColourState, "id"));
+    let slottedItems = $derived(
+        utils.toSlottedItems(tempColourState, "id", slotItemMap));
+    let setSlotItemMap = (value: SlotItemMapArray) => (slotItemMap = value)
+
+    $effect(() => {
+        $inspect(wallGenColours).with(console.trace)
+
+        utils.dynamicSwapy(
+            swapy,
+            tempColourState,
+            "id",
+            untrack(() => slotItemMap),
+            setSlotItemMap
+        );
+    });
 
     onMount(() => {
-        if (!inputList) return;
+        if (!container) return;
 
-        swapy = createSwapy(inputList, {
+        swapy = createSwapy(container, {
+            manualSwap: true,
             dragAxis: "y",
+            swapMode: "hover",
         });
+        // swapy.onBeforeSwap((event) => {
+        //     return true;
+        // })
         swapy.onSwap(event => {
-            console.log("swap", event)
+            console.log("on swap", event)
+            requestAnimationFrame(() => {
+                slotItemMap = event.newSlotItemMap.asArray;
+            });
         });
+        // swapy.onSwapEnd(event => {
+        //     console.log("end", event)
+        // });
     });
 
     onDestroy(() => {
@@ -57,20 +87,24 @@
 <div class="ColourInputContainer">
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
     <ul class="ColourInputContainer__List"
-        bind:this={inputList}
+        bind:this={container}
     >
-        <!-- A very grotesque workaround, see issue #36 on GitHub -->
-        {#each getColourObjectsInUse() as colourObj, index
-            (import.meta.env.PROD ? Math.random() : colourObj.id)
-        }
-            <li class="ColourInputeContainer__ItemWrapper"
-                data-swapy-slot={index}
-            >
-                <WallGenColourInputItem
-                    colourObj={colourObj}
-                    index={index}
-                />
-            </li>
+        {#each slottedItems as { slotId, itemId, item: colourObj}, index}
+            {#key slotId}
+                <li class="ColourInputeContainer__ItemWrapper"
+                    data-swapy-slot={slotId}
+                >
+                    {#if colourObj}
+                        {#key itemId}
+                            <WallGenColourInputItem
+                                colourObj={colourObj}
+                                index={index}
+                                swapyItemId={itemId}
+                            />
+                        {/key}
+                    {/if}
+                </li>
+            {/key}
         {/each}
     </ul>
 

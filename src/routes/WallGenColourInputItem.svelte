@@ -14,11 +14,12 @@
     type ColourInputItemProps = {
         colourObj: ColObj,
         index: number,
+        swapyItemId: string,
     };
 
-    let { colourObj, index }: ColourInputItemProps = $props();
+    let { colourObj, index, swapyItemId }: ColourInputItemProps = $props();
 
-    let colourCodeWithHash = $derived("#" + colourObj.colour);
+    let colourCodeWithHash = $derived("#" + colourObj?.colour);
 
     const handlePickerValueChange = (hexStr: string) => {
         setWallGenColoursAtIndex(index, hexStr.replace("#", "").toUpperCase());
@@ -44,11 +45,13 @@
 </script>
 
 <div class="ColourInput"
-    data-swapy-item={colourObj.id}
+    data-swapy-item={swapyItemId}
 >
     <div class="ColourInput__LeftSide">
         {#if getWallGenColourInUseCount() >= 2}
-            <div class="ColourInput__DragHandle">
+            <div class="ColourInput__DragHandle"
+                data-swapy-handle
+            >
                 <MaterialSymbolsLightDragIndicator />
             </div>
         {/if}
@@ -67,6 +70,7 @@
                 }}
             />
         </div>
+        {colourObj.id}
         <div class="ColourInput__HexInputContainer">
             <label class="ColourInput__HexLabel"
                 for="hexCode"
@@ -82,7 +86,7 @@
                 maxlength="6"
                 spellcheck="false"
                 title="Requires a valid hex code"
-                value={colourObj.colour}
+                value={colourObj?.colour}
                 oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>
