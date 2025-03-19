@@ -14,6 +14,9 @@
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
+	import { droppable, draggable, type DragDropState } from "@thisux/sveltednd";
+	import { moveItemWithinArray } from "src/states/stateUtils.svelte.js";
+	import type { PalGenColObj, PalGenItem } from "src/lib/types.js";
 
     const addColour = () => {
         addToPalGenColours();
@@ -50,15 +53,40 @@
 
         tryParseFromStringToPalGen(response);
     };
+
+    const handleDrop = (state: DragDropState<PalGenColObj>) => {
+        const { draggedItem, targetContainer } = state;
+        const dragIndex = palGenColours.val.findIndex(item => item.id === draggedItem.id);
+
+        if (!targetContainer) return;
+        const dropIndex = parseInt(targetContainer);
+
+        const newColoursValue = moveItemWithinArray(palGenColours.val, dragIndex, dropIndex);
+        palGenColours.set(newColoursValue);
+    }
 </script>
 
 <div class="PaletteGenerator">
     <div class="PaletteGenerator__PaletteBox">
         {#each palGenColours.val as palGenItem, index (palGenItem.id)}
-            <PaletteGeneratorItem 
-                palGenItem={palGenItem}
-                index={index}
-            />
+
+            <div class="PaletteGenerator__ItemWrapper"
+                use:droppable={{
+                    container: index.toString(),
+                    callbacks: {
+                        onDrop: handleDrop,
+                    }
+                }}
+                use:draggable={{
+                    container: index.toString(),
+                    dragData: palGenItem,
+                }}
+            >
+                <PaletteGeneratorItem 
+                    palGenItem={palGenItem}
+                    index={index}
+                />
+            </div>
         {/each}
     </div>
 
@@ -134,6 +162,12 @@
         flex-direction: row;
         width: 100%;
         min-height: 35rem;
+    }
+
+    .PaletteGenerator__ItemWrapper {
+        position: relative;
+        flex-grow: 1;
+        height: 500px;
     }
 
     .PaletteGenerator__ActionsContainerUpper {
