@@ -97,23 +97,21 @@
     </div>
 
     <div class="ColourInput__Buttons">
-        <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
+        <button class="ColourInput__ColourActionBtn ColourInput__ColourActionBtn--LabelessBtn IconButtonWithLabel"
             onclick={moveDown}
             title="Move the colour down"
             aria-label="Move the colour down"
             disabled={index >= getWallGenColourInUseCount() - 1}
         >
             <MaterialSymbolsLightMoveDown />
-            <span class="ColourInput__BtnLabelText">Move down</span>
         </button>
-        <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
+        <button class="ColourInput__ColourActionBtn ColourInput__ColourActionBtn--LabelessBtn IconButtonWithLabel"
             onclick={moveUp}
             title="Move the colour up"
             aria-label="Move the colour up"
             disabled={index <= 0}
         >
             <MaterialSymbolsLightMoveUp />
-            <span class="ColourInput__BtnLabelText">Move up</span>
         </button>
         <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
             onclick={handleRandomise}
@@ -185,6 +183,10 @@
         justify-content: flex-end;
         flex-wrap: nowrap;
         gap: 1rem;
+    }
+
+    .ColourInput__ColourActionBtn--LabelessBtn {
+        padding: 0.5rem;
     }
 
     .ColourInput__RemoveBtn {
