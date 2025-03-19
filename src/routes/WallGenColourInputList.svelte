@@ -119,7 +119,7 @@
 
 <style>
     .ColourInputContainer__List {
-        padding-left: 0;
+        padding: 0.5rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -127,7 +127,6 @@
 
     .ColourInputContainer__ItemWrapper {
         list-style: none;
-        padding: 0.15rem;
     }
 
     :global(.ColourInputContainer__ItemWrapper--IsDragging) {
@@ -135,8 +134,7 @@
         padding-left: 2rem;
     }
 
-    :global(.ColourInputContainer__ItemWrapper--IsDraggedOver .ColourInput__DragHandle),
-    :global(.ColourInputContainer__ItemWrapper--IsDraggedOver .ColourInput__Right) {
+    :global(.ColourInputContainer__ItemWrapper.IsDragged .ColourInput__Buttons) {
         display: none;
     }
 
