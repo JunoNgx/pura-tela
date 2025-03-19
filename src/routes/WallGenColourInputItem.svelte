@@ -193,7 +193,7 @@
         color: var(--colDanger);
     }
 
-    @media screen and (width <= 500px) {
+    @media screen and (width <= 950px) {
 
         .ColourInput__LeftSide {
             gap: 0.5rem;
