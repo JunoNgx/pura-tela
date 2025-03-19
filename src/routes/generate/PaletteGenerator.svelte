@@ -177,7 +177,8 @@
     }
 
     :global(.PaletteGenerator__PaletteBox--IsDragging) {
-        outline: 5px solid var(--colPri);
+        outline: 2px solid var(--colPri);
+        z-index: 1;
     }
 
     /* Looks like a bug and the two classes were mixed up? */
