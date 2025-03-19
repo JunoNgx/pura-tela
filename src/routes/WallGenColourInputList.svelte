@@ -41,7 +41,9 @@
     onMount(() => {
         if (!inputList) return;
 
-        swapy = createSwapy(inputList);
+        swapy = createSwapy(inputList, {
+            dragAxis: "y",
+        });
         swapy.onSwap(event => {
             console.log("swap", event)
         });
