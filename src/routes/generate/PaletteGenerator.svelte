@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { dndzone, type DndEvent } from "svelte-dnd-action";
+    import { dragHandleZone, type DndEvent } from "svelte-dnd-action";
 	import { goto } from "$app/navigation";
     import { flip } from 'svelte/animate';
 
@@ -65,7 +65,7 @@
 
 <div class="PaletteGenerator">
     <div class="PaletteGenerator__PaletteBox"
-        use:dndzone="{{
+        use:dragHandleZone="{{
             items: palGenColours.val,
             flipDurationMs: 300
         }}"

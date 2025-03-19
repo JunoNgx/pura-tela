@@ -14,6 +14,7 @@
 	import ColorPicker from "svelte-awesome-color-picker";
 	import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/states/palGenState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+	import { dragHandle } from "svelte-dnd-action";
 
     type PaletteGeneratorItemProps = {
         palGenItem: PalGenColObj,
@@ -44,7 +45,10 @@
     </div>
 
     <div class="PalGenItem__ActionBtn PalGenItem__ActionPanel">
-        <div class="PalGenItem__DragHandle IconButton">
+        <div class="PalGenItem__DragHandle IconButton"
+            aria-label="drag-handle for colour at index {index}"
+            use:dragHandle
+        >
             <MaterialSymbolsLightDragIndicator />
         </div>
 
