@@ -61,13 +61,15 @@
     const transformDraggedElement: TransformDraggedElementFunction = (draggedEl, data, index) => {
         draggedEl?.classList.add("IsDragged");
     };
+
+    const flipDurationMs = 200;
 </script>
 
 <div class="PaletteGenerator">
     <div class="PaletteGenerator__PaletteBox"
         use:dragHandleZone="{{
             items: palGenColours.val,
-            flipDurationMs: 300,
+            flipDurationMs,
             dropTargetStyle: {
                 outline: "2px solid var(--colPri)",
             },
@@ -78,7 +80,7 @@
     >
         {#each palGenColours.val as palGenItem, index (palGenItem.id)}
             <div class="PaletteGenerator__ItemWrapper"
-                animate:flip={{ duration: 200 }}
+                animate:flip={{ duration: flipDurationMs }}
             >
                 <PaletteGeneratorItem 
                     palGenItem={palGenItem}
