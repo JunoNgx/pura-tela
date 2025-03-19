@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from "$app/navigation";
+    import { flip } from 'svelte/animate';
 
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightGesture from "~icons/material-symbols-light/gesture";    
@@ -87,6 +88,7 @@
                     container: index.toString(),
                     dragData: palGenItem,
                 }}
+                animate:flip={{ duration: 200 }}
             >
                 <PaletteGeneratorItem 
                     palGenItem={palGenItem}
