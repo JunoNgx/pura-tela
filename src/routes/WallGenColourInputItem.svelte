@@ -45,13 +45,13 @@
         decreaseWallGenColourInUseCount();
     };
 
-    const moveUp = () => {
-        moveWallGenColourItemUpAtIndex(index);
-    };
+    // const moveUp = () => {
+    //     moveWallGenColourItemUpAtIndex(index);
+    // };
 
-    const moveDown = () => {
-        moveWallGenColourItemDownAtIndex(index);
-    };
+    // const moveDown = () => {
+    //     moveWallGenColourItemDownAtIndex(index);
+    // };
 </script>
 
 <div class="ColourInput">
@@ -101,7 +101,7 @@
     </div>
 
     <div class="ColourInput__Buttons">
-        <button class="ColourInput__ColourActionBtn ColourInput__ColourActionBtn--LabelessBtn IconButtonWithLabel"
+        <!-- <button class="ColourInput__ColourActionBtn ColourInput__ColourActionBtn--LabelessBtn IconButtonWithLabel"
             onclick={moveDown}
             title="Move the colour down"
             aria-label="Move the colour down"
@@ -116,7 +116,7 @@
             disabled={index <= 0}
         >
             <MaterialSymbolsLightMoveUp />
-        </button>
+        </button> -->
         <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
             onclick={handleRandomise}
             title="Generate a randomised colour"
@@ -190,15 +190,15 @@
         gap: 1rem;
     }
 
-    .ColourInput__ColourActionBtn--LabelessBtn {
+    /* .ColourInput__ColourActionBtn--LabelessBtn {
         padding: 0.5rem;
-    }
+    } */
 
     .ColourInput__RemoveBtn {
         color: var(--colDanger);
     }
 
-    @media screen and (width <= 950px) {
+    @media screen and (width <= 650px) {
 
         .ColourInput__LeftSide {
             gap: 0.5rem;
