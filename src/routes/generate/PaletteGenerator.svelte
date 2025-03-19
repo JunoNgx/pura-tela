@@ -54,11 +54,11 @@
         tryParseFromStringToPalGen(response);
     };
 
-    function handleDndConsider(e: CustomEvent<DndEvent<PalGenColObj>>) {
+    const handleDndConsider = (e: CustomEvent<DndEvent<PalGenColObj>>) => {
         palGenColours.set(e.detail.items);
     }
 
-    function handleDndFinalize(e: CustomEvent<DndEvent<PalGenColObj>>) {
+    const handleDndFinalize = (e: CustomEvent<DndEvent<PalGenColObj>>) => {
         palGenColours.set(e.detail.items);
     }
 </script>
