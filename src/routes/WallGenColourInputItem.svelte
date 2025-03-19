@@ -101,7 +101,7 @@
             onclick={moveDown}
             title="Move the colour down"
             aria-label="Move the colour down"
-            disabled={index <= 0}
+            disabled={index >= getWallGenColourInUseCount() - 1}
         >
             <MaterialSymbolsLightMoveDown />
             <span class="ColourInput__BtnLabelText">Move down</span>
@@ -110,7 +110,7 @@
             onclick={moveUp}
             title="Move the colour up"
             aria-label="Move the colour up"
-            disabled={index >= getWallGenColourInUseCount() - 1}
+            disabled={index <= 0}
         >
             <MaterialSymbolsLightMoveUp />
             <span class="ColourInput__BtnLabelText">Move up</span>
