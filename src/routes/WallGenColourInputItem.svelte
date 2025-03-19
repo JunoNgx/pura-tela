@@ -1,7 +1,7 @@
 <script lang="ts">
     import ColorPicker from 'svelte-awesome-color-picker';
     
-    // import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
+    import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
     import MaterialSymbolsLightMoveUp from "~icons/material-symbols-light/move-up";
     import MaterialSymbolsLightMoveDown from "~icons/material-symbols-light/move-down";
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
@@ -55,11 +55,11 @@
 
 <div class="ColourInput">
     <div class="ColourInput__LeftSide">
-        <!-- {#if getWallGenColourInUseCount() >= 2}
+        {#if getWallGenColourInUseCount() >= 2}
             <div class="ColourInput__DragHandle">
                 <MaterialSymbolsLightDragIndicator />
             </div>
-        {/if} -->
+        {/if}
         <div class="ColourInput__Picker">
             <ColorPicker
                 label=""
@@ -163,9 +163,11 @@
         gap: 1.5rem;
     }
 
-    /* .ColourInput__DragHandle {
+    .ColourInput__DragHandle {
         cursor: grab;
-    } */
+        display: grid;
+        place-items: center;
+    }
 
     .ColourInput__HexInputContainer {
         display: flex;
