@@ -1,7 +1,7 @@
 <script lang="ts">
     import ColorPicker from 'svelte-awesome-color-picker';
     
-    // import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
+    import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
     import MaterialSymbolsLightMoveUp from "~icons/material-symbols-light/move-up";
     import MaterialSymbolsLightMoveDown from "~icons/material-symbols-light/move-down";
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
@@ -12,6 +12,7 @@
 	import { promptAddToColourGallery } from 'src/states/colourGalleryState.svelte.js';
 	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, moveWallGenColourItemDownAtIndex, moveWallGenColourItemUpAtIndex, retractWallGenColoursById, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 	import type { ColObj } from 'src/lib/types.js';
+	import { dragHandle } from 'svelte-dnd-action';
 
     type ColourInputItemProps = {
         colourObj: ColObj,
@@ -44,22 +45,25 @@
         decreaseWallGenColourInUseCount();
     };
 
-    const moveUp = () => {
-        moveWallGenColourItemUpAtIndex(index);
-    };
+    // const moveUp = () => {
+    //     moveWallGenColourItemUpAtIndex(index);
+    // };
 
-    const moveDown = () => {
-        moveWallGenColourItemDownAtIndex(index);
-    };
+    // const moveDown = () => {
+    //     moveWallGenColourItemDownAtIndex(index);
+    // };
 </script>
 
-<li class="ColourInput">
+<div class="ColourInput">
     <div class="ColourInput__LeftSide">
-        <!-- {#if getWallGenColourInUseCount() >= 2}
-            <div class="ColourInput__DragHandle">
+        {#if getWallGenColourInUseCount() >= 2}
+            <div class="ColourInput__DragHandle"
+                aria-label="drag-handle for colour at position {index}"
+                use:dragHandle
+            >
                 <MaterialSymbolsLightDragIndicator />
             </div>
-        {/if} -->
+        {/if}
         <div class="ColourInput__Picker">
             <ColorPicker
                 label=""
@@ -97,7 +101,7 @@
     </div>
 
     <div class="ColourInput__Buttons">
-        <button class="ColourInput__ColourActionBtn ColourInput__ColourActionBtn--LabelessBtn IconButtonWithLabel"
+        <!-- <button class="ColourInput__ColourActionBtn ColourInput__ColourActionBtn--LabelessBtn IconButtonWithLabel"
             onclick={moveDown}
             title="Move the colour down"
             aria-label="Move the colour down"
@@ -112,7 +116,7 @@
             disabled={index <= 0}
         >
             <MaterialSymbolsLightMoveUp />
-        </button>
+        </button> -->
         <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
             onclick={handleRandomise}
             title="Generate a randomised colour"
@@ -140,11 +144,10 @@
             </button>
         {/if}
     </div>
-</li>
+</div>
 
 <style>
     .ColourInput {
-        list-style: none;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -164,9 +167,11 @@
         gap: 1.5rem;
     }
 
-    /* .ColourInput__DragHandle {
+    .ColourInput__DragHandle {
         cursor: grab;
-    } */
+        display: grid;
+        place-items: center;
+    }
 
     .ColourInput__HexInputContainer {
         display: flex;
@@ -185,15 +190,15 @@
         gap: 1rem;
     }
 
-    .ColourInput__ColourActionBtn--LabelessBtn {
+    /* .ColourInput__ColourActionBtn--LabelessBtn {
         padding: 0.5rem;
-    }
+    } */
 
     .ColourInput__RemoveBtn {
         color: var(--colDanger);
     }
 
-    @media screen and (width <= 950px) {
+    @media screen and (width <= 650px) {
 
         .ColourInput__LeftSide {
             gap: 0.5rem;

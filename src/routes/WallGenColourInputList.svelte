@@ -1,5 +1,7 @@
 <script lang="ts">
+    import { dragHandleZone, type DndEvent, type TransformDraggedElementFunction } from "svelte-dnd-action";
     import { goto } from "$app/navigation";
+    import { flip } from 'svelte/animate';
 
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
@@ -7,11 +9,12 @@
     import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
 
     import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
-	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
+	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
 	import { generatePaletteWithGemini } from 'src/states/geminiState.svelte.js';
+	import type { ColObj } from "src/lib/types.js";
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
@@ -32,16 +35,41 @@
 
         tryParseFromStringToWallGen(response);
     };
+
+    const handleDndSort = (e: CustomEvent<DndEvent<ColObj>>) => {
+        passSomeColourObjectsToWallpaperGenerator(e.detail.items);
+    };
+
+    const transformDraggedElement: TransformDraggedElementFunction = (draggedEl, data, index) => {
+        draggedEl?.classList.add("IsDragged");
+    };
+
+    const flipDurationMs = 200;
 </script>
 
 <div class="ColourInputContainer">
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
-    <ul class="ColourInputContainer__List">
+    <ul class="ColourInputContainer__List"
+        use:dragHandleZone="{{
+            items: getColourObjectsInUse(),
+            flipDurationMs,
+            dropTargetStyle: {
+                outline: "2px solid var(--colPri)",
+            },
+            transformDraggedElement
+        }}"
+        onconsider="{handleDndSort}"
+        onfinalize="{handleDndSort}"
+    >
         {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
-            <WallGenColourInputItem
-                colourObj={colourObj}
-                index={index}
-            />
+            <li class="ColourInputContainer__ItemWrapper"
+                animate:flip={{ duration: 200 }}
+            >
+                <WallGenColourInputItem
+                    colourObj={colourObj}
+                    index={index}
+                />
+            </li>
         {/each}
     </ul>
 
@@ -91,10 +119,23 @@
 
 <style>
     .ColourInputContainer__List {
-        padding-left: 0;
+        padding: 0.5rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
+    }
+
+    .ColourInputContainer__ItemWrapper {
+        list-style: none;
+    }
+
+    :global(.ColourInputContainer__ItemWrapper--IsDragging) {
+        outline: 2px solid var(--colPri);
+        padding-left: 2rem;
+    }
+
+    :global(.ColourInputContainer__ItemWrapper.IsDragged .ColourInput__Buttons) {
+        display: none;
     }
 
     .ColourInputContainer__ActionsContainerUpper {
