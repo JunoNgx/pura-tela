@@ -20,6 +20,7 @@
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
+	"license": "MIT",
 	"sideEffects": [
 		"**/*.css"
 	],
