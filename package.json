@@ -61,6 +61,7 @@
 	},
 	"dependencies": {
 		"@google/generative-ai": "^0.24.0",
-		"sortablejs": "^1.15.6"
+		"sortablejs": "^1.15.6",
+		"swapy": "^1.0.5"
 	}
 }
