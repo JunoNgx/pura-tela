@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { dragHandleZone, type DndEvent } from "svelte-dnd-action";
+    import { dragHandleZone, type DndEvent, type TransformDraggedElementFunction } from "svelte-dnd-action";
 	import { goto } from "$app/navigation";
     import { flip } from 'svelte/animate';
 
@@ -57,6 +57,10 @@
     const handleDndSort = (e: CustomEvent<DndEvent<PalGenColObj>>) => {
         palGenColours.set(e.detail.items);
     };
+
+    const transformDraggedElement: TransformDraggedElementFunction = (draggedEl, data, index) => {
+        draggedEl?.classList.add("IsDragged");
+    };
 </script>
 
 <div class="PaletteGenerator">
@@ -66,7 +70,8 @@
             flipDurationMs: 300,
             dropTargetStyle: {
                 outline: "2px solid var(--colPri)",
-            }
+            },
+            transformDraggedElement
         }}"
         onconsider="{handleDndSort}"
         onfinalize="{handleDndSort}"
@@ -163,15 +168,9 @@
         height: 500px;
     }
 
-    :global(.PaletteGenerator__ItemWrapper--IsDragging) {
-        outline: 2px solid var(--colPri);
-        z-index: 1;
+    :global(.PaletteGenerator__ItemWrapper.IsDragged) {
+        opacity: 0.5 !important;
     }
-
-    /* Looks like a bug and the two classes were mixed up? */
-    /* :global(.PaletteGenerator__ItemWrapper--IsDraggedOver) {
-        
-    } */
 
     .PaletteGenerator__ActionsContainerUpper {
         margin-top: 1rem;
