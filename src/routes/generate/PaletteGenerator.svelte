@@ -80,8 +80,8 @@
                         onDrop: handleDrop,
                     },
                     attributes: {
-                        draggingClass: "PaletteGenerator__PaletteBox--IsDragging",
-                        dragOverClass: "PaletteGenerator__PaletteBox--IsDraggedOver"
+                        draggingClass: "PaletteGenerator__ItemWrapper--IsDragging",
+                        dragOverClass: "PaletteGenerator__ItemWrapper--IsDraggedOver"
                     },
                 }}
                 use:draggable={{
@@ -178,13 +178,13 @@
         height: 500px;
     }
 
-    :global(.PaletteGenerator__PaletteBox--IsDragging) {
+    :global(.PaletteGenerator__ItemWrapper--IsDragging) {
         outline: 2px solid var(--colPri);
         z-index: 1;
     }
 
     /* Looks like a bug and the two classes were mixed up? */
-    /* :global(.PaletteGenerator__PaletteBox--IsDraggedOver) {
+    /* :global(.PaletteGenerator__ItemWrapper--IsDraggedOver) {
         
     } */
 
