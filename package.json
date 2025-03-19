@@ -60,6 +60,7 @@
 		"vitest": "^3.0.9"
 	},
 	"dependencies": {
-		"@google/generative-ai": "^0.24.0"
+		"@google/generative-ai": "^0.24.0",
+		"@thisux/sveltednd": "^0.0.20"
 	}
 }
