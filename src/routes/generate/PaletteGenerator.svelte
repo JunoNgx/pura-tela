@@ -1,4 +1,5 @@
 <script lang="ts">
+    import {dndzone} from "svelte-dnd-action";
 	import { goto } from "$app/navigation";
     import { flip } from 'svelte/animate';
 
@@ -15,9 +16,6 @@
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
-	import { droppable, draggable, type DragDropState } from "@thisux/sveltednd";
-	import { moveItemWithinArray } from "src/states/stateUtils.svelte.js";
-	import type { PalGenColObj } from "src/lib/types.js";
 
     const addColour = () => {
         addToPalGenColours();
@@ -55,39 +53,26 @@
         tryParseFromStringToPalGen(response);
     };
 
-    const handleDrop = (state: DragDropState<PalGenColObj>) => {
-        const { draggedItem, targetContainer } = state;
-        const dragIndex = palGenColours.val.findIndex(item => item.id === draggedItem.id);
+    function handleDndConsider(e) {
+        palGenColours.set(e.detail.items);
+    }
 
-        if (!targetContainer) return;
-        const dropIndex = parseInt(targetContainer);
-
-        if (dragIndex === dropIndex) return;
-
-        const newColoursValue = moveItemWithinArray(palGenColours.val, dragIndex, dropIndex);
-        palGenColours.set(newColoursValue);
+    function handleDndFinalize(e) {
+        palGenColours.set(e.detail.items);
     }
 </script>
 
 <div class="PaletteGenerator">
-    <div class="PaletteGenerator__PaletteBox">
+    <div class="PaletteGenerator__PaletteBox"
+        use:dndzone="{{
+            items: palGenColours.val,
+            flipDurationMs: 300
+        }}"
+        onconsider="{handleDndConsider}"
+        onfinalize="{handleDndFinalize}"
+    >
         {#each palGenColours.val as palGenItem, index (palGenItem.id)}
-
             <div class="PaletteGenerator__ItemWrapper"
-                use:droppable={{
-                    container: index.toString(),
-                    callbacks: {
-                        onDrop: handleDrop,
-                    },
-                    attributes: {
-                        draggingClass: "PaletteGenerator__ItemWrapper--IsDragging",
-                        dragOverClass: "PaletteGenerator__ItemWrapper--IsDraggedOver"
-                    },
-                }}
-                use:draggable={{
-                    container: index.toString(),
-                    dragData: palGenItem,
-                }}
                 animate:flip={{ duration: 200 }}
             >
                 <PaletteGeneratorItem 
@@ -169,7 +154,7 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        min-height: 35rem;
+        /* min-height: 35rem; */
     }
 
     .PaletteGenerator__ItemWrapper {
