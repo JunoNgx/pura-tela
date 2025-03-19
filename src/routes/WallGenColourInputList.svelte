@@ -38,10 +38,12 @@
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
     <ul class="ColourInputContainer__List">
         {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
-            <WallGenColourInputItem
-                colourObj={colourObj}
-                index={index}
-            />
+            <li class="ColourInputContainer__ItemWrapper">
+                <WallGenColourInputItem
+                    colourObj={colourObj}
+                    index={index}
+                />
+            </li>
         {/each}
     </ul>
 
@@ -95,6 +97,10 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
+    }
+
+    .ColourInputContainer__ItemWrapper {
+        list-style: none;
     }
 
     .ColourInputContainer__ActionsContainerUpper {

@@ -53,7 +53,7 @@
     };
 </script>
 
-<li class="ColourInput">
+<div class="ColourInput">
     <div class="ColourInput__LeftSide">
         <!-- {#if getWallGenColourInUseCount() >= 2}
             <div class="ColourInput__DragHandle">
@@ -140,11 +140,10 @@
             </button>
         {/if}
     </div>
-</li>
+</div>
 
 <style>
     .ColourInput {
-        list-style: none;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
