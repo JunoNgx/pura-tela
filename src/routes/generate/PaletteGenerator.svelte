@@ -210,5 +210,9 @@
             flex-direction: column;
             min-height: 60vh;
         }
+
+        .PaletteGenerator__ItemWrapper {
+            height: 7.5rem;
+        }
     }
 </style>
