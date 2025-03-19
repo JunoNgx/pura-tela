@@ -67,7 +67,10 @@
     <div class="PaletteGenerator__PaletteBox"
         use:dragHandleZone="{{
             items: palGenColours.val,
-            flipDurationMs: 300
+            flipDurationMs: 300,
+            dropTargetStyle: {
+                outline: "2px solid var(--colPri)",
+            }
         }}"
         onconsider="{handleDndConsider}"
         onfinalize="{handleDndFinalize}"
