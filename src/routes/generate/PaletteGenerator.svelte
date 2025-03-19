@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {dndzone} from "svelte-dnd-action";
+    import { dndzone, type DndEvent } from "svelte-dnd-action";
 	import { goto } from "$app/navigation";
     import { flip } from 'svelte/animate';
 
@@ -16,6 +16,7 @@
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
+	import type { PalGenColObj } from "src/lib/types.js";
 
     const addColour = () => {
         addToPalGenColours();
@@ -53,11 +54,11 @@
         tryParseFromStringToPalGen(response);
     };
 
-    function handleDndConsider(e) {
+    function handleDndConsider(e: CustomEvent<DndEvent<PalGenColObj>>) {
         palGenColours.set(e.detail.items);
     }
 
-    function handleDndFinalize(e) {
+    function handleDndFinalize(e: CustomEvent<DndEvent<PalGenColObj>>) {
         palGenColours.set(e.detail.items);
     }
 </script>
