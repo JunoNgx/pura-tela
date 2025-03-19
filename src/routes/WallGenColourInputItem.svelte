@@ -12,6 +12,7 @@
 	import { promptAddToColourGallery } from 'src/states/colourGalleryState.svelte.js';
 	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, moveWallGenColourItemDownAtIndex, moveWallGenColourItemUpAtIndex, retractWallGenColoursById, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 	import type { ColObj } from 'src/lib/types.js';
+	import { dragHandle } from 'svelte-dnd-action';
 
     type ColourInputItemProps = {
         colourObj: ColObj,
@@ -56,7 +57,10 @@
 <div class="ColourInput">
     <div class="ColourInput__LeftSide">
         {#if getWallGenColourInUseCount() >= 2}
-            <div class="ColourInput__DragHandle">
+            <div class="ColourInput__DragHandle"
+                aria-label="drag-handle for colour at position {index}"
+                use:dragHandle
+            >
                 <MaterialSymbolsLightDragIndicator />
             </div>
         {/if}
