@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { droppable, draggable, type DragDropState } from "@thisux/sveltednd";
+
     import { goto } from "$app/navigation";
+    import { flip } from 'svelte/animate';
 
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
@@ -7,11 +10,13 @@
     import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
 
     import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
-	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
+	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
 	import { generatePaletteWithGemini } from 'src/states/geminiState.svelte.js';
+	import type { ColObj } from "src/lib/types.js";
+	import { moveItemWithinArray } from "src/states/stateUtils.svelte.js";
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
@@ -32,13 +37,42 @@
 
         tryParseFromStringToWallGen(response);
     };
+
+    const handleDrop = (state: DragDropState<ColObj>) => {
+        const { draggedItem, targetContainer } = state;
+        const dragIndex = getColourObjectsInUse().findIndex(item => item.id === draggedItem.id);
+
+        if (!targetContainer) return;
+        const dropIndex = parseInt(targetContainer);
+
+        if (dragIndex === dropIndex) return;
+
+        const newColoursValue = moveItemWithinArray(getColourObjectsInUse(), dragIndex, dropIndex);
+        passSomeColourObjectsToWallpaperGenerator(newColoursValue);
+    }
 </script>
 
 <div class="ColourInputContainer">
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
     <ul class="ColourInputContainer__List">
         {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
-            <li class="ColourInputContainer__ItemWrapper">
+            <li class="ColourInputContainer__ItemWrapper"
+                use:droppable={{
+                    container: index.toString(),
+                    callbacks: {
+                        onDrop: handleDrop,
+                    },
+                    attributes: {
+                        draggingClass: "ColourInputContainer__ItemWrapper--IsDragging",
+                        dragOverClass: "ColourInputContainer__ItemWrapper--IsDraggedOver",
+                    },
+                }}
+                use:draggable={{
+                    container: index.toString(),
+                    dragData: colourObj,
+                }}
+                animate:flip={{ duration: 200 }}
+            >
                 <WallGenColourInputItem
                     colourObj={colourObj}
                     index={index}
@@ -101,6 +135,17 @@
 
     .ColourInputContainer__ItemWrapper {
         list-style: none;
+        padding: 0.15rem;
+    }
+
+    :global(.ColourInputContainer__ItemWrapper--IsDragging) {
+        outline: 2px solid var(--colPri);
+        padding-left: 2rem;
+    }
+
+    :global(.ColourInputContainer__ItemWrapper--IsDraggedOver .ColourInput__DragHandle),
+    :global(.ColourInputContainer__ItemWrapper--IsDraggedOver .ColourInput__Right) {
+        display: none;
     }
 
     .ColourInputContainer__ActionsContainerUpper {
