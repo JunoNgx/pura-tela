@@ -7,7 +7,7 @@ import { createState } from "./createState.svelte.js";
  */
 export const idGen = createState(101) as State<number>;
 export const generateId = () => {
-    const idToUse = idGen.val;
+    const idToUse = idGen.val.toString();
     idGen.set(idGen.val + 1);
 
     return idToUse;
