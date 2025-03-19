@@ -54,13 +54,9 @@
         tryParseFromStringToPalGen(response);
     };
 
-    const handleDndConsider = (e: CustomEvent<DndEvent<PalGenColObj>>) => {
+    const handleDndSort = (e: CustomEvent<DndEvent<PalGenColObj>>) => {
         palGenColours.set(e.detail.items);
-    }
-
-    const handleDndFinalize = (e: CustomEvent<DndEvent<PalGenColObj>>) => {
-        palGenColours.set(e.detail.items);
-    }
+    };
 </script>
 
 <div class="PaletteGenerator">
@@ -72,8 +68,8 @@
                 outline: "2px solid var(--colPri)",
             }
         }}"
-        onconsider="{handleDndConsider}"
-        onfinalize="{handleDndFinalize}"
+        onconsider="{handleDndSort}"
+        onfinalize="{handleDndSort}"
     >
         {#each palGenColours.val as palGenItem, index (palGenItem.id)}
             <div class="PaletteGenerator__ItemWrapper"
