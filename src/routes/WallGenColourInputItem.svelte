@@ -2,6 +2,8 @@
     import ColorPicker from 'svelte-awesome-color-picker';
     
     // import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
+    import MaterialSymbolsLightMoveUp from "~icons/material-symbols-light/move-up";
+    import MaterialSymbolsLightMoveDown from "~icons/material-symbols-light/move-down";
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
@@ -40,6 +42,14 @@
     const handleRemoveColour = () => {
         retractWallGenColoursById(colourObj.id);
         decreaseWallGenColourInUseCount();
+    };
+
+    const moveUp = () => {
+
+    };
+
+    const moveDown = () => {
+
     };
 </script>
 
@@ -87,6 +97,22 @@
     </div>
 
     <div class="ColourInput__Buttons">
+        <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
+            onclick={moveDown}
+            title="Move the colour down"
+            aria-label="Move the colour down"
+        >
+            <MaterialSymbolsLightMoveDown />
+            <span class="ColourInput__BtnLabelText">Move down</span>
+        </button>
+        <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
+            onclick={moveUp}
+            title="Move the colour up"
+            aria-label="Move the colour up"
+        >
+            <MaterialSymbolsLightMoveUp />
+            <span class="ColourInput__BtnLabelText">Move up</span>
+        </button>
         <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
             onclick={handleRandomise}
             title="Generate a randomised colour"
