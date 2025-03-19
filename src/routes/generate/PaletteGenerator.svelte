@@ -17,7 +17,7 @@
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
 	import { droppable, draggable, type DragDropState } from "@thisux/sveltednd";
 	import { moveItemWithinArray } from "src/states/stateUtils.svelte.js";
-	import type { PalGenColObj, PalGenItem } from "src/lib/types.js";
+	import type { PalGenColObj } from "src/lib/types.js";
 
     const addColour = () => {
         addToPalGenColours();
