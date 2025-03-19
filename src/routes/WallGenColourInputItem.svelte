@@ -1,7 +1,7 @@
 <script lang="ts">
     import ColorPicker from 'svelte-awesome-color-picker';
     
-    import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
+    // import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
@@ -43,16 +43,13 @@
     };
 </script>
 
-<!-- `data-id` is used by sortableJs -->
-<li class="ColourInput"
-    data-id={colourObj.id}
->
+<li class="ColourInput">
     <div class="ColourInput__LeftSide">
-        {#if getWallGenColourInUseCount() >= 2}
+        <!-- {#if getWallGenColourInUseCount() >= 2}
             <div class="ColourInput__DragHandle">
                 <MaterialSymbolsLightDragIndicator />
             </div>
-        {/if}
+        {/if} -->
         <div class="ColourInput__Picker">
             <ColorPicker
                 label=""
@@ -141,9 +138,9 @@
         gap: 1.5rem;
     }
 
-    .ColourInput__DragHandle {
+    /* .ColourInput__DragHandle {
         cursor: grab;
-    }
+    } */
 
     .ColourInput__HexInputContainer {
         display: flex;
