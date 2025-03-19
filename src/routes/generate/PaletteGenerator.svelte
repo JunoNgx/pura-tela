@@ -61,6 +61,8 @@
         if (!targetContainer) return;
         const dropIndex = parseInt(targetContainer);
 
+        if (dragIndex === dropIndex) return;
+
         const newColoursValue = moveItemWithinArray(palGenColours.val, dragIndex, dropIndex);
         palGenColours.set(newColoursValue);
     }
@@ -75,7 +77,11 @@
                     container: index.toString(),
                     callbacks: {
                         onDrop: handleDrop,
-                    }
+                    },
+                    attributes: {
+                        draggingClass: "PaletteGenerator__PaletteBox--IsDragging",
+                        dragOverClass: "PaletteGenerator__PaletteBox--IsDraggedOver"
+                    },
                 }}
                 use:draggable={{
                     container: index.toString(),
@@ -169,6 +175,15 @@
         flex-grow: 1;
         height: 500px;
     }
+
+    :global(.PaletteGenerator__PaletteBox--IsDragging) {
+        outline: 5px solid var(--colPri);
+    }
+
+    /* Looks like a bug and the two classes were mixed up? */
+    /* :global(.PaletteGenerator__PaletteBox--IsDraggedOver) {
+        
+    } */
 
     .PaletteGenerator__ActionsContainerUpper {
         margin-top: 1rem;
