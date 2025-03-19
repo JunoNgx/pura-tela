@@ -43,9 +43,8 @@
     };
 </script>
 
-<!-- `data-id` is used by sortableJs -->
-<li class="ColourInput"
-    data-id={colourObj.id}
+<div class="ColourInput"
+    data-swapy-item={colourObj.id}
 >
     <div class="ColourInput__LeftSide">
         {#if getWallGenColourInUseCount() >= 2}
@@ -117,11 +116,10 @@
             </button>
         {/if}
     </div>
-</li>
+</div>
 
 <style>
     .ColourInput {
-        list-style: none;
         display: flex;
         flex-direction: row;
         justify-content: space-between;

@@ -1,6 +1,5 @@
 <script lang="ts">
-    import Sortable from 'sortablejs';
-
+	import { createSwapy, type Swapy } from 'swapy';
     import { goto } from "$app/navigation";
 
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
@@ -36,49 +35,20 @@
         tryParseFromStringToWallGen(response);
     };
 
-    let sortableColourInput: Sortable;
+    let swapy: Swapy | null = null;
     let inputList: HTMLUListElement;
 
     onMount(() => {
-        const sortableOptions = {
-            animation: 150,
-            delay: 0,
-            handle: ".ColourInput__DragHandle",
-            dragClass: "ColourInput__IsDragged",
-            put: false,
-            pull: false,
-            store: {
-                get(_sortable: Sortable) {
-                    const idOrder = getColourObjectsInUse().map(
-                        palGenItem => palGenItem.id.toString()
-                    );
-                    return idOrder;
-                },
-                set(sortable: Sortable) {
-                    // TODO: find a way to abstract and re-use this logic for both PalGen and WallGen
-                    const newIdOrder = sortable.toArray();
-                    const newValue = newIdOrder.map(id => {
-                        const correspondingWalGenCol = wallGenColours.val
-                            .find(wallGenCol => wallGenCol.id === parseInt(id));
+        if (!inputList) return;
 
-                        if (!correspondingWalGenCol) {
-                            throw new Error(
-                                "Cannot find corresponding wallpaper generator colour item while re-sorting after drag and drop");
-                        }
-                        
-                        return correspondingWalGenCol;
-                    });
-
-                    wallGenColours.set(newValue);
-                },
-            }
-        };
-
-        sortableColourInput = new Sortable(inputList, sortableOptions);
+        swapy = createSwapy(inputList);
+        swapy.onSwap(event => {
+            console.log("swap", event)
+        });
     });
 
     onDestroy(() => {
-        sortableColourInput.destroy();
+        swapy?.destroy();
     });
 </script>
 
@@ -91,10 +61,14 @@
         {#each getColourObjectsInUse() as colourObj, index
             (import.meta.env.PROD ? Math.random() : colourObj.id)
         }
-            <WallGenColourInputItem
-                colourObj={colourObj}
-                index={index}
-            />
+            <li class="ColourInputeContainer__ItemWrapper"
+                data-swapy-slot={index}
+            >
+                <WallGenColourInputItem
+                    colourObj={colourObj}
+                    index={index}
+                />
+            </li>
         {/each}
     </ul>
 
@@ -148,6 +122,10 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
+    }
+
+    .ColourInputeContainer__ItemWrapper {
+        list-style: none;
     }
 
     .ColourInputContainer__ActionsContainerUpper {
