@@ -1,7 +1,6 @@
 // @ts-ignore
-import defaultColourGallery from "src/data/colours.json";
-import { createColState, createLocalStorageSyncedState, moveItemWithinArray } from "src/states/stateUtils.svelte.js";
-import { WallpaperStyle, type ColObj, type PalGenItem, type SizeItem, type State, type WallpaperStyleInfo } from "src/lib/types.js";
+import { createColState, createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
+import { WallpaperStyle, type ColObj, type State, type WallpaperStyleInfo } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
 import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
@@ -135,23 +134,23 @@ export const tryParseFromStringToWallGen = (inputStr: string) => {
     wallGenColours.set([...newValue]);
 };
 
-export const moveWallGenColourItemUpAtIndex = (index: number) => {
-    if (index <= 0) {
-        throw new Error("Already at the first position");
-    }
+// export const moveWallGenColourItemUpAtIndex = (index: number) => {
+//     if (index <= 0) {
+//         throw new Error("Already at the first position");
+//     }
 
-    const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index - 1);
-    passSomeColourObjectsToWallpaperGenerator(newValue);
-};
+//     const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index - 1);
+//     passSomeColourObjectsToWallpaperGenerator(newValue);
+// };
 
-export const moveWallGenColourItemDownAtIndex = (index: number) => {
-    if (index >= getWallGenColourInUseCount() - 1) {
-        throw new Error("Already at the last position");
-    }
+// export const moveWallGenColourItemDownAtIndex = (index: number) => {
+//     if (index >= getWallGenColourInUseCount() - 1) {
+//         throw new Error("Already at the last position");
+//     }
 
-    const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index + 1);
-    passSomeColourObjectsToWallpaperGenerator(newValue);
-};
+//     const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index + 1);
+//     passSomeColourObjectsToWallpaperGenerator(newValue);
+// };
 
 /**
  * Wallpaper mode data

@@ -1,5 +1,7 @@
 <script lang="ts">
+    import { dragHandleZone, type DndEvent, type TransformDraggedElementFunction } from "svelte-dnd-action";
 	import { goto } from "$app/navigation";
+    import { flip } from 'svelte/animate';
 
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightGesture from "~icons/material-symbols-light/gesture";    
@@ -14,6 +16,7 @@
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
+	import type { PalGenColObj } from "src/lib/types.js";
 
     const addColour = () => {
         addToPalGenColours();
@@ -50,15 +53,40 @@
 
         tryParseFromStringToPalGen(response);
     };
+
+    const handleDndSort = (e: CustomEvent<DndEvent<PalGenColObj>>) => {
+        palGenColours.set(e.detail.items);
+    };
+
+    const transformDraggedElement: TransformDraggedElementFunction = (draggedEl, data, index) => {
+        draggedEl?.classList.add("IsDragged");
+    };
+
+    const flipDurationMs = 200;
 </script>
 
 <div class="PaletteGenerator">
-    <div class="PaletteGenerator__PaletteBox">
+    <div class="PaletteGenerator__PaletteBox"
+        use:dragHandleZone="{{
+            items: palGenColours.val,
+            flipDurationMs,
+            dropTargetStyle: {
+                outline: "2px solid var(--colPri)",
+            },
+            transformDraggedElement
+        }}"
+        onconsider="{handleDndSort}"
+        onfinalize="{handleDndSort}"
+    >
         {#each palGenColours.val as palGenItem, index (palGenItem.id)}
-            <PaletteGeneratorItem 
-                palGenItem={palGenItem}
-                index={index}
-            />
+            <div class="PaletteGenerator__ItemWrapper"
+                animate:flip={{ duration: flipDurationMs }}
+            >
+                <PaletteGeneratorItem 
+                    palGenItem={palGenItem}
+                    index={index}
+                />
+            </div>
         {/each}
     </div>
 
@@ -133,7 +161,17 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        min-height: 35rem;
+        /* min-height: 35rem; */
+    }
+
+    .PaletteGenerator__ItemWrapper {
+        position: relative;
+        flex-grow: 1;
+        height: 500px;
+    }
+
+    :global(.PaletteGenerator__ItemWrapper.IsDragged) {
+        opacity: 0.5 !important;
     }
 
     .PaletteGenerator__ActionsContainerUpper {
@@ -157,6 +195,10 @@
             display: flex;
             flex-direction: column;
             min-height: 60vh;
+        }
+
+        .PaletteGenerator__ItemWrapper {
+            height: 7.5rem;
         }
     }
 </style>

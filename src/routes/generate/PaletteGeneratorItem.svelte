@@ -1,5 +1,5 @@
 <script lang="ts">
-    // import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
+    import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
 
     import MaterialSymbolsLightLockOpenRightOutlineSharp from "~icons/material-symbols-light/lock-open-right-outline-sharp";
     import MaterialSymbolsLightLockOpenRightSharp from "~icons/material-symbols-light/lock-open-right-sharp";
@@ -14,6 +14,7 @@
 	import ColorPicker from "svelte-awesome-color-picker";
 	import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/states/palGenState.svelte.js";
 	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+	import { dragHandle } from "svelte-dnd-action";
 
     type PaletteGeneratorItemProps = {
         palGenItem: PalGenColObj,
@@ -44,9 +45,12 @@
     </div>
 
     <div class="PalGenItem__ActionBtn PalGenItem__ActionPanel">
-        <!-- <div class="PalGenItem__DragHandle IconButton">
+        <div class="PalGenItem__DragHandle IconButton"
+            aria-label="drag-handle for colour at index {index}"
+            use:dragHandle
+        >
             <MaterialSymbolsLightDragIndicator />
-        </div> -->
+        </div>
 
         <div class="PalGenItem__PickerContainer">
             <ColorPicker
@@ -110,8 +114,7 @@
 
 <style>
     .PalGenItem {
-        position: relative;
-        flex-grow: 1;
+        height: 100%;
     }
 
     .PalGenItem__HexCode {
@@ -136,13 +139,13 @@
         color: var(--colWhite);
     }
 
-    /* .PalGenItem__DragHandle {
+    .PalGenItem__DragHandle {
         height: 1.5rem;
         height: 1.5rem;
         display: grid;
         place-items: center;
         cursor: grab;
-    } */
+    }
 
     :global(.PalGenItem__PickerContainer .color-picker label) {
         border: 1px solid var(--colWhite);
