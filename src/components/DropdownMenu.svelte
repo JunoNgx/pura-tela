@@ -14,10 +14,11 @@
 
     type DropdownProps = {
         actionItems: ActionItem[],
+        isSplitBtnPart?: boolean,
     };
     type DropdownPosition = "bottom-left" | "bottom-right" | "top-left" | "top-right";
 
-    let { actionItems }: DropdownProps = $props();
+    let { actionItems, isSplitBtnPart }: DropdownProps = $props();
     let isOpen = $state(false);
     let buttonEl: HTMLButtonElement;
     let menuEl: HTMLUListElement;
@@ -99,12 +100,14 @@
 </script>
 
 <div class="Dropdown"
+    class:SplitBtn__Sec={isSplitBtnPart}
     class:Dropdown--TopLeft={position === "top-left"}
     class:Dropdown--TopRight={position === "top-right"}
     class:Dropdown--BottomLeft={position === "bottom-left"}
     class:Dropdown--BottomRight={position === "bottom-right"}
 >
     <button class="Dropdown__ToggleBtn IconButton"
+        class:SplitBtn__SecBtn={isSplitBtnPart}
         bind:this={buttonEl}
         aria-label="Toggle the dropdown"
         onclick={toggleDropdown}
@@ -134,7 +137,6 @@
 <style>
     .Dropdown {
         position: relative;
-        display: inline-block;
     }
 
     .Dropdown__ToggleBtn {
