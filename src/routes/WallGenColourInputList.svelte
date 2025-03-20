@@ -152,8 +152,14 @@
     .ColourInputContainer__ActionContainer {
         margin-top: 2rem;
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start;
         flex-wrap: wrap;
         gap: 1rem;
+    }
+
+    @media screen and (width <= 850px) {
+        .ColourInputContainer__ActionContainer {
+            justify-content: flex-end;
+        }
     }
 </style>
