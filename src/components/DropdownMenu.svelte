@@ -1,7 +1,7 @@
 <script lang="ts">
     import MaterialSymbolsLightKeyboardArrowDown from "~icons/material-symbols-light/keyboard-arrow-down";
 
-	import type { Component } from "svelte";
+	import { onDestroy, onMount, type Component } from "svelte";
 	import type { SVGAttributes } from "svelte/elements";
 
     type ActionItem = {
@@ -33,6 +33,14 @@
             isOpen = false;
         }
     }
+
+    onMount(() => {
+        document.addEventListener("click", handleClickOutside);
+    });
+
+    onDestroy(() => {
+        document.removeEventListener("click", handleClickOutside);
+    })
 
 </script>
 
