@@ -109,3 +109,23 @@
     display: grid;
     place-items: center;
 }
+
+.SplitBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+}
+
+.SplitBtn .SplitBtn__Pri {
+    white-space: nowrap;
+}
+
+.SplitBtn .SplitBtn__Sec {
+    height: 100%;
+}
+
+.SplitBtn .SplitBtn__Sec .SplitBtn__SecBtn {
+    height: 100%;
+    border-left: none;
+}
