@@ -20,8 +20,8 @@
     let isOpen = $state(false);
     let buttonEl: HTMLButtonElement;
     let menuEl: HTMLUListElement;
-    let preferredPosition: DropdownPosition = "bottom-left";
-    let position: DropdownPosition = $state(preferredPosition);
+    const defaultPosition: DropdownPosition = "bottom-left";
+    let position: DropdownPosition = $state(defaultPosition);
 
     const toggleDropdown = () => {
         isOpen = !isOpen;
