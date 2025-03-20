@@ -39,7 +39,7 @@
         }
     }
 
-    const calculatePosition = () => {
+    const tryAdjustPosition = () => {
         if (!buttonEl || !menuEl) return;
 
         const buttonRect = buttonEl.getBoundingClientRect();
@@ -80,13 +80,13 @@
     $effect(() => {
         if (isOpen) {
             document.addEventListener("click", handleClickOutside);
-            window.addEventListener("resize", calculatePosition);
-            window.addEventListener("scroll", calculatePosition, true);
+            window.addEventListener("resize", tryAdjustPosition);
+            window.addEventListener("scroll", tryAdjustPosition, true);
 
             return (() => {
                 document.removeEventListener("click", handleClickOutside);
-                window.removeEventListener("resize", calculatePosition);
-                window.removeEventListener("scroll", calculatePosition, true);
+                window.removeEventListener("resize", tryAdjustPosition);
+                window.removeEventListener("scroll", tryAdjustPosition, true);
             });
         }
     });
