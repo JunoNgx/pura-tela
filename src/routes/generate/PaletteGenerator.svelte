@@ -115,7 +115,7 @@
             <div class="PaletteGenerator__ItemWrapper"
                 animate:flip={{ duration: flipDurationMs }}
             >
-                <PaletteGeneratorItem 
+                <PaletteGeneratorItem
                     palGenItem={palGenItem}
                     index={index}
                 />
