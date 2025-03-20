@@ -46,40 +46,35 @@
         const menuRect = menuEl.getBoundingClientRect();
 
         const spaceBelow = window.innerHeight - buttonRect.bottom;
-        const spaceAbove = buttonRect.top;
+        // const spaceAbove = buttonRect.top;
         const spaceLeft = buttonRect.left;
-        const spaceRight = window.innerWidth - buttonRect.right;
+        // const spaceRight = window.innerWidth - buttonRect.right;
 
         const menuHeight = menuRect.height;
         const menuWidth = menuRect.width;
 
-        let verticalPos: "top" | "bottom";
-        const calculateVerticalPos = (pos: DropdownPosition) => {
-            if (pos.startsWith("bottom")) {
-                return spaceBelow >= menuHeight ? "bottom" : "top";
-            } else {
-                return spaceAbove >= menuHeight ? "top" : "bottom";
-            }
-        };
-        verticalPos = calculateVerticalPos(preferredPosition);
+        const isSpaceBottomSufficient = spaceBelow >= menuHeight;
+        const isSpaceLeftSufficient = spaceLeft >= menuWidth;
 
-        let horizontalPos: "left" | "right";
-        const calculateHorizontalPos = (pos: DropdownPosition) => {
-            if (pos.startsWith("left")) {
-                return spaceLeft >= menuWidth ? "left" : "right";
-            } else {
-                return spaceRight >= menuHeight ? "right" : "left";
-            }
-        };
-        horizontalPos = calculateHorizontalPos(preferredPosition);
-
-        if ((verticalPos === "bottom" && spaceBelow < menuHeight)
-            || (verticalPos === "top" && spaceAbove < menuHeight)
-        ) {
-            verticalPos = spaceBelow >= spaceAbove ? "bottom" : "top";
+        if (isSpaceBottomSufficient && isSpaceLeftSufficient) {
+            position = "bottom-left";
+            return;
         }
 
-        position = `${verticalPos}-${horizontalPos}` as DropdownPosition;
+        if (isSpaceBottomSufficient && !isSpaceLeftSufficient) {
+            position = "bottom-right";
+            return;
+        }
+
+        if (!isSpaceBottomSufficient && isSpaceLeftSufficient) {
+            position = "top-left";
+            return;
+        }
+
+        if (!isSpaceBottomSufficient && !isSpaceLeftSufficient) {
+            position = "top-right";
+            return;
+        }
     };
 
     $effect(() => {
