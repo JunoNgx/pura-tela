@@ -3,18 +3,19 @@
     import { goto } from "$app/navigation";
     import { flip } from 'svelte/animate';
 
+    import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
+	import DropdownMenu from "src/components/DropdownMenu.svelte";
+	import type { ColObj } from "src/lib/types.js";
+
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
     import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
 
-    import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
-	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
+	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
-	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
 	import { generatePaletteWithGemini } from 'src/states/geminiState.svelte.js';
-	import type { ColObj } from "src/lib/types.js";
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
@@ -45,6 +46,23 @@
     };
 
     const flipDurationMs = 200;
+
+    const dropdownActionItems = [
+        {
+            id: "passToPalGen",
+            label: "Pass to Palette Generator",
+            tooltip: "Pass the current colours to the Palette Generator",
+            action: passColoursToPaletteGenerator,
+            icon: MaterialSymbolsLightPaletteOutline
+        },
+        {
+            id: "generateAi",
+            label: "Generate with AI",
+            tooltip: "Generate a palette using AI",
+            action: generatePaletteWithAi,
+            icon: MaterialSymbolsLightNetworkIntelligence
+        },
+    ];
 </script>
 
 <div class="ColourInputContainer">
@@ -86,34 +104,21 @@
     </div>
 
     <div class="ColourInputContainer__ActionContainer">
-        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-            disabled={getWallGenColourInUseCount() <= 1}
-            onclick={handleSavePalette}
-            title="Save the current colours as a Palette"
-            aria-label="Save the current colours as a Palette"
-        >
-            <MaterialSymbolsLightCalendarViewWeekSharp />
-            <span>Save palette</span>
-        </button>
-
-        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-            disabled={getWallGenColourInUseCount() < MIN_COLOUR_COUNT_PALETTE}
-            onclick={passColoursToPaletteGenerator}
-            title="Pass the current colours to the Palette Generator"
-            aria-label="Pass the current colours to the Palette Generator"
-        >
-            <MaterialSymbolsLightPaletteOutline />
-            <span>Pass to Palette Generator</span>
-        </button>
-
-        <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"
-            onclick={generatePaletteWithAi}
-            title={"Generate a palette using AI"}
-            aria-label={"Generate a palette using AI"}
-        >
-            <MaterialSymbolsLightNetworkIntelligence />
-            <span>Generate with AI</span>
-        </button>
+        <div class="SplitBtn">
+            <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+                disabled={getWallGenColourInUseCount() <= 1}
+                onclick={handleSavePalette}
+                title="Save the current colours as a Palette"
+                aria-label="Save the current colours as a Palette"
+            >
+                <MaterialSymbolsLightCalendarViewWeekSharp />
+                <span>Save palette</span>
+            </button>
+            <DropdownMenu
+                actionItems={dropdownActionItems}
+                isSplitBtnPart={true}
+            />
+        </div>
     </div>
 </div>
 
@@ -147,8 +152,14 @@
     .ColourInputContainer__ActionContainer {
         margin-top: 2rem;
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start;
         flex-wrap: wrap;
         gap: 1rem;
+    }
+
+    @media screen and (width <= 850px) {
+        .ColourInputContainer__ActionContainer {
+            justify-content: flex-end;
+        }
     }
 </style>

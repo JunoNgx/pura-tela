@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { dragHandle } from 'svelte-dnd-action';
     import ColorPicker from 'svelte-awesome-color-picker';
+	import type { ColObj } from 'src/lib/types.js';
     
     import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
     import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
@@ -8,9 +10,7 @@
     
 	import { isHexCodeValid, getRandomHexCode } from 'src/lib/utils.js';
 	import { promptAddToColourGallery } from 'src/states/colourGalleryState.svelte.js';
-	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, moveWallGenColourItemDownAtIndex, moveWallGenColourItemUpAtIndex, retractWallGenColoursById, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
-	import type { ColObj } from 'src/lib/types.js';
-	import { dragHandle } from 'svelte-dnd-action';
+	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, retractWallGenColoursById, setWallGenColoursAtIndex } from 'src/states/wallGenState.svelte.js';
 
     type ColourInputItemProps = {
         colourObj: ColObj,

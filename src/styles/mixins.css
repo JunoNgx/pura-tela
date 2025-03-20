@@ -109,3 +109,43 @@
     display: grid;
     place-items: center;
 }
+
+.SplitBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+}
+
+.SplitBtn .SplitBtn__Pri {
+    white-space: nowrap;
+}
+
+.SplitBtn .SplitBtn__Sec {
+    width: 2.5rem;
+    height: 100%;
+}
+
+.SplitBtn .SplitBtn__Sec .SplitBtn__SecBtn {
+    width: 100%;
+    height: 100%;
+    border-left: none;
+}
+
+.SplitBtn--IsPri .SplitBtn__Pri,
+.SplitBtn--IsPri .SplitBtn__Sec .SplitBtn__SecBtn {
+    background-color: var(--colBrand1);
+    border-color: var(--colBrand1);
+}
+
+.SplitBtn--IsPri .SplitBtn__Pri:hover,
+.SplitBtn--IsPri .SplitBtn__Sec .SplitBtn__SecBtn:hover {
+    color: var(--colBg);
+    background-color: var(--colPri);
+    border-color: var(--colPri);
+}
+
+.SplitBtn--IsPri .SplitBtn__Pri,
+.SplitBtn--IsPri .SplitBtn__Pri:hover {
+    border-right: 1px solid var(--colPri);
+}

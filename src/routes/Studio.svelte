@@ -137,7 +137,7 @@
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        padding: 1.5rem 0;
+        padding: 2rem 0 0;
     }
 
     .Studio__PreviewContainer {
