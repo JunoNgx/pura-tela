@@ -7,6 +7,7 @@
     type ActionItem = {
         id: string,
         label: string,
+        tooltip?: string,
         action: () => void,
         icon?: Component<SVGAttributes<SVGSVGElement>>,
     }
@@ -118,6 +119,8 @@
                 <button
                     class="Dropdown__Item"
                     role={"listitem"}
+                    title={actionItem.tooltip}
+                    aria-label={actionItem.tooltip}
                     onclick={() => executeAction(actionItem)}
                 >
                     <span class="Dropdown__ItemIcon"><actionItem.icon/></span>
