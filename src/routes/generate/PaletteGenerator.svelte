@@ -136,7 +136,7 @@
     </div>
 
     <div class="PaletteGenerator__ActionsContainerLower">
-        <div class="SplitBtn">
+        <div class="SplitBtn SplitBtn--IsPri">
             <button class="PaletteGenerator__ActionBtn IconButtonWithLabel SplitBtn__Pri"
                 onclick={generatePalette}
                 title={"Generate new palettes"}
