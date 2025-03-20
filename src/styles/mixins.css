@@ -129,3 +129,21 @@
     height: 100%;
     border-left: none;
 }
+
+.SplitBtn--IsPri .SplitBtn__Pri,
+.SplitBtn--IsPri .SplitBtn__Sec .SplitBtn__SecBtn {
+    background-color: var(--colBrand1);
+    border-color: var(--colBrand1);
+}
+
+.SplitBtn--IsPri .SplitBtn__Pri:hover,
+.SplitBtn--IsPri .SplitBtn__Sec .SplitBtn__SecBtn:hover {
+    color: var(--colBg);
+    background-color: var(--colPri);
+    border-color: var(--colPri);
+}
+
+.SplitBtn--IsPri .SplitBtn__Pri,
+.SplitBtn--IsPri .SplitBtn__Pri:hover {
+    border-right: 1px solid var(--colPri);
+}
