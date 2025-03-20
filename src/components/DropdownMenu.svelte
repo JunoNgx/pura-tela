@@ -152,7 +152,7 @@
         position: absolute;
         /* top: 100%;
         right: 0; */
-        margin: 0.5rem 0 0;
+        margin: 0.5rem 0;
         padding: 0;
         background-color: var(--colBg);
         border: 1px solid var(--colPri);
