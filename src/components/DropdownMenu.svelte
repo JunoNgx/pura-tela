@@ -79,6 +79,7 @@
 
     $effect(() => {
         if (isOpen) {
+            tryAdjustPosition();
             document.addEventListener("click", handleClickOutside);
             window.addEventListener("resize", tryAdjustPosition);
             window.addEventListener("scroll", tryAdjustPosition, true);
