@@ -1,20 +1,19 @@
 <script lang="ts">
-    import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
+	import { dragHandle } from "svelte-dnd-action";
+	import ColorPicker from "svelte-awesome-color-picker";
 
+	import type { PalGenColObj } from "src/lib/types.js";
+	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+
+    import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
     import MaterialSymbolsLightLockOpenRightOutlineSharp from "~icons/material-symbols-light/lock-open-right-outline-sharp";
     import MaterialSymbolsLightLockOpenRightSharp from "~icons/material-symbols-light/lock-open-right-sharp";
-
     import MaterialSymbolsLightLockSharp from "~icons/material-symbols-light/lock-sharp";
     import MaterialSymbolsLightLockOutlineSharp from "~icons/material-symbols-light/lock-outline-sharp";
-
     import MaterialSymbolsLightDelete from "~icons/material-symbols-light/delete";
     import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
 
-	import type { PalGenColObj } from "src/lib/types.js";
-	import ColorPicker from "svelte-awesome-color-picker";
 	import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/states/palGenState.svelte.js";
-	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
-	import { dragHandle } from "svelte-dnd-action";
 
     type PaletteGeneratorItemProps = {
         palGenItem: PalGenColObj,
