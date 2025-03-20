@@ -3,18 +3,19 @@
     import { goto } from "$app/navigation";
     import { flip } from 'svelte/animate';
 
+    import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
+	import DropdownMenu from "src/components/DropdownMenu.svelte";
+	import type { ColObj } from "src/lib/types.js";
+
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
     import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
 
-    import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
-	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
+	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
 	import { generatePaletteWithGemini } from 'src/states/geminiState.svelte.js';
-	import type { ColObj } from "src/lib/types.js";
-	import DropdownMenu from "src/components/DropdownMenu.svelte";
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
