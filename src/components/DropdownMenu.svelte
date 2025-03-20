@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { fade } from 'svelte/transition';
+
     import MaterialSymbolsLightKeyboardArrowDown from "~icons/material-symbols-light/keyboard-arrow-down";
 
 	import { type Component } from "svelte";
@@ -117,6 +119,7 @@
     {#if isOpen}
         <ul class="Dropdown__Menu"
             bind:this={menuEl}
+            transition:fade={{ duration: 150 }}
         >
             {#each actionItems as actionItem (actionItem.id)}
                 <button
