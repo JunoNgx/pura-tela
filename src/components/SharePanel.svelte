@@ -59,6 +59,7 @@
         border: 1px solid var(--colPri);
         display: flex;
         justify-content: space-between;
+        align-items: flex-start;
         gap: 1rem;
         padding: 1rem;
     }
