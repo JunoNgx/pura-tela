@@ -11,7 +11,6 @@
     import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
 	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
-	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
 	import { generatePaletteWithGemini } from 'src/states/geminiState.svelte.js';
 	import type { ColObj } from "src/lib/types.js";
