@@ -8,6 +8,7 @@
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
     import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
+    import MaterialSymbolsLightConvertToText from "~icons/material-symbols-light/convert-to-text";
 
 	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
 	import { addToPalGenColours, exportToStringFromPalGen, palGenColours, tryParseFromStringToPalGen, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
@@ -17,6 +18,7 @@
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
 	import type { PalGenColObj } from "src/lib/types.js";
+	import DropdownMenu from "src/components/DropdownMenu.svelte";
 
     const addColour = () => {
         addToPalGenColours();
@@ -63,6 +65,37 @@
     };
 
     const flipDurationMs = 200;
+
+    const dropdownActionItems = [
+        {
+            id: "savePalette",
+            label: "Save as palette",
+            tooltip: "Save current settings as a palette",
+            action: savePalette,
+            icon: MaterialSymbolsLightCalendarViewWeekSharp
+        },
+        {
+            id: "passToWallGen",
+            label: "Pass to Wallpaper Generator",
+            tooltip: "Pass the palette to Wallpaper Generator",
+            action: passToWallpaperGenerator,
+            icon: MaterialSymbolsLightColorize
+        },
+        {
+            id: "generateAi",
+            label: "Generate with AI",
+            tooltip: "Generate a palette using AI with a theme prompt",
+            action: generatePaletteWithAi,
+            icon: MaterialSymbolsLightNetworkIntelligence
+        },
+        {
+            id: "import",
+            label: "Import from string",
+            tooltip: "Enter a string of data to recover a palette",
+            action: parseFromString,
+            icon: MaterialSymbolsLightConvertToText
+        },
+    ];
 </script>
 
 <div class="PaletteGenerator">
@@ -82,7 +115,7 @@
             <div class="PaletteGenerator__ItemWrapper"
                 animate:flip={{ duration: flipDurationMs }}
             >
-                <PaletteGeneratorItem 
+                <PaletteGeneratorItem
                     palGenItem={palGenItem}
                     index={index}
                 />
@@ -91,15 +124,6 @@
     </div>
 
     <div class="PaletteGenerator__ActionsContainerUpper">
-        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
-            onclick={parseFromString}
-            title={"Enter a string of data to access a palette"}
-            aria-label={"Enter a string of data to access a palette"}
-        >
-            <MaterialSymbolsLightAdd />
-            <span>Import from string</span>
-        </button>
-
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
             disabled={palGenColours.val.length >= MAX_COLOUR_COUNT}
             onclick={addColour}
@@ -111,42 +135,21 @@
         </button>
     </div>
 
-    <div class="PaletteGenerator__ActionsContainer">
-        <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"
-            onclick={generatePalette}
-            title={"Generate new palettes"}
-            aria-label={"Generate new palettes"}
-        >
-            <MaterialSymbolsLightGesture />
-            <span>Generate</span>
-        </button>
-
-        <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"
-            onclick={passToWallpaperGenerator}
-            title={"Pass the palette to Wallpaper Generator"}
-            aria-label={"Pass the palette to Wallpaper Generator"}
-        >
-            <MaterialSymbolsLightColorize />
-            <span>Pass to Wallpaper Generator</span>
-        </button>
-
-        <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"
-            onclick={generatePaletteWithAi}
-            title={"Generate a palette using AI"}
-            aria-label={"Generate a palette using AI"}
-        >
-            <MaterialSymbolsLightNetworkIntelligence />
-            <span>Generate with AI</span>
-        </button>
-
-        <button class="PaletteGenerator__ActionBtn IconButtonWithLabel"
-            onclick={savePalette}
-            title={"Save current palette"}
-            aria-label={"Save current palette"}
-        >
-            <MaterialSymbolsLightCalendarViewWeekSharp />
-            <span>Save palette</span>
-        </button>
+    <div class="PaletteGenerator__ActionsContainerLower">
+        <div class="SplitBtn SplitBtn--IsPri">
+            <button class="PaletteGenerator__ActionBtn IconButtonWithLabel SplitBtn__Pri"
+                onclick={generatePalette}
+                title={"Generate new palettes"}
+                aria-label={"Generate new palettes"}
+            >
+                <MaterialSymbolsLightGesture />
+                <span>Generate</span>
+            </button>
+            <DropdownMenu
+                actionItems={dropdownActionItems}
+                isSplitBtnPart={true}
+            />
+        </div>
     </div>
 
     <SharePanel
@@ -174,20 +177,20 @@
         opacity: 0.5 !important;
     }
 
-    .PaletteGenerator__ActionsContainerUpper {
-        margin-top: 1rem;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        gap: 2rem;
-    }
-
-    .PaletteGenerator__ActionsContainer {
+    .PaletteGenerator__ActionsContainerUpper,
+    .PaletteGenerator__ActionsContainerLower {
         margin-top: 2rem;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-around;
         gap: 2rem;
+    }
+
+    .PaletteGenerator__ActionsContainerUpper {
+        justify-content: flex-end;
+    }
+
+    .PaletteGenerator__ActionsContainerLower {
+        justify-content: flex-start;
     }
 
     @media screen and (width < 850px) {
@@ -199,6 +202,10 @@
 
         .PaletteGenerator__ItemWrapper {
             height: 7.5rem;
+        }
+        
+        .PaletteGenerator__ActionsContainerLower {
+            justify-content: flex-end;
         }
     }
 </style>
