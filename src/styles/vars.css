@@ -39,6 +39,12 @@
     --slider-width: 12px;
     --picker-indicator-size: 8px;
     --picker-z-index: 10;
+
+    --cp-bg-color: var(--colBg2);
+    --cp-border-color: var(--colPri);
+    --cp-text-color: var(--colPri);
+    --cp-input-color: var(--colBg);
+    --cp-button-hover-color: #555;
 }
 
 :root[data-theme-mode="light"] {
@@ -53,11 +59,4 @@
     --colSec: #777;
     --colBg: #2D2D2D;
     --colBg2: #373737;
-
-    /* Colour picker variables */
-    --cp-bg-color: var(--colBg2);
-    --cp-border-color: var(--colPri);
-    --cp-text-color: var(--colPri);
-    --cp-input-color: var(--colBg);
-    --cp-button-hover-color: #555;
 }
