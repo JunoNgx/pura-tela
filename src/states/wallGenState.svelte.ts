@@ -135,23 +135,23 @@ export const tryParseFromStringToWallGen = (inputStr: string) => {
     wallGenColours.set([...newValue]);
 };
 
-export const moveWallGenColourItemUpAtIndex = (index: number) => {
-    if (index <= 0) {
-        throw new Error("Already at the first position");
-    }
+// export const moveWallGenColourItemUpAtIndex = (index: number) => {
+//     if (index <= 0) {
+//         throw new Error("Already at the first position");
+//     }
 
-    const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index - 1);
-    passSomeColourObjectsToWallpaperGenerator(newValue);
-};
+//     const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index - 1);
+//     passSomeColourObjectsToWallpaperGenerator(newValue);
+// };
 
-export const moveWallGenColourItemDownAtIndex = (index: number) => {
-    if (index >= getWallGenColourInUseCount() - 1) {
-        throw new Error("Already at the last position");
-    }
+// export const moveWallGenColourItemDownAtIndex = (index: number) => {
+//     if (index >= getWallGenColourInUseCount() - 1) {
+//         throw new Error("Already at the last position");
+//     }
 
-    const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index + 1);
-    passSomeColourObjectsToWallpaperGenerator(newValue);
-};
+//     const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index + 1);
+//     passSomeColourObjectsToWallpaperGenerator(newValue);
+// };
 
 /**
  * Wallpaper mode data
