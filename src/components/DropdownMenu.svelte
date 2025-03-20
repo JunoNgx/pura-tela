@@ -28,7 +28,10 @@
     }
 
     const executeAction = (actionItem: ActionItem) => {
-        actionItem.action();
+        isOpen = false;
+        setTimeout(() => {
+            actionItem.action();
+        })
     };
 
     const handleClickOutside = (event: MouseEvent) => {
