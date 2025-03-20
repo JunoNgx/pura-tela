@@ -62,5 +62,6 @@
 	},
 	"dependencies": {
 		"@google/generative-ai": "^0.24.0"
-	}
+	},
+	"packageManager": "yarn@4.7.0"
 }
