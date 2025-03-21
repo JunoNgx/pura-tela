@@ -117,7 +117,7 @@
     }
 
     .ColourListItem__Subtitle {
-        font-size: var(--fontSizeSm);
+        font-family: var(--fontFamilyMono);
         padding-left: 0.5rem;
     }
 
