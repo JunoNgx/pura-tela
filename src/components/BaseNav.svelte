@@ -152,14 +152,14 @@
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
-            background-color: var(--colBrand1);
+            background-color: var(--colAcc);
             width: 3rem;
             height: 3rem;
             font-size: 32px;
         }
 
         .Nav__OpenSidebarBtn:hover {
-            background-color: var(--colBrand1);
+            background-color: var(--colAcc);
         }
 
         .Nav__CloseSidebarBtn {
