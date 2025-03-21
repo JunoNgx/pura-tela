@@ -152,7 +152,7 @@
 
     .Studio__PreviewBlock {
         height: auto;
-        border: 1px solid var(--colPri);
+        border: var(--lineWeight) solid var(--colPri);
         box-sizing: border-box;
         overflow: hidden;
 

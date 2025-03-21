@@ -56,7 +56,7 @@
     }
 
     .SharePanel__Container {
-        border: 1px solid var(--colPri);
+        border: var(--lineWeight) solid var(--colPri);
         display: flex;
         justify-content: space-between;
         align-items: flex-start;

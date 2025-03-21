@@ -58,7 +58,7 @@
     .SizeItem {
         list-style: none;
         min-width: 150px;
-        border-bottom: 1px solid var(--colPri);
+        border-bottom: var(--lineWeight) solid var(--colPri);
     }
 
     .SizeItem__PreviewContainer {

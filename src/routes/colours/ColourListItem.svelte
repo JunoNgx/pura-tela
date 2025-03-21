@@ -84,7 +84,7 @@
 <style>
     .ColourListItem {
         list-style: none;
-        border-bottom: 1px solid var(--colPri);
+        border-bottom: var(--lineWeight) solid var(--colPri);
         min-width: 120px;
     }
 
