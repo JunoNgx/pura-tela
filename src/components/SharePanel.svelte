@@ -56,7 +56,7 @@
     }
 
     .SharePanel__Container {
-        border: 1px solid var(--colPri);
+        border: var(--lineWeight) dashed var(--colPri);
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
@@ -65,6 +65,7 @@
     }
 
     .SharePanel__Content {
+        font-family: var(--fontFamilyMono);
         flex-shrink: 3;
         word-break: break-all;
     }

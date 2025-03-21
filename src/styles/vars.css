@@ -1,35 +1,26 @@
 :root {
-    --fontFamily: "Geist Mono", system-ui, monospace;
+    --fontFamily: "Inclusive Sans", system-ui, sans-serif;
+    --fontFamilyMono: "Geist Mono", monospace;
     --fontSizeXs: 12px;
     --fontSizeSm: 14px;
     --fontSizeMd: 16px;
     --fontSizeLg: 20px;
     --fontSizeXl: 24px;
     --fontSizeIconBtn: 20px;
-    --sizeCheckbox: 16px;
-    --lineThickness: 1px;
+    --sizeCheckbox: 20px;
+    --lineWeight: 2px;
     --transTime: 0.3s;
     --transTimeFast: 0.2s;
     --outlineOffset: 3px;
 
+    /* Spacing variable */
+    --outerPaddingMobile: 1rem;
+
+    /* Constant values */
     --colDanger: #FF4647;
     --colWhite: #FFF;
     --colBlack: #000;
     --colBlackRgb: 0, 0, 0;
-
-    --colSizeScreen: #219EBC;
-    --colSizeBg: #FFB703;
-    /* Third colour: #023047 */
-    --colBrand1: #0093E2;
-    --colBrand2: #FC5D85;
-
-    --colPri: #000;
-    --colSec: #777;
-    --colBg: #FFF;
-    --colBg2: #F1F0F4;
-
-    /* Spacing variable */
-    --outerPaddingMobile: 1rem;
 
     /* Colour picker variables */
     --picker-width: 150px;
@@ -45,18 +36,27 @@
     --cp-text-color: var(--colPri);
     --cp-input-color: var(--colBg);
     --cp-button-hover-color: #555;
+
+    /* Default theme values */
+    --colPri: #232042;
+    --colSec: #778899;
+    --colAcc: #3AA8C1;
+    --colBg: #E4DCC1;
+    --colBg2: #C8C1A2;
 }
 
 :root[data-theme-mode="light"] {
-    --colPri: #000;
-    --colSec: #666;
-    --colBg: #FFF;
-    --colBg2: #F1F0F4;
+    --colPri: #232042;
+    --colSec: #778899;
+    --colAcc: #37A8BB;
+    --colBg: #E4DCC1;
+    --colBg2: #C8C1A2;
 }
 
 :root[data-theme-mode="dark"] {
-    --colPri: #FFF;
-    --colSec: #777;
-    --colBg: #2D2D2D;
-    --colBg2: #373737;
+    --colPri: #E3E0D6;
+    --colSec: #555E66;
+    --colAcc: #345F86;
+    --colBg: #323740;
+    --colBg2: #42444A;
 }

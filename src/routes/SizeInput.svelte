@@ -38,7 +38,7 @@
 
 <section class="SizeInput">
     <h3>
-        <label for="size">Dimensions</label>
+        Dimensions
     </h3>
 
     {#if shouldShowIncorrectInput}
@@ -106,10 +106,10 @@
     .SizeInput__MainContent {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         flex-wrap: wrap;
-        gap: 2rem;
+        gap: 4rem;
         margin: 1rem 0;
     }
 
@@ -128,5 +128,12 @@
 
     .SizeInput__Input {
         width: 4rem;
+    }
+
+    @media screen and (width <= 850px) {
+        .SizeInput__MainContent,
+        .SizeInput__LeftSide {
+            gap: 2rem;
+        }
     }
 </style>

@@ -17,18 +17,21 @@
     .ColourSpan {
         display: inline-flex;
         flex-direction: row;
-        align-items: center;
+        justify-content: baseline;
+        align-items: baseline;
         gap: 0.5rem;
-        vertical-align: bottom;
+        vertical-align: baseline;
+        margin-left: 0.25rem;
     }
 
     .ColourSpan__Block {
         display: inline-block;
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 1rem;
+        height: 1rem;
     }
 
     .ColourSpan__HexCode {
+        font-family: var(--fontFamilyMono);
         display: inline-block;
     }
 </style>

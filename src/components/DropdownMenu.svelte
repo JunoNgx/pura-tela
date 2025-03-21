@@ -143,7 +143,7 @@
     }
 
     .Dropdown__ToggleBtn {
-        border: 1px solid var(--colPri);
+        border: var(--lineWeight) solid var(--colPri);
     }
 
     .Dropdown__ToggleBtn:hover {
@@ -158,7 +158,7 @@
         margin: 0.5rem 0;
         padding: 0;
         background-color: var(--colBg);
-        border: 1px solid var(--colPri);
+        border: var(--lineWeight) solid var(--colPri);
         list-style: none;
         min-width: 10rem;
         z-index: 1000;

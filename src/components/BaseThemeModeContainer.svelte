@@ -78,6 +78,7 @@
     .ThemeMode__Item:hover {
         border: none;
         background-color: none;
+        color: var(--colPri);
     }
 
     @media screen and (width < 850px) {

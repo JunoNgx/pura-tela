@@ -39,7 +39,7 @@
         }
     }
 
-    @media screen and (width < 350px) {
+    @media screen and (width < 420px) {
         .ColourList {
             grid-template-columns: 1fr;
         }

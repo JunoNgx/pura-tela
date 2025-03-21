@@ -93,7 +93,7 @@
 <style>
     .PaletteListItem {
         list-style: none;
-        border-bottom: 1px solid var(--colPri);
+        border-bottom: var(--lineWeight) solid var(--colPri);
         min-width: 120px;
         padding-left: 0;
         display: flex;
@@ -103,7 +103,7 @@
     .PaletteListItem__PaletteBox {
         height: 200px;
         width: 100%;
-        border: 1px solid var(--colPri);
+        border: var(--lineWeight) solid var(--colPri);
         display: flex;
         flex-direction: row;
     }
