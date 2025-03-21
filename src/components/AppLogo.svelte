@@ -1,8 +1,26 @@
+<script lang="ts">
+	import { computeThemeMode } from "src/lib/nightMode.js";
+	import { ThemeMode } from "src/lib/types.js";
+
+    let computedThemeMode = $derived(computeThemeMode());
+</script>
+
 <div class="Logo">
-    <img class="Logo__Icon"
+    {#if computedThemeMode === ThemeMode.LIGHT}
+        <img class="Logo__Icon"
+            src="/logo-mono-dark-vector.svg"
+            alt="Pura Tela logo"
+        />
+    {:else}
+        <img class="Logo__Icon"
+            src="/logo-mono-vector.svg"
+            alt="Pura Tela logo"
+        />
+    {/if}
+    <!-- <img class="Logo__Icon"
         src="/logo-vector.svg"
         alt="Pura Tela logo"
-    />
+    /> -->
     <h1 class="Logo__Text">Pura Tela</h1>
 </div>
 
@@ -15,7 +33,7 @@
 
     .Logo__Icon {
         width: 2rem;
-        height: 2rem;   
+        height: 2rem;
     }
 
     .Logo__Text {
