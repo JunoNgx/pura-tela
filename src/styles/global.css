@@ -194,6 +194,14 @@ h3 {
     text-transform: uppercase;
 }
 
+code {
+    font-family: var(--fontFamilyMono);
+    font-size: 15px;
+    padding: 0.1rem 0.5rem;
+    background-color: var(--colBg2);
+    border-radius: 0.2rem;
+}
+
 dialog {
     background-color: transparent;
     border: none;
