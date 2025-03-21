@@ -87,6 +87,7 @@
         padding: 1.5rem;
         color: var(--colPri);
         background-color: var(--colAcc);
+        box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.1);
     }
 
     .Nav__Content {
