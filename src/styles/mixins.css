@@ -28,6 +28,10 @@
     border: 0;
 }
 
+.RouteInstruction {
+    margin: 1rem 0;
+}
+
 .Error,
 .Danger,
 .Danger:hover,
