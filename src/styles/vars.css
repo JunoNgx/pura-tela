@@ -41,10 +41,10 @@
     --picker-indicator-size: 8px;
     --picker-z-index: 10;
 
-    --cp-bg-color: var(--colBg2);
+    --cp-bg-color: var(--colBg);
     --cp-border-color: var(--colPri);
     --cp-text-color: var(--colPri);
-    --cp-input-color: var(--colBg);
+    --cp-input-color: var(--colBg2);
     --cp-button-hover-color: #555;
 }
 
@@ -53,7 +53,7 @@
     --colSec: #678;
     --colAcc: #3AA8C1;
     --colBg: #E4DCC1;
-    --colBg2: #E4DCC1;
+    --colBg2: #C8C1A2;
 
     --colNavSec: #555;
 }

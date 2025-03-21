@@ -19,7 +19,7 @@ html {
     accent-color: var(--colPri);
     font-family: var(--fontFamily);
     font-size: var(--fontSizeMd);
-    background-color: var(--colBg2);
+    background-color: var(--colBg);
     color: var(--colPri);
 
     scrollbar-gutter: stable both-edges;
