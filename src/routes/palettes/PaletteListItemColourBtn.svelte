@@ -60,8 +60,10 @@
     }
 
     .PaletteListColourBtn__Label {
+        font-family: var(--fontFamilyMono);
         opacity: 0;
         transition: all var(--transTimeFast) ease-in-out;
+        text-transform: uppercase;
     }
 
     .PaletteListColourBtn__CopiedNotice {
