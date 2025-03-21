@@ -147,6 +147,10 @@
         cursor: grab;
     }
 
+    .PalGenItem__DragHandle:hover {
+        color: var(--colWhite);
+    }
+
     :global(.PalGenItem__PickerContainer .color-picker label) {
         border: 1px solid var(--colWhite);
         border-radius: 0;
