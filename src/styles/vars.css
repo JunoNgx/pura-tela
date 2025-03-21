@@ -43,7 +43,6 @@
     --colAcc: #3AA8C1;
     --colBg: #E4DCC1;
     --colBg2: #C8C1A2;
-    --colNavSec: #445566;
 }
 
 :root[data-theme-mode="light"] {
@@ -52,7 +51,6 @@
     --colAcc: #3AA8C1;
     --colBg: #E4DCC1;
     --colBg2: #C8C1A2;
-    --colNavSec: #445566;
 }
 
 :root[data-theme-mode="dark"] {
