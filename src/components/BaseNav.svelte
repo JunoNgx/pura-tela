@@ -46,7 +46,7 @@
         <MaterialSymbolsLightViewSidebarOutlineSharp/>
     </button>
 
-    <nav class="Nav__Content Card">
+    <nav class="Nav__Content">
         <AppLogo/>
 
         <hr class="Nav__Separator">
@@ -84,6 +84,9 @@
         position: sticky;
         top: 1rem;
         z-index: 50;
+        padding: 1.5rem;
+        color: var(--colNavPri);
+        background-color: var(--colNavBg);
     }
 
     .Nav__Content {
@@ -102,6 +105,8 @@
         /* flex-grow: 1; */
         width: 100%;
         margin: 0 0 1rem;
+        border: 1px solid var(--colNavPri);
+        background-color: var(--colNavPri);
     }
 
     .Nav__Router {
@@ -113,7 +118,7 @@
     }
 
     .Nav__CategoryTitle {
-        color: var(--colSec);
+        color: var(--colNavSec);
         text-transform: uppercase;
         align-self: flex-start;
         margin-top: 1rem;
