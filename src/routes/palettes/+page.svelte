@@ -15,12 +15,12 @@
 <h2 class="VisuallyHidden">Palette Gallery</h2>
 <div class="PaletteRouteNotice">Click on any colour to copy its hex code.</div>
 <PaletteList/>
-<button class="ResetButton"
+<button class="ResetButton IconButtonWithLabel"
     onclick={handleResetGallery}
     aria-label="Reset colour gallery"
 >
     <MaterialSymbolsLightResetSettingsRounded/>
-    Reset gallery
+    <span>Reset gallery</span>
 </button>
 
 <style>
