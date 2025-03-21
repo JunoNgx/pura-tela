@@ -18,7 +18,7 @@
         <div class="MainContent Card">
             <!-- <BaseHeader/> -->
                 <div class="MobileLogoWrapper">
-                    <AppLogo />
+                    <AppLogo isMono={false}/>
                 </div>
                 {@render children()}
         </div>
