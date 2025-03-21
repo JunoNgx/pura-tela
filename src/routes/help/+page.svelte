@@ -40,7 +40,7 @@
 
     <p>The save location varies according to your device configuration, but is typically your designated <code>Download</code> directory and should be accessible from your Photo browser app. This image is free for you to keep forever as you see fit, without the need for this app again.</p>
 
-    <h3>Importing palette from external sources</h3>
+    <h3 id="import">Importing palette from external sources</h3>
     <p>From certain screen in the app, it is possible to import colour palettes from an external source as a string. The format is required to follow the following rules:</p>
     <ul>
         <li>Each colour is represented by a hex code.</li>
@@ -62,11 +62,20 @@
     <h3>Sharing</h3>
     <p>To restore the exact preset of settings for the <code>Wallpaper Generator</code>, store the URL provided at the bottom of the page at a safe place and re-access. You are encourage to do so for either your own personal storage, or sharing with friends.</p>
 
+    <h3 id="ai">Generate with AI</h3>
+    <p>From <code>Wallpaper Generator</code> and the <code>Palette Generator</code>, from the dropdown menu, it is possible to generate a colour palette via a Google's <code>Large language model</code> <code>Gemini</code>. You will prompted to enter the theme of the output, which should return a {MAX_COLOUR_COUNT}-colour palette.</p>
+
+    <p>This is meant to be a fun, experimental, and entirely optional feature of the app. It is expected that queries made via these endpoints are used to further train Google's Gemini. If privacy or related political believes are concerned, you are advised to refrain from using this option. This is also the only operation of the app where data is transmitted away from your device.</p>
+
+    <p>It is also recommended that you try out your own prompts in your own Large Language Model of choice and import the output into this app (<a href="#import">see above</a>).</p>
+
     <h3>Installing</h3>
     <p>Pura Tela is deployed as a <code>Progressive Web App</code>, and is installable to your device to be launched in a manner similar to a native app. If you do not see a prompt, check your browser guide for the appropriate steps.</p>
 
     <h3>Privacy and tracking</h3>
     <p>Pura Tela does not track your usage and activities in any way. Your changes and states are entirely stored via the web <code>localStorage</code> API. Your data is your data, and nothing is collected more than the hosting platform (Vercel) requires for minimum functioning.</p>
+
+    <p>The use of <a href="#ai">AI Generation</a> is the only possible data operation where data might be collected (by Google), and you are advised to refrain from using this option, if it is a concern.</p>
 
     <h3>Contribution</h3>
     <p>For questions, bug reports, suggestions, and contributions, please create an issue in the <a href="https://github.com/JunoNgx/pura-tela/" target="_blank" rel="noopener noreferrer">project's repository on GitHub</a>.</p>
