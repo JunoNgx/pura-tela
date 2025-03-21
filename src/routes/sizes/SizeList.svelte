@@ -112,7 +112,7 @@
         }
     }
 
-    @media screen and (width < 375px) {
+    @media screen and (width < 420px) {
         .SizeList {
             grid-template-columns: 1fr;
         }
