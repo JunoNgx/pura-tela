@@ -2,6 +2,7 @@
     import { goto } from "$app/navigation";
 
     import { type ColourItem } from "src/lib/types.js";
+	import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
 
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
@@ -40,7 +41,7 @@
 
             copyRestoreStatusTimeout = setTimeout(() => {
                 hasBeenCopied = false;
-            }, 1000);
+            }, HAS_COPY_TIMEOUT_DURATION_MS);
         } catch(error) {
             throw new Error("Unable to copy colour code to clipboard")
         }
