@@ -128,6 +128,7 @@
             position: fixed;
             top: 0;
             overflow: visible;
+            padding: 0;
         }
 
         .Nav__OverlayBg {
