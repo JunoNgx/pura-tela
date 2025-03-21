@@ -31,7 +31,7 @@
 <style>
     .Logo {
         display: flex;
-        gap: 0.5rem;
+        gap: 1rem;
         align-items: center;
     }
 
@@ -41,7 +41,8 @@
     }
 
     .Logo__Text {
-        white-space: nowrap;
+        font-family: var(--fontFamilyMono);
         font-size: var(--fontSizeXl);
+        white-space: nowrap;
     }
 </style>
