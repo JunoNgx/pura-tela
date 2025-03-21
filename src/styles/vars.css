@@ -18,12 +18,6 @@
     --colBlack: #000;
     --colBlackRgb: 0, 0, 0;
 
-    --colSizeScreen: #219EBC;
-    --colSizeBg: #FFB703;
-    /* Third colour: #023047 */
-    --colBrand1: #0093E2;
-    --colBrand2: #FC5D85;
-
     --colPri: #000;
     --colSec: #777;
     --colBg: #FFF;
@@ -50,6 +44,7 @@
 
 :root[data-theme-mode="light"] {
     --colPri: #232042;
+    /* TODO: cleanup the secondary colours */
     --colSec: #678;
     --colAcc: #3AA8C1;
     --colBg: #E4DCC1;
