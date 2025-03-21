@@ -110,6 +110,18 @@
     place-items: center;
 }
 
+.PriBtn {
+    color: var(--colPri);
+    background-color: var(--colAcc);
+    border-color: var(--colAcc);
+}
+
+.PriBtn:hover {
+    color: var(--colBg);
+    background-color: var(--colPri);
+    border-color: var(--colPri);
+}
+
 .SplitBtn {
     display: flex;
     flex-direction: row;
@@ -134,8 +146,8 @@
 
 .SplitBtn--IsPri .SplitBtn__Pri,
 .SplitBtn--IsPri .SplitBtn__Sec .SplitBtn__SecBtn {
-    background-color: var(--colBrand1);
-    border-color: var(--colBrand1);
+    background-color: var(--colAcc);
+    border-color: var(--colAcc);
 }
 
 .SplitBtn--IsPri .SplitBtn__Pri:hover,
