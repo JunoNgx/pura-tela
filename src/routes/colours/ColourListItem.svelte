@@ -5,6 +5,8 @@
 
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
+    import MaterialSymbolsLightContentCopy from "~icons/material-symbols-light/content-copy";
+    import MaterialSymbolsLightContentCopyOutline from "~icons/material-symbols-light/content-copy-outline";
     import MaterialSymbolsLightDelete from "~icons/material-symbols-light/delete";
     import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
 	import {getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
@@ -26,6 +28,10 @@
         }
 
         showColourActionDialog(colourItem.hexCode);
+    };
+
+    const handleCopyHexCode = async () => {
+        await navigator.clipboard.writeText(colourItem.hexCode);
     };
 
     const handleDeleteColour = () => {
@@ -62,7 +68,21 @@
                 <div class="IconButton__HoverIcon">
                     <MaterialSymbolsLightColorize/>
                 </div>
-                
+            </button>
+
+            <button class="ColourListItem__ActionBtn
+                IconButton
+                "
+                onclick={handleCopyHexCode}
+                title={"Copy this hex colour code"}
+                aria-label="Copy this hex colour code"
+            >       
+                <div class="IconButton__RegularIcon">
+                    <MaterialSymbolsLightContentCopyOutline/>
+                </div>
+                <div class="IconButton__HoverIcon">
+                    <MaterialSymbolsLightContentCopy/>
+                </div>
             </button>
 
             <button class="ColourListItem__ActionBtn IconButton Danger"
