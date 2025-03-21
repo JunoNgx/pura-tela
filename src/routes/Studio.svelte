@@ -127,7 +127,7 @@
 
     <SharePanel
         title="Share this wallpaper"
-        desc="Access this url to retrieve the same wallpaper settings."
+        desc="Save this as a bookmark, or share your creation with someone. Access this url to retrieve the current wallpaper settings."
         content={computeShareableUrl()}
     />
 </div>
