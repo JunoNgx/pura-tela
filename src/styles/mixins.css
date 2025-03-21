@@ -28,6 +28,10 @@
     border: 0;
 }
 
+.H2WithMargin {
+    margin-bottom: 2rem;
+}
+
 .RouteInstruction {
     margin: 1rem 0;
 }
