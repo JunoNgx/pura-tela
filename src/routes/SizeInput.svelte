@@ -38,7 +38,7 @@
 
 <section class="SizeInput">
     <h3>
-        <label for="size">Dimensions</label>
+        Dimensions
     </h3>
 
     {#if shouldShowIncorrectInput}
