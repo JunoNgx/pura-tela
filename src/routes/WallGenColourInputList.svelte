@@ -105,7 +105,7 @@
 
     <div class="ColourInputContainer__ActionContainer">
         <div class="SplitBtn">
-            <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            <button class="ColourInputContainer__AddBtn SplitBtn__Pri IconButtonWithLabel"
                 disabled={getWallGenColourInUseCount() <= 1}
                 onclick={handleSavePalette}
                 title="Save the current colours as a Palette"
