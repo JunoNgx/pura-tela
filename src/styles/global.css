@@ -93,7 +93,7 @@ label {
 }
 
 input {
-    font-family: var(--fontFamily);
+    font-family: var(--fontFamilyMono);
     font-size: var(--fontSizeMd);
     color: var(--colPri);
     background-color: transparent;
