@@ -11,6 +11,7 @@
     import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
 	import {getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
 	import { deleteColourAtIndex } from "src/states/colourGalleryState.svelte.js";
+	import { onDestroy } from "svelte";
 
     type ColourItemProps = {
         colourItem: ColourItem,
@@ -19,6 +20,8 @@
     } ;
 
     let { colourItem, index, showColourActionDialog = $bindable() }: ColourItemProps = $props();
+    let hasBeenCopied = $state(false);
+    let copyRestoreStatusTimeout: number | undefined = $state();
 
     const handleChooseColour = () => {
         if (getWallGenColourInUseCount() === 1) {
@@ -31,7 +34,16 @@
     };
 
     const handleCopyHexCode = async () => {
-        await navigator.clipboard.writeText(colourItem.hexCode);
+        try {
+            await navigator.clipboard.writeText(colourItem.hexCode);
+            hasBeenCopied = true;
+
+            copyRestoreStatusTimeout = setTimeout(() => {
+                hasBeenCopied = false;
+            }, 1000);
+        } catch(error) {
+            throw new Error("Unable to copy colour code to clipboard")
+        }
     };
 
     const handleDeleteColour = () => {
@@ -40,6 +52,10 @@
 
         deleteColourAtIndex(index);
     };
+
+    onDestroy(() => {
+        clearTimeout(copyRestoreStatusTimeout);
+    })
 </script>
 
 <li class="ColourListItem">
@@ -47,7 +63,11 @@
         style={`background-color: #${colourItem.hexCode};`}
     >
         <div class="ColourListItem__Title">
-            {colourItem.name}
+            {#if hasBeenCopied}
+                Copied
+            {:else}
+                {colourItem.name}
+            {/if}
         </div>
     </div>
     <div class="ColourListItem__Footer">
