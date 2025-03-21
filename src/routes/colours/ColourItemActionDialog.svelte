@@ -18,7 +18,8 @@
     bind:shouldShowDialog
     bind:this={dialogBase}
 >
-    <h3 class="ColourActionDialog__Title">Confirm passing <ColourSpan colour={inputColour}/> to Wallpaper Generator?</h3>
+    <h3 class="ColourActionDialog__Title">Confirm colour passing</h3>
+    <p class="ColourActionDialog__PromptContent">Pass <ColourSpan colour={inputColour}/> to Wallpaper Generator?</p>
     <div class="ColourActionDialog__ActionContainer ColourActionDialog__ActionContainer--MainActions">
         {#each getColourStringsInUse() as colour, index}
             <button class="ColourActionDialog__ActionBtn"
