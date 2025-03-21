@@ -54,8 +54,9 @@
 }
 
 :root[data-theme-mode="dark"] {
-    --colPri: #FFF;
-    --colSec: #777;
-    --colBg: #2D2D2D;
-    --colBg2: #373737;
+    --colPri: #E3E0D6;
+    --colSec: #555E66;
+    --colAcc: #345F86;
+    --colBg: #323740;
+    --colBg2: #42444A;
 }
