@@ -70,6 +70,7 @@ button {
     border: var(--lineWeight) solid var(--colPri);
     font-size: var(--fontSizeMd);
     padding: 0.5rem 1rem;
+    text-transform: lowercase;
     -webkit-tap-highlight-color: transparent;
     outline-offset: var(--outlineOffset);
     transition: all ease-in-out var(--transTime);
