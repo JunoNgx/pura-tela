@@ -86,7 +86,7 @@
         z-index: 50;
         padding: 1.5rem;
         color: var(--colNavPri);
-        background-color: var(--colNavBg);
+        background-color: var(--colAcc);
     }
 
     .Nav__Content {

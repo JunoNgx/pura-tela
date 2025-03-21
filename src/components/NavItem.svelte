@@ -45,7 +45,7 @@
     .NavItem--IsActive {
         .NavItem__Text {
             padding: 0.25rem;
-            color: var(--colNavBg);
+            color: var(--colAcc);
         }
 
         .NavItem__Background {

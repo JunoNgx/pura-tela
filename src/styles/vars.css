@@ -51,12 +51,12 @@
 :root[data-theme-mode="light"] {
     --colPri: #232042;
     --colSec: #678;
+    --colAcc: #00749d;
     --colBg: #E4DCC1;
     --colBg2: #E4DCC1;
 
     --colNavPri: #fff;
     --colNavSec: #DBDBDB;
-    --colNavBg: #00749d;
 }
 
 :root[data-theme-mode="dark"] {
