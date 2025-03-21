@@ -32,7 +32,7 @@
 	Pass colour to <code>Wallpaper Generator</code>, or copy its hex colour code for your own use.
 </p>
 <ColourList/>
-<button class="ResetButton"
+<button class="ResetButton IconButtonWithLabel"
     onclick={handleResetGallery}
     aria-label="Reset colour gallery"
 >
@@ -41,12 +41,8 @@
 </button>
 
 <style>
-
     .ResetButton {
-        display: flex;
-        gap: 0.5rem;
         color: var(--colDanger);
-        float: right;
         margin-top: 2rem;
         margin-left: auto;
     }
