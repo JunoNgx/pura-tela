@@ -147,6 +147,11 @@
         place-items: center;
     }
 
+    :global(.ColourInput__Picker .color-picker label) {
+        border: 1px solid var(--colPri);
+        border-radius: 0;
+    }
+
     .ColourInput__HexInputContainer {
         display: flex;
         align-items: center;
