@@ -67,7 +67,7 @@ button {
     color: var(--colPri);
     background-color: transparent;
     border-radius: 0;
-    border: var(--lineThickness) solid var(--colPri);
+    border: var(--lineWeight) solid var(--colPri);
     font-size: var(--fontSizeMd);
     padding: 0.5rem 1rem;
     -webkit-tap-highlight-color: transparent;
