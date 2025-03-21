@@ -94,6 +94,7 @@
     }
 
     .SizeItem__SizeInfo {
+        font-family: var(--fontFamilyMono);
         margin: 0.5rem 0 0.5rem 0.25rem;
     }
 
