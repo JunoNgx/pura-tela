@@ -129,4 +129,11 @@
     .SizeInput__Input {
         width: 4rem;
     }
+
+    @media screen and (width <= 850px) {
+        .SizeInput__MainContent,
+        .SizeInput__LeftSide {
+            gap: 2rem;
+        }
+    }
 </style>
