@@ -258,3 +258,8 @@ dialog[open]::backdrop {
 .color-picker .wrapper {
     border-radius: 0 !important;
 }
+
+.color-picker label {
+    border-radius: 0 !important;
+    border: 1px solid var(--colWhite);
+}
