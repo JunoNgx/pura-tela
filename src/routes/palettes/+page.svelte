@@ -12,8 +12,8 @@
     };
 </script>
 
-<h2 class="VisuallyHidden">Palette Gallery</h2>
-<div class="PaletteRouteNotice">Click on any colour to copy its hex code.</div>
+<h2>Palette Gallery</h2>
+<div class="RouteInstruction">Pass palettes to <code>Wallpaper Generator</code> or <code>Palette Generator</code>. Click on any colour to copy its hex colour code.</div>
 <PaletteList/>
 <button class="ResetButton IconButtonWithLabel"
     onclick={handleResetGallery}
@@ -24,10 +24,6 @@
 </button>
 
 <style>
-    .PaletteRouteNotice {
-        margin-bottom: 2rem;
-    }
-
     .ResetButton {
         color: var(--colDanger);
         margin-top: 2rem;
