@@ -151,6 +151,11 @@
         color: var(--colWhite);
     }
 
+    :global(.PalGenItem__PickerContainer .color-picker label) {
+        border: 1px solid var(--colWhite);
+        border-radius: 0;
+    }
+
     @media screen and (width < 850px) {
         .PalGenItem__ActionPanel {
             flex-direction: row;
