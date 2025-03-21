@@ -8,6 +8,13 @@
 	src: url("/GeistMono.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Inclusive Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/InclusiveSans-VariableFont_wght.ttf") format("truetype");
+}
+
 html {
     accent-color: var(--colPri);
     font-family: var(--fontFamily);
