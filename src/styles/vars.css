@@ -55,8 +55,8 @@
     --colBg2: #E4DCC1;
 
     --colNavPri: #fff;
-    --colNavSec: #ccc;
-    --colNavBg: #3AA8C1;
+    --colNavSec: #DBDBDB;
+    --colNavBg: #00749d;
 }
 
 :root[data-theme-mode="dark"] {
