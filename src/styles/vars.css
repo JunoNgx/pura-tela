@@ -18,10 +18,13 @@
     --colBlack: #000;
     --colBlackRgb: 0, 0, 0;
 
-    --colPri: #000;
-    --colSec: #777;
-    --colBg: #FFF;
-    --colBg2: #F1F0F4;
+    /* Default theme values */
+    --colPri: #232042;
+    --colSec: #778899;
+    --colAcc: #3AA8C1;
+    --colBg: #E4DCC1;
+    --colBg2: #C8C1A2;
+    --colNavSec: #445566;
 
     /* Spacing variable */
     --outerPaddingMobile: 1rem;
