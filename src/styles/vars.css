@@ -44,13 +44,11 @@
 
 :root[data-theme-mode="light"] {
     --colPri: #232042;
-    /* TODO: cleanup the secondary colours */
-    --colSec: #678;
+    --colSec: #778899;
     --colAcc: #3AA8C1;
     --colBg: #E4DCC1;
     --colBg2: #C8C1A2;
-
-    --colNavSec: #555;
+    --colNavSec: #445566;
 }
 
 :root[data-theme-mode="dark"] {
