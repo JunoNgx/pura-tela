@@ -105,7 +105,7 @@
                     </label>
                 </div>
 
-                <button class="Studio_DownloadBtn"
+                <button class="Studio_DownloadBtn PriBtn"
                     onclick={handleDownloadClick}
                     aria-label="Download"
                 >
@@ -210,15 +210,6 @@
     .Studio_DownloadBtn {
         padding: 1rem 2rem;
         display: block;
-        color: var(--colPri);
-        background-color: var(--colBrand1);
-        border-color: var(--colBrand1);
-    }
-
-    .Studio_DownloadBtn:hover {
-        color: var(--colBg);
-        background-color: var(--colPri);
-        border-color: var(--colBg);
     }
 
     @media screen and (width < 850px) {
