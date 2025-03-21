@@ -118,7 +118,7 @@
     }
 
     .Nav__CategoryTitle {
-        color: var(--colNavSec);
+        color: var(--colPri);
         text-transform: uppercase;
         align-self: flex-start;
         margin-top: 1rem;
