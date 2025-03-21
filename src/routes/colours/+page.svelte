@@ -27,7 +27,10 @@
     // })
 </script>
 
-<h2 class="VisuallyHidden">Colour Gallery</h2>
+<h2>Colour Gallery</h2>
+<p class="RouteInstruction">
+	Pass colour to <code>Wallpaper Generator</code>, or copy its hex colour code for your own use.
+</p>
 <ColourList/>
 <button class="ResetButton"
     onclick={handleResetGallery}
