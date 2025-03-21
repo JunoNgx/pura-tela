@@ -41,7 +41,7 @@
     <p>The save location varies according to your device configuration, but is typically your designated <code>Download</code> directory and should be accessible from your Photo browser app. This image is free for you to keep forever as you see fit, without the need for this app again.</p>
 
     <h3 id="import">Importing palette from external sources</h3>
-    <p>From certain screen in the app, it is possible to import colour palettes from an external source as a string. The format is required to follow the following rules:</p>
+    <p>From <code>Palette Generator</code>, it is possible to import colour palettes from an external source as a string. The format is required to follow the following rules:</p>
     <ul>
         <li>Each colour is represented by a hex code.</li>
         <li>Colours is to be separated by either comma or dash. Whitespaces don't matter.</li>
@@ -58,6 +58,8 @@
         <li><code>04AE9C-CCA5C6-CD4173-7BFFB0-99E343-235646</code></li>
         <li><code>04AE9C-"CCA5C6"- #CD4173-'7BFFB0'</code></li>
     </ul>
+
+    <p>There is a pleathora amount of free resources on the internet, where these palettes can be generated to be imported into Pura Tela. Among my favourite are the web application <strong>Coolors</strong> and any <i>Large Language Model</i> of your choice.</p>
 
     <h3>Sharing</h3>
     <p>To restore the exact preset of settings for the <code>Wallpaper Generator</code>, store the URL provided at the bottom of the page at a safe place and re-access. You are encourage to do so for either your own personal storage, or sharing with friends.</p>
