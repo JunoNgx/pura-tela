@@ -175,12 +175,17 @@
             top: 0;
             left: -100%;
             height: 100dvh;
-            min-width: 60vw;
+            min-width: 65vw;
             padding: 3rem var(--outerPaddingMobile) 0;
             background-color: var(--colAcc);
             border-right: 1px solid var(--colPri);
             transition: left ease-in-out var(--transTimeFast);
         }
+
+        .Nav__Separator {
+            max-width: 15rem;
+        }
+
 
         .Nav--IsExpanded {
             .Nav__Content {
