@@ -113,7 +113,7 @@ input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    vertical-align: bottom;
+    vertical-align: middle;
     background: transparent;
     height: var(--sizeCheckbox);
     width: var(--sizeCheckbox);
