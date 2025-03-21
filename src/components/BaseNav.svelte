@@ -47,7 +47,7 @@
     </button>
 
     <nav class="Nav__Content">
-        <AppLogo/>
+        <AppLogo isMono={true}/>
 
         <hr class="Nav__Separator">
 
