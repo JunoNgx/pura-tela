@@ -49,10 +49,10 @@
 }
 
 :root[data-theme-mode="light"] {
-    --colPri: #000;
-    --colSec: #666;
-    --colBg: #FFF;
-    --colBg2: #F1F0F4;
+    --colPri: #232042;
+    --colSec: #678;
+    --colBg: #E4DCC1;
+    --colBg2: #E4DCC1;
 }
 
 :root[data-theme-mode="dark"] {
