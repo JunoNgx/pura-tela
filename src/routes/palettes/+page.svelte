@@ -27,4 +27,10 @@
     .PaletteRouteNotice {
         margin-bottom: 2rem;
     }
+
+    .ResetButton {
+        color: var(--colDanger);
+        margin-top: 2rem;
+        margin-left: auto;
+    }
 </style>
