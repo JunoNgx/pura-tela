@@ -70,7 +70,7 @@
         .MobileLogoWrapper {
             display: flex;
             justify-content: center;
-            margin-bottom: 3rem;
+            margin: 0.5rem 0 3rem;
         }
     }
 </style>
