@@ -13,21 +13,14 @@
     --transTimeFast: 0.2s;
     --outlineOffset: 3px;
 
+    /* Spacing variable */
+    --outerPaddingMobile: 1rem;
+
+    /* Constant values */
     --colDanger: #FF4647;
     --colWhite: #FFF;
     --colBlack: #000;
     --colBlackRgb: 0, 0, 0;
-
-    /* Default theme values */
-    --colPri: #232042;
-    --colSec: #778899;
-    --colAcc: #3AA8C1;
-    --colBg: #E4DCC1;
-    --colBg2: #C8C1A2;
-    --colNavSec: #445566;
-
-    /* Spacing variable */
-    --outerPaddingMobile: 1rem;
 
     /* Colour picker variables */
     --picker-width: 150px;
@@ -43,6 +36,14 @@
     --cp-text-color: var(--colPri);
     --cp-input-color: var(--colBg);
     --cp-button-hover-color: #555;
+
+    /* Default theme values */
+    --colPri: #232042;
+    --colSec: #778899;
+    --colAcc: #3AA8C1;
+    --colBg: #E4DCC1;
+    --colBg2: #C8C1A2;
+    --colNavSec: #445566;
 }
 
 :root[data-theme-mode="light"] {
