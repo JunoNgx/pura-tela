@@ -1,14 +1,13 @@
 .Card {
     padding: 1.5rem;
     background-color: var(--colBg);
-    /* box-shadow: 2px 4px 8px 0px rgba(0, 0, 0, 0.1); */
     border: 3px solid var(--colPri);
 }
 
 @media screen and (width < 850px) {
     .Card {
         padding: var(--outerPaddingMobile);
-        box-shadow: none;
+        border: none;
     }
 }
 
