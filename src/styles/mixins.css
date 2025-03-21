@@ -119,6 +119,7 @@
 
 .SplitBtn .SplitBtn__Pri {
     white-space: nowrap;
+    border-right-width: 0;
 }
 
 .SplitBtn .SplitBtn__Sec {
@@ -129,7 +130,6 @@
 .SplitBtn .SplitBtn__Sec .SplitBtn__SecBtn {
     width: 100%;
     height: 100%;
-    border-left: none;
 }
 
 .SplitBtn--IsPri .SplitBtn__Pri,
