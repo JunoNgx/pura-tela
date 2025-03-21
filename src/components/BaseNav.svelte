@@ -102,11 +102,10 @@
     }
 
     .Nav__Separator {
-        /* flex-grow: 1; */
         width: 100%;
         margin: 0 0 1rem;
-        border: 1px solid var(--colNavPri);
-        background-color: var(--colNavPri);
+        border: 1px solid var(--colNavSec);
+        background-color: var(--colNavSec);
     }
 
     .Nav__Router {
