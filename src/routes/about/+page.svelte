@@ -27,6 +27,10 @@
 </article>
 
 <style>
+    h3 {
+        margin: 2rem 0 1rem;
+    }
+
     .HelpArticle__Logo {
         max-width: 256px;
         display: block;

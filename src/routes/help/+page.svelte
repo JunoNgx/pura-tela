@@ -72,3 +72,9 @@
     <p>For questions, bug reports, suggestions, and contributions, please create an issue in the <a href="https://github.com/JunoNgx/pura-tela/" target="_blank" rel="noopener noreferrer">project's repository on GitHub</a>.</p>
 
 </article>
+
+<style>
+    h3 {
+        margin: 2rem 0 1rem;
+    }
+</style>
