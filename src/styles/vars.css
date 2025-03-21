@@ -31,7 +31,7 @@
     --picker-indicator-size: 8px;
     --picker-z-index: 10;
 
-    --cp-bg-color: var(--colBg);
+    --cp-bg-color: var(--colBg2);
     --cp-border-color: var(--colPri);
     --cp-text-color: var(--colPri);
     --cp-input-color: var(--colBg);
