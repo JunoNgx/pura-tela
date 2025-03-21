@@ -55,8 +55,7 @@
     --colBg: #E4DCC1;
     --colBg2: #E4DCC1;
 
-    --colNavPri: #fff;
-    --colNavSec: #DBDBDB;
+    --colNavSec: #555;
 }
 
 :root[data-theme-mode="dark"] {

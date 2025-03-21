@@ -21,7 +21,7 @@
         max-width: fit-content;
         text-decoration: none;
         transition: margin ease-in-out var(--transTimeFast);
-        color: var(--colNavPri);
+        color: var(--colPri);
     }
 
     .NavItem__Background {
@@ -29,7 +29,7 @@
         right: 0;
         height: 100%;
         width: 0;
-        background-color: var(--colNavPri);
+        background-color: var(--colPri);
         transition: width ease-in-out var(--transTimeFast);
     }
 

@@ -85,7 +85,7 @@
         top: 1rem;
         z-index: 50;
         padding: 1.5rem;
-        color: var(--colNavPri);
+        color: var(--colPri);
         background-color: var(--colAcc);
     }
 
@@ -104,8 +104,8 @@
     .Nav__Separator {
         width: 100%;
         margin: 0 0 1rem;
-        border: 1px solid var(--colNavSec);
-        background-color: var(--colNavSec);
+        border: 1px solid var(--colPri);
+        background-color: var(--colPri);
     }
 
     .Nav__Router {
