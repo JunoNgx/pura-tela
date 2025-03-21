@@ -106,10 +106,10 @@
     .SizeInput__MainContent {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         flex-wrap: wrap;
-        gap: 2rem;
+        gap: 4rem;
         margin: 1rem 0;
     }
 
