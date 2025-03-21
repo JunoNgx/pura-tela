@@ -117,6 +117,7 @@
     }
 
     .PalGenItem__HexCode {
+        font-family: var(--fontFamilyMono);
         padding: 0.25rem;
         color: var(--colWhite);
         background-color: rgba(var(--colBlackRgb), 0.5);
