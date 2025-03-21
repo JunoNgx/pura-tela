@@ -64,7 +64,7 @@
     .SizeItem__PreviewContainer {
         aspect-ratio: 1;
         max-width: 100%;
-        background-color: var(--colSizeBg);
+        background-color: var(--colBg2);
         padding: 2rem;
         display: grid;
         place-items: center;
@@ -73,7 +73,7 @@
     .SizeItem__PreviewScreen {
         width: 100%;
         height: auto;
-        background-color: var(--colSizeScreen);
+        background-color: var(--colPri);
     }
 
     .SizeItem__PreviewScreen--IsPortraitMode {
@@ -102,6 +102,7 @@
         width: 3rem;
         height: 3rem;
         margin-right: 0.25rem;
+        background-color: var(--colAcc);
     }
     
     @media screen and (width < 850px) {
