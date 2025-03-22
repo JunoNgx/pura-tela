@@ -3,6 +3,8 @@
     import MaterialSymbolsLightColorizeOutline from '~icons/material-symbols-light/colorize-outline';
     import MaterialSymbolsLightDelete from '~icons/material-symbols-light/delete';
     import MaterialSymbolsLightDeleteOutline from '~icons/material-symbols-light/delete-outline';
+    import MaterialSymbolsLightContentCopy from "~icons/material-symbols-light/content-copy";
+    import MaterialSymbolsLightContentCopyOutline from "~icons/material-symbols-light/content-copy-outline";
     import MaterialSymbolsLightPalette from "~icons/material-symbols-light/palette";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
 
@@ -11,6 +13,7 @@
 	import type { PaletteItem } from 'src/lib/types.js';
 	import { deletePaletteAtIndex, passPaletteToWallpaperGenerator } from 'src/states/paletteGalleryState.svelte.js';
 	import { passPaletteToPaletteGenerator } from 'src/states/palGenState.svelte.js';
+	import { HAS_COPY_TIMEOUT_DURATION_MS } from 'src/lib/constants.js';
 
     type PaletteListItemProps = {
         paletteItem: PaletteItem,
@@ -18,6 +21,8 @@
     };
 
     let { paletteItem, index }: PaletteListItemProps = $props();
+    let hasBeenCopied = $state(false);
+    let copyRestoreStatusTimeout: number | undefined = $state();
 
     const handleChoosePalette = () => {
         passPaletteToWallpaperGenerator(index);
@@ -32,6 +37,20 @@
     const handleDeletePalette = () => {
         deletePaletteAtIndex(index)
     };
+
+    const handleCopyPaletteString = async () => {
+        try {
+            const strContent = paletteItem.colours.join("-");
+            await navigator.clipboard.writeText(strContent);
+            hasBeenCopied = true;
+
+            copyRestoreStatusTimeout = setTimeout(() => {
+                hasBeenCopied = false;
+            }, HAS_COPY_TIMEOUT_DURATION_MS);
+        } catch(error) {
+            throw new Error("Unable to copy colour code to clipboard")
+        }
+    };
 </script>
 
 <ul class="PaletteListItem">
@@ -42,7 +61,13 @@
     </div>
     <div class="PaletteListItem__Footer">
         <div class="PaletteListItem__Name">
-            {paletteItem.name}
+            <div class="ColourListItem__Title">
+                {#if hasBeenCopied}
+                    Copied
+                {:else}
+                    {paletteItem.name}
+                {/if}
+            </div>
         </div>
 
         <div class="PaletteListItem__Buttons">
@@ -71,6 +96,19 @@
                 </div>
                 <div class="IconButton__HoverIcon">
                     <MaterialSymbolsLightPalette/>
+                </div>
+            </button>
+
+            <button class="ColourListItem__ActionBtn IconButton"
+                onclick={handleCopyPaletteString}
+                title={"Copy this hex colour code"}
+                aria-label="Copy this hex colour code"
+            >       
+                <div class="IconButton__RegularIcon">
+                    <MaterialSymbolsLightContentCopyOutline/>
+                </div>
+                <div class="IconButton__HoverIcon">
+                    <MaterialSymbolsLightContentCopy/>
                 </div>
             </button>
 
@@ -114,5 +152,9 @@
         align-items: center;
         gap: 0.5rem;
         flex-grow: 1;
+    }
+
+    .PaletteListItem__Buttons {
+        display: flex;
     }
 </style>
