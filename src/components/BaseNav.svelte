@@ -46,8 +46,8 @@
         <MaterialSymbolsLightViewSidebarOutlineSharp/>
     </button>
 
-    <nav class="Nav__Content Card">
-        <AppLogo/>
+    <nav class="Nav__Content">
+        <AppLogo isMono={true}/>
 
         <hr class="Nav__Separator">
 
@@ -84,6 +84,10 @@
         position: sticky;
         top: 1rem;
         z-index: 50;
+        padding: 1.5rem;
+        color: var(--colPri);
+        background-color: var(--colAcc);
+        box-shadow: 4px 4px 8px 0px rgba(0, 0, 0, 0.1);
     }
 
     .Nav__Content {
@@ -99,9 +103,10 @@
     }
 
     .Nav__Separator {
-        /* flex-grow: 1; */
         width: 100%;
         margin: 0 0 1rem;
+        border: 1px solid var(--colPri);
+        background-color: var(--colPri);
     }
 
     .Nav__Router {
@@ -113,7 +118,7 @@
     }
 
     .Nav__CategoryTitle {
-        color: var(--colSec);
+        color: var(--colPri);
         text-transform: uppercase;
         align-self: flex-start;
         margin-top: 1rem;
@@ -124,6 +129,7 @@
             position: fixed;
             top: 0;
             overflow: visible;
+            padding: 0;
         }
 
         .Nav__OverlayBg {
@@ -146,14 +152,14 @@
             position: fixed;
             bottom: 1.5rem;
             left: 1.5rem;
-            background-color: var(--colBrand1);
+            background-color: var(--colAcc);
             width: 3rem;
             height: 3rem;
             font-size: 32px;
         }
 
         .Nav__OpenSidebarBtn:hover {
-            background-color: var(--colBrand1);
+            background-color: var(--colAcc);
         }
 
         .Nav__CloseSidebarBtn {
@@ -169,12 +175,16 @@
             top: 0;
             left: -100%;
             height: 100dvh;
-            min-width: 60vw;
-            padding-top: 3rem;
-            padding-bottom: 0;
-            border-right: 1px solid var(--colPri);
+            min-width: 65vw;
+            padding: 3rem var(--outerPaddingMobile) 0;
+            background-color: var(--colAcc);
             transition: left ease-in-out var(--transTimeFast);
         }
+
+        .Nav__Separator {
+            max-width: 15rem;
+        }
+
 
         .Nav--IsExpanded {
             .Nav__Content {

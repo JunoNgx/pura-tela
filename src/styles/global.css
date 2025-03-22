@@ -8,11 +8,18 @@
 	src: url("/GeistMono.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Inclusive Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/InclusiveSans-VariableFont_wght.ttf") format("truetype");
+}
+
 html {
     accent-color: var(--colPri);
     font-family: var(--fontFamily);
     font-size: var(--fontSizeMd);
-    background-color: var(--colBg2);
+    background-color: var(--colBg);
     color: var(--colPri);
 
     scrollbar-gutter: stable both-edges;
@@ -37,7 +44,7 @@ body {
 
 :focus-visible {
     outline-offset: var(--outlineOffset);
-    outline: 1px solid var(--colPri);
+    outline: var(--lineWeight) solid var(--colPri);
 }
 
 a {
@@ -60,7 +67,7 @@ button {
     color: var(--colPri);
     background-color: transparent;
     border-radius: 0;
-    border: var(--lineThickness) solid var(--colPri);
+    border: var(--lineWeight) solid var(--colPri);
     font-size: var(--fontSizeMd);
     padding: 0.5rem 1rem;
     -webkit-tap-highlight-color: transparent;
@@ -78,22 +85,28 @@ button:disabled:hover {
     cursor: not-allowed;
     color: var(--colSec);
     border-color: var(--colSec);
+    background-color: transparent;
+}
+
+button,
+label {
+    text-transform: lowercase;
 }
 
 input {
-    font-family: var(--fontFamily);
+    font-family: var(--fontFamilyMono);
     font-size: var(--fontSizeMd);
     color: var(--colPri);
     background-color: transparent;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid var(--colPri);
+    border-bottom: var(--lineWeight) solid var(--colPri);
 }
 
 input:focus {
     border: none;
-    border-bottom: 1px solid var(--colPri);
-    outline: 1px solid var(--colPri);
+    border-bottom: var(--lineWeight) solid var(--colPri);
+    outline: var(--lineWeight) solid var(--colPri);
     outline-offset: var(--outlineOffset);
 }
 
@@ -101,11 +114,11 @@ input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    vertical-align: bottom;
+    vertical-align: middle;
     background: transparent;
     height: var(--sizeCheckbox);
     width: var(--sizeCheckbox);
-    border: 1px solid var(--colPri);
+    border: var(--lineWeight) solid var(--colPri);
 }
   
 input[type="checkbox"]:checked {
@@ -153,7 +166,7 @@ select {
     font-size: var(--fontSizeMd);
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid var(--colPri);
+    border-bottom: var(--lineWeight) solid var(--colPri);
     background-color: transparent;
     color: var(--colPri);
     cursor: pointer;
@@ -161,7 +174,7 @@ select {
 
 select:focus {
     outline-offset: var(--outlineOffset);
-    outline: 1px solid var(--colPri);
+    outline: var(--lineWeight) solid var(--colPri);
 }
 
 label {
@@ -176,8 +189,18 @@ h1 {
     margin: 0;
 }
 
+h2,
 h3 {
     margin: 0;
+    text-transform: uppercase;
+}
+
+code {
+    font-family: var(--fontFamilyMono);
+    font-size: 15px;
+    padding: 0 0.25rem;
+    background-color: var(--colBg2);
+    border-radius: 0.2rem;
 }
 
 dialog {

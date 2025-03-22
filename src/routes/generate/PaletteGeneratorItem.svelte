@@ -117,6 +117,7 @@
     }
 
     .PalGenItem__HexCode {
+        font-family: var(--fontFamilyMono);
         padding: 0.25rem;
         color: var(--colWhite);
         background-color: rgba(var(--colBlackRgb), 0.5);
@@ -144,6 +145,10 @@
         display: grid;
         place-items: center;
         cursor: grab;
+    }
+
+    .PalGenItem__DragHandle:hover {
+        color: var(--colWhite);
     }
 
     :global(.PalGenItem__PickerContainer .color-picker label) {

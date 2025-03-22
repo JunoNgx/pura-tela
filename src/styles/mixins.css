@@ -1,13 +1,13 @@
 .Card {
     padding: 1.5rem;
     background-color: var(--colBg);
-    box-shadow: 2px 4px 8px 0px rgba(0, 0, 0, 0.1);
+    border: 3px solid var(--colPri);
 }
 
 @media screen and (width < 850px) {
     .Card {
         padding: var(--outerPaddingMobile);
-        box-shadow: none;
+        border: none;
     }
 }
 
@@ -18,14 +18,22 @@
 
 .VisuallyHidden {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    width: var(--lineWeight);
+    height: var(--lineWeight);
     padding: 0;
-    margin: -1px;
+    margin: -var(--lineWeight);
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+
+.H2WithMargin {
+    margin-bottom: 2rem;
+}
+
+.RouteInstruction {
+    margin: 1rem 0;
 }
 
 .Error,
@@ -83,7 +91,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    border: 1px solid var(--colPri);
+    border: var(--lineWeight) solid var(--colPri);
 }
 
 .IconButtonWithLabel:hover {
@@ -96,7 +104,7 @@
     margin: 1rem;
     color: var(--colPri);
     background-color: var(--colBg);
-    border: 1px solid var(--colPri);
+    border: var(--lineWeight) solid var(--colPri);
     padding: 3rem 2rem 2rem;
 }
 
@@ -110,6 +118,18 @@
     place-items: center;
 }
 
+.PriBtn {
+    color: var(--colPri);
+    background-color: var(--colAcc);
+    border-color: var(--colAcc);
+}
+
+.PriBtn:hover {
+    color: var(--colBg);
+    background-color: var(--colPri);
+    border-color: var(--colPri);
+}
+
 .SplitBtn {
     display: flex;
     flex-direction: row;
@@ -119,6 +139,7 @@
 
 .SplitBtn .SplitBtn__Pri {
     white-space: nowrap;
+    border-right-width: 0;
 }
 
 .SplitBtn .SplitBtn__Sec {
@@ -129,13 +150,12 @@
 .SplitBtn .SplitBtn__Sec .SplitBtn__SecBtn {
     width: 100%;
     height: 100%;
-    border-left: none;
 }
 
 .SplitBtn--IsPri .SplitBtn__Pri,
 .SplitBtn--IsPri .SplitBtn__Sec .SplitBtn__SecBtn {
-    background-color: var(--colBrand1);
-    border-color: var(--colBrand1);
+    background-color: var(--colAcc);
+    border-color: var(--colAcc);
 }
 
 .SplitBtn--IsPri .SplitBtn__Pri:hover,
@@ -147,5 +167,5 @@
 
 .SplitBtn--IsPri .SplitBtn__Pri,
 .SplitBtn--IsPri .SplitBtn__Pri:hover {
-    border-right: 1px solid var(--colPri);
+    border-right: var(--lineWeight) solid var(--colPri);
 }

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { onDestroy } from "svelte";
+    import { onDestroy } from "svelte";
+	import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
 
     let { colourItem } = $props();
     let hasBeenCopied = $state(false);
@@ -12,7 +13,7 @@
 
             copyRestoreStatusTimeout = setTimeout(() => {
                 hasBeenCopied = false;
-            }, 1000);
+            }, HAS_COPY_TIMEOUT_DURATION_MS);
         } catch(error) {
             throw new Error("Unable to copy colour code to clipboard")
         }
@@ -59,8 +60,10 @@
     }
 
     .PaletteListColourBtn__Label {
+        font-family: var(--fontFamilyMono);
         opacity: 0;
         transition: all var(--transTimeFast) ease-in-out;
+        text-transform: uppercase;
     }
 
     .PaletteListColourBtn__CopiedNotice {

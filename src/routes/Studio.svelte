@@ -105,7 +105,7 @@
                     </label>
                 </div>
 
-                <button class="Studio_DownloadBtn"
+                <button class="Studio_DownloadBtn PriBtn"
                     onclick={handleDownloadClick}
                     aria-label="Download"
                 >
@@ -127,7 +127,7 @@
 
     <SharePanel
         title="Share this wallpaper"
-        desc="Access this url to retrieve the same wallpaper settings."
+        desc="Save this as a bookmark, or share your creation with someone. Access this url to retrieve the current wallpaper settings."
         content={computeShareableUrl()}
     />
 </div>
@@ -152,7 +152,7 @@
 
     .Studio__PreviewBlock {
         height: auto;
-        border: 1px solid var(--colPri);
+        border: var(--lineWeight) solid var(--colPri);
         box-sizing: border-box;
         overflow: hidden;
 
@@ -210,15 +210,6 @@
     .Studio_DownloadBtn {
         padding: 1rem 2rem;
         display: block;
-        color: var(--colPri);
-        background-color: var(--colBrand1);
-        border-color: var(--colBrand1);
-    }
-
-    .Studio_DownloadBtn:hover {
-        color: var(--colBg);
-        background-color: var(--colPri);
-        border-color: var(--colBg);
     }
 
     @media screen and (width < 850px) {

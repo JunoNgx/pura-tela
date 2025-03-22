@@ -58,13 +58,13 @@
     .SizeItem {
         list-style: none;
         min-width: 150px;
-        border-bottom: 1px solid var(--colPri);
+        border-bottom: var(--lineWeight) solid var(--colPri);
     }
 
     .SizeItem__PreviewContainer {
         aspect-ratio: 1;
         max-width: 100%;
-        background-color: var(--colSizeBg);
+        background-color: var(--colBg2);
         padding: 2rem;
         display: grid;
         place-items: center;
@@ -73,7 +73,7 @@
     .SizeItem__PreviewScreen {
         width: 100%;
         height: auto;
-        background-color: var(--colSizeScreen);
+        background-color: var(--colPri);
     }
 
     .SizeItem__PreviewScreen--IsPortraitMode {
@@ -94,6 +94,7 @@
     }
 
     .SizeItem__SizeInfo {
+        font-family: var(--fontFamilyMono);
         margin: 0.5rem 0 0.5rem 0.25rem;
     }
 
@@ -102,6 +103,7 @@
         width: 3rem;
         height: 3rem;
         margin-right: 0.25rem;
+        background-color: var(--colAcc);
     }
     
     @media screen and (width < 850px) {
@@ -110,7 +112,7 @@
         }
     }
 
-    @media screen and (width < 375px) {
+    @media screen and (width < 420px) {
         .SizeList {
             grid-template-columns: 1fr;
         }

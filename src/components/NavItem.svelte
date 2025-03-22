@@ -21,6 +21,7 @@
         max-width: fit-content;
         text-decoration: none;
         transition: margin ease-in-out var(--transTimeFast);
+        color: var(--colPri);
     }
 
     .NavItem__Background {
@@ -44,7 +45,7 @@
     .NavItem--IsActive {
         .NavItem__Text {
             padding: 0.25rem;
-            color: var(--colBg);
+            color: var(--colAcc);
         }
 
         .NavItem__Background {
