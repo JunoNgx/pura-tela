@@ -153,4 +153,8 @@
         gap: 0.5rem;
         flex-grow: 1;
     }
+
+    .PaletteListItem__Buttons {
+        display: flex;
+    }
 </style>
