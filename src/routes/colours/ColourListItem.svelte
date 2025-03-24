@@ -64,16 +64,16 @@
         style={`background-color: #${colourItem.hexCode};`}
     >
         <div class="ColourListItem__Title">
-            {#if hasBeenCopied}
-                Copied
-            {:else}
-                {colourItem.name}
-            {/if}
+            {colourItem.name}
         </div>
     </div>
     <div class="ColourListItem__Footer">
         <div class="ColourListItem__Subtitle">
-            {`#${colourItem.hexCode}`}
+            {#if hasBeenCopied}
+                Copied
+            {:else}
+                {`#${colourItem.hexCode}`}
+            {/if}
         </div>
         <div class="ColourListItem__Buttons">
             <button class="ColourListItem__ActionBtn
