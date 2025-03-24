@@ -72,7 +72,7 @@
             {#if hasBeenCopied}
                 Copied
             {:else}
-                {`#${colourItem.hexCode}`}
+                {colourItem.hexCode}
             {/if}
         </div>
         <div class="ColourListItem__Buttons">
