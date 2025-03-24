@@ -152,6 +152,7 @@
         align-items: center;
         gap: 0.5rem;
         flex-grow: 1;
+        padding: 0.5rem 0;
     }
 
     .PaletteListItem__Buttons {

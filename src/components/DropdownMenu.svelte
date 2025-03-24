@@ -23,7 +23,7 @@
     let { actionItems, isSplitBtnPart }: DropdownProps = $props();
     let isOpen = $state(false);
     let buttonEl: HTMLButtonElement;
-    let menuEl: HTMLUListElement;
+    let menuEl: HTMLUListElement | undefined = $state();
     const defaultPosition: DropdownPosition = "bottom-left";
     let position: DropdownPosition = $state(defaultPosition);
 
