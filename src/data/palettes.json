@@ -46,5 +46,9 @@
     {
         "name": "1976 soft",
         "colours": ["584053", "8dc6bf", "fcbc66", "f97b4f"]
+    },
+    {
+        "name": "Pale moon",
+        "colours": ["1d1d2c", "2c8780", "b2cac9", "e8f2f5", "72f1dc"]
     }
 ]
