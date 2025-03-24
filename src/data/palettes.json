@@ -60,6 +60,10 @@
         "colours": ["22073e", "6f3698", "21b2e4", "edebda", "efb24c"]
     },
     {
+        "name": "Pop Art",
+        "colours": ["E0EA2D", "4FC0AD", "025C6A", "A5547F", "F32C7E"]
+    },
+    {
         "name": "Moss",
         "colours": ["58b09c", "deefb7", "98dfaf", "386150", "caf7e2"]
     },
