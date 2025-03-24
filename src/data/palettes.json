@@ -66,5 +66,17 @@
     {
         "name": "Haze",
         "colours": ["22073e", "6f3698", "21b2e4", "edebda", "efb24c"]
+    },
+    {
+        "name": "Vilebloom",
+        "colours": ["f8b195", "f67280", "c06c84", "6c5b7b", "355c7d"]
+    },
+    {
+        "name": "Revival",
+        "colours": ["99b898", "fecea8", "ff847c", "e84a5f", "2a363b"]
+    },
+    {
+        "name": "Gladetown",
+        "colours": ["e5eec1", "a2d4ab", "3eaca8", "547a82", "5a5050"]
     }
 ]
