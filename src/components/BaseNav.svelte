@@ -176,7 +176,7 @@
             left: -100%;
             height: 100dvh;
             min-width: 65vw;
-            padding: 3rem var(--outerPaddingMobile) 0;
+            padding: 3rem 1.5rem 0;
             background-color: var(--colAcc);
             transition: left ease-in-out var(--transTimeFast);
         }
