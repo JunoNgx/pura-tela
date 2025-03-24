@@ -1,5 +1,45 @@
 [
     {
+        "name": "Vilebloom",
+        "colours": ["f8b195", "f67280", "c06c84", "6c5b7b", "355c7d"]
+    },
+    {
+        "name": "Revival",
+        "colours": ["99b898", "fecea8", "ff847c", "e84a5f", "2a363b"]
+    },
+    {
+        "name": "Gladetown",
+        "colours": ["e5eec1", "a2d4ab", "3eaca8", "547a82", "5a5050"]
+    },
+    {
+        "name": "1976",
+        "colours": ["674a40", "50a3a4", "fcaf38", "f95335"]
+    },
+    {
+        "name": "1976 soft",
+        "colours": ["584053", "8dc6bf", "fcbc66", "f97b4f"]
+    },
+    {
+        "name": "Pale moon",
+        "colours": ["1d1d2c", "2c8780", "b2cac9", "e8f2f5", "72f1dc"]
+    },
+    {
+        "name": "Marshmallow",
+        "colours": ["75485e", "b3978e", "d4e27f", "f3f3ea", "f9a9cf"]
+    },
+    {
+        "name": "Terra",
+        "colours": ["593c1a", "5a957c", "9fc5a5", "f0eee3", "cd8b3e"]
+    },
+    {
+        "name": "Expressive",
+        "colours": ["f3df24", "f9c9eb", "090f43", "2e2e1f", "f5f5e2"]
+    },
+    {
+        "name": "Haze",
+        "colours": ["22073e", "6f3698", "21b2e4", "edebda", "efb24c"]
+    },
+    {
         "name": "Moss",
         "colours": ["58b09c", "deefb7", "98dfaf", "386150", "caf7e2"]
     },
@@ -38,45 +78,5 @@
     {
         "name": "Pastel Retro",
         "colours": ["FFD1DC", "C79FEF", "B2B2F7", "A3E4D7", "F5E0A4", "F9B7B7", "D9A79F"]
-    },
-    {
-        "name": "1976",
-        "colours": ["674a40", "50a3a4", "fcaf38", "f95335"]
-    },
-    {
-        "name": "1976 soft",
-        "colours": ["584053", "8dc6bf", "fcbc66", "f97b4f"]
-    },
-    {
-        "name": "Pale moon",
-        "colours": ["1d1d2c", "2c8780", "b2cac9", "e8f2f5", "72f1dc"]
-    },
-    {
-        "name": "Marshmallow",
-        "colours": ["75485e", "b3978e", "d4e27f", "f3f3ea", "f9a9cf"]
-    },
-    {
-        "name": "Terra",
-        "colours": ["593c1a", "5a957c", "9fc5a5", "f0eee3", "cd8b3e"]
-    },
-    {
-        "name": "Expressive",
-        "colours": ["f3df24", "f9c9eb", "090f43", "2e2e1f", "f5f5e2"]
-    },
-    {
-        "name": "Haze",
-        "colours": ["22073e", "6f3698", "21b2e4", "edebda", "efb24c"]
-    },
-    {
-        "name": "Vilebloom",
-        "colours": ["f8b195", "f67280", "c06c84", "6c5b7b", "355c7d"]
-    },
-    {
-        "name": "Revival",
-        "colours": ["99b898", "fecea8", "ff847c", "e84a5f", "2a363b"]
-    },
-    {
-        "name": "Gladetown",
-        "colours": ["e5eec1", "a2d4ab", "3eaca8", "547a82", "5a5050"]
     }
 ]
