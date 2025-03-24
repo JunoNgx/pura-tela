@@ -68,6 +68,7 @@
         padding: 2rem;
         display: grid;
         place-items: center;
+        border: var(--lineWeight) solid var(--colPri);
     }
 
     .SizeItem__PreviewScreen {

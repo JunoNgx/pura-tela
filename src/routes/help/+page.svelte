@@ -32,7 +32,7 @@
 
     <p>The output size (width and height) of <strong>Wallpaper Generator</strong> can be adjusted at the bottom of the panel. While these can be fine tune as you want or need, the <strong>Size Gallery</strong> provides a list of common presets to get you started.</p>
 
-    <p>In the event of doubt, the preset <code>Mobile</code> and <code>Desktop 2K</code> are applicable to the overwhelming amount of cases.</p>
+    <p>The device-branded presets matter a lot less than you think. Most smartphones with the same form factor are able to share wallpapers with each oter well. In the event of doubt, the presets <code>Mobile 20:9</code> and <code>Desktop 16:9</code> are applicable to the overwhelming amount of cases.</p>
 
     <h3>Downloading</h3>
 

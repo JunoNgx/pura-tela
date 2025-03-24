@@ -136,6 +136,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        border: var(--lineWeight) solid var(--colPri);
     }
 
     .ColourListItem__Title {
