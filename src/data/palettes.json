@@ -58,5 +58,9 @@
     {
         "name": "Terra",
         "colours": ["593c1a", "5a957c", "9fc5a5", "f0eee3", "cd8b3e"]
+    },
+    {
+        "name": "Expressive",
+        "colours": ["f3df24", "f9c9eb", "090f43", "2e2e1f", "f5f5e2"]
     }
 ]
