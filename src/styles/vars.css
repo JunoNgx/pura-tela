@@ -1,6 +1,6 @@
 :root {
     --fontFamily: "Inclusive Sans", system-ui, sans-serif;
-    --fontFamilyMono: "Geist Mono", monospace;
+    --fontFamilyMono: "Source Code Pro", monospace;
     --fontSizeXs: 12px;
     --fontSizeSm: 14px;
     --fontSizeMd: 16px;
