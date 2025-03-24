@@ -16,7 +16,7 @@ This is a spin-off/enhanced remake of [Pura](https://github.com/JunoNgx/flutter-
 - Progressive Web App deployment
 
 ## Deployment
-The project is deployed at [pura.blue](https://pura.blue) and [pura-tela.vercel.app](https://pura-tela.vercel.app/) via Vercel.
+This particular version of the app is permanently deployed at [pura-tela-prime.vercel.app](https://pura-tela-prime.vercel.app/) for archiving purpose. The latest stable version can be found at [pura-tela.vercel.app](https://pura-tela.vercel.app/).
 
 ## Tech Stack
 The application is made with a minimal stack, including **SvelteKit 5** and **TypeScript**. No CSS preprocessor is used. [Svelte Awesome Color Picker](https://svelte-awesome-color-picker.vercel.app/) is used to supplement the user interface.
