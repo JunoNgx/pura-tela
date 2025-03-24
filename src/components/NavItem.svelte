@@ -8,27 +8,49 @@
     class:NavItem--IsActive={ route === page.url.pathname }
     href={route}
 >
-    {label}
+    <div class="NavItem__Background"></div>
+    <span class="NavItem__Text">
+        {label}
+    </span>
 </a>
 
 <style>
     .NavItem {
-        flex-grow: 10;
+        position: relative;
         display: block;
-        text-align: center;
-        padding: 0.5rem;
-        padding-top: 1rem;
-        border-bottom: 0.25rem solid transparent;
+        max-width: fit-content;
+        text-decoration: none;
+        transition: margin ease-in-out var(--transTimeFast);
+        color: var(--colPri);
     }
 
-    .NavItem {
-        text-decoration: none;
-        transition: border ease-in-out var(--transTime);
+    .NavItem__Background {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        width: 0;
+        background-color: var(--colPri);
+        transition: width ease-in-out var(--transTimeFast);
+    }
+
+    .NavItem__Text {
+        display: block;
+        padding: 0.25rem 0;
+        position: relative;
+        transition: color ease-in-out var(--transTimeFast),
+            padding ease-in-out var(--transTimeFast);
     }
 
     .NavItem:hover,
     .NavItem--IsActive {
-        border-bottom-color: var(--colPri);
+        .NavItem__Text {
+            padding: 0.25rem;
+            color: var(--colAcc);
+        }
+
+        .NavItem__Background {
+            width: 100%;
+        }
     }
 
 </style>

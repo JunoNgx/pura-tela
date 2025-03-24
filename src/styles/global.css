@@ -1,4 +1,5 @@
 @import "src/styles/vars.css";
+@import "src/styles/mixins.css";
 
 @font-face {
 	font-family: "Geist Mono";
@@ -7,14 +8,25 @@
 	src: url("/GeistMono.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "Inclusive Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/InclusiveSans-VariableFont_wght.ttf") format("truetype");
+}
+
 html {
     accent-color: var(--colPri);
     font-family: var(--fontFamily);
     font-size: var(--fontSizeMd);
-    background-color: var(--colBg2);
+    background-color: var(--colBg);
     color: var(--colPri);
 
     scrollbar-gutter: stable both-edges;
+    scrollbar-width: thin;
+
+    transition: color ease-in-out var(--transTimeFast),
+        background-color ease-in-out var(--transTimeFast);
 }
 
 body {
@@ -32,7 +44,7 @@ body {
 
 :focus-visible {
     outline-offset: var(--outlineOffset);
-    outline: 1px solid var(--colPri);
+    outline: var(--lineWeight) solid var(--colPri);
 }
 
 a {
@@ -55,7 +67,7 @@ button {
     color: var(--colPri);
     background-color: transparent;
     border-radius: 0;
-    border: var(--lineThickness) solid var(--colPri);
+    border: var(--lineWeight) solid var(--colPri);
     font-size: var(--fontSizeMd);
     padding: 0.5rem 1rem;
     -webkit-tap-highlight-color: transparent;
@@ -68,20 +80,33 @@ button:hover {
     background-color: var(--colPri);
 }
 
+button:disabled,
+button:disabled:hover {
+    cursor: not-allowed;
+    color: var(--colSec);
+    border-color: var(--colSec);
+    background-color: transparent;
+}
+
+button,
+label {
+    text-transform: lowercase;
+}
+
 input {
-    font-family: var(--fontFamily);
+    font-family: var(--fontFamilyMono);
     font-size: var(--fontSizeMd);
     color: var(--colPri);
     background-color: transparent;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid var(--colPri);
+    border-bottom: var(--lineWeight) solid var(--colPri);
 }
 
 input:focus {
     border: none;
-    border-bottom: 1px solid var(--colPri);
-    outline: 1px solid var(--colPri);
+    border-bottom: var(--lineWeight) solid var(--colPri);
+    outline: var(--lineWeight) solid var(--colPri);
     outline-offset: var(--outlineOffset);
 }
 
@@ -89,11 +114,11 @@ input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    vertical-align: bottom;
+    vertical-align: middle;
     background: transparent;
     height: var(--sizeCheckbox);
     width: var(--sizeCheckbox);
-    border: 1px solid var(--colPri);
+    border: var(--lineWeight) solid var(--colPri);
 }
   
 input[type="checkbox"]:checked {
@@ -141,7 +166,7 @@ select {
     font-size: var(--fontSizeMd);
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid var(--colPri);
+    border-bottom: var(--lineWeight) solid var(--colPri);
     background-color: transparent;
     color: var(--colPri);
     cursor: pointer;
@@ -149,7 +174,7 @@ select {
 
 select:focus {
     outline-offset: var(--outlineOffset);
-    outline: 1px solid var(--colPri);
+    outline: var(--lineWeight) solid var(--colPri);
 }
 
 label {
@@ -164,68 +189,72 @@ h1 {
     margin: 0;
 }
 
+h2,
 h3 {
     margin: 0;
+    text-transform: uppercase;
 }
 
-.VisuallyHidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+code {
+    font-family: var(--fontFamilyMono);
+    font-size: 15px;
+    padding: 0 0.25rem;
+    background-color: var(--colBg2);
+    border-radius: 0.2rem;
 }
 
-@media screen and (width < 600px) {
+dialog {
+    background-color: transparent;
+    border: none;
+}
+
+dialog::backdrop {
+    background-color: rgba(var(--colBlackRgb), 0.75);
+    backdrop-filter: blur(10px);
+}
+
+dialog[open] {
+    animation: DialogOpen var(--transTimeFast) ease-in-out;
+}
+
+dialog[open]::backdrop {
+    animation: DialogBackDropFadeIn var(--transTimeFast) ease-in-out;
+}
+
+@keyframes DialogOpen {
+    from {
+        opacity: 0;
+        transform: translateY(2rem);
+    } to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes DialogBackdropFadeIn {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+@media screen and (width < 850px) {
     html {
         background-color: var(--colBg);
     }
 }
 
-.IconButton {
-    position: relative;
-    font-size: var(--fontSizeIconBtn);
-    padding: 0.25rem;
-    line-height: 0;
-    user-select: none;
-    border: none;
-    width: 2rem;
-    height: 2rem;
+/* Colour picker customisation */
 
-    .IconButton__RegularIcon,
-    .IconButton__HoverIcon {
-        position: absolute;
-        top: 0.25rem;
-        transition: all ease-in-out var(--transTime);
-    }
-
-    .IconButton__RegularIcon {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .IconButton__HoverIcon {
-        visibility: hidden;
-        opacity: 0;
-    }
+.color-picker .color,
+.color-picker .picker,
+.color-picker .track,
+.color-picker input,
+.color-picker button {
+    border-radius: 0 !important;
 }
 
-.IconButton:hover {
-    color: var(--colPri);
-    background-color: transparent;
-
-    .IconButton__RegularIcon {
-        visibility: hidden;
-        opacity: 0;
-    }
-
-    .IconButton__HoverIcon {
-        visibility: visible;
-        opacity: 1;
-    }
-    
+.color-picker .wrapper {
+    border-radius: 0 !important;
 }
