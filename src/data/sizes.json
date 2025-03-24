@@ -48,5 +48,15 @@
         "name": "Square",
         "width": "1920",
         "height": "1920"
+    },
+    {
+        "name": "Pixel Fold",
+        "width": "2208",
+        "height": "1840"
+    },
+    {
+        "name": "Fold 4",
+        "width": "2176",
+        "height": "1812"
     }
 ]
