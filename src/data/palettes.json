@@ -62,5 +62,9 @@
     {
         "name": "Expressive",
         "colours": ["f3df24", "f9c9eb", "090f43", "2e2e1f", "f5f5e2"]
+    },
+    {
+        "name": "Haze",
+        "colours": ["22073e", "6f3698", "21b2e4", "edebda", "efb24c"]
     }
 ]
