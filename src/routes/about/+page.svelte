@@ -26,6 +26,7 @@
     <p>The project was developed with a minimal stack of tools, including <a href="https://svelte.dev/" target="_blank" rel="noopener noreferrer">SvelteKit</a>, TypeScript, <a href="https://svelte-awesome-color-picker.vercel.app/" target="_blank" rel="noopener noreferrer">Svelte Awesome Color Picker</a>, and <a href="https://github.com/isaacHagoel/svelte-dnd-action/" target="_blank" rel="noopener noreferrer">Svelte Dnd Action</a>.</p>
 
     <h3>Acknowledgement</h3>
+    <p>This project uses <a href="https://www.oliviaking.com/inclusivesans/feature" target="_blank" rel="noopener noreferrer">Inclusive Sans by Olivia King</a> as the primary font.</p>
     <p>Several palettes from the initial gallery are from <a href="https://colours.cafe/" target="_blank" rel="noopener noreferrer">colours.cafe</a> and <a href="https://www.behance.net/gallery/32154055/Minimalist-Color-Palettes-2015" target="_blank" rel="noopener noreferrer">Dumma Branding</a>. Give them a follow; you can import their new palettes here!</p>
 </article>
 
