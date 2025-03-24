@@ -12,6 +12,22 @@
         "colours": ["e5eec1", "a2d4ab", "3eaca8", "547a82", "5a5050"]
     },
     {
+        "name": "Lunawood",
+        "colours": ["a0d2eb", "e5eaf5", "d0bdf4", "8458b3", "494d5f"]
+    },
+    {
+        "name": "Lunawood Night",
+        "colours": ["726eff", "5affe7", "08c6ab", "37465b", "212b38"]
+    },
+    {
+        "name": "Sandbox",
+        "colours": ["ff1d58", "f75990", "fff685", "00ddff", "0049b7"]
+    },
+    {
+        "name": "Late February",
+        "colours": ["f09b93", "ebd6d7", "f9ebd9", "e9dd8a", "439093"]
+    },
+    {
         "name": "1976",
         "colours": ["674a40", "50a3a4", "fcaf38", "f95335"]
     },
