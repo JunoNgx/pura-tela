@@ -50,5 +50,9 @@
     {
         "name": "Pale moon",
         "colours": ["1d1d2c", "2c8780", "b2cac9", "e8f2f5", "72f1dc"]
+    },
+    {
+        "name": "Marshmallow",
+        "colours": ["75485e", "b3978e", "d4e27f", "f3f3ea", "f9a9cf"]
     }
 ]
