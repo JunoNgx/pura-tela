@@ -54,5 +54,9 @@
     {
         "name": "Marshmallow",
         "colours": ["75485e", "b3978e", "d4e27f", "f3f3ea", "f9a9cf"]
+    },
+    {
+        "name": "Terra",
+        "colours": ["593c1a", "5a957c", "9fc5a5", "f0eee3", "cd8b3e"]
     }
 ]
