@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { fade } from 'svelte/transition';
+    import { fade } from "svelte/transition";
 
     import MaterialSymbolsLightKeyboardArrowDown from "~icons/material-symbols-light/keyboard-arrow-down";
 

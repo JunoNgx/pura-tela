@@ -1,7 +1,7 @@
 <script lang="ts">
     import { dragHandleZone, type DndEvent, type TransformDraggedElementFunction } from "svelte-dnd-action";
 	import { goto } from "$app/navigation";
-    import { flip } from 'svelte/animate';
+    import { flip } from "svelte/animate";
 
 	import SharePanel from "src/components/SharePanel.svelte";
 	import DropdownMenu from "src/components/DropdownMenu.svelte";

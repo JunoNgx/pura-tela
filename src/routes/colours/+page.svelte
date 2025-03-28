@@ -1,9 +1,9 @@
 <script lang="ts">
-    // import { beforeNavigate, afterNavigate } from '$app/navigation'
-    import MaterialSymbolsLightResetSettingsRounded from '~icons/material-symbols-light/reset-settings-rounded';
+    // import { beforeNavigate, afterNavigate } from "$app/navigation"
+    import MaterialSymbolsLightResetSettingsRounded from "~icons/material-symbols-light/reset-settings-rounded";
 
     import ColourList from "src/routes/colours/ColourList.svelte";
-	import { resetColourGallery } from 'src/states/colourGalleryState.svelte.js';
+	import { resetColourGallery } from "src/states/colourGalleryState.svelte.js";
 
     const handleResetGallery = () => {
         const isConfirmed = window.confirm("Reset the gallery to default colours? This action cannot be undone.");
