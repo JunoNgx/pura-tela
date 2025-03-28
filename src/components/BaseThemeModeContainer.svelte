@@ -1,14 +1,14 @@
 <script lang="ts">
-    import MaterialSymbolsLightSettings from '~icons/material-symbols-light/settings';
-    import MaterialSymbolsLightSettingsOutline from '~icons/material-symbols-light/settings-outline';
-    import MaterialSymbolsLightLightMode from '~icons/material-symbols-light/light-mode';
-    import MaterialSymbolsLightLightModeOutline from '~icons/material-symbols-light/light-mode-outline';
-    import MaterialSymbolsLightDarkMode from '~icons/material-symbols-light/dark-mode';
-    import MaterialSymbolsLightDarkModeOutline from '~icons/material-symbols-light/dark-mode-outline';
+    import MaterialSymbolsLightSettings from "~icons/material-symbols-light/settings";
+    import MaterialSymbolsLightSettingsOutline from "~icons/material-symbols-light/settings-outline";
+    import MaterialSymbolsLightLightMode from "~icons/material-symbols-light/light-mode";
+    import MaterialSymbolsLightLightModeOutline from "~icons/material-symbols-light/light-mode-outline";
+    import MaterialSymbolsLightDarkMode from "~icons/material-symbols-light/dark-mode";
+    import MaterialSymbolsLightDarkModeOutline from "~icons/material-symbols-light/dark-mode-outline";
 
-    import { themeMode } from 'src/states/themeModeState.svelte.js';
-	import { ThemeMode } from 'src/lib/types.js';
-	import { handleThemeModeChange } from 'src/lib/nightMode.js';
+    import { themeMode } from "src/states/themeModeState.svelte.js";
+	import { ThemeMode } from "src/lib/types.js";
+	import { handleThemeModeChange } from "src/lib/nightMode.js";
 
     const handleClickOnThemeMode = (newThemeModeVal: ThemeMode) => {
         themeMode.set(newThemeModeVal);

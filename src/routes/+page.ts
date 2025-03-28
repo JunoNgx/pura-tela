@@ -1,4 +1,4 @@
-import type { WallGenQueryProps } from 'src/lib/types.js';
+import type { WallGenQueryProps } from "src/lib/types.js";
 
 export const load = ({
     url,
