@@ -5,11 +5,11 @@ import { ThemeMode } from "./types.js";
  * Handle theme color meta tag
  */
 let themeColourMeta = document
-    .querySelector('meta[name="theme-color"]') as HTMLMetaElement;
+    .querySelector("meta[name='theme-color']") as HTMLMetaElement;
 
 if (!themeColourMeta) {
-    themeColourMeta = document.createElement('meta');
-    themeColourMeta.name = 'theme-color';
+    themeColourMeta = document.createElement("meta");
+    themeColourMeta.name = "theme-color";
     document.head.appendChild(themeColourMeta);
 }
 
