@@ -179,7 +179,8 @@ const renderForColourSwatchStyle = (
                 : 0;
             const commonY = size.height / 2;
             const startingOffset = slotSize + spacingGap;
-            const x = startingOffset + slotSize * (i + 0.5);
+            const midRenderPostionOffset = slotSize / 2;
+            const x = startingOffset + (slotSize) * i + midRenderPostionOffset;
     
             drawFunc({
                 ctx,
