@@ -79,6 +79,10 @@ export type WallGenQueryProps = {
     height: string | null,
 };
 
+export type InputEvent = MouseEvent & {
+    currentTarget: EventTarget & HTMLInputElement
+};
+
 export enum ColourSwatchStyleItemShape {
     SQUARE = "square",
     CIRCLE = "circle"

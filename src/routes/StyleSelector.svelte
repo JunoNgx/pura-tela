@@ -1,11 +1,7 @@
 <script lang="ts">
     import RadioCheckbox from "src/components/RadioCheckbox.svelte";
-import { WallpaperStyle } from "src/lib/types.js";
+    import { WallpaperStyle, type InputEvent } from "src/lib/types.js";
 	import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, setWallGenColourInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
-
-    type InputEvent = MouseEvent & {
-        currentTarget: EventTarget & HTMLInputElement
-    };
 
     const handleWallpaperStyleChange = (e: InputEvent) => {
         const newValue = e.currentTarget.value as WallpaperStyle;
