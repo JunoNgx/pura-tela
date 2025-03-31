@@ -73,8 +73,4 @@
         padding: 0;
         margin: 0;
     }
-
-    .StyleConfig {
-        margin-top: 3rem;
-    }
 </style>

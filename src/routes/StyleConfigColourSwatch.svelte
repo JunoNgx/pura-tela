@@ -52,6 +52,9 @@
 </div>
 
 <style>
+    .ColourSwatchConfig {
+        margin-top: 3rem;
+    }
     .ColourSwatchConfig__Title {
         margin-bottom: 1rem;
     }
