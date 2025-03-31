@@ -1,4 +1,4 @@
-import { ColourSwatchStyleItemShape, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
+import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
@@ -167,26 +167,51 @@ const renderForColourSwatchStyle = (
     const spacingGap = config.colourSwatch.hasSpacing
         ? slotSize / 10
         : 0;
-    const commonY = size.height / 2;
 
-    for (let i = 0; i < mainColours.length; i++) {
-        const shouldDrawSquare = config.colourSwatch.itemShape
-            === ColourSwatchStyleItemShape.SQUARE;
-        const drawFunc = shouldDrawSquare
-            ? drawSquareFromCenter
-            : drawCircle;
+    const shouldDrawSquare = config.colourSwatch.itemShape
+        === ColourSwatchStyleItemShape.SQUARE;
+    const drawFunc = shouldDrawSquare
+        ? drawSquareFromCenter
+        : drawCircle;
 
-        const startingOffset = slotSize + spacingGap;
-        const x = startingOffset + slotSize * (i + 0.5);
+    const shouldDrawCenter = config.colourSwatch.position
+        === ColourSwatchStylePosition.CENTERED;
 
-        drawFunc({
-            ctx,
-            colour: mainColours[i],
-            x,
-            y: commonY,
-            size: itemSize,
-        });
+    const drawCenter = () => {
+        for (let i = 0; i < mainColours.length; i++) {
+
+            const commonY = size.height / 2;
+    
+            const startingOffset = slotSize + spacingGap;
+            const x = startingOffset + slotSize * (i + 0.5);
+    
+            drawFunc({
+                ctx,
+                colour: mainColours[i],
+                x,
+                y: commonY,
+                size: itemSize,
+            });
+        };
     };
+
+    const drawTopRight = () => {
+        for (let i = 0; i < mainColours.length; i++) {    
+            const startingOffset = slotSize + spacingGap;
+            // const x = startingOffset + slotSize * (i + 0.5);
+    
+            // drawFunc({
+            //     ctx,
+            //     colour: mainColours[i],
+            //     x,
+            //     y: commonY,
+            //     size: itemSize,
+            // });
+        };
+    };
+
+    if (shouldDrawCenter) drawCenter();
+    else drawTopRight();
 };
 
 export const refitCanvasToContainer = () => {
