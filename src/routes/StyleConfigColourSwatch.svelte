@@ -116,14 +116,14 @@
         margin-top: 3rem;
     }
 
+    .ColourSwatchConfig__Title {
+        margin-bottom: 0.5rem;
+    }
+
     .ColourSwatchConfig__ItemsContainer {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
-    }
-
-    .ColourSwatchConfig__Title {
-        margin-bottom: 1rem;
     }
 
     .ColourSwatchConfig__ItemTitle {
