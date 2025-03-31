@@ -146,11 +146,6 @@ const renderForColourSwatchStyle = (
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
 
-    const drawSquare = ({ colour, x, y, size}: squareProps) => {
-        ctx.fillStyle = colour;
-        ctx.fillRect(x, y, size, size);
-    }
-
     const mainColours = colours.slice(1, colourCount);
     const baseSize = size.width / (mainColours.length + 2)
     const commonY = (size.height / 2) - baseSize/2;
