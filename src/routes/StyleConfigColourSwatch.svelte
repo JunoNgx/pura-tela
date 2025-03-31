@@ -126,6 +126,11 @@
         gap: 1rem;
     }
 
+    .ColourSwatchConfig__Item {
+        border: var(--lineWeight) solid var(--colPri);
+        padding-bottom: 1rem;
+    }
+
     .ColourSwatchConfig__ItemTitle {
         margin: 0.5rem 0 0.5rem;
     }
