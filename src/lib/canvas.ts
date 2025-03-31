@@ -1,4 +1,4 @@
-import { WallpaperStyle, type SizeData } from "./types.js";
+import { WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
@@ -6,6 +6,7 @@ export type CanvasRenderOptions = {
     size: SizeData,
     colours: string[],
     style: WallpaperStyle,
+    config?: RenderStyleConfig,
 };
 
 type squareProps = {
