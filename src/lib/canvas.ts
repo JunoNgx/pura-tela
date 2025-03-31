@@ -1,4 +1,4 @@
-import { WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
+import { ColourSwatchStyleItemShape, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
@@ -170,10 +170,16 @@ const renderForColourSwatchStyle = (
     const commonY = size.height / 2;
 
     for (let i = 0; i < mainColours.length; i++) {
+        const shouldDrawSquare = config.colourSwatch.itemShape
+            === ColourSwatchStyleItemShape.SQUARE;
+        const drawFunc = shouldDrawSquare
+            ? drawSquareFromCenter
+            : drawCircle;
+
         const startingOffset = slotSize + spacingGap;
         const x = startingOffset + slotSize * (i + 0.5);
 
-        drawSquareFromCenter({
+        drawFunc({
             ctx,
             colour: mainColours[i],
             x,
