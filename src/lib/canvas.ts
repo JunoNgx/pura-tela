@@ -200,7 +200,7 @@ const renderForColourSwatchStyle = (
                 ? slotSize * 4/5
                 : slotSize;
             const commonX = size.width - itemSize * 1;
-            const startingOffset = itemSize / 2;
+            const startingOffset = itemSize;
             const midRenderPostionOffset = slotSize / 2;
             const y = startingOffset + slotSize * i + midRenderPostionOffset;
 
