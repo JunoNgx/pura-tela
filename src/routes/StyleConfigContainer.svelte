@@ -13,7 +13,7 @@
 </script>
 
 <section class="StyleSelector">
-    <fieldset>
+    <fieldset class="StyleSelector__Fieldset">
         <legend><h3>Wallpaper Style</h3></legend>
 
         <div class="StyleSelector__Container">
@@ -59,6 +59,12 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         margin-top: 1rem;
+    }
+
+    .StyleSelector__Fieldset {
+        border: none;
+        padding: 0;
+        margin: 0;
     }
 
 </style>
