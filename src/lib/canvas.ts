@@ -20,7 +20,12 @@ type squareProps = {
 const drawSquare = ({ ctx, colour, x, y, size}: squareProps) => {
     ctx.fillStyle = colour;
     ctx.fillRect(x, y, size, size);
-}
+};
+
+const drawSquareFromCenter = ({ ctx, colour, x, y, size}: squareProps) => {
+    ctx.fillStyle = colour;
+    ctx.fillRect(x - size/2, y - size/2, size, size);
+};
 
 export const renderCanvas = (
     { size, colours, style }: CanvasRenderOptions
