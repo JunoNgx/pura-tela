@@ -204,8 +204,6 @@ const renderForColourSwatchStyle = (
             const midRenderPostionOffset = slotSize / 2;
             const y = startingOffset + slotSize * i + midRenderPostionOffset;
 
-            console.log("draw", slotSize)
-    
             drawFunc({
                 ctx,
                 colour: mainColours[i],
