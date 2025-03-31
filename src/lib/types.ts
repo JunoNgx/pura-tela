@@ -98,3 +98,7 @@ export type ColourSwatchStyleConfigProps = {
     position: ColourSwatchStylePosition,
     hasSpacing: boolean,
 };
+
+export type RenderStyleConfig = {
+    colourSwatch: ColourSwatchStyleConfigProps,
+};
