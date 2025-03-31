@@ -2,6 +2,7 @@
     import RadioCheckbox from "src/components/RadioCheckbox.svelte";
     import { WallpaperStyle, type InputEvent } from "src/lib/types.js";
 	import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, setWallGenColourInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
+	import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
 
     const handleWallpaperStyleChange = (e: InputEvent) => {
         const newValue = e.currentTarget.value as WallpaperStyle;
@@ -53,6 +54,12 @@
     </fieldset>
 </section>
 
+<section class="StyleConfig">
+    {#if isColourSwatchStyle()}
+        <StyleConfigColourSwatch />
+    {/if}
+</section>
+
 <style>
     .StyleSelector__Container {
         display: grid;
@@ -67,4 +74,7 @@
         margin: 0;
     }
 
+    .StyleConfig {
+        margin-top: 3rem;
+    }
 </style>
