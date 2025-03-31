@@ -136,6 +136,13 @@ export const isArrayOfHexCodesValid = (arr: string[]): boolean => {
     return true;
 };
 
+export const isEnumValueValid = <T extends Record<string, string | number>>(
+    value: T[keyof T],
+    enumSet: T
+): value is T[keyof T] => {
+    return Object.values(enumSet).includes(value as T[keyof T]);
+};
+
 // Unused, kept for potential future use
 export const moveItemWithinArray = <T>(
     arr: T[],
