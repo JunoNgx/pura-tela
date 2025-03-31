@@ -167,35 +167,16 @@ const renderForColourSwatchStyle = (
         ? slotSize / 10
         : 0;
     const commonY = size.height / 2;
-    
-    // // Debug drawing
-    // ctx.strokeStyle = "red";
-    // ctx.lineWidth = 1;
-    // ctx.beginPath()
-    // ctx.moveTo(size.width /2, 0)
-    // ctx.lineTo(size.width /2, size.height)
-    // ctx.stroke();
-    
-    // ctx.fillStyle = "blue";
-    // ctx.fillRect(size.width/2, size.height/2, spacingGap, spacingGap);
-
-    // ctx.fillStyle = "green";
-    // ctx.fillRect(0, size.height/2 - itemSize/2, slotSize, itemSize);
-    // ctx.fillRect(size.width - slotSize, size.height/2 - itemSize/2, slotSize, itemSize);
 
     for (let i = 0; i < mainColours.length; i++) {
-        // const x = slotSize*1.5 + (itemSize + spacingGap) * (i);
         const startingOffset = slotSize + spacingGap;
-        const x = startingOffset + slotSize * (i);
+        const x = startingOffset + slotSize * (i + 0.5);
 
-        // ctx.fillStyle = mainColours[i];
-        // ctx.fillRect((i + 1) * slotSize, size.height/2 - itemSize/2, slotSize, itemSize);
-
-        drawSquare({
+        drawSquareFromCenter({
             ctx,
             colour: mainColours[i],
             x,
-            y: commonY - itemSize/2,
+            y: commonY,
             size: itemSize,
         });
     };
