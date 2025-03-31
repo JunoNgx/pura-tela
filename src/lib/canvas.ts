@@ -28,8 +28,9 @@ const drawSquareFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
 };
 
 const drawCircle = ({ ctx, colour, x, y, size}: ShapeProps) => {
-    ctx.fillStyle = colour;
+    ctx.beginPath();
     ctx.arc(x, y, size/2, 0, 2 * Math.PI);
+    ctx.fillStyle = colour;
     ctx.fill();
 };
 
