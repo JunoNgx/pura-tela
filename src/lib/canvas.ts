@@ -192,18 +192,35 @@ const renderForColourSwatchStyle = (
         };
     };
 
+    ctx.beginPath()
+    ctx.strokeStyle = "red";
+    ctx.moveTo(0, size.height /2 )
+    ctx.lineTo(size.width, size.height /2 )
+    ctx.stroke();
+
     const drawTopRight = () => {
         for (let i = 0; i < mainColours.length; i++) {    
-            // const startingOffset = slotSize + spacingGap;
-            // const x = startingOffset + slotSize * (i + 0.5);
+            // Use only half of height
+            const slotSize = (size.height / 2) / (itemCount + 1);
+            const itemSize = config.colourSwatch.hasSpacing
+                ? slotSize * 4/5
+                : slotSize;
+            const spacingGap = config.colourSwatch.hasSpacing
+                ? slotSize / 10
+                : 0;
+            const commonX = size.width - itemSize * 1;
+            const startingOffset = itemSize / 2;
+            const y = startingOffset + slotSize * (i + 0.5);
+
+            console.log("draw", slotSize)
     
-            // drawFunc({
-            //     ctx,
-            //     colour: mainColours[i],
-            //     x,
-            //     y: commonY,
-            //     size: itemSize,
-            // });
+            drawFunc({
+                ctx,
+                colour: mainColours[i],
+                x: commonX,
+                y,
+                size: itemSize,
+            });
         };
     };
 
