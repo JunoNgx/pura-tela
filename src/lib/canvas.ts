@@ -28,7 +28,7 @@ const drawSquareFromCenter = ({ ctx, colour, x, y, size}: squareProps) => {
 };
 
 export const renderCanvas = (
-    { size, colours, style }: CanvasRenderOptions
+    { size, colours, style, config }: CanvasRenderOptions
 ) => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
     if (!canvas) return;
@@ -41,7 +41,7 @@ export const renderCanvas = (
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const renderOptions = { ctx, size, colours, style };
+    const renderOptions = { ctx, size, colours, style, config };
 
     switch(style) {
     case WallpaperStyle.GRADIENT:
@@ -136,7 +136,7 @@ const renderForPopArtSquareStyle = (
 };
 
 const renderForColourSwatchStyle = (
-    { ctx, colours, size }: CanvasRenderOptions & {
+    { ctx, colours, size, config }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
 ) => {
