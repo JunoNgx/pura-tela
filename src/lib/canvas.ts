@@ -140,6 +140,10 @@ const renderForColourSwatchStyle = (
         ctx: CanvasRenderingContext2D,
     }
 ) => {
+    if (!config?.colourSwatch) {
+        throw new Error("Cannot access Colour Swatch config");
+    }
+
     const colourCount = colours.length;
 
     // Draw background
