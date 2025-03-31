@@ -1,7 +1,7 @@
-import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type ColourSwatchStyleSettingsProps, type State } from "src/lib/types.js";
+import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type ColourSwatchStyleConfigProps, type State } from "src/lib/types.js";
 import { createLocalStorageSyncedState, isEnumValueValid, isValidBoolean } from "./stateUtils.svelte.js"
 
-const isPaletteRowSettingsValid = (data: any) => {
+const isPaletteRowConfigValid = (data: any) => {
     if (!data) return false;
 
     if (!isEnumValueValid(data.itemShape, ColourSwatchStyleItemShape))
@@ -16,23 +16,23 @@ const isPaletteRowSettingsValid = (data: any) => {
     return true;
 };
 
-const colourSwatchStyleSettingsDefaultValue = {
+const colourSwatchStyleConfigDefaultValue = {
     itemShape: ColourSwatchStyleItemShape.SQUARE,
     position: ColourSwatchStylePosition.CENTERED,
     hasSpacing: true,
 };
 
-export const colourSwatchStyleSettings = <State<ColourSwatchStyleSettingsProps>>createLocalStorageSyncedState({
-    key: "paletteRowStyleSettings",
-    defaultValue: colourSwatchStyleSettingsDefaultValue,
-    validationFunc: isPaletteRowSettingsValid
+export const colourSwatchStyleConfig = <State<ColourSwatchStyleConfigProps>>createLocalStorageSyncedState({
+    key: "paletteRowStyleConfig",
+    defaultValue: colourSwatchStyleConfigDefaultValue,
+    validationFunc: isPaletteRowConfigValid
 });
 
 export const setColourSwatchStyleItemShape = (
     newValue: ColourSwatchStyleItemShape
 ) => {
-    colourSwatchStyleSettings.set({
-        ...colourSwatchStyleSettings.val,
+    colourSwatchStyleConfig.set({
+        ...colourSwatchStyleConfig.val,
         itemShape: newValue,
     });
 }
@@ -40,15 +40,15 @@ export const setColourSwatchStyleItemShape = (
 export const setColourSwatchStylePosition = (
     newValue: ColourSwatchStylePosition
 ) => {
-    colourSwatchStyleSettings.set({
-        ...colourSwatchStyleSettings.val,
+    colourSwatchStyleConfig.set({
+        ...colourSwatchStyleConfig.val,
         position: newValue,
     });
 }
 
 export const setColourSwatchStyleSpacing = (newValue: boolean) => {
-    colourSwatchStyleSettings.set({
-        ...colourSwatchStyleSettings.val,
+    colourSwatchStyleConfig.set({
+        ...colourSwatchStyleConfig.val,
         hasSpacing: newValue,
     });
 }

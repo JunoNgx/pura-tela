@@ -89,7 +89,7 @@ export enum ColourSwatchStylePosition {
     TOP_RIGHT = "topRight"
 };
 
-export type ColourSwatchStyleSettingsProps = {
+export type ColourSwatchStyleConfigProps = {
     itemShape: ColourSwatchStyleItemShape,
     position: ColourSwatchStylePosition,
     hasSpacing: boolean,
