@@ -161,10 +161,10 @@ const renderForColourSwatchStyle = (
     const itemCount = colours.length - 1; // First one is background
     const slotSize = size.width / (itemCount + 2); // Use one slot on each side as padding
     const itemSize = config.colourSwatch.hasSpacing
-        ? slotSize * 2/3
+        ? slotSize * 4/5
         : slotSize;
     const spacingGap = config.colourSwatch.hasSpacing
-        ? slotSize / 6
+        ? slotSize / 10
         : 0;
     const commonY = size.height / 2;
     
