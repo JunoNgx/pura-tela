@@ -20,43 +20,55 @@
         <legend><h3>Wallpaper Style</h3></legend>
 
         <div class="StyleSelector__Container">
-            <label class="StyleSelector__StyleItem">
+            <label class="StyleSelector__StyleItem CustomRadioCheckbox">
                 <input
                     type="radio"
                     value={WallpaperStyle.SOLID}
                     checked={isSolidStyle()}
                     onclick={handleWallpaperStyleChange}
                 />
+                <span class="CustomRadioCheckbox__Checkmark"
+                    aria-hidden=true
+                ></span>
                 Solid wallpaper
             </label>
 
-            <label class="StyleSelector__StyleItem">
+            <label class="StyleSelector__StyleItem CustomRadioCheckbox">
                 <input
                     type="radio"
                     value={WallpaperStyle.GRADIENT}
                     checked={isGradientStyle()}
                     onclick={handleWallpaperStyleChange}
                 />
+                <span class="CustomRadioCheckbox__Checkmark"
+                    aria-hidden=true
+                ></span>
                 Gradient wallpaper
             </label>
 
-            <label class="StyleSelector__StyleItem">
+            <label class="StyleSelector__StyleItem CustomRadioCheckbox">
                 <input
                     type="radio"
                     value={WallpaperStyle.POP_ART_SQUARE}
                     checked={isPopArtSquareStyle()}
                     onclick={handleWallpaperStyleChange}
                 />
+                <span class="CustomRadioCheckbox__Checkmark"
+                    aria-hidden=true
+                ></span>
                 Pop art square
             </label>
 
-            <label class="StyleSelector__StyleItem">
+            <label class="StyleSelector__StyleItem CustomRadioCheckbox">
                 <input
                     type="radio"
                     value={WallpaperStyle.PALETTE_ROW}
                     checked={isPaletteRowStyle()}
                     onclick={handleWallpaperStyleChange}
                 />
+                <span class="CustomRadioCheckbox__Checkmark"
+                    aria-hidden=true
+                ></span>
                 Palette row
             </label>
         </div>
@@ -70,10 +82,6 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         margin-top: 1rem;
-    }
-
-    .StyleSelector__StyleItem {
-        cursor: pointer;
     }
 
 </style>
