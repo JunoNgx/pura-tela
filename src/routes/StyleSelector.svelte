@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { WallpaperStyle } from "src/lib/types.js";
+    import RadioCheckbox from "src/components/RadioCheckbox.svelte";
+import { WallpaperStyle } from "src/lib/types.js";
 	import { getCurrWallStyleInfo, isGradientStyle, isPaletteRowStyle, isPopArtSquareStyle, isSolidStyle, setWallGenColourInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
 
     type InputEvent = MouseEvent & {
@@ -20,57 +21,37 @@
         <legend><h3>Wallpaper Style</h3></legend>
 
         <div class="StyleSelector__Container">
-            <label class="StyleSelector__StyleItem CustomRadioCheckbox">
-                <input
-                    type="radio"
-                    value={WallpaperStyle.SOLID}
-                    checked={isSolidStyle()}
-                    onclick={handleWallpaperStyleChange}
-                />
-                <span class="CustomRadioCheckbox__Checkmark"
-                    aria-hidden=true
-                ></span>
+            <RadioCheckbox
+                value={WallpaperStyle.SOLID}
+                checked={isSolidStyle()}
+                onclick={handleWallpaperStyleChange}
+            >
                 Solid wallpaper
-            </label>
+            </RadioCheckbox>
 
-            <label class="StyleSelector__StyleItem CustomRadioCheckbox">
-                <input
-                    type="radio"
-                    value={WallpaperStyle.GRADIENT}
-                    checked={isGradientStyle()}
-                    onclick={handleWallpaperStyleChange}
-                />
-                <span class="CustomRadioCheckbox__Checkmark"
-                    aria-hidden=true
-                ></span>
+            <RadioCheckbox
+                value={WallpaperStyle.GRADIENT}
+                checked={isGradientStyle()}
+                onclick={handleWallpaperStyleChange}
+            >
                 Gradient wallpaper
-            </label>
+            </RadioCheckbox>
 
-            <label class="StyleSelector__StyleItem CustomRadioCheckbox">
-                <input
-                    type="radio"
-                    value={WallpaperStyle.POP_ART_SQUARE}
-                    checked={isPopArtSquareStyle()}
-                    onclick={handleWallpaperStyleChange}
-                />
-                <span class="CustomRadioCheckbox__Checkmark"
-                    aria-hidden=true
-                ></span>
+            <RadioCheckbox
+                value={WallpaperStyle.POP_ART_SQUARE}
+                checked={isPopArtSquareStyle()}
+                onclick={handleWallpaperStyleChange}
+            >
                 Pop art square
-            </label>
+            </RadioCheckbox>
 
-            <label class="StyleSelector__StyleItem CustomRadioCheckbox">
-                <input
-                    type="radio"
-                    value={WallpaperStyle.PALETTE_ROW}
-                    checked={isPaletteRowStyle()}
-                    onclick={handleWallpaperStyleChange}
-                />
-                <span class="CustomRadioCheckbox__Checkmark"
-                    aria-hidden=true
-                ></span>
+            <RadioCheckbox
+                value={WallpaperStyle.PALETTE_ROW}
+                checked={isPaletteRowStyle()}
+                onclick={handleWallpaperStyleChange}
+            >
                 Palette row
-            </label>
+            </RadioCheckbox>
         </div>
 
     </fieldset>
