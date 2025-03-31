@@ -151,22 +151,13 @@ const renderForColourSwatchStyle = (
         throw new Error("Cannot access Colour Swatch config");
     }
 
-    const colourCount = colours.length;
-
     // Draw background
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
 
+    const colourCount = colours.length;
     const mainColours = colours.slice(1, colourCount);
-
-    const itemCount = colours.length - 1; // First one is background
-    const slotSize = size.width / (itemCount + 2); // Use one slot on each side as padding
-    const itemSize = config.colourSwatch.hasSpacing
-        ? slotSize * 4/5
-        : slotSize;
-    const spacingGap = config.colourSwatch.hasSpacing
-        ? slotSize / 10
-        : 0;
+    const itemCount = mainColours.length; // First one is background
 
     const shouldDrawSquare = config.colourSwatch.itemShape
         === ColourSwatchStyleItemShape.SQUARE;
@@ -179,9 +170,14 @@ const renderForColourSwatchStyle = (
 
     const drawCenter = () => {
         for (let i = 0; i < mainColours.length; i++) {
-
+            const slotSize = size.width / (itemCount + 2); // Use one slot on each side as padding
+            const itemSize = config.colourSwatch.hasSpacing
+                ? slotSize * 4/5
+                : slotSize;
+            const spacingGap = config.colourSwatch.hasSpacing
+                ? slotSize / 10
+                : 0;
             const commonY = size.height / 2;
-    
             const startingOffset = slotSize + spacingGap;
             const x = startingOffset + slotSize * (i + 0.5);
     
@@ -197,7 +193,7 @@ const renderForColourSwatchStyle = (
 
     const drawTopRight = () => {
         for (let i = 0; i < mainColours.length; i++) {    
-            const startingOffset = slotSize + spacingGap;
+            // const startingOffset = slotSize + spacingGap;
             // const x = startingOffset + slotSize * (i + 0.5);
     
             // drawFunc({
