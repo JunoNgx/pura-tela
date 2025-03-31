@@ -5,7 +5,7 @@
 	import { getHexColourCodesInUse, shouldShowSampleText, wallGenStyle, wallGenSize, readjustWallGenColoursInUseCount, getColourStringsInUse } from "src/states/wallGenState.svelte.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
-	import StyleSelector from "src/routes/StyleSelector.svelte";
+	import StyleConfigContainer from "src/routes/StyleConfigContainer.svelte";
 	import WallGenColourInputList from "./WallGenColourInputList.svelte";
     import SizeInput from "src/routes/SizeInput.svelte";
 	import SharePanel from "src/components/SharePanel.svelte";
@@ -68,7 +68,7 @@
 <div class="Studio">
     <h2 class="VisuallyHidden">Create Wallpaper</h2>
     <div class="Studio__ModeContainer">
-        <StyleSelector/>
+        <StyleConfigContainer/>
     </div>
     <div class="Studio__Generator">
         <div class="Studio__PreviewContainer">
