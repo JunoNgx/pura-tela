@@ -9,7 +9,7 @@ export type CanvasRenderOptions = {
     config?: RenderStyleConfig,
 };
 
-type squareProps = {
+type ShapeProps = {
     ctx: CanvasRenderingContext2D,
     colour: string,
     x: number,
@@ -17,14 +17,20 @@ type squareProps = {
     size: number,
 };
 
-const drawSquare = ({ ctx, colour, x, y, size}: squareProps) => {
+const drawSquare = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fillStyle = colour;
     ctx.fillRect(x, y, size, size);
 };
 
-const drawSquareFromCenter = ({ ctx, colour, x, y, size}: squareProps) => {
+const drawSquareFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fillStyle = colour;
     ctx.fillRect(x - size/2, y - size/2, size, size);
+};
+
+const drawCircle = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    ctx.fillStyle = colour;
+    ctx.arc(x, y, size/2, 0, 2 * Math.PI);
+    ctx.fill();
 };
 
 export const renderCanvas = (
@@ -151,16 +157,46 @@ const renderForColourSwatchStyle = (
     ctx.fillRect(0, 0, size.width, size.height);
 
     const mainColours = colours.slice(1, colourCount);
-    const baseSize = size.width / (mainColours.length + 2)
-    const commonY = (size.height / 2);
+
+    const itemCount = colours.length - 1; // First one is background
+    const slotSize = size.width / (itemCount + 2); // Use one slot on each side as padding
+    const itemSize = config.colourSwatch.hasSpacing
+        ? slotSize * 2/3
+        : slotSize;
+    const spacingGap = config.colourSwatch.hasSpacing
+        ? slotSize / 6
+        : 0;
+    const commonY = size.height / 2;
+    
+    // // Debug drawing
+    // ctx.strokeStyle = "red";
+    // ctx.lineWidth = 1;
+    // ctx.beginPath()
+    // ctx.moveTo(size.width /2, 0)
+    // ctx.lineTo(size.width /2, size.height)
+    // ctx.stroke();
+    
+    // ctx.fillStyle = "blue";
+    // ctx.fillRect(size.width/2, size.height/2, spacingGap, spacingGap);
+
+    // ctx.fillStyle = "green";
+    // ctx.fillRect(0, size.height/2 - itemSize/2, slotSize, itemSize);
+    // ctx.fillRect(size.width - slotSize, size.height/2 - itemSize/2, slotSize, itemSize);
 
     for (let i = 0; i < mainColours.length; i++) {
-        drawSquareFromCenter({
+        // const x = slotSize*1.5 + (itemSize + spacingGap) * (i);
+        const startingOffset = slotSize + spacingGap;
+        const x = startingOffset + slotSize * (i);
+
+        // ctx.fillStyle = mainColours[i];
+        // ctx.fillRect((i + 1) * slotSize, size.height/2 - itemSize/2, slotSize, itemSize);
+
+        drawSquare({
             ctx,
             colour: mainColours[i],
-            x: baseSize * (0.5 + 1 + i),
-            y: commonY,
-            size: baseSize,
+            x,
+            y: commonY - itemSize/2,
+            size: itemSize,
         });
     };
 };
