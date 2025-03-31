@@ -205,12 +205,10 @@ const renderForColourSwatchStyle = (
             const itemSize = config.colourSwatch.hasSpacing
                 ? slotSize * 4/5
                 : slotSize;
-            const spacingGap = config.colourSwatch.hasSpacing
-                ? slotSize / 10
-                : 0;
             const commonX = size.width - itemSize * 1;
             const startingOffset = itemSize / 2;
-            const y = startingOffset + slotSize * (i + 0.5);
+            const midRenderPostionOffset = slotSize / 2;
+            const y = startingOffset + slotSize * i + midRenderPostionOffset;
 
             console.log("draw", slotSize)
     
