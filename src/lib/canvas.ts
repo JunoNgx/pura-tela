@@ -152,13 +152,13 @@ const renderForColourSwatchStyle = (
 
     const mainColours = colours.slice(1, colourCount);
     const baseSize = size.width / (mainColours.length + 2)
-    const commonY = (size.height / 2) - baseSize/2;
+    const commonY = (size.height / 2);
 
     for (let i = 0; i < mainColours.length; i++) {
-        drawSquare({
+        drawSquareFromCenter({
             ctx,
             colour: mainColours[i],
-            x: baseSize * (1 + i),
+            x: baseSize * (0.5 + 1 + i),
             y: commonY,
             size: baseSize,
         });
