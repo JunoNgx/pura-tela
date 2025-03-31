@@ -26,7 +26,7 @@ import { WallpaperStyle } from "src/lib/types.js";
                 checked={isSolidStyle()}
                 onclick={handleWallpaperStyleChange}
             >
-                Solid wallpaper
+                Solid colour
             </RadioCheckbox>
 
             <RadioCheckbox
@@ -34,7 +34,7 @@ import { WallpaperStyle } from "src/lib/types.js";
                 checked={isGradientStyle()}
                 onclick={handleWallpaperStyleChange}
             >
-                Gradient wallpaper
+                Gradient
             </RadioCheckbox>
 
             <RadioCheckbox
@@ -50,7 +50,7 @@ import { WallpaperStyle } from "src/lib/types.js";
                 checked={isColourSwatchStyle()}
                 onclick={handleWallpaperStyleChange}
             >
-                Palette row
+                Colour swatch
             </RadioCheckbox>
         </div>
 
