@@ -27,3 +27,28 @@ export const colourSwatchStyleSettings = <State<ColourSwatchStyleSettingsProps>>
     defaultValue: colourSwatchStyleSettingsDefaultValue,
     validationFunc: isPaletteRowSettingsValid
 });
+
+export const setColourSwatchStyleItemShape = (
+    newValue: ColourSwatchStyleItemShape
+) => {
+    colourSwatchStyleSettings.set({
+        ...colourSwatchStyleSettings.val,
+        itemShape: newValue,
+    });
+}
+
+export const setColourSwatchStylePosition = (
+    newValue: ColourSwatchStylePosition
+) => {
+    colourSwatchStyleSettings.set({
+        ...colourSwatchStyleSettings.val,
+        position: newValue,
+    });
+}
+
+export const setColourSwatchStyleSpacing = (newValue: boolean) => {
+    colourSwatchStyleSettings.set({
+        ...colourSwatchStyleSettings.val,
+        hasSpacing: newValue,
+    });
+}
