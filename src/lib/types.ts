@@ -78,3 +78,19 @@ export type WallGenQueryProps = {
     width: string | null,
     height: string | null,
 };
+
+export enum ColourSwatchStyleItemShape {
+    SQUARE = "square",
+    CIRCLE = "circle"
+};
+
+export enum ColourSwatchStylePosition {
+    CENTERED = "centered",
+    TOP_RIGHT = "topRight"
+};
+
+export type ColourSwatchStyleSettingsProps = {
+    itemShape: ColourSwatchStyleItemShape,
+    position: ColourSwatchStylePosition,
+    hasSpacing: boolean,
+};
