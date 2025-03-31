@@ -172,6 +172,8 @@
         position: relative;
         flex-grow: 1;
         height: 500px;
+        transition: width var(--transTime) ease-in-out,
+            height var(--transTime) ease-in-out;
     }
 
     :global(.PaletteGenerator__ItemWrapper.IsDragged) {
