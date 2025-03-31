@@ -132,6 +132,7 @@
     }
 
     .ColourSwatchConfig__ItemTitle {
+        text-transform: lowercase;
         margin: 0.5rem 0 0.5rem;
     }
 
