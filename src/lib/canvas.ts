@@ -192,12 +192,6 @@ const renderForColourSwatchStyle = (
         };
     };
 
-    ctx.beginPath()
-    ctx.strokeStyle = "red";
-    ctx.moveTo(0, size.height /2 )
-    ctx.lineTo(size.width, size.height /2 )
-    ctx.stroke();
-
     const drawTopRight = () => {
         for (let i = 0; i < mainColours.length; i++) {    
             // Use only half of height
