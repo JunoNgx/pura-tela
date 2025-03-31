@@ -8,6 +8,11 @@
     const isShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.CIRCLE);
 
+    const isPositionCentered = $derived(colourSwatchStyleConfig.val.position
+        === ColourSwatchStylePosition.CENTERED);
+    const isPositionTopRight = $derived(colourSwatchStyleConfig.val.position
+        === ColourSwatchStylePosition.TOP_RIGHT);
+
     const handleSetItemShape = (e: InputEvent) => {
         const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
         setColourSwatchStyleItemShape(newValue);
@@ -49,12 +54,37 @@
         </div>
     </fieldset>
 
+    <fieldset class="ColourSwatchConfig__Item">
+        <legend>
+            <h4 class="ColourSwatchConfig__ItemTitle">
+                Position
+            </h4>
+        </legend>
+        <div class="ColourSwatchConfig__ButtonsContainer">
+            <RadioCheckbox
+                value={ColourSwatchStylePosition.CENTERED}
+                checked={isPositionCentered}
+                onclick={handleSetPosition}
+            >
+                Centered
+            </RadioCheckbox>
+            <RadioCheckbox
+                value={ColourSwatchStylePosition.TOP_RIGHT}
+                checked={isPositionTopRight}
+                onclick={handleSetPosition}
+            >
+                Top right
+            </RadioCheckbox>
+        </div>
+    </fieldset>
+
 </div>
 
 <style>
     .ColourSwatchConfig {
         margin-top: 3rem;
     }
+
     .ColourSwatchConfig__Title {
         margin-bottom: 1rem;
     }
