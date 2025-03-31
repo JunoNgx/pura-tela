@@ -23,7 +23,7 @@ const colourSwatchStyleConfigDefaultValue = {
 };
 
 export const colourSwatchStyleConfig = <State<ColourSwatchStyleConfigProps>>createLocalStorageSyncedState({
-    key: "paletteRowStyleConfig",
+    key: "colourSwatchStyleConfig",
     defaultValue: colourSwatchStyleConfigDefaultValue,
     validationFunc: isPaletteRowConfigValid
 });
