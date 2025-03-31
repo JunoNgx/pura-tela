@@ -1,7 +1,7 @@
 <script lang="ts">
     import { dragHandleZone, type DndEvent, type TransformDraggedElementFunction } from "svelte-dnd-action";
     import { goto } from "$app/navigation";
-    import { flip } from 'svelte/animate';
+    import { flip } from "svelte/animate";
 
     import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
 	import DropdownMenu from "src/components/DropdownMenu.svelte";
@@ -14,8 +14,8 @@
 
 	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
-	import { passWallGenToPaletteGenerator } from 'src/states/palGenState.svelte.js';
-	import { generatePaletteWithGemini } from 'src/states/geminiState.svelte.js';
+	import { passWallGenToPaletteGenerator } from "src/states/palGenState.svelte.js";
+	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();

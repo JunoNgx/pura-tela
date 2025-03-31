@@ -1,4 +1,4 @@
-import { WallpaperStyle, type SizeData } from "./types.js";
+import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
@@ -6,9 +6,10 @@ export type CanvasRenderOptions = {
     size: SizeData,
     colours: string[],
     style: WallpaperStyle,
+    config?: RenderStyleConfig,
 };
 
-type squareProps = {
+type ShapeProps = {
     ctx: CanvasRenderingContext2D,
     colour: string,
     x: number,
@@ -16,13 +17,25 @@ type squareProps = {
     size: number,
 };
 
-const drawSquare = ({ ctx, colour, x, y, size}: squareProps) => {
+const drawSquare = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fillStyle = colour;
     ctx.fillRect(x, y, size, size);
-}
+};
+
+const drawSquareFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    ctx.fillStyle = colour;
+    ctx.fillRect(x - size/2, y - size/2, size, size);
+};
+
+const drawCircle = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    ctx.beginPath();
+    ctx.arc(x, y, size/2, 0, 2 * Math.PI);
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
 
 export const renderCanvas = (
-    { size, colours, style }: CanvasRenderOptions
+    { size, colours, style, config }: CanvasRenderOptions
 ) => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
     if (!canvas) return;
@@ -35,7 +48,7 @@ export const renderCanvas = (
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const renderOptions = { ctx, size, colours, style };
+    const renderOptions = { ctx, size, colours, style, config };
 
     switch(style) {
     case WallpaperStyle.GRADIENT:
@@ -46,8 +59,8 @@ export const renderCanvas = (
         renderForPopArtSquareStyle(renderOptions);
         break;
 
-    case WallpaperStyle.PALETTE_ROW:
-        renderForPaletteRowStyle(renderOptions);
+    case WallpaperStyle.COLOUR_SWATCH:
+        renderForColourSwatchStyle(renderOptions);
         break;
 
     case WallpaperStyle.SOLID:
@@ -129,35 +142,82 @@ const renderForPopArtSquareStyle = (
     }); 
 };
 
-const renderForPaletteRowStyle = (
-    { ctx, colours, size }: CanvasRenderOptions & {
+const renderForColourSwatchStyle = (
+    { ctx, colours, size, config }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
 ) => {
-    const colourCount = colours.length;
+    if (!config?.colourSwatch) {
+        throw new Error("Cannot access Colour Swatch config");
+    }
 
     // Draw background
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
 
-    const drawSquare = ({ colour, x, y, size}: squareProps) => {
-        ctx.fillStyle = colour;
-        ctx.fillRect(x, y, size, size);
-    }
-
+    const colourCount = colours.length;
     const mainColours = colours.slice(1, colourCount);
-    const baseSize = size.width / (mainColours.length + 2)
-    const commonY = (size.height / 2) - baseSize/2;
+    const itemCount = mainColours.length; // First one is background
 
-    for (let i = 0; i < mainColours.length; i++) {
-        drawSquare({
-            ctx,
-            colour: mainColours[i],
-            x: baseSize * (1 + i),
-            y: commonY,
-            size: baseSize,
-        });
+    const shouldDrawSquare = config.colourSwatch.itemShape
+        === ColourSwatchStyleItemShape.SQUARE;
+    const drawFunc = shouldDrawSquare
+        ? drawSquareFromCenter
+        : drawCircle;
+
+    const shouldDrawCenter = config.colourSwatch.position
+        === ColourSwatchStylePosition.CENTERED;
+
+    const drawCenter = () => {
+        for (let i = 0; i < mainColours.length; i++) {
+            const slotSize = size.width / (itemCount + 2); // Use one slot on each side as padding
+            const itemSize = config.colourSwatch.hasSpacing
+                ? slotSize * 4/5
+                : slotSize;
+            const spacingGap = config.colourSwatch.hasSpacing
+                ? slotSize / 10
+                : 0;
+            const commonY = size.height / 2;
+            const startingOffset = slotSize + spacingGap;
+            const midRenderPostionOffset = slotSize / 2;
+            const x = startingOffset + (slotSize) * i + midRenderPostionOffset;
+    
+            drawFunc({
+                ctx,
+                colour: mainColours[i],
+                x,
+                y: commonY,
+                size: itemSize,
+            });
+        };
     };
+
+    const drawTopRight = () => {
+        for (let i = 0; i < mainColours.length; i++) {    
+            // Use only half of height
+            const slotSize = (size.height / 2) / (itemCount + 1);
+            const itemSize = config.colourSwatch.hasSpacing
+                ? slotSize * 4/5
+                : slotSize;
+            const commonX = size.width - itemSize * 1;
+            const startingOffset = itemSize;
+            const midRenderPostionOffset = slotSize / 2;
+            const y = startingOffset + slotSize * i + midRenderPostionOffset;
+
+            console.log("draw", slotSize)
+    
+            drawFunc({
+                ctx,
+                colour: mainColours[i],
+                x: commonX,
+                y,
+                size: itemSize,
+            });
+        };
+    };
+
+    if (shouldDrawCenter) drawCenter();
+    else drawTopRight();
 };
 
 export const refitCanvasToContainer = () => {

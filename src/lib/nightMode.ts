@@ -1,6 +1,25 @@
 import { themeMode } from "src/states/themeModeState.svelte.js";
 import { ThemeMode } from "./types.js";
 
+/**
+ * Handle theme color meta tag
+ */
+let themeColourMeta = document
+    .querySelector("meta[name='theme-color']") as HTMLMetaElement;
+
+if (!themeColourMeta) {
+    themeColourMeta = document.createElement("meta");
+    themeColourMeta.name = "theme-color";
+    document.head.appendChild(themeColourMeta);
+}
+
+const updatethemeColourMeta = () => {
+    const isLightMode = computeThemeMode() === ThemeMode.LIGHT;
+    themeColourMeta.content = isLightMode
+        ? "#E4DCC1"
+        : "#323740";
+};
+
 export const setupAutoSettingsListener = () => {
     const preferDarkQueryList = window.matchMedia?.("(prefers-color-scheme: dark)")
 
@@ -37,4 +56,5 @@ const writeDocumentAttribute = () => {
 export const handleThemeModeChange = () => {
     setupAutoSettingsListener();
     writeDocumentAttribute();
+    updatethemeColourMeta();
 };

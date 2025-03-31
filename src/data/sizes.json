@@ -1,47 +1,62 @@
 [
     {
-        "name": "Mobile",
+        "name": "Pixel 9",
+        "width": "1344",
+        "height": "2992"
+    },
+    {
+        "name": "iPhone 16",
+        "width": "1290",
+        "height": "2796"
+    },
+    {
+        "name": "Galaxy S23 Ultra",
+        "width": "1440",
+        "height": "3088"
+    },
+    {
+        "name": "Mobile 20:9",
+        "width": "1080",
+        "height": "2400"
+    },
+    {
+        "name": "Mobile 16:9",
         "width": "1080",
         "height": "1920"
     },
     {
-        "name": "Mobile 2K",
-        "width": "1440",
-        "height": "2560"
+        "name": "Desktop 16:10/Macbook",
+        "width": "3456",
+        "height": "2234"
     },
     {
-        "name": "Desktop 2K",
-        "width": "2560",
-        "height": "1440"
-    },
-    {
-        "name": "Desktop 4K",
+        "name": "Desktop 16:9",
         "width": "3840",
         "height": "2160"
     },
     {
-        "name": "3:2",
-        "width": "3000",
-        "height": "2000"
+        "name": "Desktop 21:9",
+        "width": "5120",
+        "height": "2160"
     },
     {
-        "name": "Square (tiny)",
-        "width": "640",
-        "height": "640"
+        "name": "Desktop 3:2",
+        "width": "3840",
+        "height": "2560"
     },
     {
-        "name": "Square (small)",
-        "width": "1200",
-        "height": "1200"
+        "name": "Square",
+        "width": "1920",
+        "height": "1920"
     },
     {
-        "name": "Square (medium)",
-        "width": "2400",
-        "height": "2400"
+        "name": "Pixel Fold",
+        "width": "2208",
+        "height": "1840"
     },
     {
-        "name": "Square (extra large)",
-        "width": "4000",
-        "height": "4000"
+        "name": "Fold 4",
+        "width": "2176",
+        "height": "1812"
     }
 ]

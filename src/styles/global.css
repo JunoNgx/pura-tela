@@ -2,10 +2,10 @@
 @import "src/styles/mixins.css";
 
 @font-face {
-	font-family: "Geist Mono";
+	font-family: "Source Code Pro";
 	font-style: normal;
 	font-weight: 400;
-	src: url("/GeistMono.ttf") format("truetype");
+	src: url("/SourceCodePro-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
