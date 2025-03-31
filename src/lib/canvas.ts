@@ -47,7 +47,7 @@ export const renderCanvas = (
         break;
 
     case WallpaperStyle.COLOUR_SWATCH:
-        renderForPaletteRowStyle(renderOptions);
+        renderForColourSwatchStyle(renderOptions);
         break;
 
     case WallpaperStyle.SOLID:
@@ -129,7 +129,7 @@ const renderForPopArtSquareStyle = (
     }); 
 };
 
-const renderForPaletteRowStyle = (
+const renderForColourSwatchStyle = (
     { ctx, colours, size }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }

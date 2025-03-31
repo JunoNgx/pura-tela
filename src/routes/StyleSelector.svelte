@@ -1,7 +1,7 @@
 <script lang="ts">
     import RadioCheckbox from "src/components/RadioCheckbox.svelte";
 import { WallpaperStyle } from "src/lib/types.js";
-	import { getCurrWallStyleInfo, isGradientStyle, isPaletteRowStyle, isPopArtSquareStyle, isSolidStyle, setWallGenColourInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
+	import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, setWallGenColourInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
 
     type InputEvent = MouseEvent & {
         currentTarget: EventTarget & HTMLInputElement
@@ -47,7 +47,7 @@ import { WallpaperStyle } from "src/lib/types.js";
 
             <RadioCheckbox
                 value={WallpaperStyle.COLOUR_SWATCH}
-                checked={isPaletteRowStyle()}
+                checked={isColourSwatchStyle()}
                 onclick={handleWallpaperStyleChange}
             >
                 Palette row

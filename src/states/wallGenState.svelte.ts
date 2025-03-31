@@ -184,7 +184,7 @@ export const isPopArtSquareStyle = () => {
     return wallGenStyle.val === WallpaperStyle.POP_ART_SQUARE;
 };
 
-export const isPaletteRowStyle = () => {
+export const isColourSwatchStyle = () => {
     return wallGenStyle.val === WallpaperStyle.COLOUR_SWATCH;
 };
 
