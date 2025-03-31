@@ -5,7 +5,7 @@
 
     const isShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.SQUARE);
-    const isCircleSquare = $derived(colourSwatchStyleConfig.val.itemShape
+    const isShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.CIRCLE);
 
     const handleSetItemShape = (e: InputEvent) => {
@@ -41,7 +41,7 @@
             </RadioCheckbox>
             <RadioCheckbox
                 value={ColourSwatchStyleItemShape.CIRCLE}
-                checked={isCircleSquare}
+                checked={isShapeCircle}
                 onclick={handleSetItemShape}
             >
                 Circle
