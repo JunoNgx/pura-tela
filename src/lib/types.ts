@@ -63,7 +63,7 @@ export enum WallpaperStyle {
     SOLID = "solid",
     GRADIENT = "gradient",
     POP_ART_SQUARE = "popArtSquare",
-    PALETTE_ROW = "paletteRow",
+    COLOUR_SWATCH = "colourSwatch",
 };
 
 export type WallpaperStyleInfo = {

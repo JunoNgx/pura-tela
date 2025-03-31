@@ -168,7 +168,7 @@ export const isWallGenStyleValid = (data: any) => {
 
 export const wallGenStyle = createLocalStorageSyncedState({
     key: "wallpaperStyle",
-    defaultValue: WallpaperStyle.PALETTE_ROW,
+    defaultValue: WallpaperStyle.COLOUR_SWATCH,
     validationFunc: isWallGenStyleValid,
 }) as State<WallpaperStyle>;
 
@@ -185,7 +185,7 @@ export const isPopArtSquareStyle = () => {
 };
 
 export const isPaletteRowStyle = () => {
-    return wallGenStyle.val === WallpaperStyle.PALETTE_ROW;
+    return wallGenStyle.val === WallpaperStyle.COLOUR_SWATCH;
 };
 
 const currStyleInfo = $derived.by(() => {
@@ -211,7 +211,7 @@ const currStyleInfo = $derived.by(() => {
             maxColourCount: 4,
         }
 
-    case WallpaperStyle.PALETTE_ROW:
+    case WallpaperStyle.COLOUR_SWATCH:
         return {
             defaultColourCount: 5,
             minColourCount: 2,

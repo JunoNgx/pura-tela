@@ -46,7 +46,7 @@ import { WallpaperStyle } from "src/lib/types.js";
             </RadioCheckbox>
 
             <RadioCheckbox
-                value={WallpaperStyle.PALETTE_ROW}
+                value={WallpaperStyle.COLOUR_SWATCH}
                 checked={isPaletteRowStyle()}
                 onclick={handleWallpaperStyleChange}
             >

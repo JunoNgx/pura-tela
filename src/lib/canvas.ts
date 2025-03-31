@@ -46,7 +46,7 @@ export const renderCanvas = (
         renderForPopArtSquareStyle(renderOptions);
         break;
 
-    case WallpaperStyle.PALETTE_ROW:
+    case WallpaperStyle.COLOUR_SWATCH:
         renderForPaletteRowStyle(renderOptions);
         break;
 
