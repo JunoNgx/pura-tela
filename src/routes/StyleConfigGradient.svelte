@@ -19,6 +19,10 @@
         }
     };
 
+    const resetTo90Deg = () => {
+        setGradientStyleConfigAngle(90);
+    };
+
 </script>
 
 <div class="GradientConfig">
@@ -58,6 +62,14 @@
                         oninput={handleSliderChange}
                     />
                 </div>
+
+                <button class="GradientConfig__AngleResetButton"
+                    title="Reset to 90 degree"
+                    aria-label="Reset to 90 degree"
+                    onclick={resetTo90Deg}
+                >
+                    Reset
+                </button>
             </div>
         </fieldset>
     </div>
@@ -87,6 +99,8 @@
 
     .GradientConfig__ButtonsContainer {
         display: flex;
+        align-items: center;
+        flex-wrap: wrap;
         gap: 2rem;
     }
 </style>
