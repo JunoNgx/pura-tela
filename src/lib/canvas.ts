@@ -74,6 +74,15 @@ const renderForGradientStyle = (
         ctx: CanvasRenderingContext2D,
     }
 ) => {
+    /**
+     * Drawing gradient at an angle is unfortunately not as perfect specifically
+     * setting it at from x `0` to `size.height`.
+     * 
+     * What entails is a gradient drawn from a circle passing through the four
+     * points of the rectangle, whose quality is variable, depending on the ratio
+     * of the rectangle. Works best with square, but not 100% perfect.
+     */
+
     if (!config?.gradient) {
         throw new Error("Cannot access Gradient config");
     }
