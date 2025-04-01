@@ -12,6 +12,7 @@
 	import { page } from "$app/state";
 	import { WallpaperStyle } from "src/lib/types.js";
 	import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
+	import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
@@ -49,6 +50,11 @@
         switch (wallGenStyle.val) {
         case WallpaperStyle.GRADIENT:
             url.searchParams.append("gradientAngle", gradientStyleConfig.val.angleInDeg.toString());
+            break;
+        case WallpaperStyle.COLOUR_SWATCH:
+            url.searchParams.append("swatchShape", colourSwatchStyleConfig.val.itemShape);
+            url.searchParams.append("swatchPosition", colourSwatchStyleConfig.val.position);
+            url.searchParams.append("swatchHasSpacing", colourSwatchStyleConfig.val.hasSpacing.toString());
             break;
         }
 
