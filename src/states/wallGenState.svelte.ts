@@ -6,6 +6,7 @@ import { sizeGallery } from "./sizeGalleryState.svelte.js";
 import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
+import { colourSwatchStyleConfig } from "./wallGenStyleConfigColourSwatchState.svelte.js";
 
 /**
  * Wallpaper Generator current colours
@@ -168,7 +169,7 @@ export const isWallGenStyleValid = (data: any) => {
 
 export const wallGenStyle = createLocalStorageSyncedState({
     key: "wallpaperStyle",
-    defaultValue: WallpaperStyle.PALETTE_ROW,
+    defaultValue: WallpaperStyle.COLOUR_SWATCH,
     validationFunc: isWallGenStyleValid,
 }) as State<WallpaperStyle>;
 
@@ -184,8 +185,8 @@ export const isPopArtSquareStyle = () => {
     return wallGenStyle.val === WallpaperStyle.POP_ART_SQUARE;
 };
 
-export const isPaletteRowStyle = () => {
-    return wallGenStyle.val === WallpaperStyle.PALETTE_ROW;
+export const isColourSwatchStyle = () => {
+    return wallGenStyle.val === WallpaperStyle.COLOUR_SWATCH;
 };
 
 const currStyleInfo = $derived.by(() => {
@@ -211,7 +212,7 @@ const currStyleInfo = $derived.by(() => {
             maxColourCount: 4,
         }
 
-    case WallpaperStyle.PALETTE_ROW:
+    case WallpaperStyle.COLOUR_SWATCH:
         return {
             defaultColourCount: 5,
             minColourCount: 2,
@@ -379,3 +380,11 @@ const derivedHexColourCodesInUse = $derived(derivedColourStringsInUse.map(colour
 export const getHexColourCodesInUse = () => {
     return derivedHexColourCodesInUse;
 };
+
+const derivedColourSwatchStyleConfig = $derived(colourSwatchStyleConfig.val);
+const derivedStyleConfig = $derived({
+    colourSwatch: derivedColourSwatchStyleConfig,
+});
+export const getStyleConfig = () => {
+    return derivedStyleConfig;
+}

@@ -63,7 +63,7 @@ export enum WallpaperStyle {
     SOLID = "solid",
     GRADIENT = "gradient",
     POP_ART_SQUARE = "popArtSquare",
-    PALETTE_ROW = "paletteRow",
+    COLOUR_SWATCH = "colourSwatch",
 };
 
 export type WallpaperStyleInfo = {
@@ -77,4 +77,28 @@ export type WallGenQueryProps = {
     colours: string | null,
     width: string | null,
     height: string | null,
+};
+
+export type InputEvent = MouseEvent & {
+    currentTarget: EventTarget & HTMLInputElement
+};
+
+export enum ColourSwatchStyleItemShape {
+    SQUARE = "square",
+    CIRCLE = "circle"
+};
+
+export enum ColourSwatchStylePosition {
+    CENTERED = "centered",
+    TOP_RIGHT = "topRight"
+};
+
+export type ColourSwatchStyleConfigProps = {
+    itemShape: ColourSwatchStyleItemShape,
+    position: ColourSwatchStylePosition,
+    hasSpacing: boolean,
+};
+
+export type RenderStyleConfig = {
+    colourSwatch: ColourSwatchStyleConfigProps,
 };
