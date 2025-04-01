@@ -161,6 +161,31 @@ input[type="number"] {
     appearance: textfield;
 }
 
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 2px;
+    background: var(--colPri);
+    border-radius: 0;
+    margin: 1rem 0;
+}
+
+/* input[type="range"]::-webkit-slider-runnable-track,
+input[type="range"]::-moz-range-track {
+} */
+
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    width: 0.5rem;
+    height: 1.5rem;
+    border-radius: 0;
+    background: var(--colBg);
+    border: var(--lineWeight) solid var(--colPri);
+    cursor: pointer;
+}
+
 select {
     font-family: var(--fontFamily);
     font-size: var(--fontSizeMd);
