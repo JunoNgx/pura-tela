@@ -63,7 +63,7 @@
                     />
                 </div>
 
-                <button class="GradientConfig__AngleResetButton"
+                <button class="GradientConfig__AngleResetButton TertBtn"
                     title="Reset to 90 degree"
                     aria-label="Reset to 90 degree"
                     onclick={resetTo90Deg}
