@@ -100,7 +100,6 @@ const renderForGradientStyle = (
         config.gradient.angleInDeg, size.width, size.height
     );
 
-    console.log("pionts", x1,y1, x2, y2)
     const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
     const colourCount = colours.length;
     const intervalGap = 1 / (colourCount - 1);
