@@ -77,6 +77,8 @@ export type WallGenQueryProps = {
     colours: string | null,
     width: string | null,
     height: string | null,
+
+    gradientAngle?: string | null,
 };
 
 export type InputEvent = MouseEvent & {
