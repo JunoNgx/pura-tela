@@ -99,10 +99,11 @@ export type ColourSwatchStyleConfigProps = {
     hasSpacing: boolean,
 };
 
-export type RenderStyleConfig = {
-    colourSwatch: ColourSwatchStyleConfigProps,
-};
-
 export type GradientStyleConfigProps = {
     angleInDeg: number,
+};
+
+export type RenderStyleConfig = {
+    colourSwatch: ColourSwatchStyleConfigProps,
+    gradient: GradientStyleConfigProps,
 };
