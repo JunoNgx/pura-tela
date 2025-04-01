@@ -78,10 +78,30 @@ const renderForGradientStyle = (
         throw new Error("Cannot access Gradient config");
     }
 
-    const colourCount = colours.length;
-    const midXPoint = size.width / 2;
+    const calculateGradientPoints = (
+        angleInDeg: number, width: number, height: number
+    ) => {
+        const hypotenuseLength = Math.sqrt(width * width + height * height);
+        const angleInRadian = (angleInDeg * Math.PI) / 180;
+        const midX = width / 2;
+        const midY = height /2;
+        
+        const x1 = midX - hypotenuseLength * Math.cos(angleInRadian);
+        const y1 = midY - hypotenuseLength * Math.sin(angleInRadian);
+
+        const x2 = midX + hypotenuseLength * Math.cos(angleInRadian);
+        const y2 = midY + hypotenuseLength * Math.sin(angleInRadian);
+
+        return { x1, y1, x2, y2 };
+    };
+
+    const { x1, y1, x2, y2 } = calculateGradientPoints(
+        config.gradient.angleInDeg, size.width, size.height
+    );
+
     const gradient = ctx.createLinearGradient(
-        midXPoint, 0, midXPoint, size.height);
+        x1, y1, x2, y2);
+    const colourCount = colours.length;
     const intervalGap = 1 / (colourCount - 1);
 
     for (let i = 0; i < colourCount; i++) {
