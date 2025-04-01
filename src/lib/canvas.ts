@@ -70,10 +70,14 @@ export const renderCanvas = (
 };
 
 const renderForGradientStyle = (
-    { ctx, colours, size }: CanvasRenderOptions & {
+    { ctx, colours, size, config }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
 ) => {
+    if (!config?.gradient) {
+        throw new Error("Cannot access Gradient config");
+    }
+
     const colourCount = colours.length;
     const midXPoint = size.width / 2;
     const gradient = ctx.createLinearGradient(
