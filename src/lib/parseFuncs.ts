@@ -57,3 +57,21 @@ export const tryParseColours = (inputStr: string) => {
         return null;
     }
 };
+
+export const tryParseAngle = (
+    angleStr: string | number,
+) => {
+
+    try {
+        const angle = parseInt(angleStr as string);
+
+        const isValid = 0 <= angle && angle <= 360;
+        
+        if (isValid) return angle;
+        else return null;
+
+    } catch(err) {
+        console.error("Invalid size data");
+        return null;
+    }
+};
