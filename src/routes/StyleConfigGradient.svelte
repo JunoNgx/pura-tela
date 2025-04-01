@@ -1,5 +1,13 @@
 <script lang="ts">
 
+	import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
+
+    const handleSliderChange = (
+        e: Event & { currentTarget: EventTarget & HTMLInputElement; }
+    ) => {
+
+    };
+
 </script>
 
 <div class="GradientConfig">
@@ -7,18 +15,27 @@
         Colour Swatch Configurations
     </h3>
 
-    <div class="GradientConfig__ItemsContainer">
-        <fieldset class="GradientConfig__Item">
-            <legend>
-                <h4 class="GradientConfig__ItemTitle">
-                    Angle
-                </h4>
-            </legend>
+    <div class="GradientConfig__Angle">
+        <h4 class="GradientConfig__AngleTitle">Angle</h4>
 
-            <div class="GradientConfig__ButtonsContainer">
+        <div class="GradientConfig__AngleContentContainer">
 
+            <div class="GradientConfig__CurrValueContainer">
+                <span class="GradientConfig__CurrVal">{gradientStyleConfig.val.angleInDeg}</span>
             </div>
-        </fieldset>
+
+            <div class="GradientConfig__AngleSlider">
+                <label class="VisuallyHidden" for="gradientAngleSlider">Angle slider input</label>
+                <input class="GradientConfig__AngleSliderInput"
+                    id="gradientAngleSlider"
+                    type="range"
+                    min="0"
+                    max="360"
+                    value="{gradientStyleConfig.val.angleInDeg}"
+                    oninput={handleSliderChange}
+                />
+            </div>
+        </div>
     </div>
 </div>
 
@@ -31,17 +48,7 @@
         margin-bottom: 0.5rem;
     }
 
-    .GradientConfig__Item {
-        border: var(--lineWeight) solid var(--colPri);
-        padding: 0.5rem 1rem 1rem;
-    }
-
-    .GradientConfig__ItemTitle {
-        text-transform: lowercase;
-        margin: 0.5rem 0 0.5rem;
-    }
-
-    .GradientConfig__ButtonsContainer {
+    .GradientConfig__AngleContentContainer {
         display: flex;
         gap: 2rem;
     }
