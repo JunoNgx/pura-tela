@@ -81,16 +81,17 @@ const renderForGradientStyle = (
     const calculateGradientPoints = (
         angleInDeg: number, width: number, height: number
     ) => {
-        const hypotenuseLength = Math.sqrt(width * width + height * height);
+        const diagonalLength = Math.sqrt(width * width + height * height);
+        const distanceFromMid = diagonalLength/2;
         const angleInRadian = (angleInDeg * Math.PI) / 180;
         const midX = width / 2;
         const midY = height /2;
         
-        const x1 = midX - hypotenuseLength * Math.cos(angleInRadian);
-        const y1 = midY - hypotenuseLength * Math.sin(angleInRadian);
+        const x1 = midX - distanceFromMid * Math.cos(angleInRadian);
+        const y1 = midY - distanceFromMid * Math.sin(angleInRadian);
 
-        const x2 = midX + hypotenuseLength * Math.cos(angleInRadian);
-        const y2 = midY + hypotenuseLength * Math.sin(angleInRadian);
+        const x2 = midX + distanceFromMid * Math.cos(angleInRadian);
+        const y2 = midY + distanceFromMid * Math.sin(angleInRadian);
 
         return { x1, y1, x2, y2 };
     };
@@ -99,8 +100,8 @@ const renderForGradientStyle = (
         config.gradient.angleInDeg, size.width, size.height
     );
 
-    const gradient = ctx.createLinearGradient(
-        x1, y1, x2, y2);
+    console.log("pionts", x1,y1, x2, y2)
+    const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
     const colourCount = colours.length;
     const intervalGap = 1 / (colourCount - 1);
 
