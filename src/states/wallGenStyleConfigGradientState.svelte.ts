@@ -11,7 +11,7 @@ const isGradientConfigValid = (data: any) => {
 };
 
 const gradientStyleConfigDefaultValue = {
-    angleInDeg: 0,
+    angleInDeg: 90,
 };
 
 export const gradientStyleConfig = <State<GradientStyleConfigProps>>createLocalStorageSyncedState({
