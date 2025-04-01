@@ -130,6 +130,18 @@
     border-color: var(--colPri);
 }
 
+.TertBtn {
+    border: none;
+    text-decoration: underline;
+    background-color: transparent;
+    padding: 0;
+}
+
+.TertBtn:hover {
+    color: var(--colPri);
+    background-color: transparent;
+}
+
 .SplitBtn {
     display: flex;
     flex-direction: row;
