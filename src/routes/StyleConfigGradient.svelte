@@ -26,36 +26,40 @@
         Colour Swatch Configurations
     </h3>
 
-    <div class="GradientConfig__Angle">
-        <h4 class="GradientConfig__AngleTitle">Angle</h4>
+    <div class="GradientConfig__ItemsContainer">
+        <fieldset class="GradientConfig__Item">
+            <legend>
+                <h4 class="GradientConfig__ItemTitle">Angle</h4>
+            </legend>
 
-        <div class="GradientConfig__AngleContentContainer">
+            <div class="GradientConfig__ButtonsContainer">
 
-            <div class="GradientConfig__AngleInputContainer">
-                <label class="VisuallyHidden" for="gradientAngleInput">Angle input as number input</label>
-                <input class="GradientConfig__AngleInput"
-                    id="gradientAngleInput"
-                    type="number"
-                    min="0"
-                    max="360"
-                    value="{gradientStyleConfig.val.angleInDeg}"
-                    oninput={handleSliderChange}
-                />
-                <span class="GradientConfig__AngleInputUnit">°</span>
+                <div class="GradientConfig__AngleInputContainer">
+                    <label class="VisuallyHidden" for="gradientAngleInput">Angle input as number input</label>
+                    <input class="GradientConfig__AngleInput"
+                        id="gradientAngleInput"
+                        type="number"
+                        min="0"
+                        max="360"
+                        value="{gradientStyleConfig.val.angleInDeg}"
+                        oninput={handleSliderChange}
+                    />
+                    <span class="GradientConfig__AngleInputUnit">°</span>
+                </div>
+
+                <div class="GradientConfig__AngleSliderContainer">
+                    <label class="VisuallyHidden" for="gradientAngleSlider">Angle input as slider</label>
+                    <input class="GradientConfig__AngleSliderInput"
+                        id="gradientAngleSlider"
+                        type="range"
+                        min="0"
+                        max="360"
+                        value="{gradientStyleConfig.val.angleInDeg}"
+                        oninput={handleSliderChange}
+                    />
+                </div>
             </div>
-
-            <div class="GradientConfig__AngleSliderContainer">
-                <label class="VisuallyHidden" for="gradientAngleSlider">Angle input as slider</label>
-                <input class="GradientConfig__AngleSliderInput"
-                    id="gradientAngleSlider"
-                    type="range"
-                    min="0"
-                    max="360"
-                    value="{gradientStyleConfig.val.angleInDeg}"
-                    oninput={handleSliderChange}
-                />
-            </div>
-        </div>
+        </fieldset>
     </div>
 </div>
 
@@ -68,7 +72,20 @@
         margin-bottom: 0.5rem;
     }
 
-    .GradientConfig__AngleContentContainer {
+    /* .GradientConfig__ItemsContainer {
+    } */
+
+    .GradientConfig__Item {
+        border: var(--lineWeight) solid var(--colPri);
+        padding: 0.5rem 1rem 1rem;
+    }
+
+    .GradientConfig__ItemTitle {
+        text-transform: lowercase;
+        margin: 0.5rem 0 0.5rem;
+    }
+
+    .GradientConfig__ButtonsContainer {
         display: flex;
         gap: 2rem;
     }
