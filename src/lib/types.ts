@@ -102,3 +102,7 @@ export type ColourSwatchStyleConfigProps = {
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps,
 };
+
+export type GradientStyleConfigProps = {
+    angleInDeg: number,
+};
