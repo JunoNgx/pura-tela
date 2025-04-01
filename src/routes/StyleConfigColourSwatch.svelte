@@ -128,7 +128,7 @@
 
     .ColourSwatchConfig__Item {
         border: var(--lineWeight) solid var(--colPri);
-        padding-bottom: 1rem;
+        padding: 0.5rem 1rem 1rem;
     }
 
     .ColourSwatchConfig__ItemTitle {

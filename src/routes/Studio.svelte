@@ -10,6 +10,9 @@
     import SizeInput from "src/routes/SizeInput.svelte";
 	import SharePanel from "src/components/SharePanel.svelte";
 	import { page } from "$app/state";
+	import { WallpaperStyle } from "src/lib/types.js";
+	import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
+	import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
@@ -43,6 +46,17 @@
         url.searchParams.append("colours", getColourStringsInUse().toString());
         url.searchParams.append("width", wallGenSize.val.width.toString());
         url.searchParams.append("height", wallGenSize.val.height.toString());
+
+        switch (wallGenStyle.val) {
+        case WallpaperStyle.GRADIENT:
+            url.searchParams.append("gradientAngle", gradientStyleConfig.val.angleInDeg.toString());
+            break;
+        case WallpaperStyle.COLOUR_SWATCH:
+            url.searchParams.append("swatchShape", colourSwatchStyleConfig.val.itemShape);
+            url.searchParams.append("swatchPosition", colourSwatchStyleConfig.val.position);
+            url.searchParams.append("swatchHasSpacing", colourSwatchStyleConfig.val.hasSpacing.toString());
+            break;
+        }
 
         return url.toString();
     };
