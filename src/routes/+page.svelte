@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { tryParseColours, tryParseSize } from "src/lib/parseFuncs.js";
+	import { tryParseAngle, tryParseColours, tryParseSize } from "src/lib/parseFuncs.js";
 	import type { WallGenQueryProps, WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
 	import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSize, wallGenStyle, } from "src/states/wallGenState.svelte.js";
+	import { setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 
     export let data: WallGenQueryProps;
 
@@ -46,9 +47,25 @@
         setWallGenSize(sizeData.width, sizeData.height);
     };
 
+    const tryParseGradientConfig = () => {
+        if (!data.gradientAngle) {
+            return;
+        }
+
+        const angle = tryParseAngle(data.gradientAngle);
+
+        if (!angle) {
+            return;
+        }
+
+        setGradientStyleConfigAngle(angle);
+    };
+
     tryParseStyleFromQueryToWallGen();
     tryParseColoursFromQueryToWallGen();
     tryParseSizeFromQueryToWallGen();
+
+    tryParseGradientConfig();
 
 </script>
 
