@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { tryParseAngle, tryParseColours, tryParseSize } from "src/lib/parseFuncs.js";
-	import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
+	import { tryParseAngle, tryParseColours, tryParseSize, tryParseSwatchNumericConfig } from "src/lib/parseFuncs.js";
+	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, ColourSwatchStylePosition, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
-	// import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
+	import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
 	import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSize, wallGenStyle, } from "src/states/wallGenState.svelte.js";
-	// import { setColourSwatchStyleItemShape, setColourSwatchStylePosition, setColourSwatchStyleSpacing } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import { setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 	import { setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 
     export let data: WallGenQueryProps;
@@ -63,27 +63,53 @@
         setGradientStyleConfigAngle(angle);
     };
 
-    // const tryParseColourSwatchShape = () => {
-    //     if (!data.swatchShape) return;
-    //     if (!isEnumValueValid(data.swatchShape as any, ColourSwatchStyleItemShape))
-    //         return;
+    const tryParseSwatchPositionX = () => {
+        if (!data.swatchPosX) return;
+        const value = tryParseSwatchNumericConfig(data.swatchPosX);
+        if (!value) return;
 
-    //     setColourSwatchStyleItemShape(data.swatchShape as ColourSwatchStyleItemShape);
-    // };
+        setColourSwatchStylePositionX(value);
+    };
 
-    // const tryParseColourSwatchPosition = () => {
-    //     if (!data.swatchPosition) return;
-    //     if (!isEnumValueValid(data.swatchPosition as any, ColourSwatchStylePosition))
-    //         return;
+    const tryParseSwatchPositionY = () => {
+        if (!data.swatchPosY) return;
+        const value = tryParseSwatchNumericConfig(data.swatchPosY);
+        if (!value) return;
 
-    //     setColourSwatchStylePosition(data.swatchPosition as ColourSwatchStylePosition);
-    // };
+        setColourSwatchStylePositionY(value);
+    };
 
-    // const tryParseColourSwatchHasSpacing = () => {
-    //     if (!data.swatchHasSpacing) return;
-    //     const parsedValue = data.swatchHasSpacing === "true";
-    //     setColourSwatchStyleSpacing(parsedValue);
-    // };
+    const tryParseSwatchDirection = () => {
+        if (!data.swatchDirection) return;
+        if (!isEnumValueValid(data.swatchDirection as any, ColourSwatchStyleDirection))
+            return;
+
+        setColourSwatchStyleDirection(data.swatchDirection as ColourSwatchStyleDirection);
+    };
+
+    const tryParseSwatchItemShape = () => {
+        if (!data.swatchItemShape) return;
+        if (!isEnumValueValid(data.swatchItemShape as any, ColourSwatchStyleItemShape))
+            return;
+
+        setColourSwatchStyleItemShape(data.swatchItemShape as ColourSwatchStyleItemShape);
+    };
+
+    const tryParseSwatchItemSize = () => {
+        if (!data.swatchItemSize) return;
+        const value = tryParseSwatchNumericConfig(data.swatchItemSize);
+        if (!value) return;
+
+        setColourSwatchStyleItemSize(value);
+    };
+
+    const tryParseSwatchItemSpacing = () => {
+        if (!data.swatchItemSpacing) return;
+        const value = tryParseSwatchNumericConfig(data.swatchItemSpacing);
+        if (!value) return;
+
+        setColourSwatchStyleItemSpacing(value);
+    };
 
     tryParseStyleFromQueryToWallGen();
     tryParseColoursFromQueryToWallGen();
@@ -91,9 +117,12 @@
 
     tryParseGradientConfig();
 
-    // tryParseColourSwatchShape();
-    // tryParseColourSwatchPosition();
-    // tryParseColourSwatchHasSpacing();
+    tryParseSwatchPositionX();
+    tryParseSwatchPositionY();
+    tryParseSwatchDirection();
+    tryParseSwatchItemShape();
+    tryParseSwatchItemSize();
+    tryParseSwatchItemSpacing();
 </script>
 
 <h2 class="VisuallyHidden">Generate wallpaper</h2>
