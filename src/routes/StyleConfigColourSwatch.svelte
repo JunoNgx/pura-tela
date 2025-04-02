@@ -59,7 +59,7 @@
             </legend>
             <div class="ColourSwatchConfig__FieldsetContent">
                 <StyleConfigItem
-                    domId="swatchPosX"
+                    domId="SwatchPosX"
                     label="Horizontal position"
                     min={SWATCH_CONFIG_MIN_VALUE}
                     max={SWATCH_CONFIG_MAX_VALUE}
@@ -68,7 +68,7 @@
                     changeHandler={handleChangePositionX}
                 />
                 <StyleConfigItem
-                    domId="swatchPosY"
+                    domId="SwatchPosY"
                     label="Vertical position"
                     min={SWATCH_CONFIG_MIN_VALUE}
                     max={SWATCH_CONFIG_MAX_VALUE}
