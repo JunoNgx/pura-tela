@@ -36,8 +36,7 @@
                 <h4 class="GradientConfig__ItemTitle">Angle</h4>
             </legend>
 
-            <div class="GradientConfig__ButtonsContainer">
-
+            <div class="GradientConfig__Content">
                 <div class="GradientConfig__AngleInputContainer">
                     <label class="VisuallyHidden" for="gradientAngleInput">Angle input as number input</label>
                     <input class="GradientConfig__AngleInput"
@@ -63,7 +62,9 @@
                         oninput={handleSliderChange}
                     />
                 </div>
+            </div>
 
+            <div class="GradientConfig__ActionsContainer">
                 <button class="GradientConfig__AngleResetButton TertBtn"
                     title="Reset to 90 degree"
                     aria-label="Reset to 90 degree"
@@ -72,6 +73,7 @@
                     Reset
                 </button>
             </div>
+
         </fieldset>
     </div>
 </div>
@@ -98,10 +100,23 @@
         margin: 0.5rem 0 0.5rem;
     }
 
-    .GradientConfig__ButtonsContainer {
-        display: flex;
+    .GradientConfig__Content {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
         align-items: center;
-        flex-wrap: wrap;
-        gap: 2rem;
     }
+
+    .GradientConfig__AngleSliderContainer {
+        grid-column: 2/6;
+    }
+
+    .GradientConfig__AngleSliderInput {
+        width: 100%;
+    }
+
+    .GradientConfig__ActionsContainer {
+        display: flex;
+        justify-content: flex-end;
+    }
+
 </style>
