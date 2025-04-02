@@ -1,6 +1,6 @@
 <script lang="ts">
 	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
-	import StyleConfigItem from "src/components/StyleConfigItem.svelte";
+	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
 	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 	import { type InputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
@@ -103,7 +103,7 @@
                 </h4>
             </legend>
             <div class="ColourSwatchConfig__FieldsetContent">
-                <StyleConfigItem
+                <StyleConfigItemSlider
                     domId="SwatchPosX"
                     label="Horizontal position"
                     min={SWATCH_CONFIG_MIN_VALUE}
@@ -114,7 +114,7 @@
                         handleDataChange(e, setColourSwatchStylePositionX, "position X");
                     }}
                 />
-                <StyleConfigItem
+                <StyleConfigItemSlider
                     domId="SwatchPosY"
                     label="Vertical position"
                     min={SWATCH_CONFIG_MIN_VALUE}
@@ -142,11 +142,11 @@
         <fieldset class="ColourSwatchConfig__Fieldset">
             <legend>
                 <h4 class="ColourSwatchConfig__FieldsetLegend">
-                    swatch item settings
+                    swatch item spacing
                 </h4>
             </legend>
             <div class="ColourSwatchConfig__FieldsetContent">
-                <StyleConfigItem
+                <StyleConfigItemSlider
                     domId="SwatchItemSize"
                     label="Item size"
                     min={SWATCH_CONFIG_MIN_VALUE}
@@ -157,7 +157,7 @@
                         handleDataChange(e, setColourSwatchStyleItemSize, "position Y");
                     }}
                 />
-                <StyleConfigItem
+                <StyleConfigItemSlider
                     domId="SwatchItemSpacing"
                     label="In-between spacing"
                     min={SWATCH_CONFIG_MIN_VALUE}
