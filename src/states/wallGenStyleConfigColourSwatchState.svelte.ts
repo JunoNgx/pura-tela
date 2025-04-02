@@ -36,7 +36,7 @@ const isPaletteRowConfigValid = (data: any) => {
     return true;
 };
 
-const colourSwatchStyleConfigDefaultValue = {
+export const colourSwatchStyleConfigDefaultValue = {
     positionX: 50,
     positionY: 50,
     direction: ColourSwatchStyleDirection.HORIZONTAL,
