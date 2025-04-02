@@ -2,7 +2,7 @@
 	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
 	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
 	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
-	import { type InputEvent } from "src/lib/types.js";
+	import { ColourSwatchStyleItemShape, type InputEvent, type MouseInputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
 	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
@@ -50,6 +50,18 @@
     //         console.error("Invalid item size value")
     //     }
     // };
+
+    const isItemShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
+        === ColourSwatchStyleItemShape.SQUARE);
+    const isItemShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
+        === ColourSwatchStyleItemShape.CIRCLE);
+    const isItemShapeRhombus = $derived(colourSwatchStyleConfig.val.itemShape
+        === ColourSwatchStyleItemShape.RHOMBUS);
+
+    const handleItemShapeChange = ( e: MouseInputEvent ) => {
+        const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
+        setColourSwatchStyleItemShape(newValue);
+    };
 
     const handleDataChange = (
         e: InputEvent,
@@ -145,7 +157,42 @@
                     swatch item spacing
                 </h4>
             </legend>
+
             <div class="ColourSwatchConfig__FieldsetContent">
+
+                <div class="ColourSwatchConfig__RadiogroupItem"
+                    role="radiogroup"
+                    aria-labelledby="SwatchItemShapeTitle"
+                >
+                    <div class="ColourSwatchConfig__RadiogroupItemTitle"
+                        id="SwatchItemShapeTitle"
+                    >
+                        Item shape
+                    </div>
+
+                    <RadioCheckbox
+                        value={ColourSwatchStyleItemShape.SQUARE}
+                        checked={isItemShapeSquare}
+                        onclick={handleItemShapeChange}
+                    >
+                        Square
+                    </RadioCheckbox>
+                    <RadioCheckbox
+                        value={ColourSwatchStyleItemShape.CIRCLE}
+                        checked={isItemShapeCircle}
+                        onclick={handleItemShapeChange}
+                    >
+                        Circle
+                    </RadioCheckbox>
+                    <RadioCheckbox
+                        value={ColourSwatchStyleItemShape.RHOMBUS}
+                        checked={isItemShapeRhombus}
+                        onclick={handleItemShapeChange}
+                    >
+                        Rhombus
+                    </RadioCheckbox>
+                </div>
+
                 <StyleConfigItemSlider
                     domId="SwatchItemSize"
                     label="Item size"
@@ -157,6 +204,7 @@
                         handleDataChange(e, setColourSwatchStyleItemSize, "position Y");
                     }}
                 />
+
                 <StyleConfigItemSlider
                     domId="SwatchItemSpacing"
                     label="In-between spacing"
