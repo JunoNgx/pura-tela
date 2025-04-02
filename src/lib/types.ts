@@ -95,6 +95,11 @@ export enum ColourSwatchStyleItemShape {
     RHOMBUS = "rhombus",
 };
 
+export enum ColourSwatchStylePosition {
+    CENTERED = "centered",
+    TOP_RIGHT = "topRight",
+};
+
 export enum ColourSwatchStyleDirection {
     HORIZONTAL = "horizontal",
     VERTICAL = "vertical",

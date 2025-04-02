@@ -1,17 +1,17 @@
 <script lang="ts">
 	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
 	import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type InputEvent } from "src/lib/types.js";
-	import { colourSwatchStyleConfig, setColourSwatchStyleItemShape, setColourSwatchStylePosition, setColourSwatchStyleSpacing } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import { colourSwatchStyleConfig, setColourSwatchStyleItemShape } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
     const isShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.SQUARE);
     const isShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.CIRCLE);
 
-    const isPositionCentered = $derived(colourSwatchStyleConfig.val.position
-        === ColourSwatchStylePosition.CENTERED);
-    const isPositionTopRight = $derived(colourSwatchStyleConfig.val.position
-        === ColourSwatchStylePosition.TOP_RIGHT);
+    // const isPositionCentered = $derived(colourSwatchStyleConfig.val.position
+    //     === ColourSwatchStylePosition.CENTERED);
+    // const isPositionTopRight = $derived(colourSwatchStyleConfig.val.position
+    //     === ColourSwatchStylePosition.TOP_RIGHT);
 
     const handleSetItemShape = (e: InputEvent) => {
         const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
@@ -36,7 +36,7 @@
     </h3>
 
     <div class="ColourSwatchConfig__ItemsContainer">
-        <fieldset class="ColourSwatchConfig__Item">
+        <!-- <fieldset class="ColourSwatchConfig__Item">
             <legend>
                 <h4 class="ColourSwatchConfig__ItemTitle">
                     Item shape
@@ -106,7 +106,7 @@
                     No gap
                 </RadioCheckbox>
             </div>
-        </fieldset>
+        </fieldset> -->
     </div>
 
 </div>
