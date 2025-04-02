@@ -5,7 +5,7 @@
         min: number,
         max: number,
         value: number,
-        step: number,
+        step?: number,
         changeHandler: (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => void
     };
 
@@ -15,7 +15,7 @@
         min,
         max,
         value,
-        step,
+        step = 1,
         changeHandler
     }: StyleConfigItemProps = $props();
 </script>
