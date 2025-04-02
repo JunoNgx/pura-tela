@@ -204,11 +204,18 @@ const renderForColourSwatchStyle = (
     const mainColours = colours.slice(1, colourCount);
     const itemCount = mainColours.length; // First one is background
 
-    const shouldDrawSquare = config.colourSwatch.itemShape
-        === ColourSwatchStyleItemShape.SQUARE;
-    const drawFunc = shouldDrawSquare
-        ? drawSquareFromCenter
-        : drawCircle;
+    let drawFunc;
+    switch(config.colourSwatch.itemShape) {
+    case ColourSwatchStyleItemShape.SQUARE:
+        drawFunc = drawSquareFromCenter;
+        break;
+    case ColourSwatchStyleItemShape.CIRCLE:
+        drawFunc = drawCircle;
+        break;
+    case ColourSwatchStyleItemShape.RHOMBUS:
+        drawFunc = drawRhombusFromCenter;
+        break;
+    }
 
     const shouldDrawCenter = config.colourSwatch.position
         === ColourSwatchStylePosition.CENTERED;
