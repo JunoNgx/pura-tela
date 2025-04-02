@@ -1,7 +1,8 @@
 <script lang="ts">
 	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
+	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 	import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type InputEvent } from "src/lib/types.js";
-	import { colourSwatchStyleConfig, setColourSwatchStyleItemShape } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleItemShape, setColourSwatchStylePositionX } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
     const isShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.SQUARE);
@@ -28,6 +29,28 @@
         setColourSwatchStyleSpacing(newValue === "true");
     };
 
+    const handleChangePositionX = (
+        e: Event & { currentTarget: EventTarget & HTMLInputElement }
+    ) => {
+        const newValue = e.currentTarget.value;
+
+        try {
+            const parsedValue = parseInt(newValue);
+            if (parsedValue < 0 || parsedValue > 360)
+                throw new Error("Invalid angle value");
+
+            setColourSwatchStylePositionX(parsedValue);
+        } catch(err) {
+            console.log(err)
+            console.error("Invalid angle value")
+        }
+    };
+
+    const resetPositionX = () => {
+        setColourSwatchStylePositionX(
+            colourSwatchStyleConfigDefaultValue.positionX);
+    };
+
 </script>
 
 <div class="ColourSwatchConfig">
@@ -36,77 +59,45 @@
     </h3>
 
     <div class="ColourSwatchConfig__ItemsContainer">
-        <!-- <fieldset class="ColourSwatchConfig__Item">
-            <legend>
-                <h4 class="ColourSwatchConfig__ItemTitle">
-                    Item shape
-                </h4>
-            </legend>
-            <div class="ColourSwatchConfig__ButtonsContainer">
-                <RadioCheckbox
-                    value={ColourSwatchStyleItemShape.SQUARE}
-                    checked={isShapeSquare}
-                    onclick={handleSetItemShape}
-                >
-                    Square
-                </RadioCheckbox>
-                <RadioCheckbox
-                    value={ColourSwatchStyleItemShape.CIRCLE}
-                    checked={isShapeCircle}
-                    onclick={handleSetItemShape}
-                >
-                    Circle
-                </RadioCheckbox>
-            </div>
-        </fieldset>
-
         <fieldset class="ColourSwatchConfig__Item">
             <legend>
                 <h4 class="ColourSwatchConfig__ItemTitle">
                     Position
                 </h4>
             </legend>
-            <div class="ColourSwatchConfig__ButtonsContainer">
-                <RadioCheckbox
-                    value={ColourSwatchStylePosition.CENTERED}
-                    checked={isPositionCentered}
-                    onclick={handleSetPosition}
-                >
-                    Centered
-                </RadioCheckbox>
-                <RadioCheckbox
-                    value={ColourSwatchStylePosition.TOP_RIGHT}
-                    checked={isPositionTopRight}
-                    onclick={handleSetPosition}
-                >
-                    Top right
-                </RadioCheckbox>
+            <div class="ColourSwatchConfig__AngleInputContainer">
+                <label class="VisuallyHidden" for="gradientAngleInput">Angle input as number input</label>
+                <input class="ColourSwatchConfig__AngleInput"
+                    id="gradientAngleInput"
+                    type="number"
+                    min="{SWATCH_CONFIG_MIN_VALUE}"
+                    max="{SWATCH_CONFIG_MAX_VALUE}"
+                    value="{colourSwatchStyleConfig.val.positionX}"
+                    oninput={handleChangePositionX}
+                />
             </div>
-        </fieldset>
 
-        <fieldset class="ColourSwatchConfig__Item">
-            <legend>
-                <h4 class="ColourSwatchConfig__ItemTitle">
-                    Spacing between items
-                </h4>
-            </legend>
-            <div class="ColourSwatchConfig__ButtonsContainer">
-                <RadioCheckbox
-                    value={true.toString()}
-                    checked={colourSwatchStyleConfig.val.hasSpacing}
-                    onclick={handleSetHasSpacing}
-                >
-                    Add gap
-                </RadioCheckbox>
-                <RadioCheckbox
-                    value={false.toString()}
-                    checked={!colourSwatchStyleConfig.val.hasSpacing}
-                    onclick={handleSetHasSpacing}
-                >
-                    No gap
-                </RadioCheckbox>
+            <div class="ColourSwatchConfig__AngleSliderContainer">
+                <label class="VisuallyHidden" for="gradientAngleSlider">Angle input as slider</label>
+                <input class="ColourSwatchConfig__AngleSliderInput"
+                    id="gradientAngleSlider"
+                    type="range"
+                    min="{SWATCH_CONFIG_MIN_VALUE}"
+                    max="{SWATCH_CONFIG_MAX_VALUE}"
+                    step="5"
+                    value="{colourSwatchStyleConfig.val.positionX}"
+                    oninput={handleChangePositionX}
+                />
             </div>
-        </fieldset> -->
+
+            <button class="ColourSwatchConfig__AngleResetButton TertBtn"
+                title="Reset to 90 degree"
+                aria-label="Reset to 90 degree"
+                onclick={resetPositionX}
+            >
+                Reset
+            </button>
+        </fieldset>
     </div>
 
 </div>
