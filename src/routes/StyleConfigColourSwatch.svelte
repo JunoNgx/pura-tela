@@ -2,7 +2,7 @@
 	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
 	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
 	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
-	import { ColourSwatchStyleItemShape, type InputEvent, type MouseInputEvent } from "src/lib/types.js";
+	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type InputEvent, type MouseInputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
 	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
@@ -50,6 +50,16 @@
     //         console.error("Invalid item size value")
     //     }
     // };
+
+    const isDirectionHorizontal = $derived(colourSwatchStyleConfig.val.direction
+        === ColourSwatchStyleDirection.HORIZONTAL);
+    const isDirectionVertical = $derived(colourSwatchStyleConfig.val.direction
+        === ColourSwatchStyleDirection.VERTICAL);
+
+    const handleSwatchDirectionChange = ( e: MouseInputEvent ) => {
+        const newValue = e.currentTarget.value as ColourSwatchStyleDirection;
+        setColourSwatchStyleDirection(newValue);
+    };
 
     const isItemShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.SQUARE);
@@ -159,6 +169,34 @@
             </legend>
 
             <div class="ColourSwatchConfig__FieldsetContent">
+
+                <div class="ColourSwatchConfig__RadiogroupItem"
+                    role="radiogroup"
+                    aria-labelledby="SwatchDirectionTitle"
+                >
+                    <div class="ColourSwatchConfig__RadiogroupItemTitle"
+                        id="SwatchDirectionTitle"
+                    >
+                        swatch direction
+                    </div>
+
+                    <div class="ColourSwatchConfig__RadiogroupItemContent">
+                        <RadioCheckbox
+                            value={ColourSwatchStyleDirection.HORIZONTAL}
+                            checked={isDirectionHorizontal}
+                            onclick={handleSwatchDirectionChange}
+                        >
+                            Horizontal
+                        </RadioCheckbox>
+                        <RadioCheckbox
+                            value={ColourSwatchStyleDirection.VERTICAL}
+                            checked={isDirectionVertical}
+                            onclick={handleSwatchDirectionChange}
+                        >
+                            Vertical
+                        </RadioCheckbox>
+                    </div>
+                </div>
 
                 <div class="ColourSwatchConfig__RadiogroupItem"
                     role="radiogroup"
