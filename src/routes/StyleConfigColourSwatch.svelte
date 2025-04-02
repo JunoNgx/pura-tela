@@ -46,6 +46,21 @@
         }
     };
 
+    const handleChangePositionY = (e: InputEvent) => {
+        const newValue = e.currentTarget.value;
+
+        try {
+            const parsedValue = parseInt(newValue);
+            if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+                throw new Error("Invalid positionY value");
+
+            setColourSwatchStylePositionY(parsedValue);
+        } catch(err) {
+            console.log(err)
+            console.error("Invalid positionY value")
+        }
+    };
+
     const resetPosition = () => {
         setColourSwatchStylePositionX(
             colourSwatchStyleConfigDefaultValue.positionX);
@@ -75,6 +90,15 @@
                 step={5}
                 value={colourSwatchStyleConfig.val.positionX}
                 changeHandler={handleChangePositionX}
+            />
+            <StyleConfigItem
+                domId="swatchPosY"
+                label="Vertical position"
+                min={SWATCH_CONFIG_MIN_VALUE}
+                max={SWATCH_CONFIG_MAX_VALUE}
+                step={5}
+                value={colourSwatchStyleConfig.val.positionY}
+                changeHandler={handleChangePositionY}
             />
 
             <div class="ColourSwatchConfig__FieldsetButtonsContainer">
