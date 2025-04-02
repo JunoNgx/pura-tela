@@ -56,5 +56,22 @@
 </div>
 
 <style>
+    .StyleConfigItem {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1rem;
+    }
+    
+    .StyleConfigItem__Label {
+        grid-column: 1/3;
+    }
 
+    .StyleConfigItem__SliderContainer {
+        grid-column-start: 4;
+        grid-column-end: 8;
+    }
+
+    .StyleConfigItem__Slider {
+        width: 100%;
+    }
 </style>
