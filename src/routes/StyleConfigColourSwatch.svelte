@@ -4,7 +4,7 @@
 	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 	import { type InputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
-	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
     // const handleChangePositionX = (e: InputEvent) => {
     //     const newValue = e.currentTarget.value;
@@ -75,6 +75,17 @@
             colourSwatchStyleConfigDefaultValue.positionX);
         setColourSwatchStylePositionY(
             colourSwatchStyleConfigDefaultValue.positionY);
+    };
+
+    const resetItemSettings = () => {
+        setColourSwatchStyleDirection(
+            colourSwatchStyleConfigDefaultValue.direction);
+        setColourSwatchStyleItemShape(
+            colourSwatchStyleConfigDefaultValue.itemShape);
+        setColourSwatchStyleItemSize(
+            colourSwatchStyleConfigDefaultValue.itemSize);
+        setColourSwatchStyleItemSpacing(
+            colourSwatchStyleConfigDefaultValue.itemSpacing);
     };
 
 </script>
@@ -161,9 +172,9 @@
 
             <div class="ColourSwatchConfig__FieldsetButtonsContainer">
                 <button class="ColourSwatchConfig__ResetBtn TertBtn"
-                    title="Reset position to center"
-                    aria-label="Reset position to center"
-                    onclick={resetPosition}
+                    title="Reset item settings to default"
+                    aria-label="Reset item settings to default"
+                    onclick={resetItemSettings}
                 >
                     Reset
                 </button>
