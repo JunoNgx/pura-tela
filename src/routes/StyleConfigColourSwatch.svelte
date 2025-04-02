@@ -267,6 +267,7 @@
         grid-template-columns: repeat(7, 1fr);
         gap: 1rem;
         margin-bottom: 1rem;
+        align-items: center;
     }
 
     .ColourSwatchConfig__RadiogroupItemTitle {

@@ -64,6 +64,7 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 1rem;
+        align-items: center;
     }
     
     .StyleConfigItem__Label {
