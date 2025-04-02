@@ -31,9 +31,7 @@
     //     setColourSwatchStyleSpacing(newValue === "true");
     // };
 
-    const handleChangePositionX = (
-        e: Event & { currentTarget: EventTarget & HTMLInputElement }
-    ) => {
+    const handleChangePositionX = (e: InputEvent) => {
         const newValue = e.currentTarget.value;
 
         try {

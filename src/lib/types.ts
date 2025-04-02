@@ -89,6 +89,10 @@ export type MouseInputEvent = MouseEvent & {
     currentTarget: EventTarget & HTMLInputElement
 };
 
+export type InputEvent = Event & {
+    currentTarget: EventTarget & HTMLInputElement
+};
+
 export enum ColourSwatchStyleItemShape {
     SQUARE = "square",
     CIRCLE = "circle",

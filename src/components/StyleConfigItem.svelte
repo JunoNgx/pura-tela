@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { InputEvent } from "src/lib/types.js";
+
     type StyleConfigItemProps = {
         domId: string,
         label: string,
@@ -6,7 +8,7 @@
         max: number,
         value: number,
         step?: number,
-        changeHandler: (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => void
+        changeHandler: (e: InputEvent) => void
     };
 
     let {
