@@ -1,31 +1,70 @@
 <script lang="ts">
+	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
+	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type InputEvent, type MouseInputEvent } from "src/lib/types.js";
+
 	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
-	import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type InputEvent } from "src/lib/types.js";
-	import { colourSwatchStyleConfig, setColourSwatchStyleItemShape, setColourSwatchStylePosition, setColourSwatchStyleSpacing } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
 
-    const isShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
+	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+
+    const isDirectionHorizontal = $derived(colourSwatchStyleConfig.val.direction
+        === ColourSwatchStyleDirection.HORIZONTAL);
+    const isDirectionVertical = $derived(colourSwatchStyleConfig.val.direction
+        === ColourSwatchStyleDirection.VERTICAL);
+
+    const handleSwatchDirectionChange = ( e: MouseInputEvent ) => {
+        const newValue = e.currentTarget.value as ColourSwatchStyleDirection;
+        setColourSwatchStyleDirection(newValue);
+    };
+
+    const isItemShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.SQUARE);
-    const isShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
+    const isItemShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.CIRCLE);
+    const isItemShapeRhombus = $derived(colourSwatchStyleConfig.val.itemShape
+        === ColourSwatchStyleItemShape.RHOMBUS);
 
-    const isPositionCentered = $derived(colourSwatchStyleConfig.val.position
-        === ColourSwatchStylePosition.CENTERED);
-    const isPositionTopRight = $derived(colourSwatchStyleConfig.val.position
-        === ColourSwatchStylePosition.TOP_RIGHT);
-
-    const handleSetItemShape = (e: InputEvent) => {
+    const handleItemShapeChange = ( e: MouseInputEvent ) => {
         const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
         setColourSwatchStyleItemShape(newValue);
     };
 
-    const handleSetPosition = (e: InputEvent) => {
-        const newValue = e.currentTarget.value as ColourSwatchStylePosition;
-        setColourSwatchStylePosition(newValue);
+    const handleDataChange = (
+        e: InputEvent,
+        setFunc: (value: number) => void,
+        valueLabel: string
+    ) => {
+        const newValue = e.currentTarget.value;
+
+        try {
+            const parsedValue = parseInt(newValue);
+            if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+                throw new Error(`Invalid ${valueLabel} value`);
+
+            setFunc(parsedValue);
+        } catch(err) {
+            console.log(err)
+            console.error(`Invalid ${valueLabel} value`)
+        }
     };
 
-    const handleSetHasSpacing = (e: InputEvent) => {
-        const newValue = e.currentTarget.value;
-        setColourSwatchStyleSpacing(newValue === "true");
+    const resetPosition = () => {
+        setColourSwatchStylePositionX(
+            colourSwatchStyleConfigDefaultValue.positionX);
+        setColourSwatchStylePositionY(
+            colourSwatchStyleConfigDefaultValue.positionY);
+    };
+
+    const resetItemSettings = () => {
+        setColourSwatchStyleDirection(
+            colourSwatchStyleConfigDefaultValue.direction);
+        setColourSwatchStyleItemShape(
+            colourSwatchStyleConfigDefaultValue.itemShape);
+        setColourSwatchStyleItemSize(
+            colourSwatchStyleConfigDefaultValue.itemSize);
+        setColourSwatchStyleItemSpacing(
+            colourSwatchStyleConfigDefaultValue.itemSpacing);
     };
 
 </script>
@@ -35,78 +74,159 @@
         Colour Swatch Configurations
     </h3>
 
-    <div class="ColourSwatchConfig__ItemsContainer">
-        <fieldset class="ColourSwatchConfig__Item">
+    <div class="ColourSwatchConfig__FieldsetsContainer">
+        <fieldset class="ColourSwatchConfig__Fieldset">
             <legend>
-                <h4 class="ColourSwatchConfig__ItemTitle">
-                    Item shape
-                </h4>
-            </legend>
-            <div class="ColourSwatchConfig__ButtonsContainer">
-                <RadioCheckbox
-                    value={ColourSwatchStyleItemShape.SQUARE}
-                    checked={isShapeSquare}
-                    onclick={handleSetItemShape}
-                >
-                    Square
-                </RadioCheckbox>
-                <RadioCheckbox
-                    value={ColourSwatchStyleItemShape.CIRCLE}
-                    checked={isShapeCircle}
-                    onclick={handleSetItemShape}
-                >
-                    Circle
-                </RadioCheckbox>
-            </div>
-        </fieldset>
-
-        <fieldset class="ColourSwatchConfig__Item">
-            <legend>
-                <h4 class="ColourSwatchConfig__ItemTitle">
+                <h4 class="ColourSwatchConfig__FieldsetLegend">
                     Position
                 </h4>
             </legend>
-            <div class="ColourSwatchConfig__ButtonsContainer">
-                <RadioCheckbox
-                    value={ColourSwatchStylePosition.CENTERED}
-                    checked={isPositionCentered}
-                    onclick={handleSetPosition}
-                >
-                    Centered
-                </RadioCheckbox>
-                <RadioCheckbox
-                    value={ColourSwatchStylePosition.TOP_RIGHT}
-                    checked={isPositionTopRight}
-                    onclick={handleSetPosition}
-                >
-                    Top right
-                </RadioCheckbox>
+            <div class="ColourSwatchConfig__FieldsetContent">
+                <StyleConfigItemSlider
+                    domId="SwatchPosX"
+                    label="Horizontal position"
+                    min={SWATCH_CONFIG_MIN_VALUE}
+                    max={SWATCH_CONFIG_MAX_VALUE}
+                    step={5}
+                    value={colourSwatchStyleConfig.val.positionX}
+                    changeHandler={(e) => {
+                        handleDataChange(e, setColourSwatchStylePositionX, "position X");
+                    }}
+                />
+                <StyleConfigItemSlider
+                    domId="SwatchPosY"
+                    label="Vertical position"
+                    min={SWATCH_CONFIG_MIN_VALUE}
+                    max={SWATCH_CONFIG_MAX_VALUE}
+                    step={5}
+                    value={colourSwatchStyleConfig.val.positionY}
+                    changeHandler={(e) => {
+                        handleDataChange(e, setColourSwatchStylePositionY, "position Y");
+                    }}
+                />
             </div>
+
+            <div class="ColourSwatchConfig__FieldsetButtonsContainer">
+                <button class="ColourSwatchConfig__ResetBtn TertBtn"
+                    title="Reset position to center"
+                    aria-label="Reset position to center"
+                    onclick={resetPosition}
+                >
+                    Reset
+                </button>
+            </div>
+
         </fieldset>
 
-        <fieldset class="ColourSwatchConfig__Item">
+        <fieldset class="ColourSwatchConfig__Fieldset">
             <legend>
-                <h4 class="ColourSwatchConfig__ItemTitle">
-                    Spacing between items
+                <h4 class="ColourSwatchConfig__FieldsetLegend">
+                    swatch item settings
                 </h4>
             </legend>
-            <div class="ColourSwatchConfig__ButtonsContainer">
-                <RadioCheckbox
-                    value={true.toString()}
-                    checked={colourSwatchStyleConfig.val.hasSpacing}
-                    onclick={handleSetHasSpacing}
+
+            <div class="ColourSwatchConfig__FieldsetContent">
+
+                <div class="ColourSwatchConfig__RadiogroupItem"
+                    role="radiogroup"
+                    aria-labelledby="SwatchDirectionTitle"
                 >
-                    Add gap
-                </RadioCheckbox>
-                <RadioCheckbox
-                    value={false.toString()}
-                    checked={!colourSwatchStyleConfig.val.hasSpacing}
-                    onclick={handleSetHasSpacing}
+                    <div class="ColourSwatchConfig__RadiogroupItemTitle"
+                        id="SwatchDirectionTitle"
+                    >
+                        swatch direction
+                    </div>
+
+                    <div class="ColourSwatchConfig__RadiogroupItemContent">
+                        <RadioCheckbox
+                            value={ColourSwatchStyleDirection.HORIZONTAL}
+                            checked={isDirectionHorizontal}
+                            onclick={handleSwatchDirectionChange}
+                        >
+                            Horizontal
+                        </RadioCheckbox>
+                        <RadioCheckbox
+                            value={ColourSwatchStyleDirection.VERTICAL}
+                            checked={isDirectionVertical}
+                            onclick={handleSwatchDirectionChange}
+                        >
+                            Vertical
+                        </RadioCheckbox>
+                    </div>
+                </div>
+
+                <div class="ColourSwatchConfig__RadiogroupItem"
+                    role="radiogroup"
+                    aria-labelledby="SwatchItemShapeTitle"
                 >
-                    No gap
-                </RadioCheckbox>
+                    <div class="ColourSwatchConfig__RadiogroupItemTitle"
+                        id="SwatchItemShapeTitle"
+                    >
+                        Item shape
+                    </div>
+
+                    <div class="ColourSwatchConfig__RadiogroupItemContent">
+                        <RadioCheckbox
+                            value={ColourSwatchStyleItemShape.SQUARE}
+                            checked={isItemShapeSquare}
+                            onclick={handleItemShapeChange}
+                        >
+                            Square
+                        </RadioCheckbox>
+                        <RadioCheckbox
+                            value={ColourSwatchStyleItemShape.CIRCLE}
+                            checked={isItemShapeCircle}
+                            onclick={handleItemShapeChange}
+                        >
+                            Circle
+                        </RadioCheckbox>
+                        <RadioCheckbox
+                            value={ColourSwatchStyleItemShape.RHOMBUS}
+                            checked={isItemShapeRhombus}
+                            onclick={handleItemShapeChange}
+                        >
+                            Rhombus
+                        </RadioCheckbox>
+                    </div>
+                </div>
+
+                <StyleConfigItemSlider
+                    domId="SwatchItemSize"
+                    label="Item size"
+                    min={SWATCH_CONFIG_MIN_VALUE}
+                    max={SWATCH_CONFIG_MAX_VALUE}
+                    step={5}
+                    value={colourSwatchStyleConfig.val.itemSize}
+                    changeHandler={(e) => {
+                        handleDataChange(e, setColourSwatchStyleItemSize, "position Y");
+                    }}
+                />
+
+                <StyleConfigItemSlider
+                    domId="SwatchItemSpacing"
+                    label="In-between spacing"
+                    min={SWATCH_CONFIG_MIN_VALUE}
+                    max={SWATCH_CONFIG_MAX_VALUE}
+                    step={5}
+                    value={colourSwatchStyleConfig.val.itemSpacing}
+                    changeHandler={(e) => {
+                        handleDataChange(e, setColourSwatchStyleItemSpacing, "position Y");
+                    }}
+                />
             </div>
+
+            <div class="ColourSwatchConfig__FieldsetButtonsContainer">
+                <button class="ColourSwatchConfig__ResetBtn TertBtn"
+                    title="Reset item settings to default"
+                    aria-label="Reset item settings to default"
+                    onclick={resetItemSettings}
+                >
+                    Reset
+                </button>
+            </div>
+
         </fieldset>
+
     </div>
 
 </div>
@@ -120,36 +240,45 @@
         margin-bottom: 0.5rem;
     }
 
-    .ColourSwatchConfig__ItemsContainer {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-
-    .ColourSwatchConfig__Item {
+    .ColourSwatchConfig__Fieldset {
         border: var(--lineWeight) solid var(--colPri);
         padding: 0.5rem 1rem 1rem;
     }
 
-    .ColourSwatchConfig__ItemTitle {
+    .ColourSwatchConfig__FieldsetLegend {
         text-transform: lowercase;
         margin: 0.5rem 0 0.5rem;
     }
 
-    .ColourSwatchConfig__ButtonsContainer {
+    .ColourSwatchConfig__FieldsetContent {
         display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .ColourSwatchConfig__FieldsetButtonsContainer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 2rem;
+    }
+
+    .ColourSwatchConfig__RadiogroupItem {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1rem;
+        margin-bottom: 1rem;
+        align-items: center;
+    }
+
+    .ColourSwatchConfig__RadiogroupItemTitle {
+        grid-column: 1/3;
+        text-transform: lowercase;
+    }
+
+    .ColourSwatchConfig__RadiogroupItemContent {
+        grid-column: 3/8;
+        display: flex;
+        flex-wrap: wrap;
         gap: 2rem;
-    }
-
-    @media screen and (width <= 1000px) {
-        .ColourSwatchConfig__ItemsContainer {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media screen and (width <= 500px) {
-        .ColourSwatchConfig__ItemsContainer {
-            grid-template-columns: repeat(1, 1fr);
-        }
     }
 </style>

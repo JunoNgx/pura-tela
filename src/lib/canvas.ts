@@ -1,4 +1,4 @@
-import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
+import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, ColourSwatchStylePosition, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
@@ -25,6 +25,20 @@ const drawSquare = ({ ctx, colour, x, y, size}: ShapeProps) => {
 const drawSquareFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fillStyle = colour;
     ctx.fillRect(x - size/2, y - size/2, size, size);
+};
+
+const drawRhombusFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    const semiDiagonal = size / 2;
+
+    ctx.beginPath();
+    ctx.moveTo(x, y - semiDiagonal);
+    ctx.lineTo(x + semiDiagonal, y);
+    ctx.lineTo(x, y + semiDiagonal);
+    ctx.lineTo(x - semiDiagonal, y);
+    ctx.closePath();
+
+    ctx.fillStyle = colour;
+    ctx.fill();
 };
 
 const drawCircle = ({ ctx, colour, x, y, size}: ShapeProps) => {
@@ -192,28 +206,53 @@ const renderForColourSwatchStyle = (
     const mainColours = colours.slice(1, colourCount);
     const itemCount = mainColours.length; // First one is background
 
-    const shouldDrawSquare = config.colourSwatch.itemShape
-        === ColourSwatchStyleItemShape.SQUARE;
-    const drawFunc = shouldDrawSquare
-        ? drawSquareFromCenter
-        : drawCircle;
+    let drawFunc;
+    switch(config.colourSwatch.itemShape) {
+    case ColourSwatchStyleItemShape.SQUARE:
+        drawFunc = drawSquareFromCenter;
+        break;
+    case ColourSwatchStyleItemShape.CIRCLE:
+        drawFunc = drawCircle;
+        break;
+    case ColourSwatchStyleItemShape.RHOMBUS:
+        drawFunc = drawRhombusFromCenter;
+        break;
+    }
 
-    const shouldDrawCenter = config.colourSwatch.position
-        === ColourSwatchStylePosition.CENTERED;
+    const shouldDrawHorizontally = config.colourSwatch.direction
+        === ColourSwatchStyleDirection.HORIZONTAL;
 
-    const drawCenter = () => {
+    const priAxisLength = shouldDrawHorizontally
+        ? size.width
+        : size.height;
+    const baseItemSize = priAxisLength / itemCount;
+    const minItemSize = baseItemSize / 7;
+    const maxItemSize = baseItemSize * 1.5;
+    const itemSize = minItemSize + (maxItemSize - minItemSize)
+        * config.colourSwatch.itemSize/100;
+
+    const minSpacing = -itemSize/4;
+    const maxSpacing = itemSize/4;
+    const spacing = minSpacing + (maxSpacing - minSpacing)
+        * config.colourSwatch.itemSpacing/100;
+
+    const swatchSlotSize = itemSize + spacing * 2;
+    const midPostionRenderOffset = swatchSlotSize / 2;
+    const fullSwatchSize = swatchSlotSize * itemCount;
+
+    const drawHorizontally = () => {
+        const minCommonY = itemSize/2;
+        const maxCommonY = size.height - itemSize/2;
+        const commonY = minCommonY + (maxCommonY - minCommonY)
+            * config.colourSwatch.positionY/100;
+
+        const maxStartingXOffset = size.width - fullSwatchSize;
+        const startingXOffset = maxStartingXOffset
+            * config.colourSwatch.positionX/100;
+
         for (let i = 0; i < mainColours.length; i++) {
-            const slotSize = size.width / (itemCount + 2); // Use one slot on each side as padding
-            const itemSize = config.colourSwatch.hasSpacing
-                ? slotSize * 4/5
-                : slotSize;
-            const spacingGap = config.colourSwatch.hasSpacing
-                ? slotSize / 10
-                : 0;
-            const commonY = size.height / 2;
-            const startingOffset = slotSize + spacingGap;
-            const midRenderPostionOffset = slotSize / 2;
-            const x = startingOffset + (slotSize) * i + midRenderPostionOffset;
+            const x = startingXOffset + (itemSize + spacing * 2)
+                * i + midPostionRenderOffset;
     
             drawFunc({
                 ctx,
@@ -225,18 +264,20 @@ const renderForColourSwatchStyle = (
         };
     };
 
-    const drawTopRight = () => {
-        for (let i = 0; i < mainColours.length; i++) {    
-            // Use only half of height
-            const slotSize = (size.height / 2) / (itemCount + 1);
-            const itemSize = config.colourSwatch.hasSpacing
-                ? slotSize * 4/5
-                : slotSize;
-            const commonX = size.width - itemSize * 1;
-            const startingOffset = itemSize;
-            const midRenderPostionOffset = slotSize / 2;
-            const y = startingOffset + slotSize * i + midRenderPostionOffset;
+    const drawVertically = () => {
+        const minCommonX = itemSize/2;
+        const maxCommonX = size.width - itemSize/2;
+        const commonX = minCommonX + (maxCommonX - minCommonX)
+            * config.colourSwatch.positionX/100;
 
+        const maxStartingYOffset = size.height - fullSwatchSize;
+        const startingYOffset = maxStartingYOffset
+            * config.colourSwatch.positionY/100;
+
+        for (let i = 0; i < mainColours.length; i++) {
+            const y = startingYOffset + (itemSize + spacing * 2)
+                * i + midPostionRenderOffset;
+    
             drawFunc({
                 ctx,
                 colour: mainColours[i],
@@ -247,8 +288,8 @@ const renderForColourSwatchStyle = (
         };
     };
 
-    if (shouldDrawCenter) drawCenter();
-    else drawTopRight();
+    if (shouldDrawHorizontally) drawHorizontally();
+    else drawVertically();
 };
 
 export const refitCanvasToContainer = () => {

@@ -85,24 +85,37 @@ export type WallGenQueryProps = {
     swatchHasSpacing?: string | null,
 };
 
-export type InputEvent = MouseEvent & {
+export type MouseInputEvent = MouseEvent & {
+    currentTarget: EventTarget & HTMLInputElement
+};
+
+export type InputEvent = Event & {
     currentTarget: EventTarget & HTMLInputElement
 };
 
 export enum ColourSwatchStyleItemShape {
     SQUARE = "square",
-    CIRCLE = "circle"
+    CIRCLE = "circle",
+    RHOMBUS = "rhombus",
 };
 
 export enum ColourSwatchStylePosition {
     CENTERED = "centered",
-    TOP_RIGHT = "topRight"
+    TOP_RIGHT = "topRight",
+};
+
+export enum ColourSwatchStyleDirection {
+    HORIZONTAL = "horizontal",
+    VERTICAL = "vertical",
 };
 
 export type ColourSwatchStyleConfigProps = {
+    positionX: number,
+    positionY: number,
+    direction: ColourSwatchStyleDirection,
     itemShape: ColourSwatchStyleItemShape,
-    position: ColourSwatchStylePosition,
-    hasSpacing: boolean,
+    itemSize: number,
+    itemSpacing: number,
 };
 
 export type GradientStyleConfigProps = {

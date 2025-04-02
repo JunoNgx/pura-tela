@@ -1,12 +1,9 @@
 <script lang="ts">
+	import type { MouseInputEvent } from "src/lib/types.js";
     import type { Snippet } from "svelte";
 
-    type InputEvent = MouseEvent & {
-        currentTarget: EventTarget & HTMLInputElement,
-    };
-
     type CustomRadioCheckboxProps = {
-        onclick: (e: InputEvent) => void,
+        onclick: (e: MouseInputEvent) => void,
         className?: string,
         value: string,
         checked: boolean,

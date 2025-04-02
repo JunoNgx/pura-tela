@@ -1,10 +1,10 @@
 import { type GradientStyleConfigProps, type State } from "src/lib/types.js";
-import { createLocalStorageSyncedState } from "./stateUtils.svelte.js"
+import { createLocalStorageSyncedState, isValueWithinRange } from "./stateUtils.svelte.js"
 
 const isGradientConfigValid = (data: any) => {
     if (!data) return false;
 
-    if (data.angleInDeg < 0 || 360 > data.angleInDeg)
+    if (!isValueWithinRange(data.angleInDeg, 0, 360))
         return false;
 
     return true;
