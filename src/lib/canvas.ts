@@ -226,7 +226,7 @@ const renderForColourSwatchStyle = (
         ? size.width
         : size.height;
     const baseItemSize = priAxisLength / itemCount;
-    const minItemSize = baseItemSize / 4;
+    const minItemSize = baseItemSize / 7;
     const maxItemSize = baseItemSize * 1.5;
     const itemSize = minItemSize + (maxItemSize - minItemSize)
         * config.colourSwatch.itemSize/100;
