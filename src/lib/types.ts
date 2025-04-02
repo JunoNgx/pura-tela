@@ -103,10 +103,10 @@ export enum ColourSwatchStyleDirection {
 export type ColourSwatchStyleConfigProps = {
     positionX: number,
     positionY: number,
-    itemShape: ColourSwatchStyleItemShape,
     direction: ColourSwatchStyleDirection,
-    size: number,
-    spacing: number,
+    itemShape: ColourSwatchStyleItemShape,
+    itemSize: number,
+    itemSpacing: number,
 };
 
 export type GradientStyleConfigProps = {
