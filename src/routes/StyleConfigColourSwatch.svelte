@@ -163,7 +163,7 @@
                     min={SWATCH_CONFIG_MIN_VALUE}
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
-                    value={colourSwatchStyleConfig.val.positionY}
+                    value={colourSwatchStyleConfig.val.itemSpacing}
                     changeHandler={(e) => {
                         handleDataChange(e, setColourSwatchStyleItemSpacing, "position Y");
                     }}
