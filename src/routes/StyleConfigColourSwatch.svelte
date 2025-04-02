@@ -154,7 +154,7 @@
         <fieldset class="ColourSwatchConfig__Fieldset">
             <legend>
                 <h4 class="ColourSwatchConfig__FieldsetLegend">
-                    swatch item spacing
+                    swatch item settings
                 </h4>
             </legend>
 
