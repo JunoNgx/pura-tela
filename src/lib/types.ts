@@ -78,11 +78,14 @@ export type WallGenQueryProps = {
     width: string | null,
     height: string | null,
 
-    gradientAngle?: string | null,
+    gradientAngle: string | null,
 
-    swatchShape?: string | null,
-    swatchPosition?: string | null,
-    swatchHasSpacing?: string | null,
+    swatchPosX: string | null,
+    swatchPosY: string | null,
+    swatchDirection: string | null,
+    swatchItemShape: string | null,
+    swatchItemSize: string | null,
+    swatchItemSpacing: string | null,
 };
 
 export type MouseInputEvent = MouseEvent & {
