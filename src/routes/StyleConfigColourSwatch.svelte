@@ -6,48 +6,67 @@
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
 	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
-    const handleChangePositionX = (e: InputEvent) => {
+    // const handleChangePositionX = (e: InputEvent) => {
+    //     const newValue = e.currentTarget.value;
+
+    //     try {
+    //         const parsedValue = parseInt(newValue);
+    //         if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+    //             throw new Error("Invalid positionX value");
+
+    //         setColourSwatchStylePositionX(parsedValue);
+    //     } catch(err) {
+    //         console.log(err)
+    //         console.error("Invalid positionX value")
+    //     }
+    // };
+
+    // const handleChangePositionY = (e: InputEvent) => {
+    //     const newValue = e.currentTarget.value;
+
+    //     try {
+    //         const parsedValue = parseInt(newValue);
+    //         if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+    //             throw new Error("Invalid positionY value");
+
+    //         setColourSwatchStylePositionY(parsedValue);
+    //     } catch(err) {
+    //         console.log(err)
+    //         console.error("Invalid positionY value")
+    //     }
+    // };
+
+    // const handleChangeItemSize = (e: InputEvent) => {
+    //     const newValue = e.currentTarget.value;
+
+    //     try {
+    //         const parsedValue = parseInt(newValue);
+    //         if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+    //             throw new Error("Invalid item size value");
+
+    //         setColourSwatchStyleItemSize(parsedValue);
+    //     } catch(err) {
+    //         console.log(err)
+    //         console.error("Invalid item size value")
+    //     }
+    // };
+
+    const handleDataChange = (
+        e: InputEvent,
+        setFunc: (value: number) => void,
+        valueLabel: string
+    ) => {
         const newValue = e.currentTarget.value;
 
         try {
             const parsedValue = parseInt(newValue);
             if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
-                throw new Error("Invalid positionX value");
+                throw new Error(`Invalid ${valueLabel} value`);
 
-            setColourSwatchStylePositionX(parsedValue);
+            setFunc(parsedValue);
         } catch(err) {
             console.log(err)
-            console.error("Invalid positionX value")
-        }
-    };
-
-    const handleChangePositionY = (e: InputEvent) => {
-        const newValue = e.currentTarget.value;
-
-        try {
-            const parsedValue = parseInt(newValue);
-            if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
-                throw new Error("Invalid positionY value");
-
-            setColourSwatchStylePositionY(parsedValue);
-        } catch(err) {
-            console.log(err)
-            console.error("Invalid positionY value")
-        }
-    };
-
-    const handleChangeItemSize = (e: InputEvent) => {
-        const newValue = e.currentTarget.value;
-
-        try {
-            const parsedValue = parseInt(newValue);
-            if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
-                throw new Error("Invalid item size value");
-
-            setColourSwatchStyleItemSize(parsedValue);
-        } catch(err) {
-            console.log(err)
-            console.error("Invalid item size value")
+            console.error(`Invalid ${valueLabel} value`)
         }
     };
 
@@ -80,7 +99,9 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.positionX}
-                    changeHandler={handleChangePositionX}
+                    changeHandler={(e) => {
+                        handleDataChange(e, setColourSwatchStylePositionX, "position X");
+                    }}
                 />
                 <StyleConfigItem
                     domId="SwatchPosY"
@@ -89,7 +110,9 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.positionY}
-                    changeHandler={handleChangePositionY}
+                    changeHandler={(e) => {
+                        handleDataChange(e, setColourSwatchStylePositionY, "position Y");
+                    }}
                 />
             </div>
 
@@ -119,7 +142,9 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.itemSize}
-                    changeHandler={handleChangeItemSize}
+                    changeHandler={(e) => {
+                        handleDataChange(e, setColourSwatchStyleItemSize, "position Y");
+                    }}
                 />
                 <StyleConfigItem
                     domId="SwatchItemSpacing"
@@ -128,7 +153,9 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.positionY}
-                    changeHandler={handleChangePositionY}
+                    changeHandler={(e) => {
+                        handleDataChange(e, setColourSwatchStyleItemSpacing, "position Y");
+                    }}
                 />
             </div>
 
