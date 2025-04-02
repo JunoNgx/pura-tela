@@ -4,7 +4,7 @@
     import Studio from "src/routes/Studio.svelte";
 	import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
 	import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSize, wallGenStyle, } from "src/states/wallGenState.svelte.js";
-	import { setColourSwatchStyleDirection, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import { setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 	// import { setColourSwatchStyleItemShape, setColourSwatchStylePosition, setColourSwatchStyleSpacing } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 	import { setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 
@@ -88,6 +88,14 @@
         setColourSwatchStyleDirection(data.swatchDirection as ColourSwatchStyleDirection);
     };
 
+    const tryParseSwatchItemShape = () => {
+        if (!data.swatchItemShape) return;
+        if (!isEnumValueValid(data.swatchItemShape as any, ColourSwatchStyleItemShape))
+            return;
+
+        setColourSwatchStyleItemShape(data.swatchItemShape as ColourSwatchStyleItemShape);
+    };
+
     // const tryParseColourSwatchHasSpacing = () => {
     //     if (!data.swatchHasSpacing) return;
     //     const parsedValue = data.swatchHasSpacing === "true";
@@ -103,7 +111,7 @@
     tryParseSwatchPositionX();
     tryParseSwatchPositionY();
     tryParseSwatchDirection();
-    // tryParseSwatchItemShape();
+    tryParseSwatchItemShape();
     // tryParseSwatchItemSize();
     // tryParseSwatchItemSpacing();
 </script>
