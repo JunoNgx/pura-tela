@@ -1,33 +1,34 @@
 <script lang="ts">
 	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
+	import StyleConfigItem from "src/components/StyleConfigItem.svelte";
 	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 	import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type InputEvent } from "src/lib/types.js";
 	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleItemShape, setColourSwatchStylePositionX } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
-    const isShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.SQUARE);
-    const isShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.CIRCLE);
+    // const isShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
+    //     === ColourSwatchStyleItemShape.SQUARE);
+    // const isShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
+    //     === ColourSwatchStyleItemShape.CIRCLE);
 
-    // const isPositionCentered = $derived(colourSwatchStyleConfig.val.position
-    //     === ColourSwatchStylePosition.CENTERED);
-    // const isPositionTopRight = $derived(colourSwatchStyleConfig.val.position
-    //     === ColourSwatchStylePosition.TOP_RIGHT);
+    // // const isPositionCentered = $derived(colourSwatchStyleConfig.val.position
+    // //     === ColourSwatchStylePosition.CENTERED);
+    // // const isPositionTopRight = $derived(colourSwatchStyleConfig.val.position
+    // //     === ColourSwatchStylePosition.TOP_RIGHT);
 
-    const handleSetItemShape = (e: InputEvent) => {
-        const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
-        setColourSwatchStyleItemShape(newValue);
-    };
+    // const handleSetItemShape = (e: InputEvent) => {
+    //     const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
+    //     setColourSwatchStyleItemShape(newValue);
+    // };
 
-    const handleSetPosition = (e: InputEvent) => {
-        const newValue = e.currentTarget.value as ColourSwatchStylePosition;
-        setColourSwatchStylePosition(newValue);
-    };
+    // const handleSetPosition = (e: InputEvent) => {
+    //     const newValue = e.currentTarget.value as ColourSwatchStylePosition;
+    //     setColourSwatchStylePosition(newValue);
+    // };
 
-    const handleSetHasSpacing = (e: InputEvent) => {
-        const newValue = e.currentTarget.value;
-        setColourSwatchStyleSpacing(newValue === "true");
-    };
+    // const handleSetHasSpacing = (e: InputEvent) => {
+    //     const newValue = e.currentTarget.value;
+    //     setColourSwatchStyleSpacing(newValue === "true");
+    // };
 
     const handleChangePositionX = (
         e: Event & { currentTarget: EventTarget & HTMLInputElement }
@@ -65,30 +66,15 @@
                     Position
                 </h4>
             </legend>
-            <div class="ColourSwatchConfig__AngleInputContainer">
-                <label class="VisuallyHidden" for="gradientAngleInput">Angle input as number input</label>
-                <input class="ColourSwatchConfig__AngleInput"
-                    id="gradientAngleInput"
-                    type="number"
-                    min="{SWATCH_CONFIG_MIN_VALUE}"
-                    max="{SWATCH_CONFIG_MAX_VALUE}"
-                    value="{colourSwatchStyleConfig.val.positionX}"
-                    oninput={handleChangePositionX}
-                />
-            </div>
-
-            <div class="ColourSwatchConfig__AngleSliderContainer">
-                <label class="VisuallyHidden" for="gradientAngleSlider">Angle input as slider</label>
-                <input class="ColourSwatchConfig__AngleSliderInput"
-                    id="gradientAngleSlider"
-                    type="range"
-                    min="{SWATCH_CONFIG_MIN_VALUE}"
-                    max="{SWATCH_CONFIG_MAX_VALUE}"
-                    step="5"
-                    value="{colourSwatchStyleConfig.val.positionX}"
-                    oninput={handleChangePositionX}
-                />
-            </div>
+            <StyleConfigItem
+                domId="swatchPosX"
+                label="Horizontal position"
+                min={SWATCH_CONFIG_MIN_VALUE}
+                max={SWATCH_CONFIG_MAX_VALUE}
+                step={5}
+                value={colourSwatchStyleConfig.val.positionX}
+                changeHandler={handleChangePositionX}
+            />
 
             <button class="ColourSwatchConfig__AngleResetButton TertBtn"
                 title="Reset to 90 degree"
@@ -112,9 +98,9 @@
     }
 
     .ColourSwatchConfig__ItemsContainer {
-        display: grid;
+        /* display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+        gap: 1rem; */
     }
 
     .ColourSwatchConfig__Item {
