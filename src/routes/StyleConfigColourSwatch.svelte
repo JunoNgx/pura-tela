@@ -57,24 +57,26 @@
                     Position
                 </h4>
             </legend>
-            <StyleConfigItem
-                domId="swatchPosX"
-                label="Horizontal position"
-                min={SWATCH_CONFIG_MIN_VALUE}
-                max={SWATCH_CONFIG_MAX_VALUE}
-                step={5}
-                value={colourSwatchStyleConfig.val.positionX}
-                changeHandler={handleChangePositionX}
-            />
-            <StyleConfigItem
-                domId="swatchPosY"
-                label="Vertical position"
-                min={SWATCH_CONFIG_MIN_VALUE}
-                max={SWATCH_CONFIG_MAX_VALUE}
-                step={5}
-                value={colourSwatchStyleConfig.val.positionY}
-                changeHandler={handleChangePositionY}
-            />
+            <div class="ColourSwatchConfig__FieldsetContent">
+                <StyleConfigItem
+                    domId="swatchPosX"
+                    label="Horizontal position"
+                    min={SWATCH_CONFIG_MIN_VALUE}
+                    max={SWATCH_CONFIG_MAX_VALUE}
+                    step={5}
+                    value={colourSwatchStyleConfig.val.positionX}
+                    changeHandler={handleChangePositionX}
+                />
+                <StyleConfigItem
+                    domId="swatchPosY"
+                    label="Vertical position"
+                    min={SWATCH_CONFIG_MIN_VALUE}
+                    max={SWATCH_CONFIG_MAX_VALUE}
+                    step={5}
+                    value={colourSwatchStyleConfig.val.positionY}
+                    changeHandler={handleChangePositionY}
+                />
+            </div>
 
             <div class="ColourSwatchConfig__FieldsetButtonsContainer">
                 <button class="ColourSwatchConfig__ResetBtn TertBtn"
@@ -109,6 +111,12 @@
     .ColourSwatchConfig__FieldsetLegend {
         text-transform: lowercase;
         margin: 0.5rem 0 0.5rem;
+    }
+
+    .ColourSwatchConfig__FieldsetContent {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 
     .ColourSwatchConfig__FieldsetButtonsContainer {
