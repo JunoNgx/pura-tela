@@ -164,26 +164,35 @@ input[type="number"] {
 input[type="range"] {
     -webkit-appearance: none;
     appearance: none;
-    width: 100%;
-    height: 2px;
+    -webkit-tap-highlight-color: transparent;
+    width: 12rem;
+    height: 0.2rem;
     background: var(--colPri);
     border-radius: 0;
     margin: 1rem 0;
+    cursor: pointer;
+    border: none;
 }
 
-/* input[type="range"]::-webkit-slider-runnable-track,
-input[type="range"]::-moz-range-track {
-} */
-
-input[type="range"]::-webkit-slider-thumb,
+/* The following two blocks must be separated */
+/* Browser may recognise only one and not both; causing the entire block to be invalid */
 input[type="range"]::-moz-range-thumb {
-    -webkit-appearance: none;
+    appearance: none;
     width: 0.5rem;
     height: 1.5rem;
     border-radius: 0;
     background: var(--colBg);
     border: var(--lineWeight) solid var(--colPri);
     cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0.75rem;
+    height: 1.5rem;
+    border-radius: 0;
+    background: var(--colBg);
+    border: var(--lineWeight) solid var(--colPri);
 }
 
 select {
