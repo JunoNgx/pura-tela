@@ -175,6 +175,7 @@ input[type="range"] {
 }
 
 /* The following two blocks must be separated */
+/* Browser may recognise only one and not both; causing the entire block to be invalid */
 input[type="range"]::-moz-range-thumb {
     appearance: none;
     width: 0.5rem;
