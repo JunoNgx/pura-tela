@@ -106,8 +106,13 @@
         align-items: center;
     }
 
+    .GradientConfig__AngleInputContainer {
+        margin-left: 1rem;
+    }
+
     .GradientConfig__AngleSliderContainer {
         grid-column: 2/6;
+        margin-right: 1rem;
     }
 
     .GradientConfig__AngleSliderInput {
@@ -117,6 +122,16 @@
     .GradientConfig__ActionsContainer {
         display: flex;
         justify-content: flex-end;
+    }
+
+    @media screen and (width < 850px) {
+        .GradientConfig__AngleInputContainer {
+            margin-left: 0;
+        }
+
+        .GradientConfig__AngleSliderContainer {
+            margin-right: 0;
+        }
     }
 
 </style>
