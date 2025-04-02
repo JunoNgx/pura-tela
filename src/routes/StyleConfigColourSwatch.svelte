@@ -1,55 +1,12 @@
 <script lang="ts">
-	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
-	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
 	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type InputEvent, type MouseInputEvent } from "src/lib/types.js";
+
+	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
+	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
+
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
 	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
-
-    // const handleChangePositionX = (e: InputEvent) => {
-    //     const newValue = e.currentTarget.value;
-
-    //     try {
-    //         const parsedValue = parseInt(newValue);
-    //         if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
-    //             throw new Error("Invalid positionX value");
-
-    //         setColourSwatchStylePositionX(parsedValue);
-    //     } catch(err) {
-    //         console.log(err)
-    //         console.error("Invalid positionX value")
-    //     }
-    // };
-
-    // const handleChangePositionY = (e: InputEvent) => {
-    //     const newValue = e.currentTarget.value;
-
-    //     try {
-    //         const parsedValue = parseInt(newValue);
-    //         if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
-    //             throw new Error("Invalid positionY value");
-
-    //         setColourSwatchStylePositionY(parsedValue);
-    //     } catch(err) {
-    //         console.log(err)
-    //         console.error("Invalid positionY value")
-    //     }
-    // };
-
-    // const handleChangeItemSize = (e: InputEvent) => {
-    //     const newValue = e.currentTarget.value;
-
-    //     try {
-    //         const parsedValue = parseInt(newValue);
-    //         if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
-    //             throw new Error("Invalid item size value");
-
-    //         setColourSwatchStyleItemSize(parsedValue);
-    //     } catch(err) {
-    //         console.log(err)
-    //         console.error("Invalid item size value")
-    //     }
-    // };
 
     const isDirectionHorizontal = $derived(colourSwatchStyleConfig.val.direction
         === ColourSwatchStyleDirection.HORIZONTAL);
@@ -323,21 +280,4 @@
         flex-wrap: wrap;
         gap: 2rem;
     }
-
-    /* .ColourSwatchConfig__ButtonsContainer {
-        display: flex;
-        gap: 2rem;
-    } */
-
-    /* @media screen and (width <= 1000px) {
-        .ColourSwatchConfig__ItemsContainer {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media screen and (width <= 500px) {
-        .ColourSwatchConfig__ItemsContainer {
-            grid-template-columns: repeat(1, 1fr);
-        }
-    } */
 </style>
