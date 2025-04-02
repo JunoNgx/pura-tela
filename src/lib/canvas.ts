@@ -270,12 +270,12 @@ const renderForColourSwatchStyle = (
 
         const baseItemSize = size.width / itemCount;
         const minItemSize = baseItemSize / 4;
-        const maxItemSize = baseItemSize;
+        const maxItemSize = baseItemSize * 1.5;
         const itemSize = minItemSize + (maxItemSize - minItemSize)
             * config.colourSwatch.itemSize/100;
 
-        const minSpacing = -itemSize/2;
-        const maxSpacing = itemSize/2;
+        const minSpacing = -itemSize/4;
+        const maxSpacing = itemSize/4;
         const spacing = minSpacing + (maxSpacing - minSpacing)
             * config.colourSwatch.itemSpacing/100;
 
