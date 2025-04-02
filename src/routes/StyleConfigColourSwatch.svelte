@@ -2,34 +2,9 @@
 	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
 	import StyleConfigItem from "src/components/StyleConfigItem.svelte";
 	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
-	import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type InputEvent } from "src/lib/types.js";
+	import { type InputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
 	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleItemShape, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
-
-    // const isShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
-    //     === ColourSwatchStyleItemShape.SQUARE);
-    // const isShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
-    //     === ColourSwatchStyleItemShape.CIRCLE);
-
-    // // const isPositionCentered = $derived(colourSwatchStyleConfig.val.position
-    // //     === ColourSwatchStylePosition.CENTERED);
-    // // const isPositionTopRight = $derived(colourSwatchStyleConfig.val.position
-    // //     === ColourSwatchStylePosition.TOP_RIGHT);
-
-    // const handleSetItemShape = (e: InputEvent) => {
-    //     const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
-    //     setColourSwatchStyleItemShape(newValue);
-    // };
-
-    // const handleSetPosition = (e: InputEvent) => {
-    //     const newValue = e.currentTarget.value as ColourSwatchStylePosition;
-    //     setColourSwatchStylePosition(newValue);
-    // };
-
-    // const handleSetHasSpacing = (e: InputEvent) => {
-    //     const newValue = e.currentTarget.value;
-    //     setColourSwatchStyleSpacing(newValue === "true");
-    // };
 
     const handleChangePositionX = (e: InputEvent) => {
         const newValue = e.currentTarget.value;
