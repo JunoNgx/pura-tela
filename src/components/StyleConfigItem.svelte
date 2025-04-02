@@ -2,6 +2,7 @@
 	import type { InputEvent } from "src/lib/types.js";
 
     type StyleConfigItemProps = {
+        className?: string,
         domId: string,
         label: string,
         min: number,
@@ -12,6 +13,7 @@
     };
 
     let {
+        className,
         domId,
         label,
         min,
@@ -22,7 +24,7 @@
     }: StyleConfigItemProps = $props();
 </script>
 
-<div class="StyleConfigItem">
+<div class={`${className} StyleConfigItem`}>
     <div class="StyleConfigItem__Label">
         {label}
     </div>
