@@ -85,7 +85,7 @@ export type WallGenQueryProps = {
     swatchHasSpacing?: string | null,
 };
 
-export type InputEvent = MouseEvent & {
+export type MouseInputEvent = MouseEvent & {
     currentTarget: EventTarget & HTMLInputElement
 };
 
