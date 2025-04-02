@@ -28,11 +28,13 @@ const drawSquareFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
 };
 
 const drawRhombusFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    const semiDiagonal = size / 2;
+
     ctx.beginPath();
-    ctx.moveTo(x, y - size);
-    ctx.lineTo(x + size, y);
-    ctx.lineTo(x, y + size);
-    ctx.lineTo(x - size, y);
+    ctx.moveTo(x, y - semiDiagonal);
+    ctx.lineTo(x + semiDiagonal, y);
+    ctx.lineTo(x, y + semiDiagonal);
+    ctx.lineTo(x - semiDiagonal, y);
     ctx.closePath();
 
     ctx.fillStyle = colour;
