@@ -219,57 +219,7 @@ const renderForColourSwatchStyle = (
         break;
     }
 
-    const shouldDrawCenter = config.colourSwatch.position
-        === ColourSwatchStylePosition.CENTERED;
-
-    const drawCenter = () => {
-        for (let i = 0; i < mainColours.length; i++) {
-            const slotSize = size.width / (itemCount + 2); // Use one slot on each side as padding
-            const itemSize = config.colourSwatch.hasSpacing
-                ? slotSize * 4/5
-                : slotSize;
-            const spacingGap = config.colourSwatch.hasSpacing
-                ? slotSize / 10
-                : 0;
-            const commonY = size.height / 2;
-            const startingOffset = slotSize + spacingGap;
-            const midRenderPostionOffset = slotSize / 2;
-            const x = startingOffset + (slotSize) * i + midRenderPostionOffset;
-    
-            drawFunc({
-                ctx,
-                colour: mainColours[i],
-                x,
-                y: commonY,
-                size: itemSize,
-            });
-        };
-    };
-
-    const drawTopRight = () => {
-        for (let i = 0; i < mainColours.length; i++) {    
-            // Use only half of height
-            const slotSize = (size.height / 2) / (itemCount + 1);
-            const itemSize = config.colourSwatch.hasSpacing
-                ? slotSize * 4/5
-                : slotSize;
-            const commonX = size.width - itemSize * 1;
-            const startingOffset = itemSize;
-            const midRenderPostionOffset = slotSize / 2;
-            const y = startingOffset + slotSize * i + midRenderPostionOffset;
-
-            drawFunc({
-                ctx,
-                colour: mainColours[i],
-                x: commonX,
-                y,
-                size: itemSize,
-            });
-        };
-    };
-
     const drawHorizontally = () => {
-
         const baseItemSize = size.width / itemCount;
         const minItemSize = baseItemSize / 4;
         const maxItemSize = baseItemSize * 1.5;
@@ -303,6 +253,45 @@ const renderForColourSwatchStyle = (
                 colour: mainColours[i],
                 x,
                 y: commonY,
+                size: itemSize,
+            });
+        };
+    };
+
+    const drawVertically = () => {
+        const baseItemSize = size.height / itemCount;
+        const minItemSize = baseItemSize / 4;
+        const maxItemSize = baseItemSize * 1.5;
+        const itemSize = minItemSize + (maxItemSize - minItemSize)
+            * config.colourSwatch.itemSize/100;
+
+        const minSpacing = -itemSize/4;
+        const maxSpacing = itemSize/4;
+        const spacing = minSpacing + (maxSpacing - minSpacing)
+            * config.colourSwatch.itemSpacing/100;
+
+        const swatchSlotSize = itemSize + spacing * 2;
+        const midPostionRenderOffset = swatchSlotSize / 2;
+        const fullSwatchSize = swatchSlotSize * itemCount;
+
+        const minCommonX = itemSize/2;
+        const maxCommonX = size.width - itemSize/2;
+        const commonX = minCommonX + (maxCommonX - minCommonX)
+            * config.colourSwatch.positionX/100;
+
+        const maxStartingYOffset = size.height - fullSwatchSize;
+        const startingYOffset = maxStartingYOffset
+            * config.colourSwatch.positionY/100;
+
+        for (let i = 0; i < mainColours.length; i++) {
+            const y = startingYOffset + (itemSize + spacing * 2)
+                * i + midPostionRenderOffset;
+    
+            drawFunc({
+                ctx,
+                colour: mainColours[i],
+                x: commonX,
+                y,
                 size: itemSize,
             });
         };
