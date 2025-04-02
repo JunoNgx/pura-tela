@@ -3,7 +3,7 @@
 	import StyleConfigItem from "src/components/StyleConfigItem.svelte";
 	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 	import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type InputEvent } from "src/lib/types.js";
-	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleItemShape, setColourSwatchStylePositionX } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleItemShape, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
     // const isShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
     //     === ColourSwatchStyleItemShape.SQUARE);
@@ -47,9 +47,11 @@
         }
     };
 
-    const resetPositionX = () => {
+    const resetPosition = () => {
         setColourSwatchStylePositionX(
             colourSwatchStyleConfigDefaultValue.positionX);
+        setColourSwatchStylePositionY(
+            colourSwatchStyleConfigDefaultValue.positionY);
     };
 
 </script>
@@ -59,10 +61,10 @@
         Colour Swatch Configurations
     </h3>
 
-    <div class="ColourSwatchConfig__ItemsContainer">
-        <fieldset class="ColourSwatchConfig__Item">
+    <div class="ColourSwatchConfig__FieldsetsContainer">
+        <fieldset class="ColourSwatchConfig__Fieldset">
             <legend>
-                <h4 class="ColourSwatchConfig__ItemTitle">
+                <h4 class="ColourSwatchConfig__FieldsetLegend">
                     Position
                 </h4>
             </legend>
@@ -76,14 +78,18 @@
                 changeHandler={handleChangePositionX}
             />
 
-            <button class="ColourSwatchConfig__AngleResetButton TertBtn"
-                title="Reset to 90 degree"
-                aria-label="Reset to 90 degree"
-                onclick={resetPositionX}
-            >
-                Reset
-            </button>
+            <div class="ColourSwatchConfig__FieldsetButtonsContainer">
+                <button class="ColourSwatchConfig__ResetBtn TertBtn"
+                    title="Reset position to center"
+                    aria-label="Reset position to center"
+                    onclick={resetPosition}
+                >
+                    Reset
+                </button>
+            </div>
+
         </fieldset>
+
     </div>
 
 </div>
@@ -97,28 +103,28 @@
         margin-bottom: 0.5rem;
     }
 
-    .ColourSwatchConfig__ItemsContainer {
-        /* display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem; */
-    }
-
-    .ColourSwatchConfig__Item {
+    .ColourSwatchConfig__Fieldset {
         border: var(--lineWeight) solid var(--colPri);
         padding: 0.5rem 1rem 1rem;
     }
 
-    .ColourSwatchConfig__ItemTitle {
+    .ColourSwatchConfig__FieldsetLegend {
         text-transform: lowercase;
         margin: 0.5rem 0 0.5rem;
     }
 
-    .ColourSwatchConfig__ButtonsContainer {
+    .ColourSwatchConfig__FieldsetButtonsContainer {
         display: flex;
-        gap: 2rem;
+        justify-content: flex-end;
+        margin-top: 2rem;
     }
 
-    @media screen and (width <= 1000px) {
+    /* .ColourSwatchConfig__ButtonsContainer {
+        display: flex;
+        gap: 2rem;
+    } */
+
+    /* @media screen and (width <= 1000px) {
         .ColourSwatchConfig__ItemsContainer {
             grid-template-columns: repeat(2, 1fr);
         }
@@ -128,5 +134,5 @@
         .ColourSwatchConfig__ItemsContainer {
             grid-template-columns: repeat(1, 1fr);
         }
-    }
+    } */
 </style>
