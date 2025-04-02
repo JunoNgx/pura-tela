@@ -4,7 +4,7 @@
 	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 	import { type InputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
-	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleItemShape, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
     const handleChangePositionX = (e: InputEvent) => {
         const newValue = e.currentTarget.value;
@@ -33,6 +33,21 @@
         } catch(err) {
             console.log(err)
             console.error("Invalid positionY value")
+        }
+    };
+
+    const handleChangeItemSize = (e: InputEvent) => {
+        const newValue = e.currentTarget.value;
+
+        try {
+            const parsedValue = parseInt(newValue);
+            if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+                throw new Error("Invalid item size value");
+
+            setColourSwatchStyleItemSize(parsedValue);
+        } catch(err) {
+            console.log(err)
+            console.error("Invalid item size value")
         }
     };
 
@@ -70,6 +85,45 @@
                 <StyleConfigItem
                     domId="SwatchPosY"
                     label="Vertical position"
+                    min={SWATCH_CONFIG_MIN_VALUE}
+                    max={SWATCH_CONFIG_MAX_VALUE}
+                    step={5}
+                    value={colourSwatchStyleConfig.val.positionY}
+                    changeHandler={handleChangePositionY}
+                />
+            </div>
+
+            <div class="ColourSwatchConfig__FieldsetButtonsContainer">
+                <button class="ColourSwatchConfig__ResetBtn TertBtn"
+                    title="Reset position to center"
+                    aria-label="Reset position to center"
+                    onclick={resetPosition}
+                >
+                    Reset
+                </button>
+            </div>
+
+        </fieldset>
+
+        <fieldset class="ColourSwatchConfig__Fieldset">
+            <legend>
+                <h4 class="ColourSwatchConfig__FieldsetLegend">
+                    swatch item settings
+                </h4>
+            </legend>
+            <div class="ColourSwatchConfig__FieldsetContent">
+                <StyleConfigItem
+                    domId="SwatchItemSize"
+                    label="Item size"
+                    min={SWATCH_CONFIG_MIN_VALUE}
+                    max={SWATCH_CONFIG_MAX_VALUE}
+                    step={5}
+                    value={colourSwatchStyleConfig.val.itemSize}
+                    changeHandler={handleChangeItemSize}
+                />
+                <StyleConfigItem
+                    domId="SwatchItemSpacing"
+                    label="In-between spacing"
                     min={SWATCH_CONFIG_MIN_VALUE}
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
