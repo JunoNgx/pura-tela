@@ -41,7 +41,7 @@ export const colourSwatchStyleConfigDefaultValue = {
     positionY: 50,
     direction: ColourSwatchStyleDirection.HORIZONTAL,
     itemShape: ColourSwatchStyleItemShape.CIRCLE,
-    itemSize: 50,
+    itemSize: 25,
     itemSpacing: 50,
 };
 
