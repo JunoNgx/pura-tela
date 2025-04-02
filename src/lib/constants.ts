@@ -4,4 +4,4 @@ export const MAX_WIDTH = 7680;
 export const MAX_HEIGHT = 4320;
 export const HAS_COPY_TIMEOUT_DURATION_MS = 1000;
 export const SWATCH_CONFIG_MIN_VALUE = 0;
-export const SWATCH_CONFIG_MAX_VALUE = 0;
+export const SWATCH_CONFIG_MAX_VALUE = 100;
