@@ -27,6 +27,18 @@ const drawSquareFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fillRect(x - size/2, y - size/2, size, size);
 };
 
+const drawRhombusFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    ctx.beginPath();
+    ctx.moveTo(x, y - size);
+    ctx.lineTo(x + size, y);
+    ctx.lineTo(x, y + size);
+    ctx.lineTo(x - size, y);
+    ctx.closePath();
+
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
+
 const drawCircle = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.beginPath();
     ctx.arc(x, y, size/2, 0, 2 * Math.PI);
