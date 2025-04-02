@@ -281,7 +281,7 @@ const renderForColourSwatchStyle = (
 
         const swatchSlotSize = itemSize + spacing * 2;
         const midPostionRenderOffset = swatchSlotSize / 2;
-        const fullSwatchSize = swatchSlotSize * colourCount;
+        const fullSwatchSize = swatchSlotSize * itemCount;
 
         const minCommonY = itemSize/2;
         const maxCommonY = size.height - itemSize/2;
