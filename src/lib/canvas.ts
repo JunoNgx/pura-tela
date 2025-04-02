@@ -269,8 +269,8 @@ const renderForColourSwatchStyle = (
     const drawHorizontally = () => {
 
         const baseItemSize = size.width / itemCount;
-        const minItemSize = baseItemSize / 2;
-        const maxItemSize = baseItemSize * 2;
+        const minItemSize = baseItemSize / 4;
+        const maxItemSize = baseItemSize;
         const itemSize = minItemSize + (maxItemSize - minItemSize)
             * config.colourSwatch.itemSize/100;
 
@@ -288,13 +288,10 @@ const renderForColourSwatchStyle = (
         const commonY = minCommonY + (maxCommonY - minCommonY)
             * config.colourSwatch.positionY/100;
 
-        const minStartingXOffset = 0;
         const maxStartingXOffset = size.width - fullSwatchSize;
-        const startingXOffset = minStartingXOffset + (maxStartingXOffset - minStartingXOffset)
+        const startingXOffset = maxStartingXOffset
             * config.colourSwatch.positionX/100;
 
-        // console.log("horizontal", config.colourSwatch.itemSize/100)
-        console.log("horizontal", minItemSize, maxItemSize)
         for (let i = 0; i < mainColours.length; i++) {
             const x = startingXOffset + (itemSize + spacing * 2)
                 * i + midPostionRenderOffset;
