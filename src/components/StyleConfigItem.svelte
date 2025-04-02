@@ -68,6 +68,7 @@
     
     .StyleConfigItem__Label {
         grid-column: 1/3;
+        text-transform: lowercase;
     }
 
     .StyleConfigItem__SliderContainer {
