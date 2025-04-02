@@ -4,8 +4,7 @@
     import Studio from "src/routes/Studio.svelte";
 	import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
 	import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSize, wallGenStyle, } from "src/states/wallGenState.svelte.js";
-	import { setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
-	// import { setColourSwatchStyleItemShape, setColourSwatchStylePosition, setColourSwatchStyleSpacing } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import { setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 	import { setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 
     export let data: WallGenQueryProps;
@@ -96,11 +95,21 @@
         setColourSwatchStyleItemShape(data.swatchItemShape as ColourSwatchStyleItemShape);
     };
 
-    // const tryParseColourSwatchHasSpacing = () => {
-    //     if (!data.swatchHasSpacing) return;
-    //     const parsedValue = data.swatchHasSpacing === "true";
-    //     setColourSwatchStyleSpacing(parsedValue);
-    // };
+    const tryParseSwatchItemSize = () => {
+        if (!data.swatchItemSize) return;
+        const value = tryParseSwatchNumericConfig(data.swatchItemSize);
+        if (!value) return;
+
+        setColourSwatchStyleItemSize(value);
+    };
+
+    const tryParseSwatchItemSpacing = () => {
+        if (!data.swatchItemSpacing) return;
+        const value = tryParseSwatchNumericConfig(data.swatchItemSpacing);
+        if (!value) return;
+
+        setColourSwatchStyleItemSpacing(value);
+    };
 
     tryParseStyleFromQueryToWallGen();
     tryParseColoursFromQueryToWallGen();
@@ -112,8 +121,8 @@
     tryParseSwatchPositionY();
     tryParseSwatchDirection();
     tryParseSwatchItemShape();
-    // tryParseSwatchItemSize();
-    // tryParseSwatchItemSpacing();
+    tryParseSwatchItemSize();
+    tryParseSwatchItemSpacing();
 </script>
 
 <h2 class="VisuallyHidden">Generate wallpaper</h2>
