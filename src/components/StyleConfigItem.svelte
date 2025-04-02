@@ -2,19 +2,19 @@
     type StyleConfigItemProps = {
         domId: string,
         label: string,
-        minVal: number,
-        maxVal: number,
-        val: number,
+        min: number,
+        max: number,
+        value: number,
         step: number,
-        changeHandler: (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => {}
+        changeHandler: (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => void
     };
 
     let {
         domId,
         label,
-        minVal,
-        maxVal,
-        val,
+        min,
+        max,
+        value,
         step,
         changeHandler
     }: StyleConfigItemProps = $props();
@@ -32,9 +32,9 @@
         <input class="StyleConfigItem__Input"
             id="{domId}"
             type="number"
-            min="{minVal}"
-            max="{maxVal}"
-            value="{val}"
+            min="{min}"
+            max="{max}"
+            value="{value}"
             oninput={changeHandler}
         />
     </div>
@@ -46,10 +46,10 @@
         <input class="StyleConfigItem__Slider"
             id="gradientAngleSlider"
             type="range"
-            min="{minVal}"
-            max="{maxVal}"
+            min="{min}"
+            max="{max}"
             step="{step}"
-            value="{val}"
+            value="{value}"
             oninput={changeHandler}
         />
     </div>
