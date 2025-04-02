@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { tryParseAngle, tryParseColours, tryParseSize, tryParseSwatchNumericConfig } from "src/lib/parseFuncs.js";
-	import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
+	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, ColourSwatchStylePosition, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
-	// import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
+	import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
 	import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSize, wallGenStyle, } from "src/states/wallGenState.svelte.js";
-	import { setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import { setColourSwatchStyleDirection, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 	// import { setColourSwatchStyleItemShape, setColourSwatchStylePosition, setColourSwatchStyleSpacing } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 	import { setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 
@@ -80,13 +80,13 @@
         setColourSwatchStylePositionY(value);
     };
 
-    // const tryParseColourSwatchPosition = () => {
-    //     if (!data.swatchPosition) return;
-    //     if (!isEnumValueValid(data.swatchPosition as any, ColourSwatchStylePosition))
-    //         return;
+    const tryParseSwatchDirection = () => {
+        if (!data.swatchDirection) return;
+        if (!isEnumValueValid(data.swatchDirection as any, ColourSwatchStyleDirection))
+            return;
 
-    //     setColourSwatchStylePosition(data.swatchPosition as ColourSwatchStylePosition);
-    // };
+        setColourSwatchStyleDirection(data.swatchDirection as ColourSwatchStyleDirection);
+    };
 
     // const tryParseColourSwatchHasSpacing = () => {
     //     if (!data.swatchHasSpacing) return;
@@ -102,7 +102,7 @@
 
     tryParseSwatchPositionX();
     tryParseSwatchPositionY();
-    // tryParseSwatchDirection();
+    tryParseSwatchDirection();
     // tryParseSwatchItemShape();
     // tryParseSwatchItemSize();
     // tryParseSwatchItemSpacing();
