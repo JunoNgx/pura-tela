@@ -1,4 +1,4 @@
-import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
+import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, ColourSwatchStylePosition, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
@@ -266,8 +266,54 @@ const renderForColourSwatchStyle = (
         };
     };
 
-    if (shouldDrawCenter) drawCenter();
-    else drawTopRight();
+    const drawHorizontally = () => {
+
+        const baseItemSize = size.width / itemCount;
+        const minItemSize = baseItemSize / 2;
+        const maxItemSize = baseItemSize * 2;
+        const itemSize = minItemSize + (maxItemSize - minItemSize)
+            * config.colourSwatch.itemSize/100;
+
+        const minSpacing = -itemSize/2;
+        const maxSpacing = itemSize/2;
+        const spacing = minSpacing + (maxSpacing - minSpacing)
+            * config.colourSwatch.itemSpacing/100;
+
+        const swatchSlotSize = itemSize + spacing * 2;
+        const midPostionRenderOffset = swatchSlotSize / 2;
+        const fullSwatchSize = swatchSlotSize * colourCount;
+
+        const minCommonY = itemSize/2;
+        const maxCommonY = size.height - itemSize/2;
+        const commonY = minCommonY + (maxCommonY - minCommonY)
+            * config.colourSwatch.positionY/100;
+
+        const minStartingXOffset = 0;
+        const maxStartingXOffset = size.width - fullSwatchSize;
+        const startingXOffset = minStartingXOffset + (maxStartingXOffset - minStartingXOffset)
+            * config.colourSwatch.positionX/100;
+
+        // console.log("horizontal", config.colourSwatch.itemSize/100)
+        console.log("horizontal", minItemSize, maxItemSize)
+        for (let i = 0; i < mainColours.length; i++) {
+            const x = startingXOffset + (itemSize + spacing * 2)
+                * i + midPostionRenderOffset;
+    
+            drawFunc({
+                ctx,
+                colour: mainColours[i],
+                x,
+                y: commonY,
+                size: itemSize,
+            });
+        };
+    };
+
+    const shouldDrawHorizontally = config.colourSwatch.direction
+        === ColourSwatchStyleDirection.HORIZONTAL;
+
+    if (shouldDrawHorizontally) drawHorizontally();
+    else drawVertically();
 };
 
 export const refitCanvasToContainer = () => {
