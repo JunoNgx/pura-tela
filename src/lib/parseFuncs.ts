@@ -1,5 +1,5 @@
-import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
-import { isArrayOfHexCodesValid } from "../states/stateUtils.svelte.js";
+import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH, SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
+import { isArrayOfHexCodesValid, isValueWithinRange } from "../states/stateUtils.svelte.js";
 
 export const tryParseSize = (
     widthStr: string | number,
@@ -72,6 +72,23 @@ export const tryParseAngle = (
 
     } catch(err) {
         console.error("Invalid size data");
+        return null;
+    }
+};
+
+export const tryParseSwatchNumericConfig = (
+    valueStr: string | number,
+) => {
+    try {
+        const value = parseInt(valueStr as string);
+        const isValid = isValueWithinRange(
+            value, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE
+        );
+
+        if (isValid) return value;
+        else return null
+    } catch(err) {
+        console.error("Invalid swatch data");
         return null;
     }
 };
