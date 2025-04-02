@@ -91,18 +91,22 @@ export type InputEvent = MouseEvent & {
 
 export enum ColourSwatchStyleItemShape {
     SQUARE = "square",
-    CIRCLE = "circle"
+    CIRCLE = "circle",
+    RHOMBUS = "rhombus",
 };
 
-export enum ColourSwatchStylePosition {
-    CENTERED = "centered",
-    TOP_RIGHT = "topRight"
+export enum ColourSwatchStyleDirection {
+    HORIZONTAL = "horizontal",
+    VERTICAL = "vertical",
 };
 
 export type ColourSwatchStyleConfigProps = {
+    positionX: number,
+    positionY: number,
     itemShape: ColourSwatchStyleItemShape,
-    position: ColourSwatchStylePosition,
-    hasSpacing: boolean,
+    direction: ColourSwatchStyleDirection,
+    size: number,
+    spacing: number,
 };
 
 export type GradientStyleConfigProps = {
