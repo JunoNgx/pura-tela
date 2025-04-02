@@ -66,11 +66,11 @@ export const setColourSwatchStylePositionY = (newValue: number) => {
 };
 
 export const setColourSwatchStyleDirection = (
-    newValue: ColourSwatchStyleItemShape
+    newValue: ColourSwatchStyleDirection
 ) => {
     colourSwatchStyleConfig.set({
         ...colourSwatchStyleConfig.val,
-        itemShape: newValue,
+        direction: newValue,
     });
 };
 
