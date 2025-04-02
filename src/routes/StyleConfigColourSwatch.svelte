@@ -3,6 +3,7 @@
 	import StyleConfigItem from "src/components/StyleConfigItem.svelte";
 	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 	import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, type InputEvent } from "src/lib/types.js";
+	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
 	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleItemShape, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
     // const isShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
@@ -37,13 +38,13 @@
 
         try {
             const parsedValue = parseInt(newValue);
-            if (parsedValue < 0 || parsedValue > 360)
-                throw new Error("Invalid angle value");
+            if (!isValueWithinRange(parsedValue, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+                throw new Error("Invalid positionX value");
 
             setColourSwatchStylePositionX(parsedValue);
         } catch(err) {
             console.log(err)
-            console.error("Invalid angle value")
+            console.error("Invalid positionX value")
         }
     };
 
