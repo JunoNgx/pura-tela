@@ -170,27 +170,29 @@
                         Item shape
                     </div>
 
-                    <RadioCheckbox
-                        value={ColourSwatchStyleItemShape.SQUARE}
-                        checked={isItemShapeSquare}
-                        onclick={handleItemShapeChange}
-                    >
-                        Square
-                    </RadioCheckbox>
-                    <RadioCheckbox
-                        value={ColourSwatchStyleItemShape.CIRCLE}
-                        checked={isItemShapeCircle}
-                        onclick={handleItemShapeChange}
-                    >
-                        Circle
-                    </RadioCheckbox>
-                    <RadioCheckbox
-                        value={ColourSwatchStyleItemShape.RHOMBUS}
-                        checked={isItemShapeRhombus}
-                        onclick={handleItemShapeChange}
-                    >
-                        Rhombus
-                    </RadioCheckbox>
+                    <div class="ColourSwatchConfig__RadiogroupItemContent">
+                        <RadioCheckbox
+                            value={ColourSwatchStyleItemShape.SQUARE}
+                            checked={isItemShapeSquare}
+                            onclick={handleItemShapeChange}
+                        >
+                            Square
+                        </RadioCheckbox>
+                        <RadioCheckbox
+                            value={ColourSwatchStyleItemShape.CIRCLE}
+                            checked={isItemShapeCircle}
+                            onclick={handleItemShapeChange}
+                        >
+                            Circle
+                        </RadioCheckbox>
+                        <RadioCheckbox
+                            value={ColourSwatchStyleItemShape.RHOMBUS}
+                            checked={isItemShapeRhombus}
+                            onclick={handleItemShapeChange}
+                        >
+                            Rhombus
+                        </RadioCheckbox>
+                    </div>
                 </div>
 
                 <StyleConfigItemSlider
@@ -263,6 +265,25 @@
         display: flex;
         justify-content: flex-end;
         margin-top: 2rem;
+    }
+
+    .ColourSwatchConfig__RadiogroupItem {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .ColourSwatchConfig__RadiogroupItemTitle {
+        grid-column: 1/3;
+        text-transform: lowercase;
+    }
+
+    .ColourSwatchConfig__RadiogroupItemContent {
+        grid-column: 3/8;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
     }
 
     /* .ColourSwatchConfig__ButtonsContainer {
