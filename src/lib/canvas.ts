@@ -9,6 +9,10 @@ export type CanvasRenderOptions = {
     config?: RenderStyleConfig,
 };
 
+type StyleRenderOptions = CanvasRenderOptions & {
+    ctx: CanvasRenderingContext2D,
+};
+
 type ShapeProps = {
     ctx: CanvasRenderingContext2D,
     colour: string,
@@ -160,9 +164,7 @@ export const renderCanvas = (
 };
 
 const renderForGradientStyle = (
-    { ctx, colours, size, config }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size, config }: StyleRenderOptions
 ) => {
     /**
      * Drawing gradient at an angle is unfortunately not as perfect specifically
@@ -214,18 +216,14 @@ const renderForGradientStyle = (
 };
 
 const renderForSolidStyle = (
-    { ctx, colours, size }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size }: StyleRenderOptions
 ) => {
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
 const renderForPopArtSquareStyle = (
-    { ctx, colours, size }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size }: StyleRenderOptions
 ) => {
     // Draw background
     ctx.fillStyle = colours[0];
@@ -266,9 +264,7 @@ const renderForPopArtSquareStyle = (
 };
 
 const renderForColourSwatchStyle = (
-    { ctx, colours, size, config }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size, config }: StyleRenderOptions
 ) => {
     if (!config?.colourSwatch) {
         throw new Error("Cannot access Colour Swatch config");
