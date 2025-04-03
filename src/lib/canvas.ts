@@ -243,6 +243,12 @@ const renderForColourSwatchStyle = (
     case ColourSwatchStyleItemShape.RHOMBUS:
         drawFunc = drawRhombus;
         break;
+    case ColourSwatchStyleItemShape.TRIANGLE:
+        drawFunc = drawTriangle;
+        break;
+    case ColourSwatchStyleItemShape.INVERTED_TRIANGLE:
+        drawFunc = drawInvertedTriangle;
+        break;
     }
 
     const shouldDrawHorizontally = config.colourSwatch.direction
