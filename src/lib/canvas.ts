@@ -96,16 +96,12 @@ const drawTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
 };
 
 const drawInvertedTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
-    const semiDiagonal = size / 2;
-
-    ctx.beginPath();
-    ctx.moveTo(x - semiDiagonal, y - semiDiagonal);
-    ctx.lineTo(x + semiDiagonal, y - semiDiagonal);
-    ctx.lineTo(x, y + semiDiagonal);
-    ctx.closePath();
-
-    ctx.fillStyle = colour;
-    ctx.fill();
+    drawPolygon({
+        sideCount: 3,
+        radius: size/2,
+        ctx, x, y, colour,
+        startingAngle: Math.PI / 2
+    });
 };
 
 const drawThinStrip = ({ ctx, colour, x, y, size, isVertical}: ShapeProps) => {
