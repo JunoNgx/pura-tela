@@ -24,6 +24,10 @@
         === ColourSwatchStyleItemShape.CIRCLE);
     const isItemShapeRhombus = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.RHOMBUS);
+    const isItemShapeTriangle = $derived(colourSwatchStyleConfig.val.itemShape
+        === ColourSwatchStyleItemShape.TRIANGLE);
+    const isItemShapeInvertedTriangle = $derived(colourSwatchStyleConfig.val.itemShape
+        === ColourSwatchStyleItemShape.INVERTED_TRIANGLE);
 
     const handleItemShapeChange = ( e: MouseInputEvent ) => {
         const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
@@ -186,6 +190,20 @@
                             onclick={handleItemShapeChange}
                         >
                             Rhombus
+                        </RadioCheckbox>
+                        <RadioCheckbox
+                            value={ColourSwatchStyleItemShape.TRIANGLE}
+                            checked={isItemShapeTriangle}
+                            onclick={handleItemShapeChange}
+                        >
+                            Triangle
+                        </RadioCheckbox>
+                        <RadioCheckbox
+                            value={ColourSwatchStyleItemShape.INVERTED_TRIANGLE}
+                            checked={isItemShapeInvertedTriangle}
+                            onclick={handleItemShapeChange}
+                        >
+                            Inverted triangle
                         </RadioCheckbox>
                     </div>
                 </div>
