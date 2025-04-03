@@ -27,7 +27,7 @@ const drawSquareFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fillRect(x - size/2, y - size/2, size, size);
 };
 
-const drawRhombusFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
+const drawRhombus = ({ ctx, colour, x, y, size}: ShapeProps) => {
     const semiDiagonal = size / 2;
 
     ctx.beginPath();
@@ -215,7 +215,7 @@ const renderForColourSwatchStyle = (
         drawFunc = drawCircle;
         break;
     case ColourSwatchStyleItemShape.RHOMBUS:
-        drawFunc = drawRhombusFromCenter;
+        drawFunc = drawRhombus;
         break;
     }
 
