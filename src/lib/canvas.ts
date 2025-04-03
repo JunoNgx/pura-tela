@@ -287,9 +287,15 @@ const renderForColourSwatchStyle = (
     const midPostionRenderOffset = swatchSlotSize / 2;
     const fullSwatchSize = swatchSlotSize * itemCount;
 
+    const isThinStrip = config.colourSwatch.itemShape
+        === ColourSwatchStyleItemShape.THIN_STRIP;
+    const crossAxisSize = isThinStrip
+        ? itemSize/8
+        : itemSize;
+
     const drawHorizontally = () => {
-        const minCommonY = itemSize/2;
-        const maxCommonY = size.height - itemSize/2;
+        const minCommonY = crossAxisSize/2;
+        const maxCommonY = size.height - crossAxisSize/2;
         const commonY = minCommonY + (maxCommonY - minCommonY)
             * config.colourSwatch.positionY/100;
 
@@ -313,8 +319,8 @@ const renderForColourSwatchStyle = (
     };
 
     const drawVertically = () => {
-        const minCommonX = itemSize/2;
-        const maxCommonX = size.width - itemSize/2;
+        const minCommonX = crossAxisSize/2;
+        const maxCommonX = size.width - crossAxisSize/2;
         const commonX = minCommonX + (maxCommonX - minCommonX)
             * config.colourSwatch.positionX/100;
 
