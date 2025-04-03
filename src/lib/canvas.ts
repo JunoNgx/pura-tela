@@ -49,6 +49,48 @@ const drawCircle = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fill();
 };
 
+type PolygonProps = {
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    radius: number,
+    sideCount: number,
+    colour: string,
+    startingAngle?: number
+};
+
+const drawPolygon = (
+    {
+        ctx,
+        x,
+        y,
+        radius,
+        sideCount,
+        colour,
+        startingAngle = 0
+    }: PolygonProps
+) => {
+    const arcSegment = (Math.PI * 2) /sideCount;
+
+    ctx.beginPath();
+
+    for (let i = 0; i++; i < sideCount) {
+        const position: [ number, number ]
+            = [
+                x + radius * Math.cos(startingAngle + arcSegment * i),
+                y + radius * Math.sin(startingAngle + arcSegment * i),
+            ];
+        
+        if (i === 0) ctx.moveTo(...position)
+        else ctx.lineTo(...position);
+    }
+
+    ctx.closePath();
+
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
+
 const drawTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
     const semiDiagonal = size / 2;
 
