@@ -59,32 +59,27 @@ type PolygonProps = {
     startingAngle?: number
 };
 
-const drawPolygon = (
-    {
-        ctx,
-        x,
-        y,
-        radius,
-        sideCount,
-        colour,
-        startingAngle = 0
-    }: PolygonProps
-) => {
+const drawPolygon = ({
+    ctx,
+    x,
+    y,
+    radius,
+    sideCount,
+    colour,
+    startingAngle = 0
+}: PolygonProps ) => {
+
     const arcSegment = (Math.PI * 2) /sideCount;
 
     ctx.beginPath();
+    for (let i = 0; i < sideCount; i++) {
+        const posX = x + radius * Math.cos(startingAngle + arcSegment * i);
+        const posY = y + radius * Math.sin(startingAngle + arcSegment * i);
+        const position: [ number, number ] = [posX, posY];
 
-    for (let i = 0; i++; i < sideCount) {
-        const position: [ number, number ]
-            = [
-                x + radius * Math.cos(startingAngle + arcSegment * i),
-                y + radius * Math.sin(startingAngle + arcSegment * i),
-            ];
-        
         if (i === 0) ctx.moveTo(...position)
         else ctx.lineTo(...position);
     }
-
     ctx.closePath();
 
     ctx.fillStyle = colour;
@@ -92,16 +87,12 @@ const drawPolygon = (
 };
 
 const drawTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
-    const semiDiagonal = size / 2;
-
-    ctx.beginPath();
-    ctx.moveTo(x, y - semiDiagonal);
-    ctx.lineTo(x - semiDiagonal, y + semiDiagonal);
-    ctx.lineTo(x + semiDiagonal, y + semiDiagonal);
-    ctx.closePath();
-
-    ctx.fillStyle = colour;
-    ctx.fill();
+    drawPolygon({
+        sideCount: 3,
+        radius: size/2,
+        ctx, x, y, colour,
+        startingAngle: -Math.PI / 2
+    });
 };
 
 const drawInvertedTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
