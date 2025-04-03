@@ -15,6 +15,7 @@ type ShapeProps = {
     x: number,
     y: number,
     size: number,
+    isVertical?: boolean,
 };
 
 const drawSquare = ({ ctx, colour, x, y, size}: ShapeProps) => {
@@ -72,6 +73,17 @@ const drawInvertedTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
 
     ctx.fillStyle = colour;
     ctx.fill();
+};
+
+const drawThinStrip = ({ ctx, colour, x, y, size, isVertical}: ShapeProps) => {
+    const longEdge = size;
+    const shortEdge = size/8;
+    const drawOptions: [number, number, number, number] = isVertical
+        ? [x - shortEdge/2, y - longEdge/2, shortEdge, longEdge]
+        : [x - longEdge/2, y - shortEdge/2, longEdge, shortEdge];
+
+    ctx.fillStyle = colour;
+    ctx.fillRect(...drawOptions);
 };
 
 export const renderCanvas = (
@@ -249,6 +261,9 @@ const renderForColourSwatchStyle = (
     case ColourSwatchStyleItemShape.INVERTED_TRIANGLE:
         drawFunc = drawInvertedTriangle;
         break;
+    case ColourSwatchStyleItemShape.THIN_STRIP:
+        drawFunc = drawThinStrip;
+        break;
     }
 
     const shouldDrawHorizontally = config.colourSwatch.direction
@@ -292,6 +307,7 @@ const renderForColourSwatchStyle = (
                 x,
                 y: commonY,
                 size: itemSize,
+                isVertical: false,
             });
         };
     };
@@ -316,6 +332,7 @@ const renderForColourSwatchStyle = (
                 x: commonX,
                 y,
                 size: itemSize,
+                isVertical: true
             });
         };
     };
