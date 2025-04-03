@@ -53,8 +53,21 @@ const drawTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
 
     ctx.beginPath();
     ctx.moveTo(x, y - semiDiagonal);
-    ctx.lineTo(x - semiDiagonal, y - semiDiagonal);
+    ctx.lineTo(x - semiDiagonal, y + semiDiagonal);
+    ctx.lineTo(x + semiDiagonal, y + semiDiagonal);
+    ctx.closePath();
+
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
+
+const drawInvertedTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    const semiDiagonal = size / 2;
+
+    ctx.beginPath();
+    ctx.moveTo(x - semiDiagonal, y - semiDiagonal);
     ctx.lineTo(x + semiDiagonal, y - semiDiagonal);
+    ctx.lineTo(x, y + semiDiagonal);
     ctx.closePath();
 
     ctx.fillStyle = colour;
