@@ -9,12 +9,17 @@ export type CanvasRenderOptions = {
     config?: RenderStyleConfig,
 };
 
+type StyleRenderOptions = CanvasRenderOptions & {
+    ctx: CanvasRenderingContext2D,
+};
+
 type ShapeProps = {
     ctx: CanvasRenderingContext2D,
     colour: string,
     x: number,
     y: number,
     size: number,
+    isVertical?: boolean,
 };
 
 const drawSquare = ({ ctx, colour, x, y, size}: ShapeProps) => {
@@ -27,7 +32,7 @@ const drawSquareFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fillRect(x - size/2, y - size/2, size, size);
 };
 
-const drawRhombusFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
+const drawRhombus = ({ ctx, colour, x, y, size}: ShapeProps) => {
     const semiDiagonal = size / 2;
 
     ctx.beginPath();
@@ -46,6 +51,81 @@ const drawCircle = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.arc(x, y, size/2, 0, 2 * Math.PI);
     ctx.fillStyle = colour;
     ctx.fill();
+};
+
+type PolygonProps = {
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    radius: number,
+    sideCount: number,
+    colour: string,
+    startingAngle?: number
+};
+
+const drawPolygon = ({
+    ctx,
+    x,
+    y,
+    radius,
+    sideCount,
+    colour,
+    startingAngle = 0
+}: PolygonProps ) => {
+
+    const arcSegment = (Math.PI * 2) /sideCount;
+
+    ctx.beginPath();
+    for (let i = 0; i < sideCount; i++) {
+        const posX = x + radius * Math.cos(startingAngle + arcSegment * i);
+        const posY = y + radius * Math.sin(startingAngle + arcSegment * i);
+        const position: [ number, number ] = [posX, posY];
+
+        if (i === 0) ctx.moveTo(...position)
+        else ctx.lineTo(...position);
+    }
+    ctx.closePath();
+
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
+
+const drawTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    drawPolygon({
+        sideCount: 3,
+        radius: size/2,
+        ctx, x, y, colour,
+        startingAngle: -Math.PI / 2
+    });
+};
+
+const drawInvertedTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    drawPolygon({
+        sideCount: 3,
+        radius: size/2,
+        ctx, x, y, colour,
+        startingAngle: Math.PI / 2
+    });
+};
+
+const drawHexagon = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    drawPolygon({
+        sideCount: 6,
+        radius: size/2,
+        ctx, x, y, colour,
+        startingAngle: -Math.PI / 2
+    });
+};
+
+const drawThinStrip = ({ ctx, colour, x, y, size, isVertical}: ShapeProps) => {
+    const longEdge = size;
+    const shortEdge = size/8;
+    const drawOptions: [number, number, number, number] = isVertical
+        ? [x - shortEdge/2, y - longEdge/2, shortEdge, longEdge]
+        : [x - longEdge/2, y - shortEdge/2, longEdge, shortEdge];
+
+    ctx.fillStyle = colour;
+    ctx.fillRect(...drawOptions);
 };
 
 export const renderCanvas = (
@@ -84,9 +164,7 @@ export const renderCanvas = (
 };
 
 const renderForGradientStyle = (
-    { ctx, colours, size, config }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size, config }: StyleRenderOptions
 ) => {
     /**
      * Drawing gradient at an angle is unfortunately not as perfect specifically
@@ -138,18 +216,14 @@ const renderForGradientStyle = (
 };
 
 const renderForSolidStyle = (
-    { ctx, colours, size }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size }: StyleRenderOptions
 ) => {
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
 const renderForPopArtSquareStyle = (
-    { ctx, colours, size }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size }: StyleRenderOptions
 ) => {
     // Draw background
     ctx.fillStyle = colours[0];
@@ -190,9 +264,7 @@ const renderForPopArtSquareStyle = (
 };
 
 const renderForColourSwatchStyle = (
-    { ctx, colours, size, config }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size, config }: StyleRenderOptions
 ) => {
     if (!config?.colourSwatch) {
         throw new Error("Cannot access Colour Swatch config");
@@ -206,7 +278,7 @@ const renderForColourSwatchStyle = (
     const mainColours = colours.slice(1, colourCount);
     const itemCount = mainColours.length; // First one is background
 
-    let drawFunc;
+    let drawFunc: (props: ShapeProps) => void;
     switch(config.colourSwatch.itemShape) {
     case ColourSwatchStyleItemShape.SQUARE:
         drawFunc = drawSquareFromCenter;
@@ -215,7 +287,19 @@ const renderForColourSwatchStyle = (
         drawFunc = drawCircle;
         break;
     case ColourSwatchStyleItemShape.RHOMBUS:
-        drawFunc = drawRhombusFromCenter;
+        drawFunc = drawRhombus;
+        break;
+    case ColourSwatchStyleItemShape.TRIANGLE:
+        drawFunc = drawTriangle;
+        break;
+    case ColourSwatchStyleItemShape.INVERTED_TRIANGLE:
+        drawFunc = drawInvertedTriangle;
+        break;
+    case ColourSwatchStyleItemShape.THIN_STRIP:
+        drawFunc = drawThinStrip;
+        break;
+    case ColourSwatchStyleItemShape.HEXAGON:
+        drawFunc = drawHexagon;
         break;
     }
 
@@ -240,9 +324,15 @@ const renderForColourSwatchStyle = (
     const midPostionRenderOffset = swatchSlotSize / 2;
     const fullSwatchSize = swatchSlotSize * itemCount;
 
+    const isThinStrip = config.colourSwatch.itemShape
+        === ColourSwatchStyleItemShape.THIN_STRIP;
+    const crossAxisSize = isThinStrip
+        ? itemSize/8
+        : itemSize;
+
     const drawHorizontally = () => {
-        const minCommonY = itemSize/2;
-        const maxCommonY = size.height - itemSize/2;
+        const minCommonY = crossAxisSize/2;
+        const maxCommonY = size.height - crossAxisSize/2;
         const commonY = minCommonY + (maxCommonY - minCommonY)
             * config.colourSwatch.positionY/100;
 
@@ -260,13 +350,14 @@ const renderForColourSwatchStyle = (
                 x,
                 y: commonY,
                 size: itemSize,
+                isVertical: false,
             });
         };
     };
 
     const drawVertically = () => {
-        const minCommonX = itemSize/2;
-        const maxCommonX = size.width - itemSize/2;
+        const minCommonX = crossAxisSize/2;
+        const maxCommonX = size.width - crossAxisSize/2;
         const commonX = minCommonX + (maxCommonX - minCommonX)
             * config.colourSwatch.positionX/100;
 
@@ -284,6 +375,7 @@ const renderForColourSwatchStyle = (
                 x: commonX,
                 y,
                 size: itemSize,
+                isVertical: true
             });
         };
     };

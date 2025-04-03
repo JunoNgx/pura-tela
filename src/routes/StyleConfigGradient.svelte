@@ -27,7 +27,7 @@
 
 <div class="GradientConfig">
     <h3 class="GradientConfig__Title">
-        Colour Swatch Configurations
+        Gradient Configurations
     </h3>
 
     <div class="GradientConfig__ItemsContainer">

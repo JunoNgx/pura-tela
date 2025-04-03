@@ -100,6 +100,10 @@ export enum ColourSwatchStyleItemShape {
     SQUARE = "square",
     CIRCLE = "circle",
     RHOMBUS = "rhombus",
+    TRIANGLE = "triangle",
+    INVERTED_TRIANGLE = "invertedTriangle",
+    THIN_STRIP = "thinStrip",
+    HEXAGON = "hexagon",
 };
 
 export enum ColourSwatchStylePosition {
