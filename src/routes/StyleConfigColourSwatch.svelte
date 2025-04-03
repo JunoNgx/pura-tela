@@ -30,6 +30,8 @@
         === ColourSwatchStyleItemShape.INVERTED_TRIANGLE);
     const isItemShapeInvertedThinStrip = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.THIN_STRIP);
+    const isItemShapeInvertedHexagon = $derived(colourSwatchStyleConfig.val.itemShape
+        === ColourSwatchStyleItemShape.HEXAGON);
 
     const handleItemShapeChange = ( e: MouseInputEvent ) => {
         const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
@@ -213,6 +215,13 @@
                             onclick={handleItemShapeChange}
                         >
                             Thin strip
+                        </RadioCheckbox>
+                        <RadioCheckbox
+                            value={ColourSwatchStyleItemShape.HEXAGON}
+                            checked={isItemShapeInvertedHexagon}
+                            onclick={handleItemShapeChange}
+                        >
+                            Hexagon
                         </RadioCheckbox>
                     </div>
                 </div>

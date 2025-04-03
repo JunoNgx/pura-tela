@@ -104,6 +104,15 @@ const drawInvertedTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
     });
 };
 
+const drawHexagon = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    drawPolygon({
+        sideCount: 6,
+        radius: size/2,
+        ctx, x, y, colour,
+        startingAngle: -Math.PI / 2
+    });
+};
+
 const drawThinStrip = ({ ctx, colour, x, y, size, isVertical}: ShapeProps) => {
     const longEdge = size;
     const shortEdge = size/8;
@@ -292,6 +301,9 @@ const renderForColourSwatchStyle = (
         break;
     case ColourSwatchStyleItemShape.THIN_STRIP:
         drawFunc = drawThinStrip;
+        break;
+    case ColourSwatchStyleItemShape.HEXAGON:
+        drawFunc = drawHexagon;
         break;
     }
 
