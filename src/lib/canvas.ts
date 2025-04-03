@@ -232,7 +232,7 @@ const renderForColourSwatchStyle = (
     const mainColours = colours.slice(1, colourCount);
     const itemCount = mainColours.length; // First one is background
 
-    let drawFunc;
+    let drawFunc: (props: ShapeProps) => void;
     switch(config.colourSwatch.itemShape) {
     case ColourSwatchStyleItemShape.SQUARE:
         drawFunc = drawSquareFromCenter;
