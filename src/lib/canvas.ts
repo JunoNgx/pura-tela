@@ -48,6 +48,19 @@ const drawCircle = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fill();
 };
 
+const drawTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    const semiDiagonal = size / 2;
+
+    ctx.beginPath();
+    ctx.moveTo(x, y - semiDiagonal);
+    ctx.lineTo(x - semiDiagonal, y - semiDiagonal);
+    ctx.lineTo(x + semiDiagonal, y - semiDiagonal);
+    ctx.closePath();
+
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
+
 export const renderCanvas = (
     { size, colours, style, config }: CanvasRenderOptions
 ) => {
