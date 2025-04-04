@@ -77,6 +77,12 @@ export type WallGenQueryProps = {
     colours: string | null,
     width: string | null,
     height: string | null,
+
+    gradientAngle?: string | null,
+
+    swatchShape?: string | null,
+    swatchPosition?: string | null,
+    swatchHasSpacing?: string | null,
 };
 
 export type InputEvent = MouseEvent & {
@@ -99,6 +105,11 @@ export type ColourSwatchStyleConfigProps = {
     hasSpacing: boolean,
 };
 
+export type GradientStyleConfigProps = {
+    angleInDeg: number,
+};
+
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps,
+    gradient: GradientStyleConfigProps,
 };

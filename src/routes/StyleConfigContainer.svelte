@@ -3,6 +3,7 @@
     import { WallpaperStyle, type InputEvent } from "src/lib/types.js";
 	import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, setWallGenColourInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
 	import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
+	import StyleConfigGradient from "./StyleConfigGradient.svelte";
 
     const handleWallpaperStyleChange = (e: InputEvent) => {
         const newValue = e.currentTarget.value as WallpaperStyle;
@@ -57,6 +58,8 @@
 <section class="StyleConfig">
     {#if isColourSwatchStyle()}
         <StyleConfigColourSwatch />
+    {:else if isGradientStyle()}
+        <StyleConfigGradient />
     {/if}
 </section>
 

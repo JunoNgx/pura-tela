@@ -18,10 +18,10 @@
 
 .VisuallyHidden {
     position: absolute;
-    width: var(--lineWeight);
-    height: var(--lineWeight);
+    width: 1px;
+    height: 1px;
     padding: 0;
-    margin: -var(--lineWeight);
+    margin: -1px;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
@@ -128,6 +128,18 @@
     color: var(--colBg);
     background-color: var(--colPri);
     border-color: var(--colPri);
+}
+
+.TertBtn {
+    border: none;
+    text-decoration: underline;
+    background-color: transparent;
+    padding: 0;
+}
+
+.TertBtn:hover {
+    color: var(--colPri);
+    background-color: transparent;
 }
 
 .SplitBtn {

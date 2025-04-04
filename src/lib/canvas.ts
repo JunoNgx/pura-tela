@@ -70,14 +70,47 @@ export const renderCanvas = (
 };
 
 const renderForGradientStyle = (
-    { ctx, colours, size }: CanvasRenderOptions & {
+    { ctx, colours, size, config }: CanvasRenderOptions & {
         ctx: CanvasRenderingContext2D,
     }
 ) => {
+    /**
+     * Drawing gradient at an angle is unfortunately not as perfect specifically
+     * setting it at from x `0` to `size.height`.
+     * 
+     * What entails is a gradient drawn from a circle passing through the four
+     * points of the rectangle, whose quality is variable, depending on the ratio
+     * of the rectangle. Works best with square, but not 100% perfect.
+     */
+
+    if (!config?.gradient) {
+        throw new Error("Cannot access Gradient config");
+    }
+
+    const calculateGradientPoints = (
+        angleInDeg: number, width: number, height: number
+    ) => {
+        const diagonalLength = Math.sqrt(width * width + height * height);
+        const distanceFromMid = diagonalLength/2;
+        const angleInRadian = (angleInDeg * Math.PI) / 180;
+        const midX = width / 2;
+        const midY = height /2;
+        
+        const x1 = midX - distanceFromMid * Math.cos(angleInRadian);
+        const y1 = midY - distanceFromMid * Math.sin(angleInRadian);
+
+        const x2 = midX + distanceFromMid * Math.cos(angleInRadian);
+        const y2 = midY + distanceFromMid * Math.sin(angleInRadian);
+
+        return { x1, y1, x2, y2 };
+    };
+
+    const { x1, y1, x2, y2 } = calculateGradientPoints(
+        config.gradient.angleInDeg, size.width, size.height
+    );
+
+    const gradient = ctx.createLinearGradient(x1, y1, x2, y2);
     const colourCount = colours.length;
-    const midXPoint = size.width / 2;
-    const gradient = ctx.createLinearGradient(
-        midXPoint, 0, midXPoint, size.height);
     const intervalGap = 1 / (colourCount - 1);
 
     for (let i = 0; i < colourCount; i++) {
