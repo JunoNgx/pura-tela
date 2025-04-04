@@ -41,16 +41,16 @@
     --colPri: #232042;
     --colSec: #778899;
     --colAcc: #8AB0B7;
-    --colBg: #E4DCC1;
-    --colBg2: #C8C1A2;
+    --colBg: #E8E6E0;
+    --colBg2: #D5CFB7;
 }
 
 :root[data-theme-mode="light"] {
     --colPri: #232042;
     --colSec: #778899;
     --colAcc: #8AB0B7;
-    --colBg: #E4DCC1;
-    --colBg2: #C8C1A2;
+    --colBg: #E8E6E0;
+    --colBg2: #D5CFB7;
 }
 
 :root[data-theme-mode="dark"] {
