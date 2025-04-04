@@ -5,8 +5,8 @@
     "categories": ["personalization", "utilities"],
     "orientation": "portrait-primary",
     "display": "standalone",
-    "theme_color": "#E4DCC1",
-    "background_color": "#E4DCC1",
+    "theme_color": "#E8E6E0",
+    "background_color": "#E8E6E0",
     "start_url": "/",
     "prefer_related_applications": false,
     "icons": [
