@@ -52,9 +52,12 @@
             url.searchParams.append("gradientAngle", gradientStyleConfig.val.angleInDeg.toString());
             break;
         case WallpaperStyle.COLOUR_SWATCH:
-            url.searchParams.append("swatchShape", colourSwatchStyleConfig.val.itemShape);
-            url.searchParams.append("swatchPosition", colourSwatchStyleConfig.val.position);
-            url.searchParams.append("swatchHasSpacing", colourSwatchStyleConfig.val.hasSpacing.toString());
+            url.searchParams.append("swatchPosX", colourSwatchStyleConfig.val.positionX.toString());
+            url.searchParams.append("swatchPosY", colourSwatchStyleConfig.val.positionY.toString());
+            url.searchParams.append("swatchDirection", colourSwatchStyleConfig.val.direction);
+            url.searchParams.append("swatchItemShape", colourSwatchStyleConfig.val.itemShape);
+            url.searchParams.append("swatchItemSize", colourSwatchStyleConfig.val.itemSize.toString());
+            url.searchParams.append("swatchItemSpacing", colourSwatchStyleConfig.val.itemSpacing.toString());
             break;
         }
 

@@ -13,9 +13,12 @@ export const load = ({
     const gradientAngle = url.searchParams.get("gradientAngle");
 
     // Colour swatch config
-    const swatchShape = url.searchParams.get("swatchShape");
-    const swatchPosition = url.searchParams.get("swatchPosition");
-    const swatchHasSpacing = url.searchParams.get("swatchHasSpacing");
+    const swatchPosX = url.searchParams.get("swatchPosX");
+    const swatchPosY = url.searchParams.get("swatchPosY");
+    const swatchDirection = url.searchParams.get("swatchDirection");
+    const swatchItemShape = url.searchParams.get("swatchItemShape");
+    const swatchItemSize = url.searchParams.get("swatchItemSize");
+    const swatchItemSpacing = url.searchParams.get("swatchItemSpacing");
 
     return {
         style,
@@ -25,8 +28,11 @@ export const load = ({
 
         gradientAngle,
 
-        swatchShape,
-        swatchPosition,
-        swatchHasSpacing,
+        swatchPosX,
+        swatchPosY,
+        swatchDirection,
+        swatchItemShape,
+        swatchItemSize,
+        swatchItemSpacing,
     };
 };

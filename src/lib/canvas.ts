@@ -1,4 +1,4 @@
-import { ColourSwatchStyleItemShape, ColourSwatchStylePosition, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
+import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, ColourSwatchStylePosition, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
@@ -9,12 +9,17 @@ export type CanvasRenderOptions = {
     config?: RenderStyleConfig,
 };
 
+type StyleRenderOptions = CanvasRenderOptions & {
+    ctx: CanvasRenderingContext2D,
+};
+
 type ShapeProps = {
     ctx: CanvasRenderingContext2D,
     colour: string,
     x: number,
     y: number,
     size: number,
+    isVertical?: boolean,
 };
 
 const drawSquare = ({ ctx, colour, x, y, size}: ShapeProps) => {
@@ -27,11 +32,100 @@ const drawSquareFromCenter = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fillRect(x - size/2, y - size/2, size, size);
 };
 
+const drawRhombus = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    const semiDiagonal = size / 2;
+
+    ctx.beginPath();
+    ctx.moveTo(x, y - semiDiagonal);
+    ctx.lineTo(x + semiDiagonal, y);
+    ctx.lineTo(x, y + semiDiagonal);
+    ctx.lineTo(x - semiDiagonal, y);
+    ctx.closePath();
+
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
+
 const drawCircle = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.beginPath();
     ctx.arc(x, y, size/2, 0, 2 * Math.PI);
     ctx.fillStyle = colour;
     ctx.fill();
+};
+
+type PolygonProps = {
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    radius: number,
+    sideCount: number,
+    colour: string,
+    startingAngle?: number
+};
+
+const drawPolygon = ({
+    ctx,
+    x,
+    y,
+    radius,
+    sideCount,
+    colour,
+    startingAngle = 0
+}: PolygonProps ) => {
+
+    const arcSegment = (Math.PI * 2) /sideCount;
+
+    ctx.beginPath();
+    for (let i = 0; i < sideCount; i++) {
+        const posX = x + radius * Math.cos(startingAngle + arcSegment * i);
+        const posY = y + radius * Math.sin(startingAngle + arcSegment * i);
+        const position: [ number, number ] = [posX, posY];
+
+        if (i === 0) ctx.moveTo(...position)
+        else ctx.lineTo(...position);
+    }
+    ctx.closePath();
+
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
+
+const drawTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    drawPolygon({
+        sideCount: 3,
+        radius: size/2,
+        ctx, x, y, colour,
+        startingAngle: -Math.PI / 2
+    });
+};
+
+const drawInvertedTriangle = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    drawPolygon({
+        sideCount: 3,
+        radius: size/2,
+        ctx, x, y, colour,
+        startingAngle: Math.PI / 2
+    });
+};
+
+const drawHexagon = ({ ctx, colour, x, y, size}: ShapeProps) => {
+    drawPolygon({
+        sideCount: 6,
+        radius: size/2,
+        ctx, x, y, colour,
+        startingAngle: -Math.PI / 2
+    });
+};
+
+const drawThinStrip = ({ ctx, colour, x, y, size, isVertical}: ShapeProps) => {
+    const longEdge = size;
+    const shortEdge = size/8;
+    const drawOptions: [number, number, number, number] = isVertical
+        ? [x - shortEdge/2, y - longEdge/2, shortEdge, longEdge]
+        : [x - longEdge/2, y - shortEdge/2, longEdge, shortEdge];
+
+    ctx.fillStyle = colour;
+    ctx.fillRect(...drawOptions);
 };
 
 export const renderCanvas = (
@@ -70,9 +164,7 @@ export const renderCanvas = (
 };
 
 const renderForGradientStyle = (
-    { ctx, colours, size, config }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size, config }: StyleRenderOptions
 ) => {
     /**
      * Drawing gradient at an angle is unfortunately not as perfect specifically
@@ -124,18 +216,14 @@ const renderForGradientStyle = (
 };
 
 const renderForSolidStyle = (
-    { ctx, colours, size }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size }: StyleRenderOptions
 ) => {
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
 const renderForPopArtSquareStyle = (
-    { ctx, colours, size }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size }: StyleRenderOptions
 ) => {
     // Draw background
     ctx.fillStyle = colours[0];
@@ -176,9 +264,7 @@ const renderForPopArtSquareStyle = (
 };
 
 const renderForColourSwatchStyle = (
-    { ctx, colours, size, config }: CanvasRenderOptions & {
-        ctx: CanvasRenderingContext2D,
-    }
+    { ctx, colours, size, config }: StyleRenderOptions
 ) => {
     if (!config?.colourSwatch) {
         throw new Error("Cannot access Colour Swatch config");
@@ -192,28 +278,71 @@ const renderForColourSwatchStyle = (
     const mainColours = colours.slice(1, colourCount);
     const itemCount = mainColours.length; // First one is background
 
-    const shouldDrawSquare = config.colourSwatch.itemShape
-        === ColourSwatchStyleItemShape.SQUARE;
-    const drawFunc = shouldDrawSquare
-        ? drawSquareFromCenter
-        : drawCircle;
+    let drawFunc: (props: ShapeProps) => void;
+    switch(config.colourSwatch.itemShape) {
+    case ColourSwatchStyleItemShape.SQUARE:
+        drawFunc = drawSquareFromCenter;
+        break;
+    case ColourSwatchStyleItemShape.CIRCLE:
+        drawFunc = drawCircle;
+        break;
+    case ColourSwatchStyleItemShape.RHOMBUS:
+        drawFunc = drawRhombus;
+        break;
+    case ColourSwatchStyleItemShape.TRIANGLE:
+        drawFunc = drawTriangle;
+        break;
+    case ColourSwatchStyleItemShape.INVERTED_TRIANGLE:
+        drawFunc = drawInvertedTriangle;
+        break;
+    case ColourSwatchStyleItemShape.THIN_STRIP:
+        drawFunc = drawThinStrip;
+        break;
+    case ColourSwatchStyleItemShape.HEXAGON:
+        drawFunc = drawHexagon;
+        break;
+    }
 
-    const shouldDrawCenter = config.colourSwatch.position
-        === ColourSwatchStylePosition.CENTERED;
+    const shouldDrawHorizontally = config.colourSwatch.direction
+        === ColourSwatchStyleDirection.HORIZONTAL;
 
-    const drawCenter = () => {
+    const priAxisLength = shouldDrawHorizontally
+        ? size.width
+        : size.height;
+    const baseItemSize = priAxisLength / itemCount;
+    const minItemSize = baseItemSize / 7;
+    const maxItemSize = baseItemSize * 1.5;
+    const itemSize = minItemSize + (maxItemSize - minItemSize)
+        * config.colourSwatch.itemSize/100;
+
+    const minSpacing = -itemSize/4;
+    const maxSpacing = itemSize/4;
+    const spacing = minSpacing + (maxSpacing - minSpacing)
+        * config.colourSwatch.itemSpacing/100;
+
+    const swatchSlotSize = itemSize + spacing * 2;
+    const midPostionRenderOffset = swatchSlotSize / 2;
+    const fullSwatchSize = swatchSlotSize * itemCount;
+
+    const isThinStrip = config.colourSwatch.itemShape
+        === ColourSwatchStyleItemShape.THIN_STRIP;
+    const crossAxisSize = isThinStrip
+        ? itemSize/8
+        : itemSize;
+
+    const drawHorizontally = () => {
+        const minCommonY = crossAxisSize/2;
+        const maxCommonY = size.height - crossAxisSize/2;
+        const commonY = minCommonY + (maxCommonY - minCommonY)
+            * config.colourSwatch.positionY/100;
+
+        const maxStartingXOffset = size.width - fullSwatchSize;
+        const startingXOffset = maxStartingXOffset
+            * config.colourSwatch.positionX/100;
+
         for (let i = 0; i < mainColours.length; i++) {
-            const slotSize = size.width / (itemCount + 2); // Use one slot on each side as padding
-            const itemSize = config.colourSwatch.hasSpacing
-                ? slotSize * 4/5
-                : slotSize;
-            const spacingGap = config.colourSwatch.hasSpacing
-                ? slotSize / 10
-                : 0;
-            const commonY = size.height / 2;
-            const startingOffset = slotSize + spacingGap;
-            const midRenderPostionOffset = slotSize / 2;
-            const x = startingOffset + (slotSize) * i + midRenderPostionOffset;
+            const x = startingXOffset + (itemSize + spacing * 2)
+                * i + midPostionRenderOffset;
     
             drawFunc({
                 ctx,
@@ -221,34 +350,38 @@ const renderForColourSwatchStyle = (
                 x,
                 y: commonY,
                 size: itemSize,
+                isVertical: false,
             });
         };
     };
 
-    const drawTopRight = () => {
-        for (let i = 0; i < mainColours.length; i++) {    
-            // Use only half of height
-            const slotSize = (size.height / 2) / (itemCount + 1);
-            const itemSize = config.colourSwatch.hasSpacing
-                ? slotSize * 4/5
-                : slotSize;
-            const commonX = size.width - itemSize * 1;
-            const startingOffset = itemSize;
-            const midRenderPostionOffset = slotSize / 2;
-            const y = startingOffset + slotSize * i + midRenderPostionOffset;
+    const drawVertically = () => {
+        const minCommonX = crossAxisSize/2;
+        const maxCommonX = size.width - crossAxisSize/2;
+        const commonX = minCommonX + (maxCommonX - minCommonX)
+            * config.colourSwatch.positionX/100;
 
+        const maxStartingYOffset = size.height - fullSwatchSize;
+        const startingYOffset = maxStartingYOffset
+            * config.colourSwatch.positionY/100;
+
+        for (let i = 0; i < mainColours.length; i++) {
+            const y = startingYOffset + (itemSize + spacing * 2)
+                * i + midPostionRenderOffset;
+    
             drawFunc({
                 ctx,
                 colour: mainColours[i],
                 x: commonX,
                 y,
                 size: itemSize,
+                isVertical: true
             });
         };
     };
 
-    if (shouldDrawCenter) drawCenter();
-    else drawTopRight();
+    if (shouldDrawHorizontally) drawHorizontally();
+    else drawVertically();
 };
 
 export const refitCanvasToContainer = () => {
