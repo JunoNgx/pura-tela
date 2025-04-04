@@ -1,5 +1,6 @@
 <script lang="ts">
 	import LogoIcon from "./LogoIcon.svelte";
+	import LogoIconColoured from "./LogoIconColoured.svelte";
 
     let { isMono } = $props();
 </script>
@@ -10,10 +11,9 @@
             <LogoIcon />
         </div>
     {:else}
-        <img class="Logo__Icon"
-            src="/logo-vector.svg"
-            alt="Pura Tela logo"
-        />
+        <div class="Logo__Icon">
+            <LogoIconColoured />
+        </div>
     {/if}
     <h1 class="Logo__Text">Pura Tela</h1>
 </div>
