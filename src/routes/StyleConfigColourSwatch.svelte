@@ -302,7 +302,7 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 3rem;
         align-items: center;
     }
 
