@@ -6,11 +6,11 @@
 
 <div class="Logo">
     {#if isMono}
-        <div class="Logo__MonoIcon">
+        <div class="Logo__Icon Logo__MonoIcon">
             <LogoIcon />
         </div>
     {:else}
-        <img class="Logo__MonoIcon"
+        <img class="Logo__Icon"
             src="/logo-vector.svg"
             alt="Pura Tela logo"
         />
@@ -25,9 +25,12 @@
         align-items: center;
     }
 
-    .Logo__MonoIcon {
+    .Logo__Icon {
         width: 2rem;
         height: 2rem;
+    }
+
+    .Logo__MonoIcon {
         fill: var(--colPri);
     }
 
