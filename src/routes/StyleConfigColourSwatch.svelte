@@ -240,7 +240,7 @@
 
                 <StyleConfigItemSlider
                     domId="SwatchItemSpacing"
-                    label="In-between spacing"
+                    label="gap"
                     min={SWATCH_CONFIG_MIN_VALUE}
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
@@ -302,7 +302,7 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 3rem;
         align-items: center;
     }
 
