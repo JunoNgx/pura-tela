@@ -1,8 +1,11 @@
+<script lang="ts">
+	import LogoIconColoured from "src/components/LogoIconColoured.svelte";
+</script>
+
 <article class="HelpArticle">
-    <img class="HelpArticle__Logo"
-        src="/logo-vector.svg"
-        alt="Logo of Pura Tela"
-    />
+    <div class="HelpArticle__LogoContainer">
+        <LogoIconColoured/>
+    </div>
 
     <h2 class="H2WithMargin">Welcome to Pura Tela</h2>
 
@@ -35,15 +38,15 @@
         margin: 2rem 0 1rem;
     }
 
-    .HelpArticle__Logo {
-        max-width: 256px;
+    .HelpArticle__LogoContainer {
+        max-width: 16rem;
         display: block;
         margin: 3rem auto;
     }
 
     @media screen and (width <= 550px) {
-        .HelpArticle__Logo {
-            max-width: 128px;
+        .HelpArticle__LogoContainer {
+            max-width: 8rem;
         }
     }
 </style>
