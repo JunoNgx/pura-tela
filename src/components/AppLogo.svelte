@@ -1,24 +1,14 @@
 <script lang="ts">
-	import { computeThemeMode } from "src/lib/nightMode.js";
-	import { ThemeMode } from "src/lib/types.js";
+	import LogoIcon from "./LogoIcon.svelte";
 
     let { isMono } = $props();
-    let computedThemeMode = $derived(computeThemeMode());
 </script>
 
 <div class="Logo">
     {#if isMono}
-        {#if computedThemeMode === ThemeMode.LIGHT}
-            <img class="Logo__Icon"
-                src="/logo-mono-dark-vector.svg"
-                alt="Pura Tela logo"
-            />
-        {:else}
-            <img class="Logo__Icon"
-                src="/logo-mono-vector.svg"
-                alt="Pura Tela logo"
-            />
-        {/if}
+        <div class="Logo__Icon">
+            <LogoIcon />
+        </div>
     {:else}
         <img class="Logo__Icon"
             src="/logo-vector.svg"
@@ -38,6 +28,7 @@
     .Logo__Icon {
         width: 2rem;
         height: 2rem;
+        fill: var(--colPri);
     }
 
     .Logo__Text {
