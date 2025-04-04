@@ -240,7 +240,7 @@
 
                 <StyleConfigItemSlider
                     domId="SwatchItemSpacing"
-                    label="In-between spacing"
+                    label="gap"
                     min={SWATCH_CONFIG_MIN_VALUE}
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
