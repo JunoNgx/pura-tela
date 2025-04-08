@@ -16,7 +16,7 @@ if (!themeColourMeta) {
 const updatethemeColourMeta = () => {
     const isLightMode = computeThemeMode() === ThemeMode.LIGHT;
     themeColourMeta.content = isLightMode
-        ? "#E4DCC1"
+        ? "#E8E6E0"
         : "#323740";
 };
 
