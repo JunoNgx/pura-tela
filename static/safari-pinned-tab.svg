@@ -1,6 +1,12 @@
-<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="1024" height="1024" fill="#323740"/>
-<rect x="523" y="252" width="249" height="249" fill="#22D1D1"/>
-<rect x="252" y="252" width="249" height="520" fill="#1AC5F5"/>
-<rect x="523" y="523" width="249" height="249" fill="#F6ADAD"/>
+<svg width="144" height="144" viewBox="0 0 144 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_339_113)">
+<rect x="75.0459" width="68.9538" height="68.9538" fill="#22D1D1"/>
+<rect width="68.9538" height="144" fill="#1AC5F5"/>
+<rect x="75.0459" y="75.0464" width="68.9538" height="68.9538" fill="#F6ADAD"/>
+</g>
+<defs>
+<clipPath id="clip0_339_113">
+<rect width="144" height="144" fill="white"/>
+</clipPath>
+</defs>
 </svg>
