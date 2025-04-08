@@ -40,7 +40,7 @@
     /* Default theme values */
     --colPri: #232042;
     --colSec: #778899;
-    --colAcc: #8AB0B7;
+    --colAcc: #72CCE6;
     --colBg: #E8E6E0;
     --colBg2: #D5CFB7;
 }
@@ -48,7 +48,7 @@
 :root[data-theme-mode="light"] {
     --colPri: #232042;
     --colSec: #778899;
-    --colAcc: #8AB0B7;
+    --colAcc: #72CCE6;
     --colBg: #E8E6E0;
     --colBg2: #D5CFB7;
 }
