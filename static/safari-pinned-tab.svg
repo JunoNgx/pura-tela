@@ -1,15 +1,6 @@
 <svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="1024" height="1024" fill="#212226"/>
-<rect width="218.453" height="436.907" transform="matrix(1 0 0 -1 266 812.747)" fill="url(#paint0_linear_266_102)"/>
-<rect width="218.453" height="436.907" transform="matrix(1 0 0 -1 539.066 648.907)" fill="url(#paint1_linear_266_102)"/>
-<defs>
-<linearGradient id="paint0_linear_266_102" x1="109.227" y1="436.907" x2="109.227" y2="0" gradientUnits="userSpaceOnUse">
-<stop stop-color="#00BECE"/>
-<stop offset="1" stop-color="#0093E2"/>
-</linearGradient>
-<linearGradient id="paint1_linear_266_102" x1="109.227" y1="436.907" x2="109.227" y2="0" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FC5D85"/>
-<stop offset="1" stop-color="#FCB13B"/>
-</linearGradient>
-</defs>
+<rect width="1024" height="1024" fill="#323740"/>
+<rect x="523" y="252" width="249" height="249" fill="#22D1D1"/>
+<rect x="252" y="252" width="249" height="520" fill="#1AC5F5"/>
+<rect x="523" y="523" width="249" height="249" fill="#F6ADAD"/>
 </svg>
