@@ -173,7 +173,9 @@
                         oninput={handleItemShapeChange}
                     >
                         {#each itemShapeOptionList as itemShapeOption}
-                            <option value={itemShapeOption.value}>
+                            <option class="ColourSwatchConfig__DropdownOption"
+                                value={itemShapeOption.value}
+                            >
                                 {itemShapeOption.label}
                             </option>
                         {/each}
