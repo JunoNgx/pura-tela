@@ -106,5 +106,9 @@
     {
         "name": "Gasesous Nebula",
         "colours": ["ffe675", "ff7c8e", "874e74", "326594", "013362"]
+    },
+    {
+        "name": "Kanis Major",
+        "colours": ["1b1a1f", "3de7f3", "a69e48", "de4638", "f1bb03", "efe3c9"]
     }
 ]
