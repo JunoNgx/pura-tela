@@ -108,6 +108,10 @@
         "colours": ["030613", "4FCDB9", "213C53", "0A1928", "E2F1F5"]
     },
     {
+        "name": "8008",
+        "colours": ["333a45", "f44c7f", "939eae", "e9ecf0"]
+    },
+    {
         "name": "Gaseous Nebula",
         "colours": ["ffe675", "ff7c8e", "874e74", "326594", "37a6c4"]
     },
