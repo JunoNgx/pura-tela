@@ -100,7 +100,35 @@
         "colours": ["0e9dcd", "475b7a", "3f3f3f"]
     },
     {
-        "name": "Pastel Retro",
-        "colours": ["FFD1DC", "C79FEF", "B2B2F7", "A3E4D7", "F5E0A4", "F9B7B7", "D9A79F"]
+        "name": "Love Pine Dawn",
+        "colours": ["191724", "eb6f92", "31748f", "f6c177", "6e6a86", "c4a7e7", "e0def4"]
+    },
+    {
+        "name": "9009",
+        "colours": ["dfdfdb", "b76366", "a5a2a3", "769778", "bcbbb4"]
+    },
+    {
+        "name": "Hammerhead",
+        "colours": ["030613", "4FCDB9", "213C53", "0A1928", "E2F1F5"]
+    },
+    {
+        "name": "8008",
+        "colours": ["333a45", "f44c7f", "939eae", "e9ecf0"]
+    },
+    {
+        "name": "OG Beige Retro",
+        "colours": ["dad3c1", "c8c3b3", "918b7d", "1d1b17", "bf616a"]
+    },
+    {
+        "name": "Modern Dolch",
+        "colours": ["7c8296", "c7546d", "4b5265", "7ab6c1", "697089"]
+    },
+    {
+        "name": "Gaseous Nebula",
+        "colours": ["ffe675", "ff7c8e", "874e74", "326594", "37a6c4"]
+    },
+    {
+        "name": "Kanis Major",
+        "colours": ["42382E", "53879A", "9D9553", "CD5140", "F4BE6C", "E7E4DA"]
     }
 ]
