@@ -270,6 +270,11 @@
         text-transform: lowercase;
     }
 
+    .ColourSwatchConfig__DropdownSelect {
+        grid-column: 3/8;
+        width: fit-content;
+    }
+
     .ColourSwatchConfig__RadiogroupItemContent {
         grid-column: 3/8;
         display: flex;
