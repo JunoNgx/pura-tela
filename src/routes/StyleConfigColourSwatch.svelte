@@ -23,6 +23,7 @@
         { label: "Circle", value: ColourSwatchStyleItemShape.CIRCLE },
         { label: "Rhombus", value: ColourSwatchStyleItemShape.RHOMBUS },
         { label: "Triangle", value: ColourSwatchStyleItemShape.TRIANGLE },
+        { label: "Inverted Triangle", value: ColourSwatchStyleItemShape.INVERTED_TRIANGLE },
         { label: "Thin strip", value: ColourSwatchStyleItemShape.THIN_STRIP },
         { label: "Hexagon", value: ColourSwatchStyleItemShape.HEXAGON },
     ];
