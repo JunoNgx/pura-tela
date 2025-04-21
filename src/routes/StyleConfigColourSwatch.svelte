@@ -18,23 +18,17 @@
         setColourSwatchStyleDirection(newValue);
     };
 
-    const isItemShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.SQUARE);
-    const isItemShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.CIRCLE);
-    const isItemShapeRhombus = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.RHOMBUS);
-    const isItemShapeTriangle = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.TRIANGLE);
-    const isItemShapeInvertedTriangle = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.INVERTED_TRIANGLE);
-    const isItemShapeInvertedThinStrip = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.THIN_STRIP);
-    const isItemShapeInvertedHexagon = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.HEXAGON);
+    const itemShapeOptionList = [
+        { label: "Square", value: ColourSwatchStyleItemShape.SQUARE },
+        { label: "Circle", value: ColourSwatchStyleItemShape.CIRCLE },
+        { label: "Rhombus", value: ColourSwatchStyleItemShape.RHOMBUS },
+        { label: "Triangle", value: ColourSwatchStyleItemShape.TRIANGLE },
+        { label: "Thin strip", value: ColourSwatchStyleItemShape.THIN_STRIP },
+        { label: "Hexagon", value: ColourSwatchStyleItemShape.HEXAGON },
+    ];
 
-    const handleItemShapeChange = ( e: MouseInputEvent ) => {
-        const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
+    const handleItemShapeChange = (e: Event) => {
+        const newValue = (e.target as HTMLSelectElement).value as ColourSwatchStyleItemShape;
         setColourSwatchStyleItemShape(newValue);
     };
 
@@ -163,67 +157,29 @@
                     </div>
                 </div>
 
-                <div class="ColourSwatchConfig__RadiogroupItem"
+                <div class="ColourSwatchConfig__DropdownItem"
                     role="radiogroup"
                     aria-labelledby="SwatchItemShapeTitle"
                 >
-                    <div class="ColourSwatchConfig__RadiogroupItemTitle"
+                    <div class="ColourSwatchConfig__DropdownItemTitle"
                         id="SwatchItemShapeTitle"
                     >
-                        Item shape
+                        <label for="SwatchItemShapeTitle">Item shape</label>
                     </div>
 
-                    <div class="ColourSwatchConfig__RadiogroupItemContent">
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.SQUARE}
-                            checked={isItemShapeSquare}
-                            onclick={handleItemShapeChange}
-                        >
-                            Square
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.CIRCLE}
-                            checked={isItemShapeCircle}
-                            onclick={handleItemShapeChange}
-                        >
-                            Circle
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.RHOMBUS}
-                            checked={isItemShapeRhombus}
-                            onclick={handleItemShapeChange}
-                        >
-                            Rhombus
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.TRIANGLE}
-                            checked={isItemShapeTriangle}
-                            onclick={handleItemShapeChange}
-                        >
-                            Triangle
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.INVERTED_TRIANGLE}
-                            checked={isItemShapeInvertedTriangle}
-                            onclick={handleItemShapeChange}
-                        >
-                            Inverted triangle
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.THIN_STRIP}
-                            checked={isItemShapeInvertedThinStrip}
-                            onclick={handleItemShapeChange}
-                        >
-                            Thin strip
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.HEXAGON}
-                            checked={isItemShapeInvertedHexagon}
-                            onclick={handleItemShapeChange}
-                        >
-                            Hexagon
-                        </RadioCheckbox>
-                    </div>
+                    <select class="ColourSwatchConfig__DropdownSelect"
+                        id="SwatchItemShapeDropdown"
+                        value={colourSwatchStyleConfig.val.itemShape}
+                        oninput={handleItemShapeChange}
+                    >
+                        {#each itemShapeOptionList as itemShapeOption}
+                            <option class="ColourSwatchConfig__DropdownOption"
+                                value={itemShapeOption.value}
+                            >
+                                {itemShapeOption.label}
+                            </option>
+                        {/each}
+                    </select>
                 </div>
 
                 <StyleConfigItemSlider
@@ -298,15 +254,17 @@
         margin-top: 2rem;
     }
 
-    .ColourSwatchConfig__RadiogroupItem {
+    .ColourSwatchConfig__RadiogroupItem,
+    .ColourSwatchConfig__DropdownItem{
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 1rem;
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
         align-items: center;
     }
 
-    .ColourSwatchConfig__RadiogroupItemTitle {
+    .ColourSwatchConfig__RadiogroupItemTitle,
+    .ColourSwatchConfig__DropdownItemTitle {
         grid-column: 1/3;
         text-transform: lowercase;
     }

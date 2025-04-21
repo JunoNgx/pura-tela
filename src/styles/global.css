@@ -218,6 +218,8 @@ label {
 
 option {
     cursor: pointer;
+    color: var(--colPri);
+    background-color: var(--colBg);
 }
 
 h1 {
