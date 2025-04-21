@@ -116,6 +116,10 @@
         "colours": ["333a45", "f44c7f", "939eae", "e9ecf0"]
     },
     {
+        "name": "Modern Dolch",
+        "colours": ["7c8296", "c7546d", "4b5265", "7ab6c1", "697089"]
+    },
+    {
         "name": "Gaseous Nebula",
         "colours": ["ffe675", "ff7c8e", "874e74", "326594", "37a6c4"]
     },
