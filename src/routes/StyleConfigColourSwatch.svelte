@@ -18,21 +18,6 @@
         setColourSwatchStyleDirection(newValue);
     };
 
-    const isItemShapeSquare = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.SQUARE);
-    const isItemShapeCircle = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.CIRCLE);
-    const isItemShapeRhombus = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.RHOMBUS);
-    const isItemShapeTriangle = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.TRIANGLE);
-    const isItemShapeInvertedTriangle = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.INVERTED_TRIANGLE);
-    const isItemShapeInvertedThinStrip = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.THIN_STRIP);
-    const isItemShapeInvertedHexagon = $derived(colourSwatchStyleConfig.val.itemShape
-        === ColourSwatchStyleItemShape.HEXAGON);
-
     const itemShapeOptionList = [
         { label: "Square", value: ColourSwatchStyleItemShape.SQUARE },
         { label: "Circle", value: ColourSwatchStyleItemShape.CIRCLE },
@@ -193,58 +178,6 @@
                             </option>
                         {/each}
                     </select>
-
-                    <!-- <div class="ColourSwatchConfig__RadiogroupItemContent">
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.SQUARE}
-                            checked={isItemShapeSquare}
-                            onclick={handleItemShapeChange}
-                        >
-                            Square
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.CIRCLE}
-                            checked={isItemShapeCircle}
-                            onclick={handleItemShapeChange}
-                        >
-                            Circle
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.RHOMBUS}
-                            checked={isItemShapeRhombus}
-                            onclick={handleItemShapeChange}
-                        >
-                            Rhombus
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.TRIANGLE}
-                            checked={isItemShapeTriangle}
-                            onclick={handleItemShapeChange}
-                        >
-                            Triangle
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.INVERTED_TRIANGLE}
-                            checked={isItemShapeInvertedTriangle}
-                            onclick={handleItemShapeChange}
-                        >
-                            Inverted triangle
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.THIN_STRIP}
-                            checked={isItemShapeInvertedThinStrip}
-                            onclick={handleItemShapeChange}
-                        >
-                            Thin strip
-                        </RadioCheckbox>
-                        <RadioCheckbox
-                            value={ColourSwatchStyleItemShape.HEXAGON}
-                            checked={isItemShapeInvertedHexagon}
-                            onclick={handleItemShapeChange}
-                        >
-                            Hexagon
-                        </RadioCheckbox>
-                    </div> -->
                 </div>
 
                 <StyleConfigItemSlider
