@@ -33,8 +33,17 @@
     const isItemShapeInvertedHexagon = $derived(colourSwatchStyleConfig.val.itemShape
         === ColourSwatchStyleItemShape.HEXAGON);
 
-    const handleItemShapeChange = ( e: MouseInputEvent ) => {
-        const newValue = e.currentTarget.value as ColourSwatchStyleItemShape;
+    const itemShapeOptionList = [
+        { label: "Square", value: ColourSwatchStyleItemShape.SQUARE },
+        { label: "Circle", value: ColourSwatchStyleItemShape.CIRCLE },
+        { label: "Rhombus", value: ColourSwatchStyleItemShape.RHOMBUS },
+        { label: "Triangle", value: ColourSwatchStyleItemShape.TRIANGLE },
+        { label: "Thin strip", value: ColourSwatchStyleItemShape.THIN_STRIP },
+        { label: "Hexagon", value: ColourSwatchStyleItemShape.HEXAGON },
+    ];
+
+    const handleItemShapeChange = (e: Event) => {
+        const newValue = (e.target as HTMLSelectElement).value as ColourSwatchStyleItemShape;
         setColourSwatchStyleItemShape(newValue);
     };
 
@@ -163,17 +172,29 @@
                     </div>
                 </div>
 
-                <div class="ColourSwatchConfig__RadiogroupItem"
+                <div class="ColourSwatchConfig__DropdownItem"
                     role="radiogroup"
                     aria-labelledby="SwatchItemShapeTitle"
                 >
                     <div class="ColourSwatchConfig__RadiogroupItemTitle"
                         id="SwatchItemShapeTitle"
                     >
-                        Item shape
+                        <label for="SwatchItemShapeTitle">Item shape</label>
                     </div>
 
-                    <div class="ColourSwatchConfig__RadiogroupItemContent">
+                    <select class="ColourSwatchConfig__DropdownSelect"
+                        id="SwatchItemShapeDropdown"
+                        value={colourSwatchStyleConfig.val.itemShape}
+                        oninput={handleItemShapeChange}
+                    >
+                        {#each itemShapeOptionList as itemShapeOption}
+                            <option value={itemShapeOption.value}>
+                                {itemShapeOption.label}
+                            </option>
+                        {/each}
+                    </select>
+
+                    <!-- <div class="ColourSwatchConfig__RadiogroupItemContent">
                         <RadioCheckbox
                             value={ColourSwatchStyleItemShape.SQUARE}
                             checked={isItemShapeSquare}
@@ -223,7 +244,7 @@
                         >
                             Hexagon
                         </RadioCheckbox>
-                    </div>
+                    </div> -->
                 </div>
 
                 <StyleConfigItemSlider
@@ -298,11 +319,12 @@
         margin-top: 2rem;
     }
 
-    .ColourSwatchConfig__RadiogroupItem {
+    .ColourSwatchConfig__RadiogroupItem,
+    .ColourSwatchConfig__DropdownItem{
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 1rem;
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
         align-items: center;
     }
 
