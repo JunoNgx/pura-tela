@@ -104,6 +104,10 @@
         "colours": ["dfdfdb", "b76366", "a5a2a3", "769778", "bcbbb4"]
     },
     {
+        "name": "Hammerhead",
+        "colours": ["030613", "4FCDB9", "213C53", "0A1928", "E2F1F5"]
+    },
+    {
         "name": "Gaseous Nebula",
         "colours": ["ffe675", "ff7c8e", "874e74", "326594", "37a6c4"]
     },
