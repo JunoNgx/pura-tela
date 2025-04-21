@@ -161,7 +161,7 @@
                     role="radiogroup"
                     aria-labelledby="SwatchItemShapeTitle"
                 >
-                    <div class="ColourSwatchConfig__RadiogroupItemTitle"
+                    <div class="ColourSwatchConfig__DropdownItemTitle"
                         id="SwatchItemShapeTitle"
                     >
                         <label for="SwatchItemShapeTitle">Item shape</label>
@@ -261,7 +261,8 @@
         align-items: center;
     }
 
-    .ColourSwatchConfig__RadiogroupItemTitle {
+    .ColourSwatchConfig__RadiogroupItemTitle,
+    .ColourSwatchConfig__DropdownItemTitle {
         grid-column: 1/3;
         text-transform: lowercase;
     }
