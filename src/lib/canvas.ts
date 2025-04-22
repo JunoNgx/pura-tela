@@ -438,9 +438,9 @@ export const renderForPaletteStyle = (
         ctx.fillStyle = colour;
         ctx.fillRect(
             offset + baseSize * i,
-            -size.height,
+            -size.height*2,
             baseSize,
-            size.height * 2
+            size.height*4
         );
     }
 };
