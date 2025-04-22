@@ -351,6 +351,10 @@ export const setWallGenSizeFromSizeGalleryIndex = (index: number) => {
     });
 };
 
+export const isPortraitScreen = () => {
+    return wallGenSize.val.height > wallGenSize.val.width;
+};
+
 /**
  * Sample text setting
  */
