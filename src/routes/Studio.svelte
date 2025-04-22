@@ -63,7 +63,7 @@
             break;
         case WallpaperStyle.PALETTE:
             url.searchParams.append("paletteAngle", paletteStyleConfig.val.angleInDeg.toString());
-            url.searchParams.append("paletteSize", paletteStyleConfig.val.position.toString());
+            url.searchParams.append("paletteSize", paletteStyleConfig.val.size.toString());
             url.searchParams.append("palettePosition", paletteStyleConfig.val.position.toString());
             break;
         }
