@@ -20,7 +20,7 @@ const isPaletteConfigValid = (data: any) => {
 
 export const paletteStyleConfigDefaultValue = {
     angleInDeg: 0,
-    size: 100,
+    size: 10,
     position: 50,
 };
 
