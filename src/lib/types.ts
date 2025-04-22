@@ -131,9 +131,9 @@ export type GradientStyleConfigProps = {
 };
 
 export type PaletteStyleConfigProps = {
-    isVertical: boolean,
-    isAsymmetrical: boolean,
-    isFlipped: boolean,
+    angleInDeg: number,
+    size: number,
+    position: number,
 };
 
 export type RenderStyleConfig = {
