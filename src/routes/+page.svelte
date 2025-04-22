@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
+	import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE, SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 	import { tryParseAngle, tryParseColours, tryParseNumericData, tryParseSize, tryParseSwatchNumericConfig } from "src/lib/parseFuncs.js";
 	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
@@ -87,22 +87,30 @@
     });
 
     // Swatch style
-    const tryParseSwatchPositionX = () => {
-        if (!data.swatchPosX) return;
-        const value = tryParseSwatchNumericConfig(data.swatchPosX);
-        if (!value) return;
-
-        setColourSwatchStylePositionX(value);
-    };
-
-    const tryParseSwatchPositionY = () => {
-        if (!data.swatchPosY) return;
-        const value = tryParseSwatchNumericConfig(data.swatchPosY);
-        if (!value) return;
-
-        setColourSwatchStylePositionY(value);
-    };
-
+    tryParseNumericConfig({
+        dataKey: "swatchPosX",
+        minVal: SWATCH_CONFIG_MIN_VALUE,
+        maxVal: SWATCH_CONFIG_MAX_VALUE,
+        stateSetterFunc: setColourSwatchStylePositionX,
+    });
+    tryParseNumericConfig({
+        dataKey: "swatchPosY",
+        minVal: SWATCH_CONFIG_MIN_VALUE,
+        maxVal: SWATCH_CONFIG_MAX_VALUE,
+        stateSetterFunc: setColourSwatchStylePositionY,
+    });
+    tryParseNumericConfig({
+        dataKey: "swatchItemSize",
+        minVal: SWATCH_CONFIG_MIN_VALUE,
+        maxVal: SWATCH_CONFIG_MAX_VALUE,
+        stateSetterFunc: setColourSwatchStyleItemSize,
+    });
+    tryParseNumericConfig({
+        dataKey: "swatchItemSpacing",
+        minVal: SWATCH_CONFIG_MIN_VALUE,
+        maxVal: SWATCH_CONFIG_MAX_VALUE,
+        stateSetterFunc: setColourSwatchStyleItemSpacing,
+    });
     const tryParseSwatchDirection = () => {
         if (!data.swatchDirection) return;
         if (!isEnumValueValid(data.swatchDirection as any, ColourSwatchStyleDirection))
@@ -110,7 +118,6 @@
 
         setColourSwatchStyleDirection(data.swatchDirection as ColourSwatchStyleDirection);
     };
-
     const tryParseSwatchItemShape = () => {
         if (!data.swatchItemShape) return;
         if (!isEnumValueValid(data.swatchItemShape as any, ColourSwatchStyleItemShape))
@@ -119,29 +126,10 @@
         setColourSwatchStyleItemShape(data.swatchItemShape as ColourSwatchStyleItemShape);
     };
 
-    const tryParseSwatchItemSize = () => {
-        if (!data.swatchItemSize) return;
-        const value = tryParseSwatchNumericConfig(data.swatchItemSize);
-        if (!value) return;
-
-        setColourSwatchStyleItemSize(value);
-    };
-
-    const tryParseSwatchItemSpacing = () => {
-        if (!data.swatchItemSpacing) return;
-        const value = tryParseSwatchNumericConfig(data.swatchItemSpacing);
-        if (!value) return;
-
-        setColourSwatchStyleItemSpacing(value);
-    };
-
-    tryParseSwatchPositionX();
-    tryParseSwatchPositionY();
     tryParseSwatchDirection();
     tryParseSwatchItemShape();
-    tryParseSwatchItemSize();
-    tryParseSwatchItemSpacing();
 
+    // Palette style
     tryParseNumericConfig({
         dataKey: "paletteAngle",
         minVal: 0,
