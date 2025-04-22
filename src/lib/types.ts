@@ -64,6 +64,7 @@ export enum WallpaperStyle {
     GRADIENT = "gradient",
     POP_ART_SQUARE = "popArtSquare",
     COLOUR_SWATCH = "colourSwatch",
+    PALETTE = "palette",
 };
 
 export type WallpaperStyleInfo = {
