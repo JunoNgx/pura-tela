@@ -64,6 +64,7 @@ export enum WallpaperStyle {
     GRADIENT = "gradient",
     POP_ART_SQUARE = "popArtSquare",
     COLOUR_SWATCH = "colourSwatch",
+    PALETTE = "palette",
 };
 
 export type WallpaperStyleInfo = {
@@ -86,6 +87,10 @@ export type WallGenQueryProps = {
     swatchItemShape: string | null,
     swatchItemSize: string | null,
     swatchItemSpacing: string | null,
+
+    paletteAngle: string | null,
+    paletteSize: string | null,
+    palettePosition: string | null,
 };
 
 export type MouseInputEvent = MouseEvent & {
@@ -129,7 +134,14 @@ export type GradientStyleConfigProps = {
     angleInDeg: number,
 };
 
+export type PaletteStyleConfigProps = {
+    angleInDeg: number,
+    size: number,
+    position: number,
+};
+
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps,
     gradient: GradientStyleConfigProps,
+    palette: PaletteStyleConfigProps,
 };

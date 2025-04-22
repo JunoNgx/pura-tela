@@ -1,9 +1,10 @@
 <script lang="ts">
     import RadioCheckbox from "src/components/RadioCheckbox.svelte";
     import { WallpaperStyle, type MouseInputEvent } from "src/lib/types.js";
-	import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, setWallGenColourInUseCount, wallGenStyle } from "src/states/wallGenState.svelte.js";
+	import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, setWallGenColourInUseCount, wallGenStyle, isPaletteStyle } from "src/states/wallGenState.svelte.js";
 	import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
 	import StyleConfigGradient from "./StyleConfigGradient.svelte";
+	import StyleConfigPalette from "./StyleConfigPalette.svelte";
 
     const handleWallpaperStyleChange = (e: MouseInputEvent) => {
         const newValue = e.currentTarget.value as WallpaperStyle;
@@ -50,6 +51,14 @@
             >
                 Colour swatch
             </RadioCheckbox>
+
+            <RadioCheckbox
+                value={WallpaperStyle.PALETTE}
+                checked={isPaletteStyle()}
+                onclick={handleWallpaperStyleChange}
+            >
+                Palette
+            </RadioCheckbox>
         </div>
 
     </fieldset>
@@ -60,6 +69,8 @@
         <StyleConfigColourSwatch />
     {:else if isGradientStyle()}
         <StyleConfigGradient />
+    {:else if isPaletteStyle()}
+        <StyleConfigPalette />
     {/if}
 </section>
 
