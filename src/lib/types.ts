@@ -130,6 +130,12 @@ export type GradientStyleConfigProps = {
     angleInDeg: number,
 };
 
+export type PaletteStyleConfigProps = {
+    isVertical: boolean,
+    isAsymmetrical: boolean,
+    isFlipped: boolean,
+};
+
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps,
     gradient: GradientStyleConfigProps,
