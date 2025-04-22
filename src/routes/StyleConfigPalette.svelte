@@ -2,7 +2,7 @@
 	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
 	import type { InputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
-	import { paletteStyleConfig, resetPaletteStyleAngle, resetPaletteStyleSize, setPaletteStyleAngle, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+	import { paletteStyleConfig, resetPaletteStyleAngle, resetPaletteStylePosition, resetPaletteStyleSize, setPaletteStyleAngle, setPaletteStylePosition, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
 
     // const handleIsVerticalSwitch = () => {
     //     switchPaletteStyleIsVertical();
@@ -122,6 +122,33 @@
                     title="Reset Palette config size to default"
                     aria-label="Reset Palette config size to default"
                     onclick={resetPaletteStyleSize}
+                >
+                    Reset
+                </button>
+            </div>
+        </fieldset>
+
+        <fieldset class="PaletteConfig__Item">
+            <legend>
+                <h4 class="PaletteConfig__ItemTitle">Position</h4>
+            </legend>
+            <StyleConfigItemSlider
+                domId="PalettePosition"
+                label="Position"
+                min={0}
+                max={100}
+                step={5}
+                value={paletteStyleConfig.val.position}
+                shouldHideLabel={true}
+                changeHandler={(e) => {
+                    handleDataChange(e, setPaletteStylePosition, "position", 0, 100);
+                }}
+            />
+            <div class="PaletteConfig__ActionsContainer">
+                <button class="PaletteConfig__ResetButton TertBtn"
+                    title="Reset Palette config position to default"
+                    aria-label="Reset Palette config position to default"
+                    onclick={resetPaletteStylePosition}
                 >
                     Reset
                 </button>
