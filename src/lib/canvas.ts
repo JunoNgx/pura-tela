@@ -157,6 +157,10 @@ export const renderCanvas = (
         renderForColourSwatchStyle(renderOptions);
         break;
 
+    case WallpaperStyle.PALETTE:
+        renderForPaletteStyle(renderOptions);
+        break;
+
     case WallpaperStyle.SOLID:
     default:
         renderForSolidStyle(renderOptions);
@@ -382,6 +386,12 @@ const renderForColourSwatchStyle = (
 
     if (shouldDrawHorizontally) drawHorizontally();
     else drawVertically();
+};
+
+export const renderForPaletteStyle = (
+    { ctx, colours, size, config }: StyleRenderOptions
+) => {
+
 };
 
 export const refitCanvasToContainer = () => {
