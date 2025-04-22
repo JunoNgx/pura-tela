@@ -85,6 +85,7 @@
                 max={360}
                 step={5}
                 value={paletteStyleConfig.val.angleInDeg}
+                shouldHideLabel={true}
                 changeHandler={(e) => {
                     handleDataChange(e, setPaletteStyleAngle, "angle", 0, 360);
                 }}
