@@ -31,23 +31,23 @@ export const paletteStyleConfig = <State<PaletteStyleConfigProps>>createLocalSto
     validationFunc: isPaletteConfigValid
 });
 
-export const setPaletteStyleIsVertical = (newValue: boolean) => {
+export const switchPaletteStyleIsVertical = () => {
     paletteStyleConfig.set({
         ...paletteStyleConfig.val,
-        isVertical: newValue,
+        isVertical: paletteStyleConfig.val.isVertical,
     });
 };
 
-export const setPaletteStyleIsAsymmetrical = (newValue: boolean) => {
+export const switchPaletteStyleIsAsymmetrical = () => {
     paletteStyleConfig.set({
         ...paletteStyleConfig.val,
-        isAsymmetrical: newValue,
+        isAsymmetrical: paletteStyleConfig.val.isAsymmetrical,
     });
 };
 
-export const setPaletteStyleIsFlipped = (newValue: boolean) => {
+export const switchPaletteStyleIsFlipped = () => {
     paletteStyleConfig.set({
         ...paletteStyleConfig.val,
-        isFlipped: newValue,
+        isFlipped: paletteStyleConfig.val.isFlipped,
     });
 };
