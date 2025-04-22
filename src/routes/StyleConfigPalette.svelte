@@ -1,6 +1,9 @@
 <script lang="ts">
 	import Checkbox from "src/components/Checkbox.svelte";
-	import { paletteStyleConfig, resetPaletteStyleToDefault, switchPaletteStyleIsAsymmetrical, switchPaletteStyleIsFlipped, switchPaletteStyleIsVertical } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
+	import type { InputEvent } from "src/lib/types.js";
+	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+	import { paletteStyleConfig, setPaletteStyleAngle } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
 
     // const handleIsVerticalSwitch = () => {
     //     switchPaletteStyleIsVertical();
@@ -17,6 +20,27 @@
     // const resetToDefault = () => {
     //     resetPaletteStyleToDefault();
     // }
+
+    const handleDataChange = (
+        e: InputEvent,
+        setFunc: (value: number) => void,
+        valueLabel: string,
+        minVal: number,
+        maxVal: number
+    ) => {
+        const newValue = e.currentTarget.value;
+
+        try {
+            const parsedValue = parseInt(newValue);
+            if (!isValueWithinRange(parsedValue, minVal, maxVal))
+                throw new Error(`Invalid ${valueLabel} value`);
+
+            setFunc(parsedValue);
+        } catch(err) {
+            console.log(err)
+            console.error(`Invalid ${valueLabel} value`)
+        }
+    };
 
 </script>
 
@@ -48,29 +72,38 @@
         checked={paletteStyleConfig.val.isVertical}
         changeHandler={handleIsFlippedSwitch}
     /> -->
-<!-- 
+
     <div class="PaletteConfig__ItemsContainer">
         <fieldset class="PaletteConfig__Item">
             <legend>
                 <h4 class="PaletteConfig__ItemTitle">Angle</h4>
             </legend>
 
-            <div class="PaletteConfig__Content">
-
+            <div class="PaletteConfig__ItemContent">
+                <StyleConfigItemSlider
+                    domId="PaletteAngle"
+                    label="Angle"
+                    min={0}
+                    max={360}
+                    step={5}
+                    value={paletteStyleConfig.val.angleInDeg}
+                    changeHandler={(e) => {
+                        handleDataChange(e, setPaletteStyleAngle, "angle", 0, 360);
+                    }}
+                />
             </div>
 
             <div class="PaletteConfig__ActionsContainer">
                 <button class="PaletteConfig__ResetButton TertBtn"
                     title="Reset Palette config to default"
                     aria-label="Reset Palette config to default"
-                    onclick={resetToDefault}
                 >
                     Reset
                 </button>
             </div>
 
         </fieldset>
-    </div> -->
+    </div>
 </div>
 
 <style>
