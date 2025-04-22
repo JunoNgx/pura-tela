@@ -416,13 +416,20 @@ export const renderForPaletteStyle = (
     ctx.fillStyle = lastColour!;
     ctx.fillRect(0, -size.height, size.width, size.height * 2);
 
-    const maxBaseSize = size.width/colours.length;
-    const minBaseSize = size.width/(colours.length * 2);
+    const longerSide = size.width >= size.height
+        ? size.width
+        : size.height;
+    // const shorterSide = size.width >= size.height
+    //     ? size.height
+    //     : size.width;
+        
+    const maxBaseSize = longerSide/(colours.length);
+    const minBaseSize = longerSide/(colours.length * 2);
     const baseSize = minBaseSize + (maxBaseSize - minBaseSize) * config.palette.size/10;
 
-    const leftmostPosition = -size.width/2;
-    const minOffset = leftmostPosition + baseSize;
-    const maxOffset = baseSize;
+    const leftmostPosition = -longerSide/2;
+    const minOffset = leftmostPosition + maxBaseSize;
+    const maxOffset = 0;
     const offset = minOffset + (maxOffset - minOffset) * config.palette.position/100;
 
     for (let i = 0; i < mainColours.length; i++) {
