@@ -91,7 +91,7 @@
                 }}
             />
             <div class="PaletteConfig__ActionsContainer">
-                <button class="PaletteConfig__ResetButton TertBtn"
+                <button class="PaletteConfig__ResetAngleButton TertBtn"
                     title="Reset Palette config angle to default"
                     aria-label="Reset Palette config angle to default"
                     onclick={resetPaletteStyleAngle}
@@ -118,7 +118,7 @@
                 }}
             />
             <div class="PaletteConfig__ActionsContainer">
-                <button class="PaletteConfig__ResetButton TertBtn"
+                <button class="PaletteConfig__ResetSizeButton TertBtn"
                     title="Reset Palette config size to default"
                     aria-label="Reset Palette config size to default"
                     onclick={resetPaletteStyleSize}
@@ -145,7 +145,7 @@
                 }}
             />
             <div class="PaletteConfig__ActionsContainer">
-                <button class="PaletteConfig__ResetButton TertBtn"
+                <button class="PaletteConfig__ResetPositionButton TertBtn"
                     title="Reset Palette config position to default"
                     aria-label="Reset Palette config position to default"
                     onclick={resetPaletteStylePosition}
