@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { tryParseAngle, tryParseColours, tryParseSize, tryParseSwatchNumericConfig } from "src/lib/parseFuncs.js";
-	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, ColourSwatchStylePosition, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
+	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
 	import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
 	import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSize, wallGenStyle, } from "src/states/wallGenState.svelte.js";
