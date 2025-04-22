@@ -4,7 +4,7 @@
         className?: string,
         domId: string,
         label: string,
-        value: boolean,
+        checked: boolean,
         changeHandler: () => void,
     };
 
@@ -12,7 +12,7 @@
         className,
         domId,
         label,
-        value,
+        checked,
         changeHandler
     }: CheckboxProps = $props();
 
@@ -22,7 +22,7 @@
     <input class="Checkbox__Input"
         id="{domId}"
         type=checkbox
-        checked={value}
+        checked={checked}
         onclick={changeHandler}
     >
     <label class="Checkbox__Label"
