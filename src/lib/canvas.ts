@@ -394,14 +394,20 @@ export const renderForPaletteStyle = (
     if (!config?.palette) {
         throw new Error("Cannot access Palette config");
     }
+    // Due to this translation, the centerpoint is now (0, 0)
+    // ctx.fillStyle = "blue";
+    // ctx.fillRect(0, 0, 10, 10);
+
+    ctx.translate(size.width/ 2, size.height /2);
+    ctx.rotate(config.palette.angleInDeg * Math.PI/180);
 
     const firstColour = colours[0];
     ctx.fillStyle = firstColour;
-    ctx.fillRect(-size.width/2, -size.height/2, size.width, size.height * 2);
+    ctx.fillRect(-size.width, -size.height, size.width, size.height * 2);
 
     const lastColour = colours[colours.length - 1];
     ctx.fillStyle = lastColour;
-    ctx.fillRect(size.width/2, -size.height/2, size.width, size.height * 2);
+    ctx.fillRect(0, -size.height, size.width, size.height * 2);
 };
 
 export const refitCanvasToContainer = () => {
