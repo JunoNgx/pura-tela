@@ -1,4 +1,17 @@
 <script lang="ts">
+	import { paletteStyleConfig, switchPaletteStyleIsAsymmetrical, switchPaletteStyleIsFlipped, switchPaletteStyleIsVertical } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+
+    const handleIsVerticalSwitch = () => {
+        switchPaletteStyleIsVertical();
+    };
+
+    const handleIsAsymmetricalSwitch = () => {
+        switchPaletteStyleIsAsymmetrical();
+    };
+
+    const handleIsFlippedSwitch = () => {
+        switchPaletteStyleIsFlipped();
+    };
 
 </script>
 
