@@ -415,6 +415,22 @@ export const renderForPaletteStyle = (
     const lastColour = mainColours.pop();
     ctx.fillStyle = lastColour!;
     ctx.fillRect(0, -size.height, size.width, size.height * 2);
+
+    const baseSize = size.width/colours.length;
+    const leftmostPos = -size.width/2;
+    const firstOffset = leftmostPos + baseSize;
+
+    for (let i = 0; i < mainColours.length; i++) {
+        const colour = mainColours[i];
+
+        ctx.fillStyle = colour;
+        ctx.fillRect(
+            firstOffset + baseSize * i,
+            -size.height,
+            baseSize,
+            size.height * 2
+        );
+    }
 };
 
 export const refitCanvasToContainer = () => {
