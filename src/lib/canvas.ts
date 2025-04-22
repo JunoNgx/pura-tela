@@ -419,12 +419,12 @@ export const renderForPaletteStyle = (
     const longerSide = size.width >= size.height
         ? size.width
         : size.height;
-    // const shorterSide = size.width >= size.height
-    //     ? size.height
-    //     : size.width;
+    const shorterSide = size.width >= size.height
+        ? size.height
+        : size.width;
         
     const maxBaseSize = longerSide/(colours.length);
-    const minBaseSize = longerSide/(colours.length * 2);
+    const minBaseSize = shorterSide/(colours.length);
     const baseSize = minBaseSize + (maxBaseSize - minBaseSize) * config.palette.size/10;
 
     const leftmostPosition = -longerSide/2;
