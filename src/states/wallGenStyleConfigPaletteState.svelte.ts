@@ -1,5 +1,5 @@
 import { type PaletteStyleConfigProps, type State } from "src/lib/types.js";
-import { createLocalStorageSyncedState, isValidBoolean, isValueWithinRange } from "./stateUtils.svelte.js"
+import { createLocalStorageSyncedState, isValueWithinRange } from "./stateUtils.svelte.js"
 
 const isPaletteConfigValid = (data: any) => {
     if (!data) return false;
@@ -37,6 +37,10 @@ export const setPaletteStyleAngle = (newValue: number) => {
     });
 };
 
+export const resetPaletteStyleAngle = () => {
+    setPaletteStyleAngle(paletteStyleConfigDefaultValue.angleInDeg);
+};
+
 export const setPaletteStyleSize = (newValue: number) => {
     paletteStyleConfig.set({
         ...paletteStyleConfig.val,
@@ -44,9 +48,17 @@ export const setPaletteStyleSize = (newValue: number) => {
     });
 };
 
+export const resetPaletteStyleSize = () => {
+    setPaletteStyleSize(paletteStyleConfigDefaultValue.size);
+};
+
 export const setPaletteStylePosition = (newValue: number) => {
     paletteStyleConfig.set({
         ...paletteStyleConfig.val,
         position: newValue,
     });
+};
+
+export const resetPaletteStylePosition = () => {
+    setPaletteStylePosition(paletteStyleConfigDefaultValue.position);
 };
