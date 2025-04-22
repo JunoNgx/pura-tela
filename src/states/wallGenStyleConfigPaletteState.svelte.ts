@@ -1,18 +1,17 @@
 import { type PaletteStyleConfigProps, type State } from "src/lib/types.js";
-import { createLocalStorageSyncedState, isValidBoolean } from "./stateUtils.svelte.js"
+import { createLocalStorageSyncedState, isValidBoolean, isValueWithinRange } from "./stateUtils.svelte.js"
 
 const isPaletteConfigValid = (data: any) => {
     if (!data) return false;
 
-    if (!isValidBoolean(data.isVertical)) {
+    if (!isValueWithinRange(data.angleInDeg, 0, 360))
+        return false;
+
+    if (!isValueWithinRange(data.size, 0, 10)) {
         return false;
     }
 
-    if (!isValidBoolean(data.isAsymmetrical)) {
-        return false;
-    }
-
-    if (!isValidBoolean(data.isFlipped)) {
+    if (!isValueWithinRange(data.position, 0, 100)) {
         return false;
     }
 
@@ -20,9 +19,9 @@ const isPaletteConfigValid = (data: any) => {
 };
 
 export const paletteStyleConfigDefaultValue = {
-    isVertical: false,
-    isAsymmetrical: false,
-    isFlipped: false,
+    angleInDeg: 0,
+    size: 100,
+    position: 50,
 };
 
 export const paletteStyleConfig = <State<PaletteStyleConfigProps>>createLocalStorageSyncedState({
@@ -31,27 +30,27 @@ export const paletteStyleConfig = <State<PaletteStyleConfigProps>>createLocalSto
     validationFunc: isPaletteConfigValid
 });
 
-export const switchPaletteStyleIsVertical = () => {
-    paletteStyleConfig.set({
-        ...paletteStyleConfig.val,
-        isVertical: paletteStyleConfig.val.isVertical,
-    });
-};
+// export const switchPaletteStyleIsVertical = () => {
+//     paletteStyleConfig.set({
+//         ...paletteStyleConfig.val,
+//         isVertical: paletteStyleConfig.val.isVertical,
+//     });
+// };
 
-export const switchPaletteStyleIsAsymmetrical = () => {
-    paletteStyleConfig.set({
-        ...paletteStyleConfig.val,
-        isAsymmetrical: paletteStyleConfig.val.isAsymmetrical,
-    });
-};
+// export const switchPaletteStyleIsAsymmetrical = () => {
+//     paletteStyleConfig.set({
+//         ...paletteStyleConfig.val,
+//         isAsymmetrical: paletteStyleConfig.val.isAsymmetrical,
+//     });
+// };
 
-export const switchPaletteStyleIsFlipped = () => {
-    paletteStyleConfig.set({
-        ...paletteStyleConfig.val,
-        isFlipped: paletteStyleConfig.val.isFlipped,
-    });
-};
+// export const switchPaletteStyleIsFlipped = () => {
+//     paletteStyleConfig.set({
+//         ...paletteStyleConfig.val,
+//         isFlipped: paletteStyleConfig.val.isFlipped,
+//     });
+// };
 
-export const resetPaletteStyleToDefault = () => {
-    paletteStyleConfig.set(paletteStyleConfigDefaultValue);
-};
+// export const resetPaletteStyleToDefault = () => {
+//     paletteStyleConfig.set(paletteStyleConfigDefaultValue);
+// };
