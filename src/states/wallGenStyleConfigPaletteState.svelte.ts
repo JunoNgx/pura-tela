@@ -1,17 +1,18 @@
 import { type PaletteStyleConfigProps, type State } from "src/lib/types.js";
 import { createLocalStorageSyncedState, isValueWithinRange } from "./stateUtils.svelte.js"
+import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
 
 const isPaletteConfigValid = (data: any) => {
     if (!data) return false;
 
-    if (!isValueWithinRange(data.angleInDeg, 0, 360))
+    if (!isValueWithinRange(data.angleInDeg, 0, PALETTE_CONFIG_ANGLE_MAX_VALUE))
         return false;
 
-    if (!isValueWithinRange(data.size, 0, 10)) {
+    if (!isValueWithinRange(data.size, 0, PALETTE_CONFIG_SIZE_MAX_VALUE)) {
         return false;
     }
 
-    if (!isValueWithinRange(data.position, 0, 100)) {
+    if (!isValueWithinRange(data.position, 0, PALETTE_CONFIG_POSITION_MAX_VALUE)) {
         return false;
     }
 

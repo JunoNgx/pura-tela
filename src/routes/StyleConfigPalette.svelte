@@ -1,5 +1,6 @@
 <script lang="ts">
 	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
+	import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
 	import type { InputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
 	import { paletteStyleConfig, resetPaletteStyleAngle, resetPaletteStylePosition, resetPaletteStyleSize, setPaletteStyleAngle, setPaletteStylePosition, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
@@ -81,13 +82,13 @@
                 domId="PaletteAngle"
                 label="Palette angle config"
                 min={0}
-                max={360}
+                max={PALETTE_CONFIG_ANGLE_MAX_VALUE}
                 step={5}
                 value={paletteStyleConfig.val.angleInDeg}
                 unit="°"
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(e, setPaletteStyleAngle, "angle", 0, 360);
+                    handleDataChange(e, setPaletteStyleAngle, "angle", 0, PALETTE_CONFIG_ANGLE_MAX_VALUE);
                 }}
             />
             <div class="PaletteConfig__ActionsContainer">
@@ -109,12 +110,12 @@
                 domId="PaletteSize"
                 label="Palette size config"
                 min={0}
-                max={10}
+                max={PALETTE_CONFIG_SIZE_MAX_VALUE}
                 step={1}
                 value={paletteStyleConfig.val.size}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(e, setPaletteStyleSize, "size", 0, 10);
+                    handleDataChange(e, setPaletteStyleSize, "size", 0, PALETTE_CONFIG_SIZE_MAX_VALUE);
                 }}
             />
             <div class="PaletteConfig__ActionsContainer">
@@ -141,7 +142,7 @@
                 value={paletteStyleConfig.val.position}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(e, setPaletteStylePosition, "position", 0, 100);
+                    handleDataChange(e, setPaletteStylePosition, "position", 0, PALETTE_CONFIG_POSITION_MAX_VALUE);
                 }}
             />
             <div class="PaletteConfig__ActionsContainer">
