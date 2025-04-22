@@ -4,7 +4,7 @@
 
 <div class="PaletteConfig">
     <h3 class="PaletteConfig__Title">
-        items config
+        Palette Configurations
     </h3>
 
     <div class="PaletteConfig__ItemsContainer">
