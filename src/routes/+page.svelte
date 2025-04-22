@@ -79,21 +79,12 @@
     };
 
     // Gradient style
-    const tryParseGradientConfig = () => {
-        if (!data.gradientAngle) {
-            return;
-        }
-
-        const angle = tryParseAngle(data.gradientAngle);
-
-        if (!angle) {
-            return;
-        }
-
-        setGradientStyleConfigAngle(angle);
-    };
-
-    tryParseGradientConfig();
+    tryParseNumericConfig({
+        dataKey: "gradientAngle",
+        minVal: 0,
+        maxVal: 360,
+        stateSetterFunc: setGradientStyleConfigAngle,
+    });
 
     // Swatch style
     const tryParseSwatchPositionX = () => {
