@@ -9,25 +9,31 @@
         max: number,
         value: number,
         step?: number,
+        shouldHideLabel?: boolean,
         changeHandler: (e: InputEvent) => void
     };
 
     let {
-        className,
+        className = "",
         domId,
         label,
         min,
         max,
         value,
         step = 1,
+        shouldHideLabel = false,
         changeHandler
     }: StyleConfigItemProps = $props();
 </script>
 
-<div class={`${className} StyleConfigItem`}>
-    <div class="StyleConfigItem__Label">
-        {label}
-    </div>
+<div class={`${className} StyleConfigItem`}
+    class:StyleConfigItem--IsLabeless={shouldHideLabel}
+>
+    {#if !shouldHideLabel}
+        <div class="StyleConfigItem__Label">
+            {label}
+        </div>
+    {/if}
 
     <div class="StyleConfigItem__InputContainer">
         <label class="VisuallyHidden" for={`${domId}-input`}>
@@ -80,4 +86,17 @@
     .StyleConfigItem__Slider {
         width: 100%;
     }
+
+    .StyleConfigItem--IsLabeless {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .StyleConfigItem--IsLabeless .StyleConfigItem__Input {
+        margin-left: 1rem;
+    }
+    .StyleConfigItem--IsLabeless .StyleConfigItem__SliderContainer {
+        margin-right: 1rem;
+        grid-column-start: 2;
+        grid-column-end: 6;
+    } 
 </style>
