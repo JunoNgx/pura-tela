@@ -51,3 +51,7 @@ export const switchPaletteStyleIsFlipped = () => {
         isFlipped: paletteStyleConfig.val.isFlipped,
     });
 };
+
+export const resetPaletteStyleToDefault = () => {
+    paletteStyleConfig.set(paletteStyleConfigDefaultValue);
+};
