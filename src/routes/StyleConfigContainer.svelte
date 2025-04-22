@@ -50,6 +50,14 @@
             >
                 Colour swatch
             </RadioCheckbox>
+
+            <RadioCheckbox
+                value={WallpaperStyle.PALETTE}
+                checked={isGradientStyle()}
+                onclick={handleWallpaperStyleChange}
+            >
+                Palette
+            </RadioCheckbox>
         </div>
 
     </fieldset>
