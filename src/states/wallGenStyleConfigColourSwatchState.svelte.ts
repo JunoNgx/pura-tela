@@ -2,7 +2,7 @@ import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type ColourSwat
 import { createLocalStorageSyncedState, isEnumValueValid, isValueWithinRange } from "./stateUtils.svelte.js"
 import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 
-const isPaletteRowConfigValid = (data: any) => {
+const isColourSwatchConfigValid = (data: any) => {
     if (!data) return false;
 
     if (data.positionX === null || data.positionX === undefined
@@ -48,7 +48,7 @@ export const colourSwatchStyleConfigDefaultValue = {
 export const colourSwatchStyleConfig = <State<ColourSwatchStyleConfigProps>>createLocalStorageSyncedState({
     key: "colourSwatchStyleConfig",
     defaultValue: colourSwatchStyleConfigDefaultValue,
-    validationFunc: isPaletteRowConfigValid
+    validationFunc: isColourSwatchConfigValid
 });
 
 export const setColourSwatchStylePositionX = (newValue: number) => {
