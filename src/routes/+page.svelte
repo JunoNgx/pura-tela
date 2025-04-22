@@ -9,6 +9,7 @@
 
     export let data: WallGenQueryProps;
 
+    // General shared data
     const tryParseStyleFromQueryToWallGen = () => {
         if (!data.style) {
             return;
@@ -49,6 +50,12 @@
         setWallGenSize(sizeData.width, sizeData.height);
     };
 
+    tryParseStyleFromQueryToWallGen();
+    tryParseColoursFromQueryToWallGen();
+    tryParseSizeFromQueryToWallGen();
+
+
+    // Gradient style
     const tryParseGradientConfig = () => {
         if (!data.gradientAngle) {
             return;
@@ -63,6 +70,9 @@
         setGradientStyleConfigAngle(angle);
     };
 
+    tryParseGradientConfig();
+
+    // Swatch style
     const tryParseSwatchPositionX = () => {
         if (!data.swatchPosX) return;
         const value = tryParseSwatchNumericConfig(data.swatchPosX);
@@ -110,12 +120,6 @@
 
         setColourSwatchStyleItemSpacing(value);
     };
-
-    tryParseStyleFromQueryToWallGen();
-    tryParseColoursFromQueryToWallGen();
-    tryParseSizeFromQueryToWallGen();
-
-    tryParseGradientConfig();
 
     tryParseSwatchPositionX();
     tryParseSwatchPositionY();
