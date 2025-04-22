@@ -21,7 +21,7 @@ const isPaletteConfigValid = (data: any) => {
 export const paletteStyleConfigDefaultValue = {
     angleInDeg: 0,
     size: 10,
-    position: 50,
+    position: 0,
 };
 
 export const paletteStyleConfig = <State<PaletteStyleConfigProps>>createLocalStorageSyncedState({
