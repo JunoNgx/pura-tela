@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Checkbox from "src/components/Checkbox.svelte";
 	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
 	import type { InputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
@@ -79,7 +78,19 @@
                 <h4 class="PaletteConfig__ItemTitle">Angle</h4>
             </legend>
 
-            <div class="PaletteConfig__ItemContent">
+            <StyleConfigItemSlider
+                domId="PaletteAngle"
+                label="Angle"
+                min={0}
+                max={360}
+                step={5}
+                value={paletteStyleConfig.val.angleInDeg}
+                changeHandler={(e) => {
+                    handleDataChange(e, setPaletteStyleAngle, "angle", 0, 360);
+                }}
+            />
+
+            <!-- <div class="PaletteConfig__ItemContent">
                 <StyleConfigItemSlider
                     domId="PaletteAngle"
                     label="Angle"
@@ -100,7 +111,7 @@
                 >
                     Reset
                 </button>
-            </div>
+            </div> -->
 
         </fieldset>
     </div>
@@ -125,10 +136,10 @@
         margin: 0.5rem 0 0.5rem;
     }
 
-    .PaletteConfig__Content {
+    /* .PaletteConfig__Content {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         align-items: center;
-    }
+    } */
 
 </style>
