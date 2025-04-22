@@ -394,6 +394,14 @@ export const renderForPaletteStyle = (
     if (!config?.palette) {
         throw new Error("Cannot access Palette config");
     }
+
+    const firstColour = colours[0];
+    ctx.fillStyle = firstColour;
+    ctx.fillRect(-size.width/2, -size.height/2, size.width, size.height * 2);
+
+    const lastColour = colours[colours.length - 1];
+    ctx.fillStyle = lastColour;
+    ctx.fillRect(size.width/2, -size.height/2, size.width, size.height * 2);
 };
 
 export const refitCanvasToContainer = () => {
