@@ -20,6 +20,10 @@ export const load = ({
     const swatchItemSize = url.searchParams.get("swatchItemSize");
     const swatchItemSpacing = url.searchParams.get("swatchItemSpacing");
 
+    const paletteAngle = url.searchParams.get("paletteAngle");
+    const paletteSize = url.searchParams.get("paletteSize");
+    const palettePosition = url.searchParams.get("palettePosition");
+
     return {
         style,
         colours,
@@ -34,5 +38,9 @@ export const load = ({
         swatchItemShape,
         swatchItemSize,
         swatchItemSpacing,
+
+        paletteAngle,
+        paletteSize,
+        palettePosition,
     };
 };
