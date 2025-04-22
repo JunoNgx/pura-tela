@@ -407,14 +407,8 @@ export const renderForPaletteStyle = (
     ctx.rotate(config.palette.angleInDeg * Math.PI/180);
 
     const mainColours = [...colours];
-
-    // Two background colours
     const firstColour = mainColours.shift();
-    ctx.fillStyle = firstColour!;
-    ctx.fillRect(-size.width*2, -size.height*2, size.width*4, size.height*4);
     const lastColour = mainColours.pop();
-    ctx.fillStyle = lastColour!;
-    ctx.fillRect(0, -size.height*2, size.width*4, size.height*4);
 
     const longerSide = size.width >= size.height
         ? size.width
@@ -431,6 +425,25 @@ export const renderForPaletteStyle = (
     const minStartingPos = leftmostPosition + maxBaseSize;
     const maxStartingPos = 0;
     const startingPos = minStartingPos + (maxStartingPos - minStartingPos) * config.palette.position/100;
+
+    const mainColoursWidth = baseSize * mainColours.length;
+    const mainColoursCenterpoint = startingPos + mainColoursWidth/2;
+
+    // Two background colours
+    ctx.fillStyle = firstColour!;
+    ctx.fillRect(
+        -size.width*2,
+        -size.height*2,
+        size.width*2 + mainColoursCenterpoint,
+        size.height*4
+    );
+    ctx.fillStyle = lastColour!;
+    ctx.fillRect(
+        0 + mainColoursCenterpoint,
+        -size.height*2,
+        size.width*2,
+        size.height*4 + mainColoursCenterpoint
+    );
 
     for (let i = 0; i < mainColours.length; i++) {
         const colour = mainColours[i];
