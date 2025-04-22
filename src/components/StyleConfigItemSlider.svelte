@@ -9,6 +9,7 @@
         max: number,
         value: number,
         step?: number,
+        unit?: string,
         shouldHideLabel?: boolean,
         changeHandler: (e: InputEvent) => void
     };
@@ -21,6 +22,7 @@
         max,
         value,
         step = 1,
+        unit = "",
         shouldHideLabel = false,
         changeHandler
     }: StyleConfigItemProps = $props();
@@ -47,6 +49,9 @@
             value="{value}"
             oninput={changeHandler}
         />
+        {#if unit}
+            <span class="StyleConfigItem__Unit">{unit}</span>
+        {/if}
     </div>
 
     <div class="StyleConfigItem__SliderContainer">
