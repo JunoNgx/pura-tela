@@ -83,7 +83,7 @@
                 label="Palette angle config"
                 min={0}
                 max={PALETTE_CONFIG_ANGLE_MAX_VALUE}
-                step={5}
+                step={15}
                 value={paletteStyleConfig.val.angleInDeg}
                 unit="°"
                 shouldHideLabel={true}
