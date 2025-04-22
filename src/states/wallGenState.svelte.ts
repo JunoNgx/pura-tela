@@ -8,6 +8,7 @@ import { generateId } from "./idGenState.svelte.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
 import { colourSwatchStyleConfig } from "./wallGenStyleConfigColourSwatchState.svelte.js";
 import { gradientStyleConfig } from "./wallGenStyleConfigGradientState.svelte.js";
+import { paletteStyleConfig } from "./wallGenStyleConfigPaletteState.svelte.js";
 
 /**
  * Wallpaper Generator current colours
@@ -389,9 +390,11 @@ export const getHexColourCodesInUse = () => {
 
 const derivedColourSwatchStyleConfig = $derived(colourSwatchStyleConfig.val);
 const derivedGradientStyleConfig = $derived(gradientStyleConfig.val);
+const derivedPaletteConfig = $derived(paletteStyleConfig.val);
 const derivedStyleConfig = $derived({
     colourSwatch: derivedColourSwatchStyleConfig,
     gradient: derivedGradientStyleConfig,
+    palette: derivedPaletteConfig,
 });
 export const getStyleConfig = () => {
     return derivedStyleConfig;

@@ -139,4 +139,5 @@ export type PaletteStyleConfigProps = {
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps,
     gradient: GradientStyleConfigProps,
+    palette: PaletteStyleConfigProps,
 };
