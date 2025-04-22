@@ -2,7 +2,7 @@
 	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
 	import type { InputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
-	import { paletteStyleConfig, setPaletteStyleAngle } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+	import { paletteStyleConfig, resetPaletteStyleAngle, setPaletteStyleAngle } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
 
     // const handleIsVerticalSwitch = () => {
     //     switchPaletteStyleIsVertical();
@@ -85,6 +85,7 @@
                 max={360}
                 step={5}
                 value={paletteStyleConfig.val.angleInDeg}
+                unit="°"
                 shouldHideLabel={true}
                 changeHandler={(e) => {
                     handleDataChange(e, setPaletteStyleAngle, "angle", 0, 360);
@@ -103,16 +104,17 @@
                         handleDataChange(e, setPaletteStyleAngle, "angle", 0, 360);
                     }}
                 />
-            </div>
+            </div> -->
 
             <div class="PaletteConfig__ActionsContainer">
                 <button class="PaletteConfig__ResetButton TertBtn"
                     title="Reset Palette config to default"
                     aria-label="Reset Palette config to default"
+                    onclick={resetPaletteStyleAngle}
                 >
                     Reset
                 </button>
-            </div> -->
+            </div>
 
         </fieldset>
     </div>
@@ -135,6 +137,11 @@
     .PaletteConfig__ItemTitle {
         text-transform: lowercase;
         margin: 0.5rem 0 0.5rem;
+    }
+
+    .PaletteConfig__ActionsContainer {
+        display: flex;
+        justify-content: flex-end;
     }
 
     /* .PaletteConfig__Content {
