@@ -92,3 +92,22 @@ export const tryParseSwatchNumericConfig = (
         return null;
     }
 };
+
+export const tryParseNumericData = (
+    valueStr: string | number,
+    minVal: number,
+    maxVal: number,
+) => {
+    try {
+        const value = parseInt(valueStr as string);
+        const isValid = isValueWithinRange(
+            value, minVal, maxVal
+        );
+
+        if (isValid) return value;
+        else return null
+    } catch(err) {
+        console.error("Invalid swatch data");
+        return null;
+    }
+};
