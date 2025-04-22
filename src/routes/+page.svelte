@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tryParseAngle, tryParseColours, tryParseSize, tryParseSwatchNumericConfig } from "src/lib/parseFuncs.js";
+	import { tryParseAngle, tryParseColours, tryParseNumericData, tryParseSize, tryParseSwatchNumericConfig } from "src/lib/parseFuncs.js";
 	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
 	import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
@@ -127,6 +127,29 @@
     tryParseSwatchItemShape();
     tryParseSwatchItemSize();
     tryParseSwatchItemSpacing();
+
+
+    type tryParseNumericConfigOptions = {
+        dataKey: keyof WallGenQueryProps,
+        minVal: number,
+        maxVal: number,
+        stateSetterFunc: (newValue: number) => void,
+    };
+
+    const tryParseNumericConfig = (
+        {
+            dataKey,
+            minVal,
+            maxVal,
+            stateSetterFunc,
+        }: tryParseNumericConfigOptions
+    ) => {
+        if (!data[dataKey]) return;
+        const value = tryParseNumericData(data[dataKey], minVal, maxVal);
+        if (!value) return;
+
+        stateSetterFunc(value);
+    };
 </script>
 
 <h2 class="VisuallyHidden">Generate wallpaper</h2>
