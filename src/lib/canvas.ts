@@ -408,13 +408,13 @@ export const renderForPaletteStyle = (
 
     const mainColours = [...colours];
 
+    // Two background colours
     const firstColour = mainColours.shift();
     ctx.fillStyle = firstColour!;
-    ctx.fillRect(-size.width, -size.height, size.width, size.height * 2);
-
+    ctx.fillRect(-size.width*2, -size.height*2, size.width*4, size.height*4);
     const lastColour = mainColours.pop();
     ctx.fillStyle = lastColour!;
-    ctx.fillRect(0, -size.height, size.width, size.height * 2);
+    ctx.fillRect(0, -size.height*2, size.width*4, size.height*4);
 
     const longerSide = size.width >= size.height
         ? size.width
