@@ -14,6 +14,7 @@
 	import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 	import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 	import Checkbox from "src/components/Checkbox.svelte";
+	import { paletteStyleConfig } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
@@ -59,6 +60,11 @@
             url.searchParams.append("swatchItemShape", colourSwatchStyleConfig.val.itemShape);
             url.searchParams.append("swatchItemSize", colourSwatchStyleConfig.val.itemSize.toString());
             url.searchParams.append("swatchItemSpacing", colourSwatchStyleConfig.val.itemSpacing.toString());
+            break;
+        case WallpaperStyle.PALETTE:
+            url.searchParams.append("paletteAngle", paletteStyleConfig.val.angleInDeg.toString());
+            url.searchParams.append("paletteSize", paletteStyleConfig.val.position.toString());
+            url.searchParams.append("palettePosition", paletteStyleConfig.val.position.toString());
             break;
         }
 
