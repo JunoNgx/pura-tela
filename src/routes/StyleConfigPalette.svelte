@@ -79,7 +79,7 @@
             </legend>
             <StyleConfigItemSlider
                 domId="PaletteAngle"
-                label="Angle"
+                label="Palette angle config"
                 min={0}
                 max={360}
                 step={5}
@@ -107,7 +107,7 @@
             </legend>
             <StyleConfigItemSlider
                 domId="PaletteSize"
-                label="Size"
+                label="Palette size config"
                 min={0}
                 max={10}
                 step={1}
@@ -134,7 +134,7 @@
             </legend>
             <StyleConfigItemSlider
                 domId="PalettePosition"
-                label="Position"
+                label="Palette position config"
                 min={0}
                 max={100}
                 step={5}
