@@ -5,22 +5,6 @@
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
 	import { paletteStyleConfig, resetPaletteStyleAngle, resetPaletteStylePosition, resetPaletteStyleSize, setPaletteStyleAngle, setPaletteStylePosition, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
 
-    // const handleIsVerticalSwitch = () => {
-    //     switchPaletteStyleIsVertical();
-    // };
-
-    // const handleIsAsymmetricalSwitch = () => {
-    //     switchPaletteStyleIsAsymmetrical();
-    // };
-
-    // const handleIsFlippedSwitch = () => {
-    //     switchPaletteStyleIsFlipped();
-    // };
-
-    // const resetToDefault = () => {
-    //     resetPaletteStyleToDefault();
-    // }
-
     const handleDataChange = (
         e: InputEvent,
         setFunc: (value: number) => void,
@@ -48,30 +32,6 @@
     <h3 class="PaletteConfig__Title">
         Palette Configurations
     </h3>
-
-    <!-- <Checkbox
-        className="PaletteConfig__Checkbox"
-        domId="paletteCheckboxIsVertical"
-        label="Display vertically"
-        checked={paletteStyleConfig.val.isVertical}
-        changeHandler={handleIsVerticalSwitch}
-    />
-
-    <Checkbox
-        className="PaletteConfig__Checkbox"
-        domId="paletteCheckboxIsAsymmetrical"
-        label="Display asymetrically"
-        checked={paletteStyleConfig.val.isAsymmetrical}
-        changeHandler={handleIsAsymmetricalSwitch}
-    />
-
-    <Checkbox
-        className="PaletteConfig__Checkbox"
-        domId="paletteCheckboxIsFlipped"
-        label="Flip"
-        checked={paletteStyleConfig.val.isVertical}
-        changeHandler={handleIsFlippedSwitch}
-    /> -->
 
     <div class="PaletteConfig__ItemsContainer">
         <fieldset class="PaletteConfig__Item">
@@ -182,11 +142,5 @@
         display: flex;
         justify-content: flex-end;
     }
-
-    /* .PaletteConfig__Content {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        align-items: center;
-    } */
 
 </style>
