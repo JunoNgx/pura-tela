@@ -38,6 +38,7 @@
                 <button class="PaletteConfig__ResetButton TertBtn"
                     title="Reset Palette config to default"
                     aria-label="Reset Palette config to default"
+                    onclick={resetToDefault}
                 >
                     Reset
                 </button>
