@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE, SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
-	import { tryParseAngle, tryParseColours, tryParseNumericData, tryParseSize, tryParseSwatchNumericConfig } from "src/lib/parseFuncs.js";
+	import { tryParseColours, tryParseNumericData, tryParseSize } from "src/lib/parseFuncs.js";
 	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
 	import { isEnumValueValid } from "src/states/stateUtils.svelte.js";

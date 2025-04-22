@@ -58,41 +58,6 @@ export const tryParseColours = (inputStr: string) => {
     }
 };
 
-export const tryParseAngle = (
-    angleStr: string | number,
-) => {
-
-    try {
-        const angle = parseInt(angleStr as string);
-
-        const isValid = 0 <= angle && angle <= 360;
-        
-        if (isValid) return angle;
-        else return null;
-
-    } catch(err) {
-        console.error("Invalid size data");
-        return null;
-    }
-};
-
-export const tryParseSwatchNumericConfig = (
-    valueStr: string | number,
-) => {
-    try {
-        const value = parseInt(valueStr as string);
-        const isValid = isValueWithinRange(
-            value, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE
-        );
-
-        if (isValid) return value;
-        else return null
-    } catch(err) {
-        console.error("Invalid swatch data");
-        return null;
-    }
-};
-
 export const tryParseNumericData = (
     valueStr: string | number,
     minVal: number,
