@@ -30,27 +30,23 @@ export const paletteStyleConfig = <State<PaletteStyleConfigProps>>createLocalSto
     validationFunc: isPaletteConfigValid
 });
 
-// export const switchPaletteStyleIsVertical = () => {
-//     paletteStyleConfig.set({
-//         ...paletteStyleConfig.val,
-//         isVertical: paletteStyleConfig.val.isVertical,
-//     });
-// };
+export const setPaletteStyleAngle = (newValue: number) => {
+    paletteStyleConfig.set({
+        ...paletteStyleConfig.val,
+        angleInDeg: newValue,
+    });
+};
 
-// export const switchPaletteStyleIsAsymmetrical = () => {
-//     paletteStyleConfig.set({
-//         ...paletteStyleConfig.val,
-//         isAsymmetrical: paletteStyleConfig.val.isAsymmetrical,
-//     });
-// };
+export const setPaletteStyleSize = (newValue: number) => {
+    paletteStyleConfig.set({
+        ...paletteStyleConfig.val,
+        size: newValue,
+    });
+};
 
-// export const switchPaletteStyleIsFlipped = () => {
-//     paletteStyleConfig.set({
-//         ...paletteStyleConfig.val,
-//         isFlipped: paletteStyleConfig.val.isFlipped,
-//     });
-// };
-
-// export const resetPaletteStyleToDefault = () => {
-//     paletteStyleConfig.set(paletteStyleConfigDefaultValue);
-// };
+export const setPaletteStylePosition = (newValue: number) => {
+    paletteStyleConfig.set({
+        ...paletteStyleConfig.val,
+        position: newValue,
+    });
+};
