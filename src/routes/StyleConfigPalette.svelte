@@ -2,7 +2,7 @@
 	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
 	import type { InputEvent } from "src/lib/types.js";
 	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
-	import { paletteStyleConfig, resetPaletteStyleAngle, setPaletteStyleAngle } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+	import { paletteStyleConfig, resetPaletteStyleAngle, resetPaletteStyleSize, setPaletteStyleAngle, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
 
     // const handleIsVerticalSwitch = () => {
     //     switchPaletteStyleIsVertical();
@@ -77,7 +77,6 @@
             <legend>
                 <h4 class="PaletteConfig__ItemTitle">Angle</h4>
             </legend>
-
             <StyleConfigItemSlider
                 domId="PaletteAngle"
                 label="Angle"
@@ -91,21 +90,6 @@
                     handleDataChange(e, setPaletteStyleAngle, "angle", 0, 360);
                 }}
             />
-
-            <!-- <div class="PaletteConfig__ItemContent">
-                <StyleConfigItemSlider
-                    domId="PaletteAngle"
-                    label="Angle"
-                    min={0}
-                    max={360}
-                    step={5}
-                    value={paletteStyleConfig.val.angleInDeg}
-                    changeHandler={(e) => {
-                        handleDataChange(e, setPaletteStyleAngle, "angle", 0, 360);
-                    }}
-                />
-            </div> -->
-
             <div class="PaletteConfig__ActionsContainer">
                 <button class="PaletteConfig__ResetButton TertBtn"
                     title="Reset Palette config angle to default"
@@ -115,8 +99,35 @@
                     Reset
                 </button>
             </div>
-
         </fieldset>
+
+        <fieldset class="PaletteConfig__Item">
+            <legend>
+                <h4 class="PaletteConfig__ItemTitle">Size</h4>
+            </legend>
+            <StyleConfigItemSlider
+                domId="PaletteSize"
+                label="Size"
+                min={0}
+                max={10}
+                step={1}
+                value={paletteStyleConfig.val.size}
+                shouldHideLabel={true}
+                changeHandler={(e) => {
+                    handleDataChange(e, setPaletteStyleSize, "size", 0, 10);
+                }}
+            />
+            <div class="PaletteConfig__ActionsContainer">
+                <button class="PaletteConfig__ResetButton TertBtn"
+                    title="Reset Palette config size to default"
+                    aria-label="Reset Palette config size to default"
+                    onclick={resetPaletteStyleSize}
+                >
+                    Reset
+                </button>
+            </div>
+        </fieldset>
+
     </div>
 </div>
 
