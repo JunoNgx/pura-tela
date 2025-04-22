@@ -56,6 +56,27 @@
     tryParseColoursFromQueryToWallGen();
     tryParseSizeFromQueryToWallGen();
 
+    type tryParseNumericConfigOptions = {
+        dataKey: keyof WallGenQueryProps,
+        minVal: number,
+        maxVal: number,
+        stateSetterFunc: (newValue: number) => void,
+    };
+
+    const tryParseNumericConfig = (
+        {
+            dataKey,
+            minVal,
+            maxVal,
+            stateSetterFunc,
+        }: tryParseNumericConfigOptions
+    ) => {
+        if (!data[dataKey]) return;
+        const value = tryParseNumericData(data[dataKey], minVal, maxVal);
+        if (!value) return;
+
+        stateSetterFunc(value);
+    };
 
     // Gradient style
     const tryParseGradientConfig = () => {
@@ -129,29 +150,6 @@
     tryParseSwatchItemShape();
     tryParseSwatchItemSize();
     tryParseSwatchItemSpacing();
-
-
-    type tryParseNumericConfigOptions = {
-        dataKey: keyof WallGenQueryProps,
-        minVal: number,
-        maxVal: number,
-        stateSetterFunc: (newValue: number) => void,
-    };
-
-    const tryParseNumericConfig = (
-        {
-            dataKey,
-            minVal,
-            maxVal,
-            stateSetterFunc,
-        }: tryParseNumericConfigOptions
-    ) => {
-        if (!data[dataKey]) return;
-        const value = tryParseNumericData(data[dataKey], minVal, maxVal);
-        if (!value) return;
-
-        stateSetterFunc(value);
-    };
 
     tryParseNumericConfig({
         dataKey: "paletteAngle",
