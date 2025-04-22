@@ -391,7 +391,9 @@ const renderForColourSwatchStyle = (
 export const renderForPaletteStyle = (
     { ctx, colours, size, config }: StyleRenderOptions
 ) => {
-
+    if (!config?.palette) {
+        throw new Error("Cannot access Palette config");
+    }
 };
 
 export const refitCanvasToContainer = () => {
