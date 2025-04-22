@@ -2,21 +2,21 @@
 	import Checkbox from "src/components/Checkbox.svelte";
 	import { paletteStyleConfig, resetPaletteStyleToDefault, switchPaletteStyleIsAsymmetrical, switchPaletteStyleIsFlipped, switchPaletteStyleIsVertical } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
 
-    const handleIsVerticalSwitch = () => {
-        switchPaletteStyleIsVertical();
-    };
+    // const handleIsVerticalSwitch = () => {
+    //     switchPaletteStyleIsVertical();
+    // };
 
-    const handleIsAsymmetricalSwitch = () => {
-        switchPaletteStyleIsAsymmetrical();
-    };
+    // const handleIsAsymmetricalSwitch = () => {
+    //     switchPaletteStyleIsAsymmetrical();
+    // };
 
-    const handleIsFlippedSwitch = () => {
-        switchPaletteStyleIsFlipped();
-    };
+    // const handleIsFlippedSwitch = () => {
+    //     switchPaletteStyleIsFlipped();
+    // };
 
-    const resetToDefault = () => {
-        resetPaletteStyleToDefault();
-    }
+    // const resetToDefault = () => {
+    //     resetPaletteStyleToDefault();
+    // }
 
 </script>
 
@@ -25,7 +25,7 @@
         Palette Configurations
     </h3>
 
-    <Checkbox
+    <!-- <Checkbox
         className="PaletteConfig__Checkbox"
         domId="paletteCheckboxIsVertical"
         label="Display vertically"
@@ -47,7 +47,7 @@
         label="Flip"
         checked={paletteStyleConfig.val.isVertical}
         changeHandler={handleIsFlippedSwitch}
-    />
+    /> -->
 <!-- 
     <div class="PaletteConfig__ItemsContainer">
         <fieldset class="PaletteConfig__Item">
