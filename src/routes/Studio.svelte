@@ -13,6 +13,7 @@
 	import { WallpaperStyle } from "src/lib/types.js";
 	import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 	import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import Checkbox from "src/components/Checkbox.svelte";
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
@@ -110,17 +111,13 @@
 
             <div class="Studio__PreviewSettings">
                 <div class="Studio__SampleTextSetting">
-                    <input class="Studio__SampleTextCheckBox"
-                        id="shouldShowSampleText"
-                        type=checkbox
+                    <Checkbox
+                        className="Studio__SampleTextCheckBox"
+                        domId="shouldShowSampleText"
+                        label="Show sample texts"
                         checked={shouldShowSampleText.val}
-                        onclick={handleCheckboxSwitch}
-                    >
-                    <label class="Studio__SampleTextLabel"
-                        for="shouldShowSampleText"
-                    >
-                        Show sample texts
-                    </label>
+                        changeHandler={handleCheckboxSwitch}
+                    />
                 </div>
 
                 <button class="Studio_DownloadBtn PriBtn"
@@ -202,10 +199,6 @@
 
     .Studio__SampleText--Black {
         color: var(--colBlack);
-    }
-
-    .Studio__SampleTextCheckBox {
-        margin-left: 0;
     }
 
     .Studio__PreviewSettings {
