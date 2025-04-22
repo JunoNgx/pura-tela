@@ -190,6 +190,10 @@ export const isColourSwatchStyle = () => {
     return wallGenStyle.val === WallpaperStyle.COLOUR_SWATCH;
 };
 
+export const isPaletteStyle = () => {
+    return wallGenStyle.val === WallpaperStyle.PALETTE;
+};
+
 const currStyleInfo = $derived.by(() => {
     switch (wallGenStyle.val) {
     case WallpaperStyle.SOLID:
@@ -214,6 +218,7 @@ const currStyleInfo = $derived.by(() => {
         }
 
     case WallpaperStyle.COLOUR_SWATCH:
+    case WallpaperStyle.PALETTE:
         return {
             defaultColourCount: 5,
             minColourCount: 2,
