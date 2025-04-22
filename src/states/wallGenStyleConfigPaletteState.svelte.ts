@@ -1,6 +1,7 @@
 import { type PaletteStyleConfigProps, type State } from "src/lib/types.js";
 import { createLocalStorageSyncedState, isValueWithinRange } from "./stateUtils.svelte.js"
 import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
+import { isPortraitScreen } from "./wallGenState.svelte.js";
 
 const isPaletteConfigValid = (data: any) => {
     if (!data) return false;
@@ -19,10 +20,16 @@ const isPaletteConfigValid = (data: any) => {
     return true;
 };
 
-export const paletteStyleConfigDefaultValue = {
+const paletteStyleConfigDefaultValue = {
     angleInDeg: 90,
     size: 0,
     position: 10,
+};
+
+const paletteStyleConfigLandscapeDefaultValue = {
+    angleInDeg: 0,
+    size: 10,
+    position: 0,
 };
 
 export const paletteStyleConfig = <State<PaletteStyleConfigProps>>createLocalStorageSyncedState({
@@ -39,7 +46,11 @@ export const setPaletteStyleAngle = (newValue: number) => {
 };
 
 export const resetPaletteStyleAngle = () => {
-    setPaletteStyleAngle(paletteStyleConfigDefaultValue.angleInDeg);
+    const val = isPortraitScreen()
+        ? paletteStyleConfigDefaultValue.angleInDeg
+        : paletteStyleConfigLandscapeDefaultValue.angleInDeg;
+
+    setPaletteStyleAngle(val);
 };
 
 export const setPaletteStyleSize = (newValue: number) => {
@@ -50,7 +61,11 @@ export const setPaletteStyleSize = (newValue: number) => {
 };
 
 export const resetPaletteStyleSize = () => {
-    setPaletteStyleSize(paletteStyleConfigDefaultValue.size);
+    const val = isPortraitScreen()
+        ? paletteStyleConfigDefaultValue.size
+        : paletteStyleConfigLandscapeDefaultValue.size;
+
+    setPaletteStyleSize(val);
 };
 
 export const setPaletteStylePosition = (newValue: number) => {
@@ -61,5 +76,9 @@ export const setPaletteStylePosition = (newValue: number) => {
 };
 
 export const resetPaletteStylePosition = () => {
-    setPaletteStylePosition(paletteStyleConfigDefaultValue.position);
+    const val = isPortraitScreen()
+        ? paletteStyleConfigDefaultValue.position
+        : paletteStyleConfigLandscapeDefaultValue.position;
+
+    setPaletteStylePosition(val);
 };
