@@ -108,8 +108,8 @@
 
             <div class="PaletteConfig__ActionsContainer">
                 <button class="PaletteConfig__ResetButton TertBtn"
-                    title="Reset Palette config to default"
-                    aria-label="Reset Palette config to default"
+                    title="Reset Palette config angle to default"
+                    aria-label="Reset Palette config angle to default"
                     onclick={resetPaletteStyleAngle}
                 >
                     Reset
