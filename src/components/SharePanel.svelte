@@ -4,10 +4,18 @@
     type SharePanelProps = {
         title: string,
         desc?: string,
-        content: string
+        content: string,
+        shareTitle: string,
+        shareText: string,
     }
     
-    let { title, desc, content }: SharePanelProps = $props();
+    let {
+        title,
+        desc,
+        content,
+        shareTitle,
+        shareText,
+    }: SharePanelProps = $props();
     let hasBeenCopied = $state(false);
     let copyRestoreStatusTimeout: number | undefined = $state();
 
@@ -24,6 +32,22 @@
         }
     };
 
+    const shareContent = () => {
+        if (!navigator.share) {
+            copyContent();
+            return;
+        }
+
+        navigator.share({
+            title: shareTitle,
+            text: shareText,
+            url: content,
+        })
+        .catch(error => {
+            console.log("Error sharing content", error)
+        });
+    };
+
     onDestroy(() => {
         clearTimeout(copyRestoreStatusTimeout);
     })
@@ -34,19 +58,28 @@
     {#if desc}
         <p class="SharePanel__Description">{desc}</p>
     {/if}
-    <div class="SharePanel__Container">
+    <div class="SharePanel__MainWrapper">
+        <div class="SharePanel__ButtonsContainer">
+            <button class="SharePanel__ShareBtn"
+                onclick={shareContent}
+                title="Share this content"
+                aria-label="Share this content"
+            >
+                Share
+            </button>
+            <button class="SharePanel__CopyBtn"
+                onclick={copyContent}
+                title="Copy this content"
+                aria-label="Copy this content"
+            >
+                {#if hasBeenCopied}
+                    Copied
+                {:else}
+                    Copy
+                {/if}
+            </button>
+        </div>
         <div class="SharePanel__Content">{content}</div>
-        <button class="SharePanel__CopyBtn"
-            onclick={copyContent}
-            title="Copy this content"
-            aria-label="Copy this content"
-        >
-            {#if hasBeenCopied}
-                Copied
-            {:else}
-                Copy
-            {/if}
-        </button>
     </div>
 </div>
 
@@ -55,18 +88,22 @@
         margin-top: 3rem;
     }
 
-    .SharePanel__Container {
+    .SharePanel__MainWrapper {
         border: var(--lineWeight) dashed var(--colPri);
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 1rem;
         padding: 1rem;
+    }
+
+    .SharePanel__ButtonsContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 1rem;
     }
 
     .SharePanel__Content {
         font-family: var(--fontFamilyMono);
         flex-shrink: 3;
         word-break: break-all;
+        margin-top: 1rem;
     }
 </style>
