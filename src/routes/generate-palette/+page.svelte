@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PaletteGenerator from "src/routes/generate/PaletteGenerator.svelte";
+	import PaletteGenerator from "src/routes/generate-palette/PaletteGenerator.svelte";
 </script>
 
 <h2>Palette Generator</h2>

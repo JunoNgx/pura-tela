@@ -5,7 +5,7 @@
 
 	import SharePanel from "src/components/SharePanel.svelte";
 	import DropdownMenu from "src/components/DropdownMenu.svelte";
-	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
+	import PaletteGeneratorItem from "src/routes/generate-palette/PaletteGeneratorItem.svelte";
 	import type { PalGenColObj } from "src/lib/types.js";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 
