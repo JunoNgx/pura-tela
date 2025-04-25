@@ -5,6 +5,8 @@
 	import { computeFilename } from "src/lib/utils.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
 	import { getColourStringsInUse, shouldShowSampleText, wallGenStyle } from "src/states/wallGenState.svelte.js";
+
+    let isExpanded = $state(true);
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
@@ -21,7 +23,9 @@
     };
 </script>
 
-<div class="StudioPreview">
+<div class="StudioPreview"
+    class:StudioPreview--IsExpanded={isExpanded}
+>
     <div class="StudioPreview__Content"
         id="CanvasContainer"    
     >
