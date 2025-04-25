@@ -22,7 +22,7 @@
 </script>
 
 <div class="StudioPreview">
-    <div class="StudioPreview__PreviewContent"
+    <div class="StudioPreview__Content"
         id="CanvasContainer"    
     >
         <canvas class="StudioPreview__Canvas"
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="StudioPreview__Settings">
+    <div class="StudioPreview__Footer">
         <div class="StudioPreview__SampleTextSetting">
             <Checkbox
                 className="StudioPreview__SampleTextCheckBox"
@@ -67,12 +67,12 @@
         width: 100%;
     }
 
-    .StudioPreview__PreviewContent,
+    .StudioPreview__Content,
     .StudioPreview__SampleTextContainer {
         aspect-ratio: 3/2;
     }
 
-    .StudioPreview__PreviewContent {
+    .StudioPreview__Content {
         height: auto;
         border: var(--lineWeight) solid var(--colPri);
         box-sizing: border-box;
@@ -108,7 +108,7 @@
         color: var(--colBlack);
     }
 
-    .StudioPreview__Settings {
+    .StudioPreview__Footer {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -123,7 +123,7 @@
     }
 
     @media screen and (width < 850px) {
-        .StudioPreview__PreviewContent,
+        .StudioPreview__Content,
         .StudioPreview__SampleTextContainer {
             aspect-ratio: 1;
         }
