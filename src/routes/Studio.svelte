@@ -68,21 +68,17 @@
 
 <div class="Studio">
     <h2 class="VisuallyHidden">Generate Wallpaper</h2>
-    <div class="Studio__Generator">
-        <StudioPreview />
 
-        <div class="Studio__Control">
-            <div class="Studio__ModeContainer">
-                <StyleConfigContainer/>
-            </div>
-            <div class="Studio__ColourInputContainer">
-                <WallGenColourInputList />
-            </div>
-            <div class="Studio__Size">
-                <SizeInput/>
-            </div>
-        </div>
+    <StudioPreview />
 
+    <div class="Studio__ModeContainer">
+        <StyleConfigContainer/>
+    </div>
+    <div class="Studio__ColourInputContainer">
+        <WallGenColourInputList />
+    </div>
+    <div class="Studio__Size">
+        <SizeInput/>
     </div>
 
     <SharePanel
@@ -101,7 +97,13 @@
 </div>
 
 <style>
-    .Studio__Generator {
+    .Studio {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    /* .Studio__Generator {
         display: flex;
         flex-direction: column;
         gap: 2rem;
@@ -121,6 +123,6 @@
             padding: 1.5rem 0;
             gap: 4rem;
         }
-    }
+    } */
 
 </style>
