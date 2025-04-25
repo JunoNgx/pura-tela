@@ -146,9 +146,13 @@
     <SharePanel
         title="Share this wallpaper"
         desc="Save this as a bookmark, or share your creation with someone. Access this url to retrieve the current wallpaper settings."
-        shareTitle="Wallpaper from Pura Tela"
-        shareText="Check out this custom wallpaper I made in Pura Tela:"
-        shareContent={computeShareableUrl()}
+        shareItemList={[
+            {
+                title: "Wallpaper from Pura Tela",
+                text: "Check out this custom wallpaper I made in Pura Tela:",
+                content: computeShareableUrl(),
+            },
+        ]}
     />
 </div>
 
