@@ -63,7 +63,10 @@
 
 <style>
     .StudioPreview {
-        position: relative;
+        position: sticky;
+        top: var(--outerPaddingMobile);
+        background-color: var(--colBg);
+        z-index: 20;
         /* width: 100%; */
         border: var(--lineWeight) solid var(--colPri);
         padding: 1rem;
@@ -72,6 +75,7 @@
     .StudioPreview__Content,
     .StudioPreview__SampleTextContainer {
         aspect-ratio: 3/2;
+        position: relative;
     }
 
     .StudioPreview__Content {
