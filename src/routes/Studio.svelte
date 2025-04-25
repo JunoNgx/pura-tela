@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
 	import { generateImage, renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
-	import { computeFilename } from "src/lib/utils.js";
+	import { computeBaseUrl, computeFilename } from "src/lib/utils.js";
 	import { getHexColourCodesInUse, shouldShowSampleText, wallGenStyle, wallGenSize, readjustWallGenColoursInUseCount, getColourStringsInUse, getStyleConfig } from "src/states/wallGenState.svelte.js";
 	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
@@ -9,7 +9,6 @@
 	import WallGenColourInputList from "./WallGenColourInputList.svelte";
     import SizeInput from "src/routes/SizeInput.svelte";
 	import SharePanel from "src/components/SharePanel.svelte";
-	import { page } from "$app/state";
 	import { WallpaperStyle } from "src/lib/types.js";
 	import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 	import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
@@ -30,14 +29,6 @@
 
     const handleResize = () => {
         refitCanvasToContainer();
-    };
-
-    const computeBaseUrl = () => {
-        const topLevelDomain = page.url.hostname;
-
-        if (topLevelDomain === "localhost") {
-            return `http://localhost:${page.url.port}`
-        } else return `https://${topLevelDomain}`;
     };
 
     const computeShareableUrl = () => {
