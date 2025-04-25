@@ -69,7 +69,7 @@
         z-index: 20;
         /* width: 100%; */
         border: var(--lineWeight) solid var(--colPri);
-        padding: 1rem;
+        padding: 0.5rem;
     }
 
     .StudioPreview__Content,
