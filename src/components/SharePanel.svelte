@@ -34,7 +34,7 @@
     {#if desc}
         <p class="SharePanel__Description">{desc}</p>
     {/if}
-    <div class="SharePanel__Container">
+    <div class="SharePanel__MainWrapper">
         <div class="SharePanel__Content">{content}</div>
         <button class="SharePanel__CopyBtn"
             onclick={copyContent}
@@ -55,7 +55,7 @@
         margin-top: 3rem;
     }
 
-    .SharePanel__Container {
+    .SharePanel__MainWrapper {
         border: var(--lineWeight) dashed var(--colPri);
         display: flex;
         justify-content: space-between;
