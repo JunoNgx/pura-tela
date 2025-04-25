@@ -33,6 +33,10 @@
     class:StudioPreview--IsExpanded={isExpanded}
 >
     <div class="StudioPreview__Header">
+        <h3 class="StudioPreview__Title">
+            Preview
+        </h3>
+
         <button class="StudioPreview__ToggleExpandBtn"
             title={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
             aria-label={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
@@ -98,8 +102,16 @@
     .StudioPreview__Header {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 0.5rem;
+    }
+
+    .StudioPreview__Title {
+        font-size: var(--fontSizeMd);
+        /* text-transform: lowercase; */
+        font-weight: 400;
+        margin: 0 0 0 0.5rem;
     }
 
     .StudioPreview__ToggleExpandBtn {
