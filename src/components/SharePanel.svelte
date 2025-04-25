@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { onDestroy } from "svelte";
 
+    import MaterialSymbolsLightShareOutline from "~icons/material-symbols-light/share-outline";
+    import MaterialSymbolsLightContentCopyOutline from "~icons/material-symbols-light/content-copy-outline";
+
     type SharePanelProps = {
         title: string,
         desc?: string,
@@ -60,23 +63,27 @@
     {/if}
     <div class="SharePanel__MainWrapper">
         <div class="SharePanel__ButtonsContainer">
-            <button class="SharePanel__ShareBtn"
+            <button class="SharePanel__ShareBtn IconButtonWithLabel"
                 onclick={shareItemContent}
                 title="Share this content"
                 aria-label="Share this content"
             >
-                Share
+                <MaterialSymbolsLightShareOutline/>
+                <span>Share</span>
             </button>
-            <button class="SharePanel__CopyBtn"
+            <button class="SharePanel__CopyBtn IconButtonWithLabel"
                 onclick={copyItemContent}
                 title="Copy this content"
                 aria-label="Copy this content"
             >
-                {#if hasBeenCopied}
-                    Copied
-                {:else}
-                    Copy
-                {/if}
+                <MaterialSymbolsLightContentCopyOutline/>
+                <span>
+                    {#if hasBeenCopied}
+                        Copied
+                    {:else}
+                        Copy
+                    {/if}
+                </span>
             </button>
         </div>
         <div class="SharePanel__Content">{shareContent}</div>
