@@ -124,6 +124,12 @@
     }
 
     .SharePanel__ListContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .SharePanel__ShareItem {
         border: var(--lineWeight) dashed var(--colPri);
         padding: 1rem;
     }
