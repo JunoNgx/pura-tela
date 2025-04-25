@@ -1,4 +1,6 @@
 <script lang="ts">
+    import MaterialSymbolsLightKeyboardArrowUp from "~icons/material-symbols-light/keyboard-arrow-up";
+
 	import Checkbox from "src/components/Checkbox.svelte";
 
 	import { generateImage } from "src/lib/canvas.js";
@@ -26,6 +28,15 @@
 <div class="StudioPreview"
     class:StudioPreview--IsExpanded={isExpanded}
 >
+    <div class="StudioPreview__Header">
+        <button class="StudioPreview__ToggleExpandBtn"
+            title={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
+            aria-label={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
+        >
+            <MaterialSymbolsLightKeyboardArrowUp/>
+        </button>
+    </div>
+
     <div class="StudioPreview__Content"
         id="CanvasContainer"    
     >
@@ -74,6 +85,22 @@
         /* width: 100%; */
         border: var(--lineWeight) solid var(--colPri);
         padding: 0.5rem;
+    }
+
+    .StudioPreview__Header {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-bottom: 0.5rem;
+    }
+
+    .StudioPreview__ToggleExpandBtn {
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        padding: 0;
+        border: none;
     }
 
     .StudioPreview__Content,
