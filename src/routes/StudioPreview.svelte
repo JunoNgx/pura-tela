@@ -64,7 +64,7 @@
 <style>
     .StudioPreview {
         position: relative;
-        width: 100%;
+        /* width: 100%; */
         border: var(--lineWeight) solid var(--colPri);
         padding: 1rem;
     }
