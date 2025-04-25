@@ -93,6 +93,10 @@ export type WallGenQueryProps = {
     palettePosition: string | null,
 };
 
+export type PalGenQueryProps = {
+    paletteQueryStr: string | null,
+};
+
 export type MouseInputEvent = MouseEvent & {
     currentTarget: EventTarget & HTMLInputElement
 };

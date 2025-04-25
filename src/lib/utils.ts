@@ -1,3 +1,4 @@
+import { page } from "$app/state";
 import { WallpaperStyle, type ColourItem, type RgbColour } from "./types.js";
 
 export const isHexCodeValid = (str: string): boolean => {
@@ -95,4 +96,12 @@ export const computeFilename = ({
     const coloursStr = computeColourNamePortion(colours, gallery);
     
     return `Pura-${modeStr}-${coloursStr}`;
+};
+
+export const computeBaseUrl = () => {
+    const topLevelDomain = page.url.hostname;
+
+    if (topLevelDomain === "localhost") {
+        return `http://localhost:${page.url.port}`
+    } else return `https://${topLevelDomain}`;
 };

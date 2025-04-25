@@ -54,7 +54,7 @@
         <div class="Nav__Router">
             <span class="Nav__CategoryTitle">Generate</span>
             <NavItem route={"/"} label={"wallpaper"} />
-            <NavItem route={"/generate"} label={"palette"} />
+            <NavItem route={"/generate-palette"} label={"palette"} />
             <span class="Nav__CategoryTitle">Gallery</span>
             <NavItem route={"/colours"} label={"colours"} />
             <NavItem route={"/palettes"} label={"palettes"} />
