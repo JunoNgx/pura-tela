@@ -137,3 +137,10 @@ export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps,
     gradient: GradientStyleConfigProps,
 };
+
+export type ShareItem = {
+    label: string,
+    content: string,
+    shareText: string,
+    shareTitle: string
+};
