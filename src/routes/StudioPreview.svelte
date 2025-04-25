@@ -65,6 +65,8 @@
     .StudioPreview {
         position: relative;
         width: 100%;
+        border: var(--lineWeight) solid var(--colPri);
+        padding: 1rem;
     }
 
     .StudioPreview__Content,
@@ -74,7 +76,6 @@
 
     .StudioPreview__Content {
         height: auto;
-        border: var(--lineWeight) solid var(--colPri);
         box-sizing: border-box;
         overflow: hidden;
 
