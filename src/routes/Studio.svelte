@@ -68,13 +68,13 @@
 
 <div class="Studio">
     <h2 class="VisuallyHidden">Generate Wallpaper</h2>
-    <div class="Studio__ModeContainer">
-        <StyleConfigContainer/>
-    </div>
     <div class="Studio__Generator">
         <StudioPreview />
 
         <div class="Studio__Control">
+            <div class="Studio__ModeContainer">
+                <StyleConfigContainer/>
+            </div>
             <div class="Studio__ColourInputContainer">
                 <WallGenColourInputList />
             </div>
