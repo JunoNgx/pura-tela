@@ -9,9 +9,40 @@
 	import { getColourStringsInUse, shouldShowSampleText, wallGenStyle } from "src/states/wallGenState.svelte.js";
 
     let isExpanded = $state(true);
+    let containerEl: HTMLElement;
 
     const toggleExpanded = () => {
-        isExpanded = !isExpanded;
+        if (isExpanded) collapse()
+        else expand();
+    };
+
+    // All these lengthy logic to transition `height: auto`
+    const expand = () => {
+        isExpanded = true;
+
+        containerEl.style.height = "auto";
+        // const targetHeight = containerEl.scrollHeight;
+        const computedStyle = window.getComputedStyle(containerEl);
+        const targetHeight = parseFloat(computedStyle.height);
+        containerEl.style.height = "2rem";
+        containerEl.offsetHeight;
+        containerEl.style.height = `${targetHeight}px`;
+
+        containerEl.addEventListener('transitionend', function transitionEndHandler() {
+            containerEl.style.height = "auto";
+            containerEl.removeEventListener('transitionend', transitionEndHandler);
+        });
+    };
+
+    const collapse = () => {
+        isExpanded = false;
+
+        const computedStyle = window.getComputedStyle(containerEl);
+        const targetHeight = parseFloat(computedStyle.height);
+        console.log("collapse", targetHeight)
+        containerEl.style.height = `${targetHeight}px`;
+        containerEl.offsetHeight;
+        containerEl.style.height = "2rem";
     };
     
     const handleDownloadClick = () => {
@@ -31,6 +62,7 @@
 
 <div class="StudioPreview"
     class:StudioPreview--IsExpanded={isExpanded}
+    bind:this={containerEl}
 >
     <button class="StudioPreview__ToggleExpandBtn"
         title={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
@@ -97,9 +129,9 @@
         overflow: hidden;
         transition: height ease-in-out var(--transTime);
 
-        display: flex;
+        /* display: flex;
         flex-direction: column;
-        align-items: stretch;
+        align-items: stretch; */
     }
 
     .StudioPreview__ToggleExpandBtn {
@@ -136,11 +168,12 @@
     .StudioPreview__SampleTextContainer {
         position: relative;
         width: 100%;
+        max-height: 45vh;
         transition: opacity ease-in-out var(--transTime);
     }
 
     .StudioPreview__Content {
-        flex-grow: 3;
+        /* flex-grow: 3; */
 
         height: auto;
         box-sizing: border-box;
@@ -190,14 +223,14 @@
         /* padding: 1rem 2rem; */
         display: block;
     }
-
+/* 
     .StudioPreview:not(.StudioPreview--IsExpanded) {
         height: 2rem;
     }
 
     .StudioPreview.StudioPreview--IsExpanded {
         height: 50vh;
-    }
+    } */
 
     .StudioPreview--IsExpanded .StudioPreview__ExpandedIcon {
         rotate: 180deg;
