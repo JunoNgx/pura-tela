@@ -77,6 +77,11 @@
         gap: 1rem;
         align-items: center;
     }
+
+    .StyleConfigItem__InputContainer {
+        display: flex;
+        flex-wrap: nowrap;
+    }
     
     .StyleConfigItem__Label {
         grid-column: 1/3;
