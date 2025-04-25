@@ -1,7 +1,7 @@
 <script lang="ts">
     import RadioCheckbox from "src/components/RadioCheckbox.svelte";
     import { WallpaperStyle, type MouseInputEvent } from "src/lib/types.js";
-	import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, setWallGenColourInUseCount, wallGenStyle, isPaletteStyle } from "src/states/wallGenState.svelte.js";
+	import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, isPaletteStyle, setWallGenColourInUseCount, wallGenStyle, getWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
 	import StyleConfigGradient from "./StyleConfigGradient.svelte";
 	import StyleConfigPalette from "./StyleConfigPalette.svelte";
@@ -10,8 +10,17 @@
         const newValue = e.currentTarget.value as WallpaperStyle;
         wallGenStyle.set(newValue);
 
-        const newDefaultColourCount = getCurrWallStyleInfo().defaultColourCount
-        setWallGenColourInUseCount(newDefaultColourCount);
+        const {
+            defaultColourCount,
+            minColourCount,
+            maxColourCount,
+        } = getCurrWallStyleInfo();
+        const shouldResetColourInUseCount =
+            getWallGenColourInUseCount() < minColourCount
+            || getWallGenColourInUseCount() > maxColourCount;
+        if (shouldResetColourInUseCount) {
+            setWallGenColourInUseCount(defaultColourCount);
+        }
     }
 </script>
 
