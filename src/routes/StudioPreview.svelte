@@ -74,8 +74,9 @@
 
     .StudioPreview__Content,
     .StudioPreview__SampleTextContainer {
-        aspect-ratio: 3/2;
         position: relative;
+        max-height: 45vh;
+        width: 100%;
     }
 
     .StudioPreview__Content {
@@ -127,10 +128,4 @@
         display: block;
     }
 
-    @media screen and (width < 850px) {
-        .StudioPreview__Content,
-        .StudioPreview__SampleTextContainer {
-            aspect-ratio: 1;
-        }
-    }
 </style>

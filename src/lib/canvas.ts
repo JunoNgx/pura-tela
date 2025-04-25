@@ -473,19 +473,21 @@ const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
     const canvasRatio = canvas.width / canvas.height;
     const isContainerWiderThanCanvas = containerRatio > canvasRatio;
 
-    if (isContainerWiderThanCanvas)
-        setCanvasFitToHeight(canvas);
-    else setCanvasFitToWidth(canvas);
-};
+    if (isContainerWiderThanCanvas) {
+        // Fit to height
+        const height = container.clientHeight * 1.0;
+        const width = height * canvasRatio;
 
-const setCanvasFitToWidth = (canvas: HTMLCanvasElement) => {
-    canvas.style.width = "99%";
-    canvas.style.height = "";
-};
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+    } else {
+        // Fit to width
+        const width = container.clientWidth * 1.0;
+        const height = width / canvasRatio;
 
-const setCanvasFitToHeight = (canvas: HTMLCanvasElement) => {
-    canvas.style.width = "";
-    canvas.style.height = "99%";
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+    }
 };
 
 export const generateImage = (filename: string) => {
