@@ -162,7 +162,7 @@
     .StudioPreview__SampleTextContainer {
         position: relative;
         width: 100%;
-        max-height: 45vh;
+        max-height: 40vh;
         transition: opacity ease-in-out var(--transTime);
     }
 
