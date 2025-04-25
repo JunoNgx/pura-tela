@@ -102,27 +102,4 @@
         flex-direction: column;
         gap: 3rem;
     }
-
-    /* .Studio__Generator {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        padding: 2rem 0 0;
-    }
-
-    .Studio__Control {
-        flex-grow: 1;
-    }
-
-    .Studio__Size {
-        margin-top: 3rem;
-    }
-
-    @media screen and (width < 850px) {
-        .Studio__Generator {
-            padding: 1.5rem 0;
-            gap: 4rem;
-        }
-    } */
-
 </style>
