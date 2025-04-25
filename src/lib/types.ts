@@ -88,6 +88,10 @@ export type WallGenQueryProps = {
     swatchItemSpacing: string | null,
 };
 
+export type PalGenQueryProps = {
+    paletteQueryStr: string | null,
+};
+
 export type MouseInputEvent = MouseEvent & {
     currentTarget: EventTarget & HTMLInputElement
 };
@@ -132,4 +136,11 @@ export type GradientStyleConfigProps = {
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps,
     gradient: GradientStyleConfigProps,
+};
+
+export type ShareItem = {
+    label: string,
+    content: string,
+    shareText: string,
+    shareTitle: string
 };

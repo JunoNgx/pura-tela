@@ -5,7 +5,7 @@
 
 	import SharePanel from "src/components/SharePanel.svelte";
 	import DropdownMenu from "src/components/DropdownMenu.svelte";
-	import PaletteGeneratorItem from "src/routes/generate/PaletteGeneratorItem.svelte";
+	import PaletteGeneratorItem from "src/routes/generate-palette/PaletteGeneratorItem.svelte";
 	import type { PalGenColObj } from "src/lib/types.js";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 
@@ -20,6 +20,7 @@
 	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
+	import { computeBaseUrl } from "src/lib/utils.js";
 
     const addColour = () => {
         addToPalGenColours();
@@ -55,6 +56,13 @@
         if (!response) return;
 
         tryParseFromStringToPalGen(response);
+    };
+
+    const computeShareableUrl = () => {
+        const url = new URL(`${computeBaseUrl()}/generate-palette`);
+        url.searchParams.append("colours", exportToStringFromPalGen());
+
+        return url.toString();
     };
 
     const handleDndSort = (e: CustomEvent<DndEvent<PalGenColObj>>) => {
@@ -154,9 +162,23 @@
     </div>
 
     <SharePanel
+        domId="SharePalette"
         title="Share this palette"
         desc="Save this or send it to someone. Choose [Import from string] to re-access this palette."
-        content={exportToStringFromPalGen()}
+        shareItemList={[
+            {
+                label: "Importable plain string",
+                content: exportToStringFromPalGen(),
+                shareTitle: "Colour palette from Pura Tela",
+                shareText: "Check out this beautiful colour palette I made in Pura Tela:",
+            },
+            {
+                label: "Direct link",
+                content: computeShareableUrl(),
+                shareTitle: "Colour palette from Pura Tela",
+                shareText: "Check out this beautiful colour palette in Pura Tela:",
+            }
+        ]}
     />
 </div>
 

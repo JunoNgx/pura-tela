@@ -31,7 +31,7 @@
 
     const passToPalGen = () => {
         passPaletteToPaletteGenerator(index);
-        goto("/generate");
+        goto("/generate-palette");
     };
 
     const handleDeletePalette = () => {

@@ -1,52 +1,38 @@
 <script lang="ts">
-	import { onDestroy } from "svelte";
+	import type { ShareItem } from "src/lib/types.js";
+
+	import SharePanelItem from "./SharePanelItem.svelte";
 
     type SharePanelProps = {
+        domId: string,
         title: string,
         desc?: string,
-        content: string
-    }
-    
-    let { title, desc, content }: SharePanelProps = $props();
-    let hasBeenCopied = $state(false);
-    let copyRestoreStatusTimeout: number | undefined = $state();
-
-    const copyContent = async () => {
-        try {
-            await navigator.clipboard.writeText(content);
-            hasBeenCopied = true;
-
-            copyRestoreStatusTimeout = setTimeout(() => {
-                hasBeenCopied = false;
-            }, 1000);
-        } catch(error) {
-            throw new Error("Unable to copy colour code to clipboard")
-        }
+        shareItemList: ShareItem[],
     };
 
-    onDestroy(() => {
-        clearTimeout(copyRestoreStatusTimeout);
-    })
+    let {
+        domId,
+        title,
+        desc,
+        shareItemList,
+    }: SharePanelProps = $props();
 </script>
 
-<div class="SharePanel">
+<div class="SharePanel"
+    id={`${domId}`}
+>
     <h3 class="SharePanel__Title">{title}</h3>
     {#if desc}
         <p class="SharePanel__Description">{desc}</p>
     {/if}
-    <div class="SharePanel__Container">
-        <div class="SharePanel__Content">{content}</div>
-        <button class="SharePanel__CopyBtn"
-            onclick={copyContent}
-            title="Copy this content"
-            aria-label="Copy this content"
-        >
-            {#if hasBeenCopied}
-                Copied
-            {:else}
-                Copy
-            {/if}
-        </button>
+    <div class="SharePanel__ListContainer">
+        {#each shareItemList as shareItem, index}
+            <SharePanelItem
+                shareItem={shareItem}
+                domId={domId}
+                index={index}
+            />
+        {/each}
     </div>
 </div>
 
@@ -55,18 +41,10 @@
         margin-top: 3rem;
     }
 
-    .SharePanel__Container {
-        border: var(--lineWeight) dashed var(--colPri);
+    .SharePanel__ListContainer {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        flex-direction: column;
         gap: 1rem;
-        padding: 1rem;
     }
 
-    .SharePanel__Content {
-        font-family: var(--fontFamilyMono);
-        flex-shrink: 3;
-        word-break: break-all;
-    }
 </style>

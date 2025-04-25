@@ -23,7 +23,7 @@
 
     const passColoursToPaletteGenerator = () => {
         passWallGenToPaletteGenerator(getColourStringsInUse());
-        goto("/generate");
+        goto("/generate-palette");
     };
 
     const handleSavePalette = () => {
