@@ -119,7 +119,7 @@
     }
 
     .StudioPreview__DownloadBtn {
-        padding: 1rem 2rem;
+        /* padding: 1rem 2rem; */
         display: block;
     }
 
