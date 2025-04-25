@@ -24,6 +24,10 @@
         }
     };
 
+    const shareContent = () => {
+
+    };
+
     onDestroy(() => {
         clearTimeout(copyRestoreStatusTimeout);
     })
@@ -36,6 +40,13 @@
     {/if}
     <div class="SharePanel__MainWrapper">
         <div class="SharePanel__ButtonsContainer">
+            <button class="SharePanel__ShareBtn"
+                onclick={shareContent}
+                title="Share this content"
+                aria-label="Share this content"
+            >
+                Share
+            </button>
             <button class="SharePanel__CopyBtn"
                 onclick={copyContent}
                 title="Copy this content"
@@ -66,6 +77,7 @@
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+        gap: 1rem;
     }
 
     .SharePanel__Content {
