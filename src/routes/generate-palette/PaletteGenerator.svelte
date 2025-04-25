@@ -20,6 +20,7 @@
 	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
+	import { computeBaseUrl } from "src/lib/utils.js";
 
     const addColour = () => {
         addToPalGenColours();
@@ -55,6 +56,13 @@
         if (!response) return;
 
         tryParseFromStringToPalGen(response);
+    };
+
+    const computeShareableUrl = () => {
+        const url = new URL(computeBaseUrl());
+        url.searchParams.append("palette", exportToStringFromPalGen());
+
+        return url.toString();
     };
 
     const handleDndSort = (e: CustomEvent<DndEvent<PalGenColObj>>) => {
@@ -163,6 +171,12 @@
                 content: exportToStringFromPalGen(),
                 shareTitle: "Colour palette from Pura Tela",
                 shareText: "Check out this beautiful colour palette I made in Pura Tela:",
+            },
+            {
+                label: "Direct link",
+                content: computeShareableUrl(),
+                shareTitle: "Colour palette from Pura Tela",
+                shareText: "Check out this beautiful colour palette in Pura Tela:",
             }
         ]}
     />
