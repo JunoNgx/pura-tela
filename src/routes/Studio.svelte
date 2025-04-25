@@ -148,9 +148,10 @@
         desc="Save this as a bookmark, or share your creation with someone. Access this url to retrieve the current wallpaper settings."
         shareItemList={[
             {
-                title: "Wallpaper from Pura Tela",
-                text: "Check out this custom wallpaper I made in Pura Tela:",
+                label: "Direct link",
                 content: computeShareableUrl(),
+                shareTitle: "Wallpaper from Pura Tela",
+                shareText: "Check out this custom wallpaper I made in Pura Tela:",
             },
         ]}
     />

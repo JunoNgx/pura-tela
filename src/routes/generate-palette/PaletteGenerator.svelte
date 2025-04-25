@@ -158,9 +158,10 @@
         desc="Save this or send it to someone. Choose [Import from string] to re-access this palette."
         shareItemList={[
             {
-                title: "Colour palette from Pura Tela",
-                text: "Check out this beautiful colour palette I made in Pura Tela:",
+                label: "Plain string",
                 content: exportToStringFromPalGen(),
+                shareTitle: "Colour palette from Pura Tela",
+                shareText: "Check out this beautiful colour palette I made in Pura Tela:",
             }
         ]}
     />

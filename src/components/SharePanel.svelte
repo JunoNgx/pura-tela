@@ -5,9 +5,10 @@
     import MaterialSymbolsLightContentCopyOutline from "~icons/material-symbols-light/content-copy-outline";
 
     type ShareItem = {
-        title: string
+        label: string,
         content: string,
-        text: string,
+        shareText: string,
+        shareTitle: string
     };
 
     type SharePanelProps = {
@@ -44,8 +45,8 @@
         }
 
         navigator.share({
-            title: item.title,
-            text: item.text,
+            title: item.shareTitle,
+            text: item.shareText,
             url: item.content,
         })
         .catch(error => {
@@ -67,30 +68,37 @@
 
         {#each shareItemList as shareItem }
             <div class="SharePanel__ShareItem">
-                <div class="SharePanel__ButtonsContainer">
-                    <button class="SharePanel__ShareBtn IconButtonWithLabel"
-                        onclick={() => {shareItemContent(shareItem)}}
-                        title="Share this content"
-                        aria-label="Share this content"
-                    >
-                        <MaterialSymbolsLightShareOutline/>
-                        <span>Share</span>
-                    </button>
-                    <button class="SharePanel__CopyBtn IconButtonWithLabel"
-                        onclick={() => {copyItemContent(shareItem)}}
-                        title="Copy this content"
-                        aria-label="Copy this content"
-                    >
-                        <MaterialSymbolsLightContentCopyOutline/>
-                        <span>
-                            {#if hasBeenCopied}
-                                Copied
-                            {:else}
-                                Copy
-                            {/if}
-                        </span>
-                    </button>
+                <div class="SharePanel__ShareItemTop">
+                    <h4 class="SharePanel__ShareItemLabel">
+                        {shareItem.label}
+                    </h4>
+
+                    <div class="SharePanel__ButtonsContainer">
+                        <button class="SharePanel__ShareBtn IconButtonWithLabel"
+                            onclick={() => {shareItemContent(shareItem)}}
+                            title="Share this content"
+                            aria-label="Share this content"
+                        >
+                            <MaterialSymbolsLightShareOutline/>
+                            <span>Share</span>
+                        </button>
+                        <button class="SharePanel__CopyBtn IconButtonWithLabel"
+                            onclick={() => {copyItemContent(shareItem)}}
+                            title="Copy this content"
+                            aria-label="Copy this content"
+                        >
+                            <MaterialSymbolsLightContentCopyOutline/>
+                            <span>
+                                {#if hasBeenCopied}
+                                    Copied
+                                {:else}
+                                    Copy
+                                {/if}
+                            </span>
+                        </button>
+                    </div>
                 </div>
+
                 <div class="SharePanel__Content">{shareItem.content}</div>
             </div>
         {/each}
@@ -106,6 +114,18 @@
     .SharePanel__ListContainer {
         border: var(--lineWeight) dashed var(--colPri);
         padding: 1rem;
+    }
+    
+    .SharePanel__ShareItemTop {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .SharePanel__ShareItemLabel {
+        margin: 0;
+        font-weight: bold;
     }
 
     .SharePanel__ButtonsContainer {
