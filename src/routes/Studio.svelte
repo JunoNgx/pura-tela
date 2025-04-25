@@ -82,7 +82,7 @@
 </script>
 
 <div class="Studio">
-    <h2 class="VisuallyHidden">Create Wallpaper</h2>
+    <h2 class="VisuallyHidden">Generate Wallpaper</h2>
     <div class="Studio__ModeContainer">
         <StyleConfigContainer/>
     </div>
