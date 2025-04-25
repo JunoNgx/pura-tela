@@ -149,3 +149,10 @@ export type RenderStyleConfig = {
     gradient: GradientStyleConfigProps,
     palette: PaletteStyleConfigProps,
 };
+
+export type ShareItem = {
+    label: string,
+    content: string,
+    shareText: string,
+    shareTitle: string
+};
