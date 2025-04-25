@@ -9,7 +9,7 @@
     };
 
     let {
-        className,
+        className = "",
         domId,
         label,
         checked,

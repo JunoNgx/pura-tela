@@ -161,25 +161,27 @@
         </div>
     </div>
 
-    <SharePanel
-        domId="SharePalette"
-        title="Share this palette"
-        desc="Save this or send it to someone. Choose [Import from string] to re-access this palette."
-        shareItemList={[
-            {
-                label: "Importable plain string",
-                content: exportToStringFromPalGen(),
-                shareTitle: "Colour palette from Pura Tela",
-                shareText: "Check out this beautiful colour palette I made in Pura Tela:",
-            },
-            {
-                label: "Direct link",
-                content: computeShareableUrl(),
-                shareTitle: "Colour palette from Pura Tela",
-                shareText: "Check out this beautiful colour palette in Pura Tela:",
-            }
-        ]}
-    />
+    <div class="PaletteGenerator__ShareContainer">
+        <SharePanel
+            domId="SharePalette"
+            title="Share this palette"
+            desc="Save this or send it to someone. Choose [Import from string] to re-access this palette."
+            shareItemList={[
+                {
+                    label: "Importable plain string",
+                    content: exportToStringFromPalGen(),
+                    shareTitle: "Colour palette from Pura Tela",
+                    shareText: "Check out this beautiful colour palette I made in Pura Tela:",
+                },
+                {
+                    label: "Direct link",
+                    content: computeShareableUrl(),
+                    shareTitle: "Colour palette from Pura Tela",
+                    shareText: "Check out this beautiful colour palette in Pura Tela:",
+                }
+            ]}
+        />
+    </div>
 </div>
 
 <style>
@@ -216,6 +218,10 @@
 
     .PaletteGenerator__ActionsContainerLower {
         justify-content: flex-start;
+    }
+
+    .PaletteGenerator__ShareContainer {
+        margin-top: 3rem;
     }
 
     @media screen and (width < 850px) {

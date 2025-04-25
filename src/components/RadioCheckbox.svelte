@@ -12,7 +12,7 @@
 
     let {
         onclick,
-        className,
+        className = "",
         value,
         checked,
         children,
