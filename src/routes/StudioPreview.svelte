@@ -94,9 +94,12 @@
         /* width: 100%; */
         border: var(--lineWeight) solid var(--colPri);
         padding: 0.5rem;
-        height: auto;
         overflow: hidden;
-        /* transition: height ease-in-out var(--transTime); */
+        transition: height ease-in-out var(--transTime);
+
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
     }
 
     .StudioPreview__ToggleExpandBtn {
@@ -126,16 +129,19 @@
     .StudioPreview__ExpandedIcon {
         font-size: 1.5rem;
         line-height: 1.5rem;
+        transition: rotate ease-in-out var(--transTime);
     }
 
     .StudioPreview__Content,
     .StudioPreview__SampleTextContainer {
         position: relative;
-        max-height: 45vh;
         width: 100%;
+        transition: opacity ease-in-out var(--transTime);
     }
 
     .StudioPreview__Content {
+        flex-grow: 3;
+
         height: auto;
         box-sizing: border-box;
         overflow: hidden;
@@ -177,6 +183,7 @@
         align-items: center;
         padding-top: 0.5rem;
         /* text-align: center; */
+        transition: opacity ease-in-out var(--transTime);
     }
 
     .StudioPreview__DownloadBtn {
@@ -184,19 +191,23 @@
         display: block;
     }
 
-    .StudioPreview--IsExpanded {
+    .StudioPreview:not(.StudioPreview--IsExpanded) {
         height: 2rem;
+    }
+
+    .StudioPreview.StudioPreview--IsExpanded {
+        height: 50vh;
     }
 
     .StudioPreview--IsExpanded .StudioPreview__ExpandedIcon {
         rotate: 180deg;
     }
 
-    .StudioPreview--IsExpanded .StudioPreview__Content {
+    .StudioPreview:not(.StudioPreview--IsExpanded) .StudioPreview__Content {
         opacity: 0;
     }
     
-    .StudioPreview--IsExpanded .StudioPreview__Footer {
+    .StudioPreview:not(.StudioPreview--IsExpanded) .StudioPreview__Footer {
         opacity: 0;
     }
 </style>
