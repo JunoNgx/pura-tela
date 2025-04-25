@@ -123,15 +123,10 @@
         top: var(--outerPaddingMobile);
         background-color: var(--colBg);
         z-index: 20;
-        /* width: 100%; */
         border: var(--lineWeight) solid var(--colPri);
         padding: 0.5rem;
         overflow: hidden;
         transition: height ease-in-out var(--transTime);
-
-        /* display: flex;
-        flex-direction: column;
-        align-items: stretch; */
     }
 
     .StudioPreview__ToggleExpandBtn {
@@ -153,7 +148,6 @@
 
     .StudioPreview__Title {
         font-size: var(--fontSizeMd);
-        /* text-transform: lowercase; */
         font-weight: 400;
         margin: 0 0 0 0.5rem;
     }
@@ -173,15 +167,11 @@
     }
 
     .StudioPreview__Content {
-        /* flex-grow: 3; */
-
         height: auto;
         box-sizing: border-box;
         overflow: hidden;
-
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+        display: grid;
+        place-items: center;
     }
 
     .StudioPreview__SampleTextContainer {
@@ -223,14 +213,6 @@
         /* padding: 1rem 2rem; */
         display: block;
     }
-/* 
-    .StudioPreview:not(.StudioPreview--IsExpanded) {
-        height: 2rem;
-    }
-
-    .StudioPreview.StudioPreview--IsExpanded {
-        height: 50vh;
-    } */
 
     .StudioPreview--IsExpanded .StudioPreview__ExpandedIcon {
         rotate: 180deg;
