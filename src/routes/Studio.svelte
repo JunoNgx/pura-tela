@@ -144,6 +144,7 @@
     </div>
 
     <SharePanel
+        domId="ShareWallpaper"
         title="Share this wallpaper"
         desc="Save this as a bookmark, or share your creation with someone. Access this url to retrieve the current wallpaper settings."
         shareItemList={[

@@ -12,12 +12,14 @@
     };
 
     type SharePanelProps = {
+        domId: string,
         title: string,
         desc?: string,
         shareItemList: ShareItem[],
     };
 
     let {
+        domId,
         title,
         desc,
         shareItemList,
@@ -59,17 +61,23 @@
     })
 </script>
 
-<div class="SharePanel">
+<div class="SharePanel"
+    id={`${domId}`}
+>
     <h3 class="SharePanel__Title">{title}</h3>
     {#if desc}
         <p class="SharePanel__Description">{desc}</p>
     {/if}
     <div class="SharePanel__ListContainer">
 
-        {#each shareItemList as shareItem }
-            <div class="SharePanel__ShareItem">
+        {#each shareItemList as shareItem, index }
+            <div class="SharePanel__ShareItem"
+                id={`${domId}-${index}`}
+            >
                 <div class="SharePanel__ShareItemTop">
-                    <h4 class="SharePanel__ShareItemLabel">
+                    <h4 class="SharePanel__ShareItemLabel"
+                        id={`${domId}-${index}-label`}
+                    >
                         {shareItem.label}
                     </h4>
 
@@ -99,7 +107,11 @@
                     </div>
                 </div>
 
-                <div class="SharePanel__Content">{shareItem.content}</div>
+                <div class="SharePanel__Content"
+                    aria-describedby="{`${domId}-${index}-label`}"
+                >
+                    {shareItem.content}
+                </div>
             </div>
         {/each}
 

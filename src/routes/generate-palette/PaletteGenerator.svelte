@@ -154,6 +154,7 @@
     </div>
 
     <SharePanel
+        domId="SharePalette"
         title="Share this palette"
         desc="Save this or send it to someone. Choose [Import from string] to re-access this palette."
         shareItemList={[
