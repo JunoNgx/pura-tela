@@ -4,10 +4,18 @@
     type SharePanelProps = {
         title: string,
         desc?: string,
-        content: string
+        content: string,
+        shareTitle: string,
+        shareText: string,
     }
     
-    let { title, desc, content }: SharePanelProps = $props();
+    let {
+        title,
+        desc,
+        content,
+        shareTitle,
+        shareText,
+    }: SharePanelProps = $props();
     let hasBeenCopied = $state(false);
     let copyRestoreStatusTimeout: number | undefined = $state();
 
@@ -25,7 +33,19 @@
     };
 
     const shareContent = () => {
+        if (!navigator.share) {
+            copyContent();
+            return;
+        }
 
+        navigator.share({
+            title: shareTitle,
+            text: shareText,
+            url: content,
+        })
+        .catch(error => {
+            console.log("Error sharing content", error)
+        });
     };
 
     onDestroy(() => {
