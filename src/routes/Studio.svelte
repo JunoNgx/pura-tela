@@ -12,6 +12,8 @@
 	import { WallpaperStyle } from "src/lib/types.js";
 	import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 	import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+	import Checkbox from "src/components/Checkbox.svelte";
+	import { paletteStyleConfig } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
@@ -49,6 +51,11 @@
             url.searchParams.append("swatchItemShape", colourSwatchStyleConfig.val.itemShape);
             url.searchParams.append("swatchItemSize", colourSwatchStyleConfig.val.itemSize.toString());
             url.searchParams.append("swatchItemSpacing", colourSwatchStyleConfig.val.itemSpacing.toString());
+            break;
+        case WallpaperStyle.PALETTE:
+            url.searchParams.append("paletteAngle", paletteStyleConfig.val.angleInDeg.toString());
+            url.searchParams.append("paletteSize", paletteStyleConfig.val.size.toString());
+            url.searchParams.append("palettePosition", paletteStyleConfig.val.position.toString());
             break;
         }
 
@@ -101,17 +108,13 @@
 
             <div class="Studio__PreviewSettings">
                 <div class="Studio__SampleTextSetting">
-                    <input class="Studio__SampleTextCheckBox"
-                        id="shouldShowSampleText"
-                        type=checkbox
+                    <Checkbox
+                        className="Studio__SampleTextCheckBox"
+                        domId="shouldShowSampleText"
+                        label="Show sample texts"
                         checked={shouldShowSampleText.val}
-                        onclick={handleCheckboxSwitch}
-                    >
-                    <label class="Studio__SampleTextLabel"
-                        for="shouldShowSampleText"
-                    >
-                        Show sample texts
-                    </label>
+                        changeHandler={handleCheckboxSwitch}
+                    />
                 </div>
 
                 <button class="Studio_DownloadBtn PriBtn"
@@ -201,10 +204,6 @@
 
     .Studio__SampleText--Black {
         color: var(--colBlack);
-    }
-
-    .Studio__SampleTextCheckBox {
-        margin-left: 0;
     }
 
     .Studio__PreviewSettings {

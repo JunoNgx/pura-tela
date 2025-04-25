@@ -157,6 +157,10 @@ export const renderCanvas = (
         renderForColourSwatchStyle(renderOptions);
         break;
 
+    case WallpaperStyle.PALETTE:
+        renderForPaletteStyle(renderOptions);
+        break;
+
     case WallpaperStyle.SOLID:
     default:
         renderForSolidStyle(renderOptions);
@@ -382,6 +386,76 @@ const renderForColourSwatchStyle = (
 
     if (shouldDrawHorizontally) drawHorizontally();
     else drawVertically();
+};
+
+export const renderForPaletteStyle = (
+    { ctx, colours, size, config }: StyleRenderOptions
+) => {
+    if (!config?.palette) {
+        throw new Error("Cannot access Palette config");
+    }
+
+    if (colours.length < 2) {
+        throw new Error("Insufficient colours for Palette rendering");
+    }
+
+    // Due to this translation, the centerpoint is now (0, 0)
+    // ctx.fillStyle = "blue";
+    // ctx.fillRect(0, 0, 10, 10);
+
+    ctx.translate(size.width/ 2, size.height /2);
+    ctx.rotate(config.palette.angleInDeg * Math.PI/180);
+
+    const mainColours = [...colours];
+    const firstColour = mainColours.shift();
+    const lastColour = mainColours.pop();
+
+    const longerSide = size.width >= size.height
+        ? size.width
+        : size.height;
+    const shorterSide = size.width >= size.height
+        ? size.height
+        : size.width;
+        
+    const maxBaseSize = longerSide/(colours.length);
+    const minBaseSize = shorterSide/(colours.length);
+    const baseSize = minBaseSize + (maxBaseSize - minBaseSize) * config.palette.size/10;
+
+    const leftmostPosition = -longerSide/2;
+    const minStartingPos = leftmostPosition + maxBaseSize;
+    const maxStartingPos = 0;
+    const startingPos = minStartingPos + (maxStartingPos - minStartingPos) * config.palette.position/100;
+
+    const mainColoursWidth = baseSize * mainColours.length;
+    const mainColoursCenterpoint = startingPos + mainColoursWidth/2;
+
+    // Two background colours
+    ctx.fillStyle = firstColour!;
+    ctx.fillRect(
+        -size.width*2,
+        -size.height*2,
+        size.width*2 + mainColoursCenterpoint,
+        size.height*4
+    );
+    ctx.fillStyle = lastColour!;
+    ctx.fillRect(
+        0 + mainColoursCenterpoint,
+        -size.height*2,
+        size.width*2,
+        size.height*4 + mainColoursCenterpoint
+    );
+
+    for (let i = 0; i < mainColours.length; i++) {
+        const colour = mainColours[i];
+
+        ctx.fillStyle = colour;
+        ctx.fillRect(
+            startingPos + baseSize * i,
+            -size.height*2,
+            baseSize,
+            size.height*4
+        );
+    }
 };
 
 export const refitCanvasToContainer = () => {

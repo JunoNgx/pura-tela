@@ -8,6 +8,7 @@ import { generateId } from "./idGenState.svelte.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
 import { colourSwatchStyleConfig } from "./wallGenStyleConfigColourSwatchState.svelte.js";
 import { gradientStyleConfig } from "./wallGenStyleConfigGradientState.svelte.js";
+import { paletteStyleConfig } from "./wallGenStyleConfigPaletteState.svelte.js";
 
 /**
  * Wallpaper Generator current colours
@@ -190,6 +191,10 @@ export const isColourSwatchStyle = () => {
     return wallGenStyle.val === WallpaperStyle.COLOUR_SWATCH;
 };
 
+export const isPaletteStyle = () => {
+    return wallGenStyle.val === WallpaperStyle.PALETTE;
+};
+
 const currStyleInfo = $derived.by(() => {
     switch (wallGenStyle.val) {
     case WallpaperStyle.SOLID:
@@ -214,6 +219,7 @@ const currStyleInfo = $derived.by(() => {
         }
 
     case WallpaperStyle.COLOUR_SWATCH:
+    case WallpaperStyle.PALETTE:
         return {
             defaultColourCount: 5,
             minColourCount: 2,
@@ -345,6 +351,10 @@ export const setWallGenSizeFromSizeGalleryIndex = (index: number) => {
     });
 };
 
+export const isPortraitScreen = () => {
+    return wallGenSize.val.height > wallGenSize.val.width;
+};
+
 /**
  * Sample text setting
  */
@@ -384,9 +394,11 @@ export const getHexColourCodesInUse = () => {
 
 const derivedColourSwatchStyleConfig = $derived(colourSwatchStyleConfig.val);
 const derivedGradientStyleConfig = $derived(gradientStyleConfig.val);
+const derivedPaletteConfig = $derived(paletteStyleConfig.val);
 const derivedStyleConfig = $derived({
     colourSwatch: derivedColourSwatchStyleConfig,
     gradient: derivedGradientStyleConfig,
+    palette: derivedPaletteConfig,
 });
 export const getStyleConfig = () => {
     return derivedStyleConfig;
