@@ -113,4 +113,14 @@
         word-break: break-all;
         margin-top: 1rem;
     }
+
+    .SharePanel__ShareBtn {
+        display: none;
+    }
+
+    @media screen and (hover: none) and (pointer: coarse) {
+        .SharePanel__ShareBtn {
+            display: flex;
+        }
+    }
 </style>
