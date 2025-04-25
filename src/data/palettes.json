@@ -130,5 +130,9 @@
     {
         "name": "Kanis Major",
         "colours": ["42382E", "53879A", "9D9553", "CD5140", "F4BE6C", "E7E4DA"]
+    },
+    {
+        "name": "rymdkapsel",
+        "colours": ["0e1117", "81655b", "4ea9a0", "b55383", "7ca82e", "e0a11c", "2c76b4"]
     }
 ]
