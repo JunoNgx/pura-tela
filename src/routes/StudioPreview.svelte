@@ -9,6 +9,10 @@
 	import { getColourStringsInUse, shouldShowSampleText, wallGenStyle } from "src/states/wallGenState.svelte.js";
 
     let isExpanded = $state(true);
+
+    const toggleExpanded = () => {
+        isExpanded = !isExpanded;
+    };
     
     const handleDownloadClick = () => {
         const fileName = computeFilename({
@@ -32,6 +36,7 @@
         <button class="StudioPreview__ToggleExpandBtn"
             title={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
             aria-label={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
+            onclick={toggleExpanded}
         >
             <MaterialSymbolsLightKeyboardArrowUp/>
         </button>
@@ -85,6 +90,9 @@
         /* width: 100%; */
         border: var(--lineWeight) solid var(--colPri);
         padding: 0.5rem;
+        height: auto;
+        overflow: hidden;
+        /* transition: height ease-in-out var(--transTime); */
     }
 
     .StudioPreview__Header {
@@ -159,4 +167,19 @@
         display: block;
     }
 
+    .StudioPreview--IsExpanded {
+        height: 2rem;
+    }
+
+    :global(.StudioPreview--IsExpanded .StudioPreview__ToggleExpandBtn > svg) {
+        rotate: 180deg;
+    }
+
+    .StudioPreview--IsExpanded .StudioPreview__Content {
+        opacity: 0;
+    }
+    
+    .StudioPreview--IsExpanded .StudioPreview__Footer {
+        opacity: 0;
+    }
 </style>
