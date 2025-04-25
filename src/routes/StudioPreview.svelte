@@ -32,19 +32,19 @@
 <div class="StudioPreview"
     class:StudioPreview--IsExpanded={isExpanded}
 >
-    <div class="StudioPreview__Header">
+    <button class="StudioPreview__ToggleExpandBtn"
+        title={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
+        aria-label={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
+        onclick={toggleExpanded}
+    >
         <h3 class="StudioPreview__Title">
             Preview
         </h3>
 
-        <button class="StudioPreview__ToggleExpandBtn"
-            title={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
-            aria-label={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
-            onclick={toggleExpanded}
-        >
+        <div class="StudioPreview__ExpandedIcon">
             <MaterialSymbolsLightKeyboardArrowUp/>
-        </button>
-    </div>
+        </div>
+    </button>
 
     <div class="StudioPreview__Content"
         id="CanvasContainer"    
@@ -99,12 +99,21 @@
         /* transition: height ease-in-out var(--transTime); */
     }
 
-    .StudioPreview__Header {
+    .StudioPreview__ToggleExpandBtn {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
         margin-bottom: 0.5rem;
+        border: none;
+        padding: 0;
+    }
+
+    .StudioPreview__ToggleExpandBtn,
+    .StudioPreview__ToggleExpandBtn:hover {
+        color: var(--colPri);
+        background-color: var(--colBg);
     }
 
     .StudioPreview__Title {
@@ -114,13 +123,9 @@
         margin: 0 0 0 0.5rem;
     }
 
-    .StudioPreview__ToggleExpandBtn {
-        display: grid;
-        place-items: center;
+    .StudioPreview__ExpandedIcon {
         font-size: 1.5rem;
         line-height: 1.5rem;
-        padding: 0;
-        border: none;
     }
 
     .StudioPreview__Content,
@@ -183,7 +188,7 @@
         height: 2rem;
     }
 
-    :global(.StudioPreview--IsExpanded .StudioPreview__ToggleExpandBtn > svg) {
+    .StudioPreview--IsExpanded .StudioPreview__ExpandedIcon {
         rotate: 180deg;
     }
 
