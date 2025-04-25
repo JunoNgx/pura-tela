@@ -60,7 +60,7 @@
 
     const computeShareableUrl = () => {
         const url = new URL(`${computeBaseUrl()}/generate-palette`);
-        url.searchParams.append("palette", exportToStringFromPalGen());
+        url.searchParams.append("colours", exportToStringFromPalGen());
 
         return url.toString();
     };
