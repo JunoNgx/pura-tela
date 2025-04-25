@@ -479,13 +479,13 @@ const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
 };
 
 const setCanvasFitToWidth = (canvas: HTMLCanvasElement) => {
-    canvas.style.width = "95%";
+    canvas.style.width = "99%";
     canvas.style.height = "";
 };
 
 const setCanvasFitToHeight = (canvas: HTMLCanvasElement) => {
     canvas.style.width = "";
-    canvas.style.height = "95%";
+    canvas.style.height = "99%";
 };
 
 export const generateImage = (filename: string) => {
