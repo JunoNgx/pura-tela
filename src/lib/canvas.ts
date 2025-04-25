@@ -475,7 +475,10 @@ const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
 
     if (isContainerWiderThanCanvas) {
         // Fit to height
-        const height = container.clientHeight * 1.0;
+        const containerMaxHeightStyle =
+            window.getComputedStyle(container).maxHeight;
+        const containerMaxHeight = parseFloat(containerMaxHeightStyle);
+        const height = containerMaxHeight;
         const width = height * canvasRatio;
 
         canvas.style.width = `${width}px`;
