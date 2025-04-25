@@ -4,7 +4,7 @@
     type SharePanelProps = {
         title: string,
         desc?: string,
-        content: string,
+        shareContent: string,
         shareTitle: string,
         shareText: string,
     }
@@ -12,16 +12,16 @@
     let {
         title,
         desc,
-        content,
+        shareContent,
         shareTitle,
         shareText,
     }: SharePanelProps = $props();
     let hasBeenCopied = $state(false);
     let copyRestoreStatusTimeout: number | undefined = $state();
 
-    const copyContent = async () => {
+    const copyItemContent = async () => {
         try {
-            await navigator.clipboard.writeText(content);
+            await navigator.clipboard.writeText(shareContent);
             hasBeenCopied = true;
 
             copyRestoreStatusTimeout = setTimeout(() => {
@@ -32,16 +32,16 @@
         }
     };
 
-    const shareContent = () => {
+    const shareItemContent = () => {
         if (!navigator.share) {
-            copyContent();
+            copyItemContent();
             return;
         }
 
         navigator.share({
             title: shareTitle,
             text: shareText,
-            url: content,
+            url: shareContent,
         })
         .catch(error => {
             console.log("Error sharing content", error)
@@ -61,14 +61,14 @@
     <div class="SharePanel__MainWrapper">
         <div class="SharePanel__ButtonsContainer">
             <button class="SharePanel__ShareBtn"
-                onclick={shareContent}
+                onclick={shareItemContent}
                 title="Share this content"
                 aria-label="Share this content"
             >
                 Share
             </button>
             <button class="SharePanel__CopyBtn"
-                onclick={copyContent}
+                onclick={copyItemContent}
                 title="Copy this content"
                 aria-label="Copy this content"
             >
@@ -79,7 +79,7 @@
                 {/if}
             </button>
         </div>
-        <div class="SharePanel__Content">{content}</div>
+        <div class="SharePanel__Content">{shareContent}</div>
     </div>
 </div>
 

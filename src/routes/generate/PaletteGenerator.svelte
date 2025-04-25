@@ -158,7 +158,7 @@
         desc="Save this or send it to someone. Choose [Import from string] to re-access this palette."
         shareTitle="Colour palette from Pura Tela"
         shareText="Check out this beautiful colour palette I made in Pura Tela:"
-        content={exportToStringFromPalGen()}
+        shareContent={exportToStringFromPalGen()}
     />
 </div>
 
