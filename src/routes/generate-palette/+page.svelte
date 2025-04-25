@@ -1,5 +1,18 @@
 <script lang="ts">
 	import PaletteGenerator from "src/routes/generate-palette/PaletteGenerator.svelte";
+
+	import type { PalGenQueryProps } from "src/lib/types.js";
+	import { tryParseFromStringToPalGen } from "src/states/palGenState.svelte.js";
+
+	export let data: PalGenQueryProps;
+
+	const tryParseColoursToPalGen = () => {
+		if (!data.paletteQueryStr) return;
+
+		tryParseFromStringToPalGen(data.paletteQueryStr);
+	};
+
+	tryParseColoursToPalGen();
 </script>
 
 <h2>Palette Generator</h2>
