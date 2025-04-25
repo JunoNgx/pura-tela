@@ -37,14 +37,9 @@
 </div>
 
 <style>
-    .SharePanel {
-        margin-top: 3rem;
-    }
-
     .SharePanel__ListContainer {
         display: flex;
         flex-direction: column;
         gap: 1rem;
     }
-
 </style>
