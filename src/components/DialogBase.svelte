@@ -10,7 +10,7 @@
 
     let {
         shouldShowDialog = $bindable(),
-        className,
+        className = "",
         children,
     }: DialogBaseProps = $props();
 
