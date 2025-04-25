@@ -17,10 +17,10 @@
         <BaseNav/>
         <div class="MainContent Card">
             <!-- <BaseHeader/> -->
-                <div class="MobileLogoWrapper">
-                    <AppLogo isMono={false}/>
-                </div>
-                {@render children()}
+            <div class="MobileLogoWrapper">
+                <AppLogo isMono={false}/>
+            </div>
+            {@render children()}
         </div>
     </div>
 </main>
