@@ -469,23 +469,32 @@ const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
     const container = document.getElementById("CanvasContainer");
     if (!container) return;
 
-    const containerRatio = container.clientWidth / container.clientHeight;
+    /**
+     * `containerMaxHeight` is used to fully utilise the provided space.
+     */
+    const containerMaxHeightStyle =
+        window.getComputedStyle(container).maxHeight;
+    const containerMaxHeight = parseFloat(containerMaxHeightStyle);
+
+    const containerRatio = container.clientWidth / containerMaxHeight;
     const canvasRatio = canvas.width / canvas.height;
     const isContainerWiderThanCanvas = containerRatio > canvasRatio;
 
-    if (isContainerWiderThanCanvas)
-        setCanvasFitToHeight(canvas);
-    else setCanvasFitToWidth(canvas);
-};
+    if (isContainerWiderThanCanvas) {
+        // Fit to height
+        const height = containerMaxHeight;
+        const width = height * canvasRatio;
 
-const setCanvasFitToWidth = (canvas: HTMLCanvasElement) => {
-    canvas.style.width = "95%";
-    canvas.style.height = "";
-};
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+    } else {
+        // Fit to width
+        const width = container.clientWidth * 1.0;
+        const height = width / canvasRatio;
 
-const setCanvasFitToHeight = (canvas: HTMLCanvasElement) => {
-    canvas.style.width = "";
-    canvas.style.height = "95%";
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+    }
 };
 
 export const generateImage = (filename: string) => {

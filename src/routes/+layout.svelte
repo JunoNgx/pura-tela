@@ -17,10 +17,10 @@
         <BaseNav/>
         <div class="MainContent Card">
             <!-- <BaseHeader/> -->
-                <div class="MobileLogoWrapper">
-                    <AppLogo isMono={false}/>
-                </div>
-                {@render children()}
+            <div class="MobileLogoWrapper">
+                <AppLogo isMono={false}/>
+            </div>
+            {@render children()}
         </div>
     </div>
 </main>
@@ -70,7 +70,7 @@
         .MobileLogoWrapper {
             display: flex;
             justify-content: center;
-            margin: 0.5rem 0 3rem;
+            margin: 0.5rem 0 2rem;
         }
     }
 </style>
