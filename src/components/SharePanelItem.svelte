@@ -38,19 +38,31 @@
             return;
         }
 
-        navigator.share({
-            title: item.shareTitle,
-            text: item.shareText,
-            url: item.content,
-        })
+        const shareOptions = getShareOptions(item);
+        navigator.share(shareOptions)
         .catch(error => {
             console.log("Error sharing content", error)
         });
     };
 
+    const getShareOptions = (item: ShareItem) => {
+        if (shareItem.isContentPlainText) {
+            return {
+                title: item.shareTitle,
+                text: `${item.shareTitle} ${item.content}`,
+            };
+        }
+
+        return {
+            title: item.shareTitle,
+            text: item.shareText,
+            url: item.content,
+        };
+    };
+
     onDestroy(() => {
         clearTimeout(copyRestoreStatusTimeout);
-    })
+    });
 </script>
 
 
