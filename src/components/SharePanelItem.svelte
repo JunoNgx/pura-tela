@@ -49,7 +49,7 @@
         if (shareItem.isContentPlainText) {
             return {
                 title: item.shareTitle,
-                text: `${item.shareTitle} ${item.content}`,
+                text: `${item.shareText} ${item.content}`,
             };
         }
 
