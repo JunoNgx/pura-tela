@@ -1,8 +1,10 @@
 # Pura Tela
 A minimalist wallpaper generator and a simple colour toolkit, created for the web.
 
-## release/prime 
-This branch is a special snapshot of the early version (`v1.0`) of this app. For the latest version, check the main branch, 
+## release/bravo
+This branch is a special snapshot of a major version (`v2.x`) of this app, which is deployed at [pura-tela-bravo.vercel.app](https://pura-tela-bravo.vercel.app/).
+
+For the latest version, see the `main` branch.
 
 ## Origin
 This is a spin-off/enhanced remake of [Pura](https://github.com/JunoNgx/flutter-pura), a native Android app made with Flutter, which was delisted shortly before this project started.
