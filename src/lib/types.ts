@@ -154,5 +154,6 @@ export type ShareItem = {
     label: string,
     content: string,
     shareText: string,
-    shareTitle: string
+    shareTitle: string,
+    isContentPlainText?: boolean,
 };

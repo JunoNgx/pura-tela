@@ -171,7 +171,8 @@
                     label: "Importable plain string",
                     content: exportToStringFromPalGen(),
                     shareTitle: "Colour palette from Pura Tela",
-                    shareText: "Check out this beautiful colour palette I made in Pura Tela:",
+                    shareText: "Check out this beautiful colour palette you can import to Pura Tela:",
+                    isContentPlainText: true,
                 },
                 {
                     label: "Direct link",
