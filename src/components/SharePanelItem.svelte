@@ -33,7 +33,7 @@
     };
 
     const shareItemContent = (item: ShareItem) => {
-        if (!navigator.share) {
+        if (!navigator.canShare()) {
             copyItemContent(item);
             return;
         }
