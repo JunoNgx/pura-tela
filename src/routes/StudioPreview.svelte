@@ -153,8 +153,9 @@
     }
 
     .StudioPreview__ExpandedIcon {
+        display: grid;
+        place-items: center;
         font-size: 1.5rem;
-        line-height: 1.5rem;
         transition: rotate ease-in-out var(--transTime);
     }
 
