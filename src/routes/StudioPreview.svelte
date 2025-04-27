@@ -226,4 +226,11 @@
     .StudioPreview:not(.StudioPreview--IsExpanded) .StudioPreview__Footer {
         opacity: 0;
     }
+
+    @media screen and (width < 850px) {
+        .StudioPreview__Content,
+        .StudioPreview__SampleTextContainer {
+            max-height: 30vh;
+        }
+    }
 </style>
