@@ -205,7 +205,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding-top: 0.5rem;
+        margin-top: 1rem;
         /* text-align: center; */
         transition: opacity ease-in-out var(--transTime);
     }
