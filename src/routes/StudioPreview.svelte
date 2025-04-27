@@ -1,5 +1,5 @@
 <script lang="ts">
-    import MaterialSymbolsLightKeyboardArrowUp from "~icons/material-symbols-light/keyboard-arrow-up";
+    import MaterialSymbolsLightKeyboardArrowDown from "~icons/material-symbols-light/keyboard-arrow-down";
 
 	import Checkbox from "src/components/Checkbox.svelte";
 
@@ -74,7 +74,7 @@
         </h3>
 
         <div class="StudioPreview__ExpandedIcon">
-            <MaterialSymbolsLightKeyboardArrowUp/>
+            <MaterialSymbolsLightKeyboardArrowDown/>
         </div>
     </button>
 
