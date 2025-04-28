@@ -1,13 +1,13 @@
 <script lang="ts">
     import RadioCheckbox from "src/components/RadioCheckbox.svelte";
-    import { WallpaperStyle, type MouseInputEvent } from "src/lib/types.js";
+    import { WallpaperStyle, type MouseButtonEvent } from "src/lib/types.js";
 	import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, isPaletteStyle, setWallGenColourInUseCount, wallGenStyle, getWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
 	import StyleConfigGradient from "./StyleConfigGradient.svelte";
 	import StyleConfigPalette from "./StyleConfigPalette.svelte";
 
-    const handleWallpaperStyleChange = (e: MouseInputEvent) => {
-        const newValue = e.currentTarget.value as WallpaperStyle;
+    const handleWallpaperStyleChange = (e: MouseButtonEvent) => {
+        const newValue = e.currentTarget.getAttribute("data-value") as WallpaperStyle;
         wallGenStyle.set(newValue);
 
         const {
@@ -29,7 +29,39 @@
         <legend><h3>Wallpaper Style</h3></legend>
 
         <div class="StyleSelector__Container">
-            <RadioCheckbox
+
+            <button class="StyleSelectButton"
+                class:StyleSelectButton--IsSelected={isSolidStyle()}
+                aria-label="Select wallpaper style Solid"
+                title="Select wallpaper style Solid"
+                data-value={WallpaperStyle.SOLID}
+                onclick={handleWallpaperStyleChange}
+            >
+                <img class="StyleSelectButton__Img"
+                    src="/styleImages/style-solid.png"
+                    alt="Illustration for style Solid"
+                />
+                <span class="StyleSelectButton__Label">
+                    solid colour
+                </span>
+            </button>
+
+            <button class="StyleSelectButton"
+                class:StyleSelectButton--IsSelected={isGradientStyle()}
+                aria-label="Select wallpaper style Gradient"
+                title="Select wallpaper style Gradient"
+                data-value={WallpaperStyle.GRADIENT}
+                onclick={handleWallpaperStyleChange}
+            >
+                <img class="StyleSelectButton__Img"
+                    src="/styleImages/style-gradient.png"
+                    alt="Illustration for style Gradient"
+                />
+                <span class="StyleSelectButton__Label">
+                    gradient
+                </span>
+            </button>
+            <!-- <RadioCheckbox
                 value={WallpaperStyle.SOLID}
                 checked={isSolidStyle()}
                 onclick={handleWallpaperStyleChange}
@@ -67,7 +99,7 @@
                 onclick={handleWallpaperStyleChange}
             >
                 Palette
-            </RadioCheckbox>
+            </RadioCheckbox> -->
         </div>
 
     </fieldset>
@@ -86,7 +118,7 @@
 <style>
     .StyleSelector__Container {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
         margin-top: 1rem;
         margin-left: 0.5rem;
@@ -97,4 +129,34 @@
         padding: 0;
         margin: 0;
     }
+
+    .StyleSelectButton {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--colPri);
+        background-color: var(--colBg);
+    }
+
+    .StyleSelectButton:hover {
+        color: var(--colBg);
+        background-color: var(--colPri);
+    }
+
+    .StyleSelectButton--IsSelected,
+    .StyleSelectButton--IsSelected:hover {
+        color: var(--colPri);
+        background-color: var(--colBg2);
+    }
+
+    .StyleSelectButton--IsSelected .StyleSelectButton__Label {
+        text-decoration: underline;
+    }
+
+    .StyleSelectButton__Img {
+        width: 4rem;
+        height: 4rem;
+    }
+
 </style>
