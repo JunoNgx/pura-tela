@@ -8,14 +8,19 @@
 	import type { ColObj } from "src/lib/types.js";
 
     import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
+    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
     import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
 
-	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
+	import { decreaseWallGenColourInUseCount, getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { passWallGenToPaletteGenerator } from "src/states/palGenState.svelte.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
+
+    const handleRemoveColour = () => {
+        decreaseWallGenColourInUseCount();
+    };
 
     const handleAddColour = () => {
         increaseWallGenColourInUseCount();
@@ -92,6 +97,16 @@
     </ul>
 
     <div class="ColourInputContainer__ActionsContainerUpper">
+        <button class="ColourInputContainer__RemoveBtn IconButtonWithLabel"
+            disabled={getWallGenColourInUseCount() <= getCurrWallStyleInfo().minColourCount}
+            onclick={handleRemoveColour}
+            title="Remove the last colour from this wallpaper"
+            aria-label="Remove the last colour from this wallpaper"
+        >
+            <MaterialSymbolsLightRemove />
+            <span>Remove colour</span>
+        </button>
+
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
             disabled={getWallGenColourInUseCount() >= getCurrWallStyleInfo().maxColourCount}
             onclick={handleAddColour}
@@ -147,6 +162,7 @@
         margin-top: 1rem;
         display: flex;
         justify-content: flex-end;
+        gap: 1rem;
     }
 
     .ColourInputContainer__ActionContainer {
