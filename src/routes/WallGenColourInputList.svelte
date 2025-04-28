@@ -104,7 +104,7 @@
             aria-label="Remove the last colour from this wallpaper"
         >
             <MaterialSymbolsLightRemove />
-            <span>Remove colour</span>
+            <span>Remove</span>
         </button>
 
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
@@ -114,7 +114,7 @@
             aria-label="Add another colour to this wallpaper"
         >
             <MaterialSymbolsLightAdd />
-            <span>Add colour</span>
+            <span>Add</span>
         </button>
     </div>
 
