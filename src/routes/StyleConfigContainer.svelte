@@ -160,7 +160,7 @@
         background-color: var(--colBg2);
     }
 
-    .StyleSelectButton--IsSelected:after {
+    .StyleSelectButton:after {
         content: "";
         width: 1rem;
         height: 1rem;
@@ -168,6 +168,12 @@
         position: absolute;
         top: 0.5rem;
         right: 0.5rem;
+        opacity: 0;
+        transition: opacity ease-in-out var(--transTime);
+    }
+
+    .StyleSelectButton--IsSelected:after {
+        opacity: 1;
     }
 
     .StyleSelectButton--IsSelected .StyleSelectButton__Label {
