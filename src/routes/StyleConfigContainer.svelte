@@ -42,7 +42,7 @@
                     alt="Illustration for style Solid"
                 />
                 <span class="StyleSelectButton__Label">
-                    solid colour
+                    Solid Colour
                 </span>
             </button>
 
@@ -58,7 +58,7 @@
                     alt="Illustration for style Gradient"
                 />
                 <span class="StyleSelectButton__Label">
-                    gradient
+                    Gradient
                 </span>
             </button>
             <!-- <RadioCheckbox
