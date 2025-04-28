@@ -135,6 +135,7 @@
         flex-direction: column;
         align-items: center;
         gap: 0.5rem;
+        position: relative;
         color: var(--colPri);
         background-color: var(--colBg);
     }
@@ -148,6 +149,16 @@
     .StyleSelectButton--IsSelected:hover {
         color: var(--colPri);
         background-color: var(--colBg2);
+    }
+
+    .StyleSelectButton--IsSelected:after {
+        content: "";
+        width: 1rem;
+        height: 1rem;
+        background-color: var(--colPri);
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
     }
 
     .StyleSelectButton--IsSelected .StyleSelectButton__Label {
