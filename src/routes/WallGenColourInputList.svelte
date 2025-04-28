@@ -145,7 +145,7 @@
 
 <style>
     .ColourInputContainer__List {
-        padding: 0.5rem;
+        padding: 0;
         display: flex;
         flex-direction: column;
         gap: var(--colourInputItemGap);
