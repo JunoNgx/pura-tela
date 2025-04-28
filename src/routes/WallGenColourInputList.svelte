@@ -173,7 +173,7 @@
     }
 
     .ColourInputContainer__ActionsContainerUpper {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         display: flex;
         justify-content: flex-end;
         gap: 1rem;
