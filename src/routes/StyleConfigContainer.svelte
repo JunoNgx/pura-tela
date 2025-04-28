@@ -61,45 +61,54 @@
                     Gradient
                 </span>
             </button>
-            <!-- <RadioCheckbox
-                value={WallpaperStyle.SOLID}
-                checked={isSolidStyle()}
-                onclick={handleWallpaperStyleChange}
-            >
-                Solid colour
-            </RadioCheckbox>
 
-            <RadioCheckbox
-                value={WallpaperStyle.GRADIENT}
-                checked={isGradientStyle()}
+            <button class="StyleSelectButton"
+                class:StyleSelectButton--IsSelected={isPopArtSquareStyle()}
+                aria-label="Select wallpaper style Pop Art Square"
+                title="Select wallpaper style Pop Art Square"
+                data-value={WallpaperStyle.POP_ART_SQUARE}
                 onclick={handleWallpaperStyleChange}
             >
-                Gradient
-            </RadioCheckbox>
+                <img class="StyleSelectButton__Img"
+                    src="/styleImages/style-popart.png"
+                    alt="Illustration for style Pop Art Square"
+                />
+                <span class="StyleSelectButton__Label">
+                    Pop Art Square
+                </span>
+            </button>
 
-            <RadioCheckbox
-                value={WallpaperStyle.POP_ART_SQUARE}
-                checked={isPopArtSquareStyle()}
+            <button class="StyleSelectButton"
+                class:StyleSelectButton--IsSelected={isPaletteStyle()}
+                aria-label="Select wallpaper style Colour Palette"
+                title="Select wallpaper style Colour Palette"
+                data-value={WallpaperStyle.PALETTE}
                 onclick={handleWallpaperStyleChange}
             >
-                Pop art square
-            </RadioCheckbox>
+                <img class="StyleSelectButton__Img"
+                    src="/styleImages/style-palette.png"
+                    alt="Illustration for style Colour Palette"
+                />
+                <span class="StyleSelectButton__Label">
+                    Colour Palette
+                </span>
+            </button>
 
-            <RadioCheckbox
-                value={WallpaperStyle.COLOUR_SWATCH}
-                checked={isColourSwatchStyle()}
+            <button class="StyleSelectButton"
+                class:StyleSelectButton--IsSelected={isColourSwatchStyle()}
+                aria-label="Select wallpaper style Colour Swatch"
+                title="Select wallpaper style Colour Swatch"
+                data-value={WallpaperStyle.COLOUR_SWATCH}
                 onclick={handleWallpaperStyleChange}
             >
-                Colour swatch
-            </RadioCheckbox>
-
-            <RadioCheckbox
-                value={WallpaperStyle.PALETTE}
-                checked={isPaletteStyle()}
-                onclick={handleWallpaperStyleChange}
-            >
-                Palette
-            </RadioCheckbox> -->
+                <img class="StyleSelectButton__Img"
+                    src="/styleImages/style-swatch.png"
+                    alt="Illustration for style Colour Swatch"
+                />
+                <span class="StyleSelectButton__Label">
+                    Colour Swatch
+                </span>
+            </button>
         </div>
 
     </fieldset>
