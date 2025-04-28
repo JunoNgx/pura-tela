@@ -176,13 +176,21 @@
         opacity: 1;
     }
 
-    .StyleSelectButton--IsSelected .StyleSelectButton__Label {
-        text-decoration: underline;
-    }
-
     .StyleSelectButton__Img {
         width: 4rem;
         height: 4rem;
+    }
+
+    @media screen and (width < 550px) {
+        .StyleSelector__Container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media screen and (width < 320px) {
+        .StyleSelector__Container {
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 
 </style>
