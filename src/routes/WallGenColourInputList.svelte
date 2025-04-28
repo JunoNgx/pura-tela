@@ -154,7 +154,6 @@
 
     .ColourInputContainer__ItemWrapper {
         list-style: none;
-        height: var(--colourInputItemHeight);
     }
 
     :global(.ColourInputContainer__ItemWrapper--IsDragging) {
