@@ -42,6 +42,8 @@
         tryParseFromStringToWallGen(response);
     };
 
+    const indicatorHeightVal = $derived(`calc(${getWallGenColourInUseCount()} * var(--colourInputItemHeight) + ${getWallGenColourInUseCount() - 1} * var(--colourInputItemGap))`);
+
     const handleDndSort = (e: CustomEvent<DndEvent<ColObj>>) => {
         passSomeColourObjectsToWallpaperGenerator(e.detail.items);
     };
@@ -84,6 +86,10 @@
         onconsider="{handleDndSort}"
         onfinalize="{handleDndSort}"
     >
+        <div class="ColourInputContainer__InUseIndicator"
+            data-colour-in-use-count={getWallGenColourInUseCount()}
+            style={ `height: ${indicatorHeightVal};` }
+        ></div>
         {#each wallGenColours.val as colourObj, index (colourObj.id)}
             <li class="ColourInputContainer__ItemWrapper"
                 animate:flip={{ duration: 200 }}
@@ -143,6 +149,7 @@
         display: flex;
         flex-direction: column;
         gap: var(--colourInputItemGap);
+        position: relative;
     }
 
     .ColourInputContainer__ItemWrapper {
@@ -172,6 +179,12 @@
         justify-content: flex-start;
         flex-wrap: wrap;
         gap: 1rem;
+    }
+
+    .ColourInputContainer__InUseIndicator {
+        position: absolute;
+        width: 100%;
+        border: 2px dotted var(--colPri);
     }
 
     @media screen and (width <= 850px) {
