@@ -180,6 +180,10 @@
         height: 4rem;
     }
 
+    .StyleSelectButton--IsSelected .StyleSelectButton__Label {
+        text-decoration: underline;
+    }
+
     @media screen and (width < 550px) {
         .StyleSelector__Container {
             grid-template-columns: repeat(2, 1fr);
