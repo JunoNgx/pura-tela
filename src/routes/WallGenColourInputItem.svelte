@@ -133,7 +133,7 @@
         align-items: center;
         gap: 1rem;
         height: var(--colourInputItemHeight);
-        padding: 0 1rem;
+        padding: 0 0.5rem 0 1rem;
     }
 
     :global(.ColourInput__IsDragged) {
