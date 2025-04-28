@@ -74,33 +74,37 @@
 
 <div class="ColourInputContainer">
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
-    <ul class="ColourInputContainer__List"
-        use:dragHandleZone="{{
-            items: wallGenColours.val,
-            flipDurationMs,
-            // dropTargetStyle: {
-            //     outline: "2px solid var(--colPri)",
-            // },
-            transformDraggedElement
-        }}"
-        onconsider="{handleDndSort}"
-        onfinalize="{handleDndSort}"
-    >
+    <div class="ColourInputContainer__MainWrapper">
         <div class="ColourInputContainer__InUseIndicator"
             data-colour-in-use-count={getWallGenColourInUseCount()}
             style={ `height: ${indicatorHeightVal};` }
         ></div>
-        {#each wallGenColours.val as colourObj, index (colourObj.id)}
-            <li class="ColourInputContainer__ItemWrapper"
-                animate:flip={{ duration: 200 }}
-            >
-                <WallGenColourInputItem
-                    colourObj={colourObj}
-                    index={index}
-                />
-            </li>
-        {/each}
-    </ul>
+
+        <ul class="ColourInputContainer__List"
+            use:dragHandleZone="{{
+                items: wallGenColours.val,
+                flipDurationMs,
+                dropTargetStyle: {
+                    // outline: "2px solid var(--colPri)",
+                    outline: "none",
+                },
+                transformDraggedElement
+            }}"
+            onconsider="{handleDndSort}"
+            onfinalize="{handleDndSort}"
+        >
+            {#each wallGenColours.val as colourObj, index (colourObj.id)}
+                <li class="ColourInputContainer__ItemWrapper"
+                    animate:flip={{ duration: 200 }}
+                >
+                    <WallGenColourInputItem
+                        colourObj={colourObj}
+                        index={index}
+                    />
+                </li>
+            {/each}
+        </ul>
+    </div>
 
     <div class="ColourInputContainer__ActionsContainerUpper">
         <button class="ColourInputContainer__RemoveBtn IconButtonWithLabel"
@@ -144,12 +148,15 @@
 </div>
 
 <style>
+    .ColourInputContainer__MainWrapper {
+        position: relative;
+    }
+
     .ColourInputContainer__List {
         padding: 0;
         display: flex;
         flex-direction: column;
         gap: var(--colourInputItemGap);
-        position: relative;
     }
 
     .ColourInputContainer__ItemWrapper {
