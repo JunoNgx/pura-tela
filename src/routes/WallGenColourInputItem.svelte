@@ -169,9 +169,9 @@
         gap: 1rem;
     }
 
-    .ColourInput__RemoveBtn {
+    /* .ColourInput__RemoveBtn {
         color: var(--colDanger);
-    }
+    } */
 
     @media screen and (width <= 650px) {
 
