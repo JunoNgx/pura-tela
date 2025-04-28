@@ -130,7 +130,6 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
         margin-top: 1rem;
-        margin-left: 0.5rem;
     }
 
     .StyleSelector__Fieldset {
