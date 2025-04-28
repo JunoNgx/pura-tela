@@ -142,11 +142,12 @@
         padding: 0.5rem;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: var(--colourInputItemGap);
     }
 
     .ColourInputContainer__ItemWrapper {
         list-style: none;
+        height: var(--colourInputItemHeight);
     }
 
     :global(.ColourInputContainer__ItemWrapper--IsDragging) {
