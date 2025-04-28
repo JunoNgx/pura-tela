@@ -134,5 +134,9 @@
     {
         "name": "rymdkapsel",
         "colours": ["0e1117", "81655b", "4ea9a0", "b55383", "7ca82e", "e0a11c", "2c76b4"]
+    },
+    {
+        "name": "Printer process",
+        "colours": ["000000", "1cadec", "ea1e8d", "fff236", "5d437e", "ffffff"]
     }
 ]
