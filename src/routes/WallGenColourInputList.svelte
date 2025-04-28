@@ -110,8 +110,8 @@
         <button class="ColourInputContainer__RemoveBtn IconButtonWithLabel"
             disabled={getWallGenColourInUseCount() <= getCurrWallStyleInfo().minColourCount}
             onclick={handleRemoveColour}
-            title="Remove the last colour from this wallpaper"
-            aria-label="Remove the last colour from this wallpaper"
+            title="Decrease the number of colours for this wallpaper by one"
+            aria-label="Decrease the number of colours for this wallpaper by one"
         >
             <MaterialSymbolsLightRemove />
             <span>Remove</span>
@@ -120,8 +120,8 @@
         <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
             disabled={getWallGenColourInUseCount() >= getCurrWallStyleInfo().maxColourCount}
             onclick={handleAddColour}
-            title="Add another colour to this wallpaper"
-            aria-label="Add another colour to this wallpaper"
+            title="Increase the number of colours for this wallpaper by one"
+            aria-label="Increase the number of colours for this wallpaper by one"
         >
             <MaterialSymbolsLightAdd />
             <span>Add</span>
