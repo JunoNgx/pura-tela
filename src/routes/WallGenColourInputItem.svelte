@@ -133,6 +133,7 @@
         align-items: center;
         gap: 1rem;
         height: var(--colourInputItemHeight);
+        padding: 0 1rem;
     }
 
     :global(.ColourInput__IsDragged) {
@@ -144,7 +145,7 @@
     .ColourInput__LeftSide {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     .ColourInput__DragHandle {

@@ -42,7 +42,7 @@
         tryParseFromStringToWallGen(response);
     };
 
-    const indicatorHeightVal = $derived(`calc(${getWallGenColourInUseCount()} * var(--colourInputItemHeight) + ${getWallGenColourInUseCount() - 1} * var(--colourInputItemGap))`);
+    const indicatorHeightVal = $derived(`calc(${getWallGenColourInUseCount()} * var(--colourInputItemHeight) + ${getWallGenColourInUseCount() - 1} * var(--colourInputItemGap) + 1rem)`);
 
     const handleDndSort = (e: CustomEvent<DndEvent<ColObj>>) => {
         passSomeColourObjectsToWallpaperGenerator(e.detail.items);
@@ -182,8 +182,12 @@
 
     .ColourInputContainer__InUseIndicator {
         position: absolute;
+        top: -0.5rem;
         width: 100%;
-        border: 2px dotted var(--colPri);
+        border: 2px dashed var(--colPri);
+        transition: height ease-in-out var(--transTime);
+        box-sizing: border-box;
+        pointer-events: none;
     }
 
     @media screen and (width <= 850px) {
