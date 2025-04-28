@@ -1,5 +1,5 @@
 <script lang="ts">
-    import MaterialSymbolsLightKeyboardArrowUp from "~icons/material-symbols-light/keyboard-arrow-up";
+    import MaterialSymbolsLightKeyboardArrowDown from "~icons/material-symbols-light/keyboard-arrow-down";
 
 	import Checkbox from "src/components/Checkbox.svelte";
 
@@ -74,7 +74,7 @@
         </h3>
 
         <div class="StudioPreview__ExpandedIcon">
-            <MaterialSymbolsLightKeyboardArrowUp/>
+            <MaterialSymbolsLightKeyboardArrowDown/>
         </div>
     </button>
 
@@ -153,8 +153,9 @@
     }
 
     .StudioPreview__ExpandedIcon {
+        display: grid;
+        place-items: center;
         font-size: 1.5rem;
-        line-height: 1.5rem;
         transition: rotate ease-in-out var(--transTime);
     }
 
@@ -204,7 +205,7 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding-top: 0.5rem;
+        margin-top: 1rem;
         /* text-align: center; */
         transition: opacity ease-in-out var(--transTime);
     }
@@ -224,5 +225,12 @@
     
     .StudioPreview:not(.StudioPreview--IsExpanded) .StudioPreview__Footer {
         opacity: 0;
+    }
+
+    @media screen and (width < 850px) {
+        .StudioPreview__Content,
+        .StudioPreview__SampleTextContainer {
+            max-height: 30vh;
+        }
     }
 </style>

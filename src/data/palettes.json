@@ -134,5 +134,9 @@
     {
         "name": "rymdkapsel",
         "colours": ["0e1117", "81655b", "4ea9a0", "b55383", "7ca82e", "e0a11c", "2c76b4"]
+    },
+    {
+        "name": "Pura Tela",
+        "colours": ["E3E0D6", "1AC4F5", "F5ADAE", "232042", "323740", "22D2D2", "345F86"]
     }
 ]
