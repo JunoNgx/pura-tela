@@ -42,14 +42,12 @@
 
 <div class="ColourInput">
     <div class="ColourInput__LeftSide">
-        {#if getWallGenColourInUseCount() >= 2}
-            <div class="ColourInput__DragHandle"
-                aria-label="drag-handle for colour at position {index}"
-                use:dragHandle
-            >
-                <MaterialSymbolsLightDragIndicator />
-            </div>
-        {/if}
+        <div class="ColourInput__DragHandle"
+            aria-label="drag-handle for colour at position {index}"
+            use:dragHandle
+        >
+            <MaterialSymbolsLightDragIndicator />
+        </div>
         <div class="ColourInput__Picker">
             <ColorPicker
                 label=""
