@@ -4,13 +4,12 @@
 	import type { ColObj } from "src/lib/types.js";
     
     import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
-    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     
 	import { isHexCodeValid, getRandomHexCode } from "src/lib/utils.js";
 	import { promptAddToColourGallery } from "src/states/colourGalleryState.svelte.js";
-	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, retractWallGenColoursById, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+	import { getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
 
     type ColourInputItemProps = {
         colourObj: ColObj,
@@ -38,10 +37,7 @@
         promptAddToColourGallery(colourObj.colour);
     };
 
-    const handleRemoveColour = () => {
-        retractWallGenColoursById(colourObj.id);
-        decreaseWallGenColourInUseCount();
-    };
+    const isColourInUse = $derived(index <= getWallGenColourInUseCount() - 1);
 </script>
 
 <div class="ColourInput">
@@ -90,32 +86,26 @@
         </div>
     </div>
 
-    <div class="ColourInput__Buttons">
-        <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
-            onclick={handleRandomise}
-            title="Generate a randomised colour"
-            aria-label="Create a random colour"
-        >
-            <MaterialSymbolsLightShuffle />
-            <span class="ColourInput__BtnLabelText">Randomise</span>
-        </button>
-        <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
-            onclick={trySaveColour}
-            title="Save colour to gallery"
-            aria-label="Save colour to gallery"
-        >
-            <MaterialSymbolsLightSaveOutline/>
-            <span class="ColourInput__BtnLabelText">Save</span>
-        </button>
-
-        {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
-            <button class="ColourInput__RemoveBtn IconButton"
-                title="Remove this colour"
-                aria-label="Remove this colour"
-                onclick={handleRemoveColour}
+    <div class="ColourInput__RightSide">
+        {#if isColourInUse}
+            <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
+                onclick={handleRandomise}
+                title="Generate a randomised colour"
+                aria-label="Create a random colour"
             >
-                <MaterialSymbolsLightRemove />
+                <MaterialSymbolsLightShuffle />
+                <span class="ColourInput__BtnLabelText">Randomise</span>
             </button>
+            <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
+                onclick={trySaveColour}
+                title="Save colour to gallery"
+                aria-label="Save colour to gallery"
+            >
+                <MaterialSymbolsLightSaveOutline/>
+                <span class="ColourInput__BtnLabelText">Save</span>
+            </button>
+        {:else}
+            <span class="ColourInput__NotInUseNotice">Not in use</span>
         {/if}
     </div>
 </div>
@@ -127,10 +117,12 @@
         justify-content: space-between;
         align-items: center;
         gap: 1rem;
+        height: var(--colourInputItemHeight);
+        padding: 0 0.5rem 0 1rem;
     }
 
     :global(.ColourInput__IsDragged) {
-        .ColourInput__Buttons {
+        .ColourInput__RightSide {
             display: none;
         }
     }
@@ -138,7 +130,7 @@
     .ColourInput__LeftSide {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        gap: 1rem;
     }
 
     .ColourInput__DragHandle {
@@ -162,15 +154,17 @@
         width: 6rem;
     }
 
-    .ColourInput__Buttons {
+    .ColourInput__RightSide {
         display: flex;
         justify-content: flex-end;
         flex-wrap: nowrap;
         gap: 1rem;
     }
 
-    .ColourInput__RemoveBtn {
-        color: var(--colDanger);
+    .ColourInput__NotInUseNotice {
+        text-align: left;
+        color: var(--colSec);
+        text-transform: lowercase;
     }
 
     @media screen and (width <= 650px) {
