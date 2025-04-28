@@ -78,9 +78,9 @@
         use:dragHandleZone="{{
             items: wallGenColours.val,
             flipDurationMs,
-            dropTargetStyle: {
-                outline: "2px solid var(--colPri)",
-            },
+            // dropTargetStyle: {
+            //     outline: "2px solid var(--colPri)",
+            // },
             transformDraggedElement
         }}"
         onconsider="{handleDndSort}"
