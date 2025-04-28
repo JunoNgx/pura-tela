@@ -10,7 +10,7 @@
     
 	import { isHexCodeValid, getRandomHexCode } from "src/lib/utils.js";
 	import { promptAddToColourGallery } from "src/states/colourGalleryState.svelte.js";
-	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, retractWallGenColoursById, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
 
     type ColourInputItemProps = {
         colourObj: ColObj,
@@ -38,10 +38,10 @@
         promptAddToColourGallery(colourObj.colour);
     };
 
-    const handleRemoveColour = () => {
-        retractWallGenColoursById(colourObj.id);
-        decreaseWallGenColourInUseCount();
-    };
+    // const handleRemoveColour = () => {
+    //     retractWallGenColoursById(colourObj.id);
+    //     decreaseWallGenColourInUseCount();
+    // };
 </script>
 
 <div class="ColourInput">
@@ -108,7 +108,7 @@
             <span class="ColourInput__BtnLabelText">Save</span>
         </button>
 
-        {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
+        <!-- {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
             <button class="ColourInput__RemoveBtn IconButton"
                 title="Remove this colour"
                 aria-label="Remove this colour"
@@ -116,7 +116,7 @@
             >
                 <MaterialSymbolsLightRemove />
             </button>
-        {/if}
+        {/if} -->
     </div>
 </div>
 

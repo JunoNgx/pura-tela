@@ -12,7 +12,7 @@
     import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
     import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
 
-	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen } from "src/states/wallGenState.svelte.js";
+	import { getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { passWallGenToPaletteGenerator } from "src/states/palGenState.svelte.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
@@ -69,7 +69,7 @@
     <h3 class="ColourInputContainer__Heading">Colour options</h3>
     <ul class="ColourInputContainer__List"
         use:dragHandleZone="{{
-            items: getColourObjectsInUse(),
+            items: wallGenColours.val,
             flipDurationMs,
             dropTargetStyle: {
                 outline: "2px solid var(--colPri)",
@@ -79,7 +79,7 @@
         onconsider="{handleDndSort}"
         onfinalize="{handleDndSort}"
     >
-        {#each getColourObjectsInUse() as colourObj, index (colourObj.id)}
+        {#each wallGenColours.val as colourObj, index (colourObj.id)}
             <li class="ColourInputContainer__ItemWrapper"
                 animate:flip={{ duration: 200 }}
             >
