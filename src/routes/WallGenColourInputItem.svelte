@@ -4,13 +4,12 @@
 	import type { ColObj } from "src/lib/types.js";
     
     import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
-    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
     import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
     import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
     
 	import { isHexCodeValid, getRandomHexCode } from "src/lib/utils.js";
 	import { promptAddToColourGallery } from "src/states/colourGalleryState.svelte.js";
-	import { decreaseWallGenColourInUseCount, getCurrWallStyleInfo, getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+	import { getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
 
     type ColourInputItemProps = {
         colourObj: ColObj,
@@ -37,11 +36,6 @@
     const trySaveColour = () => {
         promptAddToColourGallery(colourObj.colour);
     };
-
-    // const handleRemoveColour = () => {
-    //     retractWallGenColoursById(colourObj.id);
-    //     decreaseWallGenColourInUseCount();
-    // };
 
     const isColourInUse = $derived(index <= getWallGenColourInUseCount() - 1);
 </script>
@@ -113,15 +107,6 @@
         {:else}
             <span class="ColourInput__NotInUseNotice">Not in use</span>
         {/if}
-        <!-- {#if getWallGenColourInUseCount() > getCurrWallStyleInfo().minColourCount}
-            <button class="ColourInput__RemoveBtn IconButton"
-                title="Remove this colour"
-                aria-label="Remove this colour"
-                onclick={handleRemoveColour}
-            >
-                <MaterialSymbolsLightRemove />
-            </button>
-        {/if} -->
     </div>
 </div>
 
@@ -175,10 +160,6 @@
         flex-wrap: nowrap;
         gap: 1rem;
     }
-
-    /* .ColourInput__RemoveBtn {
-        color: var(--colDanger);
-    } */
 
     .ColourInput__NotInUseNotice {
         text-align: left;
