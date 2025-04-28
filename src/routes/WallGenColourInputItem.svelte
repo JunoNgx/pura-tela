@@ -90,7 +90,7 @@
         </div>
     </div>
 
-    <div class="ColourInput__Buttons">
+    <div class="ColourInput__RightSide">
         <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
             onclick={handleRandomise}
             title="Generate a randomised colour"
@@ -130,7 +130,7 @@
     }
 
     :global(.ColourInput__IsDragged) {
-        .ColourInput__Buttons {
+        .ColourInput__RightSide {
             display: none;
         }
     }
@@ -162,7 +162,7 @@
         width: 6rem;
     }
 
-    .ColourInput__Buttons {
+    .ColourInput__RightSide {
         display: flex;
         justify-content: flex-end;
         flex-wrap: nowrap;
