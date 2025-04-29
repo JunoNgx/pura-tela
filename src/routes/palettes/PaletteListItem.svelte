@@ -1,10 +1,10 @@
 <script lang="ts">
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
-    import MaterialSymbolsLightDelete from "~icons/material-symbols-light/delete";
-    import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
-    import MaterialSymbolsLightContentCopy from "~icons/material-symbols-light/content-copy";
-    import MaterialSymbolsLightContentCopyOutline from "~icons/material-symbols-light/content-copy-outline";
+    import MaterialSymbolsLightContentCopySharp from "~icons/material-symbols-light/content-copy-sharp";
+    import MaterialSymbolsLightContentCopyOutlineSharp from "~icons/material-symbols-light/content-copy-outline-sharp";
+    import MaterialSymbolsLightDeleteForeverSharp from "~icons/material-symbols-light/delete-forever-sharp";
+    import MaterialSymbolsLightDeleteForeverOutlineSharp from "~icons/material-symbols-light/delete-forever-outline-sharp";
     import MaterialSymbolsLightPalette from "~icons/material-symbols-light/palette";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
 
@@ -105,10 +105,10 @@
                 aria-label="Copy this hex colour code"
             >       
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightContentCopyOutline/>
+                    <MaterialSymbolsLightContentCopyOutlineSharp/>
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightContentCopy/>
+                    <MaterialSymbolsLightContentCopySharp/>
                 </div>
             </button>
 
@@ -118,10 +118,10 @@
                 aria-label="Delete this palette"
             >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightDeleteOutline/>
+                    <MaterialSymbolsLightDeleteForeverOutlineSharp/>
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightDelete/>
+                    <MaterialSymbolsLightDeleteForeverSharp/>
                 </div>
             </button>
         </div>
