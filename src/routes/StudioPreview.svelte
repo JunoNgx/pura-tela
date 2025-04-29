@@ -1,12 +1,12 @@
 <script lang="ts">
     import MaterialSymbolsKeyboardArrowUp from "~icons/material-symbols/keyboard-arrow-up";
 
-	import Checkbox from "src/components/Checkbox.svelte";
+    import Checkbox from "src/components/Checkbox.svelte";
 
-	import { generateImage } from "src/lib/canvas.js";
-	import { computeFilename } from "src/lib/utils.js";
-	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
-	import { getColourStringsInUse, shouldShowSampleText, wallGenStyle } from "src/states/wallGenState.svelte.js";
+    import { generateImage } from "src/lib/canvas.js";
+    import { computeFilename } from "src/lib/utils.js";
+    import { colourGallery } from "src/states/colourGalleryState.svelte.js";
+    import { getColourStringsInUse, shouldShowSampleText, wallGenStyle } from "src/states/wallGenState.svelte.js";
 
     let isExpanded = $state(true);
     let containerEl: HTMLElement;

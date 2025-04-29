@@ -3,8 +3,8 @@
 
     import MaterialSymbolsKeyboardArrowDown from "~icons/material-symbols/keyboard-arrow-down";
 
-	import { type Component } from "svelte";
-	import type { SVGAttributes } from "svelte/elements";
+    import { type Component } from "svelte";
+    import type { SVGAttributes } from "svelte/elements";
 
     type ActionItem = {
         id: string,

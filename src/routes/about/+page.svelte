@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LogoIconColoured from "src/components/LogoIconColoured.svelte";
+    import LogoIconColoured from "src/components/LogoIconColoured.svelte";
 </script>
 
 <article class="HelpArticle">

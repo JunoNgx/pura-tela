@@ -2,7 +2,7 @@
     import { goto } from "$app/navigation";
 
     import { type ColourItem } from "src/lib/types.js";
-	import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
+    import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
 
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
@@ -10,9 +10,9 @@
     import MaterialSymbolsLightContentCopyOutlineSharp from "~icons/material-symbols-light/content-copy-outline-sharp";
     import MaterialSymbolsLightDeleteForeverSharp from "~icons/material-symbols-light/delete-forever-sharp";
     import MaterialSymbolsLightDeleteForeverOutlineSharp from "~icons/material-symbols-light/delete-forever-outline-sharp";
-	import {getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
-	import { deleteColourAtIndex } from "src/states/colourGalleryState.svelte.js";
-	import { onDestroy } from "svelte";
+    import {getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+    import { deleteColourAtIndex } from "src/states/colourGalleryState.svelte.js";
+    import { onDestroy } from "svelte";
 
     type ColourItemProps = {
         colourItem: ColourItem,

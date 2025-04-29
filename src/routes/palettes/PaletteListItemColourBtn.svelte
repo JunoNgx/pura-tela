@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onDestroy } from "svelte";
-	import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
+    import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
 
     let { colourItem } = $props();
     let hasBeenCopied = $state(false);

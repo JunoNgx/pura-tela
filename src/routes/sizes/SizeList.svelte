@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { goto } from "$app/navigation";
+    import { goto } from "$app/navigation";
 
     import MaterialSymbolsLightGestureSelectSharp from "~icons/material-symbols-light/gesture-select-sharp";
     import MaterialSymbolsLightGestureSelectOutlineSharp from "~icons/material-symbols-light/gesture-select-outline-sharp";
 
-	import { sizeGallery } from "src/states/sizeGalleryState.svelte.js";
-	import { setWallGenSizeFromSizeGalleryIndex } from "src/states/wallGenState.svelte.js";
+    import { sizeGallery } from "src/states/sizeGalleryState.svelte.js";
+    import { setWallGenSizeFromSizeGalleryIndex } from "src/states/wallGenState.svelte.js";
 
     const handlePassToWallgen = (index: number) => {
         setWallGenSizeFromSizeGalleryIndex(index);

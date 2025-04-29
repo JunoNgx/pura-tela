@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { onDestroy, onMount } from "svelte";
-	import { renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
-	import { computeBaseUrl } from "src/lib/utils.js";
-	import { getHexColourCodesInUse, wallGenStyle, wallGenSize, readjustWallGenColoursInUseCount, getColourStringsInUse, getStyleConfig } from "src/states/wallGenState.svelte.js";
+    import { onDestroy, onMount } from "svelte";
+    import { renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
+    import { computeBaseUrl } from "src/lib/utils.js";
+    import { getHexColourCodesInUse, wallGenStyle, wallGenSize, readjustWallGenColoursInUseCount, getColourStringsInUse, getStyleConfig } from "src/states/wallGenState.svelte.js";
     
-	import StyleConfigContainer from "src/routes/StyleConfigContainer.svelte";
-	import WallGenColourInputList from "./WallGenColourInputList.svelte";
+    import StyleConfigContainer from "src/routes/StyleConfigContainer.svelte";
+    import WallGenColourInputList from "./WallGenColourInputList.svelte";
     import SizeInput from "src/routes/SizeInput.svelte";
-	import SharePanel from "src/components/SharePanel.svelte";
-	import { WallpaperStyle } from "src/lib/types.js";
-	import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
-	import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
-	import { paletteStyleConfig } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
-	import StudioPreview from "./StudioPreview.svelte";
+    import SharePanel from "src/components/SharePanel.svelte";
+    import { WallpaperStyle } from "src/lib/types.js";
+    import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
+    import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+    import { paletteStyleConfig } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+    import StudioPreview from "./StudioPreview.svelte";
 
     const handleResize = () => {
         refitCanvasToContainer();
