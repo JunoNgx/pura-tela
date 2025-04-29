@@ -112,7 +112,7 @@
                 </div>
             </button>
 
-            <button class="PaletteListItem__ActionBtn Danger IconButton"
+            <button class="PaletteListItem__ActionBtn PaletteListItem__ActionBtn--RightMost Danger IconButton"
                 onclick={handleDeletePalette}
                 title={"Delete this palette"}
                 aria-label="Delete this palette"
@@ -140,7 +140,6 @@
 
     .PaletteListItem__PaletteBox {
         height: 200px;
-        width: 100%;
         border: var(--lineWeight) solid var(--colPri);
         display: flex;
         flex-direction: row;
@@ -157,5 +156,9 @@
 
     .PaletteListItem__Buttons {
         display: flex;
+    }
+
+    .PaletteListItem__ActionBtn--RightMost {
+        width: 1.5rem;
     }
 </style>
