@@ -4,7 +4,6 @@
     import { type ColourItem } from "src/lib/types.js";
 	import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
 
-    // Use light icons
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
     import MaterialSymbolsLightContentCopySharp from "~icons/material-symbols-light/content-copy-sharp";
