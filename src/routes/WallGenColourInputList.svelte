@@ -13,7 +13,7 @@
     import MaterialSymbolsCalendarViewWeekSharp from "~icons/material-symbols/calendar-view-week-sharp";
     import MaterialSymbolsNetworkIntelligence from "~icons/material-symbols/network-intelligence";
 
-	import { decreaseWallGenColourInUseCount, getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
+	import { decreaseWallGenColourInUseCount, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
 	import { passWallGenToPaletteGenerator } from "src/states/palGenState.svelte.js";
 	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
