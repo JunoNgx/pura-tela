@@ -171,6 +171,6 @@
     }
 
     .ColourListItem__ActionBtn--Rightmost {
-        width: 1.75rem;
+        width: 1.5rem;
     }
 </style>
