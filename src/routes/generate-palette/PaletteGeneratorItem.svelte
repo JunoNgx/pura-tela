@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { dragHandle } from "svelte-dnd-action";
-	import ColorPicker from "svelte-awesome-color-picker";
+    import { dragHandle } from "svelte-dnd-action";
+    import ColorPicker from "svelte-awesome-color-picker";
 
-	import type { PalGenColObj } from "src/lib/types.js";
-	import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+    import type { PalGenColObj } from "src/lib/types.js";
+    import { MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 
     import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
     import MaterialSymbolsLightLockOpenRightOutlineSharp from "~icons/material-symbols-light/lock-open-right-outline-sharp";
     import MaterialSymbolsLightLockOpenRightSharp from "~icons/material-symbols-light/lock-open-right-sharp";
     import MaterialSymbolsLightLockSharp from "~icons/material-symbols-light/lock-sharp";
     import MaterialSymbolsLightLockOutlineSharp from "~icons/material-symbols-light/lock-outline-sharp";
-    import MaterialSymbolsLightDelete from "~icons/material-symbols-light/delete";
-    import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
+    import MaterialSymbolsLightDeleteForeverSharp from "~icons/material-symbols-light/delete-forever-sharp";
+    import MaterialSymbolsLightDeleteForeverOutlineSharp from "~icons/material-symbols-light/delete-forever-outline-sharp";
 
-	import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/states/palGenState.svelte.js";
+    import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/states/palGenState.svelte.js";
 
     type PaletteGeneratorItemProps = {
         palGenItem: PalGenColObj,
@@ -102,10 +102,10 @@
             aria-label={"Remove colour"}
         >
             <div class="IconButton__RegularIcon">
-                <MaterialSymbolsLightDeleteOutline/>
+                <MaterialSymbolsLightDeleteForeverOutlineSharp/>
             </div>
             <div class="IconButton__HoverIcon">
-                <MaterialSymbolsLightDelete/>
+                <MaterialSymbolsLightDeleteForeverSharp/>
             </div>
         </button>
     </div>

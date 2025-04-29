@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { onDestroy } from "svelte";
+    import { onDestroy } from "svelte";
 
-    import MaterialSymbolsLightShareOutline from "~icons/material-symbols-light/share-outline";
-    import MaterialSymbolsLightContentCopyOutline from "~icons/material-symbols-light/content-copy-outline";
-	import type { ShareItem } from "src/lib/types.js";
+    import MaterialSymbolsShareOutline from "~icons/material-symbols/share-outline";
+    import MaterialSymbolsContentCopyOutlineSharp from "~icons/material-symbols/content-copy-outline-sharp";
+    import type { ShareItem } from "src/lib/types.js";
 
     type SharePanelItemProps = {
         domId: string,
@@ -82,7 +82,7 @@
                 title="Share this content"
                 aria-label="Share this content"
             >
-                <MaterialSymbolsLightShareOutline/>
+                <MaterialSymbolsShareOutline/>
                 <span>Share</span>
             </button>
             <button class="ShareItem__CopyBtn IconButtonWithLabel"
@@ -90,7 +90,7 @@
                 title="Copy this content"
                 aria-label="Copy this content"
             >
-                <MaterialSymbolsLightContentCopyOutline/>
+                <MaterialSymbolsContentCopyOutlineSharp/>
                 <span>
                     {#if hasBeenCopied}
                         Copied
@@ -119,7 +119,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
     }
 
     .ShareItem__Label {

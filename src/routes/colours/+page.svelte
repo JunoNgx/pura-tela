@@ -1,9 +1,9 @@
 <script lang="ts">
     // import { beforeNavigate, afterNavigate } from "$app/navigation"
-    import MaterialSymbolsLightResetSettingsRounded from "~icons/material-symbols-light/reset-settings-rounded";
+    import MaterialSymbolsDeviceReset from "~icons/material-symbols/device-reset";
 
     import ColourList from "src/routes/colours/ColourList.svelte";
-	import { resetColourGallery } from "src/states/colourGalleryState.svelte.js";
+    import { resetColourGallery } from "src/states/colourGalleryState.svelte.js";
 
     const handleResetGallery = () => {
         const isConfirmed = window.confirm("Reset the gallery to default colours? This action cannot be undone.");
@@ -29,14 +29,14 @@
 
 <h2>Colour Gallery</h2>
 <p class="RouteInstruction">
-	Pass colour to <code>Wallpaper Generator</code>, or copy its hex colour code for your own use.
+    Pass colour to <code>Wallpaper Generator</code>, or copy its hex colour code for your own use.
 </p>
 <ColourList/>
 <button class="ResetButton IconButtonWithLabel"
     onclick={handleResetGallery}
     aria-label="Reset colour gallery"
 >
-    <MaterialSymbolsLightResetSettingsRounded/>
+    <MaterialSymbolsDeviceReset/>
     Reset gallery
 </button>
 

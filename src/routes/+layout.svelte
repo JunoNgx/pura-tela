@@ -2,10 +2,10 @@
     // import BaseHeader from "src/components/BaseHeader.svelte";
     import BaseNav from "src/components/BaseNav.svelte";
     import BaseFooter from "src/components/BaseFooter.svelte";
-	import AppLogo from "src/components/AppLogo.svelte";
+    import AppLogo from "src/components/AppLogo.svelte";
 
     import "src/styles/global.css";
-	import { handleThemeModeChange } from "src/lib/nightMode.js";
+    import { handleThemeModeChange } from "src/lib/nightMode.js";
 
     let { children } = $props();
 

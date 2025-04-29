@@ -1,9 +1,9 @@
 <script lang="ts">
-	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
-	import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
-	import type { InputEvent } from "src/lib/types.js";
-	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
-	import { paletteStyleConfig, resetPaletteStyleAngle, resetPaletteStylePosition, resetPaletteStyleSize, setPaletteStyleAngle, setPaletteStylePosition, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+    import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
+    import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
+    import type { InputEvent } from "src/lib/types.js";
+    import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+    import { paletteStyleConfig, resetPaletteStyleAngle, resetPaletteStylePosition, resetPaletteStyleSize, setPaletteStyleAngle, setPaletteStylePosition, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
 
     const handleDataChange = (
         e: InputEvent,

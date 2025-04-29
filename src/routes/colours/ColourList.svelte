@@ -1,7 +1,7 @@
 <script lang="ts">
     import ColourListItem from "src/routes/colours/ColourListItem.svelte";
     import ColourItemActionDialog from "src/routes/colours/ColourItemActionDialog.svelte";
-	import { colourGallery } from "src/states/colourGalleryState.svelte.js";
+    import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     
     let shouldShowDialog = $state(false);
     let inputColour:string | null = $state(null);

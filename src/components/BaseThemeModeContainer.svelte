@@ -7,8 +7,8 @@
     import MaterialSymbolsLightDarkModeOutline from "~icons/material-symbols-light/dark-mode-outline";
 
     import { themeMode } from "src/states/themeModeState.svelte.js";
-	import { ThemeMode } from "src/lib/types.js";
-	import { handleThemeModeChange } from "src/lib/nightMode.js";
+    import { ThemeMode } from "src/lib/types.js";
+    import { handleThemeModeChange } from "src/lib/nightMode.js";
 
     const handleClickOnThemeMode = (newThemeModeVal: ThemeMode) => {
         themeMode.set(newThemeModeVal);
@@ -82,10 +82,6 @@
     }
 
     @media screen and (width < 850px) {
-        .ThemeMode {
-            gap: 0.25rem;
-        }
-
         .ThemeMode__Item {
             transition: none;
         }

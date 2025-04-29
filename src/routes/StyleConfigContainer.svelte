@@ -1,10 +1,10 @@
 <script lang="ts">
     import RadioCheckbox from "src/components/RadioCheckbox.svelte";
     import { WallpaperStyle, type MouseButtonEvent } from "src/lib/types.js";
-	import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, isPaletteStyle, setWallGenColourInUseCount, wallGenStyle, getWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
-	import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
-	import StyleConfigGradient from "./StyleConfigGradient.svelte";
-	import StyleConfigPalette from "./StyleConfigPalette.svelte";
+    import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, isPaletteStyle, setWallGenColourInUseCount, wallGenStyle, getWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
+    import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
+    import StyleConfigGradient from "./StyleConfigGradient.svelte";
+    import StyleConfigPalette from "./StyleConfigPalette.svelte";
 
     const handleWallpaperStyleChange = (e: MouseButtonEvent) => {
         const newValue = e.currentTarget.getAttribute("data-value") as WallpaperStyle;

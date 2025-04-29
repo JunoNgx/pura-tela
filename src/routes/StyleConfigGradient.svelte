@@ -1,6 +1,6 @@
 <script lang="ts">
 
-	import { gradientStyleConfig, setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
+    import { gradientStyleConfig, setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 
     const handleSliderChange = (
         e: Event & { currentTarget: EventTarget & HTMLInputElement; }

@@ -1,10 +1,10 @@
 <script lang="ts">
     import { fade } from "svelte/transition";
 
-    import MaterialSymbolsLightKeyboardArrowDown from "~icons/material-symbols-light/keyboard-arrow-down";
+    import MaterialSymbolsKeyboardArrowDown from "~icons/material-symbols/keyboard-arrow-down";
 
-	import { type Component } from "svelte";
-	import type { SVGAttributes } from "svelte/elements";
+    import { type Component } from "svelte";
+    import type { SVGAttributes } from "svelte/elements";
 
     type ActionItem = {
         id: string,
@@ -114,7 +114,7 @@
         aria-label="Toggle the dropdown"
         onclick={toggleDropdown}
     >
-        <MaterialSymbolsLightKeyboardArrowDown/>
+        <MaterialSymbolsKeyboardArrowDown/>
     </button>
     {#if isOpen}
         <ul class="Dropdown__Menu"

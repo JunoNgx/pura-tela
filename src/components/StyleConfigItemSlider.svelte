@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { InputEvent } from "src/lib/types.js";
+    import type { InputEvent } from "src/lib/types.js";
 
     type StyleConfigItemProps = {
         className?: string,
