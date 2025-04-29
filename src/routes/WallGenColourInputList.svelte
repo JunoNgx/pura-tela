@@ -10,7 +10,7 @@
     import MaterialSymbolsAdd from "~icons/material-symbols/add";
     import MaterialSymbolsRemove from "~icons/material-symbols/remove";
     import MaterialSymbolsPaletteOutline from "~icons/material-symbols/palette-outline";
-    import MaterialSymbolsCalendarViewWeekSharp from "~icons/material-symbols/calendar-view-week-sharp";
+    import MaterialSymbolsViewWeekSharp from "~icons/material-symbols/view-week-sharp";
     import MaterialSymbolsNetworkIntelligence from "~icons/material-symbols/network-intelligence";
 
 	import { decreaseWallGenColourInUseCount, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
@@ -136,7 +136,7 @@
                 title="Save the current colours as a Palette"
                 aria-label="Save the current colours as a Palette"
             >
-                <MaterialSymbolsCalendarViewWeekSharp />
+                <MaterialSymbolsViewWeekSharp />
                 <span>Save palette</span>
             </button>
             <DropdownMenu
