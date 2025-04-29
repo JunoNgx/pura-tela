@@ -141,9 +141,9 @@
         margin-top: 1rem;
     }
 
-    /* .ShareItem__ShareBtn {
+    .ShareItem__ShareBtn {
         display: none;
-    } */
+    }
 
     @media screen and (hover: none) and (pointer: coarse) {
         .ShareItem__ShareBtn {
