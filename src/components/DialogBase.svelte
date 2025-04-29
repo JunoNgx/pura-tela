@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
-    import MaterialSymbolsLightClose from "~icons/material-symbols-light/close";
+    import MaterialSymbolsClose from "~icons/material-symbols/close";
 
     type DialogBaseProps = {
         shouldShowDialog: boolean,
@@ -46,7 +46,7 @@
             aria-label="Close dialog"
             onclick={() => { dialog?.close(); }}
         >
-            <MaterialSymbolsLightClose/>
+            <MaterialSymbolsClose/>
         </button>
         {@render children?.()}
     </div>
