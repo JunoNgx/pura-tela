@@ -88,20 +88,20 @@ export const retractWallGenColoursAtIndex = (index: number) => {
     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
 };
 
-export const retractWallGenColoursById = (id: number) => {
-    const targetIndex = wallGenColours.val.findIndex(colourObj => colourObj.id === id);
-    if (targetIndex === -1) {
-        throw new Error("Cannot find target colour for retracting in Wallpaper Generator");
-    }
+// export const retractWallGenColoursById = (id: number) => {
+//     const targetIndex = wallGenColours.val.findIndex(colourObj => colourObj.id === id);
+//     if (targetIndex === -1) {
+//         throw new Error("Cannot find target colour for retracting in Wallpaper Generator");
+//     }
 
-    const befPortion = wallGenColours.val.slice(0, targetIndex);
-    const aftPortion = wallGenColours.val.slice(targetIndex + 1);
-    const newRandomisedColour = {
-        id: generateId(),
-        colour: getRandomHexCode(),
-    };
-    wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
-};
+//     const befPortion = wallGenColours.val.slice(0, targetIndex);
+//     const aftPortion = wallGenColours.val.slice(targetIndex + 1);
+//     const newRandomisedColour = {
+//         id: generateId(),
+//         colour: getRandomHexCode(),
+//     };
+//     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
+// };
 
 /**
  * Move the new colours onto WallGen, which might not completely fill up all colours
