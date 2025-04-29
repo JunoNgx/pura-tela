@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { afterNavigate } from "$app/navigation";
+
+    // import MaterialSymbolsViewSidebarOutlineSharp from "~icons/material-symbols/view-sidebar-outline-sharp";
+    // Uses `@iconify-json/material-symbols-light`
 	import MaterialSymbolsLightViewSidebarOutlineSharp from "~icons/material-symbols-light/view-sidebar-outline-sharp";
-    import MaterialSymbolsLightClose from "~icons/material-symbols-light/close";
+    import MaterialSymbolsClose from "~icons/material-symbols/close";
 
     import NavItem from "src/components/NavItem.svelte";
 	import BaseThemeModeContainer from "./BaseThemeModeContainer.svelte";
@@ -74,7 +77,7 @@
             aria-label="Close navigation sidebar"
             onclick={closeSidebar}
         >
-            <MaterialSymbolsLightClose/>
+            <MaterialSymbolsClose/>
         </button>
     </nav>
 </div>
