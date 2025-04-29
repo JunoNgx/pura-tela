@@ -9,12 +9,12 @@
 	import type { PalGenColObj } from "src/lib/types.js";
 	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 
-    import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
-    import MaterialSymbolsLightGesture from "~icons/material-symbols-light/gesture";    
-    import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
-    import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
-    import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
-    import MaterialSymbolsLightConvertToText from "~icons/material-symbols-light/convert-to-text";
+    import MaterialSymbolsAdd from "~icons/material-symbols/add";
+    import MaterialSymbolsGesture from "~icons/material-symbols/gesture";
+    import MaterialSymbolsColorize from "~icons/material-symbols/colorize";
+    import MaterialSymbolsViewWeekSharp from "~icons/material-symbols/view-week-sharp";
+    import MaterialSymbolsNetworkIntelligence from "~icons/material-symbols/network-intelligence";
+    import MaterialSymbolsLightConvertToTextOutlineSharp from "~icons/material-symbols-light/convert-to-text-outline-sharp";
 
 	import { addToPalGenColours, exportToStringFromPalGen, palGenColours, tryParseFromStringToPalGen, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
 	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
@@ -81,28 +81,28 @@
             label: "Save as palette",
             tooltip: "Save current settings as a palette",
             action: savePalette,
-            icon: MaterialSymbolsLightCalendarViewWeekSharp
+            icon: MaterialSymbolsViewWeekSharp
         },
         {
             id: "passToWallGen",
             label: "Pass to Wallpaper Generator",
             tooltip: "Pass the palette to Wallpaper Generator",
             action: passToWallpaperGenerator,
-            icon: MaterialSymbolsLightColorize
+            icon: MaterialSymbolsColorize
         },
         {
             id: "generateAi",
             label: "Generate with AI",
             tooltip: "Generate a palette using AI with a theme prompt",
             action: generatePaletteWithAi,
-            icon: MaterialSymbolsLightNetworkIntelligence
+            icon: MaterialSymbolsNetworkIntelligence
         },
         {
             id: "import",
             label: "Import from string",
             tooltip: "Enter a string of data to recover a palette",
             action: parseFromString,
-            icon: MaterialSymbolsLightConvertToText
+            icon: MaterialSymbolsLightConvertToTextOutlineSharp
         },
     ];
 </script>
@@ -139,7 +139,7 @@
             title={"Add colour"}
             aria-label={"Add colour"}
         >
-            <MaterialSymbolsLightAdd />
+            <MaterialSymbolsAdd />
             <span>Add colour</span>
         </button>
     </div>
@@ -151,7 +151,7 @@
                 title={"Generate new palettes"}
                 aria-label={"Generate new palettes"}
             >
-                <MaterialSymbolsLightGesture />
+                <MaterialSymbolsGesture />
                 <span>Generate</span>
             </button>
             <DropdownMenu
