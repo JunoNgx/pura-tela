@@ -101,6 +101,10 @@ export type MouseInputEvent = MouseEvent & {
     currentTarget: EventTarget & HTMLInputElement
 };
 
+export type MouseButtonEvent = MouseEvent & {
+    currentTarget: EventTarget & HTMLButtonElement
+};
+
 export type InputEvent = Event & {
     currentTarget: EventTarget & HTMLInputElement
 };
