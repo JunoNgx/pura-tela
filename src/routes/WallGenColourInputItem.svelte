@@ -3,9 +3,9 @@
     import ColorPicker from "svelte-awesome-color-picker";
 	import type { ColObj } from "src/lib/types.js";
     
-    import MaterialSymbolsLightDragIndicator from "~icons/material-symbols-light/drag-indicator";
-    import MaterialSymbolsLightShuffle from "~icons/material-symbols-light/shuffle";
-    import MaterialSymbolsLightSaveOutline from "~icons/material-symbols-light/save-outline";
+    import MaterialSymbolsDragIndicator from "~icons/material-symbols/drag-indicator";
+    import MaterialSymbolsShuffle from "~icons/material-symbols/shuffle";
+    import MaterialSymbolsSaveOutlineSharp from "~icons/material-symbols/save-outline-sharp";
     
 	import { isHexCodeValid, getRandomHexCode } from "src/lib/utils.js";
 	import { promptAddToColourGallery } from "src/states/colourGalleryState.svelte.js";
@@ -46,7 +46,7 @@
             aria-label="drag-handle for colour at position {index}"
             use:dragHandle
         >
-            <MaterialSymbolsLightDragIndicator />
+            <MaterialSymbolsDragIndicator />
         </div>
         <div class="ColourInput__Picker">
             <ColorPicker
@@ -91,7 +91,7 @@
                 title="Generate a randomised colour"
                 aria-label="Create a random colour"
             >
-                <MaterialSymbolsLightShuffle />
+                <MaterialSymbolsShuffle />
                 <span class="ColourInput__BtnLabelText">Randomise</span>
             </button>
             <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
@@ -99,7 +99,7 @@
                 title="Save colour to gallery"
                 aria-label="Save colour to gallery"
             >
-                <MaterialSymbolsLightSaveOutline/>
+                <MaterialSymbolsSaveOutlineSharp />
                 <span class="ColourInput__BtnLabelText">Save</span>
             </button>
         {:else}
