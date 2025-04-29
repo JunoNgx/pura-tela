@@ -1,4 +1,5 @@
 <script lang="ts">
+    // Uses `@iconify-json/material-symbols-light`
     import MaterialSymbolsLightSettings from "~icons/material-symbols-light/settings";
     import MaterialSymbolsLightSettingsOutline from "~icons/material-symbols-light/settings-outline";
     import MaterialSymbolsLightLightMode from "~icons/material-symbols-light/light-mode";
