@@ -7,11 +7,11 @@
 	import DropdownMenu from "src/components/DropdownMenu.svelte";
 	import type { ColObj } from "src/lib/types.js";
 
-    import MaterialSymbolsLightAdd from "~icons/material-symbols-light/add";
-    import MaterialSymbolsLightRemove from "~icons/material-symbols-light/remove";
-    import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
-    import MaterialSymbolsLightCalendarViewWeekSharp from "~icons/material-symbols-light/calendar-view-week-sharp";
-    import MaterialSymbolsLightNetworkIntelligence from "~icons/material-symbols-light/network-intelligence";
+    import MaterialSymbolsAdd from "~icons/material-symbols/add";
+    import MaterialSymbolsRemove from "~icons/material-symbols/remove";
+    import MaterialSymbolsPaletteOutline from "~icons/material-symbols/palette-outline";
+    import MaterialSymbolsCalendarViewWeekSharp from "~icons/material-symbols/calendar-view-week-sharp";
+    import MaterialSymbolsNetworkIntelligence from "~icons/material-symbols/network-intelligence";
 
 	import { decreaseWallGenColourInUseCount, getColourObjectsInUse, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
 	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
@@ -60,14 +60,14 @@
             label: "Pass to Palette Generator",
             tooltip: "Pass the current colours to the Palette Generator",
             action: passColoursToPaletteGenerator,
-            icon: MaterialSymbolsLightPaletteOutline
+            icon: MaterialSymbolsPaletteOutline
         },
         {
             id: "generateAi",
             label: "Generate with AI",
             tooltip: "Generate a palette using AI",
             action: generatePaletteWithAi,
-            icon: MaterialSymbolsLightNetworkIntelligence
+            icon: MaterialSymbolsNetworkIntelligence
         },
     ];
 </script>
@@ -113,7 +113,7 @@
             title="Decrease the number of colours for this wallpaper by one"
             aria-label="Decrease the number of colours for this wallpaper by one"
         >
-            <MaterialSymbolsLightRemove />
+            <MaterialSymbolsRemove />
             <span>Remove</span>
         </button>
 
@@ -123,7 +123,7 @@
             title="Increase the number of colours for this wallpaper by one"
             aria-label="Increase the number of colours for this wallpaper by one"
         >
-            <MaterialSymbolsLightAdd />
+            <MaterialSymbolsAdd />
             <span>Add</span>
         </button>
     </div>
@@ -136,7 +136,7 @@
                 title="Save the current colours as a Palette"
                 aria-label="Save the current colours as a Palette"
             >
-                <MaterialSymbolsLightCalendarViewWeekSharp />
+                <MaterialSymbolsCalendarViewWeekSharp />
                 <span>Save palette</span>
             </button>
             <DropdownMenu
