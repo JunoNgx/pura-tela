@@ -1,5 +1,5 @@
 <script lang="ts">
-    import MaterialSymbolsLightResetSettingsRounded from "~icons/material-symbols-light/reset-settings-rounded";
+    import MaterialSymbolsDeviceReset from "~icons/material-symbols/device-reset";
 
     import PaletteList from "src/routes/palettes/PaletteList.svelte";
 	import { resetPaletteGallery } from "src/states/paletteGalleryState.svelte.js";
@@ -19,7 +19,7 @@
     onclick={handleResetGallery}
     aria-label="Reset colour gallery"
 >
-    <MaterialSymbolsLightResetSettingsRounded/>
+    <MaterialSymbolsDeviceReset/>
     <span>Reset gallery</span>
 </button>
 

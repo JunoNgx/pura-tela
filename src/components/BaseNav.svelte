@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { afterNavigate } from "$app/navigation";
+
 	import MaterialSymbolsLightViewSidebarOutlineSharp from "~icons/material-symbols-light/view-sidebar-outline-sharp";
-    import MaterialSymbolsLightClose from "~icons/material-symbols-light/close";
+    import MaterialSymbolsClose from "~icons/material-symbols/close";
 
     import NavItem from "src/components/NavItem.svelte";
 	import BaseThemeModeContainer from "./BaseThemeModeContainer.svelte";
@@ -74,7 +75,7 @@
             aria-label="Close navigation sidebar"
             onclick={closeSidebar}
         >
-            <MaterialSymbolsLightClose/>
+            <MaterialSymbolsClose/>
         </button>
     </nav>
 </div>
@@ -155,7 +156,7 @@
             background-color: var(--colAcc);
             width: 3rem;
             height: 3rem;
-            font-size: 32px;
+            font-size: 2rem;
         }
 
         .Nav__OpenSidebarBtn:hover {

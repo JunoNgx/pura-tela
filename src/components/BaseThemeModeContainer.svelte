@@ -82,10 +82,6 @@
     }
 
     @media screen and (width < 850px) {
-        .ThemeMode {
-            gap: 0.25rem;
-        }
-
         .ThemeMode__Item {
             transition: none;
         }

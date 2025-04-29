@@ -6,10 +6,10 @@
 
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
-    import MaterialSymbolsLightContentCopy from "~icons/material-symbols-light/content-copy";
-    import MaterialSymbolsLightContentCopyOutline from "~icons/material-symbols-light/content-copy-outline";
-    import MaterialSymbolsLightDelete from "~icons/material-symbols-light/delete";
-    import MaterialSymbolsLightDeleteOutline from "~icons/material-symbols-light/delete-outline";
+    import MaterialSymbolsLightContentCopySharp from "~icons/material-symbols-light/content-copy-sharp";
+    import MaterialSymbolsLightContentCopyOutlineSharp from "~icons/material-symbols-light/content-copy-outline-sharp";
+    import MaterialSymbolsLightDeleteForeverSharp from "~icons/material-symbols-light/delete-forever-sharp";
+    import MaterialSymbolsLightDeleteForeverOutlineSharp from "~icons/material-symbols-light/delete-forever-outline-sharp";
 	import {getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
 	import { deleteColourAtIndex } from "src/states/colourGalleryState.svelte.js";
 	import { onDestroy } from "svelte";
@@ -99,23 +99,23 @@
                 aria-label="Copy this hex colour code"
             >       
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightContentCopyOutline/>
+                    <MaterialSymbolsLightContentCopyOutlineSharp/>
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightContentCopy/>
+                    <MaterialSymbolsLightContentCopySharp/>
                 </div>
             </button>
 
-            <button class="ColourListItem__ActionBtn IconButton Danger"
+            <button class="ColourListItem__ActionBtn ColourListItem__ActionBtn--Rightmost IconButton Danger"
                 onclick={handleDeleteColour}
                 title={"Delete this colour"}
                 aria-label="Delete this colour"
             >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightDeleteOutline/>
+                    <MaterialSymbolsLightDeleteForeverOutlineSharp/>
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightDelete/>
+                    <MaterialSymbolsLightDeleteForeverSharp/>
                 </div>
             </button>
         </div>
@@ -131,7 +131,6 @@
 
     .ColourListItem__Preview {
         height: 150px;
-        width: 100%;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -168,5 +167,9 @@
         flex-direction: row;
         justify-content: flex-end;
         gap: 0.1rem;
+    }
+
+    .ColourListItem__ActionBtn--Rightmost {
+        width: 1.5rem;
     }
 </style>
