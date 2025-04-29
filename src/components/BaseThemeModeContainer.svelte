@@ -81,11 +81,17 @@
         color: var(--colPri);
     }
 
-    @media screen and (width < 850px) {
-        .ThemeMode {
-            gap: 0.25rem;
-        }
+    .ThemeMode__Item.IconButton {
+        width: 2.3rem;
+        height: 2.3rem;
 
+        .IconButton__RegularIcon,
+        .IconButton__HoverIcon {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media screen and (width < 850px) {
         .ThemeMode__Item {
             transition: none;
         }
