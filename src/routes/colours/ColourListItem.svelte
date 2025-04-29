@@ -107,7 +107,7 @@
                 </div>
             </button>
 
-            <button class="ColourListItem__ActionBtn IconButton Danger"
+            <button class="ColourListItem__ActionBtn ColourListItem__ActionBtn--Rightmost IconButton Danger"
                 onclick={handleDeleteColour}
                 title={"Delete this colour"}
                 aria-label="Delete this colour"
@@ -132,7 +132,6 @@
 
     .ColourListItem__Preview {
         height: 150px;
-        width: 100%;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -169,5 +168,9 @@
         flex-direction: row;
         justify-content: flex-end;
         gap: 0.1rem;
+    }
+
+    .ColourListItem__ActionBtn--Rightmost {
+        width: 1.75rem;
     }
 </style>
