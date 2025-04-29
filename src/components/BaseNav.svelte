@@ -158,7 +158,7 @@
             background-color: var(--colAcc);
             width: 3rem;
             height: 3rem;
-            font-size: 32px;
+            font-size: 2rem;
         }
 
         .Nav__OpenSidebarBtn:hover {
