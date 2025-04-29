@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { afterNavigate } from "$app/navigation";
 
-    // import MaterialSymbolsViewSidebarOutlineSharp from "~icons/material-symbols/view-sidebar-outline-sharp";
-    // Uses `@iconify-json/material-symbols-light`
 	import MaterialSymbolsLightViewSidebarOutlineSharp from "~icons/material-symbols-light/view-sidebar-outline-sharp";
     import MaterialSymbolsClose from "~icons/material-symbols/close";
 
