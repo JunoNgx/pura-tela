@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { ShareItem } from "src/lib/types.js";
+    import type { ShareItem } from "src/lib/types.js";
 
-	import SharePanelItem from "./SharePanelItem.svelte";
+    import SharePanelItem from "./SharePanelItem.svelte";
 
     type SharePanelProps = {
         domId: string,

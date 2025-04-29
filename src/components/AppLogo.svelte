@@ -1,6 +1,6 @@
 <script lang="ts">
-	import LogoIcon from "./LogoIcon.svelte";
-	import LogoIconColoured from "./LogoIconColoured.svelte";
+    import LogoIcon from "./LogoIcon.svelte";
+    import LogoIconColoured from "./LogoIconColoured.svelte";
 
     let { isMono } = $props();
 </script>

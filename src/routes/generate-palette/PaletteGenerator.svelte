@@ -1,13 +1,13 @@
 <script lang="ts">
     import { dragHandleZone, type DndEvent, type TransformDraggedElementFunction } from "svelte-dnd-action";
-	import { goto } from "$app/navigation";
+    import { goto } from "$app/navigation";
     import { flip } from "svelte/animate";
 
-	import SharePanel from "src/components/SharePanel.svelte";
-	import DropdownMenu from "src/components/DropdownMenu.svelte";
-	import PaletteGeneratorItem from "src/routes/generate-palette/PaletteGeneratorItem.svelte";
-	import type { PalGenColObj } from "src/lib/types.js";
-	import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
+    import SharePanel from "src/components/SharePanel.svelte";
+    import DropdownMenu from "src/components/DropdownMenu.svelte";
+    import PaletteGeneratorItem from "src/routes/generate-palette/PaletteGeneratorItem.svelte";
+    import type { PalGenColObj } from "src/lib/types.js";
+    import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 
     import MaterialSymbolsAdd from "~icons/material-symbols/add";
     import MaterialSymbolsGesture from "~icons/material-symbols/gesture";
@@ -16,11 +16,11 @@
     import MaterialSymbolsNetworkIntelligence from "~icons/material-symbols/network-intelligence";
     import MaterialSymbolsLightConvertToTextOutlineSharp from "~icons/material-symbols-light/convert-to-text-outline-sharp";
 
-	import { addToPalGenColours, exportToStringFromPalGen, palGenColours, tryParseFromStringToPalGen, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
-	import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
-	import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
-	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
-	import { computeBaseUrl } from "src/lib/utils.js";
+    import { addToPalGenColours, exportToStringFromPalGen, palGenColours, tryParseFromStringToPalGen, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
+    import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
+    import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
+    import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
+    import { computeBaseUrl } from "src/lib/utils.js";
 
     const addColour = () => {
         addToPalGenColours();

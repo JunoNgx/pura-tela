@@ -4,8 +4,8 @@
     import { flip } from "svelte/animate";
 
     import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
-	import DropdownMenu from "src/components/DropdownMenu.svelte";
-	import type { ColObj } from "src/lib/types.js";
+    import DropdownMenu from "src/components/DropdownMenu.svelte";
+    import type { ColObj } from "src/lib/types.js";
 
     import MaterialSymbolsAdd from "~icons/material-symbols/add";
     import MaterialSymbolsRemove from "~icons/material-symbols/remove";
@@ -13,10 +13,10 @@
     import MaterialSymbolsViewWeekSharp from "~icons/material-symbols/view-week-sharp";
     import MaterialSymbolsNetworkIntelligence from "~icons/material-symbols/network-intelligence";
 
-	import { decreaseWallGenColourInUseCount, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
-	import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
-	import { passWallGenToPaletteGenerator } from "src/states/palGenState.svelte.js";
-	import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
+    import { decreaseWallGenColourInUseCount, getColourStringsInUse, getCurrWallStyleInfo, getWallGenColourInUseCount, increaseWallGenColourInUseCount, passSomeColourObjectsToWallpaperGenerator, tryParseFromStringToWallGen, wallGenColours } from "src/states/wallGenState.svelte.js";
+    import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
+    import { passWallGenToPaletteGenerator } from "src/states/palGenState.svelte.js";
+    import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
 
     const handleRemoveColour = () => {
         decreaseWallGenColourInUseCount();

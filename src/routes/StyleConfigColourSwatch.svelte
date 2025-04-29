@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
-	import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type InputEvent, type MouseInputEvent } from "src/lib/types.js";
+    import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
+    import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type InputEvent, type MouseInputEvent } from "src/lib/types.js";
 
-	import RadioCheckbox from "src/components/RadioCheckbox.svelte";
-	import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
+    import RadioCheckbox from "src/components/RadioCheckbox.svelte";
+    import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
 
-	import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
-	import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+    import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+    import { colourSwatchStyleConfig, colourSwatchStyleConfigDefaultValue, setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
 
     const isDirectionHorizontal = $derived(colourSwatchStyleConfig.val.direction
         === ColourSwatchStyleDirection.HORIZONTAL);

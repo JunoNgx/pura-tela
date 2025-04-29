@@ -8,12 +8,12 @@
     import MaterialSymbolsLightPalette from "~icons/material-symbols-light/palette";
     import MaterialSymbolsLightPaletteOutline from "~icons/material-symbols-light/palette-outline";
 
-	import { goto } from "$app/navigation";
-	import PaletteListItemColourBtn from "./PaletteListItemColourBtn.svelte";
-	import type { PaletteItem } from "src/lib/types.js";
-	import { deletePaletteAtIndex, passPaletteToWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
-	import { passPaletteToPaletteGenerator } from "src/states/palGenState.svelte.js";
-	import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
+    import { goto } from "$app/navigation";
+    import PaletteListItemColourBtn from "./PaletteListItemColourBtn.svelte";
+    import type { PaletteItem } from "src/lib/types.js";
+    import { deletePaletteAtIndex, passPaletteToWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
+    import { passPaletteToPaletteGenerator } from "src/states/palGenState.svelte.js";
+    import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
 
     type PaletteListItemProps = {
         paletteItem: PaletteItem,

@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { onDestroy } from "svelte";
+    import { onDestroy } from "svelte";
 
     import MaterialSymbolsShareOutline from "~icons/material-symbols/share-outline";
     import MaterialSymbolsContentCopyOutlineSharp from "~icons/material-symbols/content-copy-outline-sharp";
-	import type { ShareItem } from "src/lib/types.js";
+    import type { ShareItem } from "src/lib/types.js";
 
     type SharePanelItemProps = {
         domId: string,
@@ -141,9 +141,9 @@
         margin-top: 1rem;
     }
 
-    /* .ShareItem__ShareBtn {
+    .ShareItem__ShareBtn {
         display: none;
-    } */
+    }
 
     @media screen and (hover: none) and (pointer: coarse) {
         .ShareItem__ShareBtn {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+    import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
 </script>
 
 <article class="AboutArticle">
