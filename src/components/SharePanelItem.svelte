@@ -77,14 +77,6 @@
         </h4>
 
         <div class="ShareItem__ButtonsContainer">
-            <button class="ShareItem__ShareBtn IconButtonWithLabel"
-                onclick={() => {shareItemContent(shareItem)}}
-                title="Share this content"
-                aria-label="Share this content"
-            >
-                <MaterialSymbolsShareOutline/>
-                <span>Share</span>
-            </button>
             <button class="ShareItem__CopyBtn IconButtonWithLabel"
                 onclick={() => {copyItemContent(shareItem)}}
                 title="Copy this content"
@@ -98,6 +90,15 @@
                         Copy
                     {/if}
                 </span>
+            </button>
+
+            <button class="ShareItem__ShareBtn IconButtonWithLabel"
+                onclick={() => {shareItemContent(shareItem)}}
+                title="Share this content"
+                aria-label="Share this content"
+            >
+                <MaterialSymbolsShareOutline/>
+                <span>Share</span>
             </button>
         </div>
     </div>
