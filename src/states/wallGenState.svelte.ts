@@ -171,7 +171,7 @@ export const isWallGenStyleValid = (data: any) => {
 
 export const wallGenStyle = createLocalStorageSyncedState({
     key: "wallpaperStyle",
-    defaultValue: WallpaperStyle.COLOUR_SWATCH,
+    defaultValue: WallpaperStyle.POP_ART_SQUARE,
     validationFunc: isWallGenStyleValid,
 }) as State<WallpaperStyle>;
 

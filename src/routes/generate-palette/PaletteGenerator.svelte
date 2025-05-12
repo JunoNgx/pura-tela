@@ -14,7 +14,7 @@
     import MaterialSymbolsColorize from "~icons/material-symbols/colorize";
     import MaterialSymbolsViewWeekSharp from "~icons/material-symbols/view-week-sharp";
     import MaterialSymbolsNetworkIntelligence from "~icons/material-symbols/network-intelligence";
-    import MaterialSymbolsLightConvertToTextOutlineSharp from "~icons/material-symbols-light/convert-to-text-outline-sharp";
+    import MaterialSymbolsConvertToTextOutlineSharp from '~icons/material-symbols/convert-to-text-outline-sharp';
 
     import { addToPalGenColours, exportToStringFromPalGen, palGenColours, tryParseFromStringToPalGen, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
     import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
@@ -102,7 +102,7 @@
             label: "Import from string",
             tooltip: "Enter a string of data to recover a palette",
             action: parseFromString,
-            icon: MaterialSymbolsLightConvertToTextOutlineSharp
+            icon: MaterialSymbolsConvertToTextOutlineSharp
         },
     ];
 </script>
