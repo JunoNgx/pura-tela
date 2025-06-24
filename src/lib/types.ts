@@ -154,6 +154,7 @@ export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps,
     gradient: GradientStyleConfigProps,
     palette: PaletteStyleConfigProps,
+    horizon: HorizonStyleConfigProps,
 };
 
 export type ShareItem = {
