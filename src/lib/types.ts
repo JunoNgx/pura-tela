@@ -149,6 +149,12 @@ export type PaletteStyleConfigProps = {
     position: number,
 };
 
+export type HorizonStyleConfigProps = {
+    shouldShowCore: boolean,
+    size: number,
+    position: number,
+};
+
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps,
     gradient: GradientStyleConfigProps,
