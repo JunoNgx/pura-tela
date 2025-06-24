@@ -1,9 +1,10 @@
 <script lang="ts">
     import Checkbox from "src/components/Checkbox.svelte";
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
+	import { HORIZON_CONFIG_POSITION_MAX_VALUE, HORIZON_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
     import type { InputEvent } from "src/lib/types.js";
     import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
-	import { horizonStyleConfig, setHorizonStyleShouldShowCore } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
+	import { horizonStyleConfig, resetHorizonStylePosition, resetHorizonStyleSize, setHorizonStylePosition, setHorizonStyleShouldShowCore, setHorizonStyleSize } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
 
     const handleDataChange = (
         e: InputEvent,
@@ -41,55 +42,27 @@
 
         <div class="HorizonConfig__ShowCoreCheckbox">
             <Checkbox
-                domId="horizonConfigShowCoreCheckbox"
+                domId="HorizonConfigShowCoreCheckbox"
                 label="Render center core"
                 checked={horizonStyleConfig.val.shouldShowCore}
                 changeHandler={handleCheckboxSwitch}
             />
         </div>
 
-        <!-- <fieldset class="HorizonConfig__Item">
-            <legend>
-                <h4 class="HorizonConfig__ItemTitle">Angle</h4>
-            </legend>
-            <StyleConfigItemSlider
-                domId="HorizonAngle"
-                label="Horizon angle config"
-                min={0}
-                max={Horizon_CONFIG_ANGLE_MAX_VALUE}
-                step={15}
-                value={HorizonStyleConfig.val.angleInDeg}
-                unit="°"
-                shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleDataChange(e, setHorizonStyleAngle, "angle", 0, Horizon_CONFIG_ANGLE_MAX_VALUE);
-                }}
-            />
-            <div class="HorizonConfig__ActionsContainer">
-                <button class="HorizonConfig__ResetAngleButton TertBtn"
-                    title="Reset Horizon config angle to default"
-                    aria-label="Reset Horizon config angle to default"
-                    onclick={resetHorizonStyleAngle}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
-
         <fieldset class="HorizonConfig__Item">
             <legend>
                 <h4 class="HorizonConfig__ItemTitle">Size</h4>
             </legend>
             <StyleConfigItemSlider
-                domId="HorizonSize"
+                domId="HorizonConfigSize"
                 label="Horizon size config"
                 min={0}
-                max={Horizon_CONFIG_SIZE_MAX_VALUE}
+                max={HORIZON_CONFIG_SIZE_MAX_VALUE}
                 step={1}
-                value={HorizonStyleConfig.val.size}
+                value={horizonStyleConfig.val.size}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(e, setHorizonStyleSize, "size", 0, Horizon_CONFIG_SIZE_MAX_VALUE);
+                    handleDataChange(e, setHorizonStyleSize, "size", 0, HORIZON_CONFIG_SIZE_MAX_VALUE);
                 }}
             />
             <div class="HorizonConfig__ActionsContainer">
@@ -108,15 +81,15 @@
                 <h4 class="HorizonConfig__ItemTitle">Position</h4>
             </legend>
             <StyleConfigItemSlider
-                domId="HorizonPosition"
+                domId="HorizonConfigPosition"
                 label="Horizon position config"
                 min={0}
                 max={100}
                 step={5}
-                value={HorizonStyleConfig.val.position}
+                value={horizonStyleConfig.val.position}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(e, setHorizonStylePosition, "position", 0, Horizon_CONFIG_POSITION_MAX_VALUE);
+                    handleDataChange(e, setHorizonStylePosition, "position", 0, HORIZON_CONFIG_POSITION_MAX_VALUE);
                 }}
             />
             <div class="HorizonConfig__ActionsContainer">
@@ -128,7 +101,7 @@
                     Reset
                 </button>
             </div>
-        </fieldset> -->
+        </fieldset>
 
     </div>
 </div>
