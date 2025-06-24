@@ -21,8 +21,8 @@ const isHorizonConfigValid = (data: any) => {
 
 const horizonStyleConfigDefaultValue = {
     shouldShowCore: true,
-    size: 50,
-    position: 10,
+    size: 5,
+    position: 50,
 };
 
 export const horizonStyleConfig = <State<HorizonStyleConfigProps>>createLocalStorageSyncedState({
