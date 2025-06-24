@@ -65,7 +65,7 @@ export enum WallpaperStyle {
     POP_ART_SQUARE = "popArtSquare",
     COLOUR_SWATCH = "colourSwatch",
     PALETTE = "palette",
-    C_BLOCK = "cBlock",
+    HORIZON = "horizon",
 };
 
 export type WallpaperStyleInfo = {

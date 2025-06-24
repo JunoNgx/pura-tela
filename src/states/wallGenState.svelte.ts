@@ -226,7 +226,7 @@ const currStyleInfo = $derived.by(() => {
             maxColourCount: MAX_COLOUR_COUNT,
         };
 
-    case WallpaperStyle.C_BLOCK:
+    case WallpaperStyle.HORIZON:
         return {
             defaultColourCount: 6,
             minColourCount: 6,

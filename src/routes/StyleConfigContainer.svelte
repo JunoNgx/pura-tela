@@ -112,17 +112,17 @@
 
             <button class="StyleSelectButton"
                 class:StyleSelectButton--IsSelected={isColourSwatchStyle()}
-                aria-label="Select wallpaper style C-Block"
-                title="Select wallpaper style C-Block"
-                data-value={WallpaperStyle.C_BLOCK}
+                aria-label="Select wallpaper style Horizon"
+                title="Select wallpaper style Horizon"
+                data-value={WallpaperStyle.HORIZON}
                 onclick={handleWallpaperStyleChange}
             >
                 <img class="StyleSelectButton__Img"
-                    src="/styleImages/style-swatch.png"
-                    alt="Illustration for style C-Block"
+                    src="/styleImages/style-horizon.png"
+                    alt="Illustration for style Horizon"
                 />
                 <span class="StyleSelectButton__Label">
-                    C-Block
+                    Horizon
                 </span>
             </button>
         </div>
