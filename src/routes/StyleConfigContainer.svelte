@@ -109,6 +109,22 @@
                     Colour Swatch
                 </span>
             </button>
+
+            <button class="StyleSelectButton"
+                class:StyleSelectButton--IsSelected={isColourSwatchStyle()}
+                aria-label="Select wallpaper style C-Block"
+                title="Select wallpaper style C-Block"
+                data-value={WallpaperStyle.C_BLOCK}
+                onclick={handleWallpaperStyleChange}
+            >
+                <img class="StyleSelectButton__Img"
+                    src="/styleImages/style-swatch.png"
+                    alt="Illustration for style C-Block"
+                />
+                <span class="StyleSelectButton__Label">
+                    C-Block
+                </span>
+            </button>
         </div>
 
     </fieldset>

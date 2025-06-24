@@ -226,6 +226,13 @@ const currStyleInfo = $derived.by(() => {
             maxColourCount: MAX_COLOUR_COUNT,
         }
 
+    case WallpaperStyle.C_BLOCK:
+        return {
+            defaultColourCount: 6,
+            minColourCount: 6,
+            maxColourCount: 6,
+        }
+
     default:
         throw new Error("Retrieving info; invalid wallpaper style not found")
     }
