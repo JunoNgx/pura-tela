@@ -165,6 +165,10 @@ export const renderCanvas = (
         renderForPaletteStyle(renderOptions);
         break;
 
+    case WallpaperStyle.HORIZON:
+        renderForHorizonStyle(renderOptions);
+        break;
+
     case WallpaperStyle.SOLID:
     default:
         renderForSolidStyle(renderOptions);
@@ -460,6 +464,36 @@ export const renderForPaletteStyle = (
             size.height*4
         );
     }
+};
+
+export const renderForHorizonStyle = (
+    { ctx, colours, size, config }: StyleRenderOptions
+) => {
+    if (!config?.horizon) {
+        throw new Error("Cannot access Horizon config");
+    }
+
+    if (colours.length < 6) {
+        throw new Error("Insufficient colours for Horizon rendering");
+    }
+
+    // Background upper half
+    ctx.fillStyle = colours[0];
+    ctx.fillRect(
+        0,
+        0,
+        size.width,
+        size.height/2
+    );
+
+    // Background lower half
+    ctx.fillStyle = colours[1];
+    ctx.fillRect(
+        0,
+        size.height/2,
+        size.width,
+        size.height/2
+    );
 };
 
 // ---- Size fitting logic
