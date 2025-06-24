@@ -494,6 +494,34 @@ export const renderForHorizonStyle = (
         size.width,
         size.height/2
     );
+
+    // TODO: abstract getShortAndLongerSides(width, height);
+    const longerSide = size.width >= size.height
+        ? size.width
+        : size.height;
+    const shorterSide = size.width >= size.height
+        ? size.height
+        : size.width;
+
+    const fgBlockSize = shorterSide * 0.7;
+
+    // Foreground upper half
+    ctx.fillStyle = colours[2];
+    ctx.fillRect(
+        size.width/2 - fgBlockSize/2,
+        size.height/2 - fgBlockSize/2,
+        fgBlockSize,
+        fgBlockSize/2,
+    );
+
+    // Foreground lower half
+    ctx.fillStyle = colours[3];
+    ctx.fillRect(
+        size.width/2 - fgBlockSize/2,
+        size.height/2,
+        fgBlockSize,
+        fgBlockSize/2,
+    );
 };
 
 // ---- Size fitting logic
