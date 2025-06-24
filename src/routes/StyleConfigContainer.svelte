@@ -1,5 +1,4 @@
 <script lang="ts">
-    import RadioCheckbox from "src/components/RadioCheckbox.svelte";
     import { WallpaperStyle, type MouseButtonEvent } from "src/lib/types.js";
     import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, isPaletteStyle, setWallGenColourInUseCount, wallGenStyle, getWallGenColourInUseCount, isHorizonStyle } from "src/states/wallGenState.svelte.js";
     import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
