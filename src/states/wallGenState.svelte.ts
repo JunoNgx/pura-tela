@@ -202,21 +202,21 @@ const currStyleInfo = $derived.by(() => {
             defaultColourCount: 1,
             minColourCount: 1,
             maxColourCount: 1,
-        }
+        };
 
     case WallpaperStyle.GRADIENT:
         return {
             defaultColourCount: 2,
             minColourCount: 2,
             maxColourCount: MAX_COLOUR_COUNT,
-        }
+        };
 
     case WallpaperStyle.POP_ART_SQUARE:
         return {
             defaultColourCount: 4,
             minColourCount: 4,
             maxColourCount: 4,
-        }
+        };
 
     case WallpaperStyle.COLOUR_SWATCH:
     case WallpaperStyle.PALETTE:
@@ -224,14 +224,14 @@ const currStyleInfo = $derived.by(() => {
             defaultColourCount: 5,
             minColourCount: 2,
             maxColourCount: MAX_COLOUR_COUNT,
-        }
+        };
 
     case WallpaperStyle.C_BLOCK:
         return {
             defaultColourCount: 6,
             minColourCount: 6,
             maxColourCount: 6,
-        }
+        };
 
     default:
         throw new Error("Retrieving info; invalid wallpaper style not found")
