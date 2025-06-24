@@ -116,7 +116,7 @@
     }
 
     .HorizonConfig__ShowCoreCheckbox {
-        margin-top: 1rem;
+        margin: 2rem 0;
     }
 
     .HorizonConfig__Item {
