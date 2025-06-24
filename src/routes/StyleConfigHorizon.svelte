@@ -1,7 +1,9 @@
 <script lang="ts">
+    import Checkbox from "src/components/Checkbox.svelte";
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
     import type { InputEvent } from "src/lib/types.js";
     import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+	import { horizonStyleConfig, setHorizonStyleShouldShowCore } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
 
     const handleDataChange = (
         e: InputEvent,
@@ -24,6 +26,10 @@
         }
     };
 
+    const handleCheckboxSwitch = () => {
+        setHorizonStyleShouldShowCore(!horizonStyleConfig.val.shouldShowCore);
+    };
+
 </script>
 
 <div class="HorizonConfig">
@@ -32,6 +38,16 @@
     </h3>
 
     <div class="HorizonConfig__ItemsContainer">
+
+        <div class="HorizonConfig__ShowCoreCheckbox">
+            <Checkbox
+                domId="horizonConfigShowCoreCheckbox"
+                label="Render center core"
+                checked={horizonStyleConfig.val.shouldShowCore}
+                changeHandler={handleCheckboxSwitch}
+            />
+        </div>
+
         <!-- <fieldset class="HorizonConfig__Item">
             <legend>
                 <h4 class="HorizonConfig__ItemTitle">Angle</h4>
@@ -124,6 +140,10 @@
 
     .HorizonConfig__Title {
         margin-bottom: 0.5rem;
+    }
+
+    .HorizonConfig__ShowCoreCheckbox {
+        margin-top: 1rem;
     }
 
     .HorizonConfig__Item {
