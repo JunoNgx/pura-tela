@@ -195,6 +195,10 @@ export const isPaletteStyle = () => {
     return wallGenStyle.val === WallpaperStyle.PALETTE;
 };
 
+export const isHorizonStyle = () => {
+    return wallGenStyle.val === WallpaperStyle.HORIZON;
+};
+
 const currStyleInfo = $derived.by(() => {
     switch (wallGenStyle.val) {
     case WallpaperStyle.SOLID:
