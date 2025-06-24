@@ -22,6 +22,8 @@ type ShapeProps = {
     isVertical?: boolean,
 };
 
+// ---- Util draw functions
+
 const drawSquare = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fillStyle = colour;
     ctx.fillRect(x, y, size, size);
@@ -127,6 +129,8 @@ const drawThinStrip = ({ ctx, colour, x, y, size, isVertical}: ShapeProps) => {
     ctx.fillStyle = colour;
     ctx.fillRect(...drawOptions);
 };
+
+// ---- Core logic
 
 export const renderCanvas = (
     { size, colours, style, config }: CanvasRenderOptions
@@ -458,6 +462,8 @@ export const renderForPaletteStyle = (
     }
 };
 
+// ---- Size fitting logic
+
 export const refitCanvasToContainer = () => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
     if (!canvas) return;
@@ -496,6 +502,8 @@ const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
         canvas.style.height = `${height}px`;
     }
 };
+
+// ---- File export logic
 
 export const generateImage = (filename: string) => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
