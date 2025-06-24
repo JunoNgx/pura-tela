@@ -522,6 +522,35 @@ export const renderForHorizonStyle = (
         fgBlockSize,
         fgBlockSize/2,
     );
+
+    const shouldDrawCore = config.horizon.shouldShowCore;
+    if (shouldDrawCore) {
+        const coreRadius = fgBlockSize * 0.35;
+
+        // Upper core
+        ctx.beginPath();
+        ctx.arc(
+            size.width/2,
+            size.height/2,
+            coreRadius,
+            Math.PI,
+            Math.PI * 2,
+        );
+        ctx.fillStyle = colours[4];
+        ctx.fill();
+
+        // Lower core
+        ctx.beginPath();
+        ctx.arc(
+            size.width/2,
+            size.height/2,
+            coreRadius,
+            0,
+            Math.PI,
+        );
+        ctx.fillStyle = colours[5];
+        ctx.fill();
+    }
 };
 
 // ---- Size fitting logic
