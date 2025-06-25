@@ -232,10 +232,13 @@ const currStyleInfo = $derived.by(() => {
         };
 
     case WallpaperStyle.HORIZON:
+        const colourCount =
+            horizonStyleConfig.val.shouldShowCore ? 6 : 4;
+
         return {
-            defaultColourCount: 6,
-            minColourCount: 6,
-            maxColourCount: 6,
+            defaultColourCount: colourCount,
+            minColourCount: colourCount,
+            maxColourCount: colourCount,
         };
 
     default:
@@ -283,6 +286,20 @@ export const setWallGenColourInUseCount = (newValue: number) => {
     }
 
     wallGenColoursInUseCount.set(newValue);
+};
+
+export const tryResetWallGenColourInUseCount = () => {
+    const {
+        defaultColourCount,
+        minColourCount,
+        maxColourCount,
+    } = getCurrWallStyleInfo();
+    const shouldResetColourInUseCount =
+        getWallGenColourInUseCount() < minColourCount
+        || getWallGenColourInUseCount() > maxColourCount;
+    if (shouldResetColourInUseCount) {
+        setWallGenColourInUseCount(defaultColourCount);
+    }
 };
 
 export const increaseWallGenColourInUseCount = () => {

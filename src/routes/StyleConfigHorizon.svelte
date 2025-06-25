@@ -4,6 +4,7 @@
 	import { HORIZON_CONFIG_POSITION_MAX_VALUE, HORIZON_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
     import type { InputEvent } from "src/lib/types.js";
     import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+	import { tryResetWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
 	import { horizonStyleConfig, resetHorizonStylePosition, resetHorizonStyleSize, setHorizonStylePosition, setHorizonStyleShouldShowCore, setHorizonStyleSize } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
 
     const handleDataChange = (
@@ -29,6 +30,7 @@
 
     const handleCheckboxSwitch = () => {
         setHorizonStyleShouldShowCore(!horizonStyleConfig.val.shouldShowCore);
+        tryResetWallGenColourInUseCount();
     };
 
 </script>

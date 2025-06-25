@@ -1,6 +1,6 @@
 <script lang="ts">
     import { WallpaperStyle, type MouseButtonEvent } from "src/lib/types.js";
-    import { getCurrWallStyleInfo, isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, isPaletteStyle, setWallGenColourInUseCount, wallGenStyle, getWallGenColourInUseCount, isHorizonStyle } from "src/states/wallGenState.svelte.js";
+    import { isGradientStyle, isColourSwatchStyle, isPopArtSquareStyle, isSolidStyle, isPaletteStyle, wallGenStyle, isHorizonStyle, tryResetWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
     import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
     import StyleConfigGradient from "./StyleConfigGradient.svelte";
     import StyleConfigPalette from "./StyleConfigPalette.svelte";
@@ -10,17 +10,7 @@
         const newValue = e.currentTarget.getAttribute("data-value") as WallpaperStyle;
         wallGenStyle.set(newValue);
 
-        const {
-            defaultColourCount,
-            minColourCount,
-            maxColourCount,
-        } = getCurrWallStyleInfo();
-        const shouldResetColourInUseCount =
-            getWallGenColourInUseCount() < minColourCount
-            || getWallGenColourInUseCount() > maxColourCount;
-        if (shouldResetColourInUseCount) {
-            setWallGenColourInUseCount(defaultColourCount);
-        }
+        tryResetWallGenColourInUseCount();
     }
 </script>
 
