@@ -347,6 +347,20 @@ export const setWallGenSizeFull = (width: number, height: number) => {
     wallGenSize.set({ width, height });
 };
 
+export const setWallGenSizeWidth = (newWidth: number) => {
+    wallGenSize.set({
+        width: newWidth,
+        height: wallGenSize.val.height,
+    });
+};
+
+export const setWallGenSizeHeight = (newHeight: number) => {
+    wallGenSize.set({
+        width: wallGenSize.val.width,
+        height: newHeight,
+    });
+};
+
 export const setWallGenSizeFromSizeGalleryIndex = (index: number) => {
     const isSizeGalleryIndexValid = (index: number) => {
         return (0 <= index && index <= sizeGallery.length - 1);
