@@ -1,4 +1,4 @@
-import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH, SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
+import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH, } from "src/lib/constants.js";
 import { isArrayOfHexCodesValid, isValueWithinRange } from "../states/stateUtils.svelte.js";
 import { defaultWallGenSizeValue } from "src/states/wallGenState.svelte.js";
 
