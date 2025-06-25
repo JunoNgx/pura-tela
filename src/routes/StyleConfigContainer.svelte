@@ -111,7 +111,7 @@
             </button>
 
             <button class="StyleSelectButton"
-                class:StyleSelectButton--IsSelected={isColourSwatchStyle()}
+                class:StyleSelectButton--IsSelected={isHorizonStyle()}
                 aria-label="Select wallpaper style Horizon"
                 title="Select wallpaper style Horizon"
                 data-value={WallpaperStyle.HORIZON}
