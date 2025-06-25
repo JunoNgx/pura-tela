@@ -1,4 +1,6 @@
-const createGalleryScrollPositionState = () => {
+import type { ScrollPositionState } from "src/lib/types.js";
+
+const createGalleryScrollPositionState = (): ScrollPositionState => {
     let scrollingPosition = $state(0);
 
     return {

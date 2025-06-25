@@ -168,3 +168,8 @@ export type ShareItem = {
     shareTitle: string,
     isContentPlainText?: boolean,
 };
+
+export type ScrollPositionState = {
+    get val(): number,
+    set: (newVal: number) => void
+};
