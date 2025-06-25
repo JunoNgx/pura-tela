@@ -1,12 +1,13 @@
 <script lang="ts">
-    import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE, SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
-    import { tryParseColours, tryParseNumericData, tryParseSize } from "src/lib/parseFuncs.js";
+    import { HORIZON_CONFIG_POSITION_MAX_VALUE, HORIZON_CONFIG_SIZE_MAX_VALUE, PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE, SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
+    import { tryParseBooleanData, tryParseColours, tryParseNumericData, tryParseSize } from "src/lib/parseFuncs.js";
     import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
     import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
     import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSizeFull, wallGenStyle, } from "src/states/wallGenState.svelte.js";
     import { setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
     import { setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
+	import { setHorizonStylePosition, setHorizonStyleShouldShowCore, setHorizonStyleSize } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
     import { setPaletteStyleAngle, setPaletteStylePosition, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
 
     export let data: WallGenQueryProps;
@@ -74,6 +75,22 @@
         if (!data[dataKey]) return;
         const value = tryParseNumericData(data[dataKey], minVal, maxVal);
         if (!value) return;
+
+        stateSetterFunc(value);
+    };
+
+    type tryParseBooleanConfigOptions = {
+        dataKey: keyof WallGenQueryProps,
+        stateSetterFunc: (newValue: boolean) => void,
+    };
+
+    const tryParseBooleanConfig = ({
+        dataKey,
+        stateSetterFunc,
+    }: tryParseBooleanConfigOptions) => {
+        if (!data[dataKey]) return;
+        const value = tryParseBooleanData(data[dataKey]);
+        if (value === null) return;
 
         stateSetterFunc(value);
     };
@@ -147,6 +164,24 @@
         minVal: 0,
         maxVal: PALETTE_CONFIG_POSITION_MAX_VALUE,
         stateSetterFunc: setPaletteStylePosition,
+    });
+
+    // Horizon style
+    tryParseBooleanConfig({
+        dataKey: "horizonShowCore",
+        stateSetterFunc: setHorizonStyleShouldShowCore,
+    });
+    tryParseNumericConfig({
+        dataKey: "horizonSize",
+        minVal: 0,
+        maxVal: HORIZON_CONFIG_SIZE_MAX_VALUE,
+        stateSetterFunc: setHorizonStyleSize,
+    });
+    tryParseNumericConfig({
+        dataKey: "horizonPosition",
+        minVal: 0,
+        maxVal: HORIZON_CONFIG_POSITION_MAX_VALUE,
+        stateSetterFunc: setHorizonStylePosition,
     });
 
 </script>
