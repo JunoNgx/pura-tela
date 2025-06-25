@@ -474,7 +474,9 @@ export const renderForHorizonStyle = (
         throw new Error("Cannot access Horizon config");
     }
 
-    if (colours.length < 6) {
+    const requiredColourCount =
+        config.horizon.shouldShowCore ? 6 : 4;
+    if (colours.length < requiredColourCount) {
         throw new Error("Insufficient colours for Horizon rendering");
     }
 

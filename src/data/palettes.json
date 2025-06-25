@@ -142,5 +142,12 @@
     {
         "name": "Printer process",
         "colours": ["000000", "1cadec", "ea1e8d", "fff236", "5d437e", "ffffff"]
+    },
+    {   "name": "104 days",
+        "colours": ["57A89E", "EBE7ED", "019B5F", "C05394", "D78304", "F4C201", "EDD58B"]
+    },
+    {
+        "name": "Helios",
+        "colours": ["e44647", "e5dfe9", "87c4a2", "304464", "fa575c", "008086"]
     }
 ]
