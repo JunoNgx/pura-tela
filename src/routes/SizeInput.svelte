@@ -1,8 +1,8 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { MAX_HEIGHT, MAX_WIDTH, MIN_DIMENSION } from "src/lib/constants.js";
-    import { tryParseHeight, tryParseNumericData, tryParseSize, tryParseWidth } from "src/lib/parseFuncs.js";
-    import { setWallGenSizeFull, setWallGenSizeHeight, setWallGenSizeWidth, wallGenSize } from "src/states/wallGenState.svelte.js";
+    import { tryParseNumericData } from "src/lib/parseFuncs.js";
+    import { setWallGenSizeHeight, setWallGenSizeWidth, wallGenSize } from "src/states/wallGenState.svelte.js";
 
     let width = $state(wallGenSize.val.width);
     let height = $state(wallGenSize.val.height);
@@ -39,21 +39,6 @@
         shouldShowIncorrectInput = false;
         setWallGenSizeHeight(parsedValue);
     }
-
-    // const tryUpdateWallGenSize = (
-    //     widthStr: string | number,
-    //     heightStr: string | number
-    // ) => {
-    //     const data = tryParseSize(widthStr, heightStr);
-
-    //     if (!data) {
-    //         shouldShowIncorrectInput = true;
-    //         return;
-    //     }
-
-    //     shouldShowIncorrectInput = false;
-    //     setWallGenSizeFull(data.width, data.height);
-    // };
 
     const goToSizeGallery = () => {
         goto("/sizes")
