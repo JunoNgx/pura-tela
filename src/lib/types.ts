@@ -92,6 +92,10 @@ export type WallGenQueryProps = {
     paletteAngle: string | null,
     paletteSize: string | null,
     palettePosition: string | null,
+
+    horizonShowCore: string | null,
+    horizonSize: string | null,
+    horizonPosition: string | null,
 };
 
 export type PalGenQueryProps = {
