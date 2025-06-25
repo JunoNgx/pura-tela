@@ -343,7 +343,7 @@ export const wallGenSize = createLocalStorageSyncedState({
     validationFunc: isWallGenSizeValid,
 });
 
-export const setWallGenSize = (width: number, height: number) => {
+export const setWallGenSizeFull = (width: number, height: number) => {
     wallGenSize.set({ width, height });
 };
 

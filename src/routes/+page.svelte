@@ -4,7 +4,7 @@
     import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
     import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
-    import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSize, wallGenStyle, } from "src/states/wallGenState.svelte.js";
+    import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSizeFull, wallGenStyle, } from "src/states/wallGenState.svelte.js";
     import { setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
     import { setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
     import { setPaletteStyleAngle, setPaletteStylePosition, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
@@ -49,7 +49,7 @@
             return;
         }
 
-        setWallGenSize(sizeData.width, sizeData.height);
+        setWallGenSizeFull(sizeData.width, sizeData.height);
     };
 
     tryParseStyleFromQueryToWallGen();

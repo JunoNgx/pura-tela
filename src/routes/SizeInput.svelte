@@ -2,7 +2,7 @@
     import { goto } from "$app/navigation";
     import { MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
     import { tryParseSize } from "src/lib/parseFuncs.js";
-    import { setWallGenSize, wallGenSize } from "src/states/wallGenState.svelte.js";
+    import { setWallGenSizeFull, wallGenSize } from "src/states/wallGenState.svelte.js";
 
     let width = $state(wallGenSize.val.width);
     let height = $state(wallGenSize.val.height);
@@ -28,7 +28,7 @@
         }
 
         shouldShowIncorrectInput = false;
-        setWallGenSize(data.width, data.height);
+        setWallGenSizeFull(data.width, data.height);
     };
 
     const goToSizeGallery = () => {
