@@ -478,24 +478,6 @@ export const renderForHorizonStyle = (
         throw new Error("Insufficient colours for Horizon rendering");
     }
 
-    // Background upper half
-    ctx.fillStyle = colours[0];
-    ctx.fillRect(
-        0,
-        0,
-        size.width,
-        size.height/2
-    );
-
-    // Background lower half
-    ctx.fillStyle = colours[1];
-    ctx.fillRect(
-        0,
-        size.height/2,
-        size.width,
-        size.height/2
-    );
-
     // TODO: abstract getShortAndLongerSides(width, height);
     const longerSide = size.width >= size.height
         ? size.width
@@ -513,6 +495,24 @@ export const renderForHorizonStyle = (
     const maxYPos =  size.height - fgBlockSize/2;
     const varianceYPos = (maxYPos - minYPos) * config.horizon.position/HORIZON_CONFIG_POSITION_MAX_VALUE;
     const yPos = minYPos + varianceYPos;
+
+    // Background upper half
+    ctx.fillStyle = colours[0];
+    ctx.fillRect(
+        0,
+        0,
+        size.width,
+        yPos
+    );
+
+    // Background lower half
+    ctx.fillStyle = colours[1];
+    ctx.fillRect(
+        0,
+        yPos,
+        size.width,
+        size.height - yPos
+    );
 
     // Foreground upper half
     ctx.fillStyle = colours[2];
