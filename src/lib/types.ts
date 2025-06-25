@@ -65,6 +65,7 @@ export enum WallpaperStyle {
     POP_ART_SQUARE = "popArtSquare",
     COLOUR_SWATCH = "colourSwatch",
     PALETTE = "palette",
+    HORIZON = "horizon",
 };
 
 export type WallpaperStyleInfo = {
@@ -91,6 +92,10 @@ export type WallGenQueryProps = {
     paletteAngle: string | null,
     paletteSize: string | null,
     palettePosition: string | null,
+
+    horizonShowCore: string | null,
+    horizonSize: string | null,
+    horizonPosition: string | null,
 };
 
 export type PalGenQueryProps = {
@@ -119,11 +124,6 @@ export enum ColourSwatchStyleItemShape {
     HEXAGON = "hexagon",
 };
 
-export enum ColourSwatchStylePosition {
-    CENTERED = "centered",
-    TOP_RIGHT = "topRight",
-};
-
 export enum ColourSwatchStyleDirection {
     HORIZONTAL = "horizontal",
     VERTICAL = "vertical",
@@ -148,10 +148,17 @@ export type PaletteStyleConfigProps = {
     position: number,
 };
 
+export type HorizonStyleConfigProps = {
+    shouldShowCore: boolean,
+    size: number,
+    position: number,
+};
+
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps,
     gradient: GradientStyleConfigProps,
     palette: PaletteStyleConfigProps,
+    horizon: HorizonStyleConfigProps,
 };
 
 export type ShareItem = {

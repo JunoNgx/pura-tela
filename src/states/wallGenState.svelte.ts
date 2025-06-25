@@ -9,6 +9,7 @@ import { tryParseColours } from "src/lib/parseFuncs.js";
 import { colourSwatchStyleConfig } from "./wallGenStyleConfigColourSwatchState.svelte.js";
 import { gradientStyleConfig } from "./wallGenStyleConfigGradientState.svelte.js";
 import { paletteStyleConfig } from "./wallGenStyleConfigPaletteState.svelte.js";
+import { horizonStyleConfig } from "./wallGenStyleConfigHorizonState.svelte.js";
 
 /**
  * Wallpaper Generator current colours
@@ -195,6 +196,10 @@ export const isPaletteStyle = () => {
     return wallGenStyle.val === WallpaperStyle.PALETTE;
 };
 
+export const isHorizonStyle = () => {
+    return wallGenStyle.val === WallpaperStyle.HORIZON;
+};
+
 const currStyleInfo = $derived.by(() => {
     switch (wallGenStyle.val) {
     case WallpaperStyle.SOLID:
@@ -202,21 +207,21 @@ const currStyleInfo = $derived.by(() => {
             defaultColourCount: 1,
             minColourCount: 1,
             maxColourCount: 1,
-        }
+        };
 
     case WallpaperStyle.GRADIENT:
         return {
             defaultColourCount: 2,
             minColourCount: 2,
             maxColourCount: MAX_COLOUR_COUNT,
-        }
+        };
 
     case WallpaperStyle.POP_ART_SQUARE:
         return {
             defaultColourCount: 4,
             minColourCount: 4,
             maxColourCount: 4,
-        }
+        };
 
     case WallpaperStyle.COLOUR_SWATCH:
     case WallpaperStyle.PALETTE:
@@ -224,7 +229,14 @@ const currStyleInfo = $derived.by(() => {
             defaultColourCount: 5,
             minColourCount: 2,
             maxColourCount: MAX_COLOUR_COUNT,
-        }
+        };
+
+    case WallpaperStyle.HORIZON:
+        return {
+            defaultColourCount: 6,
+            minColourCount: 6,
+            maxColourCount: 6,
+        };
 
     default:
         throw new Error("Retrieving info; invalid wallpaper style not found")
@@ -325,14 +337,33 @@ const isWallGenSizeValid = (data: any) => {
     }
 };
 
+export const defaultWallGenSizeValue = {
+    width: 1080,
+    height: 1920,
+};
+
 export const wallGenSize = createLocalStorageSyncedState({
     key: "size",
-    defaultValue: { width: 1080, height: 1920 },
+    defaultValue: defaultWallGenSizeValue,
     validationFunc: isWallGenSizeValid,
 });
 
-export const setWallGenSize = (width: number, height: number) => {
+export const setWallGenSizeFull = (width: number, height: number) => {
     wallGenSize.set({ width, height });
+};
+
+export const setWallGenSizeWidth = (newWidth: number) => {
+    wallGenSize.set({
+        width: newWidth,
+        height: wallGenSize.val.height,
+    });
+};
+
+export const setWallGenSizeHeight = (newHeight: number) => {
+    wallGenSize.set({
+        width: wallGenSize.val.width,
+        height: newHeight,
+    });
 };
 
 export const setWallGenSizeFromSizeGalleryIndex = (index: number) => {
@@ -395,10 +426,12 @@ export const getHexColourCodesInUse = () => {
 const derivedColourSwatchStyleConfig = $derived(colourSwatchStyleConfig.val);
 const derivedGradientStyleConfig = $derived(gradientStyleConfig.val);
 const derivedPaletteConfig = $derived(paletteStyleConfig.val);
+const derivedHorizonConfig = $derived(horizonStyleConfig.val);
 const derivedStyleConfig = $derived({
     colourSwatch: derivedColourSwatchStyleConfig,
     gradient: derivedGradientStyleConfig,
     palette: derivedPaletteConfig,
+    horizon: derivedHorizonConfig,
 });
 export const getStyleConfig = () => {
     return derivedStyleConfig;

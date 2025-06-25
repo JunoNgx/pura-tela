@@ -1,5 +1,6 @@
 export const MIN_COLOUR_COUNT_PALETTE = 2;
 export const MAX_COLOUR_COUNT = 7;
+export const MIN_DIMENSION = 1;
 export const MAX_WIDTH = 7680;
 export const MAX_HEIGHT = 4320;
 export const HAS_COPY_TIMEOUT_DURATION_MS = 1000;
@@ -8,3 +9,5 @@ export const SWATCH_CONFIG_MAX_VALUE = 100;
 export const PALETTE_CONFIG_ANGLE_MAX_VALUE = 180;
 export const PALETTE_CONFIG_SIZE_MAX_VALUE = 10;
 export const PALETTE_CONFIG_POSITION_MAX_VALUE = 100;
+export const HORIZON_CONFIG_SIZE_MAX_VALUE = 10;
+export const HORIZON_CONFIG_POSITION_MAX_VALUE = 100;
