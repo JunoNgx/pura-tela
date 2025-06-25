@@ -1,3 +1,4 @@
+import { HORIZON_CONFIG_POSITION_MAX_VALUE, HORIZON_CONFIG_SIZE_MAX_VALUE } from "./constants.js";
 import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
 
 const CANVAS_ID = "Canvas";
@@ -503,7 +504,10 @@ export const renderForHorizonStyle = (
         ? size.height
         : size.width;
 
-    const fgBlockSize = shorterSide * 0.7;
+    const minFgBlockSize = shorterSide * 0.25;
+    const maxFgBlockSize = shorterSide;
+    const varianceFgBlockSize = (maxFgBlockSize - minFgBlockSize) * config.horizon.size/HORIZON_CONFIG_SIZE_MAX_VALUE;
+    const fgBlockSize = minFgBlockSize + varianceFgBlockSize;
 
     // Foreground upper half
     ctx.fillStyle = colours[2];
