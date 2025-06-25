@@ -28,35 +28,23 @@ export const tryParseSize = (
 export const tryParseWidth = (
     value: string | number,
 ) => {
-    try {
-        const parsedValue = parseInt(value as string);
-        const isWidthValid = 1 < parsedValue && parsedValue < MAX_WIDTH;
+    const parsedValue = parseInt(value as string);
+    const isWidthValid = 1 < parsedValue && parsedValue < MAX_WIDTH;
 
-        return isWidthValid
-            ? parsedValue
-            : defaultWallGenSizeValue.width;
-
-    } catch(err) {
-        console.error("Invalid width data");
-        return null;
-    }
+    return isWidthValid
+        ? parsedValue
+        : defaultWallGenSizeValue.width;
 };
 
 export const tryParseHeight = (
     value: string | number,
 ) => {
-    try {
-        const parsedValue = parseInt(value as string);
-        const isHeightValid = 1 < parsedValue && parsedValue < MAX_HEIGHT;
+    const parsedValue = parseInt(value as string);
+    const isHeightValid = 1 < parsedValue && parsedValue < MAX_HEIGHT;
 
-        return isHeightValid
-            ? parsedValue
-            : defaultWallGenSizeValue.height;
-
-    } catch(err) {
-        console.error("Invalid height data");
-        return null;
-    }
+    return isHeightValid
+        ? parsedValue
+        : defaultWallGenSizeValue.height;
 };
 
 export const tryParseColours = (inputStr: string) => {
