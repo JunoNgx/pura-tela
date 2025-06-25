@@ -79,6 +79,22 @@
             </button>
 
             <button class="StyleSelectButton"
+                class:StyleSelectButton--IsSelected={isHorizonStyle()}
+                aria-label="Select wallpaper style Horizon"
+                title="Select wallpaper style Horizon"
+                data-value={WallpaperStyle.HORIZON}
+                onclick={handleWallpaperStyleChange}
+            >
+                <img class="StyleSelectButton__Img"
+                    src="/styleImages/style-horizon.png"
+                    alt="Illustration for style Horizon"
+                />
+                <span class="StyleSelectButton__Label">
+                    Horizon
+                </span>
+            </button>
+
+            <button class="StyleSelectButton"
                 class:StyleSelectButton--IsSelected={isPaletteStyle()}
                 aria-label="Select wallpaper style Colour Palette"
                 title="Select wallpaper style Colour Palette"
@@ -110,21 +126,6 @@
                 </span>
             </button>
 
-            <button class="StyleSelectButton"
-                class:StyleSelectButton--IsSelected={isHorizonStyle()}
-                aria-label="Select wallpaper style Horizon"
-                title="Select wallpaper style Horizon"
-                data-value={WallpaperStyle.HORIZON}
-                onclick={handleWallpaperStyleChange}
-            >
-                <img class="StyleSelectButton__Img"
-                    src="/styleImages/style-horizon.png"
-                    alt="Illustration for style Horizon"
-                />
-                <span class="StyleSelectButton__Label">
-                    Horizon
-                </span>
-            </button>
         </div>
 
     </fieldset>
