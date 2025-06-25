@@ -1,5 +1,6 @@
 import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH, SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
 import { isArrayOfHexCodesValid, isValueWithinRange } from "../states/stateUtils.svelte.js";
+import { defaultWallGenSizeValue } from "src/states/wallGenState.svelte.js";
 
 export const tryParseSize = (
     widthStr: string | number,
@@ -20,6 +21,40 @@ export const tryParseSize = (
 
     } catch(err) {
         console.error("Invalid size data");
+        return null;
+    }
+};
+
+export const tryParseWidth = (
+    value: string | number,
+) => {
+    try {
+        const parsedValue = parseInt(value as string);
+        const isWidthValid = 1 < parsedValue && parsedValue < MAX_WIDTH;
+
+        return isWidthValid
+            ? parsedValue
+            : defaultWallGenSizeValue.width;
+
+    } catch(err) {
+        console.error("Invalid width data");
+        return null;
+    }
+};
+
+export const tryParseHeight = (
+    value: string | number,
+) => {
+    try {
+        const parsedValue = parseInt(value as string);
+        const isHeightValid = 1 < parsedValue && parsedValue < MAX_HEIGHT;
+
+        return isHeightValid
+            ? parsedValue
+            : defaultWallGenSizeValue.height;
+
+    } catch(err) {
+        console.error("Invalid height data");
         return null;
     }
 };
