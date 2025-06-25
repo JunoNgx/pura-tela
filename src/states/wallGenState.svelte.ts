@@ -337,9 +337,14 @@ const isWallGenSizeValid = (data: any) => {
     }
 };
 
+export const defaultWallGenSizeValue = {
+    width: 1080,
+    height: 1920,
+};
+
 export const wallGenSize = createLocalStorageSyncedState({
     key: "size",
-    defaultValue: { width: 1080, height: 1920 },
+    defaultValue: defaultWallGenSizeValue,
     validationFunc: isWallGenSizeValid,
 });
 
