@@ -509,11 +509,16 @@ export const renderForHorizonStyle = (
     const varianceFgBlockSize = (maxFgBlockSize - minFgBlockSize) * config.horizon.size/HORIZON_CONFIG_SIZE_MAX_VALUE;
     const fgBlockSize = minFgBlockSize + varianceFgBlockSize;
 
+    const minYPos = fgBlockSize/2;
+    const maxYPos =  size.height - fgBlockSize/2;
+    const varianceYPos = (maxYPos - minYPos) * config.horizon.position/HORIZON_CONFIG_POSITION_MAX_VALUE;
+    const yPos = minYPos + varianceYPos;
+
     // Foreground upper half
     ctx.fillStyle = colours[2];
     ctx.fillRect(
         size.width/2 - fgBlockSize/2,
-        size.height/2 - fgBlockSize/2,
+        yPos - fgBlockSize/2,
         fgBlockSize,
         fgBlockSize/2,
     );
@@ -522,7 +527,7 @@ export const renderForHorizonStyle = (
     ctx.fillStyle = colours[3];
     ctx.fillRect(
         size.width/2 - fgBlockSize/2,
-        size.height/2,
+        yPos,
         fgBlockSize,
         fgBlockSize/2,
     );
@@ -535,7 +540,7 @@ export const renderForHorizonStyle = (
         ctx.beginPath();
         ctx.arc(
             size.width/2,
-            size.height/2,
+            yPos,
             coreRadius,
             Math.PI,
             Math.PI * 2,
@@ -547,7 +552,7 @@ export const renderForHorizonStyle = (
         ctx.beginPath();
         ctx.arc(
             size.width/2,
-            size.height/2,
+            yPos,
             coreRadius,
             0,
             Math.PI,
