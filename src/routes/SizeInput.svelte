@@ -1,35 +1,59 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
-    import { tryParseSize } from "src/lib/parseFuncs.js";
-    import { setWallGenSizeFull, wallGenSize } from "src/states/wallGenState.svelte.js";
+    import { MAX_HEIGHT, MAX_WIDTH, MIN_DIMENSION } from "src/lib/constants.js";
+    import { tryParseHeight, tryParseNumericData, tryParseSize, tryParseWidth } from "src/lib/parseFuncs.js";
+    import { setWallGenSizeFull, setWallGenSizeHeight, setWallGenSizeWidth, wallGenSize } from "src/states/wallGenState.svelte.js";
 
     let width = $state(wallGenSize.val.width);
     let height = $state(wallGenSize.val.height);
     let shouldShowIncorrectInput = $state(false);
 
     const onWidthChange = (value: string) => {
-        tryUpdateWallGenSize(value, height);
-    }
+        const parsedValue = tryParseNumericData(
+            value,
+            MIN_DIMENSION,
+            MAX_WIDTH
+        );
 
-    const onHeightChange = (value: string) => {
-        tryUpdateWallGenSize(width, value);
-    }
-
-    const tryUpdateWallGenSize = (
-        widthStr: string | number,
-        heightStr: string | number
-    ) => {
-        const data = tryParseSize(widthStr, heightStr);
-
-        if (!data) {
+        if (!parsedValue) {
             shouldShowIncorrectInput = true;
             return;
         }
-
+    
         shouldShowIncorrectInput = false;
-        setWallGenSizeFull(data.width, data.height);
-    };
+        setWallGenSizeWidth(parsedValue);
+    }
+
+    const onHeightChange = (value: string) => {
+        const parsedValue = tryParseNumericData(
+            value,
+            MIN_DIMENSION,
+            MAX_HEIGHT
+        );
+
+        if (!parsedValue) {
+            shouldShowIncorrectInput = true;
+            return;
+        }
+    
+        shouldShowIncorrectInput = false;
+        setWallGenSizeHeight(parsedValue);
+    }
+
+    // const tryUpdateWallGenSize = (
+    //     widthStr: string | number,
+    //     heightStr: string | number
+    // ) => {
+    //     const data = tryParseSize(widthStr, heightStr);
+
+    //     if (!data) {
+    //         shouldShowIncorrectInput = true;
+    //         return;
+    //     }
+
+    //     shouldShowIncorrectInput = false;
+    //     setWallGenSizeFull(data.width, data.height);
+    // };
 
     const goToSizeGallery = () => {
         goto("/sizes")
