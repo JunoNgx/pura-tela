@@ -11,13 +11,16 @@
     import { goto } from "$app/navigation";
     import PaletteListItemColourBtn from "./PaletteListItemColourBtn.svelte";
     import type { PaletteItem } from "src/lib/types.js";
-    import { deletePaletteAtIndex, passPaletteToWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
+    import {
+        deletePaletteAtIndex,
+        passPaletteToWallpaperGenerator,
+    } from "src/states/paletteGalleryState.svelte.js";
     import { passPaletteToPaletteGenerator } from "src/states/palGenState.svelte.js";
     import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
 
     type PaletteListItemProps = {
-        paletteItem: PaletteItem,
-        index: number,
+        paletteItem: PaletteItem;
+        index: number;
     };
 
     let { paletteItem, index }: PaletteListItemProps = $props();
@@ -35,7 +38,7 @@
     };
 
     const handleDeletePalette = () => {
-        deletePaletteAtIndex(index)
+        deletePaletteAtIndex(index);
     };
 
     const handleCopyPaletteString = async () => {
@@ -47,8 +50,8 @@
             copyRestoreStatusTimeout = setTimeout(() => {
                 hasBeenCopied = false;
             }, HAS_COPY_TIMEOUT_DURATION_MS);
-        } catch(error) {
-            throw new Error("Unable to copy colour code to clipboard")
+        } catch (error) {
+            throw new Error("Unable to copy colour code to clipboard");
         }
     };
 </script>
@@ -56,7 +59,7 @@
 <ul class="PaletteListItem">
     <div class="PaletteListItem__PaletteBox">
         {#each paletteItem.colours as colourItem}
-            <PaletteListItemColourBtn colourItem={colourItem} />
+            <PaletteListItemColourBtn {colourItem} />
         {/each}
     </div>
     <div class="PaletteListItem__Footer">
@@ -71,57 +74,61 @@
         </div>
 
         <div class="PaletteListItem__Buttons">
-            <button class="PaletteListItem__ActionBtn
+            <button
+                class="PaletteListItem__ActionBtn
                 IconButton
                 "
                 onclick={handleChoosePalette}
                 title={"Pass this palette to Wallpaper Generator"}
                 aria-label="Pass this palette to Wallpaper Generator"
-            >       
+            >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightColorizeOutline/>
+                    <MaterialSymbolsLightColorizeOutline />
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightColorize/>
+                    <MaterialSymbolsLightColorize />
                 </div>
             </button>
 
-            <button class="PaletteListItem__ActionBtn IconButton"
+            <button
+                class="PaletteListItem__ActionBtn IconButton"
                 onclick={passToPalGen}
                 title={"Pass this palette to Palette Generator"}
                 aria-label="Pass this palette to Palette Generator"
             >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightPaletteOutline/>
+                    <MaterialSymbolsLightPaletteOutline />
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightPalette/>
+                    <MaterialSymbolsLightPalette />
                 </div>
             </button>
 
-            <button class="ColourListItem__ActionBtn IconButton"
+            <button
+                class="ColourListItem__ActionBtn IconButton"
                 onclick={handleCopyPaletteString}
                 title={"Copy this hex colour code"}
                 aria-label="Copy this hex colour code"
-            >       
+            >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightContentCopyOutlineSharp/>
+                    <MaterialSymbolsLightContentCopyOutlineSharp />
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightContentCopySharp/>
+                    <MaterialSymbolsLightContentCopySharp />
                 </div>
             </button>
 
-            <button class="PaletteListItem__ActionBtn PaletteListItem__ActionBtn--RightMost Danger IconButton"
+            <button
+                class="PaletteListItem__ActionBtn PaletteListItem__ActionBtn--RightMost Danger IconButton"
                 onclick={handleDeletePalette}
                 title={"Delete this palette"}
                 aria-label="Delete this palette"
             >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightDeleteForeverOutlineSharp/>
+                    <MaterialSymbolsLightDeleteForeverOutlineSharp />
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightDeleteForeverSharp/>
+                    <MaterialSymbolsLightDeleteForeverSharp />
                 </div>
             </button>
         </div>
