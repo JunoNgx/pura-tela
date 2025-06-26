@@ -1,8 +1,15 @@
 // @ts-ignore
 import defaultPaletteGallery from "src/data/palettes.json";
-import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+import {
+    MAX_COLOUR_COUNT,
+    MIN_COLOUR_COUNT_PALETTE,
+} from "src/lib/constants.js";
 import { getRandomHexCode } from "src/lib/utils.js";
-import { createColState, isHexCodeValid, isValidBoolean } from "src/states/stateUtils.svelte.js";
+import {
+    createColState,
+    isHexCodeValid,
+    isValidBoolean,
+} from "src/states/stateUtils.svelte.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
 import { generateId } from "./idGenState.svelte.js";
 import type { PalGenColObj, State } from "src/lib/types.js";
@@ -17,7 +24,10 @@ const isPalGenColoursValid = (data: any) => {
     }
 
     try {
-        if (data.length < MIN_COLOUR_COUNT_PALETTE || data.length > MAX_COLOUR_COUNT) {
+        if (
+            data.length < MIN_COLOUR_COUNT_PALETTE
+            || data.length > MAX_COLOUR_COUNT
+        ) {
             return false;
         }
 

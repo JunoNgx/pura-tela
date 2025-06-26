@@ -29,7 +29,9 @@ export const generatePaletteWithGemini = async () => {
         return;
     }
 
-    const input = window.prompt('Enter the theme of the colour as prompt (e.g. "autumn"):');
+    const input = window.prompt(
+        'Enter the theme of the colour as prompt (e.g. "autumn"):'
+    );
     if (!input) {
         return;
     }

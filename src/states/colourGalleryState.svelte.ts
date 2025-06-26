@@ -26,7 +26,10 @@ export const colourGallery = createLocalStorageSyncedState({
 }) as State<ColourItem[]>;
 
 export const promptAddToColourGallery = (colourCode: string) => {
-    const colourName = window.prompt("Enter name for new colour", `#${colourCode}`);
+    const colourName = window.prompt(
+        "Enter name for new colour",
+        `#${colourCode}`
+    );
     if (!colourName) return;
 
     try {
@@ -38,7 +41,9 @@ export const promptAddToColourGallery = (colourCode: string) => {
         colourGallery.set([...colourGallery.val, newColour]);
     } catch (error) {
         console.error(error);
-        window.alert("Error adding new colour to gallery. Please see the console for more info.");
+        window.alert(
+            "Error adding new colour to gallery. Please see the console for more info."
+        );
     }
 };
 

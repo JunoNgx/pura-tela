@@ -9,7 +9,10 @@ import {
     isEnumValueValid,
     isValueWithinRange,
 } from "./stateUtils.svelte.js";
-import { SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
+import {
+    SWATCH_CONFIG_MAX_VALUE,
+    SWATCH_CONFIG_MIN_VALUE,
+} from "src/lib/constants.js";
 
 const isColourSwatchConfigValid = (data: any) => {
     if (!data) return false;
@@ -29,21 +32,47 @@ const isColourSwatchConfigValid = (data: any) => {
         return false;
     }
 
-    if (!isValueWithinRange(data.positionX, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+    if (
+        !isValueWithinRange(
+            data.positionX,
+            SWATCH_CONFIG_MIN_VALUE,
+            SWATCH_CONFIG_MAX_VALUE
+        )
+    )
         return false;
 
-    if (!isValueWithinRange(data.positionY, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+    if (
+        !isValueWithinRange(
+            data.positionY,
+            SWATCH_CONFIG_MIN_VALUE,
+            SWATCH_CONFIG_MAX_VALUE
+        )
+    )
         return false;
 
-    if (!isValueWithinRange(data.itemSize, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+    if (
+        !isValueWithinRange(
+            data.itemSize,
+            SWATCH_CONFIG_MIN_VALUE,
+            SWATCH_CONFIG_MAX_VALUE
+        )
+    )
         return false;
 
-    if (!isValueWithinRange(data.itemSpacing, SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE))
+    if (
+        !isValueWithinRange(
+            data.itemSpacing,
+            SWATCH_CONFIG_MIN_VALUE,
+            SWATCH_CONFIG_MAX_VALUE
+        )
+    )
         return false;
 
-    if (!isEnumValueValid(data.itemShape, ColourSwatchStyleItemShape)) return false;
+    if (!isEnumValueValid(data.itemShape, ColourSwatchStyleItemShape))
+        return false;
 
-    if (!isEnumValueValid(data.direction, ColourSwatchStyleDirection)) return false;
+    if (!isEnumValueValid(data.direction, ColourSwatchStyleDirection))
+        return false;
 
     return true;
 };
@@ -79,14 +108,18 @@ export const setColourSwatchStylePositionY = (newValue: number) => {
     });
 };
 
-export const setColourSwatchStyleDirection = (newValue: ColourSwatchStyleDirection) => {
+export const setColourSwatchStyleDirection = (
+    newValue: ColourSwatchStyleDirection
+) => {
     colourSwatchStyleConfig.set({
         ...colourSwatchStyleConfig.val,
         direction: newValue,
     });
 };
 
-export const setColourSwatchStyleItemShape = (newValue: ColourSwatchStyleItemShape) => {
+export const setColourSwatchStyleItemShape = (
+    newValue: ColourSwatchStyleItemShape
+) => {
     colourSwatchStyleConfig.set({
         ...colourSwatchStyleConfig.val,
         itemShape: newValue,

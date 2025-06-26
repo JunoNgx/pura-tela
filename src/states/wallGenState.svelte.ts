@@ -1,6 +1,14 @@
 // @ts-ignore
-import { createColState, createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
-import { WallpaperStyle, type ColObj, type State, type WallpaperStyleInfo } from "src/lib/types.js";
+import {
+    createColState,
+    createLocalStorageSyncedState,
+} from "src/states/stateUtils.svelte.js";
+import {
+    WallpaperStyle,
+    type ColObj,
+    type State,
+    type WallpaperStyleInfo,
+} from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
 import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
@@ -52,7 +60,9 @@ const isColourIndexValid = (index: number) => {
 
 export const getWallGenColoursAtIndex = (index: number) => {
     if (!isColourIndexValid(index)) {
-        throw new Error("ERROR: attempt to retrieve colour with an invalid index");
+        throw new Error(
+            "ERROR: attempt to retrieve colour with an invalid index"
+        );
         return;
     }
 
@@ -107,7 +117,9 @@ export const retractWallGenColoursAtIndex = (index: number) => {
 /**
  * Move the new colours onto WallGen, which might not completely fill up all colours
  */
-export const passSomeColourStringsToWallpaperGenerator = (newColours: string[]) => {
+export const passSomeColourStringsToWallpaperGenerator = (
+    newColours: string[]
+) => {
     // Data is internal, so this is assumed to have been validated
     const coloursToBeKept = wallGenColours.val.slice(newColours.length);
     const newColourObjList = newColours.map((colour) => ({
@@ -118,7 +130,9 @@ export const passSomeColourStringsToWallpaperGenerator = (newColours: string[]) 
     wallGenColours.set([...newColourObjList, ...coloursToBeKept]);
 };
 
-export const passSomeColourObjectsToWallpaperGenerator = (newColours: ColObj[]) => {
+export const passSomeColourObjectsToWallpaperGenerator = (
+    newColours: ColObj[]
+) => {
     const coloursToBeKept = wallGenColours.val.slice(newColours.length);
     wallGenColours.set([...newColours, ...coloursToBeKept]);
 };
@@ -241,7 +255,9 @@ const currStyleInfo = $derived.by(() => {
             };
 
         default:
-            throw new Error("Retrieving info; invalid wallpaper style not found");
+            throw new Error(
+                "Retrieving info; invalid wallpaper style not found"
+            );
     }
 });
 export const getCurrWallStyleInfo = (): WallpaperStyleInfo => {
@@ -288,7 +304,8 @@ export const setWallGenColourInUseCount = (newValue: number) => {
 };
 
 export const tryResetWallGenColourInUseCount = () => {
-    const { defaultColourCount, minColourCount, maxColourCount } = getCurrWallStyleInfo();
+    const { defaultColourCount, minColourCount, maxColourCount } =
+        getCurrWallStyleInfo();
     const shouldResetColourInUseCount =
         getWallGenColourInUseCount() < minColourCount
         || getWallGenColourInUseCount() > maxColourCount;
@@ -298,7 +315,9 @@ export const tryResetWallGenColourInUseCount = () => {
 };
 
 export const increaseWallGenColourInUseCount = () => {
-    if (wallGenColoursInUseCount.val === getCurrWallStyleInfo().maxColourCount) {
+    if (
+        wallGenColoursInUseCount.val === getCurrWallStyleInfo().maxColourCount
+    ) {
         throw new Error("Maximum colour in use count reached");
     }
 
@@ -306,7 +325,9 @@ export const increaseWallGenColourInUseCount = () => {
 };
 
 export const decreaseWallGenColourInUseCount = () => {
-    if (wallGenColoursInUseCount.val === getCurrWallStyleInfo().minColourCount) {
+    if (
+        wallGenColoursInUseCount.val === getCurrWallStyleInfo().minColourCount
+    ) {
         throw new Error("Minimum colour in use count reached");
     }
 

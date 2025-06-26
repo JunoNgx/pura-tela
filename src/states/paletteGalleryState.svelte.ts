@@ -1,6 +1,9 @@
 // @ts-ignore
 import defaultPaletteGallery from "src/data/palettes.json";
-import { createLocalStorageSyncedState, isHexCodeValid } from "src/states/stateUtils.svelte.js";
+import {
+    createLocalStorageSyncedState,
+    isHexCodeValid,
+} from "src/states/stateUtils.svelte.js";
 import {
     getColourStringsInUse,
     readjustWallGenColoursInUseCount,
@@ -8,7 +11,10 @@ import {
     wallGenColours,
 } from "./wallGenState.svelte.js";
 import { palGenColours } from "./palGenState.svelte.js";
-import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+import {
+    MAX_COLOUR_COUNT,
+    MIN_COLOUR_COUNT_PALETTE,
+} from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
 
 const isPaletteGalleryValid = (data: any[]) => {
@@ -56,7 +62,9 @@ export const addToPaletteGalleryFromWallpaperGenerator = () => {
         paletteGallery.set([...paletteGallery.val, newPalette]);
     } catch (error) {
         console.error(error);
-        window.alert("Error adding new palette to gallery. Please see the console for more info.");
+        window.alert(
+            "Error adding new palette to gallery. Please see the console for more info."
+        );
     }
 };
 
@@ -65,7 +73,9 @@ export const addToPaletteGalleryFromPaletteGenerator = () => {
     if (!name) return;
 
     try {
-        const colours = palGenColours.val.map((palGenItem) => palGenItem.colour);
+        const colours = palGenColours.val.map(
+            (palGenItem) => palGenItem.colour
+        );
         const newPalette = {
             name,
             colours,
@@ -74,7 +84,9 @@ export const addToPaletteGalleryFromPaletteGenerator = () => {
         paletteGallery.set([...paletteGallery.val, newPalette]);
     } catch (error) {
         console.error(error);
-        window.alert("Error adding new palette to gallery. Please see the console for more info.");
+        window.alert(
+            "Error adding new palette to gallery. Please see the console for more info."
+        );
     }
 };
 
@@ -98,7 +110,9 @@ export const passPaletteToWallpaperGenerator = (paletteIndex: number) => {
             id: generateId(),
             colour,
         }));
-        const coloursToBeKept = wallGenColours.val.slice(newColoursObjList.length);
+        const coloursToBeKept = wallGenColours.val.slice(
+            newColoursObjList.length
+        );
 
         wallGenColours.set([...newColoursObjList, ...coloursToBeKept]);
         setWallGenColourInUseCount(newColoursObjList.length);
