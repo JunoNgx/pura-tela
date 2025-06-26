@@ -1,11 +1,21 @@
 <script lang="ts">
     import Checkbox from "src/components/Checkbox.svelte";
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
-	import { HORIZON_CONFIG_POSITION_MAX_VALUE, HORIZON_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
+    import {
+        HORIZON_CONFIG_POSITION_MAX_VALUE,
+        HORIZON_CONFIG_SIZE_MAX_VALUE,
+    } from "src/lib/constants.js";
     import type { InputEvent } from "src/lib/types.js";
     import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
-	import { tryResetWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
-	import { horizonStyleConfig, resetHorizonStylePosition, resetHorizonStyleSize, setHorizonStylePosition, setHorizonStyleShouldShowCore, setHorizonStyleSize } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
+    import { tryResetWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
+    import {
+        horizonStyleConfig,
+        resetHorizonStylePosition,
+        resetHorizonStyleSize,
+        setHorizonStylePosition,
+        setHorizonStyleShouldShowCore,
+        setHorizonStyleSize,
+    } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
 
     const handleDataChange = (
         e: InputEvent,
@@ -22,9 +32,9 @@
                 throw new Error(`Invalid ${valueLabel} value`);
 
             setFunc(parsedValue);
-        } catch(err) {
-            console.log(err)
-            console.error(`Invalid ${valueLabel} value`)
+        } catch (err) {
+            console.warn(err);
+            console.error(`Invalid ${valueLabel} value`);
         }
     };
 
@@ -32,16 +42,12 @@
         setHorizonStyleShouldShowCore(!horizonStyleConfig.val.shouldShowCore);
         tryResetWallGenColourInUseCount();
     };
-
 </script>
 
 <div class="HorizonConfig">
-    <h3 class="HorizonConfig__Title">
-        Horizon Configurations
-    </h3>
+    <h3 class="HorizonConfig__Title">Horizon Configurations</h3>
 
     <div class="HorizonConfig__ItemsContainer">
-
         <div class="HorizonConfig__ShowCoreCheckbox">
             <Checkbox
                 domId="HorizonConfigShowCoreCheckbox"
@@ -64,11 +70,18 @@
                 value={horizonStyleConfig.val.size}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(e, setHorizonStyleSize, "size", 0, HORIZON_CONFIG_SIZE_MAX_VALUE);
+                    handleDataChange(
+                        e,
+                        setHorizonStyleSize,
+                        "size",
+                        0,
+                        HORIZON_CONFIG_SIZE_MAX_VALUE
+                    );
                 }}
             />
             <div class="HorizonConfig__ActionsContainer">
-                <button class="HorizonConfig__ResetSizeButton TertBtn"
+                <button
+                    class="HorizonConfig__ResetSizeButton TertBtn"
                     title="Reset Horizon config size to default"
                     aria-label="Reset Horizon config size to default"
                     onclick={resetHorizonStyleSize}
@@ -91,11 +104,18 @@
                 value={horizonStyleConfig.val.position}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(e, setHorizonStylePosition, "position", 0, HORIZON_CONFIG_POSITION_MAX_VALUE);
+                    handleDataChange(
+                        e,
+                        setHorizonStylePosition,
+                        "position",
+                        0,
+                        HORIZON_CONFIG_POSITION_MAX_VALUE
+                    );
                 }}
             />
             <div class="HorizonConfig__ActionsContainer">
-                <button class="HorizonConfig__ResetPositionButton TertBtn"
+                <button
+                    class="HorizonConfig__ResetPositionButton TertBtn"
                     title="Reset Horizon config position to default"
                     aria-label="Reset Horizon config position to default"
                     onclick={resetHorizonStylePosition}
@@ -104,7 +124,6 @@
                 </button>
             </div>
         </fieldset>
-
     </div>
 </div>
 
@@ -135,5 +154,4 @@
         display: flex;
         justify-content: flex-end;
     }
-
 </style>

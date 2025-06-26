@@ -2,9 +2,9 @@
     import ColourListItem from "src/routes/colours/ColourListItem.svelte";
     import ColourItemActionDialog from "src/routes/colours/ColourItemActionDialog.svelte";
     import { colourGallery } from "src/states/colourGalleryState.svelte.js";
-    
+
     let shouldShowDialog = $state(false);
-    let inputColour:string | null = $state(null);
+    let inputColour: string | null = $state(null);
 
     const showColourActionDialog = (newInputColour: string) => {
         inputColour = newInputColour;
@@ -13,16 +13,9 @@
 </script>
 
 <ul class="ColourList FlexList">
-    <ColourItemActionDialog
-        bind:shouldShowDialog
-        inputColour={inputColour}
-    />
+    <ColourItemActionDialog bind:shouldShowDialog {inputColour} />
     {#each colourGallery.val as colourItem, index}
-        <ColourListItem
-            showColourActionDialog={showColourActionDialog}
-            colourItem={colourItem}
-            index={index}
-        />
+        <ColourListItem {showColourActionDialog} {colourItem} {index} />
     {/each}
 </ul>
 

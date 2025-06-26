@@ -3,11 +3,11 @@
     import type { Snippet } from "svelte";
 
     type CustomRadioCheckboxProps = {
-        onclick: (e: MouseInputEvent) => void,
-        className?: string,
-        value: string,
-        checked: boolean,
-        children?: Snippet,
+        onclick: (e: MouseInputEvent) => void;
+        className?: string;
+        value: string;
+        checked: boolean;
+        children?: Snippet;
     };
 
     let {
@@ -20,15 +20,14 @@
 </script>
 
 <label class={`${className} CustomRadioCheckbox`}>
-    <input class="CustomRadioCheckbox__Input"
+    <input
+        class="CustomRadioCheckbox__Input"
         type="radio"
-        value={value}
-        checked={checked}
-        onclick={onclick}
+        {value}
+        {checked}
+        {onclick}
     />
-    <span class="CustomRadioCheckbox__Checkmark"
-        aria-hidden=true
-    ></span>
+    <span class="CustomRadioCheckbox__Checkmark" aria-hidden="true"></span>
     {@render children?.()}
 </label>
 
@@ -62,7 +61,9 @@
         left: 0.25rem;
     }
 
-    .CustomRadioCheckbox .CustomRadioCheckbox__Input:checked ~ .CustomRadioCheckbox__Checkmark:after {
+    .CustomRadioCheckbox
+        .CustomRadioCheckbox__Input:checked
+        ~ .CustomRadioCheckbox__Checkmark:after {
         background-color: var(--colPri);
     }
 </style>

@@ -19,8 +19,8 @@
     --colourInputItemGap: 1rem;
 
     /* Constant values */
-    --colDanger: #FF4647;
-    --colWhite: #FFF;
+    --colDanger: #ff4647;
+    --colWhite: #fff;
     --colBlack: #000;
     --colBlackRgb: 0, 0, 0;
 
@@ -42,23 +42,23 @@
     /* Default theme values */
     --colPri: #232042;
     --colSec: #778899;
-    --colAcc: #72CCE6;
-    --colBg: #E8E6E0;
-    --colBg2: #D5CFB7;
+    --colAcc: #72cce6;
+    --colBg: #e8e6e0;
+    --colBg2: #d5cfb7;
 }
 
 :root[data-theme-mode="light"] {
     --colPri: #232042;
     --colSec: #778899;
-    --colAcc: #72CCE6;
-    --colBg: #E8E6E0;
-    --colBg2: #D5CFB7;
+    --colAcc: #72cce6;
+    --colBg: #e8e6e0;
+    --colBg2: #d5cfb7;
 }
 
 :root[data-theme-mode="dark"] {
-    --colPri: #E3E0D6;
-    --colSec: #555E66;
-    --colAcc: #345F86;
+    --colPri: #e3e0d6;
+    --colSec: #555e66;
+    --colAcc: #345f86;
     --colBg: #323740;
-    --colBg2: #42444A;
+    --colBg2: #42444a;
 }

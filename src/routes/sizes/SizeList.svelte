@@ -17,29 +17,37 @@
     {#each sizeGallery as SizeItem, index}
         <li class="SizeItem">
             <div class="SizeItem__PreviewContainer">
-                <div class="SizeItem__PreviewScreen"
-                    class:SizeItem__PreviewScreen--IsPortraitMode
-                        ={SizeItem.height > SizeItem.width}
+                <div
+                    class="SizeItem__PreviewScreen"
+                    class:SizeItem__PreviewScreen--IsPortraitMode={SizeItem.height
+                        > SizeItem.width}
                     style={`aspect-ratio: ${SizeItem.width} / ${SizeItem.height};`}
                 ></div>
             </div>
             <div class="SizeItem__Footer">
                 <div class="SizeItem__Info">
-                    <p class="SizeItem__Label">{SizeItem.name}</p>
-                    <p class="SizeItem__SizeInfo">{SizeItem.width} × {SizeItem.height}</p>
+                    <p class="SizeItem__Label">
+                        {SizeItem.name}
+                    </p>
+                    <p class="SizeItem__SizeInfo">
+                        {SizeItem.width} × {SizeItem.height}
+                    </p>
                 </div>
 
                 <div class="SizeItem__ActionContainer">
-                    <button class="SizeItem__ActionBtn IconButton"
-                        onclick={() => { handlePassToWallgen(index) }}
+                    <button
+                        class="SizeItem__ActionBtn IconButton"
+                        onclick={() => {
+                            handlePassToWallgen(index);
+                        }}
                         title="Pass this size preset to Wallpaper Generator"
                         aria-label="Pass this size preset to Wallpaper Generator"
                     >
                         <div class="IconButton__RegularIcon">
-                            <MaterialSymbolsLightGestureSelectOutlineSharp/>
+                            <MaterialSymbolsLightGestureSelectOutlineSharp />
                         </div>
                         <div class="IconButton__HoverIcon">
-                            <MaterialSymbolsLightGestureSelectSharp/>
+                            <MaterialSymbolsLightGestureSelectSharp />
                         </div>
                     </button>
                 </div>
@@ -106,7 +114,7 @@
         margin-right: 0.25rem;
         background-color: var(--colAcc);
     }
-    
+
     @media screen and (width < 850px) {
         .SizeList {
             grid-template-columns: repeat(2, 1fr);
@@ -118,5 +126,4 @@
             grid-template-columns: 1fr;
         }
     }
-
 </style>

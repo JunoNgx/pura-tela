@@ -1,14 +1,54 @@
 <script lang="ts">
-    import { HORIZON_CONFIG_POSITION_MAX_VALUE, HORIZON_CONFIG_SIZE_MAX_VALUE, PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE, SWATCH_CONFIG_MAX_VALUE, SWATCH_CONFIG_MIN_VALUE } from "src/lib/constants.js";
-    import { tryParseBooleanData, tryParseColours, tryParseNumericData, tryParseSize } from "src/lib/parseFuncs.js";
-    import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, type WallGenQueryProps, type WallpaperStyle } from "src/lib/types.js";
+    import {
+        HORIZON_CONFIG_POSITION_MAX_VALUE,
+        HORIZON_CONFIG_SIZE_MAX_VALUE,
+        PALETTE_CONFIG_ANGLE_MAX_VALUE,
+        PALETTE_CONFIG_POSITION_MAX_VALUE,
+        PALETTE_CONFIG_SIZE_MAX_VALUE,
+        SWATCH_CONFIG_MAX_VALUE,
+        SWATCH_CONFIG_MIN_VALUE,
+    } from "src/lib/constants.js";
+    import {
+        tryParseBooleanData,
+        tryParseColours,
+        tryParseNumericData,
+        tryParseSize,
+    } from "src/lib/parseFuncs.js";
+    import {
+        ColourSwatchStyleDirection,
+        ColourSwatchStyleItemShape,
+        type WallGenQueryProps,
+        type WallpaperStyle,
+    } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
     import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
-    import { isWallGenStyleValid, passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, setWallGenSizeFull, wallGenStyle, } from "src/states/wallGenState.svelte.js";
-    import { setColourSwatchStyleDirection, setColourSwatchStyleItemShape, setColourSwatchStyleItemSize, setColourSwatchStyleItemSpacing, setColourSwatchStylePositionX, setColourSwatchStylePositionY } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+    import {
+        isWallGenStyleValid,
+        passSomeColourStringsToWallpaperGenerator,
+        readjustWallGenColoursInUseCount,
+        setWallGenColourInUseCount,
+        setWallGenSizeFull,
+        wallGenStyle,
+    } from "src/states/wallGenState.svelte.js";
+    import {
+        setColourSwatchStyleDirection,
+        setColourSwatchStyleItemShape,
+        setColourSwatchStyleItemSize,
+        setColourSwatchStyleItemSpacing,
+        setColourSwatchStylePositionX,
+        setColourSwatchStylePositionY,
+    } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
     import { setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
-	import { setHorizonStylePosition, setHorizonStyleShouldShowCore, setHorizonStyleSize } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
-    import { setPaletteStyleAngle, setPaletteStylePosition, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+    import {
+        setHorizonStylePosition,
+        setHorizonStyleShouldShowCore,
+        setHorizonStyleSize,
+    } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
+    import {
+        setPaletteStyleAngle,
+        setPaletteStylePosition,
+        setPaletteStyleSize,
+    } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
 
     export let data: WallGenQueryProps;
 
@@ -58,20 +98,18 @@
     tryParseSizeFromQueryToWallGen();
 
     type tryParseNumericConfigOptions = {
-        dataKey: keyof WallGenQueryProps,
-        minVal: number,
-        maxVal: number,
-        stateSetterFunc: (newValue: number) => void,
+        dataKey: keyof WallGenQueryProps;
+        minVal: number;
+        maxVal: number;
+        stateSetterFunc: (newValue: number) => void;
     };
 
-    const tryParseNumericConfig = (
-        {
-            dataKey,
-            minVal,
-            maxVal,
-            stateSetterFunc,
-        }: tryParseNumericConfigOptions
-    ) => {
+    const tryParseNumericConfig = ({
+        dataKey,
+        minVal,
+        maxVal,
+        stateSetterFunc,
+    }: tryParseNumericConfigOptions) => {
         if (!data[dataKey]) return;
         const value = tryParseNumericData(data[dataKey], minVal, maxVal);
         if (!value) return;
@@ -80,8 +118,8 @@
     };
 
     type tryParseBooleanConfigOptions = {
-        dataKey: keyof WallGenQueryProps,
-        stateSetterFunc: (newValue: boolean) => void,
+        dataKey: keyof WallGenQueryProps;
+        stateSetterFunc: (newValue: boolean) => void;
     };
 
     const tryParseBooleanConfig = ({
@@ -130,17 +168,31 @@
     });
     const tryParseSwatchDirection = () => {
         if (!data.swatchDirection) return;
-        if (!isEnumValueValid(data.swatchDirection as any, ColourSwatchStyleDirection))
+        if (
+            !isEnumValueValid(
+                data.swatchDirection as any,
+                ColourSwatchStyleDirection
+            )
+        )
             return;
 
-        setColourSwatchStyleDirection(data.swatchDirection as ColourSwatchStyleDirection);
+        setColourSwatchStyleDirection(
+            data.swatchDirection as ColourSwatchStyleDirection
+        );
     };
     const tryParseSwatchItemShape = () => {
         if (!data.swatchItemShape) return;
-        if (!isEnumValueValid(data.swatchItemShape as any, ColourSwatchStyleItemShape))
+        if (
+            !isEnumValueValid(
+                data.swatchItemShape as any,
+                ColourSwatchStyleItemShape
+            )
+        )
             return;
 
-        setColourSwatchStyleItemShape(data.swatchItemShape as ColourSwatchStyleItemShape);
+        setColourSwatchStyleItemShape(
+            data.swatchItemShape as ColourSwatchStyleItemShape
+        );
     };
 
     tryParseSwatchDirection();
@@ -183,8 +235,7 @@
         maxVal: HORIZON_CONFIG_POSITION_MAX_VALUE,
         stateSetterFunc: setHorizonStylePosition,
     });
-
 </script>
 
 <h2 class="VisuallyHidden">Generate wallpaper</h2>
-<Studio/>
+<Studio />

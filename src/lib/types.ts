@@ -1,62 +1,62 @@
 export enum ThemeMode {
     LIGHT = "light",
     DARK = "dark",
-    AUTO = "auto"
+    AUTO = "auto",
 }
 
 export type ColourItem = {
-    name: string,
-    hexCode: string,
+    name: string;
+    hexCode: string;
 };
 
 // Colour object with hex code and id
 export type ColObj = {
-    id: number,
-    colour: string, // hexCode
+    id: number;
+    colour: string; // hexCode
 };
 
 // Palette generator colour object, with isLocked state
 export type PalGenColObj = ColObj & {
-    isLocked: boolean,
+    isLocked: boolean;
 };
 
 // TODO: comment out
 export type PalGenItem = {
-    colour: string,
-    isLocked: boolean,
+    colour: string;
+    isLocked: boolean;
 };
 
 export type PaletteItem = {
-    name: string,
-    colours: string[],
+    name: string;
+    colours: string[];
 };
 
 export type SizeItem = {
-    name: string,
-    width: number,
-    height: number,
+    name: string;
+    width: number;
+    height: number;
 };
 
 export type SizeData = {
-    width: number,
-    height: number,
+    width: number;
+    height: number;
 };
 
 export type RgbColour = {
-    red: number,
-    green: number,
-    blue: number,
+    red: number;
+    green: number;
+    blue: number;
 };
 
 export enum RgbChannel {
     R = "red",
     G = "green",
-    B = "blue"
-};
+    B = "blue",
+}
 
 export type State<T> = {
     readonly val: T;
-    set: (newValue: T) => void,
+    set: (newValue: T) => void;
 };
 
 export enum WallpaperStyle {
@@ -66,52 +66,52 @@ export enum WallpaperStyle {
     COLOUR_SWATCH = "colourSwatch",
     PALETTE = "palette",
     HORIZON = "horizon",
-};
+}
 
 export type WallpaperStyleInfo = {
-    minColourCount: number,
-    maxColourCount: number,
-    defaultColourCount: number,
+    minColourCount: number;
+    maxColourCount: number;
+    defaultColourCount: number;
 };
 
 export type WallGenQueryProps = {
-    style: string | null,
-    colours: string | null,
-    width: string | null,
-    height: string | null,
+    style: string | null;
+    colours: string | null;
+    width: string | null;
+    height: string | null;
 
-    gradientAngle: string | null,
+    gradientAngle: string | null;
 
-    swatchPosX: string | null,
-    swatchPosY: string | null,
-    swatchDirection: string | null,
-    swatchItemShape: string | null,
-    swatchItemSize: string | null,
-    swatchItemSpacing: string | null,
+    swatchPosX: string | null;
+    swatchPosY: string | null;
+    swatchDirection: string | null;
+    swatchItemShape: string | null;
+    swatchItemSize: string | null;
+    swatchItemSpacing: string | null;
 
-    paletteAngle: string | null,
-    paletteSize: string | null,
-    palettePosition: string | null,
+    paletteAngle: string | null;
+    paletteSize: string | null;
+    palettePosition: string | null;
 
-    horizonShowCore: string | null,
-    horizonSize: string | null,
-    horizonPosition: string | null,
+    horizonShowCore: string | null;
+    horizonSize: string | null;
+    horizonPosition: string | null;
 };
 
 export type PalGenQueryProps = {
-    paletteQueryStr: string | null,
+    paletteQueryStr: string | null;
 };
 
 export type MouseInputEvent = MouseEvent & {
-    currentTarget: EventTarget & HTMLInputElement
+    currentTarget: EventTarget & HTMLInputElement;
 };
 
 export type MouseButtonEvent = MouseEvent & {
-    currentTarget: EventTarget & HTMLButtonElement
+    currentTarget: EventTarget & HTMLButtonElement;
 };
 
 export type InputEvent = Event & {
-    currentTarget: EventTarget & HTMLInputElement
+    currentTarget: EventTarget & HTMLInputElement;
 };
 
 export enum ColourSwatchStyleItemShape {
@@ -122,54 +122,54 @@ export enum ColourSwatchStyleItemShape {
     INVERTED_TRIANGLE = "invertedTriangle",
     THIN_STRIP = "thinStrip",
     HEXAGON = "hexagon",
-};
+}
 
 export enum ColourSwatchStyleDirection {
     HORIZONTAL = "horizontal",
     VERTICAL = "vertical",
-};
+}
 
 export type ColourSwatchStyleConfigProps = {
-    positionX: number,
-    positionY: number,
-    direction: ColourSwatchStyleDirection,
-    itemShape: ColourSwatchStyleItemShape,
-    itemSize: number,
-    itemSpacing: number,
+    positionX: number;
+    positionY: number;
+    direction: ColourSwatchStyleDirection;
+    itemShape: ColourSwatchStyleItemShape;
+    itemSize: number;
+    itemSpacing: number;
 };
 
 export type GradientStyleConfigProps = {
-    angleInDeg: number,
+    angleInDeg: number;
 };
 
 export type PaletteStyleConfigProps = {
-    angleInDeg: number,
-    size: number,
-    position: number,
+    angleInDeg: number;
+    size: number;
+    position: number;
 };
 
 export type HorizonStyleConfigProps = {
-    shouldShowCore: boolean,
-    size: number,
-    position: number,
+    shouldShowCore: boolean;
+    size: number;
+    position: number;
 };
 
 export type RenderStyleConfig = {
-    colourSwatch: ColourSwatchStyleConfigProps,
-    gradient: GradientStyleConfigProps,
-    palette: PaletteStyleConfigProps,
-    horizon: HorizonStyleConfigProps,
+    colourSwatch: ColourSwatchStyleConfigProps;
+    gradient: GradientStyleConfigProps;
+    palette: PaletteStyleConfigProps;
+    horizon: HorizonStyleConfigProps;
 };
 
 export type ShareItem = {
-    label: string,
-    content: string,
-    shareText: string,
-    shareTitle: string,
-    isContentPlainText?: boolean,
+    label: string;
+    content: string;
+    shareText: string;
+    shareTitle: string;
+    isContentPlainText?: boolean;
 };
 
 export type ScrollPositionState = {
-    get val(): number,
-    set: (newVal: number) => void
+    get val(): number;
+    set: (newVal: number) => void;
 };

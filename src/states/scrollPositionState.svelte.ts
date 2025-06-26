@@ -4,8 +4,12 @@ const createGalleryScrollPositionState = (): ScrollPositionState => {
     let scrollingPosition = $state(0);
 
     return {
-        get val() { return scrollingPosition },
-        set: (newVal: number) => { scrollingPosition = newVal }
+        get val() {
+            return scrollingPosition;
+        },
+        set: (newVal: number) => {
+            scrollingPosition = newVal;
+        },
     };
 };
 

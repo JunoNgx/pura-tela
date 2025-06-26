@@ -77,7 +77,7 @@
     },
     {
         "name": "Wasabi Inquisition",
-        "colours": ["78b47d", "902e43","e7cd8a", "111111", "f7f7f7"]
+        "colours": ["78b47d", "902e43", "e7cd8a", "111111", "f7f7f7"]
     },
     {
         "name": "Neon",
@@ -101,7 +101,15 @@
     },
     {
         "name": "Love Pine Dawn",
-        "colours": ["191724", "eb6f92", "31748f", "f6c177", "6e6a86", "c4a7e7", "e0def4"]
+        "colours": [
+            "191724",
+            "eb6f92",
+            "31748f",
+            "f6c177",
+            "6e6a86",
+            "c4a7e7",
+            "e0def4"
+        ]
     },
     {
         "name": "9009",
@@ -133,18 +141,43 @@
     },
     {
         "name": "rymdkapsel",
-        "colours": ["0e1117", "81655b", "4ea9a0", "b55383", "7ca82e", "e0a11c", "2c76b4"]
+        "colours": [
+            "0e1117",
+            "81655b",
+            "4ea9a0",
+            "b55383",
+            "7ca82e",
+            "e0a11c",
+            "2c76b4"
+        ]
     },
     {
         "name": "Pura Tela",
-        "colours": ["E3E0D6", "1AC4F5", "F5ADAE", "232042", "323740", "22D2D2", "345F86"]
+        "colours": [
+            "E3E0D6",
+            "1AC4F5",
+            "F5ADAE",
+            "232042",
+            "323740",
+            "22D2D2",
+            "345F86"
+        ]
     },
     {
         "name": "Printer process",
         "colours": ["000000", "1cadec", "ea1e8d", "fff236", "5d437e", "ffffff"]
     },
-    {   "name": "104 days",
-        "colours": ["57A89E", "EBE7ED", "019B5F", "C05394", "D78304", "F4C201", "EDD58B"]
+    {
+        "name": "104 days",
+        "colours": [
+            "57A89E",
+            "EBE7ED",
+            "019B5F",
+            "C05394",
+            "D78304",
+            "F4C201",
+            "EDD58B"
+        ]
     },
     {
         "name": "Helios",

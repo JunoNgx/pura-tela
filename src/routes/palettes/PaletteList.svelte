@@ -1,14 +1,11 @@
 <script lang="ts">
     import { paletteGallery } from "src/states/paletteGalleryState.svelte.js";
-    import PaletteListItem from "src/routes/palettes/PaletteListItem.svelte";    
+    import PaletteListItem from "src/routes/palettes/PaletteListItem.svelte";
 </script>
 
 <ul class="PaletteList FlexList">
     {#each paletteGallery.val as paletteItem, index}
-        <PaletteListItem
-            index={index}
-            paletteItem={paletteItem}
-        />
+        <PaletteListItem {index} {paletteItem} />
     {/each}
 </ul>
 

@@ -14,25 +14,29 @@
             copyRestoreStatusTimeout = setTimeout(() => {
                 hasBeenCopied = false;
             }, HAS_COPY_TIMEOUT_DURATION_MS);
-        } catch(error) {
-            throw new Error("Unable to copy colour code to clipboard")
+        } catch (error) {
+            throw new Error("Unable to copy colour code to clipboard");
         }
     };
 
     onDestroy(() => {
         clearTimeout(copyRestoreStatusTimeout);
-    })
+    });
 </script>
 
-<button class="PaletteListColourBtn"
-    style="{`background-color: #${colourItem}`}"
-    onclick={() => {copyColourCode(colourItem)}}
+<button
+    class="PaletteListColourBtn"
+    style={`background-color: #${colourItem}`}
+    onclick={() => {
+        copyColourCode(colourItem);
+    }}
 >
     <span class="PaletteListColourBtn__Label">
         {colourItem}
     </span>
 
-    <span class="PaletteListColourBtn__CopiedNotice"
+    <span
+        class="PaletteListColourBtn__CopiedNotice"
         class:PaletteListColourBtn__CopiedNotice--IsDisplayed={hasBeenCopied}
         aria-hidden={!hasBeenCopied}
     >
@@ -90,6 +94,3 @@
         }
     }
 </style>
-
-
-

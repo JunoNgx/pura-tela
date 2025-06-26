@@ -1,9 +1,20 @@
 // @ts-ignore
 import defaultPaletteGallery from "src/data/palettes.json";
-import { createLocalStorageSyncedState, isHexCodeValid } from "src/states/stateUtils.svelte.js";
-import { getColourStringsInUse, readjustWallGenColoursInUseCount, setWallGenColourInUseCount, wallGenColours } from "./wallGenState.svelte.js";
+import {
+    createLocalStorageSyncedState,
+    isHexCodeValid,
+} from "src/states/stateUtils.svelte.js";
+import {
+    getColourStringsInUse,
+    readjustWallGenColoursInUseCount,
+    setWallGenColourInUseCount,
+    wallGenColours,
+} from "./wallGenState.svelte.js";
 import { palGenColours } from "./palGenState.svelte.js";
-import { MAX_COLOUR_COUNT, MIN_COLOUR_COUNT_PALETTE } from "src/lib/constants.js";
+import {
+    MAX_COLOUR_COUNT,
+    MIN_COLOUR_COUNT_PALETTE,
+} from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
 
 const isPaletteGalleryValid = (data: any[]) => {
@@ -13,7 +24,8 @@ const isPaletteGalleryValid = (data: any[]) => {
         for (const item of data) {
             if (!item.name) return false;
             if (!item.colours) return false;
-            if (item.colours.length < MIN_COLOUR_COUNT_PALETTE
+            if (
+                item.colours.length < MIN_COLOUR_COUNT_PALETTE
                 || item.colours.length > MAX_COLOUR_COUNT
             ) {
                 return false;
@@ -25,7 +37,7 @@ const isPaletteGalleryValid = (data: any[]) => {
         }
 
         return true;
-    } catch (err) {        
+    } catch (err) {
         return false;
     }
 };
@@ -48,9 +60,11 @@ export const addToPaletteGalleryFromWallpaperGenerator = () => {
         };
 
         paletteGallery.set([...paletteGallery.val, newPalette]);
-    } catch(error) {
+    } catch (error) {
         console.error(error);
-        window.alert("Error adding new palette to gallery. Please see the console for more info.")
+        window.alert(
+            "Error adding new palette to gallery. Please see the console for more info."
+        );
     }
 };
 
@@ -59,16 +73,20 @@ export const addToPaletteGalleryFromPaletteGenerator = () => {
     if (!name) return;
 
     try {
-        const colours = palGenColours.val.map(palGenItem => palGenItem.colour);
+        const colours = palGenColours.val.map(
+            (palGenItem) => palGenItem.colour
+        );
         const newPalette = {
             name,
             colours,
         };
 
         paletteGallery.set([...paletteGallery.val, newPalette]);
-    } catch(error) {
+    } catch (error) {
         console.error(error);
-        window.alert("Error adding new palette to gallery. Please see the console for more info.")
+        window.alert(
+            "Error adding new palette to gallery. Please see the console for more info."
+        );
     }
 };
 
@@ -88,16 +106,18 @@ export const resetPaletteGallery = () => {
 export const passPaletteToWallpaperGenerator = (paletteIndex: number) => {
     try {
         const palette = paletteGallery.val[paletteIndex];
-        const newColoursObjList = palette.colours.map(colour => ({
+        const newColoursObjList = palette.colours.map((colour) => ({
             id: generateId(),
             colour,
         }));
-        const coloursToBeKept = wallGenColours.val.slice(newColoursObjList.length);
+        const coloursToBeKept = wallGenColours.val.slice(
+            newColoursObjList.length
+        );
 
         wallGenColours.set([...newColoursObjList, ...coloursToBeKept]);
         setWallGenColourInUseCount(newColoursObjList.length);
         readjustWallGenColoursInUseCount();
-    } catch(error) {
+    } catch (error) {
         throw new Error("Failed to pass palette to Wallpaper generator");
     }
-}
+};

@@ -1,4 +1,4 @@
-import { beforeNavigate, afterNavigate } from "$app/navigation"
+import { beforeNavigate, afterNavigate } from "$app/navigation";
 import type { ScrollPositionState } from "./types.js";
 
 export const createScrollPositionManager = (

@@ -4,34 +4,23 @@
     import SharePanelItem from "./SharePanelItem.svelte";
 
     type SharePanelProps = {
-        domId: string,
-        title: string,
-        desc?: string,
-        shareItemList: ShareItem[],
+        domId: string;
+        title: string;
+        desc?: string;
+        shareItemList: ShareItem[];
     };
 
-    let {
-        domId,
-        title,
-        desc,
-        shareItemList,
-    }: SharePanelProps = $props();
+    let { domId, title, desc, shareItemList }: SharePanelProps = $props();
 </script>
 
-<div class="SharePanel"
-    id={`${domId}`}
->
+<div class="SharePanel" id={`${domId}`}>
     <h3 class="SharePanel__Title">{title}</h3>
     {#if desc}
         <p class="SharePanel__Description">{desc}</p>
     {/if}
     <div class="SharePanel__ListContainer">
         {#each shareItemList as shareItem, index}
-            <SharePanelItem
-                shareItem={shareItem}
-                domId={domId}
-                index={index}
-            />
+            <SharePanelItem {shareItem} {domId} {index} />
         {/each}
     </div>
 </div>
