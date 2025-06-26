@@ -8,6 +8,7 @@
     "bracketSpacing": true,
     "experimentalOperatorPosition": "start",
     "plugins": ["prettier-plugin-svelte"],
+    "bracketSameLine": false,
     "overrides": [
         {
             "files": "*.svelte",
