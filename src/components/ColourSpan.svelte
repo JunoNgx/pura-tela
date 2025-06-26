@@ -1,15 +1,13 @@
 <script lang="ts">
     type ColourSpanProps = {
-        colour: string,
+        colour: string;
     };
 
     let { colour }: ColourSpanProps = $props();
 </script>
 
 <span class="ColourSpan">
-    <div class="ColourSpan__Block"
-        style={`background-color: #${colour}`}
-    ></div>
+    <div class="ColourSpan__Block" style={`background-color: #${colour}`}></div>
     <span class="ColourSpan__HexCode">#{colour}</span>
 </span>
 

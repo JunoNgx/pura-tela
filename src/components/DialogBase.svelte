@@ -3,9 +3,9 @@
     import MaterialSymbolsClose from "~icons/material-symbols/close";
 
     type DialogBaseProps = {
-        shouldShowDialog: boolean,
-        className?: string,
-        children?: Snippet,
+        shouldShowDialog: boolean;
+        className?: string;
+        children?: Snippet;
     };
 
     let {
@@ -14,7 +14,7 @@
         children,
     }: DialogBaseProps = $props();
 
-    let dialog: HTMLDialogElement | undefined= $state();
+    let dialog: HTMLDialogElement | undefined = $state();
 
     $effect(() => {
         if (shouldShowDialog) dialog?.showModal();
@@ -37,16 +37,23 @@
 <dialog
     class={className}
     bind:this={dialog}
-    onclose={() => { shouldShowDialog = false;}}
-    onclick={(e) => { if (e.target === dialog) dialog.close(); } }
+    onclose={() => {
+        shouldShowDialog = false;
+    }}
+    onclick={(e) => {
+        if (e.target === dialog) dialog.close();
+    }}
     onkeydown={handleKeydown}
 >
     <div class="MainDialogContent">
-        <button class="DialogCloseBtn"
+        <button
+            class="DialogCloseBtn"
             aria-label="Close dialog"
-            onclick={() => { dialog?.close(); }}
+            onclick={() => {
+                dialog?.close();
+            }}
         >
-            <MaterialSymbolsClose/>
+            <MaterialSymbolsClose />
         </button>
         {@render children?.()}
     </div>
