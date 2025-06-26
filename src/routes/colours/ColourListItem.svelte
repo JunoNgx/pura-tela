@@ -10,17 +10,24 @@
     import MaterialSymbolsLightContentCopyOutlineSharp from "~icons/material-symbols-light/content-copy-outline-sharp";
     import MaterialSymbolsLightDeleteForeverSharp from "~icons/material-symbols-light/delete-forever-sharp";
     import MaterialSymbolsLightDeleteForeverOutlineSharp from "~icons/material-symbols-light/delete-forever-outline-sharp";
-    import {getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+    import {
+        getWallGenColourInUseCount,
+        setWallGenColoursAtIndex,
+    } from "src/states/wallGenState.svelte.js";
     import { deleteColourAtIndex } from "src/states/colourGalleryState.svelte.js";
     import { onDestroy } from "svelte";
 
     type ColourItemProps = {
-        colourItem: ColourItem,
-        index: number,
-        showColourActionDialog: (colourInput: string) => void,
-    } ;
+        colourItem: ColourItem;
+        index: number;
+        showColourActionDialog: (colourInput: string) => void;
+    };
 
-    let { colourItem, index, showColourActionDialog = $bindable() }: ColourItemProps = $props();
+    let {
+        colourItem,
+        index,
+        showColourActionDialog = $bindable(),
+    }: ColourItemProps = $props();
     let hasBeenCopied = $state(false);
     let copyRestoreStatusTimeout: number | undefined = $state();
 
@@ -42,13 +49,15 @@
             copyRestoreStatusTimeout = setTimeout(() => {
                 hasBeenCopied = false;
             }, HAS_COPY_TIMEOUT_DURATION_MS);
-        } catch(error) {
-            throw new Error("Unable to copy colour code to clipboard")
+        } catch (error) {
+            throw new Error("Unable to copy colour code to clipboard");
         }
     };
 
     const handleDeleteColour = () => {
-        const isConfirmed = window.confirm("Delete this colour from the gallery?");
+        const isConfirmed = window.confirm(
+            "Delete this colour from the gallery?"
+        );
         if (!isConfirmed) return;
 
         deleteColourAtIndex(index);
@@ -56,11 +65,12 @@
 
     onDestroy(() => {
         clearTimeout(copyRestoreStatusTimeout);
-    })
+    });
 </script>
 
 <li class="ColourListItem">
-    <div class="ColourListItem__Preview"
+    <div
+        class="ColourListItem__Preview"
         style={`background-color: #${colourItem.hexCode};`}
     >
         <div class="ColourListItem__Title">
@@ -76,46 +86,49 @@
             {/if}
         </div>
         <div class="ColourListItem__Buttons">
-            <button class="ColourListItem__ActionBtn
+            <button
+                class="ColourListItem__ActionBtn
                 IconButton
                 "
                 onclick={handleChooseColour}
                 title={"Choose this colour"}
                 aria-label="Choose this colour"
-            >       
+            >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightColorizeOutline/>
+                    <MaterialSymbolsLightColorizeOutline />
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightColorize/>
+                    <MaterialSymbolsLightColorize />
                 </div>
             </button>
 
-            <button class="ColourListItem__ActionBtn
+            <button
+                class="ColourListItem__ActionBtn
                 IconButton
                 "
                 onclick={handleCopyHexCode}
                 title={"Copy this hex colour code"}
                 aria-label="Copy this hex colour code"
-            >       
+            >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightContentCopyOutlineSharp/>
+                    <MaterialSymbolsLightContentCopyOutlineSharp />
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightContentCopySharp/>
+                    <MaterialSymbolsLightContentCopySharp />
                 </div>
             </button>
 
-            <button class="ColourListItem__ActionBtn ColourListItem__ActionBtn--Rightmost IconButton Danger"
+            <button
+                class="ColourListItem__ActionBtn ColourListItem__ActionBtn--Rightmost IconButton Danger"
                 onclick={handleDeleteColour}
                 title={"Delete this colour"}
                 aria-label="Delete this colour"
             >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightDeleteForeverOutlineSharp/>
+                    <MaterialSymbolsLightDeleteForeverOutlineSharp />
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightDeleteForeverSharp/>
+                    <MaterialSymbolsLightDeleteForeverSharp />
                 </div>
             </button>
         </div>
@@ -145,9 +158,8 @@
         display: -webkit-box;
         -webkit-line-clamp: 3;
         line-clamp: 3;
-        -webkit-box-orient: vertical;  
+        -webkit-box-orient: vertical;
         overflow: hidden;
-
     }
 
     .ColourListItem__Footer {

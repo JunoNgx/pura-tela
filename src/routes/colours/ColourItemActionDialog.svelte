@@ -3,7 +3,10 @@
 
     import DialogBase from "src/components/DialogBase.svelte";
     import ColourSpan from "src/components/ColourSpan.svelte";
-    import { getColourStringsInUse, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+    import {
+        getColourStringsInUse,
+        setWallGenColoursAtIndex,
+    } from "src/states/wallGenState.svelte.js";
 
     let { shouldShowDialog = $bindable(), inputColour } = $props();
     let dialogBase: DialogBase | undefined = $state();
@@ -14,24 +17,35 @@
     };
 </script>
 
-<DialogBase className="ColourActionDialog"
+<DialogBase
+    className="ColourActionDialog"
     bind:shouldShowDialog
     bind:this={dialogBase}
 >
     <h3 class="ColourActionDialog__Title">Confirm colour passing</h3>
-    <p class="ColourActionDialog__PromptContent">Pass <ColourSpan colour={inputColour}/> to Wallpaper Generator?</p>
-    <div class="ColourActionDialog__ActionContainer ColourActionDialog__ActionContainer--MainActions">
+    <p class="ColourActionDialog__PromptContent">
+        Pass <ColourSpan colour={inputColour} /> to Wallpaper Generator?
+    </p>
+    <div
+        class="ColourActionDialog__ActionContainer ColourActionDialog__ActionContainer--MainActions"
+    >
         {#each getColourStringsInUse() as colour, index}
-            <button class="ColourActionDialog__ActionBtn"
+            <button
+                class="ColourActionDialog__ActionBtn"
                 onclick={() => handlePassColour(index)}
             >
-                Replace <ColourSpan colour={colour}/> at position {index + 1}
+                Replace <ColourSpan {colour} /> at position {index + 1}
             </button>
         {/each}
     </div>
-    <div class="ColourActionDialog__ActionContainer ColourActionDialog__ActionContainer--Exit">
-        <button class="ColourActionDialog__ActionBtn"
-            onclick={() => { dialogBase?.closeDialog() }}
+    <div
+        class="ColourActionDialog__ActionContainer ColourActionDialog__ActionContainer--Exit"
+    >
+        <button
+            class="ColourActionDialog__ActionBtn"
+            onclick={() => {
+                dialogBase?.closeDialog();
+            }}
         >
             Cancel
         </button>
