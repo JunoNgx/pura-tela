@@ -1,4 +1,7 @@
-import { HORIZON_CONFIG_POSITION_MAX_VALUE, HORIZON_CONFIG_SIZE_MAX_VALUE } from "./constants.js";
+import {
+    HORIZON_CONFIG_POSITION_MAX_VALUE,
+    HORIZON_CONFIG_SIZE_MAX_VALUE,
+} from "./constants.js";
 import {
     ColourSwatchStyleDirection,
     ColourSwatchStyleItemShape,
@@ -72,7 +75,15 @@ type PolygonProps = {
     startingAngle?: number;
 };
 
-const drawPolygon = ({ ctx, x, y, radius, sideCount, colour, startingAngle = 0 }: PolygonProps) => {
+const drawPolygon = ({
+    ctx,
+    x,
+    y,
+    radius,
+    sideCount,
+    colour,
+    startingAngle = 0,
+}: PolygonProps) => {
     const arcSegment = (Math.PI * 2) / sideCount;
 
     ctx.beginPath();
@@ -139,7 +150,12 @@ const drawThinStrip = ({ ctx, colour, x, y, size, isVertical }: ShapeProps) => {
 
 // ---- Core logic
 
-export const renderCanvas = ({ size, colours, style, config }: CanvasRenderOptions) => {
+export const renderCanvas = ({
+    size,
+    colours,
+    style,
+    config,
+}: CanvasRenderOptions) => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
     if (!canvas) return;
 
@@ -186,7 +202,12 @@ export const renderCanvas = ({ size, colours, style, config }: CanvasRenderOptio
     }
 };
 
-const renderForGradientStyle = ({ ctx, colours, size, config }: StyleRenderOptions) => {
+const renderForGradientStyle = ({
+    ctx,
+    colours,
+    size,
+    config,
+}: StyleRenderOptions) => {
     /**
      * Drawing gradient at an angle is unfortunately not as perfect specifically
      * setting it at from x `0` to `size.height`.
@@ -200,7 +221,11 @@ const renderForGradientStyle = ({ ctx, colours, size, config }: StyleRenderOptio
         throw new Error("Cannot access Gradient config");
     }
 
-    const calculateGradientPoints = (angleInDeg: number, width: number, height: number) => {
+    const calculateGradientPoints = (
+        angleInDeg: number,
+        width: number,
+        height: number
+    ) => {
         const diagonalLength = Math.sqrt(width * width + height * height);
         const distanceFromMid = diagonalLength / 2;
         const angleInRadian = (angleInDeg * Math.PI) / 180;
@@ -241,7 +266,11 @@ const renderForSolidStyle = ({ ctx, colours, size }: StyleRenderOptions) => {
     ctx.fillRect(0, 0, size.width, size.height);
 };
 
-const renderForPopArtSquareStyle = ({ ctx, colours, size }: StyleRenderOptions) => {
+const renderForPopArtSquareStyle = ({
+    ctx,
+    colours,
+    size,
+}: StyleRenderOptions) => {
     // Draw background
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
@@ -280,7 +309,12 @@ const renderForPopArtSquareStyle = ({ ctx, colours, size }: StyleRenderOptions) 
     });
 };
 
-const renderForColourSwatchStyle = ({ ctx, colours, size, config }: StyleRenderOptions) => {
+const renderForColourSwatchStyle = ({
+    ctx,
+    colours,
+    size,
+    config,
+}: StyleRenderOptions) => {
     if (!config?.colourSwatch) {
         throw new Error("Cannot access Colour Swatch config");
     }
@@ -326,31 +360,39 @@ const renderForColourSwatchStyle = ({ ctx, colours, size, config }: StyleRenderO
     const minItemSize = baseItemSize / 7;
     const maxItemSize = baseItemSize * 1.5;
     const itemSize =
-        minItemSize + ((maxItemSize - minItemSize) * config.colourSwatch.itemSize) / 100;
+        minItemSize
+        + ((maxItemSize - minItemSize) * config.colourSwatch.itemSize) / 100;
 
     const minSpacing = -itemSize / 4;
     const maxSpacing = itemSize / 4;
     const spacing =
-        minSpacing + ((maxSpacing - minSpacing) * config.colourSwatch.itemSpacing) / 100;
+        minSpacing
+        + ((maxSpacing - minSpacing) * config.colourSwatch.itemSpacing) / 100;
 
     const swatchSlotSize = itemSize + spacing * 2;
     const midPostionRenderOffset = swatchSlotSize / 2;
     const fullSwatchSize = swatchSlotSize * itemCount;
 
-    const isThinStrip = config.colourSwatch.itemShape === ColourSwatchStyleItemShape.THIN_STRIP;
+    const isThinStrip =
+        config.colourSwatch.itemShape === ColourSwatchStyleItemShape.THIN_STRIP;
     const crossAxisSize = isThinStrip ? itemSize / 8 : itemSize;
 
     const drawHorizontally = () => {
         const minCommonY = crossAxisSize / 2;
         const maxCommonY = size.height - crossAxisSize / 2;
         const commonY =
-            minCommonY + ((maxCommonY - minCommonY) * config.colourSwatch.positionY) / 100;
+            minCommonY
+            + ((maxCommonY - minCommonY) * config.colourSwatch.positionY) / 100;
 
         const maxStartingXOffset = size.width - fullSwatchSize;
-        const startingXOffset = (maxStartingXOffset * config.colourSwatch.positionX) / 100;
+        const startingXOffset =
+            (maxStartingXOffset * config.colourSwatch.positionX) / 100;
 
         for (let i = 0; i < mainColours.length; i++) {
-            const x = startingXOffset + (itemSize + spacing * 2) * i + midPostionRenderOffset;
+            const x =
+                startingXOffset
+                + (itemSize + spacing * 2) * i
+                + midPostionRenderOffset;
 
             drawFunc({
                 ctx,
@@ -367,13 +409,18 @@ const renderForColourSwatchStyle = ({ ctx, colours, size, config }: StyleRenderO
         const minCommonX = crossAxisSize / 2;
         const maxCommonX = size.width - crossAxisSize / 2;
         const commonX =
-            minCommonX + ((maxCommonX - minCommonX) * config.colourSwatch.positionX) / 100;
+            minCommonX
+            + ((maxCommonX - minCommonX) * config.colourSwatch.positionX) / 100;
 
         const maxStartingYOffset = size.height - fullSwatchSize;
-        const startingYOffset = (maxStartingYOffset * config.colourSwatch.positionY) / 100;
+        const startingYOffset =
+            (maxStartingYOffset * config.colourSwatch.positionY) / 100;
 
         for (let i = 0; i < mainColours.length; i++) {
-            const y = startingYOffset + (itemSize + spacing * 2) * i + midPostionRenderOffset;
+            const y =
+                startingYOffset
+                + (itemSize + spacing * 2) * i
+                + midPostionRenderOffset;
 
             drawFunc({
                 ctx,
@@ -390,7 +437,12 @@ const renderForColourSwatchStyle = ({ ctx, colours, size, config }: StyleRenderO
     else drawVertically();
 };
 
-export const renderForPaletteStyle = ({ ctx, colours, size, config }: StyleRenderOptions) => {
+export const renderForPaletteStyle = ({
+    ctx,
+    colours,
+    size,
+    config,
+}: StyleRenderOptions) => {
     if (!config?.palette) {
         throw new Error("Cannot access Palette config");
     }
@@ -415,13 +467,15 @@ export const renderForPaletteStyle = ({ ctx, colours, size, config }: StyleRende
 
     const maxBaseSize = longerSide / colours.length;
     const minBaseSize = shorterSide / colours.length;
-    const baseSize = minBaseSize + ((maxBaseSize - minBaseSize) * config.palette.size) / 10;
+    const baseSize =
+        minBaseSize + ((maxBaseSize - minBaseSize) * config.palette.size) / 10;
 
     const leftmostPosition = -longerSide / 2;
     const minStartingPos = leftmostPosition + maxBaseSize;
     const maxStartingPos = 0;
     const startingPos =
-        minStartingPos + ((maxStartingPos - minStartingPos) * config.palette.position) / 100;
+        minStartingPos
+        + ((maxStartingPos - minStartingPos) * config.palette.position) / 100;
 
     const mainColoursWidth = baseSize * mainColours.length;
     const mainColoursCenterpoint = startingPos + mainColoursWidth / 2;
@@ -446,11 +500,21 @@ export const renderForPaletteStyle = ({ ctx, colours, size, config }: StyleRende
         const colour = mainColours[i];
 
         ctx.fillStyle = colour;
-        ctx.fillRect(startingPos + baseSize * i, -size.height * 2, baseSize, size.height * 4);
+        ctx.fillRect(
+            startingPos + baseSize * i,
+            -size.height * 2,
+            baseSize,
+            size.height * 4
+        );
     }
 };
 
-export const renderForHorizonStyle = ({ ctx, colours, size, config }: StyleRenderOptions) => {
+export const renderForHorizonStyle = ({
+    ctx,
+    colours,
+    size,
+    config,
+}: StyleRenderOptions) => {
     if (!config?.horizon) {
         throw new Error("Cannot access Horizon config");
     }
@@ -467,13 +531,15 @@ export const renderForHorizonStyle = ({ ctx, colours, size, config }: StyleRende
     const minFgBlockSize = shorterSide * 0.25;
     const maxFgBlockSize = shorterSide;
     const varianceFgBlockSize =
-        ((maxFgBlockSize - minFgBlockSize) * config.horizon.size) / HORIZON_CONFIG_SIZE_MAX_VALUE;
+        ((maxFgBlockSize - minFgBlockSize) * config.horizon.size)
+        / HORIZON_CONFIG_SIZE_MAX_VALUE;
     const fgBlockSize = minFgBlockSize + varianceFgBlockSize;
 
     const minYPos = fgBlockSize / 2;
     const maxYPos = size.height - fgBlockSize / 2;
     const varianceYPos =
-        ((maxYPos - minYPos) * config.horizon.position) / HORIZON_CONFIG_POSITION_MAX_VALUE;
+        ((maxYPos - minYPos) * config.horizon.position)
+        / HORIZON_CONFIG_POSITION_MAX_VALUE;
     const yPos = minYPos + varianceYPos;
 
     // Background upper half
@@ -495,7 +561,12 @@ export const renderForHorizonStyle = ({ ctx, colours, size, config }: StyleRende
 
     // Foreground lower half
     ctx.fillStyle = colours[3];
-    ctx.fillRect(size.width / 2 - fgBlockSize / 2, yPos, fgBlockSize, fgBlockSize / 2);
+    ctx.fillRect(
+        size.width / 2 - fgBlockSize / 2,
+        yPos,
+        fgBlockSize,
+        fgBlockSize / 2
+    );
 
     const shouldDrawCore = config.horizon.shouldShowCore;
     if (shouldDrawCore) {
@@ -531,7 +602,8 @@ const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
     /**
      * `containerMaxHeight` is used to fully utilise the provided space.
      */
-    const containerMaxHeightStyle = window.getComputedStyle(container).maxHeight;
+    const containerMaxHeightStyle =
+        window.getComputedStyle(container).maxHeight;
     const containerMaxHeight = parseFloat(containerMaxHeightStyle);
 
     const containerRatio = container.clientWidth / containerMaxHeight;

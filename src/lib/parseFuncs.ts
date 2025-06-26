@@ -1,7 +1,13 @@
 import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
-import { isArrayOfHexCodesValid, isValueWithinRange } from "../states/stateUtils.svelte.js";
+import {
+    isArrayOfHexCodesValid,
+    isValueWithinRange,
+} from "../states/stateUtils.svelte.js";
 
-export const tryParseSize = (widthStr: string | number, heightStr: string | number) => {
+export const tryParseSize = (
+    widthStr: string | number,
+    heightStr: string | number
+) => {
     try {
         const width = parseInt(widthStr as string);
         const height = parseInt(heightStr as string);
@@ -24,22 +30,24 @@ export const tryParseColours = (inputStr: string) => {
 
     try {
         for (const separator of allowedSeparators) {
-            const colourList = inputStr.split(separator, MAX_COLOUR_COUNT).map((colour) => {
-                const strippedStr = colour
-                    .trim()
-                    .replaceAll(" ", "")
-                    .replaceAll("#", "")
-                    .replaceAll('"', "")
-                    .replaceAll("\'", "");
+            const colourList = inputStr
+                .split(separator, MAX_COLOUR_COUNT)
+                .map((colour) => {
+                    const strippedStr = colour
+                        .trim()
+                        .replaceAll(" ", "")
+                        .replaceAll("#", "")
+                        .replaceAll('"', "")
+                        .replaceAll("\'", "");
 
-                if (strippedStr.length === 3) {
-                    // Attempt to convert 3-char hex codes to 6-char hex codes
-                    return strippedStr
-                        .split("")
-                        .map((char) => char + char)
-                        .join("");
-                } else return strippedStr;
-            });
+                    if (strippedStr.length === 3) {
+                        // Attempt to convert 3-char hex codes to 6-char hex codes
+                        return strippedStr
+                            .split("")
+                            .map((char) => char + char)
+                            .join("");
+                    } else return strippedStr;
+                });
 
             if (isArrayOfHexCodesValid(colourList)) {
                 return colourList;
@@ -52,7 +60,11 @@ export const tryParseColours = (inputStr: string) => {
     }
 };
 
-export const tryParseNumericData = (valueStr: string | number, minVal: number, maxVal: number) => {
+export const tryParseNumericData = (
+    valueStr: string | number,
+    minVal: number,
+    maxVal: number
+) => {
     try {
         const value = parseInt(valueStr as string);
         const isValid = isValueWithinRange(value, minVal, maxVal);

@@ -4,7 +4,9 @@ import { ThemeMode } from "./types.js";
 /**
  * Handle theme color meta tag
  */
-let themeColourMeta = document.querySelector("meta[name='theme-color']") as HTMLMetaElement;
+let themeColourMeta = document.querySelector(
+    "meta[name='theme-color']"
+) as HTMLMetaElement;
 
 if (!themeColourMeta) {
     themeColourMeta = document.createElement("meta");
@@ -18,14 +20,22 @@ const updatethemeColourMeta = () => {
 };
 
 export const setupAutoSettingsListener = () => {
-    const preferDarkQueryList = window.matchMedia?.("(prefers-color-scheme: dark)");
+    const preferDarkQueryList = window.matchMedia?.(
+        "(prefers-color-scheme: dark)"
+    );
 
     if (themeMode.val === ThemeMode.AUTO) {
-        preferDarkQueryList.addEventListener("change", handlePreferDarkQueryChange);
+        preferDarkQueryList.addEventListener(
+            "change",
+            handlePreferDarkQueryChange
+        );
         return;
     }
 
-    preferDarkQueryList.removeEventListener("change", handlePreferDarkQueryChange);
+    preferDarkQueryList.removeEventListener(
+        "change",
+        handlePreferDarkQueryChange
+    );
 };
 
 export const computeThemeMode = (): ThemeMode.LIGHT | ThemeMode.DARK => {
@@ -33,7 +43,9 @@ export const computeThemeMode = (): ThemeMode.LIGHT | ThemeMode.DARK => {
         return themeMode.val;
     }
 
-    const preferDarkQueryList = window.matchMedia?.("(prefers-color-scheme: dark)");
+    const preferDarkQueryList = window.matchMedia?.(
+        "(prefers-color-scheme: dark)"
+    );
     return preferDarkQueryList.matches ? ThemeMode.DARK : ThemeMode.LIGHT;
 };
 

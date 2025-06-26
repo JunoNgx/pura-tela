@@ -78,8 +78,13 @@ export const computeFilename = ({
         return colourName.replace(" ", "");
     };
 
-    const computeColourNamePortion = (colours: string[], gallery: ColourItem[]) => {
-        const colourNames = colours.map((colour) => getColourName(colour, gallery));
+    const computeColourNamePortion = (
+        colours: string[],
+        gallery: ColourItem[]
+    ) => {
+        const colourNames = colours.map((colour) =>
+            getColourName(colour, gallery)
+        );
         const colourNamesStr = colourNames.join("-");
 
         return colourNamesStr;
