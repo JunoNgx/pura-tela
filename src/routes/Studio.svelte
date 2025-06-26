@@ -12,6 +12,7 @@
     import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
     import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
     import { paletteStyleConfig } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+	import { horizonStyleConfig } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
     import StudioPreview from "./StudioPreview.svelte";
 
     const handleResize = () => {
@@ -42,6 +43,10 @@
             url.searchParams.append("paletteSize", paletteStyleConfig.val.size.toString());
             url.searchParams.append("palettePosition", paletteStyleConfig.val.position.toString());
             break;
+        case WallpaperStyle.HORIZON:
+            url.searchParams.append("horizonShowCore", horizonStyleConfig.val.shouldShowCore.toString());
+            url.searchParams.append("horizonSize", horizonStyleConfig.val.size.toString());
+            url.searchParams.append("horizonPosition", horizonStyleConfig.val.position.toString());
         }
 
         return url.toString();

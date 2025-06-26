@@ -20,9 +20,15 @@ export const load = ({
     const swatchItemSize = url.searchParams.get("swatchItemSize");
     const swatchItemSpacing = url.searchParams.get("swatchItemSpacing");
 
+    // Palette config
     const paletteAngle = url.searchParams.get("paletteAngle");
     const paletteSize = url.searchParams.get("paletteSize");
     const palettePosition = url.searchParams.get("palettePosition");
+
+    // Horizon config
+    const horizonShowCore = url.searchParams.get("horizonShowCore");
+    const horizonSize = url.searchParams.get("horizonSize");
+    const horizonPosition = url.searchParams.get("horizonPosition");
 
     return {
         style,
@@ -42,5 +48,9 @@ export const load = ({
         paletteAngle,
         paletteSize,
         palettePosition,
+
+        horizonShowCore,
+        horizonSize,
+        horizonPosition,
     };
 };

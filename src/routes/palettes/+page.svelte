@@ -3,6 +3,10 @@
 
     import PaletteList from "src/routes/palettes/PaletteList.svelte";
     import { resetPaletteGallery } from "src/states/paletteGalleryState.svelte.js";
+	import { paletteGalleryScrollPos } from "src/states/scrollPositionState.svelte.js";
+	import { createScrollPositionManager } from "src/lib/scrollPositionManager.js";
+
+    createScrollPositionManager("/palettes", paletteGalleryScrollPos);
 
     const handleResetGallery = () => {
         const isConfirmed = window.confirm("Reset the gallery to default colours? This action cannot be undone.");

@@ -1,4 +1,5 @@
-import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, ColourSwatchStylePosition, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
+import { HORIZON_CONFIG_POSITION_MAX_VALUE, HORIZON_CONFIG_SIZE_MAX_VALUE } from "./constants.js";
+import { ColourSwatchStyleDirection, ColourSwatchStyleItemShape, WallpaperStyle, type RenderStyleConfig, type SizeData } from "./types.js";
 
 const CANVAS_ID = "Canvas";
 
@@ -21,6 +22,8 @@ type ShapeProps = {
     size: number,
     isVertical?: boolean,
 };
+
+// ---- Util draw functions
 
 const drawSquare = ({ ctx, colour, x, y, size}: ShapeProps) => {
     ctx.fillStyle = colour;
@@ -128,6 +131,8 @@ const drawThinStrip = ({ ctx, colour, x, y, size, isVertical}: ShapeProps) => {
     ctx.fillRect(...drawOptions);
 };
 
+// ---- Core logic
+
 export const renderCanvas = (
     { size, colours, style, config }: CanvasRenderOptions
 ) => {
@@ -159,6 +164,10 @@ export const renderCanvas = (
 
     case WallpaperStyle.PALETTE:
         renderForPaletteStyle(renderOptions);
+        break;
+
+    case WallpaperStyle.HORIZON:
+        renderForHorizonStyle(renderOptions);
         break;
 
     case WallpaperStyle.SOLID:
@@ -458,6 +467,105 @@ export const renderForPaletteStyle = (
     }
 };
 
+export const renderForHorizonStyle = (
+    { ctx, colours, size, config }: StyleRenderOptions
+) => {
+    if (!config?.horizon) {
+        throw new Error("Cannot access Horizon config");
+    }
+
+    const requiredColourCount =
+        config.horizon.shouldShowCore ? 6 : 4;
+    if (colours.length < requiredColourCount) {
+        throw new Error("Insufficient colours for Horizon rendering");
+    }
+
+    // TODO: abstract getShortAndLongerSides(width, height);
+    const longerSide = size.width >= size.height
+        ? size.width
+        : size.height;
+    const shorterSide = size.width >= size.height
+        ? size.height
+        : size.width;
+
+    const minFgBlockSize = shorterSide * 0.25;
+    const maxFgBlockSize = shorterSide;
+    const varianceFgBlockSize = (maxFgBlockSize - minFgBlockSize) * config.horizon.size/HORIZON_CONFIG_SIZE_MAX_VALUE;
+    const fgBlockSize = minFgBlockSize + varianceFgBlockSize;
+
+    const minYPos = fgBlockSize/2;
+    const maxYPos =  size.height - fgBlockSize/2;
+    const varianceYPos = (maxYPos - minYPos) * config.horizon.position/HORIZON_CONFIG_POSITION_MAX_VALUE;
+    const yPos = minYPos + varianceYPos;
+
+    // Background upper half
+    ctx.fillStyle = colours[0];
+    ctx.fillRect(
+        0,
+        0,
+        size.width,
+        yPos
+    );
+
+    // Background lower half
+    ctx.fillStyle = colours[1];
+    ctx.fillRect(
+        0,
+        yPos,
+        size.width,
+        size.height - yPos
+    );
+
+    // Foreground upper half
+    ctx.fillStyle = colours[2];
+    ctx.fillRect(
+        size.width/2 - fgBlockSize/2,
+        yPos - fgBlockSize/2,
+        fgBlockSize,
+        fgBlockSize/2,
+    );
+
+    // Foreground lower half
+    ctx.fillStyle = colours[3];
+    ctx.fillRect(
+        size.width/2 - fgBlockSize/2,
+        yPos,
+        fgBlockSize,
+        fgBlockSize/2,
+    );
+
+    const shouldDrawCore = config.horizon.shouldShowCore;
+    if (shouldDrawCore) {
+        const coreRadius = fgBlockSize * 0.35;
+
+        // Upper core
+        ctx.beginPath();
+        ctx.arc(
+            size.width/2,
+            yPos,
+            coreRadius,
+            Math.PI,
+            Math.PI * 2,
+        );
+        ctx.fillStyle = colours[4];
+        ctx.fill();
+
+        // Lower core
+        ctx.beginPath();
+        ctx.arc(
+            size.width/2,
+            yPos,
+            coreRadius,
+            0,
+            Math.PI,
+        );
+        ctx.fillStyle = colours[5];
+        ctx.fill();
+    }
+};
+
+// ---- Size fitting logic
+
 export const refitCanvasToContainer = () => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;
     if (!canvas) return;
@@ -496,6 +604,8 @@ const setCanvasFitMode = (canvas: HTMLCanvasElement) => {
         canvas.style.height = `${height}px`;
     }
 };
+
+// ---- File export logic
 
 export const generateImage = (filename: string) => {
     const canvas = document.getElementById(CANVAS_ID) as HTMLCanvasElement;

@@ -1,9 +1,12 @@
 <script lang="ts">
-    // import { beforeNavigate, afterNavigate } from "$app/navigation"
     import MaterialSymbolsDeviceReset from "~icons/material-symbols/device-reset";
 
     import ColourList from "src/routes/colours/ColourList.svelte";
     import { resetColourGallery } from "src/states/colourGalleryState.svelte.js";
+	import { colourGalleryScrollPos } from "src/states/scrollPositionState.svelte.js";
+	import { createScrollPositionManager } from "src/lib/scrollPositionManager.js";
+
+    createScrollPositionManager("/colours", colourGalleryScrollPos);
 
     const handleResetGallery = () => {
         const isConfirmed = window.confirm("Reset the gallery to default colours? This action cannot be undone.");
@@ -11,20 +14,6 @@
 
         resetColourGallery();
     };
-
-    // beforeNavigate(({ from }) => {
-    //     if (from?.url.pathname !== "/gallery") return;
-    //     galleryScrollPos.set(window.scrollY);
-    // })
-
-    // afterNavigate(({ to }) => {
-    //     if (to?.url.pathname !== "/gallery") return;
-    //     scrollTo({
-    //         top: galleryScrollPos.val,
-    //         left: 0,
-    //         behavior: "smooth",
-    //     });
-    // })
 </script>
 
 <h2>Colour Gallery</h2>
