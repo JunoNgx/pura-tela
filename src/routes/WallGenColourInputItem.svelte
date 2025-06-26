@@ -2,18 +2,21 @@
     import { dragHandle } from "svelte-dnd-action";
     import ColorPicker from "svelte-awesome-color-picker";
     import type { ColObj } from "src/lib/types.js";
-    
+
     import MaterialSymbolsDragIndicator from "~icons/material-symbols/drag-indicator";
     import MaterialSymbolsShuffle from "~icons/material-symbols/shuffle";
     import MaterialSymbolsSaveOutlineSharp from "~icons/material-symbols/save-outline-sharp";
-    
+
     import { isHexCodeValid, getRandomHexCode } from "src/lib/utils.js";
     import { promptAddToColourGallery } from "src/states/colourGalleryState.svelte.js";
-    import { getWallGenColourInUseCount, setWallGenColoursAtIndex } from "src/states/wallGenState.svelte.js";
+    import {
+        getWallGenColourInUseCount,
+        setWallGenColoursAtIndex,
+    } from "src/states/wallGenState.svelte.js";
 
     type ColourInputItemProps = {
-        colourObj: ColObj,
-        index: number,
+        colourObj: ColObj;
+        index: number;
     };
 
     let { colourObj, index }: ColourInputItemProps = $props();
@@ -42,7 +45,8 @@
 
 <div class="ColourInput">
     <div class="ColourInput__LeftSide">
-        <div class="ColourInput__DragHandle"
+        <div
+            class="ColourInput__DragHandle"
             aria-label="drag-handle for colour at position {index}"
             use:dragHandle
         >
@@ -57,20 +61,22 @@
                 hex={colourCodeWithHash}
                 isAlpha={false}
                 position="responsive"
-                on:input={e => { 
+                on:input={(e) => {
                     // TODO: find out how to import this type and implement this separately in `<script>`
                     handlePickerValueChange(e.detail.hex as string);
                 }}
             />
         </div>
         <div class="ColourInput__HexInputContainer">
-            <label class="ColourInput__HexLabel"
+            <label
+                class="ColourInput__HexLabel"
                 for="hexCode"
                 aria-label="Hex colour code"
             >
                 #
             </label>
-            <input class="ColourInput__HexInput"
+            <input
+                class="ColourInput__HexInput"
                 id="hexCode"
                 name="hexCode"
                 type="text"
@@ -79,14 +85,16 @@
                 spellcheck="false"
                 title="Requires a valid hex code"
                 value={colourObj.colour}
-                oninput={e => handleHexCodeChange((e.target as HTMLInputElement).value)}
+                oninput={(e) =>
+                    handleHexCodeChange((e.target as HTMLInputElement).value)}
             />
         </div>
     </div>
 
     <div class="ColourInput__RightSide">
         {#if isColourInUse}
-            <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
+            <button
+                class="ColourInput__ColourActionBtn IconButtonWithLabel"
                 onclick={handleRandomise}
                 title="Generate a randomised colour"
                 aria-label="Create a random colour"
@@ -94,7 +102,8 @@
                 <MaterialSymbolsShuffle />
                 <span class="ColourInput__BtnLabelText">Randomise</span>
             </button>
-            <button class="ColourInput__ColourActionBtn IconButtonWithLabel"
+            <button
+                class="ColourInput__ColourActionBtn IconButtonWithLabel"
                 onclick={trySaveColour}
                 title="Save colour to gallery"
                 aria-label="Save colour to gallery"
@@ -166,7 +175,6 @@
     }
 
     @media screen and (width <= 650px) {
-
         .ColourInput__LeftSide {
             gap: 0.5rem;
         }

@@ -1,9 +1,13 @@
 <script lang="ts">
-
-    import { gradientStyleConfig, setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
+    import {
+        gradientStyleConfig,
+        setGradientStyleConfigAngle,
+    } from "src/states/wallGenStyleConfigGradientState.svelte.js";
 
     const handleSliderChange = (
-        e: Event & { currentTarget: EventTarget & HTMLInputElement; }
+        e: Event & {
+            currentTarget: EventTarget & HTMLInputElement;
+        }
     ) => {
         const newValue = e.currentTarget.value;
 
@@ -13,22 +17,19 @@
                 throw new Error("Invalid angle value");
 
             setGradientStyleConfigAngle(parsedValue);
-        } catch(err) {
-            console.log(err)
-            console.error("Invalid angle value")
+        } catch (err) {
+            console.warn(err);
+            console.error("Invalid angle value");
         }
     };
 
     const resetTo90Deg = () => {
         setGradientStyleConfigAngle(90);
     };
-
 </script>
 
 <div class="GradientConfig">
-    <h3 class="GradientConfig__Title">
-        Gradient Configurations
-    </h3>
+    <h3 class="GradientConfig__Title">Gradient Configurations</h3>
 
     <div class="GradientConfig__ItemsContainer">
         <fieldset class="GradientConfig__Item">
@@ -38,34 +39,41 @@
 
             <div class="GradientConfig__Content">
                 <div class="GradientConfig__AngleInputContainer">
-                    <label class="VisuallyHidden" for="gradientAngleInput">Angle input as number input</label>
-                    <input class="GradientConfig__AngleInput"
+                    <label class="VisuallyHidden" for="gradientAngleInput"
+                        >Angle input as number input</label
+                    >
+                    <input
+                        class="GradientConfig__AngleInput"
                         id="gradientAngleInput"
                         type="number"
                         min="0"
                         max="360"
-                        value="{gradientStyleConfig.val.angleInDeg}"
+                        value={gradientStyleConfig.val.angleInDeg}
                         oninput={handleSliderChange}
                     />
                     <span class="GradientConfig__AngleInputUnit">°</span>
                 </div>
 
                 <div class="GradientConfig__AngleSliderContainer">
-                    <label class="VisuallyHidden" for="gradientAngleSlider">Angle input as slider</label>
-                    <input class="GradientConfig__AngleSliderInput"
+                    <label class="VisuallyHidden" for="gradientAngleSlider"
+                        >Angle input as slider</label
+                    >
+                    <input
+                        class="GradientConfig__AngleSliderInput"
                         id="gradientAngleSlider"
                         type="range"
                         min="0"
                         max="360"
                         step="5"
-                        value="{gradientStyleConfig.val.angleInDeg}"
+                        value={gradientStyleConfig.val.angleInDeg}
                         oninput={handleSliderChange}
                     />
                 </div>
             </div>
 
             <div class="GradientConfig__ActionsContainer">
-                <button class="GradientConfig__AngleResetButton TertBtn"
+                <button
+                    class="GradientConfig__AngleResetButton TertBtn"
                     title="Reset to 90 degree"
                     aria-label="Reset to 90 degree"
                     onclick={resetTo90Deg}
@@ -73,7 +81,6 @@
                     Reset
                 </button>
             </div>
-
         </fieldset>
     </div>
 </div>
@@ -133,5 +140,4 @@
             margin-right: 0;
         }
     }
-
 </style>

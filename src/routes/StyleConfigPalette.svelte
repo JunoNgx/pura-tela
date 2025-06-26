@@ -1,9 +1,21 @@
 <script lang="ts">
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
-    import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
+    import {
+        PALETTE_CONFIG_ANGLE_MAX_VALUE,
+        PALETTE_CONFIG_POSITION_MAX_VALUE,
+        PALETTE_CONFIG_SIZE_MAX_VALUE,
+    } from "src/lib/constants.js";
     import type { InputEvent } from "src/lib/types.js";
     import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
-    import { paletteStyleConfig, resetPaletteStyleAngle, resetPaletteStylePosition, resetPaletteStyleSize, setPaletteStyleAngle, setPaletteStylePosition, setPaletteStyleSize } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+    import {
+        paletteStyleConfig,
+        resetPaletteStyleAngle,
+        resetPaletteStylePosition,
+        resetPaletteStyleSize,
+        setPaletteStyleAngle,
+        setPaletteStylePosition,
+        setPaletteStyleSize,
+    } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
 
     const handleDataChange = (
         e: InputEvent,
@@ -20,18 +32,15 @@
                 throw new Error(`Invalid ${valueLabel} value`);
 
             setFunc(parsedValue);
-        } catch(err) {
-            console.log(err)
-            console.error(`Invalid ${valueLabel} value`)
+        } catch (err) {
+            console.warn(err);
+            console.error(`Invalid ${valueLabel} value`);
         }
     };
-
 </script>
 
 <div class="PaletteConfig">
-    <h3 class="PaletteConfig__Title">
-        Palette Configurations
-    </h3>
+    <h3 class="PaletteConfig__Title">Palette Configurations</h3>
 
     <div class="PaletteConfig__ItemsContainer">
         <fieldset class="PaletteConfig__Item">
@@ -48,11 +57,18 @@
                 unit="°"
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(e, setPaletteStyleAngle, "angle", 0, PALETTE_CONFIG_ANGLE_MAX_VALUE);
+                    handleDataChange(
+                        e,
+                        setPaletteStyleAngle,
+                        "angle",
+                        0,
+                        PALETTE_CONFIG_ANGLE_MAX_VALUE
+                    );
                 }}
             />
             <div class="PaletteConfig__ActionsContainer">
-                <button class="PaletteConfig__ResetAngleButton TertBtn"
+                <button
+                    class="PaletteConfig__ResetAngleButton TertBtn"
                     title="Reset Palette config angle to default"
                     aria-label="Reset Palette config angle to default"
                     onclick={resetPaletteStyleAngle}
@@ -75,11 +91,18 @@
                 value={paletteStyleConfig.val.size}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(e, setPaletteStyleSize, "size", 0, PALETTE_CONFIG_SIZE_MAX_VALUE);
+                    handleDataChange(
+                        e,
+                        setPaletteStyleSize,
+                        "size",
+                        0,
+                        PALETTE_CONFIG_SIZE_MAX_VALUE
+                    );
                 }}
             />
             <div class="PaletteConfig__ActionsContainer">
-                <button class="PaletteConfig__ResetSizeButton TertBtn"
+                <button
+                    class="PaletteConfig__ResetSizeButton TertBtn"
                     title="Reset Palette config size to default"
                     aria-label="Reset Palette config size to default"
                     onclick={resetPaletteStyleSize}
@@ -102,11 +125,18 @@
                 value={paletteStyleConfig.val.position}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(e, setPaletteStylePosition, "position", 0, PALETTE_CONFIG_POSITION_MAX_VALUE);
+                    handleDataChange(
+                        e,
+                        setPaletteStylePosition,
+                        "position",
+                        0,
+                        PALETTE_CONFIG_POSITION_MAX_VALUE
+                    );
                 }}
             />
             <div class="PaletteConfig__ActionsContainer">
-                <button class="PaletteConfig__ResetPositionButton TertBtn"
+                <button
+                    class="PaletteConfig__ResetPositionButton TertBtn"
                     title="Reset Palette config position to default"
                     aria-label="Reset Palette config position to default"
                     onclick={resetPaletteStylePosition}
@@ -115,7 +145,6 @@
                 </button>
             </div>
         </fieldset>
-
     </div>
 </div>
 
@@ -142,5 +171,4 @@
         display: flex;
         justify-content: flex-end;
     }
-
 </style>
