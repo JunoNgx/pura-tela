@@ -6,6 +6,7 @@
     "trailingComma": "es5",
     "printWidth": 100,
     "bracketSpacing": true,
+    "experimentalOperatorPosition": "start",
     "plugins": ["prettier-plugin-svelte"],
     "overrides": [
         {
