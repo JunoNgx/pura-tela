@@ -17,9 +17,7 @@ const isPalGenColoursValid = (data: any) => {
     }
 
     try {
-        if (data.length < MIN_COLOUR_COUNT_PALETTE
-            || data.length > MAX_COLOUR_COUNT
-        ) {
+        if (data.length < MIN_COLOUR_COUNT_PALETTE || data.length > MAX_COLOUR_COUNT) {
             return false;
         }
 
@@ -37,14 +35,13 @@ const isPalGenColoursValid = (data: any) => {
     } catch (err) {
         return false;
     }
-}
+};
 
 const generateDefaultPalGenColours = () => {
-    return defaultPaletteGallery[0].colours
-        .map(colour => ({
-            colour,
-            isLocked: false,
-        }));
+    return defaultPaletteGallery[0].colours.map((colour) => ({
+        colour,
+        isLocked: false,
+    }));
 };
 
 export const palGenColours = <State<PalGenColObj[]>>createColState({
@@ -89,7 +86,7 @@ export const removePalGenColoursLockAtIndex = (index: number) => {
 };
 
 export const randomiseUnlockedColoursForPalGen = () => {
-    const newVal = palGenColours.val.map(palGenItem => {
+    const newVal = palGenColours.val.map((palGenItem) => {
         if (palGenItem.isLocked) {
             return palGenItem;
         }
@@ -104,8 +101,8 @@ export const randomiseUnlockedColoursForPalGen = () => {
     palGenColours.set(newVal);
 };
 
-const derivedHexListString =  $derived.by(() => {
-    const colourList = palGenColours.val.map(palGenItem => palGenItem.colour);
+const derivedHexListString = $derived.by(() => {
+    const colourList = palGenColours.val.map((palGenItem) => palGenItem.colour);
     const outputString = colourList.join("-");
     return outputString;
 });
@@ -118,11 +115,11 @@ export const tryParseFromStringToPalGen = (inputStr: string) => {
     const newVal = tryParseColours(inputStr);
 
     if (!newVal) {
-        window.alert("Data is invalid")
+        window.alert("Data is invalid");
         return;
     }
 
-    const newValue = newVal.map(colour => ({
+    const newValue = newVal.map((colour) => ({
         id: generateId(),
         colour,
         isLocked: false,
@@ -133,28 +130,28 @@ export const tryParseFromStringToPalGen = (inputStr: string) => {
 export const passPaletteToPaletteGenerator = (paletteIndex: number) => {
     try {
         const palette = paletteGallery.val[paletteIndex];
-        const newVal = palette.colours.map(colour => ({
+        const newVal = palette.colours.map((colour) => ({
             id: generateId(),
             colour,
             isLocked: false,
         }));
 
         palGenColours.set([...newVal]);
-    } catch(error) {
+    } catch (error) {
         throw new Error("Failed to pass palette to Palette Generator");
     }
-}
+};
 
 export const passWallGenToPaletteGenerator = (colours: string[]) => {
     try {
-        const newVal = colours.map(colour => ({
+        const newVal = colours.map((colour) => ({
             id: generateId(),
             colour,
             isLocked: false,
         }));
 
         palGenColours.set([...newVal]);
-    } catch(error) {
+    } catch (error) {
         throw new Error("Failed to pass palette to Palette Generator");
     }
 };

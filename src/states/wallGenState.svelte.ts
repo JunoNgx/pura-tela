@@ -22,7 +22,7 @@ const defaultWallGenColoursValue = [
     { colour: "7BFFB0" },
     { colour: "99E343" },
     { colour: "235646" },
-    { colour: "F43606" }
+    { colour: "F43606" },
 ];
 const isWallGenColoursValid = (data: ColObj[]) => {
     if (!data) return false;
@@ -47,7 +47,7 @@ export const wallGenColours = <State<ColObj[]>>createColState({
 });
 
 const isColourIndexValid = (index: number) => {
-    return (0 <= index && index <= wallGenColours.val.length - 1);
+    return 0 <= index && index <= wallGenColours.val.length - 1;
 };
 
 export const getWallGenColoursAtIndex = (index: number) => {
@@ -75,7 +75,7 @@ export const setWallGenColoursAtIndex = (index: number, newValue: string) => {
 /**
  * This pulls the colour at the target index, and adds another random colour to
  * the end, to maintain the amount of `wallGenColours`.
- * 
+ *
  * Also unused.
  * @param index The target index
  */
@@ -110,7 +110,7 @@ export const retractWallGenColoursAtIndex = (index: number) => {
 export const passSomeColourStringsToWallpaperGenerator = (newColours: string[]) => {
     // Data is internal, so this is assumed to have been validated
     const coloursToBeKept = wallGenColours.val.slice(newColours.length);
-    const newColourObjList = newColours.map(colour => ({
+    const newColourObjList = newColours.map((colour) => ({
         id: generateId(),
         colour,
     }));
@@ -127,11 +127,11 @@ export const tryParseFromStringToWallGen = (inputStr: string) => {
     const newVal = tryParseColours(inputStr);
 
     if (!newVal) {
-        window.alert("Data is invalid")
+        window.alert("Data is invalid");
         return;
     }
 
-    const newValue = newVal.map(colour => ({
+    const newValue = newVal.map((colour) => ({
         id: generateId(),
         colour,
     }));
@@ -176,7 +176,7 @@ export const wallGenStyle = createLocalStorageSyncedState({
     validationFunc: isWallGenStyleValid,
 }) as State<WallpaperStyle>;
 
-export const isSolidStyle = () => { 
+export const isSolidStyle = () => {
     return wallGenStyle.val === WallpaperStyle.SOLID;
 };
 
@@ -202,47 +202,46 @@ export const isHorizonStyle = () => {
 
 const currStyleInfo = $derived.by(() => {
     switch (wallGenStyle.val) {
-    case WallpaperStyle.SOLID:
-        return {
-            defaultColourCount: 1,
-            minColourCount: 1,
-            maxColourCount: 1,
-        };
+        case WallpaperStyle.SOLID:
+            return {
+                defaultColourCount: 1,
+                minColourCount: 1,
+                maxColourCount: 1,
+            };
 
-    case WallpaperStyle.GRADIENT:
-        return {
-            defaultColourCount: 2,
-            minColourCount: 2,
-            maxColourCount: MAX_COLOUR_COUNT,
-        };
+        case WallpaperStyle.GRADIENT:
+            return {
+                defaultColourCount: 2,
+                minColourCount: 2,
+                maxColourCount: MAX_COLOUR_COUNT,
+            };
 
-    case WallpaperStyle.POP_ART_SQUARE:
-        return {
-            defaultColourCount: 4,
-            minColourCount: 4,
-            maxColourCount: 4,
-        };
+        case WallpaperStyle.POP_ART_SQUARE:
+            return {
+                defaultColourCount: 4,
+                minColourCount: 4,
+                maxColourCount: 4,
+            };
 
-    case WallpaperStyle.COLOUR_SWATCH:
-    case WallpaperStyle.PALETTE:
-        return {
-            defaultColourCount: 5,
-            minColourCount: 2,
-            maxColourCount: MAX_COLOUR_COUNT,
-        };
+        case WallpaperStyle.COLOUR_SWATCH:
+        case WallpaperStyle.PALETTE:
+            return {
+                defaultColourCount: 5,
+                minColourCount: 2,
+                maxColourCount: MAX_COLOUR_COUNT,
+            };
 
-    case WallpaperStyle.HORIZON:
-        const colourCount =
-            horizonStyleConfig.val.shouldShowCore ? 6 : 4;
+        case WallpaperStyle.HORIZON:
+            const colourCount = horizonStyleConfig.val.shouldShowCore ? 6 : 4;
 
-        return {
-            defaultColourCount: colourCount,
-            minColourCount: colourCount,
-            maxColourCount: colourCount,
-        };
+            return {
+                defaultColourCount: colourCount,
+                minColourCount: colourCount,
+                maxColourCount: colourCount,
+            };
 
-    default:
-        throw new Error("Retrieving info; invalid wallpaper style not found")
+        default:
+            throw new Error("Retrieving info; invalid wallpaper style not found");
     }
 });
 export const getCurrWallStyleInfo = (): WallpaperStyleInfo => {
@@ -273,7 +272,7 @@ export const isWallGenColoursInUseCountValid = (data: any) => {
 const wallGenColoursInUseCount = createLocalStorageSyncedState({
     key: "currColourInUseCount",
     defaultValue: 1,
-    validationFunc: isWallGenColoursInUseCountValid
+    validationFunc: isWallGenColoursInUseCountValid,
 }) as State<number>;
 
 export const getWallGenColourInUseCount = () => {
@@ -289,11 +288,7 @@ export const setWallGenColourInUseCount = (newValue: number) => {
 };
 
 export const tryResetWallGenColourInUseCount = () => {
-    const {
-        defaultColourCount,
-        minColourCount,
-        maxColourCount,
-    } = getCurrWallStyleInfo();
+    const { defaultColourCount, minColourCount, maxColourCount } = getCurrWallStyleInfo();
     const shouldResetColourInUseCount =
         getWallGenColourInUseCount() < minColourCount
         || getWallGenColourInUseCount() > maxColourCount;
@@ -348,7 +343,6 @@ const isWallGenSizeValid = (data: any) => {
         }
 
         return true;
-
     } catch (err) {
         return false;
     }
@@ -385,11 +379,11 @@ export const setWallGenSizeHeight = (newHeight: number) => {
 
 export const setWallGenSizeFromSizeGalleryIndex = (index: number) => {
     const isSizeGalleryIndexValid = (index: number) => {
-        return (0 <= index && index <= sizeGallery.length - 1);
+        return 0 <= index && index <= sizeGallery.length - 1;
     };
 
     if (!isSizeGalleryIndexValid(index)) {
-        throw new Error("Invalid size gallery index")
+        throw new Error("Invalid size gallery index");
     }
 
     const sizeGalleryItem = sizeGallery[index];
@@ -407,10 +401,8 @@ export const isPortraitScreen = () => {
  * Sample text setting
  */
 const isShouldShowSampleTextValid = (data: any) => {
-    if ( data !== true
-        && data !== false
-    ) {
-        return false
+    if (data !== true && data !== false) {
+        return false;
     }
 
     return true;
@@ -423,19 +415,25 @@ export const shouldShowSampleText = createLocalStorageSyncedState({
 }) as State<boolean>;
 
 /**
- * Derived values 
+ * Derived values
  */
-const derivedColourObjectsInUse = $derived(wallGenColours.val.slice(0, getWallGenColourInUseCount()));
+const derivedColourObjectsInUse = $derived(
+    wallGenColours.val.slice(0, getWallGenColourInUseCount())
+);
 export const getColourObjectsInUse = () => {
     return derivedColourObjectsInUse;
 };
 
-const derivedColourStringsInUse = $derived(derivedColourObjectsInUse.map(colObj => colObj.colour));
+const derivedColourStringsInUse = $derived(
+    derivedColourObjectsInUse.map((colObj) => colObj.colour)
+);
 export const getColourStringsInUse = () => {
     return derivedColourStringsInUse;
 };
 
-const derivedHexColourCodesInUse = $derived(derivedColourStringsInUse.map(colour => `#${colour}`));
+const derivedHexColourCodesInUse = $derived(
+    derivedColourStringsInUse.map((colour) => `#${colour}`)
+);
 export const getHexColourCodesInUse = () => {
     return derivedHexColourCodesInUse;
 };
@@ -452,4 +450,4 @@ const derivedStyleConfig = $derived({
 });
 export const getStyleConfig = () => {
     return derivedStyleConfig;
-}
+};
