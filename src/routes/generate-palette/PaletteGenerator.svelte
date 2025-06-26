@@ -1,5 +1,9 @@
 <script lang="ts">
-    import { dragHandleZone, type DndEvent, type TransformDraggedElementFunction } from "svelte-dnd-action";
+    import {
+        dragHandleZone,
+        type DndEvent,
+        type TransformDraggedElementFunction,
+    } from "svelte-dnd-action";
     import { goto } from "$app/navigation";
     import { flip } from "svelte/animate";
 
@@ -14,11 +18,21 @@
     import MaterialSymbolsColorize from "~icons/material-symbols/colorize";
     import MaterialSymbolsViewWeekSharp from "~icons/material-symbols/view-week-sharp";
     import MaterialSymbolsNetworkIntelligence from "~icons/material-symbols/network-intelligence";
-    import MaterialSymbolsConvertToTextOutlineSharp from '~icons/material-symbols/convert-to-text-outline-sharp';
+    import MaterialSymbolsConvertToTextOutlineSharp from "~icons/material-symbols/convert-to-text-outline-sharp";
 
-    import { addToPalGenColours, exportToStringFromPalGen, palGenColours, tryParseFromStringToPalGen, randomiseUnlockedColoursForPalGen } from "src/states/palGenState.svelte.js";
+    import {
+        addToPalGenColours,
+        exportToStringFromPalGen,
+        palGenColours,
+        tryParseFromStringToPalGen,
+        randomiseUnlockedColoursForPalGen,
+    } from "src/states/palGenState.svelte.js";
     import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
-    import { passSomeColourStringsToWallpaperGenerator, readjustWallGenColoursInUseCount, setWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
+    import {
+        passSomeColourStringsToWallpaperGenerator,
+        readjustWallGenColoursInUseCount,
+        setWallGenColourInUseCount,
+    } from "src/states/wallGenState.svelte.js";
     import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
     import { computeBaseUrl } from "src/lib/utils.js";
 
@@ -31,7 +45,7 @@
     };
 
     const passToWallpaperGenerator = () => {
-        const newColours = palGenColours.val.map(item => item.colour);
+        const newColours = palGenColours.val.map((item) => item.colour);
 
         passSomeColourStringsToWallpaperGenerator(newColours);
         setWallGenColourInUseCount(newColours.length);
@@ -45,7 +59,9 @@
     };
 
     const parseFromString = () => {
-        const inputData = window.prompt("Enter palette data. This should be a list of hex codes, with or without the hash sign, with or without double quotes, separated by either dash or comma. Refer to help for more details.");
+        const inputData = window.prompt(
+            "Enter palette data. This should be a list of hex codes, with or without the hash sign, with or without double quotes, separated by either dash or comma. Refer to help for more details."
+        );
         if (!inputData) return;
 
         tryParseFromStringToPalGen(inputData);
@@ -69,7 +85,11 @@
         palGenColours.set(e.detail.items);
     };
 
-    const transformDraggedElement: TransformDraggedElementFunction = (draggedEl, data, index) => {
+    const transformDraggedElement: TransformDraggedElementFunction = (
+        draggedEl,
+        data,
+        index
+    ) => {
         draggedEl?.classList.add("IsDragged");
     };
 
@@ -81,59 +101,59 @@
             label: "Save as palette",
             tooltip: "Save current settings as a palette",
             action: savePalette,
-            icon: MaterialSymbolsViewWeekSharp
+            icon: MaterialSymbolsViewWeekSharp,
         },
         {
             id: "passToWallGen",
             label: "Pass to Wallpaper Generator",
             tooltip: "Pass the palette to Wallpaper Generator",
             action: passToWallpaperGenerator,
-            icon: MaterialSymbolsColorize
+            icon: MaterialSymbolsColorize,
         },
         {
             id: "generateAi",
             label: "Generate with AI",
             tooltip: "Generate a palette using AI with a theme prompt",
             action: generatePaletteWithAi,
-            icon: MaterialSymbolsNetworkIntelligence
+            icon: MaterialSymbolsNetworkIntelligence,
         },
         {
             id: "import",
             label: "Import from string",
             tooltip: "Enter a string of data to recover a palette",
             action: parseFromString,
-            icon: MaterialSymbolsConvertToTextOutlineSharp
+            icon: MaterialSymbolsConvertToTextOutlineSharp,
         },
     ];
 </script>
 
 <div class="PaletteGenerator">
-    <div class="PaletteGenerator__PaletteBox"
-        use:dragHandleZone="{{
+    <div
+        class="PaletteGenerator__PaletteBox"
+        use:dragHandleZone={{
             items: palGenColours.val,
             flipDurationMs,
             dropTargetStyle: {
                 outline: "2px solid var(--colPri)",
             },
-            transformDraggedElement
-        }}"
-        onconsider="{handleDndSort}"
-        onfinalize="{handleDndSort}"
+            transformDraggedElement,
+        }}
+        onconsider={handleDndSort}
+        onfinalize={handleDndSort}
     >
         {#each palGenColours.val as palGenItem, index (palGenItem.id)}
-            <div class="PaletteGenerator__ItemWrapper"
+            <div
+                class="PaletteGenerator__ItemWrapper"
                 animate:flip={{ duration: flipDurationMs }}
             >
-                <PaletteGeneratorItem
-                    palGenItem={palGenItem}
-                    index={index}
-                />
+                <PaletteGeneratorItem {palGenItem} {index} />
             </div>
         {/each}
     </div>
 
     <div class="PaletteGenerator__ActionsContainerUpper">
-        <button class="ColourInputContainer__AddBtn IconButtonWithLabel"
+        <button
+            class="ColourInputContainer__AddBtn IconButtonWithLabel"
             disabled={palGenColours.val.length >= MAX_COLOUR_COUNT}
             onclick={addColour}
             title={"Add colour"}
@@ -146,7 +166,8 @@
 
     <div class="PaletteGenerator__ActionsContainerLower">
         <div class="SplitBtn SplitBtn--IsPri">
-            <button class="PaletteGenerator__ActionBtn IconButtonWithLabel SplitBtn__Pri"
+            <button
+                class="PaletteGenerator__ActionBtn IconButtonWithLabel SplitBtn__Pri"
                 onclick={generatePalette}
                 title={"Generate new palettes"}
                 aria-label={"Generate new palettes"}
@@ -171,15 +192,17 @@
                     label: "Importable plain string",
                     content: exportToStringFromPalGen(),
                     shareTitle: "Colour palette from Pura Tela",
-                    shareText: "Check out this beautiful colour palette you can import to Pura Tela:",
+                    shareText:
+                        "Check out this beautiful colour palette you can import to Pura Tela:",
                     isContentPlainText: true,
                 },
                 {
                     label: "Direct link",
                     content: computeShareableUrl(),
                     shareTitle: "Colour palette from Pura Tela",
-                    shareText: "Check out this beautiful colour palette in Pura Tela:",
-                }
+                    shareText:
+                        "Check out this beautiful colour palette in Pura Tela:",
+                },
             ]}
         />
     </div>
@@ -197,7 +220,8 @@
         position: relative;
         flex-grow: 1;
         height: 500px;
-        transition: width var(--transTime) ease-in-out,
+        transition:
+            width var(--transTime) ease-in-out,
             height var(--transTime) ease-in-out;
     }
 
@@ -235,7 +259,7 @@
         .PaletteGenerator__ItemWrapper {
             height: 7.5rem;
         }
-        
+
         .PaletteGenerator__ActionsContainerLower {
             justify-content: flex-end;
         }
