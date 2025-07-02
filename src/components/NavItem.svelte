@@ -4,8 +4,9 @@
     const { route, label } = $props();
 </script>
 
-<a class="NavItem"
-    class:NavItem--IsActive={ route === page.url.pathname }
+<a
+    class="NavItem"
+    class:NavItem--IsActive={route === page.url.pathname}
     href={route}
 >
     <div class="NavItem__Background"></div>
@@ -37,7 +38,8 @@
         display: block;
         padding: 0.25rem 0;
         position: relative;
-        transition: color ease-in-out var(--transTimeFast),
+        transition:
+            color ease-in-out var(--transTimeFast),
             padding ease-in-out var(--transTimeFast);
     }
 
@@ -52,5 +54,4 @@
             width: 100%;
         }
     }
-
 </style>

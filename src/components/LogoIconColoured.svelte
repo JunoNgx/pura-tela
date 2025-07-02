@@ -10,20 +10,20 @@
             }
 
             .left {
-                fill: #1AC4F5;
+                fill: #1ac4f5;
             }
 
             .right1 {
-                fill: #22D2D2
+                fill: #22d2d2;
             }
 
             .right2 {
-                fill: #F5ADAE;
+                fill: #f5adae;
             }
         </style>
     </defs>
 
-    <rect class="item left" x="40" y="40" width="452" height="944"/>
-    <rect class="item right1" x="532" y="40" width="452" height="452"/>
-    <rect class="item right2" x="532" y="532" width="452" height="452"/>
+    <rect class="item left" x="40" y="40" width="452" height="944" />
+    <rect class="item right1" x="532" y="40" width="452" height="452" />
+    <rect class="item right2" x="532" y="532" width="452" height="452" />
 </svg>

@@ -6,13 +6,17 @@
     import { generateImage } from "src/lib/canvas.js";
     import { computeFilename } from "src/lib/utils.js";
     import { colourGallery } from "src/states/colourGalleryState.svelte.js";
-    import { getColourStringsInUse, shouldShowSampleText, wallGenStyle } from "src/states/wallGenState.svelte.js";
+    import {
+        getColourStringsInUse,
+        shouldShowSampleText,
+        wallGenStyle,
+    } from "src/states/wallGenState.svelte.js";
 
     let isExpanded = $state(true);
     let containerEl: HTMLElement;
 
     const toggleExpanded = () => {
-        if (isExpanded) collapse()
+        if (isExpanded) collapse();
         else expand();
     };
 
@@ -28,10 +32,16 @@
         containerEl.offsetHeight;
         containerEl.style.height = `${targetHeight}px`;
 
-        containerEl.addEventListener('transitionend', function transitionEndHandler() {
-            containerEl.style.height = "auto";
-            containerEl.removeEventListener('transitionend', transitionEndHandler);
-        });
+        containerEl.addEventListener(
+            "transitionend",
+            function transitionEndHandler() {
+                containerEl.style.height = "auto";
+                containerEl.removeEventListener(
+                    "transitionend",
+                    transitionEndHandler
+                );
+            }
+        );
     };
 
     const collapse = () => {
@@ -39,12 +49,11 @@
 
         const computedStyle = window.getComputedStyle(containerEl);
         const targetHeight = parseFloat(computedStyle.height);
-        console.log("collapse", targetHeight)
         containerEl.style.height = `${targetHeight}px`;
         containerEl.offsetHeight;
         containerEl.style.height = "2rem";
     };
-    
+
     const handleDownloadClick = () => {
         const fileName = computeFilename({
             colours: getColourStringsInUse(),
@@ -60,38 +69,43 @@
     };
 </script>
 
-<div class="StudioPreview"
+<div
+    class="StudioPreview"
     class:StudioPreview--IsExpanded={isExpanded}
     bind:this={containerEl}
 >
-    <button class="StudioPreview__ToggleExpandBtn"
-        title={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
-        aria-label={isExpanded ? "Collapse the preview panel" : "Expand the preview panel"}
+    <button
+        class="StudioPreview__ToggleExpandBtn"
+        title={isExpanded
+            ? "Collapse the preview panel"
+            : "Expand the preview panel"}
+        aria-label={isExpanded
+            ? "Collapse the preview panel"
+            : "Expand the preview panel"}
         onclick={toggleExpanded}
     >
-        <h3 class="StudioPreview__Title">
-            Preview
-        </h3>
+        <h3 class="StudioPreview__Title">Preview</h3>
 
         <div class="StudioPreview__ExpandedIcon">
-            <MaterialSymbolsKeyboardArrowDown/>
+            <MaterialSymbolsKeyboardArrowDown />
         </div>
     </button>
 
-    <div class="StudioPreview__Content"
-        id="CanvasContainer"    
-    >
-        <canvas class="StudioPreview__Canvas"
-            id="Canvas"
-        ></canvas>
+    <div class="StudioPreview__Content" id="CanvasContainer">
+        <canvas class="StudioPreview__Canvas" id="Canvas"></canvas>
 
-        <div class="StudioPreview__SampleTextContainer"
+        <div
+            class="StudioPreview__SampleTextContainer"
             class:StudioPreview__SampleTextContainer--IsDisplayed={shouldShowSampleText.val}
         >
-            <p class="StudioPreview__SampleText StudioPreview__SampleText--White">
+            <p
+                class="StudioPreview__SampleText StudioPreview__SampleText--White"
+            >
                 White text
             </p>
-            <p class="StudioPreview__SampleText StudioPreview__SampleText--Black">
+            <p
+                class="StudioPreview__SampleText StudioPreview__SampleText--Black"
+            >
                 Black text
             </p>
         </div>
@@ -108,7 +122,8 @@
             />
         </div>
 
-        <button class="StudioPreview__DownloadBtn PriBtn"
+        <button
+            class="StudioPreview__DownloadBtn PriBtn"
             onclick={handleDownloadClick}
             aria-label="Download"
         >
@@ -222,7 +237,7 @@
     .StudioPreview:not(.StudioPreview--IsExpanded) .StudioPreview__Content {
         opacity: 0;
     }
-    
+
     .StudioPreview:not(.StudioPreview--IsExpanded) .StudioPreview__Footer {
         opacity: 0;
     }

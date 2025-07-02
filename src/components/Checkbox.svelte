@@ -1,11 +1,10 @@
 <script lang="ts">
-
     type CheckboxProps = {
-        className?: string,
-        domId: string,
-        label: string,
-        checked: boolean,
-        changeHandler: () => void,
+        className?: string;
+        domId: string;
+        label: string;
+        checked: boolean;
+        changeHandler: () => void;
     };
 
     let {
@@ -13,21 +12,19 @@
         domId,
         label,
         checked,
-        changeHandler
+        changeHandler,
     }: CheckboxProps = $props();
-
 </script>
 
 <div class={`${className} Checkbox`}>
-    <input class="Checkbox__Input"
-        id="{domId}"
-        type=checkbox
-        checked={checked}
+    <input
+        class="Checkbox__Input"
+        id={domId}
+        type="checkbox"
+        {checked}
         onclick={changeHandler}
-    >
-    <label class="Checkbox__Label"
-        for="{domId}"
-    >
+    />
+    <label class="Checkbox__Label" for={domId}>
         {label}
     </label>
 </div>

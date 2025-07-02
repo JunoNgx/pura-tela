@@ -7,18 +7,22 @@
     import type { SVGAttributes } from "svelte/elements";
 
     type ActionItem = {
-        id: string,
-        label: string,
-        tooltip?: string,
-        action: () => void,
-        icon?: Component<SVGAttributes<SVGSVGElement>>,
-    }
+        id: string;
+        label: string;
+        tooltip?: string;
+        action: () => void;
+        icon?: Component<SVGAttributes<SVGSVGElement>>;
+    };
 
     type DropdownProps = {
-        actionItems: ActionItem[],
-        isSplitBtnPart?: boolean,
+        actionItems: ActionItem[];
+        isSplitBtnPart?: boolean;
     };
-    type DropdownPosition = "bottom-left" | "bottom-right" | "top-left" | "top-right";
+    type DropdownPosition =
+        | "bottom-left"
+        | "bottom-right"
+        | "top-left"
+        | "top-right";
 
     let { actionItems, isSplitBtnPart }: DropdownProps = $props();
     let isOpen = $state(false);
@@ -29,22 +33,23 @@
 
     const toggleDropdown = () => {
         isOpen = !isOpen;
-    }
+    };
 
     const executeAction = (actionItem: ActionItem) => {
         isOpen = false;
         setTimeout(() => {
             actionItem.action();
-        })
+        });
     };
 
     const handleClickOutside = (event: MouseEvent) => {
-        const isClickedOutside = !event.composedPath().includes(
-            document.querySelector(".Dropdown") as EventTarget);
+        const isClickedOutside = !event
+            .composedPath()
+            .includes(document.querySelector(".Dropdown") as EventTarget);
         if (isOpen && isClickedOutside) {
             isOpen = false;
         }
-    }
+    };
 
     const tryAdjustPosition = () => {
         if (!buttonEl || !menuEl) return;
@@ -91,33 +96,35 @@
             window.addEventListener("resize", tryAdjustPosition);
             window.addEventListener("scroll", tryAdjustPosition, true);
 
-            return (() => {
+            return () => {
                 document.removeEventListener("click", handleClickOutside);
                 window.removeEventListener("resize", tryAdjustPosition);
                 window.removeEventListener("scroll", tryAdjustPosition, true);
-            });
+            };
         }
     });
-
 </script>
 
-<div class="Dropdown"
+<div
+    class="Dropdown"
     class:SplitBtn__Sec={isSplitBtnPart}
     class:Dropdown--TopLeft={position === "top-left"}
     class:Dropdown--TopRight={position === "top-right"}
     class:Dropdown--BottomLeft={position === "bottom-left"}
     class:Dropdown--BottomRight={position === "bottom-right"}
 >
-    <button class="Dropdown__ToggleBtn IconButton"
+    <button
+        class="Dropdown__ToggleBtn IconButton"
         class:SplitBtn__SecBtn={isSplitBtnPart}
         bind:this={buttonEl}
         aria-label="Toggle the dropdown"
         onclick={toggleDropdown}
     >
-        <MaterialSymbolsKeyboardArrowDown/>
+        <MaterialSymbolsKeyboardArrowDown />
     </button>
     {#if isOpen}
-        <ul class="Dropdown__Menu"
+        <ul
+            class="Dropdown__Menu"
             bind:this={menuEl}
             transition:fade={{ duration: 150 }}
         >
@@ -129,7 +136,7 @@
                     aria-label={actionItem.tooltip}
                     onclick={() => executeAction(actionItem)}
                 >
-                    <span class="Dropdown__ItemIcon"><actionItem.icon/></span>
+                    <span class="Dropdown__ItemIcon"><actionItem.icon /></span>
                     <span class="Dropdown__ItemLabel">{actionItem.label}</span>
                 </button>
             {/each}
@@ -150,11 +157,9 @@
         color: var(--colBg);
         background-color: var(--colPri);
     }
-    
+
     .Dropdown__Menu {
         position: absolute;
-        /* top: 100%;
-        right: 0; */
         margin: 0.5rem 0;
         padding: 0;
         background-color: var(--colBg);

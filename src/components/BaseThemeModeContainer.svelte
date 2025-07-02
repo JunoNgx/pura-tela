@@ -17,54 +17,56 @@
 </script>
 
 <div class="ThemeMode">
-    <button class="ThemeMode__Item IconButton"
+    <button
+        class="ThemeMode__Item IconButton"
         onclick={() => handleClickOnThemeMode(ThemeMode.AUTO)}
         aria-label="Auto setting theme mode button"
     >
         <div class="IconButton__RegularIcon">
             {#if themeMode.val === ThemeMode.AUTO}
-                <MaterialSymbolsLightSettings/>
+                <MaterialSymbolsLightSettings />
             {:else}
-                <MaterialSymbolsLightSettingsOutline/>
+                <MaterialSymbolsLightSettingsOutline />
             {/if}
         </div>
         <div class="IconButton__HoverIcon">
-            <MaterialSymbolsLightSettings/>
+            <MaterialSymbolsLightSettings />
         </div>
     </button>
 
-    <button class="ThemeMode__Item IconButton"
+    <button
+        class="ThemeMode__Item IconButton"
         onclick={() => handleClickOnThemeMode(ThemeMode.LIGHT)}
         aria-label="Light theme mode button"
     >
         <div class="IconButton__RegularIcon">
             {#if themeMode.val === ThemeMode.LIGHT}
-                <MaterialSymbolsLightLightMode/>
+                <MaterialSymbolsLightLightMode />
             {:else}
-                <MaterialSymbolsLightLightModeOutline/>
+                <MaterialSymbolsLightLightModeOutline />
             {/if}
         </div>
         <div class="IconButton__HoverIcon">
-            <MaterialSymbolsLightLightMode/>
+            <MaterialSymbolsLightLightMode />
         </div>
     </button>
 
-    <button class="ThemeMode__Item IconButton"
+    <button
+        class="ThemeMode__Item IconButton"
         onclick={() => handleClickOnThemeMode(ThemeMode.DARK)}
         aria-label="Dark theme mode button"
     >
         <div class="IconButton__RegularIcon">
             {#if themeMode.val === ThemeMode.DARK}
-                <MaterialSymbolsLightDarkMode/>
+                <MaterialSymbolsLightDarkMode />
             {:else}
-                <MaterialSymbolsLightDarkModeOutline/>
+                <MaterialSymbolsLightDarkModeOutline />
             {/if}
         </div>
         <div class="IconButton__HoverIcon">
-            <MaterialSymbolsLightDarkMode/>
+            <MaterialSymbolsLightDarkMode />
         </div>
     </button>
-
 </div>
 
 <style>

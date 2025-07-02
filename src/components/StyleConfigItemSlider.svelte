@@ -2,16 +2,16 @@
     import type { InputEvent } from "src/lib/types.js";
 
     type StyleConfigItemProps = {
-        className?: string,
-        domId: string,
-        label: string,
-        min: number,
-        max: number,
-        value: number,
-        step?: number,
-        unit?: string,
-        shouldHideLabel?: boolean,
-        changeHandler: (e: InputEvent) => void
+        className?: string;
+        domId: string;
+        label: string;
+        min: number;
+        max: number;
+        value: number;
+        step?: number;
+        unit?: string;
+        shouldHideLabel?: boolean;
+        changeHandler: (e: InputEvent) => void;
     };
 
     let {
@@ -24,11 +24,12 @@
         step = 1,
         unit = "",
         shouldHideLabel = false,
-        changeHandler
+        changeHandler,
     }: StyleConfigItemProps = $props();
 </script>
 
-<div class={`${className} StyleConfigItem`}
+<div
+    class={`${className} StyleConfigItem`}
     class:StyleConfigItem--IsLabeless={shouldHideLabel}
 >
     {#if !shouldHideLabel}
@@ -41,12 +42,13 @@
         <label class="VisuallyHidden" for={`${domId}-input`}>
             {`${label} as number input`}
         </label>
-        <input class="StyleConfigItem__Input"
-            id="{domId}"
+        <input
+            class="StyleConfigItem__Input"
+            id={domId}
             type="number"
-            min="{min}"
-            max="{max}"
-            value="{value}"
+            {min}
+            {max}
+            {value}
             oninput={changeHandler}
         />
         {#if unit}
@@ -58,13 +60,14 @@
         <label class="VisuallyHidden" for={`${domId}-input`}>
             {`${label} as slider`}
         </label>
-        <input class="StyleConfigItem__Slider"
+        <input
+            class="StyleConfigItem__Slider"
             id="gradientAngleSlider"
             type="range"
-            min="{min}"
-            max="{max}"
-            step="{step}"
-            value="{value}"
+            {min}
+            {max}
+            {step}
+            {value}
             oninput={changeHandler}
         />
     </div>
@@ -82,7 +85,7 @@
         display: flex;
         flex-wrap: nowrap;
     }
-    
+
     .StyleConfigItem__Label {
         grid-column: 1/3;
         text-transform: lowercase;
@@ -108,5 +111,5 @@
         margin-right: 1rem;
         grid-column-start: 2;
         grid-column-end: 6;
-    } 
+    }
 </style>

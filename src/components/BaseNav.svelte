@@ -27,30 +27,30 @@
 
     afterNavigate(({ to }) => {
         isExpanded = false;
-    })
+    });
 </script>
 
-<div class="Nav"
-    class:Nav--IsExpanded={isExpanded}
->
-    <div class="Nav__OverlayBg"
+<div class="Nav" class:Nav--IsExpanded={isExpanded}>
+    <div
+        class="Nav__OverlayBg"
         role="button"
         aria-label="Close sidebar"
         tabindex="0"
         onkeydown={handleKeydown}
         onclick={closeSidebar}
     ></div>
-    <button class="Nav__OpenSidebarBtn IconButton"
+    <button
+        class="Nav__OpenSidebarBtn IconButton"
         aria-label="Open navigation sidebar"
         onclick={openSidebar}
     >
-        <MaterialSymbolsLightViewSidebarOutlineSharp/>
+        <MaterialSymbolsLightViewSidebarOutlineSharp />
     </button>
 
     <nav class="Nav__Content">
-        <AppLogo isMono={true}/>
+        <AppLogo isMono={true} />
 
-        <hr class="Nav__Separator">
+        <hr class="Nav__Separator" />
 
         <div class="Nav__Router">
             <span class="Nav__CategoryTitle">Generate</span>
@@ -65,17 +65,18 @@
             <NavItem route={"/about"} label={"about"} />
         </div>
 
-        <hr class="Nav__Separator">
+        <hr class="Nav__Separator" />
 
         <div class="Nav__ThemeModeSettings">
-            <BaseThemeModeContainer/>
+            <BaseThemeModeContainer />
         </div>
 
-        <button class="Nav__CloseSidebarBtn IconButton"
+        <button
+            class="Nav__CloseSidebarBtn IconButton"
             aria-label="Close navigation sidebar"
             onclick={closeSidebar}
         >
-            <MaterialSymbolsClose/>
+            <MaterialSymbolsClose />
         </button>
     </nav>
 </div>
@@ -147,7 +148,6 @@
             transition: all ease-in-out var(--transTimeFast);
         }
 
-
         .Nav__OpenSidebarBtn {
             display: block;
             position: fixed;
@@ -185,7 +185,6 @@
         .Nav__Separator {
             max-width: 15rem;
         }
-
 
         .Nav--IsExpanded {
             .Nav__Content {

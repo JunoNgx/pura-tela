@@ -25,7 +25,8 @@ html {
     scrollbar-gutter: stable both-edges;
     scrollbar-width: thin;
 
-    transition: color ease-in-out var(--transTimeFast),
+    transition:
+        color ease-in-out var(--transTimeFast),
         background-color ease-in-out var(--transTimeFast);
 }
 
@@ -120,13 +121,13 @@ input[type="checkbox"] {
     width: var(--sizeCheckbox);
     border: var(--lineWeight) solid var(--colPri);
 }
-  
+
 input[type="checkbox"]:checked {
     background-color: transparent;
 }
 
 input[type="checkbox"]:after {
-    content: '';
+    content: "";
     position: relative;
     left: 40%;
     top: 20%;
@@ -143,8 +144,8 @@ input[type="checkbox"]:checked:after {
 }
 
 input[type="checkbox"],
-input[type="checkbox"]+label{
-    cursor:pointer;
+input[type="checkbox"] + label {
+    cursor: pointer;
 }
 
 /* Hide spin buttons */
@@ -262,7 +263,8 @@ dialog[open]::backdrop {
     from {
         opacity: 0;
         transform: translateY(2rem);
-    } to {
+    }
+    to {
         opacity: 1;
         transform: translateY(0);
     }
@@ -271,7 +273,8 @@ dialog[open]::backdrop {
 @keyframes DialogBackdropFadeIn {
     from {
         opacity: 0;
-    } to {
+    }
+    to {
         opacity: 1;
     }
 }

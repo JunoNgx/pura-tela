@@ -1,4 +1,3 @@
-
 // @ts-ignore
 import defaultSizeGallery from "src/data/sizes.json";
 
@@ -6,16 +5,16 @@ import defaultSizeGallery from "src/data/sizes.json";
  * Size gallery
  */
 type rawParseSizeOptionItem = {
-    name: string,
-    width: string,
-    height: string
+    name: string;
+    width: string;
+    height: string;
 };
 
 const generateSizeGallery = (rawOptions: rawParseSizeOptionItem[]) => {
-    return rawOptions.map(sizeOption => ({
+    return rawOptions.map((sizeOption) => ({
         name: sizeOption.name,
         width: parseInt(sizeOption.width),
-        height: parseInt(sizeOption.height)
+        height: parseInt(sizeOption.height),
     }));
 };
 

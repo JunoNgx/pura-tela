@@ -14,18 +14,19 @@
 
 <main class="OuterWrapper">
     <div class="InnerWrapper">
-        <BaseNav/>
+        <BaseNav />
         <div class="MainContent Card">
             <!-- <BaseHeader/> -->
             <div class="MobileLogoWrapper">
-                <AppLogo isMono={false}/>
+                <AppLogo isMono={false} />
             </div>
             {@render children()}
         </div>
     </div>
 </main>
-    
-<BaseFooter/>
+
+<BaseFooter />
+
 <style>
     @import "src/styles/vars.css";
 
@@ -64,7 +65,7 @@
         }
 
         .MainContent {
-            max-width: calc(100% - 2* var(--outerPaddingMobile));
+            max-width: calc(100% - 2 * var(--outerPaddingMobile));
         }
 
         .MobileLogoWrapper {

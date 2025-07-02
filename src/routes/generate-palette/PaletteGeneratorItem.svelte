@@ -13,11 +13,16 @@
     import MaterialSymbolsLightDeleteForeverSharp from "~icons/material-symbols-light/delete-forever-sharp";
     import MaterialSymbolsLightDeleteForeverOutlineSharp from "~icons/material-symbols-light/delete-forever-outline-sharp";
 
-    import { palGenColours, removePalGenColoursLockAtIndex, setPalGenColoursHexAtIndex, togglePalGenColoursLockAtIndex } from "src/states/palGenState.svelte.js";
+    import {
+        palGenColours,
+        removePalGenColoursLockAtIndex,
+        setPalGenColoursHexAtIndex,
+        togglePalGenColoursLockAtIndex,
+    } from "src/states/palGenState.svelte.js";
 
     type PaletteGeneratorItemProps = {
-        palGenItem: PalGenColObj,
-        index: number,
+        palGenItem: PalGenColObj;
+        index: number;
     };
 
     let { palGenItem, index }: PaletteGeneratorItemProps = $props();
@@ -31,20 +36,21 @@
     };
 
     const handlePickerValueChange = (hexStr: string) => {
-        setPalGenColoursHexAtIndex(index, hexStr.replace("#", "").toUpperCase());
+        setPalGenColoursHexAtIndex(
+            index,
+            hexStr.replace("#", "").toUpperCase()
+        );
     };
-
 </script>
 
-<div class="PalGenItem"
-    style={`background-color: #${palGenItem.colour}`}
->
+<div class="PalGenItem" style={`background-color: #${palGenItem.colour}`}>
     <div class="PalGenItem__HexCode">
         {palGenItem.colour}
     </div>
 
     <div class="PalGenItem__ActionBtn PalGenItem__ActionPanel">
-        <div class="PalGenItem__DragHandle IconButton"
+        <div
+            class="PalGenItem__DragHandle IconButton"
             aria-label="drag-handle for colour at index {index}"
             use:dragHandle
         >
@@ -60,52 +66,55 @@
                 hex={`#${palGenItem.colour}`}
                 isAlpha={false}
                 position="responsive"
-                on:input={e => { 
-                    handlePickerValueChange(e.detail.hex as string);
+                onInput={(e) => {
+                    handlePickerValueChange(e.hex as string);
                 }}
                 --input-size="18px"
             />
         </div>
 
         {#if palGenItem.isLocked}
-            <button class="PalGenItem__ActionBtn IconButton"
+            <button
+                class="PalGenItem__ActionBtn IconButton"
                 onclick={toggleLockColour}
                 title={"Unlock colour"}
                 aria-label={"Unlock colour"}
             >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightLockOutlineSharp/>
+                    <MaterialSymbolsLightLockOutlineSharp />
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightLockSharp/>
+                    <MaterialSymbolsLightLockSharp />
                 </div>
             </button>
         {:else}
-            <button class="PalGenItem__ActionBtn IconButton"
+            <button
+                class="PalGenItem__ActionBtn IconButton"
                 onclick={toggleLockColour}
                 title={"Lock colour"}
                 aria-label={"Lock colour"}
             >
                 <div class="IconButton__RegularIcon">
-                    <MaterialSymbolsLightLockOpenRightOutlineSharp/>
+                    <MaterialSymbolsLightLockOpenRightOutlineSharp />
                 </div>
                 <div class="IconButton__HoverIcon">
-                    <MaterialSymbolsLightLockOpenRightSharp/>
+                    <MaterialSymbolsLightLockOpenRightSharp />
                 </div>
             </button>
         {/if}
 
-        <button class="PalGenItem__ActionBtn IconButton"
+        <button
+            class="PalGenItem__ActionBtn IconButton"
             disabled={palGenColours.val.length <= MIN_COLOUR_COUNT_PALETTE}
             onclick={removeColour}
             title={"Remove colour"}
             aria-label={"Remove colour"}
         >
             <div class="IconButton__RegularIcon">
-                <MaterialSymbolsLightDeleteForeverOutlineSharp/>
+                <MaterialSymbolsLightDeleteForeverOutlineSharp />
             </div>
             <div class="IconButton__HoverIcon">
-                <MaterialSymbolsLightDeleteForeverSharp/>
+                <MaterialSymbolsLightDeleteForeverSharp />
             </div>
         </button>
     </div>

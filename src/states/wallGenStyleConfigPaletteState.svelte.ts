@@ -1,6 +1,13 @@
 import { type PaletteStyleConfigProps, type State } from "src/lib/types.js";
-import { createLocalStorageSyncedState, isValueWithinRange } from "./stateUtils.svelte.js"
-import { PALETTE_CONFIG_ANGLE_MAX_VALUE, PALETTE_CONFIG_POSITION_MAX_VALUE, PALETTE_CONFIG_SIZE_MAX_VALUE } from "src/lib/constants.js";
+import {
+    createLocalStorageSyncedState,
+    isValueWithinRange,
+} from "./stateUtils.svelte.js";
+import {
+    PALETTE_CONFIG_ANGLE_MAX_VALUE,
+    PALETTE_CONFIG_POSITION_MAX_VALUE,
+    PALETTE_CONFIG_SIZE_MAX_VALUE,
+} from "src/lib/constants.js";
 import { isPortraitScreen } from "./wallGenState.svelte.js";
 
 const isPaletteConfigValid = (data: any) => {
@@ -13,7 +20,9 @@ const isPaletteConfigValid = (data: any) => {
         return false;
     }
 
-    if (!isValueWithinRange(data.position, 0, PALETTE_CONFIG_POSITION_MAX_VALUE)) {
+    if (
+        !isValueWithinRange(data.position, 0, PALETTE_CONFIG_POSITION_MAX_VALUE)
+    ) {
         return false;
     }
 
@@ -32,11 +41,13 @@ const paletteStyleConfigLandscapeDefaultValue = {
     position: 0,
 };
 
-export const paletteStyleConfig = <State<PaletteStyleConfigProps>>createLocalStorageSyncedState({
-    key: "paletteStyleConfig",
-    defaultValue: paletteStyleConfigDefaultValue,
-    validationFunc: isPaletteConfigValid
-});
+export const paletteStyleConfig = <State<PaletteStyleConfigProps>>(
+    createLocalStorageSyncedState({
+        key: "paletteStyleConfig",
+        defaultValue: paletteStyleConfigDefaultValue,
+        validationFunc: isPaletteConfigValid,
+    })
+);
 
 export const setPaletteStyleAngle = (newValue: number) => {
     paletteStyleConfig.set({

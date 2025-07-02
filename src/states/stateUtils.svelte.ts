@@ -3,64 +3,78 @@ import { type ColObj, type PalGenColObj, type State } from "src/lib/types.js";
 import { generateId } from "./idGenState.svelte.js";
 
 export const createLocalStorageSyncedState = <T>({
-    key, defaultValue, validationFunc = () => true
+    key,
+    defaultValue,
+    validationFunc = () => true,
 }: {
-    key: string,
-    defaultValue: T,
-    validationFunc: (data: any) => boolean,
-    shouldHandleId?: boolean,
+    key: string;
+    defaultValue: T;
+    validationFunc: (data: any) => boolean;
+    shouldHandleId?: boolean;
 }): State<T> => {
     const createStateWithSyncEffect = (verifiedData: T) => {
         let state = $state<T>(verifiedData);
 
         return {
-            get val() { return state; },
+            get val() {
+                return state;
+            },
             set(newVal: T) {
                 state = newVal;
                 localStorage.setItem(key, JSON.stringify(state));
-            }
+            },
         };
-    }
+    };
 
     try {
         const existingData = localStorage.getItem(key);
         if (existingData === null) {
-            console.log(`INFO: localStorage data for ${key} is empty, using fallback data`)
+            console.log(
+                `INFO: localStorage data for ${key} is empty, using fallback data`
+            );
             localStorage.setItem(key, JSON.stringify(defaultValue));
             return createStateWithSyncEffect(defaultValue);
         }
 
         const parsedData = JSON.parse(existingData) as T;
         if (!validationFunc(parsedData)) {
-            console.warn(`WARN: localStorage data for ${key} is invalid, using fallback data`)
+            console.warn(
+                `WARN: localStorage data for ${key} is invalid, using fallback data`
+            );
             return createStateWithSyncEffect(defaultValue);
         }
-    
-        return createStateWithSyncEffect(parsedData);
 
+        return createStateWithSyncEffect(parsedData);
     } catch (error) {
-        console.warn(`WARN: Unable to retrieve key ${key} from localStorage`, error);
+        console.warn(
+            `WARN: Unable to retrieve key ${key} from localStorage`,
+            error
+        );
         localStorage.setItem(key, JSON.stringify(defaultValue));
         return createStateWithSyncEffect(defaultValue);
     }
 };
 
 type ColState = ColObj[] | PalGenColObj[];
-type ColStateStoreFormat = { colour: string, isLocked?: boolean }[];
+type ColStateStoreFormat = {
+    colour: string;
+    isLocked?: boolean;
+}[];
 
 export const createColState = ({
     key,
     defaultValue,
     validationFunc = () => true,
 }: {
-    key: string,
-    defaultValue: { colour: string, isLocked?: boolean }[],
-    validationFunc: (data: any) => boolean,
-    shouldHandleId?: boolean,
+    key: string;
+    defaultValue: { colour: string; isLocked?: boolean }[];
+    validationFunc: (data: any) => boolean;
+    shouldHandleId?: boolean;
 }): State<ColState> => {
-
-    const createColStateWithSyncEffect = (verifiedData: ColStateStoreFormat) => {
-        const dataWithId = verifiedData.map(item => ({
+    const createColStateWithSyncEffect = (
+        verifiedData: ColStateStoreFormat
+    ) => {
+        const dataWithId = verifiedData.map((item) => ({
             ...item,
             id: generateId(),
         }));
@@ -68,38 +82,49 @@ export const createColState = ({
         let state = $state<ColState>(dataWithId);
 
         return {
-            get val() { return state; },
+            get val() {
+                return state;
+            },
             set(newVal: ColState) {
                 state = newVal;
 
-                const localStorageStoredVal = state.map(item => {
-                    const {id, ...rest} = item;
-                    return {...rest};
+                const localStorageStoredVal = state.map((item) => {
+                    const { id, ...rest } = item;
+                    return { ...rest };
                 });
 
-                localStorage.setItem(key, JSON.stringify(localStorageStoredVal));
-            }
+                localStorage.setItem(
+                    key,
+                    JSON.stringify(localStorageStoredVal)
+                );
+            },
         };
-    }
+    };
 
     try {
         const existingData = localStorage.getItem(key);
         if (existingData === null) {
-            console.log(`INFO: localStorage data for ${key} is empty, using fallback data`)
+            console.log(
+                `INFO: localStorage data for ${key} is empty, using fallback data`
+            );
             localStorage.setItem(key, JSON.stringify(defaultValue));
             return createColStateWithSyncEffect(defaultValue);
         }
 
         const parsedData = JSON.parse(existingData) as ColState;
         if (!validationFunc(parsedData)) {
-            console.warn(`WARN: localStorage data for ${key} is invalid, using fallback data`)
+            console.warn(
+                `WARN: localStorage data for ${key} is invalid, using fallback data`
+            );
             return createColStateWithSyncEffect(defaultValue);
         }
-    
-        return createColStateWithSyncEffect(parsedData);
 
+        return createColStateWithSyncEffect(parsedData);
     } catch (error) {
-        console.warn(`WARN: Unable to retrieve key ${key} from localStorage`, error);
+        console.warn(
+            `WARN: Unable to retrieve key ${key} from localStorage`,
+            error
+        );
         localStorage.setItem(key, JSON.stringify(defaultValue));
         return createColStateWithSyncEffect(defaultValue);
     }
@@ -115,7 +140,7 @@ export const isValidBoolean = (data: any) => {
     }
 
     return true;
-}
+};
 
 export const isValueWithinRange = (value: number, min: number, max: number) => {
     return min <= value && value <= max;
@@ -151,7 +176,7 @@ export const isEnumValueValid = <T extends Record<string, string | number>>(
 export const moveItemWithinArray = <T>(
     arr: T[],
     fromIndex: number,
-    toIndex: number,
+    toIndex: number
 ) => {
     const newTempVal = $state.snapshot(arr);
 
@@ -163,19 +188,22 @@ export const moveItemWithinArray = <T>(
 
 // Unused, attempted to abstract `sortableJs`' `store.set` unsucessfully
 export const reorderColStateFromSortableJs = (
-    colState: State<ColObj[]>, idOrder: string[]
+    colState: State<ColObj[]>,
+    idOrder: string[]
 ) => {
-    const newValue = idOrder.map(id => {
-        const correspondingItem =
-            colState.val.find(palGenItem => palGenItem.id === parseInt(id));
+    const newValue = idOrder.map((id) => {
+        const correspondingItem = colState.val.find(
+            (palGenItem) => palGenItem.id === parseInt(id)
+        );
 
         if (!correspondingItem) {
             throw new Error(
-                "Cannot find corresponding colour item while re-sorting after drag and drop");
+                "Cannot find corresponding colour item while re-sorting after drag and drop"
+            );
         }
-        
+
         return correspondingItem;
     });
 
-    colState.set(newValue); 
+    colState.set(newValue);
 };

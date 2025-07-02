@@ -6,16 +6,12 @@
     import type { ShareItem } from "src/lib/types.js";
 
     type SharePanelItemProps = {
-        domId: string,
-        index: number,
-        shareItem: ShareItem,
+        domId: string;
+        index: number;
+        shareItem: ShareItem;
     };
 
-    let {
-        domId,
-        index,
-        shareItem
-    }: SharePanelItemProps = $props();
+    let { domId, index, shareItem }: SharePanelItemProps = $props();
     let hasBeenCopied = $state(false);
     let copyRestoreStatusTimeout: number | undefined = $state();
 
@@ -27,8 +23,8 @@
             copyRestoreStatusTimeout = setTimeout(() => {
                 hasBeenCopied = false;
             }, 1000);
-        } catch(error) {
-            throw new Error("Unable to copy colour code to clipboard")
+        } catch (error) {
+            throw new Error("Unable to copy colour code to clipboard");
         }
     };
 
@@ -39,9 +35,8 @@
         }
 
         const shareOptions = getShareOptions(item);
-        navigator.share(shareOptions)
-        .catch(error => {
-            console.log("Error sharing content", error)
+        navigator.share(shareOptions).catch((error) => {
+            console.warn("Error sharing content", error);
         });
     };
 
@@ -65,24 +60,22 @@
     });
 </script>
 
-
-<div class="ShareItem"
-    id={`${domId}-${index}`}
->
+<div class="ShareItem" id={`${domId}-${index}`}>
     <div class="ShareItem__Top">
-        <h4 class="ShareItem__Label"
-            id={`${domId}-${index}-label`}
-        >
+        <h4 class="ShareItem__Label" id={`${domId}-${index}-label`}>
             {shareItem.label}
         </h4>
 
         <div class="ShareItem__ButtonsContainer">
-            <button class="ShareItem__CopyBtn IconButtonWithLabel"
-                onclick={() => {copyItemContent(shareItem)}}
+            <button
+                class="ShareItem__CopyBtn IconButtonWithLabel"
+                onclick={() => {
+                    copyItemContent(shareItem);
+                }}
                 title="Copy this content"
                 aria-label="Copy this content"
             >
-                <MaterialSymbolsContentCopyOutlineSharp/>
+                <MaterialSymbolsContentCopyOutlineSharp />
                 <span>
                     {#if hasBeenCopied}
                         Copied
@@ -92,19 +85,23 @@
                 </span>
             </button>
 
-            <button class="ShareItem__ShareBtn IconButtonWithLabel"
-                onclick={() => {shareItemContent(shareItem)}}
+            <button
+                class="ShareItem__ShareBtn IconButtonWithLabel"
+                onclick={() => {
+                    shareItemContent(shareItem);
+                }}
                 title="Share this content"
                 aria-label="Share this content"
             >
-                <MaterialSymbolsShareOutline/>
+                <MaterialSymbolsShareOutline />
                 <span>Share</span>
             </button>
         </div>
     </div>
 
-    <div class="ShareItem__Content"
-        aria-describedby="{`${domId}-${index}-label`}"
+    <div
+        class="ShareItem__Content"
+        aria-describedby={`${domId}-${index}-label`}
     >
         {shareItem.content}
     </div>
@@ -115,7 +112,7 @@
         border: var(--lineWeight) dashed var(--colPri);
         padding: 1rem;
     }
-    
+
     .ShareItem__Top {
         display: flex;
         flex-direction: row;

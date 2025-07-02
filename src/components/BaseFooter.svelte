@@ -1,6 +1,10 @@
 <footer>
     <p>
-        made by <a href="https://www.junongx.com/" target="_blank" rel="noopener noreferrer">Juno Nguyen</a>
+        made by <a
+            href="https://www.junongx.com/"
+            target="_blank"
+            rel="noopener noreferrer">Juno Nguyen</a
+        >
     </p>
 </footer>
 
