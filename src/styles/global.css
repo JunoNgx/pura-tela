@@ -295,6 +295,10 @@ dialog[open]::backdrop {
     border-radius: 0 !important;
 }
 
+.picker, .slider {
+    -webkit-tap-highlight-color: transparent;
+}
+
 .color-picker .wrapper {
     border-radius: 0 !important;
 }
