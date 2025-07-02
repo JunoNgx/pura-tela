@@ -66,8 +66,8 @@
                 hex={`#${palGenItem.colour}`}
                 isAlpha={false}
                 position="responsive"
-                on:input={(e) => {
-                    handlePickerValueChange(e.detail.hex as string);
+                onInput={(e) => {
+                    handlePickerValueChange(e.hex as string);
                 }}
                 --input-size="18px"
             />

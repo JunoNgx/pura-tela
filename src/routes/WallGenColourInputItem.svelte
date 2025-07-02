@@ -61,9 +61,9 @@
                 hex={colourCodeWithHash}
                 isAlpha={false}
                 position="responsive"
-                on:input={(e) => {
+                onInput={(e) => {
                     // TODO: find out how to import this type and implement this separately in `<script>`
-                    handlePickerValueChange(e.detail.hex as string);
+                    handlePickerValueChange(e.hex as string);
                 }}
             />
         </div>
