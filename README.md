@@ -20,6 +20,7 @@ This is a spin-off/enhanced remake of [Pura](https://github.com/JunoNgx/flutter-
 - Data persistence with localStorage
 - Generate palette with AI
 - Progressive Web App deployment
+- Offline functionality
 
 ## Deployment
 
