@@ -18,6 +18,9 @@ const config = {
         alias: {
             src: "src",
         },
+        version: {
+            name: child_process.execSync("git rev-parse HEAD").toString().trim(),
+        }
     },
 };
 
