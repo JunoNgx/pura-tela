@@ -154,6 +154,12 @@ export type HorizonStyleConfigProps = {
     position: number;
 };
 
+export type PopArtSquareStyleConfigProps = {
+    size: number,
+    positionX: number;
+    positionY: number;
+}; 
+
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps;
     gradient: GradientStyleConfigProps;
