@@ -5,6 +5,10 @@
         PALETTE_CONFIG_ANGLE_MAX_VALUE,
         PALETTE_CONFIG_POSITION_MAX_VALUE,
         PALETTE_CONFIG_SIZE_MAX_VALUE,
+        POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
+        POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
+        POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
+        POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
         SWATCH_CONFIG_MAX_VALUE,
         SWATCH_CONFIG_MIN_VALUE,
     } from "src/lib/constants.js";
@@ -49,6 +53,11 @@
         setPaletteStylePosition,
         setPaletteStyleSize,
     } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+    import {
+        setPopArtSquareStylePositionX,
+        setPopArtSquareStylePositionY,
+        setpopArtSquareStyleSize,
+    } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
 
     export let data: WallGenQueryProps;
 
@@ -234,6 +243,26 @@
         minVal: 0,
         maxVal: HORIZON_CONFIG_POSITION_MAX_VALUE,
         stateSetterFunc: setHorizonStylePosition,
+    });
+
+    // Pop art square style
+    tryParseNumericConfig({
+        dataKey: "popArtSquareSize",
+        minVal: POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
+        maxVal: POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
+        stateSetterFunc: setpopArtSquareStyleSize,
+    });
+    tryParseNumericConfig({
+        dataKey: "popArtSquarePositionX",
+        minVal: POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
+        maxVal: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
+        stateSetterFunc: setPopArtSquareStylePositionX,
+    });
+    tryParseNumericConfig({
+        dataKey: "popArtSquarePositionY",
+        minVal: POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
+        maxVal: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
+        stateSetterFunc: setPopArtSquareStylePositionY,
     });
 </script>
 
