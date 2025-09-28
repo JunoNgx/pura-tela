@@ -96,6 +96,10 @@ export type WallGenQueryProps = {
     horizonShowCore: string | null;
     horizonSize: string | null;
     horizonPosition: string | null;
+
+    popArtSquareSize: string | null;
+    popArtSquarePositionX: string | null;
+    popArtSquarePositionY: string | null;
 };
 
 export type PalGenQueryProps = {
