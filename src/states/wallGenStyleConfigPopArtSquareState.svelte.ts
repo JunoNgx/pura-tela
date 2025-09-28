@@ -49,7 +49,7 @@ const isPopArtSquareConfigValid = (data: any) => {
 };
 
 const popArtSquareStyleConfigDefaultValue = {
-    size: 5,
+    size: 10,
     positionX: 50,
     positionY: 50,
 };
