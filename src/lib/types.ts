@@ -165,6 +165,7 @@ export type RenderStyleConfig = {
     gradient: GradientStyleConfigProps;
     palette: PaletteStyleConfigProps;
     horizon: HorizonStyleConfigProps;
+    popArtSquare: PopArtSquareStyleConfigProps;
 };
 
 export type ShareItem = {

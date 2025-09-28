@@ -1,6 +1,8 @@
 import {
     HORIZON_CONFIG_POSITION_MAX_VALUE,
     HORIZON_CONFIG_SIZE_MAX_VALUE,
+    POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
+    POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
 } from "./constants.js";
 import {
     ColourSwatchStyleDirection,
@@ -148,6 +150,32 @@ const drawThinStrip = ({ ctx, colour, x, y, size, isVertical }: ShapeProps) => {
     ctx.fillRect(...drawOptions);
 };
 
+// ---- Logic util functions
+
+type deriveValueFromScaleProps = {
+    minValue: number,
+    maxValue: number,
+    scaleValue: number,
+    minScaleValue?: number,
+    maxScaleValue: number,
+};
+
+const deriveValueFromScale = ({
+    minValue,
+    maxValue,
+    scaleValue,
+    minScaleValue = 0,
+    maxScaleValue,
+}: deriveValueFromScaleProps): number => {
+    const valueDiff = minValue + (maxValue - minValue);
+    const scaleDiff = maxScaleValue - minScaleValue;
+    // TODO: rename this variable; need to find a better term
+    const scaledScaleValue = scaleValue / scaleDiff;
+    const derivedValue = valueDiff * scaledScaleValue;
+
+    return derivedValue;
+};
+
 // ---- Core logic
 
 export const renderCanvas = ({
@@ -270,17 +298,46 @@ const renderForPopArtSquareStyle = ({
     ctx,
     colours,
     size,
+    config,
 }: StyleRenderOptions) => {
+    if (!config?.popArtSquare) {
+        throw new Error("Cannot access Pop Art Squre config")
+    }
+
     // Draw background
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
 
     const smallerCanvasSide = Math.min(size.width, size.height);
 
+    const minSize = smallerCanvasSide / 8;
+    const maxSize = smallerCanvasSide;
+    const mainSquareSize = deriveValueFromScale({
+        minValue: minSize,
+        maxValue: maxSize,
+        scaleValue: config.popArtSquare.size,
+        maxScaleValue: POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
+    });
+
+    const minMainSquareX = 0;
+    const maxMainSquareX = size.width - mainSquareSize;
+    const mainSquareX = deriveValueFromScale({
+        minValue: minMainSquareX,
+        maxValue: maxMainSquareX,
+        scaleValue: config.popArtSquare.positionX,
+        maxScaleValue: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
+    });
+
+    const minMainSquareY = 0;
+    const maxMainSquareY = size.height - mainSquareSize;
+    const mainSquareY = deriveValueFromScale({
+        minValue: minMainSquareY,
+        maxValue: maxMainSquareY,
+        scaleValue: config.popArtSquare.positionY,
+        maxScaleValue: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
+    });
+
     // Draw main square
-    const mainSquareSize = smallerCanvasSide / 2;
-    const mainSquareX = (size.width - mainSquareSize) / 2;
-    const mainSquareY = (size.height - mainSquareSize) / 2;
     drawSquare({
         ctx,
         colour: colours[1],
