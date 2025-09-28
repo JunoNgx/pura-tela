@@ -275,10 +275,10 @@ const renderForPopArtSquareStyle = ({
     ctx.fillStyle = colours[0];
     ctx.fillRect(0, 0, size.width, size.height);
 
-    const smallerSide = Math.min(size.width, size.height);
+    const smallerCanvasSide = Math.min(size.width, size.height);
 
     // Draw main square
-    const mainSquareSize = smallerSide / 2;
+    const mainSquareSize = smallerCanvasSide / 2;
     const mainSquareX = (size.width - mainSquareSize) / 2;
     const mainSquareY = (size.height - mainSquareSize) / 2;
     drawSquare({
