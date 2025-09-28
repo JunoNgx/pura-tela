@@ -1,4 +1,7 @@
-import { type PopArtSquareStyleConfigProps, type State } from "src/lib/types.js";
+import {
+    type PopArtSquareStyleConfigProps,
+    type State,
+} from "src/lib/types.js";
 import {
     createLocalStorageSyncedState,
     isValueWithinRange,
@@ -12,18 +15,32 @@ import {
 const isPopArtSquareConfigValid = (data: any) => {
     if (!data) return false;
 
-    if (!isValueWithinRange(data.size, POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE, POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE)) {
-        return false;
-    }
-
     if (
-        !isValueWithinRange(data.positionX, POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE, POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE)
+        !isValueWithinRange(
+            data.size,
+            POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
+            POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE
+        )
     ) {
         return false;
     }
 
     if (
-        !isValueWithinRange(data.positionY, POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE, POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE)
+        !isValueWithinRange(
+            data.positionX,
+            POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
+            POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE
+        )
+    ) {
+        return false;
+    }
+
+    if (
+        !isValueWithinRange(
+            data.positionY,
+            POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
+            POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE
+        )
     ) {
         return false;
     }
@@ -64,7 +81,9 @@ export const setPopArtSquareStylePositionX = (newValue: number) => {
 };
 
 export const resetPopArtSquareStylePositionX = () => {
-    setPopArtSquareStylePositionX(popArtSquareStyleConfigDefaultValue.positionX);
+    setPopArtSquareStylePositionX(
+        popArtSquareStyleConfigDefaultValue.positionX
+    );
 };
 
 export const setPopArtSquareStylePositionY = (newValue: number) => {
@@ -75,5 +94,7 @@ export const setPopArtSquareStylePositionY = (newValue: number) => {
 };
 
 export const resetPopArtSquareStylePositionY = () => {
-    setPopArtSquareStylePositionY(popArtSquareStyleConfigDefaultValue.positionY);
+    setPopArtSquareStylePositionY(
+        popArtSquareStyleConfigDefaultValue.positionY
+    );
 };

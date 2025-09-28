@@ -155,10 +155,10 @@ export type HorizonStyleConfigProps = {
 };
 
 export type PopArtSquareStyleConfigProps = {
-    size: number,
+    size: number;
     positionX: number;
     positionY: number;
-}; 
+};
 
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps;
