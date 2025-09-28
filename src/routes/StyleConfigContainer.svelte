@@ -14,6 +14,7 @@
     import StyleConfigGradient from "./StyleConfigGradient.svelte";
     import StyleConfigPalette from "./StyleConfigPalette.svelte";
     import StyleConfigHorizon from "./StyleConfigHorizon.svelte";
+    import StyleConfigColourPopArtSquare from "./StyleConfigColourPopArtSquare.svelte";
 
     const handleWallpaperStyleChange = (e: MouseButtonEvent) => {
         const newValue = e.currentTarget.getAttribute(
@@ -138,6 +139,8 @@
         <StyleConfigPalette />
     {:else if isHorizonStyle()}
         <StyleConfigHorizon />
+    {:else if isPopArtSquareStyle()}
+        <StyleConfigColourPopArtSquare />
     {/if}
 </section>
 
