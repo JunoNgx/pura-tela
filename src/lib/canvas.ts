@@ -153,11 +153,11 @@ const drawThinStrip = ({ ctx, colour, x, y, size, isVertical }: ShapeProps) => {
 // ---- Logic util functions
 
 type deriveValueFromScaleProps = {
-    minValue: number,
-    maxValue: number,
-    scaleValue: number,
-    minScaleValue?: number,
-    maxScaleValue: number,
+    minValue: number;
+    maxValue: number;
+    scaleValue: number;
+    minScaleValue?: number;
+    maxScaleValue: number;
 };
 
 const deriveValueFromScale = ({
@@ -301,7 +301,7 @@ const renderForPopArtSquareStyle = ({
     config,
 }: StyleRenderOptions) => {
     if (!config?.popArtSquare) {
-        throw new Error("Cannot access Pop Art Squre config")
+        throw new Error("Cannot access Pop Art Squre config");
     }
 
     // Draw background
