@@ -33,11 +33,11 @@
     },
     {
         "name": "1976",
-        "colours": ["674a40", "50a3a4", "fcaf38", "f95335"]
+        "colours": ["674a40", "50a3a4", "fcaf38", "f95335", "c1c1c1"]
     },
     {
         "name": "1976 soft",
-        "colours": ["584053", "8dc6bf", "fcbc66", "f97b4f"]
+        "colours": ["584053", "8dc6bf", "fcbc66", "f97b4f", "f4f1de"]
     },
     {
         "name": "Pale moon",

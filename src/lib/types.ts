@@ -96,6 +96,10 @@ export type WallGenQueryProps = {
     horizonShowCore: string | null;
     horizonSize: string | null;
     horizonPosition: string | null;
+
+    popArtSquareSize: string | null;
+    popArtSquarePositionX: string | null;
+    popArtSquarePositionY: string | null;
 };
 
 export type PalGenQueryProps = {
@@ -154,11 +158,18 @@ export type HorizonStyleConfigProps = {
     position: number;
 };
 
+export type PopArtSquareStyleConfigProps = {
+    size: number;
+    positionX: number;
+    positionY: number;
+};
+
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps;
     gradient: GradientStyleConfigProps;
     palette: PaletteStyleConfigProps;
     horizon: HorizonStyleConfigProps;
+    popArtSquare: PopArtSquareStyleConfigProps;
 };
 
 export type ShareItem = {

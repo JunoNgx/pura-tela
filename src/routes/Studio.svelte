@@ -20,6 +20,7 @@
     import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
     import { paletteStyleConfig } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
     import { horizonStyleConfig } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
+    import { popArtSquareStyleConfig } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
     import StudioPreview from "./StudioPreview.svelte";
 
     const handleResize = () => {
@@ -92,6 +93,19 @@
                 url.searchParams.append(
                     "horizonPosition",
                     horizonStyleConfig.val.position.toString()
+                );
+            case WallpaperStyle.POP_ART_SQUARE:
+                url.searchParams.append(
+                    "popArtSquareSize",
+                    popArtSquareStyleConfig.val.size.toString()
+                );
+                url.searchParams.append(
+                    "popArtSquarePositionX",
+                    popArtSquareStyleConfig.val.positionX.toString()
+                );
+                url.searchParams.append(
+                    "popArtSquarePositionY",
+                    popArtSquareStyleConfig.val.positionY.toString()
                 );
         }
 
