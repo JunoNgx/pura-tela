@@ -38,7 +38,7 @@ export const promptAddToColourGallery = (colourCode: string) => {
             hexCode: colourCode,
         };
 
-        colourGallery.set([...colourGallery.val, newColour]);
+        colourGallery.set([newColour, ...colourGallery.val]);
     } catch (error) {
         console.error(error);
         window.alert(

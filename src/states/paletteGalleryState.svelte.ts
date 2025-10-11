@@ -89,7 +89,7 @@ export const addToPaletteGalleryFromPaletteGenerator = () => {
             colours,
         };
 
-        paletteGallery.set([...paletteGallery.val, newPalette]);
+        paletteGallery.set([newPalette, ...paletteGallery.val]);
     } catch (error) {
         console.error(error);
         window.alert(
