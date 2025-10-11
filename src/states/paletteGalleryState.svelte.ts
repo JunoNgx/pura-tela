@@ -100,6 +100,17 @@ export const addToPaletteGalleryFromPaletteGenerator = () => {
     }
 };
 
+export const promptRenamePaletteAtIndex = (index: number) => {
+    const input = window.prompt("Enter new name for this palette:");
+    if (!input) {
+        return;
+    }
+
+    const newData = [...paletteGallery.val];
+    newData[index].name = input;
+    paletteGallery.set(newData);
+};
+
 export const deletePaletteAtIndex = (index: number) => {
     const isConfirmed = window.confirm("Delete this palette from the gallery?");
     if (!isConfirmed) return;
