@@ -36,6 +36,7 @@ export const promptAddToColourGallery = (colourCode: string) => {
         const newColour = {
             name: colourName,
             hexCode: colourCode,
+            isUserCreated: true,
         };
 
         colourGallery.set([newColour, ...colourGallery.val]);

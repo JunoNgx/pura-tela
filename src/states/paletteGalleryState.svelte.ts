@@ -65,6 +65,7 @@ export const addToPaletteGalleryFromWallpaperGenerator = () => {
         const newPalette = {
             name,
             colours,
+            isUserCreated: true,
         };
 
         paletteGallery.set([...paletteGallery.val, newPalette]);
@@ -87,6 +88,7 @@ export const addToPaletteGalleryFromPaletteGenerator = () => {
         const newPalette = {
             name,
             colours,
+            isUserCreated: true,
         };
 
         paletteGallery.set([newPalette, ...paletteGallery.val]);
@@ -109,6 +111,13 @@ export const deletePaletteAtIndex = (index: number) => {
 
 export const resetPaletteGallery = () => {
     paletteGallery.set(defaultPaletteGallery);
+};
+
+export const reloadFactoryPalettes = () => {
+    const userCreatedData = paletteGallery.val.filter(pal => pal.isUserCreated);
+    const reloadedData = [...userCreatedData, ...defaultPaletteGallery];
+
+    paletteGallery.set(reloadedData);
 };
 
 export const passPaletteToWallpaperGenerator = (paletteIndex: number) => {
