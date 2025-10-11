@@ -125,7 +125,9 @@
         </ul>
     </div>
 
-    <div class="ColourInputContainer__ActionsContainerUpper">
+    <div
+        class="ColourInputContainer__ActionsContainerUpper RightAlignedButtonsContainer"
+    >
         <button
             class="ColourInputContainer__RemoveBtn IconButtonWithLabel"
             disabled={getWallGenColourInUseCount()
@@ -196,13 +198,6 @@
         .ColourInputContainer__ItemWrapper.IsDragged .ColourInput__Buttons
     ) {
         display: none;
-    }
-
-    .ColourInputContainer__ActionsContainerUpper {
-        margin-top: 1.5rem;
-        display: flex;
-        justify-content: flex-end;
-        gap: 1rem;
     }
 
     .ColourInputContainer__ActionContainer {

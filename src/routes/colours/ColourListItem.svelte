@@ -4,6 +4,7 @@
     import { type ColourItem } from "src/lib/types.js";
     import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
 
+    import MaterialSymbolsLightEditSquareOutlineSharp from "~icons/material-symbols-light/edit-square-outline-sharp";
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
     import MaterialSymbolsLightContentCopySharp from "~icons/material-symbols-light/content-copy-sharp";
@@ -14,7 +15,10 @@
         getWallGenColourInUseCount,
         setWallGenColoursAtIndex,
     } from "src/states/wallGenState.svelte.js";
-    import { deleteColourAtIndex } from "src/states/colourGalleryState.svelte.js";
+    import {
+        deleteColourAtIndex,
+        promptRenameColourAtIndex,
+    } from "src/states/colourGalleryState.svelte.js";
     import { onDestroy } from "svelte";
 
     type ColourItemProps = {
@@ -73,8 +77,22 @@
         class="ColourListItem__Preview"
         style={`background-color: #${colourItem.hexCode};`}
     >
-        <div class="ColourListItem__Title">
-            {colourItem.name}
+        <div class="ColourListItem__TitleContainer">
+            <span class="PaletteListItem__Name">
+                {colourItem.name}
+            </span>
+            {#if colourItem.isUserCreated}
+                <button
+                    class="ColourListItem__ActionBtn ColourListItem__ActionBtn--Rename IconButton"
+                    title="Rename this colour"
+                    aria-label="Rename this colour"
+                    onclick={() => {
+                        promptRenameColourAtIndex(index);
+                    }}
+                >
+                    <MaterialSymbolsLightEditSquareOutlineSharp />
+                </button>
+            {/if}
         </div>
     </div>
     <div class="ColourListItem__Footer">
@@ -151,9 +169,17 @@
         border: var(--lineWeight) solid var(--colPri);
     }
 
-    .ColourListItem__Title {
-        padding: 0.5rem;
+    .ColourListItem__TitleContainer {
+        display: flex;
+        justify-content: flex-start;
+        gap: 0.25rem;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        min-height: 2rem;
         background-color: rgba(var(--colBlackRgb), 0.5);
+    }
+
+    .PaletteListItem__Name {
         color: var(--colWhite);
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -183,5 +209,10 @@
 
     .ColourListItem__ActionBtn--Rightmost {
         width: 1.5rem;
+    }
+
+    .ColourListItem__ActionBtn--Rename {
+        color: var(--colWhite);
+        font-size: 1rem;
     }
 </style>

@@ -1,8 +1,9 @@
 // @ts-ignore
-import defaultPaletteGallery from "src/data/palettes.json";
+import palettesJson from "src/data/palettes.json";
 import {
     createLocalStorageSyncedState,
     isHexCodeValid,
+    isValidBoolean,
 } from "src/states/stateUtils.svelte.js";
 import {
     getColourStringsInUse,
@@ -16,6 +17,7 @@ import {
     MIN_COLOUR_COUNT_PALETTE,
 } from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
+import type { PaletteItem } from "src/lib/types.js";
 
 const isPaletteGalleryValid = (data: any[]) => {
     if (!data) return false;
@@ -30,6 +32,7 @@ const isPaletteGalleryValid = (data: any[]) => {
             ) {
                 return false;
             }
+            if (!isValidBoolean(item.isUserCreated)) return false;
 
             for (const colour of item.colours) {
                 if (!isHexCodeValid(colour)) return false;
@@ -41,6 +44,11 @@ const isPaletteGalleryValid = (data: any[]) => {
         return false;
     }
 };
+
+const defaultPaletteGallery = palettesJson.map((pal) => ({
+    ...pal,
+    isUserCreated: false,
+})) as PaletteItem[];
 
 export const paletteGallery = createLocalStorageSyncedState({
     key: "paletteGallery",
@@ -57,6 +65,7 @@ export const addToPaletteGalleryFromWallpaperGenerator = () => {
         const newPalette = {
             name,
             colours,
+            isUserCreated: true,
         };
 
         paletteGallery.set([...paletteGallery.val, newPalette]);
@@ -79,15 +88,27 @@ export const addToPaletteGalleryFromPaletteGenerator = () => {
         const newPalette = {
             name,
             colours,
+            isUserCreated: true,
         };
 
-        paletteGallery.set([...paletteGallery.val, newPalette]);
+        paletteGallery.set([newPalette, ...paletteGallery.val]);
     } catch (error) {
         console.error(error);
         window.alert(
             "Error adding new palette to gallery. Please see the console for more info."
         );
     }
+};
+
+export const promptRenamePaletteAtIndex = (index: number) => {
+    const input = window.prompt("Enter new name for this palette:");
+    if (!input) {
+        return;
+    }
+
+    const newData = [...paletteGallery.val];
+    newData[index].name = input;
+    paletteGallery.set(newData);
 };
 
 export const deletePaletteAtIndex = (index: number) => {
@@ -101,6 +122,15 @@ export const deletePaletteAtIndex = (index: number) => {
 
 export const resetPaletteGallery = () => {
     paletteGallery.set(defaultPaletteGallery);
+};
+
+export const reloadFactoryPalettes = () => {
+    const userCreatedData = paletteGallery.val.filter(
+        (pal) => pal.isUserCreated
+    );
+    const reloadedData = [...userCreatedData, ...defaultPaletteGallery];
+
+    paletteGallery.set(reloadedData);
 };
 
 export const passPaletteToWallpaperGenerator = (paletteIndex: number) => {

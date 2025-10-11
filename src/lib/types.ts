@@ -7,6 +7,7 @@ export enum ThemeMode {
 export type ColourItem = {
     name: string;
     hexCode: string;
+    isUserCreated?: boolean;
 };
 
 // Colour object with hex code and id
@@ -29,6 +30,7 @@ export type PalGenItem = {
 export type PaletteItem = {
     name: string;
     colours: string[];
+    isUserCreated?: boolean;
 };
 
 export type SizeItem = {

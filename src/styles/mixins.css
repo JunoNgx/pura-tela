@@ -180,3 +180,10 @@
 .SplitBtn--IsPri .SplitBtn__Pri:hover {
     border-right: var(--lineWeight) solid var(--colPri);
 }
+
+.RightAlignedButtonsContainer {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}

@@ -46,10 +46,7 @@
 
     <p>
         Colours can also be removed. This process is permanent and irreversible.
-        At any point of time, to reset the gallery to the default original
-        state, use the <code>Reset gallery</code>
-        button at the bottom of the list. In the event that this pre-created curated
-        list changes in the future, this is also how you get access to new items.
+        To restore data, refer to the <strong>Resetting</strong> section.
     </p>
 
     <h3>Palettes</h3>
@@ -75,6 +72,28 @@
         <strong>Colour Gallery</strong>, paletes can also be removed or reset to
         default.
     </p>
+
+    <h3>Resetting</h3>
+
+    <p>
+        Both <strong>Colours gallery</strong> and
+        <strong>Palette Gallery</strong>
+        can be resetted in different ways:
+    </p>
+    <ul>
+        <li>
+            <strong>Reload factory colours/palettes</strong> will restore deleted
+            factory items, while fully retain any custom colours or palettes you
+            have created yourself. This is also a useful way to check and add new
+            pre-made items which might have been added via the silent software update
+            process.
+        </li>
+        <li>
+            <strong>Reset gallery</strong>, on the other hand, will fully erase
+            everything, user-created or not, to the default factory state of the
+            application. This process is irreversible.
+        </li>
+    </ul>
 
     <h3>Sizes</h3>
 

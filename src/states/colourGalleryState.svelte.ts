@@ -36,15 +36,27 @@ export const promptAddToColourGallery = (colourCode: string) => {
         const newColour = {
             name: colourName,
             hexCode: colourCode,
+            isUserCreated: true,
         };
 
-        colourGallery.set([...colourGallery.val, newColour]);
+        colourGallery.set([newColour, ...colourGallery.val]);
     } catch (error) {
         console.error(error);
         window.alert(
             "Error adding new colour to gallery. Please see the console for more info."
         );
     }
+};
+
+export const promptRenameColourAtIndex = (index: number) => {
+    const input = window.prompt("Enter new name for this colour:");
+    if (!input) {
+        return;
+    }
+
+    const newData = [...colourGallery.val];
+    newData[index].name = input;
+    colourGallery.set(newData);
 };
 
 export const deleteColourAtIndex = (index: number) => {
@@ -55,4 +67,13 @@ export const deleteColourAtIndex = (index: number) => {
 
 export const resetColourGallery = () => {
     colourGallery.set(defaultColourGallery);
+};
+
+export const reloadFactoryColours = () => {
+    const userCreatedData = colourGallery.val.filter(
+        (col) => col.isUserCreated
+    );
+    const reloadedData = [...userCreatedData, ...defaultColourGallery];
+
+    colourGallery.set(reloadedData);
 };
