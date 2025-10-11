@@ -11,7 +11,7 @@
 
     const handleResetGallery = () => {
         const isConfirmed = window.confirm(
-            "Reset the gallery to default colours? This will also erase your custom data and cannot be undone."
+            "Reset the gallery to default colours? This will also erase your data and cannot be undone."
         );
         if (!isConfirmed) return;
 
@@ -40,17 +40,17 @@
     <button
         class="ReloadFactoryButton IconButtonWithLabel"
         title="Restore factory pallettes while retaining your custom data"
-        onclick={handleReloadFactoryPalettes}
         aria-label="Restore factory pallettes while retaining your custom data"
+        onclick={handleReloadFactoryPalettes}
     >
         <MaterialSymbolsResetSettings />
         <span>Reload factory palettes</span>
     </button>
     <button
         class="ResetButton IconButtonWithLabel"
-        title="Delete everything and reset colour gallery to default factory"
+        title="Delete everything and reset palette gallery to default original state"
+        aria-label="Delete everything and reset palette gallery to default original state"
         onclick={handleResetGallery}
-        aria-label="Delete everything and reset colour gallery to default factory"
     >
         <MaterialSymbolsDeviceReset />
         <span>Reset gallery</span>
