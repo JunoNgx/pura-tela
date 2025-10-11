@@ -2,7 +2,10 @@
     import MaterialSymbolsDeviceReset from "~icons/material-symbols/device-reset";
 
     import ColourList from "src/routes/colours/ColourList.svelte";
-    import { reloadFactoryColours, resetColourGallery } from "src/states/colourGalleryState.svelte.js";
+    import {
+        reloadFactoryColours,
+        resetColourGallery,
+    } from "src/states/colourGalleryState.svelte.js";
     import { colourGalleryScrollPos } from "src/states/scrollPositionState.svelte.js";
     import { createScrollPositionManager } from "src/lib/scrollPositionManager.js";
 

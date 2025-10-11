@@ -3,7 +3,10 @@
     import MaterialSymbolsResetSettings from "~icons/material-symbols/reset-settings";
 
     import PaletteList from "src/routes/palettes/PaletteList.svelte";
-    import { reloadFactoryPalettes, resetPaletteGallery } from "src/states/paletteGalleryState.svelte.js";
+    import {
+        reloadFactoryPalettes,
+        resetPaletteGallery,
+    } from "src/states/paletteGalleryState.svelte.js";
     import { paletteGalleryScrollPos } from "src/states/scrollPositionState.svelte.js";
     import { createScrollPositionManager } from "src/lib/scrollPositionManager.js";
 
@@ -26,7 +29,6 @@
 
         reloadFactoryPalettes();
     };
-
 </script>
 
 <h2>Palette Gallery</h2>

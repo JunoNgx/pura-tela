@@ -76,21 +76,22 @@
     <h3>Resetting</h3>
 
     <p>
-        Both <strong>Colours gallery</strong> and <strong>Palette Gallery</strong>
+        Both <strong>Colours gallery</strong> and
+        <strong>Palette Gallery</strong>
         can be resetted in different ways:
     </p>
     <ul>
         <li>
-            <strong>Reload factory colours/palettes</strong> will restore
-            deleted factory items, while fully retain any custom colours or
-            palettes you have created yourself. This is also a useful way to
-            check and add new pre-made items which might have been added via
-            the silent software update process.
+            <strong>Reload factory colours/palettes</strong> will restore deleted
+            factory items, while fully retain any custom colours or palettes you
+            have created yourself. This is also a useful way to check and add new
+            pre-made items which might have been added via the silent software update
+            process.
         </li>
         <li>
             <strong>Reset gallery</strong>, on the other hand, will fully erase
-            everything, user-created or not, to the default factory state of
-            the application. This process is irreversible.
+            everything, user-created or not, to the default factory state of the
+            application. This process is irreversible.
         </li>
     </ul>
 
