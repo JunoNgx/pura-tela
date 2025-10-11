@@ -3,6 +3,7 @@ import palettesJson from "src/data/palettes.json";
 import {
     createLocalStorageSyncedState,
     isHexCodeValid,
+    isValidBoolean,
 } from "src/states/stateUtils.svelte.js";
 import {
     getColourStringsInUse,
@@ -31,6 +32,7 @@ const isPaletteGalleryValid = (data: any[]) => {
             ) {
                 return false;
             }
+            if (!isValidBoolean(item.isUserCreated)) return false;
 
             for (const colour of item.colours) {
                 if (!isHexCodeValid(colour)) return false;
@@ -43,7 +45,10 @@ const isPaletteGalleryValid = (data: any[]) => {
     }
 };
 
-const defaultPaletteGallery = palettesJson as PaletteItem[];
+const defaultPaletteGallery = palettesJson.map(pal => ({
+    ...pal,
+    isUserCreated: false,
+})) as PaletteItem[];
 
 export const paletteGallery = createLocalStorageSyncedState({
     key: "paletteGallery",
