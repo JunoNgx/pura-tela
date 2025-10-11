@@ -1,4 +1,5 @@
 <script lang="ts">
+    import MaterialSymbolsLightEditSquareOutlineSharp from '~icons/material-symbols-light/edit-square-outline-sharp';
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
     import MaterialSymbolsLightContentCopySharp from "~icons/material-symbols-light/content-copy-sharp";
@@ -14,6 +15,7 @@
     import {
         deletePaletteAtIndex,
         passPaletteToWallpaperGenerator,
+        promptRenamePaletteAtIndex,
     } from "src/states/paletteGalleryState.svelte.js";
     import { passPaletteToPaletteGenerator } from "src/states/palGenState.svelte.js";
     import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
@@ -71,6 +73,15 @@
                     {paletteItem.name}
                 {/if}
             </div>
+            {#if paletteItem.isUserCreated}
+                <button class="PaletteListItem__ActionBtn IconButton"
+                    title="Rename this palette"
+                    aria-label="Rename this palette"
+                    onclick={() => {promptRenamePaletteAtIndex(index);}}
+                >
+                    <MaterialSymbolsLightEditSquareOutlineSharp/>
+                </button>
+            {/if}
         </div>
 
         <div class="PaletteListItem__Buttons">
@@ -159,6 +170,12 @@
         gap: 0.5rem;
         flex-grow: 1;
         padding: 0.5rem 0;
+    }
+
+    .PaletteListItem__Name {
+        display: flex;
+        gap: 0.25rem;
+        align-items: center;
     }
 
     .PaletteListItem__Buttons {
