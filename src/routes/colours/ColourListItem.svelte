@@ -4,7 +4,7 @@
     import { type ColourItem } from "src/lib/types.js";
     import { HAS_COPY_TIMEOUT_DURATION_MS } from "src/lib/constants.js";
 
-    import MaterialSymbolsLightEditSquareOutlineSharp from '~icons/material-symbols-light/edit-square-outline-sharp';
+    import MaterialSymbolsLightEditSquareOutlineSharp from "~icons/material-symbols-light/edit-square-outline-sharp";
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
     import MaterialSymbolsLightContentCopySharp from "~icons/material-symbols-light/content-copy-sharp";
@@ -15,7 +15,10 @@
         getWallGenColourInUseCount,
         setWallGenColoursAtIndex,
     } from "src/states/wallGenState.svelte.js";
-    import { deleteColourAtIndex, promptRenameColourAtIndex } from "src/states/colourGalleryState.svelte.js";
+    import {
+        deleteColourAtIndex,
+        promptRenameColourAtIndex,
+    } from "src/states/colourGalleryState.svelte.js";
     import { onDestroy } from "svelte";
 
     type ColourItemProps = {
@@ -79,12 +82,15 @@
                 {colourItem.name}
             </span>
             {#if colourItem.isUserCreated}
-                <button class="ColourListItem__ActionBtn ColourListItem__ActionBtn--Rename IconButton"
+                <button
+                    class="ColourListItem__ActionBtn ColourListItem__ActionBtn--Rename IconButton"
                     title="Rename this colour"
                     aria-label="Rename this colour"
-                    onclick={() => {promptRenameColourAtIndex(index);}}
+                    onclick={() => {
+                        promptRenameColourAtIndex(index);
+                    }}
                 >
-                    <MaterialSymbolsLightEditSquareOutlineSharp/>
+                    <MaterialSymbolsLightEditSquareOutlineSharp />
                 </button>
             {/if}
         </div>

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import MaterialSymbolsLightEditSquareOutlineSharp from '~icons/material-symbols-light/edit-square-outline-sharp';
+    import MaterialSymbolsLightEditSquareOutlineSharp from "~icons/material-symbols-light/edit-square-outline-sharp";
     import MaterialSymbolsLightColorize from "~icons/material-symbols-light/colorize";
     import MaterialSymbolsLightColorizeOutline from "~icons/material-symbols-light/colorize-outline";
     import MaterialSymbolsLightContentCopySharp from "~icons/material-symbols-light/content-copy-sharp";
@@ -74,12 +74,15 @@
                 {/if}
             </div>
             {#if paletteItem.isUserCreated}
-                <button class="PaletteListItem__ActionBtn IconButton"
+                <button
+                    class="PaletteListItem__ActionBtn IconButton"
                     title="Rename this palette"
                     aria-label="Rename this palette"
-                    onclick={() => {promptRenamePaletteAtIndex(index);}}
+                    onclick={() => {
+                        promptRenamePaletteAtIndex(index);
+                    }}
                 >
-                    <MaterialSymbolsLightEditSquareOutlineSharp/>
+                    <MaterialSymbolsLightEditSquareOutlineSharp />
                 </button>
             {/if}
         </div>

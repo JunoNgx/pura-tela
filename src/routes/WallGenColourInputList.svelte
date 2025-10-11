@@ -125,7 +125,9 @@
         </ul>
     </div>
 
-    <div class="ColourInputContainer__ActionsContainerUpper RightAlignedButtonsContainer">
+    <div
+        class="ColourInputContainer__ActionsContainerUpper RightAlignedButtonsContainer"
+    >
         <button
             class="ColourInputContainer__RemoveBtn IconButtonWithLabel"
             disabled={getWallGenColourInUseCount()
