@@ -69,7 +69,7 @@ export const resetColourGallery = () => {
     colourGallery.set(defaultColourGallery);
 };
 
-export const reloadFactoryPalettes = () => {
+export const reloadFactoryColours = () => {
     const userCreatedData = colourGallery.val.filter(col => col.isUserCreated);
     const reloadedData = [...userCreatedData, ...defaultColourGallery];
 
