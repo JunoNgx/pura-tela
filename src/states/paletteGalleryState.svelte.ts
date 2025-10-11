@@ -1,5 +1,5 @@
 // @ts-ignore
-import defaultPaletteGallery from "src/data/palettes.json";
+import palettesJson from "src/data/palettes.json";
 import {
     createLocalStorageSyncedState,
     isHexCodeValid,
@@ -16,6 +16,7 @@ import {
     MIN_COLOUR_COUNT_PALETTE,
 } from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
+import type { PaletteItem } from "src/lib/types.js";
 
 const isPaletteGalleryValid = (data: any[]) => {
     if (!data) return false;
@@ -41,6 +42,8 @@ const isPaletteGalleryValid = (data: any[]) => {
         return false;
     }
 };
+
+const defaultPaletteGallery = palettesJson as PaletteItem[];
 
 export const paletteGallery = createLocalStorageSyncedState({
     key: "paletteGallery",
