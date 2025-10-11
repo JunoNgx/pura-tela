@@ -45,7 +45,7 @@ const isPaletteGalleryValid = (data: any[]) => {
     }
 };
 
-const defaultPaletteGallery = palettesJson.map(pal => ({
+const defaultPaletteGallery = palettesJson.map((pal) => ({
     ...pal,
     isUserCreated: false,
 })) as PaletteItem[];
@@ -125,7 +125,9 @@ export const resetPaletteGallery = () => {
 };
 
 export const reloadFactoryPalettes = () => {
-    const userCreatedData = paletteGallery.val.filter(pal => pal.isUserCreated);
+    const userCreatedData = paletteGallery.val.filter(
+        (pal) => pal.isUserCreated
+    );
     const reloadedData = [...userCreatedData, ...defaultPaletteGallery];
 
     paletteGallery.set(reloadedData);

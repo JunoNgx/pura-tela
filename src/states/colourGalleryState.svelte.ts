@@ -70,7 +70,9 @@ export const resetColourGallery = () => {
 };
 
 export const reloadFactoryColours = () => {
-    const userCreatedData = colourGallery.val.filter(col => col.isUserCreated);
+    const userCreatedData = colourGallery.val.filter(
+        (col) => col.isUserCreated
+    );
     const reloadedData = [...userCreatedData, ...defaultColourGallery];
 
     colourGallery.set(reloadedData);
