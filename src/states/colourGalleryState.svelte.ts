@@ -48,6 +48,17 @@ export const promptAddToColourGallery = (colourCode: string) => {
     }
 };
 
+export const promptRenameColourAtIndex = (index: number) => {
+    const input = window.prompt("Enter new name for this colour:");
+    if (!input) {
+        return;
+    }
+
+    const newData = [...colourGallery.val];
+    newData[index].name = input;
+    colourGallery.set(newData);
+};
+
 export const deleteColourAtIndex = (index: number) => {
     const befPortion = colourGallery.val.slice(0, index);
     const aftPortion = colourGallery.val.slice(index + 1);
@@ -56,4 +67,11 @@ export const deleteColourAtIndex = (index: number) => {
 
 export const resetColourGallery = () => {
     colourGallery.set(defaultColourGallery);
+};
+
+export const reloadFactoryPalettes = () => {
+    const userCreatedData = colourGallery.val.filter(col => col.isUserCreated);
+    const reloadedData = [...userCreatedData, ...defaultColourGallery];
+
+    colourGallery.set(reloadedData);
 };
