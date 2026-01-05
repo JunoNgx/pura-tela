@@ -9,7 +9,7 @@ export const initialiseGemini = () => {
 
     const genAi = new GoogleGenerativeAI(apiKey);
     const model = genAi.getGenerativeModel({
-        model: "gemini-1.5-flash",
+        model: "gemini-flash-latest",
     });
 
     return model;
