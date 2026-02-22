@@ -18,7 +18,7 @@
             }
 
             .right2 {
-                fill: #232042;
+                fill: #F5ADAE;
             }
         </style>
     </defs>
