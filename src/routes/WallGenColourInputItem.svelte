@@ -128,8 +128,11 @@
         padding: 0 1rem 0 0.5rem;
     }
 
-    :global(.ColourInput__IsDragged) {
-        .ColourInput__RightSide {
+    :global(.IsDragged) {
+        outline: 2px solid var(--colPri) !important;
+
+        .ColourInput__ColourActionBtn,
+        .ColourInput__NotInUseNotice {
             display: none;
         }
     }

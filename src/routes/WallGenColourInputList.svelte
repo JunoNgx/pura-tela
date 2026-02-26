@@ -189,16 +189,16 @@
         list-style: none;
     }
 
-    :global(.ColourInputContainer__ItemWrapper--IsDragging) {
-        outline: 2px solid var(--colPri);
+    /* :global(.ColourInputContainer__ItemWrapper--IsDragging) {
         padding-left: 2rem;
-    }
+    } */
 
-    :global(
+    /* :global(
         .ColourInputContainer__ItemWrapper.IsDragged .ColourInput__Buttons
     ) {
         display: none;
-    }
+    } */
+
 
     .ColourInputContainer__ActionContainer {
         margin-top: 2rem;
