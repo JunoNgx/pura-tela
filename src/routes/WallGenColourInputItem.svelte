@@ -104,16 +104,16 @@
                 <MaterialSymbolsSaveOutlineSharp />
                 <span class="ColourInput__BtnLabelText">Save</span>
             </button>
-            <div
-                class="ColourInput__DragHandle"
-                aria-label="drag-handle for colour at position {index}"
-                use:dragHandle
-            >
-                <MaterialSymbolsDragIndicator />
-            </div>
         {:else}
             <span class="ColourInput__NotInUseNotice">Not in use</span>
         {/if}
+        <div
+            class="ColourInput__DragHandle"
+            aria-label="drag-handle for colour at position {index}"
+            use:dragHandle
+        >
+            <MaterialSymbolsDragIndicator />
+        </div>
     </div>
 </div>
 
