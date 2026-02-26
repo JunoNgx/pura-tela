@@ -45,13 +45,6 @@
 
 <div class="ColourInput">
     <div class="ColourInput__LeftSide">
-        <div
-            class="ColourInput__DragHandle"
-            aria-label="drag-handle for colour at position {index}"
-            use:dragHandle
-        >
-            <MaterialSymbolsDragIndicator />
-        </div>
         <div class="ColourInput__Picker">
             <ColorPicker
                 label=""
@@ -111,6 +104,13 @@
                 <MaterialSymbolsSaveOutlineSharp />
                 <span class="ColourInput__BtnLabelText">Save</span>
             </button>
+            <div
+                class="ColourInput__DragHandle"
+                aria-label="drag-handle for colour at position {index}"
+                use:dragHandle
+            >
+                <MaterialSymbolsDragIndicator />
+            </div>
         {:else}
             <span class="ColourInput__NotInUseNotice">Not in use</span>
         {/if}
@@ -125,7 +125,7 @@
         align-items: center;
         gap: 1rem;
         height: var(--colourInputItemHeight);
-        padding: 0 0.5rem 0 1rem;
+        padding: 0 1rem 0 0.5rem;
     }
 
     :global(.ColourInput__IsDragged) {
