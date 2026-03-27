@@ -18,6 +18,7 @@ import { gradientStyleConfig } from "./wallGenStyleConfigGradientState.svelte.js
 import { paletteStyleConfig } from "./wallGenStyleConfigPaletteState.svelte.js";
 import { horizonStyleConfig } from "./wallGenStyleConfigHorizonState.svelte.js";
 import { popArtSquareStyleConfig } from "./wallGenStyleConfigPopArtSquareState.svelte.js";
+import { twilightStyleConfig } from "./wallGenStyleConfigTwilightState.svelte.js";
 
 /**
  * Wallpaper Generator current colours
@@ -214,6 +215,10 @@ export const isHorizonStyle = () => {
     return wallGenStyle.val === WallpaperStyle.HORIZON;
 };
 
+export const isTwilightStyle = () => {
+    return wallGenStyle.val === WallpaperStyle.TWILIGHT;
+};
+
 const currStyleInfo = $derived.by(() => {
     switch (wallGenStyle.val) {
         case WallpaperStyle.SOLID:
@@ -252,6 +257,13 @@ const currStyleInfo = $derived.by(() => {
                 defaultColourCount: colourCount,
                 minColourCount: colourCount,
                 maxColourCount: colourCount,
+            };
+
+        case WallpaperStyle.TWILIGHT:
+            return {
+                defaultColourCount: 3,
+                minColourCount: 3,
+                maxColourCount: 3,
             };
 
         default:
@@ -464,12 +476,14 @@ const derivedGradientStyleConfig = $derived(gradientStyleConfig.val);
 const derivedPaletteConfig = $derived(paletteStyleConfig.val);
 const derivedHorizonConfig = $derived(horizonStyleConfig.val);
 const derivedPopArtSquareConfig = $derived(popArtSquareStyleConfig.val);
+const derivedTwilightConfig = $derived(twilightStyleConfig.val);
 const derivedStyleConfig = $derived({
     colourSwatch: derivedColourSwatchStyleConfig,
     gradient: derivedGradientStyleConfig,
     palette: derivedPaletteConfig,
     horizon: derivedHorizonConfig,
     popArtSquare: derivedPopArtSquareConfig,
+    twilight: derivedTwilightConfig,
 });
 export const getStyleConfig = () => {
     return derivedStyleConfig;
