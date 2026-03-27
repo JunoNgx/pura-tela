@@ -94,6 +94,7 @@
                     "horizonPosition",
                     horizonStyleConfig.val.position.toString()
                 );
+                break;
             case WallpaperStyle.POP_ART_SQUARE:
                 url.searchParams.append(
                     "popArtSquareSize",
