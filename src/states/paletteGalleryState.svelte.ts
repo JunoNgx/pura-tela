@@ -2,9 +2,9 @@
 import palettesJson from "src/data/palettes.json";
 import {
     createLocalStorageSyncedState,
-    isHexCodeValid,
     isValidBoolean,
 } from "src/states/stateUtils.svelte.js";
+import { isHexCodeValid } from "src/lib/utils.js";
 import {
     getColourStringsInUse,
     readjustWallGenColoursInUseCount,

@@ -7,9 +7,9 @@ import {
 import { getRandomHexCode } from "src/lib/utils.js";
 import {
     createColState,
-    isHexCodeValid,
     isValidBoolean,
 } from "src/states/stateUtils.svelte.js";
+import { isHexCodeValid } from "src/lib/utils.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
 import { generateId } from "./idGenState.svelte.js";
 import type { PalGenColObj, State } from "src/lib/types.js";
