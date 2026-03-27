@@ -27,6 +27,11 @@ export const load = ({ url }): WallGenQueryProps => {
     const horizonSize = url.searchParams.get("horizonSize");
     const horizonPosition = url.searchParams.get("horizonPosition");
 
+    // Pop art square config
+    const popArtSquareSize = url.searchParams.get("popArtSquareSize");
+    const popArtSquarePositionX = url.searchParams.get("popArtSquarePositionX");
+    const popArtSquarePositionY = url.searchParams.get("popArtSquarePositionY");
+
     // Twilight config
     const twilightSize = url.searchParams.get("twilightSize");
     const twilightRippleIntensity = url.searchParams.get("twilightRippleIntensity");
@@ -53,6 +58,10 @@ export const load = ({ url }): WallGenQueryProps => {
         horizonShowCore,
         horizonSize,
         horizonPosition,
+
+        popArtSquareSize,
+        popArtSquarePositionX,
+        popArtSquarePositionY,
 
         twilightSize,
         twilightRippleIntensity,
