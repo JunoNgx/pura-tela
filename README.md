@@ -18,7 +18,7 @@ This is a spin-off/enhanced remake of [Pura](https://github.com/JunoNgx/flutter-
 - Dedicated palette generator
 - Size presets for multiple device form factors
 - Data persistence with localStorage
-- Generate palette with AI
+- Generate palette with AI using user's own API key
 - Progressive Web App deployment
 - Offline functionality
 
