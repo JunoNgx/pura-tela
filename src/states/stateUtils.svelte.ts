@@ -1,6 +1,7 @@
 import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
 import { type ColObj, type PalGenColObj, type State } from "src/lib/types.js";
 import { generateId } from "./idGenState.svelte.js";
+import { isHexCodeValid } from "src/lib/utils.js";
 
 export const createLocalStorageSyncedState = <T>({
     key,
@@ -144,11 +145,6 @@ export const isValidBoolean = (data: any) => {
 
 export const isValueWithinRange = (value: number, min: number, max: number) => {
     return min <= value && value <= max;
-};
-
-export const isHexCodeValid = (str: string): boolean => {
-    const validHexRegex = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
-    return validHexRegex.test(str);
 };
 
 export const isArrayOfHexCodesValid = (arr: string[]): boolean => {
