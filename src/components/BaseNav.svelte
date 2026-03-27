@@ -60,7 +60,8 @@
             <NavItem route={"/colours"} label={"colours"} />
             <NavItem route={"/palettes"} label={"palettes"} />
             <NavItem route={"/sizes"} label={"sizes"} />
-            <span class="Nav__CategoryTitle">Info</span>
+            <span class="Nav__CategoryTitle">Misc</span>
+            <NavItem route={"/config"} label={"config"} />
             <NavItem route={"/help"} label={"help"} />
             <NavItem route={"/about"} label={"about"} />
         </div>

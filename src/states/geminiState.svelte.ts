@@ -1,12 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { geminiKey } from "./geminiKeyState.svelte.js";
 
-export const initialiseGemini = () => {
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!apiKey) {
-        console.error("Gemini API key is not set up");
-        return null;
-    }
-
+const initialiseGemini = (apiKey: string) => {
     const genAi = new GoogleGenerativeAI(apiKey);
     const model = genAi.getGenerativeModel({
         model: "gemini-flash-latest",
@@ -15,7 +10,12 @@ export const initialiseGemini = () => {
     return model;
 };
 
-export const gemini = $state(initialiseGemini());
+const gemini = $derived(
+    geminiKey.val ? initialiseGemini(geminiKey.val) : null
+);
+
+const _isGeminiConfigured = $derived(geminiKey.val !== "");
+export const isGeminiConfigured = () => _isGeminiConfigured;
 
 export const buildPrompt = (theme: string) => {
     const prompt = `Generate a colour palette of 7 colours. Reply with only text, made up of hex colour codes, separated by comma. The theme is: ${theme}.`;
