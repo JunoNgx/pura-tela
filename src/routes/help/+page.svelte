@@ -203,6 +203,15 @@
         <code>Gemini</code>. You will prompted to enter the theme of the output,
         which should return a {MAX_COLOUR_COUNT}-colour palette.
     </p>
+    <p>
+        This feature requires a Gemini API key, which can be configured in the
+        <a href="/config">Config</a> page. You can obtain a free key from
+        <a
+            href="https://aistudio.google.com/apikey"
+            target="_blank"
+            rel="noopener noreferrer">Google AI Studio</a
+        >.
+    </p>
 
     <p>
         This is meant to be a fun, experimental, and entirely optional feature
