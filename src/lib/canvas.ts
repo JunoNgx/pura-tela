@@ -3,6 +3,8 @@ import {
     HORIZON_CONFIG_SIZE_MAX_VALUE,
     POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
     POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
+    TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
+    TWILIGHT_CONFIG_SIZE_MAX_VALUE,
 } from "./constants.js";
 import {
     ColourSwatchStyleDirection,
@@ -222,6 +224,10 @@ export const renderCanvas = ({
 
         case WallpaperStyle.HORIZON:
             renderForHorizonStyle(renderOptions);
+            break;
+
+        case WallpaperStyle.TWILIGHT:
+            renderForTwilightStyle(renderOptions);
             break;
 
         case WallpaperStyle.SOLID:
@@ -640,6 +646,76 @@ export const renderForHorizonStyle = ({
         ctx.arc(size.width / 2, yPos, coreRadius, 0, Math.PI);
         ctx.fillStyle = colours[5];
         ctx.fill();
+    }
+};
+
+const renderForTwilightStyle = ({
+    ctx,
+    colours,
+    size,
+    config,
+}: StyleRenderOptions) => {
+    if (!config?.twilight) {
+        throw new Error("Cannot access Twilight config");
+    }
+
+    const horizonY = size.height / 2;
+    const sunCenterX = size.width / 2;
+
+    // Draw sky
+    ctx.fillStyle = colours[1];
+    ctx.fillRect(0, 0, size.width, horizonY);
+
+    // Draw water
+    ctx.fillStyle = colours[2];
+    ctx.fillRect(0, horizonY, size.width, size.height - horizonY);
+
+    // Sun radius scaled by size config
+    const smallerSide = Math.min(size.width, size.height);
+    const minSunRadius = smallerSide * 0.05;
+    const maxSunRadius = size.width / 2;
+    const sunRadius =
+        minSunRadius +
+        ((maxSunRadius - minSunRadius) * config.twilight.size) /
+            TWILIGHT_CONFIG_SIZE_MAX_VALUE;
+
+    // Draw full sun circle
+    ctx.beginPath();
+    ctx.arc(sunCenterX, horizonY, sunRadius, 0, Math.PI * 2);
+    ctx.fillStyle = colours[0];
+    ctx.fill();
+
+    const minStripeCount = 5;
+    const maxStripeCount = 10;
+    const stripeCount = Math.round(
+        minStripeCount +
+        ((maxStripeCount - minStripeCount) * config.twilight.rippleIntensity) /
+            TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
+    );
+
+    const minStripeHeight = sunRadius * 0.05;
+    const maxStripeHeight = sunRadius * 0.1;
+    const stripeHeight = maxStripeHeight -
+        ((maxStripeHeight - minStripeHeight) * config.twilight.rippleIntensity) /
+            TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
+
+    const minStep = sunRadius * 0.1;
+    const maxStep = sunRadius * 0.2;
+    const step = maxStep -
+        ((maxStep - minStep) * config.twilight.rippleIntensity) /
+            TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
+
+    // Draw sea-coloured stripes over the lower half of the sun
+    for (let i = 0; i < stripeCount; i++) {
+        const stripeCenterY = horizonY + step * i + stripeHeight / 2;
+
+        ctx.fillStyle = colours[2];
+        ctx.fillRect(
+            sunCenterX - sunRadius,
+            stripeCenterY - stripeHeight / 2,
+            sunRadius * 2,
+            stripeHeight
+        );
     }
 };
 

@@ -8,6 +8,7 @@
         isPaletteStyle,
         wallGenStyle,
         isHorizonStyle,
+        isTwilightStyle,
         tryResetWallGenColourInUseCount,
     } from "src/states/wallGenState.svelte.js";
     import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
@@ -15,6 +16,7 @@
     import StyleConfigPalette from "./StyleConfigPalette.svelte";
     import StyleConfigHorizon from "./StyleConfigHorizon.svelte";
     import StyleConfigColourPopArtSquare from "./StyleConfigColourPopArtSquare.svelte";
+    import StyleConfigTwilight from "./StyleConfigTwilight.svelte";
 
     const handleWallpaperStyleChange = (e: MouseButtonEvent) => {
         const newValue = e.currentTarget.getAttribute(
@@ -126,6 +128,22 @@
                 />
                 <span class="StyleSelectButton__Label"> Colour Swatch </span>
             </button>
+
+            <button
+                class="StyleSelectButton"
+                class:StyleSelectButton--IsSelected={isTwilightStyle()}
+                aria-label="Select wallpaper style Twilight"
+                title="Select wallpaper style Twilight"
+                data-value={WallpaperStyle.TWILIGHT}
+                onclick={handleWallpaperStyleChange}
+            >
+                <img
+                    class="StyleSelectButton__Img"
+                    src="/styleImages/style-twilight.png"
+                    alt="Illustration for style Twilight"
+                />
+                <span class="StyleSelectButton__Label"> Twilight </span>
+            </button>
         </div>
     </fieldset>
 </section>
@@ -141,6 +159,8 @@
         <StyleConfigHorizon />
     {:else if isPopArtSquareStyle()}
         <StyleConfigColourPopArtSquare />
+    {:else if isTwilightStyle()}
+        <StyleConfigTwilight />
     {/if}
 </section>
 

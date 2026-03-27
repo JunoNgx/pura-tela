@@ -68,6 +68,7 @@ export enum WallpaperStyle {
     COLOUR_SWATCH = "colourSwatch",
     PALETTE = "palette",
     HORIZON = "horizon",
+    TWILIGHT = "twilight",
 }
 
 export type WallpaperStyleInfo = {
@@ -102,6 +103,9 @@ export type WallGenQueryProps = {
     popArtSquareSize: string | null;
     popArtSquarePositionX: string | null;
     popArtSquarePositionY: string | null;
+
+    twilightSize: string | null;
+    twilightRippleIntensity: string | null;
 };
 
 export type PalGenQueryProps = {
@@ -166,12 +170,18 @@ export type PopArtSquareStyleConfigProps = {
     positionY: number;
 };
 
+export type TwilightStyleConfigProps = {
+    size: number;
+    rippleIntensity: number;
+};
+
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps;
     gradient: GradientStyleConfigProps;
     palette: PaletteStyleConfigProps;
     horizon: HorizonStyleConfigProps;
     popArtSquare: PopArtSquareStyleConfigProps;
+    twilight: TwilightStyleConfigProps;
 };
 
 export type ShareItem = {

@@ -11,6 +11,8 @@
         POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
         SWATCH_CONFIG_MAX_VALUE,
         SWATCH_CONFIG_MIN_VALUE,
+        TWILIGHT_CONFIG_SIZE_MAX_VALUE,
+        TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
     } from "src/lib/constants.js";
     import {
         tryParseBooleanData,
@@ -58,6 +60,10 @@
         setPopArtSquareStylePositionY,
         setpopArtSquareStyleSize,
     } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
+    import {
+        setTwilightStyleSize,
+        setTwilightStyleRippleIntensity,
+    } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
 
     export let data: WallGenQueryProps;
 
@@ -263,6 +269,20 @@
         minVal: POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
         maxVal: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
         stateSetterFunc: setPopArtSquareStylePositionY,
+    });
+
+    // Twilight style
+    tryParseNumericConfig({
+        dataKey: "twilightSize",
+        minVal: 0,
+        maxVal: TWILIGHT_CONFIG_SIZE_MAX_VALUE,
+        stateSetterFunc: setTwilightStyleSize,
+    });
+    tryParseNumericConfig({
+        dataKey: "twilightRippleIntensity",
+        minVal: 0,
+        maxVal: TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
+        stateSetterFunc: setTwilightStyleRippleIntensity,
     });
 </script>
 
