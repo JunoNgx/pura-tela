@@ -52,9 +52,9 @@ export const getRandomHexCode = () => {
 };
 
 export const capitaliseFirstLetter = (str: string) => {
-    const firstChatCapped = str.charAt(0).toUpperCase();
+    const firstCharCapped = str.charAt(0).toUpperCase();
     const remainingChars = str.slice(1);
-    return firstChatCapped + remainingChars;
+    return firstCharCapped + remainingChars;
 };
 
 export const computeFilename = ({
