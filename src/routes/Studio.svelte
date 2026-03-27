@@ -21,6 +21,7 @@
     import { paletteStyleConfig } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
     import { horizonStyleConfig } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
     import { popArtSquareStyleConfig } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
+    import { twilightStyleConfig } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
     import StudioPreview from "./StudioPreview.svelte";
 
     const handleResize = () => {
@@ -107,6 +108,16 @@
                 url.searchParams.append(
                     "popArtSquarePositionY",
                     popArtSquareStyleConfig.val.positionY.toString()
+                );
+                break;
+            case WallpaperStyle.TWILIGHT:
+                url.searchParams.append(
+                    "twilightSize",
+                    twilightStyleConfig.val.size.toString()
+                );
+                url.searchParams.append(
+                    "twilightRippleIntensity",
+                    twilightStyleConfig.val.rippleIntensity.toString()
                 );
         }
 

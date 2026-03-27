@@ -27,6 +27,10 @@ export const load = ({ url }): WallGenQueryProps => {
     const horizonSize = url.searchParams.get("horizonSize");
     const horizonPosition = url.searchParams.get("horizonPosition");
 
+    // Twilight config
+    const twilightSize = url.searchParams.get("twilightSize");
+    const twilightRippleIntensity = url.searchParams.get("twilightRippleIntensity");
+
     return {
         style,
         colours,
@@ -49,5 +53,8 @@ export const load = ({ url }): WallGenQueryProps => {
         horizonShowCore,
         horizonSize,
         horizonPosition,
+
+        twilightSize,
+        twilightRippleIntensity,
     };
 };
