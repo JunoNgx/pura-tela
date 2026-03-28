@@ -9,6 +9,7 @@
         wallGenStyle,
         isHorizonStyle,
         isTwilightStyle,
+        isPieManStyle,
         tryResetWallGenColourInUseCount,
     } from "src/states/wallGenState.svelte.js";
     import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
@@ -17,6 +18,7 @@
     import StyleConfigHorizon from "./StyleConfigHorizon.svelte";
     import StyleConfigColourPopArtSquare from "./StyleConfigColourPopArtSquare.svelte";
     import StyleConfigTwilight from "./StyleConfigTwilight.svelte";
+    import StyleConfigPieMan from "./StyleConfigPieMan.svelte";
 
     const handleWallpaperStyleChange = (e: MouseButtonEvent) => {
         const newValue = e.currentTarget.getAttribute(
@@ -144,6 +146,22 @@
                 />
                 <span class="StyleSelectButton__Label"> Twilight </span>
             </button>
+
+            <button
+                class="StyleSelectButton"
+                class:StyleSelectButton--IsSelected={isPieManStyle()}
+                aria-label="Select wallpaper style Pie-Man"
+                title="Select wallpaper style Pie-Man"
+                data-value={WallpaperStyle.PIE_MAN}
+                onclick={handleWallpaperStyleChange}
+            >
+                <img
+                    class="StyleSelectButton__Img"
+                    src="/styleImages/style-pieman.png"
+                    alt="Illustration for style Pie-Man"
+                />
+                <span class="StyleSelectButton__Label"> Pie-Man </span>
+            </button>
         </div>
     </fieldset>
 </section>
@@ -161,6 +179,8 @@
         <StyleConfigColourPopArtSquare />
     {:else if isTwilightStyle()}
         <StyleConfigTwilight />
+    {:else if isPieManStyle()}
+        <StyleConfigPieMan />
     {/if}
 </section>
 
