@@ -34,6 +34,10 @@ The application is made with a minimal stack, including **SvelteKit 5** and **Ty
 
 `yarn && yarn dev`
 
+## PWA icons update utility
+
+Utility script `generate-icons.sh` will generate from `/static/icon.png` to other sizes used by PWA manifest, using `imagemagick`.
+
 ## Contribution
 
 For bug reports, suggestions, and contributions, please open new issues.
