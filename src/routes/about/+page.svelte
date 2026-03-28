@@ -89,12 +89,14 @@
             href="https://colours.cafe/"
             target="_blank"
             rel="noopener noreferrer">colours.cafe</a
-        >
-        and
-        <a
+        >, <a
             href="https://www.behance.net/gallery/32154055/Minimalist-Color-Palettes-2015"
             target="_blank"
             rel="noopener noreferrer">Dumma Branding</a
+        > and <a
+            href="https://lospec.com/palette-list"
+            target="_blank"
+            rel="noopener noreferrer">Lospec.com</a
         > (whom you should check out; they have a lot of beautiful palettes to be
         imported into this app).
     </p>
