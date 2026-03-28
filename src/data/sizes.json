@@ -1,28 +1,28 @@
 [
     {
-        "name": "Pixel 9",
+        "name": "Pixel series",
         "width": "1344",
         "height": "2992"
     },
     {
-        "name": "iPhone 16",
-        "width": "1290",
-        "height": "2796"
+        "name": "iPhone series",
+        "width": "1320",
+        "height": "2868"
     },
     {
-        "name": "Galaxy S23 Ultra",
-        "width": "1440",
-        "height": "3088"
+        "name": "Fairphone 6",
+        "width": "1116",
+        "height": "2484"
     },
     {
         "name": "Mobile 20:9",
-        "width": "1080",
-        "height": "2400"
+        "width": "1200",
+        "height": "2600"
     },
     {
-        "name": "Mobile 16:9",
-        "width": "1080",
-        "height": "1920"
+        "name": "Portrait 16:9",
+        "width": "1366",
+        "height": "2428"
     },
     {
         "name": "Desktop 16:10/Macbook",
@@ -50,13 +50,13 @@
         "height": "1920"
     },
     {
-        "name": "Pixel Fold",
-        "width": "2208",
-        "height": "1840"
+        "name": "Jolla Phone 2026",
+        "width": "1080",
+        "height": "2260"
     },
     {
-        "name": "Fold 4",
-        "width": "2176",
-        "height": "1812"
+        "name": "Unihertz Titan 2 Elite",
+        "width": "1080",
+        "height": "1200"
     }
 ]
