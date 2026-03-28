@@ -10,9 +10,7 @@ const initialiseGemini = (apiKey: string) => {
     return model;
 };
 
-const gemini = $derived(
-    geminiKey.val ? initialiseGemini(geminiKey.val) : null
-);
+const gemini = $derived(geminiKey.val ? initialiseGemini(geminiKey.val) : null);
 
 const _isGeminiConfigured = $derived(geminiKey.val !== "");
 export const isGeminiConfigured = () => _isGeminiConfigured;

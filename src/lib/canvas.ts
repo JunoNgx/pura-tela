@@ -680,9 +680,9 @@ const renderForTwilightStyle = ({
     const minSunRadius = smallerSide * 0.05;
     const maxSunRadius = size.width / 2;
     const sunRadius =
-        minSunRadius +
-        ((maxSunRadius - minSunRadius) * config.twilight.size) /
-            TWILIGHT_CONFIG_SIZE_MAX_VALUE;
+        minSunRadius
+        + ((maxSunRadius - minSunRadius) * config.twilight.size)
+            / TWILIGHT_CONFIG_SIZE_MAX_VALUE;
 
     // Draw full sun circle
     ctx.beginPath();
@@ -693,22 +693,26 @@ const renderForTwilightStyle = ({
     const minStripeCount = 5;
     const maxStripeCount = 10;
     const stripeCount = Math.round(
-        minStripeCount +
-        ((maxStripeCount - minStripeCount) * config.twilight.rippleIntensity) /
-            TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
+        minStripeCount
+            + ((maxStripeCount - minStripeCount)
+                * config.twilight.rippleIntensity)
+                / TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
     );
 
     const minStripeHeight = sunRadius * 0.05;
     const maxStripeHeight = sunRadius * 0.1;
-    const stripeHeight = maxStripeHeight -
-        ((maxStripeHeight - minStripeHeight) * config.twilight.rippleIntensity) /
-            TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
+    const stripeHeight =
+        maxStripeHeight
+        - ((maxStripeHeight - minStripeHeight)
+            * config.twilight.rippleIntensity)
+            / TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
 
     const minStep = sunRadius * 0.1;
     const maxStep = sunRadius * 0.2;
-    const step = maxStep -
-        ((maxStep - minStep) * config.twilight.rippleIntensity) /
-            TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
+    const step =
+        maxStep
+        - ((maxStep - minStep) * config.twilight.rippleIntensity)
+            / TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
 
     // Draw sea-coloured stripes over the lower half of the sun
     for (let i = 0; i < stripeCount; i++) {
@@ -745,9 +749,9 @@ const renderForPieManStyle = ({
     const minRadius = smallerSide * 0.1;
     const maxRadius = smallerSide * 0.5;
     const radius =
-        minRadius +
-        ((maxRadius - minRadius) * config.pieman.size) /
-            PIE_MAN_CONFIG_SIZE_MAX_VALUE;
+        minRadius
+        + ((maxRadius - minRadius) * config.pieman.size)
+            / PIE_MAN_CONFIG_SIZE_MAX_VALUE;
 
     // angle=180 -> missing quadrant points to 3 o'clock
     const missingCenterAngle = (config.pieman.angle * Math.PI) / 180 + Math.PI;

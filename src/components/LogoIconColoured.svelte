@@ -10,15 +10,15 @@
             }
 
             .left {
-                fill: #1AC4F5;
+                fill: #1ac4f5;
             }
 
             .right1 {
-                fill: #345F86;
+                fill: #345f86;
             }
 
             .right2 {
-                fill: #F5ADAE;
+                fill: #f5adae;
             }
         </style>
     </defs>

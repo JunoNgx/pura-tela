@@ -34,7 +34,9 @@ export const load = ({ url }): WallGenQueryProps => {
 
     // Twilight config
     const twilightSize = url.searchParams.get("twilightSize");
-    const twilightRippleIntensity = url.searchParams.get("twilightRippleIntensity");
+    const twilightRippleIntensity = url.searchParams.get(
+        "twilightRippleIntensity"
+    );
 
     // Pie-man config
     const pieManSize = url.searchParams.get("pieManSize");

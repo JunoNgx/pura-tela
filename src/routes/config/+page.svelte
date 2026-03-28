@@ -23,8 +23,8 @@
         <a
             href="https://aistudio.google.com/apikey"
             target="_blank"
-            rel="noopener noreferrer"
-        >Get a key from Google AI Studio.</a>
+            rel="noopener noreferrer">Get a key from Google AI Studio.</a
+        >
     </p>
 
     <div class="ConfigSection__InputRow">

@@ -197,12 +197,6 @@
     },
     {
         "name": "Retrotronic",
-        "colours": [
-            "392b35",
-            "7a9c96",
-            "486b7f",
-            "d1bfb0",
-            "bb474f"
-        ]
+        "colours": ["392b35", "7a9c96", "486b7f", "d1bfb0", "bb474f"]
     }
 ]

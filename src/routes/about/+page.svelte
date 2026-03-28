@@ -89,11 +89,14 @@
             href="https://colours.cafe/"
             target="_blank"
             rel="noopener noreferrer">colours.cafe</a
-        >, <a
+        >,
+        <a
             href="https://www.behance.net/gallery/32154055/Minimalist-Color-Palettes-2015"
             target="_blank"
             rel="noopener noreferrer">Dumma Branding</a
-        > and <a
+        >
+        and
+        <a
             href="https://lospec.com/palette-list"
             target="_blank"
             rel="noopener noreferrer">Lospec.com</a
@@ -101,8 +104,7 @@
         imported into this app).
     </p>
     <p>
-        The Twilight and Pie-Man wallpaper styles were inspired
-        by <a
+        The Twilight and Pie-Man wallpaper styles were inspired by <a
             href="https://cssbattle.dev/play/6"
             target="_blank"
             rel="noopener noreferrer">target #6</a
