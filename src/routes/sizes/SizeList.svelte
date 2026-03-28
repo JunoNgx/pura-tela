@@ -125,5 +125,23 @@
         .SizeList {
             grid-template-columns: 1fr;
         }
+
+        .SizeItem {
+            width: auto;
+            display: flex;
+            gap: 0.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom-width: 0;
+        }
+
+        .SizeItem__Footer {
+            flex-grow: 5;
+            padding-bottom: 0.25rem;
+            border-bottom: var(--lineWeight) solid var(--colPri);
+        }
+
+        .SizeItem__PreviewContainer {
+            padding: 0.5rem;
+        }
     }
 </style>
