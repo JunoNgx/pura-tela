@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { onDestroy, onMount } from "svelte";
     import MaterialSymbolsKeyboardArrowDown from "~icons/material-symbols/keyboard-arrow-down";
 
     import Checkbox from "src/components/Checkbox.svelte";
@@ -53,6 +54,21 @@
         containerEl.offsetHeight;
         containerEl.style.height = "2rem";
     };
+
+    const handleKeydown = (e: KeyboardEvent) => {
+        if ((e.metaKey || e.ctrlKey) && e.key === ";") {
+            e.preventDefault();
+            toggleExpanded();
+        }
+    };
+
+    onMount(() => {
+        window.addEventListener("keydown", handleKeydown);
+    });
+
+    onDestroy(() => {
+        window.removeEventListener("keydown", handleKeydown);
+    });
 
     const handleDownloadClick = () => {
         const fileName = computeFilename({

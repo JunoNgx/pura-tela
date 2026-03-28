@@ -185,6 +185,12 @@
         and any <i>Large Language Model</i> of your choice.
     </p>
 
+    <h3>Keyboard Shortcuts</h3>
+    <p>
+        Press <kbd>Cmd</kbd> / <kbd>Ctrl</kbd> + <kbd>;</kbd> to toggle the
+        preview panel in the <strong>Wallpaper Generator</strong>.
+    </p>
+
     <h3>Sharing</h3>
     <p>
         To restore the exact preset of settings for the <strong

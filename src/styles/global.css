@@ -241,6 +241,15 @@ code {
     border-radius: 0.2rem;
 }
 
+kbd {
+    font-family: monospace;
+    font-size: 12px;
+    border: var(--lineWeight) solid var(--colPri);
+    padding: 0.1rem 0.25rem;
+    border-radius: 0;
+    box-shadow: 0 0.25rem;
+}
+
 dialog {
     background-color: transparent;
     border: none;
