@@ -19,6 +19,7 @@ import { paletteStyleConfig } from "./wallGenStyleConfigPaletteState.svelte.js";
 import { horizonStyleConfig } from "./wallGenStyleConfigHorizonState.svelte.js";
 import { popArtSquareStyleConfig } from "./wallGenStyleConfigPopArtSquareState.svelte.js";
 import { twilightStyleConfig } from "./wallGenStyleConfigTwilightState.svelte.js";
+import { pieManStyleConfig } from "./wallGenStyleConfigPieManState.svelte.js";
 
 /**
  * Wallpaper Generator current colours
@@ -219,6 +220,10 @@ export const isTwilightStyle = () => {
     return wallGenStyle.val === WallpaperStyle.TWILIGHT;
 };
 
+export const isPieManStyle = () => {
+    return wallGenStyle.val === WallpaperStyle.PIE_MAN;
+};
+
 const currStyleInfo = $derived.by(() => {
     switch (wallGenStyle.val) {
         case WallpaperStyle.SOLID:
@@ -264,6 +269,13 @@ const currStyleInfo = $derived.by(() => {
                 defaultColourCount: 3,
                 minColourCount: 3,
                 maxColourCount: 3,
+            };
+
+        case WallpaperStyle.PIE_MAN:
+            return {
+                defaultColourCount: 4,
+                minColourCount: 4,
+                maxColourCount: 4,
             };
 
         default:
@@ -477,6 +489,7 @@ const derivedPaletteConfig = $derived(paletteStyleConfig.val);
 const derivedHorizonConfig = $derived(horizonStyleConfig.val);
 const derivedPopArtSquareConfig = $derived(popArtSquareStyleConfig.val);
 const derivedTwilightConfig = $derived(twilightStyleConfig.val);
+const derivedPieManConfig = $derived(pieManStyleConfig.val);
 const derivedStyleConfig = $derived({
     colourSwatch: derivedColourSwatchStyleConfig,
     gradient: derivedGradientStyleConfig,
@@ -484,6 +497,7 @@ const derivedStyleConfig = $derived({
     horizon: derivedHorizonConfig,
     popArtSquare: derivedPopArtSquareConfig,
     twilight: derivedTwilightConfig,
+    pieman: derivedPieManConfig,
 });
 export const getStyleConfig = () => {
     return derivedStyleConfig;
