@@ -5,6 +5,7 @@ import {
     POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
     TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
     TWILIGHT_CONFIG_SIZE_MAX_VALUE,
+    PIE_MAN_CONFIG_SIZE_MAX_VALUE,
 } from "./constants.js";
 import {
     ColourSwatchStyleDirection,
@@ -228,6 +229,10 @@ export const renderCanvas = ({
 
         case WallpaperStyle.TWILIGHT:
             renderForTwilightStyle(renderOptions);
+            break;
+
+        case WallpaperStyle.PIE_MAN:
+            renderForPieManStyle(renderOptions);
             break;
 
         case WallpaperStyle.SOLID:
@@ -716,6 +721,49 @@ const renderForTwilightStyle = ({
             sunRadius * 2,
             stripeHeight
         );
+    }
+};
+
+const renderForPieManStyle = ({
+    ctx,
+    colours,
+    size,
+    config,
+}: StyleRenderOptions) => {
+    if (!config?.pieman) {
+        throw new Error("Cannot access Pie-Man config");
+    }
+
+    // Background
+    ctx.fillStyle = colours[0];
+    ctx.fillRect(0, 0, size.width, size.height);
+
+    const centerX = size.width / 2;
+    const centerY = size.height / 2;
+
+    const smallerSide = Math.min(size.width, size.height);
+    const minRadius = smallerSide * 0.1;
+    const maxRadius = smallerSide * 0.5;
+    const radius =
+        minRadius +
+        ((maxRadius - minRadius) * config.pieman.size) /
+            PIE_MAN_CONFIG_SIZE_MAX_VALUE;
+
+    // angle=180 -> missing quadrant points to 3 o'clock
+    const missingCenterAngle = (config.pieman.angle * Math.PI) / 180 + Math.PI;
+    const missingStartAngle = missingCenterAngle - Math.PI / 4;
+
+    // Draw quadrants
+    for (let i = 0; i < 3; i++) {
+        const startAngle = missingStartAngle + (Math.PI / 2) * (i + 1);
+        const endAngle = startAngle + Math.PI / 2;
+
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.closePath();
+        ctx.fillStyle = colours[i + 1];
+        ctx.fill();
     }
 };
 

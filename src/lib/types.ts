@@ -69,6 +69,7 @@ export enum WallpaperStyle {
     PALETTE = "palette",
     HORIZON = "horizon",
     TWILIGHT = "twilight",
+    PIE_MAN = "pie-man",
 }
 
 export type WallpaperStyleInfo = {
@@ -106,6 +107,9 @@ export type WallGenQueryProps = {
 
     twilightSize: string | null;
     twilightRippleIntensity: string | null;
+
+    pieManSize: string | null;
+    pieManAngle: string | null;
 };
 
 export type PalGenQueryProps = {
@@ -175,6 +179,11 @@ export type TwilightStyleConfigProps = {
     rippleIntensity: number;
 };
 
+export type PieManStyleConfigProps = {
+    size: number;
+    angle: number;
+};
+
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps;
     gradient: GradientStyleConfigProps;
@@ -182,6 +191,7 @@ export type RenderStyleConfig = {
     horizon: HorizonStyleConfigProps;
     popArtSquare: PopArtSquareStyleConfigProps;
     twilight: TwilightStyleConfigProps;
+    pieman: PieManStyleConfigProps;
 };
 
 export type ShareItem = {

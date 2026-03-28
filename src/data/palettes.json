@@ -182,5 +182,27 @@
     {
         "name": "Helios",
         "colours": ["e44647", "e5dfe9", "87c4a2", "304464", "fa575c", "008086"]
+    },
+    {
+        "name": "Dusk reflection",
+        "colours": [
+            "D25B70",
+            "6CB3A9",
+            "F6DF96",
+            "E38F66",
+            "293462",
+            "781728",
+            "F7F3DA"
+        ]
+    },
+    {
+        "name": "Retrotronic",
+        "colours": [
+            "392b35",
+            "7a9c96",
+            "486b7f",
+            "d1bfb0",
+            "bb474f"
+        ]
     }
 ]
