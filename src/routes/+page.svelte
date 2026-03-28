@@ -13,6 +13,8 @@
         SWATCH_CONFIG_MIN_VALUE,
         TWILIGHT_CONFIG_SIZE_MAX_VALUE,
         TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
+        PIE_MAN_CONFIG_SIZE_MAX_VALUE,
+        PIE_MAN_CONFIG_ANGLE_MAX_VALUE,
     } from "src/lib/constants.js";
     import {
         tryParseBooleanData,
@@ -64,6 +66,10 @@
         setTwilightStyleSize,
         setTwilightStyleRippleIntensity,
     } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
+    import {
+        setPieManStyleSize,
+        setPieManStyleAngle,
+    } from "src/states/wallGenStyleConfigPieManState.svelte.js";
 
     export let data: WallGenQueryProps;
 
@@ -283,6 +289,20 @@
         minVal: 0,
         maxVal: TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
         stateSetterFunc: setTwilightStyleRippleIntensity,
+    });
+
+    // Pie-man style
+    tryParseNumericConfig({
+        dataKey: "pieManSize",
+        minVal: 0,
+        maxVal: PIE_MAN_CONFIG_SIZE_MAX_VALUE,
+        stateSetterFunc: setPieManStyleSize,
+    });
+    tryParseNumericConfig({
+        dataKey: "pieManAngle",
+        minVal: 0,
+        maxVal: PIE_MAN_CONFIG_ANGLE_MAX_VALUE,
+        stateSetterFunc: setPieManStyleAngle,
     });
 </script>
 

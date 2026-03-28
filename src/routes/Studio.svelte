@@ -22,6 +22,7 @@
     import { horizonStyleConfig } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
     import { popArtSquareStyleConfig } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
     import { twilightStyleConfig } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
+    import { pieManStyleConfig } from "src/states/wallGenStyleConfigPieManState.svelte.js";
     import StudioPreview from "./StudioPreview.svelte";
 
     const handleResize = () => {
@@ -118,6 +119,16 @@
                 url.searchParams.append(
                     "twilightRippleIntensity",
                     twilightStyleConfig.val.rippleIntensity.toString()
+                );
+                break;
+            case WallpaperStyle.PIE_MAN:
+                url.searchParams.append(
+                    "pieManSize",
+                    pieManStyleConfig.val.size.toString()
+                );
+                url.searchParams.append(
+                    "pieManAngle",
+                    pieManStyleConfig.val.angle.toString()
                 );
         }
 

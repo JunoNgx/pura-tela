@@ -36,6 +36,10 @@ export const load = ({ url }): WallGenQueryProps => {
     const twilightSize = url.searchParams.get("twilightSize");
     const twilightRippleIntensity = url.searchParams.get("twilightRippleIntensity");
 
+    // Pie-man config
+    const pieManSize = url.searchParams.get("pieManSize");
+    const pieManAngle = url.searchParams.get("pieManAngle");
+
     return {
         style,
         colours,
@@ -65,5 +69,8 @@ export const load = ({ url }): WallGenQueryProps => {
 
         twilightSize,
         twilightRippleIntensity,
+
+        pieManSize,
+        pieManAngle,
     };
 };
