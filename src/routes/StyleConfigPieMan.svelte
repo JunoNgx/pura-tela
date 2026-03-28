@@ -83,7 +83,7 @@
                 label="Pie-Man angle config"
                 min={0}
                 max={PIE_MAN_CONFIG_ANGLE_MAX_VALUE}
-                step={1}
+                step={45}
                 value={pieManStyleConfig.val.angle}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
