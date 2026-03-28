@@ -678,7 +678,7 @@ const renderForTwilightStyle = ({
     // Sun radius scaled by size config
     const smallerSide = Math.min(size.width, size.height);
     const minSunRadius = smallerSide * 0.05;
-    const maxSunRadius = size.width / 2;
+    const maxSunRadius = smallerSide * 0.5;
     const sunRadius =
         minSunRadius
         + ((maxSunRadius - minSunRadius) * config.twilight.size)
