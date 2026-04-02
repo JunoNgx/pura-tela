@@ -35,7 +35,7 @@ const isTwilightConfigValid = (data: any) => {
 
 const twilightStyleConfigDefaultValue = {
     size: 10,
-    position: 5,
+    position: 10,
     rippleIntensity: 5,
 };
 
