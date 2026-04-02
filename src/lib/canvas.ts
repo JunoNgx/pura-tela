@@ -704,24 +704,24 @@ const renderForTwilightStyle = ({
                 / TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
     );
 
-    const minStripeHeight = sunRadius * 0.05;
-    const maxStripeHeight = sunRadius * 0.1;
+    const stripeHeightAtMin = sunRadius * 0.1;
+    const stripeHeightAtMax = sunRadius * 0.05;
     const stripeHeight =
-        maxStripeHeight
-        - ((maxStripeHeight - minStripeHeight)
+        stripeHeightAtMin
+        + ((stripeHeightAtMax - stripeHeightAtMin)
             * config.twilight.rippleIntensity)
             / TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
 
-    const minStep = sunRadius * 0.1;
-    const maxStep = sunRadius * 0.2;
-    const step =
-        maxStep
-        - ((maxStep - minStep) * config.twilight.rippleIntensity)
+    const spacingAtMin = sunRadius * 0.2;
+    const spacingAtMax = sunRadius * 0.1;
+    const spacing =
+        spacingAtMin
+        + ((spacingAtMax - spacingAtMin) * config.twilight.rippleIntensity)
             / TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
 
     // Draw sea-coloured stripes over the lower half of the sun
     for (let i = 0; i < stripeCount; i++) {
-        const stripeCenterY = horizonY + step * i + stripeHeight / 2;
+        const stripeCenterY = horizonY + spacing * i + stripeHeight / 2;
 
         ctx.fillStyle = colours[2];
         ctx.fillRect(
