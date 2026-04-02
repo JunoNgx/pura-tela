@@ -696,7 +696,7 @@ const renderForTwilightStyle = ({
     ctx.fill();
 
     const minStripeCount = 5;
-    const maxStripeCount = 10;
+    const maxStripeCount = 20;
     const stripeCount = Math.round(
         minStripeCount
             + ((maxStripeCount - minStripeCount)
@@ -705,7 +705,7 @@ const renderForTwilightStyle = ({
     );
 
     const stripeHeightAtMin = sunRadius * 0.1;
-    const stripeHeightAtMax = sunRadius * 0.05;
+    const stripeHeightAtMax = sunRadius * 0.03;
     const stripeHeight =
         stripeHeightAtMin
         + ((stripeHeightAtMax - stripeHeightAtMin)
@@ -713,7 +713,7 @@ const renderForTwilightStyle = ({
             / TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
 
     const spacingAtMin = sunRadius * 0.2;
-    const spacingAtMax = sunRadius * 0.1;
+    const spacingAtMax = sunRadius * 0.05;
     const spacing =
         spacingAtMin
         + ((spacingAtMax - spacingAtMin) * config.twilight.rippleIntensity)
