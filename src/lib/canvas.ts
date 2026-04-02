@@ -6,6 +6,7 @@ import {
     TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
     TWILIGHT_CONFIG_SIZE_MAX_VALUE,
     PIE_MAN_CONFIG_SIZE_MAX_VALUE,
+    TWILIGHT_CONFIG_POSITION_MAX_VALUE,
 } from "./constants.js";
 import {
     ColourSwatchStyleDirection,
@@ -664,7 +665,11 @@ const renderForTwilightStyle = ({
         throw new Error("Cannot access Twilight config");
     }
 
-    const horizonY = size.height / 2;
+    const minHorizonY = size.height * 0;
+    const maxHorizonY = size.height * 1;
+    const horizonY = minHorizonY
+        + ((maxHorizonY - minHorizonY) * config.twilight.position)
+            /TWILIGHT_CONFIG_POSITION_MAX_VALUE;
     const sunCenterX = size.width / 2;
 
     // Draw sky
