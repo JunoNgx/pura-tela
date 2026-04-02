@@ -106,6 +106,7 @@ export type WallGenQueryProps = {
     popArtSquarePositionY: string | null;
 
     twilightSize: string | null;
+    twilightPosition: string | null;
     twilightRippleIntensity: string | null;
 
     pieManSize: string | null;
@@ -177,6 +178,7 @@ export type PopArtSquareStyleConfigProps = {
 export type TwilightStyleConfigProps = {
     size: number;
     rippleIntensity: number;
+    position: number;
 };
 
 export type PieManStyleConfigProps = {

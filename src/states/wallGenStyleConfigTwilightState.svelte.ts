@@ -6,12 +6,17 @@ import {
 import {
     TWILIGHT_CONFIG_SIZE_MAX_VALUE,
     TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
+    TWILIGHT_CONFIG_POSITION_MAX_VALUE,
 } from "src/lib/constants.js";
 
 const isTwilightConfigValid = (data: any) => {
     if (!data) return false;
 
     if (!isValueWithinRange(data.size, 0, TWILIGHT_CONFIG_SIZE_MAX_VALUE)) {
+        return false;
+    }
+
+    if (!isValueWithinRange(data.position, 0, TWILIGHT_CONFIG_POSITION_MAX_VALUE)) {
         return false;
     }
 
@@ -30,6 +35,7 @@ const isTwilightConfigValid = (data: any) => {
 
 const twilightStyleConfigDefaultValue = {
     size: 10,
+    position: 5,
     rippleIntensity: 5,
 };
 
@@ -50,6 +56,17 @@ export const setTwilightStyleSize = (newValue: number) => {
 
 export const resetTwilightStyleSize = () => {
     setTwilightStyleSize(twilightStyleConfigDefaultValue.size);
+};
+
+export const setTwilightStylePosition = (newValue: number) => {
+    twilightStyleConfig.set({
+        ...twilightStyleConfig.val,
+        position: newValue,
+    });
+};
+
+export const resetTwilightStylePosition = () => {
+    setTwilightStylePosition(twilightStyleConfigDefaultValue.position);
 };
 
 export const setTwilightStyleRippleIntensity = (newValue: number) => {
