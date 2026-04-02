@@ -3,6 +3,7 @@
     import {
         TWILIGHT_CONFIG_SIZE_MAX_VALUE,
         TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
+        TWILIGHT_CONFIG_POSITION_MAX_VALUE,
     } from "src/lib/constants.js";
     import type { InputEvent } from "src/lib/types.js";
     import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
@@ -12,6 +13,8 @@
         resetTwilightStyleRippleIntensity,
         setTwilightStyleSize,
         setTwilightStyleRippleIntensity,
+        setTwilightStylePosition,
+        resetTwilightStylePosition,
     } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
 
     const handleDataChange = (
@@ -68,6 +71,40 @@
                     title="Reset Twilight config size to default"
                     aria-label="Reset Twilight config size to default"
                     onclick={resetTwilightStyleSize}
+                >
+                    Reset
+                </button>
+            </div>
+        </fieldset>
+
+        <fieldset class="TwilightConfig__Item">
+            <legend>
+                <h4 class="TwilightConfig__ItemTitle">Position</h4>
+            </legend>
+            <StyleConfigItemSlider
+                domId="TwilightConfigPosition"
+                label="Twilight position config"
+                min={0}
+                max={TWILIGHT_CONFIG_POSITION_MAX_VALUE}
+                step={1}
+                value={twilightStyleConfig.val.position}
+                shouldHideLabel={true}
+                changeHandler={(e) => {
+                    handleDataChange(
+                        e,
+                        setTwilightStylePosition,
+                        "position",
+                        0,
+                        TWILIGHT_CONFIG_POSITION_MAX_VALUE
+                    );
+                }}
+            />
+            <div class="TwilightConfig__ActionsContainer">
+                <button
+                    class="TwilightConfig__ResetBtn TertBtn"
+                    title="Reset Twilight config position to default"
+                    aria-label="Reset Twilight config position to default"
+                    onclick={resetTwilightStylePosition}
                 >
                     Reset
                 </button>
