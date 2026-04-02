@@ -12,6 +12,7 @@
         SWATCH_CONFIG_MAX_VALUE,
         SWATCH_CONFIG_MIN_VALUE,
         TWILIGHT_CONFIG_SIZE_MAX_VALUE,
+        TWILIGHT_CONFIG_POSITION_MAX_VALUE,
         TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
         PIE_MAN_CONFIG_SIZE_MAX_VALUE,
         PIE_MAN_CONFIG_ANGLE_MAX_VALUE,
@@ -64,6 +65,7 @@
     } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
     import {
         setTwilightStyleSize,
+        setTwilightStylePosition,
         setTwilightStyleRippleIntensity,
     } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
     import {
@@ -283,6 +285,12 @@
         minVal: 0,
         maxVal: TWILIGHT_CONFIG_SIZE_MAX_VALUE,
         stateSetterFunc: setTwilightStyleSize,
+    });
+    tryParseNumericConfig({
+        dataKey: "twilightPosition",
+        minVal: 0,
+        maxVal: TWILIGHT_CONFIG_POSITION_MAX_VALUE,
+        stateSetterFunc: setTwilightStylePosition,
     });
     tryParseNumericConfig({
         dataKey: "twilightRippleIntensity",

@@ -117,6 +117,10 @@
                     twilightStyleConfig.val.size.toString()
                 );
                 url.searchParams.append(
+                    "twilightPosition",
+                    twilightStyleConfig.val.position.toString()
+                );
+                url.searchParams.append(
                     "twilightRippleIntensity",
                     twilightStyleConfig.val.rippleIntensity.toString()
                 );

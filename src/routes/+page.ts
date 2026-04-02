@@ -34,6 +34,7 @@ export const load = ({ url }): WallGenQueryProps => {
 
     // Twilight config
     const twilightSize = url.searchParams.get("twilightSize");
+    const twilightPosition = url.searchParams.get("twilightPosition");
     const twilightRippleIntensity = url.searchParams.get(
         "twilightRippleIntensity"
     );
@@ -70,6 +71,7 @@ export const load = ({ url }): WallGenQueryProps => {
         popArtSquarePositionY,
 
         twilightSize,
+        twilightPosition,
         twilightRippleIntensity,
 
         pieManSize,
