@@ -44,52 +44,16 @@ requires adding a button block + a new `{:else if}` branch.
 
 ### Tasks
 
-- [ ] Create `src/lib/styleRegistry.ts`
-  - Define and export `WALLPAPER_STYLES` array:
-    ```ts
-    export const WALLPAPER_STYLES: {
-        style: WallpaperStyle;
-        label: string;
-        image: string;
-    }[] = [
-        { style: WallpaperStyle.SOLID,          label: "Solid Colour",   image: "/styleImages/style-solid.png" },
-        { style: WallpaperStyle.GRADIENT,        label: "Gradient",       image: "/styleImages/style-gradient.png" },
-        { style: WallpaperStyle.POP_ART_SQUARE,  label: "Pop Art Square", image: "/styleImages/style-popart.png" },
-        { style: WallpaperStyle.HORIZON,         label: "Horizon",        image: "/styleImages/style-horizon.png" },
-        { style: WallpaperStyle.PALETTE,         label: "Colour Palette", image: "/styleImages/style-palette.png" },
-        { style: WallpaperStyle.COLOUR_SWATCH,   label: "Colour Swatch",  image: "/styleImages/style-swatch.png" },
-        { style: WallpaperStyle.TWILIGHT,        label: "Twilight",       image: "/styleImages/style-twilight.png" },
-        { style: WallpaperStyle.PIE_MAN,         label: "Pie-Man",        image: "/styleImages/style-pieman.png" },
-    ];
-    ```
+- [x] Create `src/lib/styleButtonList.ts`
+  - Define a `WallpaperStyleButtonProps` type and export `WALLPAPER_STYLES` array
 
-- [ ] In `src/routes/StyleConfigContainer.svelte` — replace the button list:
-  - Import `WALLPAPER_STYLES` from `src/lib/styleRegistry.js`
-  - Import `isActiveStyle` from Part 1 (or `wallGenStyle` directly if Part 1 not done yet)
+- [x] In `src/routes/StyleConfigContainer.svelte` — replace the button list:
+  - Import `WALLPAPER_STYLES` from `src/lib/styleButtonList.js`
   - Replace the 8 `<button>` blocks with a single `{#each WALLPAPER_STYLES as item}` block
-  - The button inside uses `item.style`, `item.label`, `item.image` and `isActiveStyle(item.style)`
-  - Remove the 8 now-unused predicate imports (if Part 1 not done separately)
 
-- [ ] In `src/routes/StyleConfigContainer.svelte` — replace the `{#if}` chain:
-  - Import all `StyleConfig*.svelte` components (same as now)
-  - Define a `configComponents` map:
-    ```ts
-    const configComponents: Partial<Record<WallpaperStyle, Component>> = {
-        [WallpaperStyle.GRADIENT]:      StyleConfigGradient,
-        [WallpaperStyle.COLOUR_SWATCH]: StyleConfigColourSwatch,
-        [WallpaperStyle.PALETTE]:       StyleConfigPalette,
-        [WallpaperStyle.HORIZON]:       StyleConfigHorizon,
-        [WallpaperStyle.POP_ART_SQUARE]: StyleConfigColourPopArtSquare,
-        [WallpaperStyle.TWILIGHT]:      StyleConfigTwilight,
-        [WallpaperStyle.PIE_MAN]:       StyleConfigPieMan,
-        // SOLID omitted — no config panel
-    };
-    ```
-  - Replace the `{#if}...{/if}` section with:
-    ```svelte
-    <svelte:component this={configComponents[wallGenStyle.val] ?? null} />
-    ```
-  - After this, adding a new style's config panel = 1 import + 1 map entry
+- [x] In `src/routes/StyleConfigContainer.svelte` — replace the `{#if}` chain:
+  - Define a `configComponents: Partial<Record<WallpaperStyle, Component>>` map
+  - Replace the `{#if}...{/if}` section with `<svelte:component this={configComponents[wallGenStyle.val] ?? null} />`
 
 ---
 
