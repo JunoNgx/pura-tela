@@ -179,7 +179,7 @@
         background-color: rgba(var(--colBlackRgb), 0.5);
     }
 
-    .PaletteListItem__Name {
+    .ColourListItem__Name {
         color: var(--colWhite);
         display: -webkit-box;
         -webkit-line-clamp: 3;
