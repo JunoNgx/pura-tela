@@ -61,7 +61,7 @@
         <input
             class="StyleConfigItem__Input"
             class:StyleConfigItem__Input--HasError={inputError}
-            id={domId}
+            id={`${domId}-input`}
             type="number"
             {min}
             {max}
@@ -74,12 +74,12 @@
     </div>
 
     <div class="StyleConfigItem__SliderContainer">
-        <label class="VisuallyHidden" for={`${domId}-input`}>
+        <label class="VisuallyHidden" for={`${domId}-slider`}>
             {`${label} as slider`}
         </label>
         <input
             class="StyleConfigItem__Slider"
-            id="gradientAngleSlider"
+            id={`${domId}-slider`}
             type="range"
             {min}
             {max}
