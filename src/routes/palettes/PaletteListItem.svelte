@@ -66,7 +66,7 @@
     </div>
     <div class="PaletteListItem__Footer">
         <div class="PaletteListItem__Name">
-            <div class="ColourListItem__Title">
+            <div class="PaletteListItem__Title">
                 {#if hasBeenCopied}
                     Copied
                 {:else}

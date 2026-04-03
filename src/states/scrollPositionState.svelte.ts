@@ -1,18 +1,5 @@
-import type { ScrollPositionState } from "src/lib/types.js";
+import { createState } from "src/states/createState.svelte.js";
 
-const createGalleryScrollPositionState = (): ScrollPositionState => {
-    let scrollingPosition = $state(0);
-
-    return {
-        get val() {
-            return scrollingPosition;
-        },
-        set: (newVal: number) => {
-            scrollingPosition = newVal;
-        },
-    };
-};
-
-export const colourGalleryScrollPos = createGalleryScrollPositionState();
-export const paletteGalleryScrollPos = createGalleryScrollPositionState();
-export const sizeGalleryScrollPos = createGalleryScrollPositionState();
+export const colourGalleryScrollPos = createState(0);
+export const paletteGalleryScrollPos = createState(0);
+export const sizeGalleryScrollPos = createState(0);

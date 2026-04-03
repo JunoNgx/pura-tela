@@ -30,7 +30,7 @@ const isPopArtSquareConfigValid = (data: any) => {
     if (
         !isValueWithinRange(
             data.positionX,
-            POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
+            POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
             POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE
         )
     ) {
@@ -40,7 +40,7 @@ const isPopArtSquareConfigValid = (data: any) => {
     if (
         !isValueWithinRange(
             data.positionY,
-            POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
+            POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
             POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE
         )
     ) {

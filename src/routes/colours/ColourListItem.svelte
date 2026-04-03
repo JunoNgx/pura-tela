@@ -78,7 +78,7 @@
         style={`background-color: #${colourItem.hexCode};`}
     >
         <div class="ColourListItem__TitleContainer">
-            <span class="PaletteListItem__Name">
+            <span class="ColourListItem__Name">
                 {colourItem.name}
             </span>
             {#if colourItem.isUserCreated}

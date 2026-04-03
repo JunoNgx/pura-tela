@@ -153,7 +153,7 @@
 
     <div class="PaletteGenerator__ActionsContainerUpper">
         <button
-            class="ColourInputContainer__AddBtn IconButtonWithLabel"
+            class="PaletteGenerator__AddBtn IconButtonWithLabel"
             disabled={palGenColours.val.length >= MAX_COLOUR_COUNT}
             onclick={addColour}
             title={"Add colour"}

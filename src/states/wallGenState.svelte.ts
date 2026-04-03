@@ -1,6 +1,7 @@
 import {
     createColState,
     createLocalStorageSyncedState,
+    isEnumValueValid,
 } from "src/states/stateUtils.svelte.js";
 import {
     WallpaperStyle,
@@ -10,7 +11,13 @@ import {
 } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
-import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
+import {
+    MAX_COLOUR_COUNT,
+    MAX_HEIGHT,
+    MAX_WIDTH,
+    MIN_HEIGHT,
+    MIN_WIDTH,
+} from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
 import { colourSwatchStyleConfig } from "./wallGenStyleConfigColourSwatchState.svelte.js";
@@ -84,37 +91,6 @@ export const setWallGenColoursAtIndex = (index: number, newValue: string) => {
     tempArr[index].colour = newValue;
     wallGenColours.set(tempArr);
 };
-/**
- * This pulls the colour at the target index, and adds another random colour to
- * the end, to maintain the amount of `wallGenColours`.
- *
- * Also unused.
- * @param index The target index
- */
-export const retractWallGenColoursAtIndex = (index: number) => {
-    const befPortion = wallGenColours.val.slice(0, index);
-    const aftPortion = wallGenColours.val.slice(index + 1);
-    const newRandomisedColour = {
-        id: generateId(),
-        colour: getRandomHexCode(),
-    };
-    wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
-};
-
-// export const retractWallGenColoursById = (id: number) => {
-//     const targetIndex = wallGenColours.val.findIndex(colourObj => colourObj.id === id);
-//     if (targetIndex === -1) {
-//         throw new Error("Cannot find target colour for retracting in Wallpaper Generator");
-//     }
-
-//     const befPortion = wallGenColours.val.slice(0, targetIndex);
-//     const aftPortion = wallGenColours.val.slice(targetIndex + 1);
-//     const newRandomisedColour = {
-//         id: generateId(),
-//         colour: getRandomHexCode(),
-//     };
-//     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
-// };
 
 /**
  * Move the new colours onto WallGen, which might not completely fill up all colours
@@ -154,42 +130,13 @@ export const tryParseFromStringToWallGen = (inputStr: string) => {
     wallGenColours.set([...newValue]);
 };
 
-// export const moveWallGenColourItemUpAtIndex = (index: number) => {
-//     if (index <= 0) {
-//         throw new Error("Already at the first position");
-//     }
-
-//     const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index - 1);
-//     passSomeColourObjectsToWallpaperGenerator(newValue);
-// };
-
-// export const moveWallGenColourItemDownAtIndex = (index: number) => {
-//     if (index >= getWallGenColourInUseCount() - 1) {
-//         throw new Error("Already at the last position");
-//     }
-
-//     const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index + 1);
-//     passSomeColourObjectsToWallpaperGenerator(newValue);
-// };
-
 /**
  * Wallpaper mode data
  */
-export const isWallGenStyleValid = (data: any) => {
-    for (const key in WallpaperStyle) {
-        const value = WallpaperStyle[key as keyof typeof WallpaperStyle];
-        if (data === value) {
-            return true;
-        }
-    }
-
-    return false;
-};
-
 export const wallGenStyle = createLocalStorageSyncedState({
     key: "wallpaperStyle",
     defaultValue: WallpaperStyle.POP_ART_SQUARE,
-    validationFunc: isWallGenStyleValid,
+    validationFunc: (data) => isEnumValueValid(data, WallpaperStyle),
 }) as State<WallpaperStyle>;
 
 export const isSelectedStyle = (style: WallpaperStyle) =>
@@ -350,11 +297,11 @@ const isWallGenSizeValid = (data: any) => {
     }
 
     try {
-        if (data.width <= 0 || data.width > MAX_WIDTH) {
+        if (data.width < MIN_WIDTH || data.width > MAX_WIDTH) {
             return false;
         }
 
-        if (data.height <= 0 || data.height > MAX_HEIGHT) {
+        if (data.height < MIN_HEIGHT || data.height > MAX_HEIGHT) {
             return false;
         }
 

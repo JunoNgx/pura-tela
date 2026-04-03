@@ -21,12 +21,6 @@ export type PalGenColObj = ColObj & {
     isLocked: boolean;
 };
 
-// TODO: comment out
-export type PalGenItem = {
-    colour: string;
-    isLocked: boolean;
-};
-
 export type PaletteItem = {
     name: string;
     colours: string[];
@@ -167,9 +161,4 @@ export type ShareItem = {
     shareText: string;
     shareTitle: string;
     isContentPlainText?: boolean;
-};
-
-export type ScrollPositionState = {
-    get val(): number;
-    set: (newVal: number) => void;
 };

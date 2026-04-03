@@ -1,9 +1,9 @@
 import { beforeNavigate, afterNavigate } from "$app/navigation";
-import type { ScrollPositionState } from "./types.js";
+import type { State } from "./types.js";
 
 export const createScrollPositionManager = (
     routePath: string,
-    scrollPositionStore: ScrollPositionState
+    scrollPositionStore: State<number>
 ) => {
     beforeNavigate(({ from }) => {
         if (from?.url.pathname !== routePath) return;

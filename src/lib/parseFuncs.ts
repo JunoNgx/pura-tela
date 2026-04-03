@@ -1,4 +1,4 @@
-import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
+import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH, MIN_HEIGHT, MIN_WIDTH } from "src/lib/constants.js";
 import {
     isArrayOfHexCodesValid,
     isValueWithinRange,
@@ -12,8 +12,8 @@ export const tryParseSize = (
         const width = parseInt(widthStr as string);
         const height = parseInt(heightStr as string);
 
-        const isWidthValid = 1 < width && width < MAX_WIDTH;
-        const isHeightValid = 1 < height && height < MAX_HEIGHT;
+        const isWidthValid = MIN_WIDTH <= width && width <= MAX_WIDTH;
+        const isHeightValid = MIN_HEIGHT <= height && height <= MAX_HEIGHT;
 
         const isValid = isWidthValid && isHeightValid;
 

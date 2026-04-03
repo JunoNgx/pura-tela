@@ -18,22 +18,4 @@ const generateSizeGallery = (rawOptions: rawParseSizeOptionItem[]) => {
     }));
 };
 
-const isSizeGalleryValid = (data: any) => {
-    if (data === null || data === undefined || !sizeGallery) {
-        return false;
-    }
-
-    try {
-        parseInt(data);
-
-        if (data < 0 || data > sizeGallery.length - 1) {
-            return false;
-        }
-
-        return true;
-    } catch (err) {
-        return false;
-    }
-};
-
 export const sizeGallery = generateSizeGallery(defaultSizeGallery);

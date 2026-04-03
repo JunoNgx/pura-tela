@@ -44,16 +44,16 @@
         onclick={handleReloadFactoryColours}
     >
         <MaterialSymbolsDeviceReset />
-        <span>Reset gallery</span>
+        <span>Reset factory colours</span>
     </button>
     <button
         class="ResetButton IconButtonWithLabel"
-        title="Delete everything and reset palette gallery to default original state"
-        aria-label="Delete everything and reset palette gallery to default original state"
+        title="Delete everything and reset colour gallery to default original state"
+        aria-label="Delete everything and reset colour gallery to default original state"
         onclick={handleResetGallery}
     >
         <MaterialSymbolsDeviceReset />
-        Reset gallery
+        Reset data
     </button>
 </div>
 
