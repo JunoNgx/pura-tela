@@ -21,12 +21,6 @@ export type PalGenColObj = ColObj & {
     isLocked: boolean;
 };
 
-// TODO: comment out
-export type PalGenItem = {
-    colour: string;
-    isLocked: boolean;
-};
-
 export type PaletteItem = {
     name: string;
     colours: string[];
