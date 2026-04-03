@@ -171,12 +171,12 @@ const deriveValueFromScale = ({
     minScaleValue = 0,
     maxScaleValue,
 }: deriveValueFromScaleProps): number => {
-    const valueDiff = minValue + (maxValue - minValue);
-    const scaleDiff = maxScaleValue - minScaleValue;
-    // TODO: rename this variable; need to find a better term
-    const scaledScaleValue = scaleValue / scaleDiff;
-    const derivedValue = valueDiff * scaledScaleValue;
-
+    // TODO: find better variable names for this function
+    const diffRatio = (scaleValue - minScaleValue)
+        / (maxScaleValue - minScaleValue);
+    const valueDiff = maxValue - minValue;
+    const derivedValue = minValue + valueDiff * diffRatio;
+    
     return derivedValue;
 };
 
