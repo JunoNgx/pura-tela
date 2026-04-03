@@ -31,15 +31,8 @@
                 step={1}
                 value={twilightStyleConfig.val.size}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setTwilightStyleSize,
-                        "size",
-                        0,
-                        TWILIGHT_CONFIG_SIZE_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setTwilightStyleSize)}
             />
         </StyleConfigFieldset>
 
@@ -55,15 +48,8 @@
                 step={1}
                 value={twilightStyleConfig.val.position}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setTwilightStylePosition,
-                        "position",
-                        0,
-                        TWILIGHT_CONFIG_POSITION_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setTwilightStylePosition)}
             />
         </StyleConfigFieldset>
 
@@ -79,15 +65,8 @@
                 step={1}
                 value={twilightStyleConfig.val.rippleIntensity}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setTwilightStyleRippleIntensity,
-                        "ripple intensity",
-                        0,
-                        TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setTwilightStyleRippleIntensity)}
             />
         </StyleConfigFieldset>
     </div>

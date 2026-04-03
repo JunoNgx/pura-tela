@@ -1,12 +1,12 @@
 <script lang="ts">
+    import StyleConfigFieldset from "src/components/StyleConfigFieldset.svelte";
+    import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
     import {
         POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
         POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
         POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
         POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
     } from "src/lib/constants.js";
-    import StyleConfigFieldset from "src/components/StyleConfigFieldset.svelte";
-    import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
     import { handleSliderChange } from "src/lib/styleConfigUtils.js";
     import {
         popArtSquareStyleConfig,
@@ -37,15 +37,8 @@
                 max={POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE}
                 step={1}
                 value={popArtSquareStyleConfig.val.size}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setpopArtSquareStyleSize,
-                        "size",
-                        POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
-                        POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setpopArtSquareStyleSize)}
             />
             <StyleConfigItemSlider
                 domId="PopArtSquarePositionX"
@@ -54,15 +47,8 @@
                 max={POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE}
                 step={5}
                 value={popArtSquareStyleConfig.val.positionX}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setPopArtSquareStylePositionX,
-                        "position X",
-                        POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
-                        POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setPopArtSquareStylePositionX)}
             />
             <StyleConfigItemSlider
                 domId="PopArtSquarePositionY"
@@ -71,15 +57,8 @@
                 max={POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE}
                 step={5}
                 value={popArtSquareStyleConfig.val.positionY}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setPopArtSquareStylePositionY,
-                        "position Y",
-                        POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
-                        POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setPopArtSquareStylePositionY)}
             />
         </div>
     </StyleConfigFieldset>

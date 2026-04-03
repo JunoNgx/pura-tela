@@ -45,15 +45,8 @@
                 step={1}
                 value={horizonStyleConfig.val.size}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setHorizonStyleSize,
-                        "size",
-                        0,
-                        HORIZON_CONFIG_SIZE_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setHorizonStyleSize)}
             />
         </StyleConfigFieldset>
 
@@ -69,15 +62,8 @@
                 step={5}
                 value={horizonStyleConfig.val.position}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setHorizonStylePosition,
-                        "position",
-                        0,
-                        HORIZON_CONFIG_POSITION_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setHorizonStylePosition)}
             />
         </StyleConfigFieldset>
     </div>

@@ -32,15 +32,8 @@
                 value={paletteStyleConfig.val.angleInDeg}
                 unit="°"
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setPaletteStyleAngle,
-                        "angle",
-                        0,
-                        PALETTE_CONFIG_ANGLE_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setPaletteStyleAngle)}
             />
         </StyleConfigFieldset>
 
@@ -53,15 +46,8 @@
                 step={1}
                 value={paletteStyleConfig.val.size}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setPaletteStyleSize,
-                        "size",
-                        0,
-                        PALETTE_CONFIG_SIZE_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setPaletteStyleSize)}
             />
         </StyleConfigFieldset>
 
@@ -77,15 +63,8 @@
                 step={5}
                 value={paletteStyleConfig.val.position}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setPaletteStylePosition,
-                        "position",
-                        0,
-                        PALETTE_CONFIG_POSITION_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setPaletteStylePosition)}
             />
         </StyleConfigFieldset>
     </div>

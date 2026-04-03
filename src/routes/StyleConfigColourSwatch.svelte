@@ -1,9 +1,5 @@
 <script lang="ts">
     import {
-        SWATCH_CONFIG_MAX_VALUE,
-        SWATCH_CONFIG_MIN_VALUE,
-    } from "src/lib/constants.js";
-    import {
         ColourSwatchStyleDirection,
         ColourSwatchStyleItemShape,
         type MouseInputEvent,
@@ -12,6 +8,10 @@
     import RadioCheckbox from "src/components/RadioCheckbox.svelte";
     import StyleConfigFieldset from "src/components/StyleConfigFieldset.svelte";
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
+    import {
+        SWATCH_CONFIG_MAX_VALUE,
+        SWATCH_CONFIG_MIN_VALUE,
+    } from "src/lib/constants.js";
     import { handleSliderChange } from "src/lib/styleConfigUtils.js";
 
     import {
@@ -114,15 +114,8 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.positionX}
-                    changeHandler={(e) => {
-                        handleSliderChange(
-                            e,
-                            setColourSwatchStylePositionX,
-                            "position X",
-                            SWATCH_CONFIG_MIN_VALUE,
-                            SWATCH_CONFIG_MAX_VALUE
-                        );
-                    }}
+                    changeHandler={(e) =>
+                        handleSliderChange(e, setColourSwatchStylePositionX)}
                 />
                 <StyleConfigItemSlider
                     domId="SwatchPosY"
@@ -131,15 +124,8 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.positionY}
-                    changeHandler={(e) => {
-                        handleSliderChange(
-                            e,
-                            setColourSwatchStylePositionY,
-                            "position Y",
-                            SWATCH_CONFIG_MIN_VALUE,
-                            SWATCH_CONFIG_MAX_VALUE
-                        );
-                    }}
+                    changeHandler={(e) =>
+                        handleSliderChange(e, setColourSwatchStylePositionY)}
                 />
             </div>
         </StyleConfigFieldset>
@@ -215,15 +201,8 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.itemSize}
-                    changeHandler={(e) => {
-                        handleSliderChange(
-                            e,
-                            setColourSwatchStyleItemSize,
-                            "item size",
-                            SWATCH_CONFIG_MIN_VALUE,
-                            SWATCH_CONFIG_MAX_VALUE
-                        );
-                    }}
+                    changeHandler={(e) =>
+                        handleSliderChange(e, setColourSwatchStyleItemSize)}
                 />
 
                 <StyleConfigItemSlider
@@ -233,15 +212,8 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.itemSpacing}
-                    changeHandler={(e) => {
-                        handleSliderChange(
-                            e,
-                            setColourSwatchStyleItemSpacing,
-                            "item spacing",
-                            SWATCH_CONFIG_MIN_VALUE,
-                            SWATCH_CONFIG_MAX_VALUE
-                        );
-                    }}
+                    changeHandler={(e) =>
+                        handleSliderChange(e, setColourSwatchStyleItemSpacing)}
                 />
             </div>
         </StyleConfigFieldset>

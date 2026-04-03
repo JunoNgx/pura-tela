@@ -28,15 +28,7 @@
                 step={1}
                 value={pieManStyleConfig.val.size}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setPieManStyleSize,
-                        "size",
-                        0,
-                        PIE_MAN_CONFIG_SIZE_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) => handleSliderChange(e, setPieManStyleSize)}
             />
         </StyleConfigFieldset>
 
@@ -49,15 +41,8 @@
                 step={45}
                 value={pieManStyleConfig.val.angle}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleSliderChange(
-                        e,
-                        setPieManStyleAngle,
-                        "angle",
-                        0,
-                        PIE_MAN_CONFIG_ANGLE_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setPieManStyleAngle)}
             />
         </StyleConfigFieldset>
     </div>
