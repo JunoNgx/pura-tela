@@ -599,17 +599,21 @@ export const renderForHorizonStyle = ({
 
     const minFgBlockSize = shorterSide * 0.25;
     const maxFgBlockSize = shorterSide;
-    const varianceFgBlockSize =
-        ((maxFgBlockSize - minFgBlockSize) * config.horizon.size)
-        / HORIZON_CONFIG_SIZE_MAX_VALUE;
-    const fgBlockSize = minFgBlockSize + varianceFgBlockSize;
+    const fgBlockSize = deriveValueFromScale({
+        minValue: minFgBlockSize,
+        maxValue: maxFgBlockSize,
+        scaleValue: config.horizon.size,
+        maxScaleValue: HORIZON_CONFIG_SIZE_MAX_VALUE
+    });
 
     const minYPos = fgBlockSize / 2;
     const maxYPos = size.height - fgBlockSize / 2;
-    const varianceYPos =
-        ((maxYPos - minYPos) * config.horizon.position)
-        / HORIZON_CONFIG_POSITION_MAX_VALUE;
-    const yPos = minYPos + varianceYPos;
+    const yPos = deriveValueFromScale({
+        minValue: minYPos,
+        maxValue: maxYPos,
+        scaleValue: config.horizon.position,
+        maxScaleValue: HORIZON_CONFIG_POSITION_MAX_VALUE
+    });
 
     // Background upper half
     ctx.fillStyle = colours[0];
