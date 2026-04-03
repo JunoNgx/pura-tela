@@ -192,37 +192,7 @@ export const wallGenStyle = createLocalStorageSyncedState({
     validationFunc: isWallGenStyleValid,
 }) as State<WallpaperStyle>;
 
-export const isSolidStyle = () => {
-    return wallGenStyle.val === WallpaperStyle.SOLID;
-};
-
-export const isGradientStyle = () => {
-    return wallGenStyle.val === WallpaperStyle.GRADIENT;
-};
-
-export const isPopArtSquareStyle = () => {
-    return wallGenStyle.val === WallpaperStyle.POP_ART_SQUARE;
-};
-
-export const isColourSwatchStyle = () => {
-    return wallGenStyle.val === WallpaperStyle.COLOUR_SWATCH;
-};
-
-export const isPaletteStyle = () => {
-    return wallGenStyle.val === WallpaperStyle.PALETTE;
-};
-
-export const isHorizonStyle = () => {
-    return wallGenStyle.val === WallpaperStyle.HORIZON;
-};
-
-export const isTwilightStyle = () => {
-    return wallGenStyle.val === WallpaperStyle.TWILIGHT;
-};
-
-export const isPieManStyle = () => {
-    return wallGenStyle.val === WallpaperStyle.PIE_MAN;
-};
+export const isSelectedStyle = (style: WallpaperStyle) => wallGenStyle.val === style;
 
 const currStyleInfo = $derived.by(() => {
     switch (wallGenStyle.val) {

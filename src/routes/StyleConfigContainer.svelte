@@ -1,15 +1,8 @@
 <script lang="ts">
     import { WallpaperStyle, type MouseButtonEvent } from "src/lib/types.js";
     import {
-        isGradientStyle,
-        isColourSwatchStyle,
-        isPopArtSquareStyle,
-        isSolidStyle,
-        isPaletteStyle,
+        isSelectedStyle,
         wallGenStyle,
-        isHorizonStyle,
-        isTwilightStyle,
-        isPieManStyle,
         tryResetWallGenColourInUseCount,
     } from "src/states/wallGenState.svelte.js";
     import StyleConfigColourSwatch from "./StyleConfigColourSwatch.svelte";
@@ -37,7 +30,7 @@
         <div class="StyleSelector__Container">
             <button
                 class="StyleSelectButton"
-                class:StyleSelectButton--IsSelected={isSolidStyle()}
+                class:StyleSelectButton--IsSelected={isSelectedStyle(WallpaperStyle.SOLID)}
                 aria-label="Select wallpaper style Solid"
                 title="Select wallpaper style Solid"
                 data-value={WallpaperStyle.SOLID}
@@ -53,7 +46,7 @@
 
             <button
                 class="StyleSelectButton"
-                class:StyleSelectButton--IsSelected={isGradientStyle()}
+                class:StyleSelectButton--IsSelected={isSelectedStyle(WallpaperStyle.GRADIENT)}
                 aria-label="Select wallpaper style Gradient"
                 title="Select wallpaper style Gradient"
                 data-value={WallpaperStyle.GRADIENT}
@@ -69,7 +62,7 @@
 
             <button
                 class="StyleSelectButton"
-                class:StyleSelectButton--IsSelected={isPopArtSquareStyle()}
+                class:StyleSelectButton--IsSelected={isSelectedStyle(WallpaperStyle.POP_ART_SQUARE)}
                 aria-label="Select wallpaper style Pop Art Square"
                 title="Select wallpaper style Pop Art Square"
                 data-value={WallpaperStyle.POP_ART_SQUARE}
@@ -85,7 +78,7 @@
 
             <button
                 class="StyleSelectButton"
-                class:StyleSelectButton--IsSelected={isHorizonStyle()}
+                class:StyleSelectButton--IsSelected={isSelectedStyle(WallpaperStyle.HORIZON)}
                 aria-label="Select wallpaper style Horizon"
                 title="Select wallpaper style Horizon"
                 data-value={WallpaperStyle.HORIZON}
@@ -101,7 +94,7 @@
 
             <button
                 class="StyleSelectButton"
-                class:StyleSelectButton--IsSelected={isPaletteStyle()}
+                class:StyleSelectButton--IsSelected={isSelectedStyle(WallpaperStyle.PALETTE)}
                 aria-label="Select wallpaper style Colour Palette"
                 title="Select wallpaper style Colour Palette"
                 data-value={WallpaperStyle.PALETTE}
@@ -117,7 +110,7 @@
 
             <button
                 class="StyleSelectButton"
-                class:StyleSelectButton--IsSelected={isColourSwatchStyle()}
+                class:StyleSelectButton--IsSelected={isSelectedStyle(WallpaperStyle.COLOUR_SWATCH)}
                 aria-label="Select wallpaper style Colour Swatch"
                 title="Select wallpaper style Colour Swatch"
                 data-value={WallpaperStyle.COLOUR_SWATCH}
@@ -133,7 +126,7 @@
 
             <button
                 class="StyleSelectButton"
-                class:StyleSelectButton--IsSelected={isTwilightStyle()}
+                class:StyleSelectButton--IsSelected={isSelectedStyle(WallpaperStyle.TWILIGHT)}
                 aria-label="Select wallpaper style Twilight"
                 title="Select wallpaper style Twilight"
                 data-value={WallpaperStyle.TWILIGHT}
@@ -149,7 +142,7 @@
 
             <button
                 class="StyleSelectButton"
-                class:StyleSelectButton--IsSelected={isPieManStyle()}
+                class:StyleSelectButton--IsSelected={isSelectedStyle(WallpaperStyle.PIE_MAN)}
                 aria-label="Select wallpaper style Pie-Man"
                 title="Select wallpaper style Pie-Man"
                 data-value={WallpaperStyle.PIE_MAN}
@@ -167,19 +160,19 @@
 </section>
 
 <section class="StyleConfig">
-    {#if isColourSwatchStyle()}
+    {#if isSelectedStyle(WallpaperStyle.COLOUR_SWATCH)}
         <StyleConfigColourSwatch />
-    {:else if isGradientStyle()}
+    {:else if isSelectedStyle(WallpaperStyle.GRADIENT)}
         <StyleConfigGradient />
-    {:else if isPaletteStyle()}
+    {:else if isSelectedStyle(WallpaperStyle.PALETTE)}
         <StyleConfigPalette />
-    {:else if isHorizonStyle()}
+    {:else if isSelectedStyle(WallpaperStyle.HORIZON)}
         <StyleConfigHorizon />
-    {:else if isPopArtSquareStyle()}
+    {:else if isSelectedStyle(WallpaperStyle.POP_ART_SQUARE)}
         <StyleConfigColourPopArtSquare />
-    {:else if isTwilightStyle()}
+    {:else if isSelectedStyle(WallpaperStyle.TWILIGHT)}
         <StyleConfigTwilight />
-    {:else if isPieManStyle()}
+    {:else if isSelectedStyle(WallpaperStyle.PIE_MAN)}
         <StyleConfigPieMan />
     {/if}
 </section>
