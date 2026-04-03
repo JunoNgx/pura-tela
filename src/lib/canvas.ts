@@ -538,8 +538,7 @@ export const renderForPaletteStyle = ({
     const firstColour = mainColours.shift();
     const lastColour = mainColours.pop();
 
-    const longerSide = size.width >= size.height ? size.width : size.height;
-    const shorterSide = size.width >= size.height ? size.height : size.width;
+    const { shorterSide, longerSide } = getRelativeSides(size);
 
     const maxBaseSize = longerSide / colours.length;
     const minBaseSize = shorterSide / colours.length;
@@ -600,9 +599,7 @@ export const renderForHorizonStyle = ({
         throw new Error("Insufficient colours for Horizon rendering");
     }
 
-    // TODO: abstract getShortAndLongerSides(width, height);
-    const longerSide = size.width >= size.height ? size.width : size.height;
-    const shorterSide = size.width >= size.height ? size.height : size.width;
+    const { shorterSide } = getRelativeSides(size);
 
     const minFgBlockSize = shorterSide * 0.25;
     const maxFgBlockSize = shorterSide;
@@ -695,9 +692,9 @@ const renderForTwilightStyle = ({
     ctx.fillRect(0, horizonY, size.width, size.height - horizonY);
 
     // Sun radius scaled by size config
-    const smallerSide = Math.min(size.width, size.height);
-    const minSunRadius = smallerSide * 0.05;
-    const maxSunRadius = smallerSide * 0.5;
+    const { shorterSide } = getRelativeSides(size);
+    const minSunRadius = shorterSide * 0.05;
+    const maxSunRadius = shorterSide * 0.5;
     const sunRadius = deriveValueFromScale({
         minValue: minSunRadius,
         maxValue: maxSunRadius,
