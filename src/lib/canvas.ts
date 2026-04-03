@@ -180,6 +180,13 @@ const deriveValueFromScale = ({
     return derivedValue;
 };
 
+const getRelativeSides = (size: SizeData) => {
+    const longerSide = size.width >= size.height ? size.width : size.height;
+    const shorterSide = size.width >= size.height ? size.height : size.width;
+
+    return { longerSide, shorterSide };
+};
+
 // ---- Core logic
 
 export const renderCanvas = ({
