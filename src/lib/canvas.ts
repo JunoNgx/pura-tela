@@ -9,6 +9,7 @@ import {
     TWILIGHT_CONFIG_POSITION_MAX_VALUE,
     PALETTE_CONFIG_POSITION_MAX_VALUE,
     PALETTE_CONFIG_SIZE_MAX_VALUE,
+    SWATCH_CONFIG_MAX_VALUE,
 } from "./constants.js";
 import {
     ColourSwatchStyleDirection,
@@ -437,15 +438,21 @@ const renderForColourSwatchStyle = ({
     const baseItemSize = priAxisLength / itemCount;
     const minItemSize = baseItemSize / 7;
     const maxItemSize = baseItemSize * 1.5;
-    const itemSize =
-        minItemSize
-        + ((maxItemSize - minItemSize) * config.colourSwatch.itemSize) / 100;
+    const itemSize = deriveValueFromScale({
+        minValue: minItemSize,
+        maxValue: maxItemSize,
+        scaleValue: config.colourSwatch.itemSize,
+        maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+    });
 
     const minSpacing = -itemSize / 4;
     const maxSpacing = itemSize / 4;
-    const spacing =
-        minSpacing
-        + ((maxSpacing - minSpacing) * config.colourSwatch.itemSpacing) / 100;
+    const spacing = deriveValueFromScale({
+        minValue: minSpacing,
+        maxValue: maxSpacing,
+        scaleValue: config.colourSwatch.itemSpacing,
+        maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+    });
 
     const swatchSlotSize = itemSize + spacing * 2;
     const midPostionRenderOffset = swatchSlotSize / 2;
@@ -458,13 +465,20 @@ const renderForColourSwatchStyle = ({
     const drawHorizontally = () => {
         const minCommonY = crossAxisSize / 2;
         const maxCommonY = size.height - crossAxisSize / 2;
-        const commonY =
-            minCommonY
-            + ((maxCommonY - minCommonY) * config.colourSwatch.positionY) / 100;
+        const commonY = deriveValueFromScale({
+            minValue: minCommonY,
+            maxValue: maxCommonY,
+            scaleValue: config.colourSwatch.positionY,
+            maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+        });
 
         const maxStartingXOffset = size.width - fullSwatchSize;
-        const startingXOffset =
-            (maxStartingXOffset * config.colourSwatch.positionX) / 100;
+        const startingXOffset = deriveValueFromScale({
+            minValue: 0,
+            maxValue: maxStartingXOffset,
+            scaleValue: config.colourSwatch.positionX,
+            maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+        });
 
         for (let i = 0; i < mainColours.length; i++) {
             const x =
@@ -486,13 +500,20 @@ const renderForColourSwatchStyle = ({
     const drawVertically = () => {
         const minCommonX = crossAxisSize / 2;
         const maxCommonX = size.width - crossAxisSize / 2;
-        const commonX =
-            minCommonX
-            + ((maxCommonX - minCommonX) * config.colourSwatch.positionX) / 100;
+        const commonX = deriveValueFromScale({
+            minValue: minCommonX,
+            maxValue: maxCommonX,
+            scaleValue: config.colourSwatch.positionX,
+            maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+        });
 
         const maxStartingYOffset = size.height - fullSwatchSize;
-        const startingYOffset =
-            (maxStartingYOffset * config.colourSwatch.positionY) / 100;
+        const startingYOffset = deriveValueFromScale({
+            minValue: 0,
+            maxValue: maxStartingYOffset,
+            scaleValue: config.colourSwatch.positionY,
+            maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+        });
 
         for (let i = 0; i < mainColours.length; i++) {
             const y =
