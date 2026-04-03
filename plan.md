@@ -68,80 +68,22 @@ central files become loops.
 
 ### Tasks
 
-- [ ] Update `src/routes/+page.ts`:
-    - Instead of manually extracting each param, return `url.searchParams` directly
-      so downstream code can call `.get()` itself:
-        ```ts
-        export const load = ({ url }) => ({ searchParams: url.searchParams });
-        ```
-    - Remove the `WallGenQueryProps` return type annotation from this file
-    - Keep `WallGenQueryProps` in `types.ts` for now (may be unused after Part 3)
+- [x] Update `src/routes/+page.ts`:
+    - Return `url.searchParams` directly; removed `WallGenQueryProps` type annotation
+    - Removed `WallGenQueryProps` from `types.ts`
 
-- [ ] In each style state file that has URL config params, add two exports:
-      `appendToUrl(url: URL): void` and `parseFromSearchParams(params: URLSearchParams): void`
-    - [ ] `wallGenStyleConfigGradientState.svelte.ts`
-        - `appendToUrl`: append `gradientAngle`
-        - `parseFromSearchParams`: parse and call `setGradientStyleConfigAngle`
+- [x] In each style state file, add `appendToUrl(url: URL): void` and `parseFromSearchParams(params: URLSearchParams): void`
+    - [x] `wallGenStyleConfigGradientState.svelte.ts`
+    - [x] `wallGenStyleConfigColourSwatchState.svelte.ts`
+    - [x] `wallGenStyleConfigPaletteState.svelte.ts`
+    - [x] `wallGenStyleConfigHorizonState.svelte.ts`
+    - [x] `wallGenStyleConfigPopArtSquareState.svelte.ts`
+    - [x] `wallGenStyleConfigTwilightState.svelte.ts`
+    - [x] `wallGenStyleConfigPieManState.svelte.ts`
 
-    - [ ] `wallGenStyleConfigColourSwatchState.svelte.ts`
-        - `appendToUrl`: append `swatchPosX`, `swatchPosY`, `swatchDirection`,
-          `swatchItemShape`, `swatchItemSize`, `swatchItemSpacing`
-        - `parseFromSearchParams`: parse and call each setter (include enum validation
-          for direction and itemShape — move that logic here from `+page.svelte`)
+- [x] Update `src/routes/Studio.svelte` — replaced switch with `urlAppenders` map + `urlAppenders[wallGenStyle.val]?.(url)`
 
-    - [ ] `wallGenStyleConfigPaletteState.svelte.ts`
-        - `appendToUrl`: append `paletteAngle`, `paletteSize`, `palettePosition`
-        - `parseFromSearchParams`: parse and call each setter
-
-    - [ ] `wallGenStyleConfigHorizonState.svelte.ts`
-        - `appendToUrl`: append `horizonShowCore`, `horizonSize`, `horizonPosition`
-        - `parseFromSearchParams`: parse and call each setter (include boolean parsing
-          for `horizonShowCore` — move that logic here from `+page.svelte`)
-
-    - [ ] `wallGenStyleConfigPopArtSquareState.svelte.ts`
-        - `appendToUrl`: append `popArtSquareSize`, `popArtSquarePositionX`, `popArtSquarePositionY`
-        - `parseFromSearchParams`: parse and call each setter
-
-    - [ ] `wallGenStyleConfigTwilightState.svelte.ts`
-        - `appendToUrl`: append `twilightSize`, `twilightPosition`, `twilightRippleIntensity`
-        - `parseFromSearchParams`: parse and call each setter
-
-    - [ ] `wallGenStyleConfigPieManState.svelte.ts`
-        - `appendToUrl`: append `pieManSize`, `pieManAngle`
-        - `parseFromSearchParams`: parse and call each setter
-
-    - Note: Solid style has no config params — no changes needed to its state
-
-- [ ] Update `src/routes/Studio.svelte` — replace `computeShareableUrl()` switch:
-    - Import all `appendToUrl` functions from each style state file
-    - Define an `urlAppenders` map:
-        ```ts
-        const urlAppenders: Partial<Record<WallpaperStyle, (url: URL) => void>> = {
-            [WallpaperStyle.GRADIENT]:      appendToUrl as imported from gradient state,
-            // ... one entry per style with config
-        };
-        ```
-    - Replace the entire `switch` block with:
-        ```ts
-        urlAppenders[wallGenStyle.val]?.(url);
-        ```
-    - Remove the now-unused individual config state imports
-      (`gradientStyleConfig`, `paletteStyleConfig`, etc.)
-
-- [ ] Update `src/routes/+page.svelte` — replace all `tryParseNumericConfig` calls:
-    - Change `export let data: WallGenQueryProps` to `export let data: { searchParams: URLSearchParams }`
-    - Import all `parseFromSearchParams` functions from each style state file
-    - Replace the ~30 lines of parse calls with:
-        ```ts
-        const allParsers = [
-            parseFromSearchParams as imported from gradient state,
-            parseFromSearchParams as imported from swatch state,
-            // ... one per style with config
-        ];
-        allParsers.forEach(parse => parse(data.searchParams));
-        ```
-    - Remove all the now-unused constant and setter imports
-      (`PALETTE_CONFIG_ANGLE_MAX_VALUE`, `setPaletteStyleAngle`, etc.)
+- [x] Update `src/routes/+page.svelte` — replaced ~60 lines of parse calls with `allParsers.forEach(parse => parse(data.searchParams))`
 
 ---
 
