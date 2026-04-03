@@ -1,9 +1,8 @@
 <script lang="ts">
     import { tryParseColours, tryParseSize } from "src/lib/parseFuncs.js";
-    import { type WallpaperStyle } from "src/lib/types.js";
+    import { WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
     import {
-        isWallGenStyleValid,
         passSomeColourStringsToWallpaperGenerator,
         readjustWallGenColoursInUseCount,
         setWallGenColourInUseCount,
@@ -17,13 +16,14 @@
     import { parseFromSearchParams as parsePopArtSquare } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
     import { parseFromSearchParams as parseTwilight } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
     import { parseFromSearchParams as parsePieMan } from "src/states/wallGenStyleConfigPieManState.svelte.js";
+    import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
 
     export let data: { searchParams: URLSearchParams };
 
     const tryParseStyleFromQueryToWallGen = () => {
         const style = data.searchParams.get("style");
         if (!style) return;
-        if (isWallGenStyleValid(style)) {
+        if (isEnumValueValid(style as any, WallpaperStyle)) {
             wallGenStyle.set(style as WallpaperStyle);
         }
     };

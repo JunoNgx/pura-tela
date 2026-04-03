@@ -1,6 +1,7 @@
 import {
     createColState,
     createLocalStorageSyncedState,
+    isEnumValueValid,
 } from "src/states/stateUtils.svelte.js";
 import {
     WallpaperStyle,
@@ -10,7 +11,13 @@ import {
 } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
-import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH, MIN_HEIGHT, MIN_WIDTH } from "src/lib/constants.js";
+import {
+    MAX_COLOUR_COUNT,
+    MAX_HEIGHT,
+    MAX_WIDTH,
+    MIN_HEIGHT,
+    MIN_WIDTH,
+} from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
 import { colourSwatchStyleConfig } from "./wallGenStyleConfigColourSwatchState.svelte.js";
@@ -175,21 +182,10 @@ export const tryParseFromStringToWallGen = (inputStr: string) => {
 /**
  * Wallpaper mode data
  */
-export const isWallGenStyleValid = (data: any) => {
-    for (const key in WallpaperStyle) {
-        const value = WallpaperStyle[key as keyof typeof WallpaperStyle];
-        if (data === value) {
-            return true;
-        }
-    }
-
-    return false;
-};
-
 export const wallGenStyle = createLocalStorageSyncedState({
     key: "wallpaperStyle",
     defaultValue: WallpaperStyle.POP_ART_SQUARE,
-    validationFunc: isWallGenStyleValid,
+    validationFunc: (data) => isEnumValueValid(data, WallpaperStyle),
 }) as State<WallpaperStyle>;
 
 export const isSelectedStyle = (style: WallpaperStyle) =>
