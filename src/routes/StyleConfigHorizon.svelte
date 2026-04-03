@@ -58,7 +58,7 @@
                 domId="HorizonConfigPosition"
                 label="Horizon position config"
                 min={0}
-                max={100}
+                max={HORIZON_CONFIG_POSITION_MAX_VALUE}
                 step={5}
                 value={horizonStyleConfig.val.position}
                 shouldHideLabel={true}

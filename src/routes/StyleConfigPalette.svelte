@@ -59,7 +59,7 @@
                 domId="PalettePosition"
                 label="Palette position config"
                 min={0}
-                max={100}
+                max={PALETTE_CONFIG_POSITION_MAX_VALUE}
                 step={5}
                 value={paletteStyleConfig.val.position}
                 shouldHideLabel={true}
