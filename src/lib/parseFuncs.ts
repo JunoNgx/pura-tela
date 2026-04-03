@@ -1,4 +1,10 @@
-import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH, MIN_HEIGHT, MIN_WIDTH } from "src/lib/constants.js";
+import {
+    MAX_COLOUR_COUNT,
+    MAX_HEIGHT,
+    MAX_WIDTH,
+    MIN_HEIGHT,
+    MIN_WIDTH,
+} from "src/lib/constants.js";
 import {
     isArrayOfHexCodesValid,
     isValueWithinRange,

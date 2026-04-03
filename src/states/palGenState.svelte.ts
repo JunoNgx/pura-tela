@@ -74,7 +74,9 @@ export const togglePalGenColoursLockAtIndex = (index: number) => {
 
 export const addToPalGenColours = () => {
     if (palGenColours.val.length >= MAX_COLOUR_COUNT) {
-        throw new Error(`Cannot have more than ${MAX_COLOUR_COUNT} colours in the palette`);
+        throw new Error(
+            `Cannot have more than ${MAX_COLOUR_COUNT} colours in the palette`
+        );
     }
 
     const newColour = {

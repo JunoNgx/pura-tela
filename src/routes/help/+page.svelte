@@ -22,10 +22,10 @@
 
     <p>
         The <code>Wallpaper Style</code> is the most important setting here. This
-        defines the output of your wallpaper. This is represented in the preview
-        block. You can also enable text samples for to check for the best contrast
-        for your screen (which is only for checking, and will not be rendered in
-        the final image).
+        defines the output of your wallpaper. This is represented in the preview block.
+        You can also enable text samples for to check for the best contrast for your
+        screen (which is only for checking, and will not be rendered in the final
+        image).
     </p>
 
     <h3>Colours</h3>
@@ -83,10 +83,9 @@
     <ul>
         <li>
             <strong>Reload factory colours/palettes</strong> will restore deleted
-            factory items, while fully retain any custom colours or palettes you
-            have created yourself. This is also a useful way to check and add new
-            pre-made items which might have been added via the silent software update
-            process.
+            factory items, while fully retain any custom colours or palettes you have
+            created yourself. This is also a useful way to check and add new pre-made
+            items which might have been added via the silent software update process.
         </li>
         <li>
             <strong>Reset gallery</strong>, on the other hand, will fully erase
@@ -101,8 +100,8 @@
         The output size (width and height) of <strong
             >Wallpaper Generator</strong
         >
-        can be adjusted at the bottom of the panel. While these can be fine tune
-        as you want or need, the
+        can be adjusted at the bottom of the panel. While these can be fine tune as
+        you want or need, the
         <strong>Size Gallery</strong> provides a list of common presets to get you
         started.
     </p>
@@ -122,8 +121,8 @@
     <p>
         Once satisfied with the settings, tapping on the <code>Download</code> button
         will create the ouput wallpaper image and should be downloaded to your device.
-        The image file will be in the PNG format and named according to the mode
-        and colours you used.
+        The image file will be in the PNG format and named according to the mode and
+        colours you used.
     </p>
 
     <p>
