@@ -1,4 +1,5 @@
 <script lang="ts">
+    import StyleConfigFieldset from "src/components/StyleConfigFieldset.svelte";
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
     import {
         TWILIGHT_CONFIG_SIZE_MAX_VALUE,
@@ -21,10 +22,7 @@
     <h3 class="TwilightConfig__Title">Twilight Configurations</h3>
 
     <div class="TwilightConfig__ItemsContainer">
-        <fieldset class="TwilightConfig__Item">
-            <legend>
-                <h4 class="TwilightConfig__ItemTitle">Size</h4>
-            </legend>
+        <StyleConfigFieldset title="Size" onReset={resetTwilightStyleSize}>
             <StyleConfigItemSlider
                 domId="TwilightConfigSize"
                 label="Twilight size config"
@@ -43,22 +41,12 @@
                     );
                 }}
             />
-            <div class="TwilightConfig__ActionsContainer">
-                <button
-                    class="TwilightConfig__ResetBtn TertBtn"
-                    title="Reset Twilight config size to default"
-                    aria-label="Reset Twilight config size to default"
-                    onclick={resetTwilightStyleSize}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
+        </StyleConfigFieldset>
 
-        <fieldset class="TwilightConfig__Item">
-            <legend>
-                <h4 class="TwilightConfig__ItemTitle">Position</h4>
-            </legend>
+        <StyleConfigFieldset
+            title="Position"
+            onReset={resetTwilightStylePosition}
+        >
             <StyleConfigItemSlider
                 domId="TwilightConfigPosition"
                 label="Twilight position config"
@@ -77,22 +65,12 @@
                     );
                 }}
             />
-            <div class="TwilightConfig__ActionsContainer">
-                <button
-                    class="TwilightConfig__ResetBtn TertBtn"
-                    title="Reset Twilight config position to default"
-                    aria-label="Reset Twilight config position to default"
-                    onclick={resetTwilightStylePosition}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
+        </StyleConfigFieldset>
 
-        <fieldset class="TwilightConfig__Item">
-            <legend>
-                <h4 class="TwilightConfig__ItemTitle">Ripple Intensity</h4>
-            </legend>
+        <StyleConfigFieldset
+            title="Ripple Intensity"
+            onReset={resetTwilightStyleRippleIntensity}
+        >
             <StyleConfigItemSlider
                 domId="TwilightConfigRippleIntensity"
                 label="Twilight ripple intensity config"
@@ -111,17 +89,7 @@
                     );
                 }}
             />
-            <div class="TwilightConfig__ActionsContainer">
-                <button
-                    class="TwilightConfig__ResetBtn TertBtn"
-                    title="Reset Twilight config ripple intensity to default"
-                    aria-label="Reset Twilight config ripple intensity to default"
-                    onclick={resetTwilightStyleRippleIntensity}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
+        </StyleConfigFieldset>
     </div>
 </div>
 
@@ -139,20 +107,5 @@
         flex-direction: column;
         gap: 1rem;
         margin-top: 1rem;
-    }
-
-    .TwilightConfig__Item {
-        border: var(--lineWeight) solid var(--colPri);
-        padding: 0.5rem 1rem 1rem;
-    }
-
-    .TwilightConfig__ItemTitle {
-        text-transform: lowercase;
-        margin: 0.5rem 0 0.5rem;
-    }
-
-    .TwilightConfig__ActionsContainer {
-        display: flex;
-        justify-content: flex-end;
     }
 </style>

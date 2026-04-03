@@ -1,4 +1,5 @@
 <script lang="ts">
+    import StyleConfigFieldset from "src/components/StyleConfigFieldset.svelte";
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
     import {
         PALETTE_CONFIG_ANGLE_MAX_VALUE,
@@ -21,10 +22,7 @@
     <h3 class="PaletteConfig__Title">Palette Configurations</h3>
 
     <div class="PaletteConfig__ItemsContainer">
-        <fieldset class="PaletteConfig__Item">
-            <legend>
-                <h4 class="PaletteConfig__ItemTitle">Angle</h4>
-            </legend>
+        <StyleConfigFieldset title="Angle" onReset={resetPaletteStyleAngle}>
             <StyleConfigItemSlider
                 domId="PaletteAngle"
                 label="Palette angle config"
@@ -44,22 +42,9 @@
                     );
                 }}
             />
-            <div class="PaletteConfig__ActionsContainer">
-                <button
-                    class="PaletteConfig__ResetAngleButton TertBtn"
-                    title="Reset Palette config angle to default"
-                    aria-label="Reset Palette config angle to default"
-                    onclick={resetPaletteStyleAngle}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
+        </StyleConfigFieldset>
 
-        <fieldset class="PaletteConfig__Item">
-            <legend>
-                <h4 class="PaletteConfig__ItemTitle">Size</h4>
-            </legend>
+        <StyleConfigFieldset title="Size" onReset={resetPaletteStyleSize}>
             <StyleConfigItemSlider
                 domId="PaletteSize"
                 label="Palette size config"
@@ -78,22 +63,12 @@
                     );
                 }}
             />
-            <div class="PaletteConfig__ActionsContainer">
-                <button
-                    class="PaletteConfig__ResetSizeButton TertBtn"
-                    title="Reset Palette config size to default"
-                    aria-label="Reset Palette config size to default"
-                    onclick={resetPaletteStyleSize}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
+        </StyleConfigFieldset>
 
-        <fieldset class="PaletteConfig__Item">
-            <legend>
-                <h4 class="PaletteConfig__ItemTitle">Position</h4>
-            </legend>
+        <StyleConfigFieldset
+            title="Position"
+            onReset={resetPaletteStylePosition}
+        >
             <StyleConfigItemSlider
                 domId="PalettePosition"
                 label="Palette position config"
@@ -112,17 +87,7 @@
                     );
                 }}
             />
-            <div class="PaletteConfig__ActionsContainer">
-                <button
-                    class="PaletteConfig__ResetPositionButton TertBtn"
-                    title="Reset Palette config position to default"
-                    aria-label="Reset Palette config position to default"
-                    onclick={resetPaletteStylePosition}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
+        </StyleConfigFieldset>
     </div>
 </div>
 
@@ -135,18 +100,10 @@
         margin-bottom: 0.5rem;
     }
 
-    .PaletteConfig__Item {
-        border: var(--lineWeight) solid var(--colPri);
-        padding: 0.5rem 1rem 1rem;
-    }
-
-    .PaletteConfig__ItemTitle {
-        text-transform: lowercase;
-        margin: 0.5rem 0 0.5rem;
-    }
-
-    .PaletteConfig__ActionsContainer {
+    .PaletteConfig__ItemsContainer {
         display: flex;
-        justify-content: flex-end;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
     }
 </style>
