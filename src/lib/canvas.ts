@@ -7,6 +7,8 @@ import {
     TWILIGHT_CONFIG_SIZE_MAX_VALUE,
     PIE_MAN_CONFIG_SIZE_MAX_VALUE,
     TWILIGHT_CONFIG_POSITION_MAX_VALUE,
+    PALETTE_CONFIG_POSITION_MAX_VALUE,
+    PALETTE_CONFIG_SIZE_MAX_VALUE,
 } from "./constants.js";
 import {
     ColourSwatchStyleDirection,
@@ -542,15 +544,22 @@ export const renderForPaletteStyle = ({
 
     const maxBaseSize = longerSide / colours.length;
     const minBaseSize = shorterSide / colours.length;
-    const baseSize =
-        minBaseSize + ((maxBaseSize - minBaseSize) * config.palette.size) / 10;
+    const baseSize = deriveValueFromScale({
+        minValue: minBaseSize,
+        maxValue: maxBaseSize,
+        scaleValue: config.palette.size,
+        maxScaleValue: PALETTE_CONFIG_SIZE_MAX_VALUE,
+    });
 
     const leftmostPosition = -longerSide / 2;
     const minStartingPos = leftmostPosition + maxBaseSize;
     const maxStartingPos = 0;
-    const startingPos =
-        minStartingPos
-        + ((maxStartingPos - minStartingPos) * config.palette.position) / 100;
+    const startingPos = deriveValueFromScale({
+        minValue: minStartingPos,
+        maxValue: maxStartingPos,
+        scaleValue: config.palette.position,
+        maxScaleValue: PALETTE_CONFIG_POSITION_MAX_VALUE,
+    });
 
     const mainColoursWidth = baseSize * mainColours.length;
     const mainColoursCenterpoint = startingPos + mainColoursWidth / 2;
