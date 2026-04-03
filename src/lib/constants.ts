@@ -1,7 +1,9 @@
 export const MIN_COLOUR_COUNT_PALETTE = 2;
 export const MAX_COLOUR_COUNT = 7;
 export const MIN_DIMENSION = 1;
+export const MIN_WIDTH = 1;
 export const MAX_WIDTH = 7680;
+export const MIN_HEIGHT = 1;
 export const MAX_HEIGHT = 4320;
 export const HAS_COPY_TIMEOUT_DURATION_MS = 1000;
 export const SWATCH_CONFIG_MIN_VALUE = 0;

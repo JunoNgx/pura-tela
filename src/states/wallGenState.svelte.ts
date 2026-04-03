@@ -10,7 +10,7 @@ import {
 } from "src/lib/types.js";
 import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
-import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH } from "src/lib/constants.js";
+import { MAX_COLOUR_COUNT, MAX_HEIGHT, MAX_WIDTH, MIN_HEIGHT, MIN_WIDTH } from "src/lib/constants.js";
 import { generateId } from "./idGenState.svelte.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
 import { colourSwatchStyleConfig } from "./wallGenStyleConfigColourSwatchState.svelte.js";
@@ -350,11 +350,11 @@ const isWallGenSizeValid = (data: any) => {
     }
 
     try {
-        if (data.width <= 0 || data.width > MAX_WIDTH) {
+        if (data.width < MIN_WIDTH || data.width > MAX_WIDTH) {
             return false;
         }
 
-        if (data.height <= 0 || data.height > MAX_HEIGHT) {
+        if (data.height < MIN_HEIGHT || data.height > MAX_HEIGHT) {
             return false;
         }
 
