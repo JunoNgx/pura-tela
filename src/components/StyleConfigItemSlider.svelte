@@ -29,6 +29,10 @@
 
     let inputError = $state<string | null>(null);
 
+    $effect(() => {
+        if (value >= min && value <= max) inputError = null;
+    });
+
     const handleNumberInput = (e: InputEvent) => {
         const parsed = parseInt(e.currentTarget.value);
         if (isNaN(parsed) || parsed < min || parsed > max) {
