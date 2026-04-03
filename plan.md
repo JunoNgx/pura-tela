@@ -103,32 +103,13 @@ Current variants:
 
 ### Tasks
 
-- [ ] Create `src/lib/styleConfigUtils.ts`
-    - Export `handleSliderChange(e: InputEvent, setter: (v: number) => void, label: string, min: number, max: number): void`
-    - Copy the body from `StyleConfigPieMan` (the cleanest existing version)
+- [x] Create `src/lib/styleConfigUtils.ts` — exports `handleSliderChange(e, setter, label, min, max)`
 
-- [ ] Update `StyleConfigPieMan.svelte`
-    - Import `handleSliderChange` from `src/lib/styleConfigUtils.js`
-    - Remove local `handleDataChange` function and `InputEvent` import
-    - Update both `changeHandler` props to call `handleSliderChange`
+- [x] Update `StyleConfigPieMan.svelte`, `StyleConfigHorizon.svelte`, `StyleConfigTwilight.svelte`, `StyleConfigPalette.svelte` — removed local handler; import and call `handleSliderChange`
 
-- [ ] Update `StyleConfigHorizon.svelte` — same changes as PieMan
+- [x] Update `StyleConfigColourPopArtSquare.svelte` — removed `handleNumericDataChange` and its type; flattened 3 call sites to positional
 
-- [ ] Update `StyleConfigTwilight.svelte` — same changes as PieMan
-
-- [ ] Update `StyleConfigPalette.svelte` — same changes as PieMan
-
-- [ ] Update `StyleConfigColourPopArtSquare.svelte`
-    - Import `handleSliderChange` from `src/lib/styleConfigUtils.js`
-    - Remove local `handleNumericDataChange` function and its type definition
-    - Remove `InputEvent` import
-    - Update three `changeHandler` props — flatten from object params to positional
-
-- [ ] Update `StyleConfigColourSwatch.svelte`
-    - Import `handleSliderChange` from `src/lib/styleConfigUtils.js`
-    - Remove local `handleDataChange` function
-    - Update four `changeHandler` props — pass `SWATCH_CONFIG_MIN_VALUE` and
-      `SWATCH_CONFIG_MAX_VALUE` explicitly (currently captured from closure)
+- [x] Update `StyleConfigColourSwatch.svelte` — removed `handleDataChange`; updated 4 call sites to pass min/max explicitly
 
 ---
 
