@@ -667,9 +667,10 @@ const renderForTwilightStyle = ({
 
     const minHorizonY = size.height * 0;
     const maxHorizonY = size.height * 1;
-    const horizonY = minHorizonY
+    const horizonY =
+        minHorizonY
         + ((maxHorizonY - minHorizonY) * config.twilight.position)
-            /TWILIGHT_CONFIG_POSITION_MAX_VALUE;
+            / TWILIGHT_CONFIG_POSITION_MAX_VALUE;
     const sunCenterX = size.width / 2;
 
     // Draw sky

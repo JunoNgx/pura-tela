@@ -1,12 +1,12 @@
 <script lang="ts">
+    import StyleConfigFieldset from "src/components/StyleConfigFieldset.svelte";
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
     import {
         TWILIGHT_CONFIG_SIZE_MAX_VALUE,
         TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
         TWILIGHT_CONFIG_POSITION_MAX_VALUE,
     } from "src/lib/constants.js";
-    import type { InputEvent } from "src/lib/types.js";
-    import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+    import { handleSliderChange } from "src/lib/styleConfigUtils.js";
     import {
         twilightStyleConfig,
         resetTwilightStyleSize,
@@ -16,37 +16,13 @@
         setTwilightStylePosition,
         resetTwilightStylePosition,
     } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
-
-    const handleDataChange = (
-        e: InputEvent,
-        setFunc: (value: number) => void,
-        valueLabel: string,
-        minVal: number,
-        maxVal: number
-    ) => {
-        const newValue = e.currentTarget.value;
-
-        try {
-            const parsedValue = parseInt(newValue);
-            if (!isValueWithinRange(parsedValue, minVal, maxVal))
-                throw new Error(`Invalid ${valueLabel} value`);
-
-            setFunc(parsedValue);
-        } catch (err) {
-            console.warn(err);
-            console.error(`Invalid ${valueLabel} value`);
-        }
-    };
 </script>
 
 <div class="TwilightConfig">
     <h3 class="TwilightConfig__Title">Twilight Configurations</h3>
 
     <div class="TwilightConfig__ItemsContainer">
-        <fieldset class="TwilightConfig__Item">
-            <legend>
-                <h4 class="TwilightConfig__ItemTitle">Size</h4>
-            </legend>
+        <StyleConfigFieldset title="Size" onReset={resetTwilightStyleSize}>
             <StyleConfigItemSlider
                 domId="TwilightConfigSize"
                 label="Twilight size config"
@@ -55,32 +31,15 @@
                 step={1}
                 value={twilightStyleConfig.val.size}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleDataChange(
-                        e,
-                        setTwilightStyleSize,
-                        "size",
-                        0,
-                        TWILIGHT_CONFIG_SIZE_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setTwilightStyleSize)}
             />
-            <div class="TwilightConfig__ActionsContainer">
-                <button
-                    class="TwilightConfig__ResetBtn TertBtn"
-                    title="Reset Twilight config size to default"
-                    aria-label="Reset Twilight config size to default"
-                    onclick={resetTwilightStyleSize}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
+        </StyleConfigFieldset>
 
-        <fieldset class="TwilightConfig__Item">
-            <legend>
-                <h4 class="TwilightConfig__ItemTitle">Position</h4>
-            </legend>
+        <StyleConfigFieldset
+            title="Position"
+            onReset={resetTwilightStylePosition}
+        >
             <StyleConfigItemSlider
                 domId="TwilightConfigPosition"
                 label="Twilight position config"
@@ -89,32 +48,15 @@
                 step={1}
                 value={twilightStyleConfig.val.position}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleDataChange(
-                        e,
-                        setTwilightStylePosition,
-                        "position",
-                        0,
-                        TWILIGHT_CONFIG_POSITION_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setTwilightStylePosition)}
             />
-            <div class="TwilightConfig__ActionsContainer">
-                <button
-                    class="TwilightConfig__ResetBtn TertBtn"
-                    title="Reset Twilight config position to default"
-                    aria-label="Reset Twilight config position to default"
-                    onclick={resetTwilightStylePosition}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
+        </StyleConfigFieldset>
 
-        <fieldset class="TwilightConfig__Item">
-            <legend>
-                <h4 class="TwilightConfig__ItemTitle">Ripple Intensity</h4>
-            </legend>
+        <StyleConfigFieldset
+            title="Ripple Intensity"
+            onReset={resetTwilightStyleRippleIntensity}
+        >
             <StyleConfigItemSlider
                 domId="TwilightConfigRippleIntensity"
                 label="Twilight ripple intensity config"
@@ -123,27 +65,10 @@
                 step={1}
                 value={twilightStyleConfig.val.rippleIntensity}
                 shouldHideLabel={true}
-                changeHandler={(e) => {
-                    handleDataChange(
-                        e,
-                        setTwilightStyleRippleIntensity,
-                        "ripple intensity",
-                        0,
-                        TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
-                    );
-                }}
+                changeHandler={(e) =>
+                    handleSliderChange(e, setTwilightStyleRippleIntensity)}
             />
-            <div class="TwilightConfig__ActionsContainer">
-                <button
-                    class="TwilightConfig__ResetBtn TertBtn"
-                    title="Reset Twilight config ripple intensity to default"
-                    aria-label="Reset Twilight config ripple intensity to default"
-                    onclick={resetTwilightStyleRippleIntensity}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
+        </StyleConfigFieldset>
     </div>
 </div>
 
@@ -161,20 +86,5 @@
         flex-direction: column;
         gap: 1rem;
         margin-top: 1rem;
-    }
-
-    .TwilightConfig__Item {
-        border: var(--lineWeight) solid var(--colPri);
-        padding: 0.5rem 1rem 1rem;
-    }
-
-    .TwilightConfig__ItemTitle {
-        text-transform: lowercase;
-        margin: 0.5rem 0 0.5rem;
-    }
-
-    .TwilightConfig__ActionsContainer {
-        display: flex;
-        justify-content: flex-end;
     }
 </style>

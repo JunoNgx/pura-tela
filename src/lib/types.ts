@@ -78,41 +78,6 @@ export type WallpaperStyleInfo = {
     defaultColourCount: number;
 };
 
-export type WallGenQueryProps = {
-    style: string | null;
-    colours: string | null;
-    width: string | null;
-    height: string | null;
-
-    gradientAngle: string | null;
-
-    swatchPosX: string | null;
-    swatchPosY: string | null;
-    swatchDirection: string | null;
-    swatchItemShape: string | null;
-    swatchItemSize: string | null;
-    swatchItemSpacing: string | null;
-
-    paletteAngle: string | null;
-    paletteSize: string | null;
-    palettePosition: string | null;
-
-    horizonShowCore: string | null;
-    horizonSize: string | null;
-    horizonPosition: string | null;
-
-    popArtSquareSize: string | null;
-    popArtSquarePositionX: string | null;
-    popArtSquarePositionY: string | null;
-
-    twilightSize: string | null;
-    twilightPosition: string | null;
-    twilightRippleIntensity: string | null;
-
-    pieManSize: string | null;
-    pieManAngle: string | null;
-};
-
 export type PalGenQueryProps = {
     paletteQueryStr: string | null;
 };

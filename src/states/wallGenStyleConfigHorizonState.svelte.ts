@@ -8,6 +8,10 @@ import {
     HORIZON_CONFIG_POSITION_MAX_VALUE,
     HORIZON_CONFIG_SIZE_MAX_VALUE,
 } from "src/lib/constants.js";
+import {
+    tryParseBooleanData,
+    tryParseNumericData,
+} from "src/lib/parseFuncs.js";
 
 const isHorizonConfigValid = (data: any) => {
     if (!data) return false;
@@ -75,4 +79,41 @@ export const setHorizonStylePosition = (newValue: number) => {
 
 export const resetHorizonStylePosition = () => {
     setHorizonStylePosition(horizonStyleConfigDefaultValue.position);
+};
+
+export const appendToUrl = (url: URL) => {
+    url.searchParams.append(
+        "horizonShowCore",
+        horizonStyleConfig.val.shouldShowCore.toString()
+    );
+    url.searchParams.append(
+        "horizonSize",
+        horizonStyleConfig.val.size.toString()
+    );
+    url.searchParams.append(
+        "horizonPosition",
+        horizonStyleConfig.val.position.toString()
+    );
+};
+
+export const parseFromSearchParams = (params: URLSearchParams) => {
+    const showCoreStr = params.get("horizonShowCore");
+    if (showCoreStr) {
+        const showCore = tryParseBooleanData(showCoreStr);
+        if (showCore !== null) setHorizonStyleShouldShowCore(showCore);
+    }
+
+    const size = tryParseNumericData(
+        params.get("horizonSize") ?? "",
+        0,
+        HORIZON_CONFIG_SIZE_MAX_VALUE
+    );
+    if (size !== null) setHorizonStyleSize(size);
+
+    const position = tryParseNumericData(
+        params.get("horizonPosition") ?? "",
+        0,
+        HORIZON_CONFIG_POSITION_MAX_VALUE
+    );
+    if (position !== null) setHorizonStylePosition(position);
 };

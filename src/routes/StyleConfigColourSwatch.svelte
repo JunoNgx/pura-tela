@@ -1,19 +1,19 @@
 <script lang="ts">
     import {
-        SWATCH_CONFIG_MAX_VALUE,
-        SWATCH_CONFIG_MIN_VALUE,
-    } from "src/lib/constants.js";
-    import {
         ColourSwatchStyleDirection,
         ColourSwatchStyleItemShape,
-        type InputEvent,
         type MouseInputEvent,
     } from "src/lib/types.js";
 
     import RadioCheckbox from "src/components/RadioCheckbox.svelte";
+    import StyleConfigFieldset from "src/components/StyleConfigFieldset.svelte";
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
+    import {
+        SWATCH_CONFIG_MAX_VALUE,
+        SWATCH_CONFIG_MIN_VALUE,
+    } from "src/lib/constants.js";
+    import { handleSliderChange } from "src/lib/styleConfigUtils.js";
 
-    import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
     import {
         colourSwatchStyleConfig,
         colourSwatchStyleConfigDefaultValue,
@@ -76,31 +76,6 @@
         setColourSwatchStyleItemShape(newValue);
     };
 
-    const handleDataChange = (
-        e: InputEvent,
-        setFunc: (value: number) => void,
-        valueLabel: string
-    ) => {
-        const newValue = e.currentTarget.value;
-
-        try {
-            const parsedValue = parseInt(newValue);
-            if (
-                !isValueWithinRange(
-                    parsedValue,
-                    SWATCH_CONFIG_MIN_VALUE,
-                    SWATCH_CONFIG_MAX_VALUE
-                )
-            )
-                throw new Error(`Invalid ${valueLabel} value`);
-
-            setFunc(parsedValue);
-        } catch (err) {
-            console.warn(err);
-            console.error(`Invalid ${valueLabel} value`);
-        }
-    };
-
     const resetPosition = () => {
         setColourSwatchStylePositionX(
             colourSwatchStyleConfigDefaultValue.positionX
@@ -130,10 +105,7 @@
     <h3 class="ColourSwatchConfig__Title">Colour Swatch Configurations</h3>
 
     <div class="ColourSwatchConfig__FieldsetsContainer">
-        <fieldset class="ColourSwatchConfig__Fieldset">
-            <legend>
-                <h4 class="ColourSwatchConfig__FieldsetLegend">Position</h4>
-            </legend>
+        <StyleConfigFieldset title="Position" onReset={resetPosition}>
             <div class="ColourSwatchConfig__FieldsetContent">
                 <StyleConfigItemSlider
                     domId="SwatchPosX"
@@ -142,13 +114,8 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.positionX}
-                    changeHandler={(e) => {
-                        handleDataChange(
-                            e,
-                            setColourSwatchStylePositionX,
-                            "position X"
-                        );
-                    }}
+                    changeHandler={(e) =>
+                        handleSliderChange(e, setColourSwatchStylePositionX)}
                 />
                 <StyleConfigItemSlider
                     domId="SwatchPosY"
@@ -157,35 +124,16 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.positionY}
-                    changeHandler={(e) => {
-                        handleDataChange(
-                            e,
-                            setColourSwatchStylePositionY,
-                            "position Y"
-                        );
-                    }}
+                    changeHandler={(e) =>
+                        handleSliderChange(e, setColourSwatchStylePositionY)}
                 />
             </div>
+        </StyleConfigFieldset>
 
-            <div class="ColourSwatchConfig__FieldsetButtonsContainer">
-                <button
-                    class="ColourSwatchConfig__ResetBtn TertBtn"
-                    title="Reset position to center"
-                    aria-label="Reset position to center"
-                    onclick={resetPosition}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
-
-        <fieldset class="ColourSwatchConfig__Fieldset">
-            <legend>
-                <h4 class="ColourSwatchConfig__FieldsetLegend">
-                    swatch item settings
-                </h4>
-            </legend>
-
+        <StyleConfigFieldset
+            title="swatch item settings"
+            onReset={resetItemSettings}
+        >
             <div class="ColourSwatchConfig__FieldsetContent">
                 <div
                     class="ColourSwatchConfig__RadiogroupItem"
@@ -253,13 +201,8 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.itemSize}
-                    changeHandler={(e) => {
-                        handleDataChange(
-                            e,
-                            setColourSwatchStyleItemSize,
-                            "position Y"
-                        );
-                    }}
+                    changeHandler={(e) =>
+                        handleSliderChange(e, setColourSwatchStyleItemSize)}
                 />
 
                 <StyleConfigItemSlider
@@ -269,27 +212,11 @@
                     max={SWATCH_CONFIG_MAX_VALUE}
                     step={5}
                     value={colourSwatchStyleConfig.val.itemSpacing}
-                    changeHandler={(e) => {
-                        handleDataChange(
-                            e,
-                            setColourSwatchStyleItemSpacing,
-                            "position Y"
-                        );
-                    }}
+                    changeHandler={(e) =>
+                        handleSliderChange(e, setColourSwatchStyleItemSpacing)}
                 />
             </div>
-
-            <div class="ColourSwatchConfig__FieldsetButtonsContainer">
-                <button
-                    class="ColourSwatchConfig__ResetBtn TertBtn"
-                    title="Reset item settings to default"
-                    aria-label="Reset item settings to default"
-                    onclick={resetItemSettings}
-                >
-                    Reset
-                </button>
-            </div>
-        </fieldset>
+        </StyleConfigFieldset>
     </div>
 </div>
 
@@ -302,26 +229,10 @@
         margin-bottom: 0.5rem;
     }
 
-    .ColourSwatchConfig__Fieldset {
-        border: var(--lineWeight) solid var(--colPri);
-        padding: 0.5rem 1rem 1rem;
-    }
-
-    .ColourSwatchConfig__FieldsetLegend {
-        text-transform: lowercase;
-        margin: 0.5rem 0 0.5rem;
-    }
-
     .ColourSwatchConfig__FieldsetContent {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-    }
-
-    .ColourSwatchConfig__FieldsetButtonsContainer {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 2rem;
     }
 
     .ColourSwatchConfig__RadiogroupItem,

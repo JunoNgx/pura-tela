@@ -1,36 +1,7 @@
 <script lang="ts">
-    import {
-        HORIZON_CONFIG_POSITION_MAX_VALUE,
-        HORIZON_CONFIG_SIZE_MAX_VALUE,
-        PALETTE_CONFIG_ANGLE_MAX_VALUE,
-        PALETTE_CONFIG_POSITION_MAX_VALUE,
-        PALETTE_CONFIG_SIZE_MAX_VALUE,
-        POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
-        POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
-        POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
-        POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
-        SWATCH_CONFIG_MAX_VALUE,
-        SWATCH_CONFIG_MIN_VALUE,
-        TWILIGHT_CONFIG_SIZE_MAX_VALUE,
-        TWILIGHT_CONFIG_POSITION_MAX_VALUE,
-        TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
-        PIE_MAN_CONFIG_SIZE_MAX_VALUE,
-        PIE_MAN_CONFIG_ANGLE_MAX_VALUE,
-    } from "src/lib/constants.js";
-    import {
-        tryParseBooleanData,
-        tryParseColours,
-        tryParseNumericData,
-        tryParseSize,
-    } from "src/lib/parseFuncs.js";
-    import {
-        ColourSwatchStyleDirection,
-        ColourSwatchStyleItemShape,
-        type WallGenQueryProps,
-        type WallpaperStyle,
-    } from "src/lib/types.js";
+    import { tryParseColours, tryParseSize } from "src/lib/parseFuncs.js";
+    import { type WallpaperStyle } from "src/lib/types.js";
     import Studio from "src/routes/Studio.svelte";
-    import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
     import {
         isWallGenStyleValid,
         passSomeColourStringsToWallpaperGenerator,
@@ -39,63 +10,30 @@
         setWallGenSizeFull,
         wallGenStyle,
     } from "src/states/wallGenState.svelte.js";
-    import {
-        setColourSwatchStyleDirection,
-        setColourSwatchStyleItemShape,
-        setColourSwatchStyleItemSize,
-        setColourSwatchStyleItemSpacing,
-        setColourSwatchStylePositionX,
-        setColourSwatchStylePositionY,
-    } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
-    import { setGradientStyleConfigAngle } from "src/states/wallGenStyleConfigGradientState.svelte.js";
-    import {
-        setHorizonStylePosition,
-        setHorizonStyleShouldShowCore,
-        setHorizonStyleSize,
-    } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
-    import {
-        setPaletteStyleAngle,
-        setPaletteStylePosition,
-        setPaletteStyleSize,
-    } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
-    import {
-        setPopArtSquareStylePositionX,
-        setPopArtSquareStylePositionY,
-        setpopArtSquareStyleSize,
-    } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
-    import {
-        setTwilightStyleSize,
-        setTwilightStylePosition,
-        setTwilightStyleRippleIntensity,
-    } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
-    import {
-        setPieManStyleSize,
-        setPieManStyleAngle,
-    } from "src/states/wallGenStyleConfigPieManState.svelte.js";
+    import { parseFromSearchParams as parseGradient } from "src/states/wallGenStyleConfigGradientState.svelte.js";
+    import { parseFromSearchParams as parseSwatch } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+    import { parseFromSearchParams as parsePalette } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+    import { parseFromSearchParams as parseHorizon } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
+    import { parseFromSearchParams as parsePopArtSquare } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
+    import { parseFromSearchParams as parseTwilight } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
+    import { parseFromSearchParams as parsePieMan } from "src/states/wallGenStyleConfigPieManState.svelte.js";
 
-    export let data: WallGenQueryProps;
+    export let data: { searchParams: URLSearchParams };
 
-    // General shared data
     const tryParseStyleFromQueryToWallGen = () => {
-        if (!data.style) {
-            return;
-        }
-
-        if (isWallGenStyleValid(data.style)) {
-            wallGenStyle.set(data.style as WallpaperStyle);
+        const style = data.searchParams.get("style");
+        if (!style) return;
+        if (isWallGenStyleValid(style)) {
+            wallGenStyle.set(style as WallpaperStyle);
         }
     };
 
     const tryParseColoursFromQueryToWallGen = () => {
-        if (!data.colours) {
-            return;
-        }
+        const colours = data.searchParams.get("colours");
+        if (!colours) return;
 
-        const coloursData = tryParseColours(data.colours);
-
-        if (!coloursData) {
-            return;
-        }
+        const coloursData = tryParseColours(colours);
+        if (!coloursData) return;
 
         passSomeColourStringsToWallpaperGenerator(coloursData);
         setWallGenColourInUseCount(coloursData.length);
@@ -103,15 +41,12 @@
     };
 
     const tryParseSizeFromQueryToWallGen = () => {
-        if (!data.width || !data.height) {
-            return;
-        }
+        const width = data.searchParams.get("width");
+        const height = data.searchParams.get("height");
+        if (!width || !height) return;
 
-        const sizeData = tryParseSize(data.width, data.height);
-
-        if (!sizeData) {
-            return;
-        }
+        const sizeData = tryParseSize(width, height);
+        if (!sizeData) return;
 
         setWallGenSizeFull(sizeData.width, sizeData.height);
     };
@@ -120,198 +55,16 @@
     tryParseColoursFromQueryToWallGen();
     tryParseSizeFromQueryToWallGen();
 
-    type tryParseNumericConfigOptions = {
-        dataKey: keyof WallGenQueryProps;
-        minVal: number;
-        maxVal: number;
-        stateSetterFunc: (newValue: number) => void;
-    };
-
-    const tryParseNumericConfig = ({
-        dataKey,
-        minVal,
-        maxVal,
-        stateSetterFunc,
-    }: tryParseNumericConfigOptions) => {
-        if (!data[dataKey]) return;
-        const value = tryParseNumericData(data[dataKey], minVal, maxVal);
-        if (!value) return;
-
-        stateSetterFunc(value);
-    };
-
-    type tryParseBooleanConfigOptions = {
-        dataKey: keyof WallGenQueryProps;
-        stateSetterFunc: (newValue: boolean) => void;
-    };
-
-    const tryParseBooleanConfig = ({
-        dataKey,
-        stateSetterFunc,
-    }: tryParseBooleanConfigOptions) => {
-        if (!data[dataKey]) return;
-        const value = tryParseBooleanData(data[dataKey]);
-        if (value === null) return;
-
-        stateSetterFunc(value);
-    };
-
-    // Gradient style
-    tryParseNumericConfig({
-        dataKey: "gradientAngle",
-        minVal: 0,
-        maxVal: 360,
-        stateSetterFunc: setGradientStyleConfigAngle,
-    });
-
-    // Swatch style
-    tryParseNumericConfig({
-        dataKey: "swatchPosX",
-        minVal: SWATCH_CONFIG_MIN_VALUE,
-        maxVal: SWATCH_CONFIG_MAX_VALUE,
-        stateSetterFunc: setColourSwatchStylePositionX,
-    });
-    tryParseNumericConfig({
-        dataKey: "swatchPosY",
-        minVal: SWATCH_CONFIG_MIN_VALUE,
-        maxVal: SWATCH_CONFIG_MAX_VALUE,
-        stateSetterFunc: setColourSwatchStylePositionY,
-    });
-    tryParseNumericConfig({
-        dataKey: "swatchItemSize",
-        minVal: SWATCH_CONFIG_MIN_VALUE,
-        maxVal: SWATCH_CONFIG_MAX_VALUE,
-        stateSetterFunc: setColourSwatchStyleItemSize,
-    });
-    tryParseNumericConfig({
-        dataKey: "swatchItemSpacing",
-        minVal: SWATCH_CONFIG_MIN_VALUE,
-        maxVal: SWATCH_CONFIG_MAX_VALUE,
-        stateSetterFunc: setColourSwatchStyleItemSpacing,
-    });
-    const tryParseSwatchDirection = () => {
-        if (!data.swatchDirection) return;
-        if (
-            !isEnumValueValid(
-                data.swatchDirection as any,
-                ColourSwatchStyleDirection
-            )
-        )
-            return;
-
-        setColourSwatchStyleDirection(
-            data.swatchDirection as ColourSwatchStyleDirection
-        );
-    };
-    const tryParseSwatchItemShape = () => {
-        if (!data.swatchItemShape) return;
-        if (
-            !isEnumValueValid(
-                data.swatchItemShape as any,
-                ColourSwatchStyleItemShape
-            )
-        )
-            return;
-
-        setColourSwatchStyleItemShape(
-            data.swatchItemShape as ColourSwatchStyleItemShape
-        );
-    };
-
-    tryParseSwatchDirection();
-    tryParseSwatchItemShape();
-
-    // Palette style
-    tryParseNumericConfig({
-        dataKey: "paletteAngle",
-        minVal: 0,
-        maxVal: PALETTE_CONFIG_ANGLE_MAX_VALUE,
-        stateSetterFunc: setPaletteStyleAngle,
-    });
-    tryParseNumericConfig({
-        dataKey: "paletteSize",
-        minVal: 0,
-        maxVal: PALETTE_CONFIG_SIZE_MAX_VALUE,
-        stateSetterFunc: setPaletteStyleSize,
-    });
-    tryParseNumericConfig({
-        dataKey: "palettePosition",
-        minVal: 0,
-        maxVal: PALETTE_CONFIG_POSITION_MAX_VALUE,
-        stateSetterFunc: setPaletteStylePosition,
-    });
-
-    // Horizon style
-    tryParseBooleanConfig({
-        dataKey: "horizonShowCore",
-        stateSetterFunc: setHorizonStyleShouldShowCore,
-    });
-    tryParseNumericConfig({
-        dataKey: "horizonSize",
-        minVal: 0,
-        maxVal: HORIZON_CONFIG_SIZE_MAX_VALUE,
-        stateSetterFunc: setHorizonStyleSize,
-    });
-    tryParseNumericConfig({
-        dataKey: "horizonPosition",
-        minVal: 0,
-        maxVal: HORIZON_CONFIG_POSITION_MAX_VALUE,
-        stateSetterFunc: setHorizonStylePosition,
-    });
-
-    // Pop art square style
-    tryParseNumericConfig({
-        dataKey: "popArtSquareSize",
-        minVal: POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
-        maxVal: POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
-        stateSetterFunc: setpopArtSquareStyleSize,
-    });
-    tryParseNumericConfig({
-        dataKey: "popArtSquarePositionX",
-        minVal: POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
-        maxVal: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
-        stateSetterFunc: setPopArtSquareStylePositionX,
-    });
-    tryParseNumericConfig({
-        dataKey: "popArtSquarePositionY",
-        minVal: POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
-        maxVal: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
-        stateSetterFunc: setPopArtSquareStylePositionY,
-    });
-
-    // Twilight style
-    tryParseNumericConfig({
-        dataKey: "twilightSize",
-        minVal: 0,
-        maxVal: TWILIGHT_CONFIG_SIZE_MAX_VALUE,
-        stateSetterFunc: setTwilightStyleSize,
-    });
-    tryParseNumericConfig({
-        dataKey: "twilightPosition",
-        minVal: 0,
-        maxVal: TWILIGHT_CONFIG_POSITION_MAX_VALUE,
-        stateSetterFunc: setTwilightStylePosition,
-    });
-    tryParseNumericConfig({
-        dataKey: "twilightRippleIntensity",
-        minVal: 0,
-        maxVal: TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
-        stateSetterFunc: setTwilightStyleRippleIntensity,
-    });
-
-    // Pie-man style
-    tryParseNumericConfig({
-        dataKey: "pieManSize",
-        minVal: 0,
-        maxVal: PIE_MAN_CONFIG_SIZE_MAX_VALUE,
-        stateSetterFunc: setPieManStyleSize,
-    });
-    tryParseNumericConfig({
-        dataKey: "pieManAngle",
-        minVal: 0,
-        maxVal: PIE_MAN_CONFIG_ANGLE_MAX_VALUE,
-        stateSetterFunc: setPieManStyleAngle,
-    });
+    const allParsers = [
+        parseGradient,
+        parseSwatch,
+        parsePalette,
+        parseHorizon,
+        parsePopArtSquare,
+        parseTwilight,
+        parsePieMan,
+    ];
+    allParsers.forEach((parse) => parse(data.searchParams));
 </script>
 
 <h2 class="VisuallyHidden">Generate wallpaper</h2>

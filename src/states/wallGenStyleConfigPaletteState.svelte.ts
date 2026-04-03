@@ -8,6 +8,7 @@ import {
     PALETTE_CONFIG_POSITION_MAX_VALUE,
     PALETTE_CONFIG_SIZE_MAX_VALUE,
 } from "src/lib/constants.js";
+import { tryParseNumericData } from "src/lib/parseFuncs.js";
 import { isPortraitScreen } from "./wallGenState.svelte.js";
 
 const isPaletteConfigValid = (data: any) => {
@@ -92,4 +93,42 @@ export const resetPaletteStylePosition = () => {
         : paletteStyleConfigLandscapeDefaultValue.position;
 
     setPaletteStylePosition(val);
+};
+
+export const appendToUrl = (url: URL) => {
+    url.searchParams.append(
+        "paletteAngle",
+        paletteStyleConfig.val.angleInDeg.toString()
+    );
+    url.searchParams.append(
+        "paletteSize",
+        paletteStyleConfig.val.size.toString()
+    );
+    url.searchParams.append(
+        "palettePosition",
+        paletteStyleConfig.val.position.toString()
+    );
+};
+
+export const parseFromSearchParams = (params: URLSearchParams) => {
+    const angle = tryParseNumericData(
+        params.get("paletteAngle") ?? "",
+        0,
+        PALETTE_CONFIG_ANGLE_MAX_VALUE
+    );
+    if (angle !== null) setPaletteStyleAngle(angle);
+
+    const size = tryParseNumericData(
+        params.get("paletteSize") ?? "",
+        0,
+        PALETTE_CONFIG_SIZE_MAX_VALUE
+    );
+    if (size !== null) setPaletteStyleSize(size);
+
+    const position = tryParseNumericData(
+        params.get("palettePosition") ?? "",
+        0,
+        PALETTE_CONFIG_POSITION_MAX_VALUE
+    );
+    if (position !== null) setPaletteStylePosition(position);
 };
