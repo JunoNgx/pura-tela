@@ -14,7 +14,7 @@
 
     const handleResetGallery = () => {
         const isConfirmed = window.confirm(
-            "Reset the gallery to default colours? This will also erase your data and cannot be undone."
+            "Reset the gallery to default palettes? This will also erase your data and cannot be undone."
         );
         if (!isConfirmed) return;
 
@@ -55,7 +55,7 @@
         onclick={handleResetGallery}
     >
         <MaterialSymbolsDeviceReset />
-        <span>Reset gallery</span>
+        <span>Reset data</span>
     </button>
 </div>
 
