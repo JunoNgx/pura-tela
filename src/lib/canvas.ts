@@ -159,28 +159,25 @@ const drawThinStrip = ({ ctx, colour, x, y, size, isVertical }: ShapeProps) => {
 
 // ---- Logic util functions
 
-type deriveValueFromScaleProps = {
-    minValue: number;
-    maxValue: number;
-    scaleValue: number;
-    minScaleValue?: number;
-    maxScaleValue: number;
+type MapToRangeProps = {
+    outputMin: number;
+    outputMax: number;
+    input: number;
+    inputMin?: number;
+    inputMax: number;
 };
 
-const deriveValueFromScale = ({
-    minValue,
-    maxValue,
-    scaleValue,
-    minScaleValue = 0,
-    maxScaleValue,
-}: deriveValueFromScaleProps): number => {
-    // TODO: find better variable names for this function
-    const diffRatio = (scaleValue - minScaleValue)
-        / (maxScaleValue - minScaleValue);
-    const valueDiff = maxValue - minValue;
-    const derivedValue = minValue + valueDiff * diffRatio;
-    
-    return derivedValue;
+const mapToRange = ({
+    outputMin,
+    outputMax,
+    input,
+    inputMin = 0,
+    inputMax,
+}: MapToRangeProps): number => {
+    const normalisedInput = (input - inputMin) / (inputMax - inputMin);
+    const outputRange = outputMax - outputMin;
+    const result = outputMin + outputRange * normalisedInput;
+    return result;
 };
 
 const getRelativeSides = (size: SizeData) => {
@@ -334,29 +331,29 @@ const renderForPopArtSquareStyle = ({
 
     const minSize = smallerCanvasSide / 8;
     const maxSize = smallerCanvasSide;
-    const mainSquareSize = deriveValueFromScale({
-        minValue: minSize,
-        maxValue: maxSize,
-        scaleValue: config.popArtSquare.size,
-        maxScaleValue: POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
+    const mainSquareSize = mapToRange({
+        outputMin: minSize,
+        outputMax: maxSize,
+        input: config.popArtSquare.size,
+        inputMax: POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
     });
 
     const minMainSquareX = 0;
     const maxMainSquareX = size.width - mainSquareSize;
-    const mainSquareX = deriveValueFromScale({
-        minValue: minMainSquareX,
-        maxValue: maxMainSquareX,
-        scaleValue: config.popArtSquare.positionX,
-        maxScaleValue: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
+    const mainSquareX = mapToRange({
+        outputMin: minMainSquareX,
+        outputMax: maxMainSquareX,
+        input: config.popArtSquare.positionX,
+        inputMax: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
     });
 
     const minMainSquareY = 0;
     const maxMainSquareY = size.height - mainSquareSize;
-    const mainSquareY = deriveValueFromScale({
-        minValue: minMainSquareY,
-        maxValue: maxMainSquareY,
-        scaleValue: config.popArtSquare.positionY,
-        maxScaleValue: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
+    const mainSquareY = mapToRange({
+        outputMin: minMainSquareY,
+        outputMax: maxMainSquareY,
+        input: config.popArtSquare.positionY,
+        inputMax: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
     });
 
     // Draw main square
@@ -438,20 +435,20 @@ const renderForColourSwatchStyle = ({
     const baseItemSize = priAxisLength / itemCount;
     const minItemSize = baseItemSize / 7;
     const maxItemSize = baseItemSize * 1.5;
-    const itemSize = deriveValueFromScale({
-        minValue: minItemSize,
-        maxValue: maxItemSize,
-        scaleValue: config.colourSwatch.itemSize,
-        maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+    const itemSize = mapToRange({
+        outputMin: minItemSize,
+        outputMax: maxItemSize,
+        input: config.colourSwatch.itemSize,
+        inputMax: SWATCH_CONFIG_MAX_VALUE,
     });
 
     const minSpacing = -itemSize / 4;
     const maxSpacing = itemSize / 4;
-    const spacing = deriveValueFromScale({
-        minValue: minSpacing,
-        maxValue: maxSpacing,
-        scaleValue: config.colourSwatch.itemSpacing,
-        maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+    const spacing = mapToRange({
+        outputMin: minSpacing,
+        outputMax: maxSpacing,
+        input: config.colourSwatch.itemSpacing,
+        inputMax: SWATCH_CONFIG_MAX_VALUE,
     });
 
     const swatchSlotSize = itemSize + spacing * 2;
@@ -465,19 +462,19 @@ const renderForColourSwatchStyle = ({
     const drawHorizontally = () => {
         const minCommonY = crossAxisSize / 2;
         const maxCommonY = size.height - crossAxisSize / 2;
-        const commonY = deriveValueFromScale({
-            minValue: minCommonY,
-            maxValue: maxCommonY,
-            scaleValue: config.colourSwatch.positionY,
-            maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+        const commonY = mapToRange({
+            outputMin: minCommonY,
+            outputMax: maxCommonY,
+            input: config.colourSwatch.positionY,
+            inputMax: SWATCH_CONFIG_MAX_VALUE,
         });
 
         const maxStartingXOffset = size.width - fullSwatchSize;
-        const startingXOffset = deriveValueFromScale({
-            minValue: 0,
-            maxValue: maxStartingXOffset,
-            scaleValue: config.colourSwatch.positionX,
-            maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+        const startingXOffset = mapToRange({
+            outputMin: 0,
+            outputMax: maxStartingXOffset,
+            input: config.colourSwatch.positionX,
+            inputMax: SWATCH_CONFIG_MAX_VALUE,
         });
 
         for (let i = 0; i < mainColours.length; i++) {
@@ -500,19 +497,19 @@ const renderForColourSwatchStyle = ({
     const drawVertically = () => {
         const minCommonX = crossAxisSize / 2;
         const maxCommonX = size.width - crossAxisSize / 2;
-        const commonX = deriveValueFromScale({
-            minValue: minCommonX,
-            maxValue: maxCommonX,
-            scaleValue: config.colourSwatch.positionX,
-            maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+        const commonX = mapToRange({
+            outputMin: minCommonX,
+            outputMax: maxCommonX,
+            input: config.colourSwatch.positionX,
+            inputMax: SWATCH_CONFIG_MAX_VALUE,
         });
 
         const maxStartingYOffset = size.height - fullSwatchSize;
-        const startingYOffset = deriveValueFromScale({
-            minValue: 0,
-            maxValue: maxStartingYOffset,
-            scaleValue: config.colourSwatch.positionY,
-            maxScaleValue: SWATCH_CONFIG_MAX_VALUE,
+        const startingYOffset = mapToRange({
+            outputMin: 0,
+            outputMax: maxStartingYOffset,
+            input: config.colourSwatch.positionY,
+            inputMax: SWATCH_CONFIG_MAX_VALUE,
         });
 
         for (let i = 0; i < mainColours.length; i++) {
@@ -565,21 +562,21 @@ export const renderForPaletteStyle = ({
 
     const maxBaseSize = longerSide / colours.length;
     const minBaseSize = shorterSide / colours.length;
-    const baseSize = deriveValueFromScale({
-        minValue: minBaseSize,
-        maxValue: maxBaseSize,
-        scaleValue: config.palette.size,
-        maxScaleValue: PALETTE_CONFIG_SIZE_MAX_VALUE,
+    const baseSize = mapToRange({
+        outputMin: minBaseSize,
+        outputMax: maxBaseSize,
+        input: config.palette.size,
+        inputMax: PALETTE_CONFIG_SIZE_MAX_VALUE,
     });
 
     const leftmostPosition = -longerSide / 2;
     const minStartingPos = leftmostPosition + maxBaseSize;
     const maxStartingPos = 0;
-    const startingPos = deriveValueFromScale({
-        minValue: minStartingPos,
-        maxValue: maxStartingPos,
-        scaleValue: config.palette.position,
-        maxScaleValue: PALETTE_CONFIG_POSITION_MAX_VALUE,
+    const startingPos = mapToRange({
+        outputMin: minStartingPos,
+        outputMax: maxStartingPos,
+        input: config.palette.position,
+        inputMax: PALETTE_CONFIG_POSITION_MAX_VALUE,
     });
 
     const mainColoursWidth = baseSize * mainColours.length;
@@ -633,20 +630,20 @@ export const renderForHorizonStyle = ({
 
     const minFgBlockSize = shorterSide * 0.25;
     const maxFgBlockSize = shorterSide;
-    const fgBlockSize = deriveValueFromScale({
-        minValue: minFgBlockSize,
-        maxValue: maxFgBlockSize,
-        scaleValue: config.horizon.size,
-        maxScaleValue: HORIZON_CONFIG_SIZE_MAX_VALUE
+    const fgBlockSize = mapToRange({
+        outputMin: minFgBlockSize,
+        outputMax: maxFgBlockSize,
+        input: config.horizon.size,
+        inputMax: HORIZON_CONFIG_SIZE_MAX_VALUE,
     });
 
     const minYPos = fgBlockSize / 2;
     const maxYPos = size.height - fgBlockSize / 2;
-    const yPos = deriveValueFromScale({
-        minValue: minYPos,
-        maxValue: maxYPos,
-        scaleValue: config.horizon.position,
-        maxScaleValue: HORIZON_CONFIG_POSITION_MAX_VALUE
+    const yPos = mapToRange({
+        outputMin: minYPos,
+        outputMax: maxYPos,
+        input: config.horizon.position,
+        inputMax: HORIZON_CONFIG_POSITION_MAX_VALUE,
     });
 
     // Background upper half
@@ -705,11 +702,11 @@ const renderForTwilightStyle = ({
 
     const minHorizonY = size.height * 0;
     const maxHorizonY = size.height * 1;
-    const horizonY = deriveValueFromScale({
-        minValue: minHorizonY,
-        maxValue: maxHorizonY,
-        scaleValue: config.twilight.position,
-        maxScaleValue: TWILIGHT_CONFIG_POSITION_MAX_VALUE,
+    const horizonY = mapToRange({
+        outputMin: minHorizonY,
+        outputMax: maxHorizonY,
+        input: config.twilight.position,
+        inputMax: TWILIGHT_CONFIG_POSITION_MAX_VALUE,
     });
     const sunCenterX = size.width / 2;
 
@@ -725,11 +722,11 @@ const renderForTwilightStyle = ({
     const { shorterSide } = getRelativeSides(size);
     const minSunRadius = shorterSide * 0.05;
     const maxSunRadius = shorterSide * 0.5;
-    const sunRadius = deriveValueFromScale({
-        minValue: minSunRadius,
-        maxValue: maxSunRadius,
-        scaleValue: config.twilight.size,
-        maxScaleValue: TWILIGHT_CONFIG_SIZE_MAX_VALUE
+    const sunRadius = mapToRange({
+        outputMin: minSunRadius,
+        outputMax: maxSunRadius,
+        input: config.twilight.size,
+        inputMax: TWILIGHT_CONFIG_SIZE_MAX_VALUE,
     });
 
     // Draw full sun circle
@@ -740,12 +737,14 @@ const renderForTwilightStyle = ({
 
     const minStripeCount = 5;
     const maxStripeCount = 20;
-    const stripeCount = Math.round(deriveValueFromScale({
-        minValue: minStripeCount,
-        maxValue: maxStripeCount,
-        scaleValue: config.twilight.rippleIntensity,
-        maxScaleValue: TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
-    }));
+    const stripeCount = Math.round(
+        mapToRange({
+            outputMin: minStripeCount,
+            outputMax: maxStripeCount,
+            input: config.twilight.rippleIntensity,
+            inputMax: TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
+        })
+    );
 
     const stripeHeightAtMin = sunRadius * 0.1;
     const stripeHeightAtMax = sunRadius * 0.03;
