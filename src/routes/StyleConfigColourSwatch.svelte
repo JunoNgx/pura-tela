@@ -6,14 +6,13 @@
     import {
         ColourSwatchStyleDirection,
         ColourSwatchStyleItemShape,
-        type InputEvent,
         type MouseInputEvent,
     } from "src/lib/types.js";
 
     import RadioCheckbox from "src/components/RadioCheckbox.svelte";
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
+    import { handleSliderChange } from "src/lib/styleConfigUtils.js";
 
-    import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
     import {
         colourSwatchStyleConfig,
         colourSwatchStyleConfigDefaultValue,
@@ -76,31 +75,6 @@
         setColourSwatchStyleItemShape(newValue);
     };
 
-    const handleDataChange = (
-        e: InputEvent,
-        setFunc: (value: number) => void,
-        valueLabel: string
-    ) => {
-        const newValue = e.currentTarget.value;
-
-        try {
-            const parsedValue = parseInt(newValue);
-            if (
-                !isValueWithinRange(
-                    parsedValue,
-                    SWATCH_CONFIG_MIN_VALUE,
-                    SWATCH_CONFIG_MAX_VALUE
-                )
-            )
-                throw new Error(`Invalid ${valueLabel} value`);
-
-            setFunc(parsedValue);
-        } catch (err) {
-            console.warn(err);
-            console.error(`Invalid ${valueLabel} value`);
-        }
-    };
-
     const resetPosition = () => {
         setColourSwatchStylePositionX(
             colourSwatchStyleConfigDefaultValue.positionX
@@ -143,11 +117,7 @@
                     step={5}
                     value={colourSwatchStyleConfig.val.positionX}
                     changeHandler={(e) => {
-                        handleDataChange(
-                            e,
-                            setColourSwatchStylePositionX,
-                            "position X"
-                        );
+                        handleSliderChange(e, setColourSwatchStylePositionX, "position X", SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE);
                     }}
                 />
                 <StyleConfigItemSlider
@@ -158,11 +128,7 @@
                     step={5}
                     value={colourSwatchStyleConfig.val.positionY}
                     changeHandler={(e) => {
-                        handleDataChange(
-                            e,
-                            setColourSwatchStylePositionY,
-                            "position Y"
-                        );
+                        handleSliderChange(e, setColourSwatchStylePositionY, "position Y", SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE);
                     }}
                 />
             </div>
@@ -254,11 +220,7 @@
                     step={5}
                     value={colourSwatchStyleConfig.val.itemSize}
                     changeHandler={(e) => {
-                        handleDataChange(
-                            e,
-                            setColourSwatchStyleItemSize,
-                            "position Y"
-                        );
+                        handleSliderChange(e, setColourSwatchStyleItemSize, "item size", SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE);
                     }}
                 />
 
@@ -270,11 +232,7 @@
                     step={5}
                     value={colourSwatchStyleConfig.val.itemSpacing}
                     changeHandler={(e) => {
-                        handleDataChange(
-                            e,
-                            setColourSwatchStyleItemSpacing,
-                            "position Y"
-                        );
+                        handleSliderChange(e, setColourSwatchStyleItemSpacing, "item spacing", SWATCH_CONFIG_MIN_VALUE, SWATCH_CONFIG_MAX_VALUE);
                     }}
                 />
             </div>

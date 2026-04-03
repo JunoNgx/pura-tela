@@ -5,8 +5,7 @@
         PALETTE_CONFIG_POSITION_MAX_VALUE,
         PALETTE_CONFIG_SIZE_MAX_VALUE,
     } from "src/lib/constants.js";
-    import type { InputEvent } from "src/lib/types.js";
-    import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+    import { handleSliderChange } from "src/lib/styleConfigUtils.js";
     import {
         paletteStyleConfig,
         resetPaletteStyleAngle,
@@ -16,27 +15,6 @@
         setPaletteStylePosition,
         setPaletteStyleSize,
     } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
-
-    const handleDataChange = (
-        e: InputEvent,
-        setFunc: (value: number) => void,
-        valueLabel: string,
-        minVal: number,
-        maxVal: number
-    ) => {
-        const newValue = e.currentTarget.value;
-
-        try {
-            const parsedValue = parseInt(newValue);
-            if (!isValueWithinRange(parsedValue, minVal, maxVal))
-                throw new Error(`Invalid ${valueLabel} value`);
-
-            setFunc(parsedValue);
-        } catch (err) {
-            console.warn(err);
-            console.error(`Invalid ${valueLabel} value`);
-        }
-    };
 </script>
 
 <div class="PaletteConfig">
@@ -57,7 +35,7 @@
                 unit="°"
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(
+                    handleSliderChange(
                         e,
                         setPaletteStyleAngle,
                         "angle",
@@ -91,7 +69,7 @@
                 value={paletteStyleConfig.val.size}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(
+                    handleSliderChange(
                         e,
                         setPaletteStyleSize,
                         "size",
@@ -125,7 +103,7 @@
                 value={paletteStyleConfig.val.position}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(
+                    handleSliderChange(
                         e,
                         setPaletteStylePosition,
                         "position",

@@ -5,10 +5,8 @@
         POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
         POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
     } from "src/lib/constants.js";
-    import { type InputEvent } from "src/lib/types.js";
-
     import StyleConfigItemSlider from "src/components/StyleConfigItemSlider.svelte";
-    import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+    import { handleSliderChange } from "src/lib/styleConfigUtils.js";
     import {
         popArtSquareStyleConfig,
         resetPopArtSquareStylePositionX,
@@ -18,35 +16,6 @@
         setPopArtSquareStylePositionY,
         setpopArtSquareStyleSize,
     } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
-
-    type handleNumericDataChangeProps = {
-        event: InputEvent;
-        setFunc: (value: number) => void;
-        minValue: number;
-        maxValue: number;
-        valueLabel: string;
-    };
-
-    const handleNumericDataChange = ({
-        event,
-        setFunc,
-        minValue,
-        maxValue,
-        valueLabel,
-    }: handleNumericDataChangeProps) => {
-        const newValue = event.currentTarget.value;
-
-        try {
-            const parsedValue = parseInt(newValue);
-            if (!isValueWithinRange(parsedValue, minValue, maxValue))
-                throw new Error(`Invalid ${valueLabel} value`);
-
-            setFunc(parsedValue);
-        } catch (err) {
-            console.warn(err);
-            console.error(`Invalid ${valueLabel} value`);
-        }
-    };
 
     const resetConfig = () => {
         resetPopArtSquareStyleSize();
@@ -73,13 +42,7 @@
                 step={1}
                 value={popArtSquareStyleConfig.val.size}
                 changeHandler={(e) => {
-                    handleNumericDataChange({
-                        event: e,
-                        setFunc: setpopArtSquareStyleSize,
-                        minValue: POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
-                        maxValue: POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
-                        valueLabel: "size",
-                    });
+                    handleSliderChange(e, setpopArtSquareStyleSize, "size", POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE, POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE);
                 }}
             />
             <StyleConfigItemSlider
@@ -90,13 +53,7 @@
                 step={5}
                 value={popArtSquareStyleConfig.val.positionX}
                 changeHandler={(e) => {
-                    handleNumericDataChange({
-                        event: e,
-                        setFunc: setPopArtSquareStylePositionX,
-                        minValue: POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
-                        maxValue: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
-                        valueLabel: "position X",
-                    });
+                    handleSliderChange(e, setPopArtSquareStylePositionX, "position X", POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE, POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE);
                 }}
             />
             <StyleConfigItemSlider
@@ -107,13 +64,7 @@
                 step={5}
                 value={popArtSquareStyleConfig.val.positionY}
                 changeHandler={(e) => {
-                    handleNumericDataChange({
-                        event: e,
-                        setFunc: setPopArtSquareStylePositionY,
-                        minValue: POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
-                        maxValue: POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
-                        valueLabel: "position Y",
-                    });
+                    handleSliderChange(e, setPopArtSquareStylePositionY, "position Y", POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE, POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE);
                 }}
             />
         </div>

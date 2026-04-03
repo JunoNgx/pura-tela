@@ -5,8 +5,7 @@
         HORIZON_CONFIG_POSITION_MAX_VALUE,
         HORIZON_CONFIG_SIZE_MAX_VALUE,
     } from "src/lib/constants.js";
-    import type { InputEvent } from "src/lib/types.js";
-    import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+    import { handleSliderChange } from "src/lib/styleConfigUtils.js";
     import { tryResetWallGenColourInUseCount } from "src/states/wallGenState.svelte.js";
     import {
         horizonStyleConfig,
@@ -16,27 +15,6 @@
         setHorizonStyleShouldShowCore,
         setHorizonStyleSize,
     } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
-
-    const handleDataChange = (
-        e: InputEvent,
-        setFunc: (value: number) => void,
-        valueLabel: string,
-        minVal: number,
-        maxVal: number
-    ) => {
-        const newValue = e.currentTarget.value;
-
-        try {
-            const parsedValue = parseInt(newValue);
-            if (!isValueWithinRange(parsedValue, minVal, maxVal))
-                throw new Error(`Invalid ${valueLabel} value`);
-
-            setFunc(parsedValue);
-        } catch (err) {
-            console.warn(err);
-            console.error(`Invalid ${valueLabel} value`);
-        }
-    };
 
     const handleCheckboxSwitch = () => {
         setHorizonStyleShouldShowCore(!horizonStyleConfig.val.shouldShowCore);
@@ -70,7 +48,7 @@
                 value={horizonStyleConfig.val.size}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(
+                    handleSliderChange(
                         e,
                         setHorizonStyleSize,
                         "size",
@@ -104,7 +82,7 @@
                 value={horizonStyleConfig.val.position}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(
+                    handleSliderChange(
                         e,
                         setHorizonStylePosition,
                         "position",

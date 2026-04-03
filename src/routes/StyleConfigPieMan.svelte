@@ -4,8 +4,7 @@
         PIE_MAN_CONFIG_SIZE_MAX_VALUE,
         PIE_MAN_CONFIG_ANGLE_MAX_VALUE,
     } from "src/lib/constants.js";
-    import type { InputEvent } from "src/lib/types.js";
-    import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+    import { handleSliderChange } from "src/lib/styleConfigUtils.js";
     import {
         pieManStyleConfig,
         resetPieManStyleSize,
@@ -13,27 +12,6 @@
         setPieManStyleSize,
         setPieManStyleAngle,
     } from "src/states/wallGenStyleConfigPieManState.svelte.js";
-
-    const handleDataChange = (
-        e: InputEvent,
-        setFunc: (value: number) => void,
-        valueLabel: string,
-        minVal: number,
-        maxVal: number
-    ) => {
-        const newValue = e.currentTarget.value;
-
-        try {
-            const parsedValue = parseInt(newValue);
-            if (!isValueWithinRange(parsedValue, minVal, maxVal))
-                throw new Error(`Invalid ${valueLabel} value`);
-
-            setFunc(parsedValue);
-        } catch (err) {
-            console.warn(err);
-            console.error(`Invalid ${valueLabel} value`);
-        }
-    };
 </script>
 
 <div class="PieManConfig">
@@ -53,7 +31,7 @@
                 value={pieManStyleConfig.val.size}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(
+                    handleSliderChange(
                         e,
                         setPieManStyleSize,
                         "size",
@@ -87,7 +65,7 @@
                 value={pieManStyleConfig.val.angle}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(
+                    handleSliderChange(
                         e,
                         setPieManStyleAngle,
                         "angle",

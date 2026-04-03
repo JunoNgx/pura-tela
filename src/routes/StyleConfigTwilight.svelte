@@ -5,8 +5,7 @@
         TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
         TWILIGHT_CONFIG_POSITION_MAX_VALUE,
     } from "src/lib/constants.js";
-    import type { InputEvent } from "src/lib/types.js";
-    import { isValueWithinRange } from "src/states/stateUtils.svelte.js";
+    import { handleSliderChange } from "src/lib/styleConfigUtils.js";
     import {
         twilightStyleConfig,
         resetTwilightStyleSize,
@@ -16,27 +15,6 @@
         setTwilightStylePosition,
         resetTwilightStylePosition,
     } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
-
-    const handleDataChange = (
-        e: InputEvent,
-        setFunc: (value: number) => void,
-        valueLabel: string,
-        minVal: number,
-        maxVal: number
-    ) => {
-        const newValue = e.currentTarget.value;
-
-        try {
-            const parsedValue = parseInt(newValue);
-            if (!isValueWithinRange(parsedValue, minVal, maxVal))
-                throw new Error(`Invalid ${valueLabel} value`);
-
-            setFunc(parsedValue);
-        } catch (err) {
-            console.warn(err);
-            console.error(`Invalid ${valueLabel} value`);
-        }
-    };
 </script>
 
 <div class="TwilightConfig">
@@ -56,7 +34,7 @@
                 value={twilightStyleConfig.val.size}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(
+                    handleSliderChange(
                         e,
                         setTwilightStyleSize,
                         "size",
@@ -90,7 +68,7 @@
                 value={twilightStyleConfig.val.position}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(
+                    handleSliderChange(
                         e,
                         setTwilightStylePosition,
                         "position",
@@ -124,7 +102,7 @@
                 value={twilightStyleConfig.val.rippleIntensity}
                 shouldHideLabel={true}
                 changeHandler={(e) => {
-                    handleDataChange(
+                    handleSliderChange(
                         e,
                         setTwilightStyleRippleIntensity,
                         "ripple intensity",
