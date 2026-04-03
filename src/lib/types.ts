@@ -78,7 +78,6 @@ export type WallpaperStyleInfo = {
     defaultColourCount: number;
 };
 
-
 export type PalGenQueryProps = {
     paletteQueryStr: string | null;
 };
