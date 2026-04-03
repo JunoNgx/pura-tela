@@ -15,20 +15,20 @@ Suggested order: 1 → 2 → 3 → 4 → 5.
 (currently 8). Every new style adds another. They are all one-liners with identical shape.
 These predicates are also imported individually wherever a style check is needed.
 
-**Fix:** Replace all of them with a single `isActiveStyle(style: WallpaperStyle): boolean`.
+**Fix:** Replace all of them with a single `isSelectedStyle(style: WallpaperStyle): boolean`.
 
 ### Tasks
 
-- [ ] In `src/states/wallGenState.svelte.ts`:
-  - Add `export const isActiveStyle = (style: WallpaperStyle) => wallGenStyle.val === style`
+- [x] In `src/states/wallGenState.svelte.ts`:
+  - Add `export const isSelectedStyle = (style: WallpaperStyle) => wallGenStyle.val === style`
   - Delete `isSolidStyle`, `isGradientStyle`, `isPopArtSquareStyle`, `isColourSwatchStyle`,
     `isPaletteStyle`, `isHorizonStyle`, `isTwilightStyle`, `isPieManStyle`
 
-- [ ] In `src/routes/StyleConfigContainer.svelte`:
-  - Replace all 8 predicate imports with a single `isActiveStyle` import
-  - Replace every `isSolidStyle()` etc. call with `isActiveStyle(WallpaperStyle.X)`
+- [x] In `src/routes/StyleConfigContainer.svelte`:
+  - Replace all 8 predicate imports with a single `isSelectedStyle` import
+  - Replace every `isSolidStyle()` etc. call with `isSelectedStyle(WallpaperStyle.X)`
 
-- [ ] Search for any other files importing the old predicates and update them
+- [x] Search for any other files importing the old predicates and update them
   - Run: `grep -r "isSolidStyle\|isGradientStyle\|isPopArtSquareStyle\|isColourSwatchStyle\|isPaletteStyle\|isHorizonStyle\|isTwilightStyle\|isPieManStyle" src/`
 
 ---
