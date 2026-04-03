@@ -20,16 +20,16 @@ These predicates are also imported individually wherever a style check is needed
 ### Tasks
 
 - [x] In `src/states/wallGenState.svelte.ts`:
-  - Add `export const isSelectedStyle = (style: WallpaperStyle) => wallGenStyle.val === style`
-  - Delete `isSolidStyle`, `isGradientStyle`, `isPopArtSquareStyle`, `isColourSwatchStyle`,
-    `isPaletteStyle`, `isHorizonStyle`, `isTwilightStyle`, `isPieManStyle`
+    - Add `export const isSelectedStyle = (style: WallpaperStyle) => wallGenStyle.val === style`
+    - Delete `isSolidStyle`, `isGradientStyle`, `isPopArtSquareStyle`, `isColourSwatchStyle`,
+      `isPaletteStyle`, `isHorizonStyle`, `isTwilightStyle`, `isPieManStyle`
 
 - [x] In `src/routes/StyleConfigContainer.svelte`:
-  - Replace all 8 predicate imports with a single `isSelectedStyle` import
-  - Replace every `isSolidStyle()` etc. call with `isSelectedStyle(WallpaperStyle.X)`
+    - Replace all 8 predicate imports with a single `isSelectedStyle` import
+    - Replace every `isSolidStyle()` etc. call with `isSelectedStyle(WallpaperStyle.X)`
 
 - [x] Search for any other files importing the old predicates and update them
-  - Run: `grep -r "isSolidStyle\|isGradientStyle\|isPopArtSquareStyle\|isColourSwatchStyle\|isPaletteStyle\|isHorizonStyle\|isTwilightStyle\|isPieManStyle" src/`
+    - Run: `grep -r "isSolidStyle\|isGradientStyle\|isPopArtSquareStyle\|isColourSwatchStyle\|isPaletteStyle\|isHorizonStyle\|isTwilightStyle\|isPieManStyle" src/`
 
 ---
 
@@ -45,15 +45,15 @@ requires adding a button block + a new `{:else if}` branch.
 ### Tasks
 
 - [x] Create `src/lib/styleButtonList.ts`
-  - Define a `WallpaperStyleButtonProps` type and export `WALLPAPER_STYLES` array
+    - Define a `WallpaperStyleButtonProps` type and export `WALLPAPER_STYLES` array
 
 - [x] In `src/routes/StyleConfigContainer.svelte` — replace the button list:
-  - Import `WALLPAPER_STYLES` from `src/lib/styleButtonList.js`
-  - Replace the 8 `<button>` blocks with a single `{#each WALLPAPER_STYLES as item}` block
+    - Import `WALLPAPER_STYLES` from `src/lib/styleButtonList.js`
+    - Replace the 8 `<button>` blocks with a single `{#each WALLPAPER_STYLES as item}` block
 
 - [x] In `src/routes/StyleConfigContainer.svelte` — replace the `{#if}` chain:
-  - Define a `configComponents: Partial<Record<WallpaperStyle, Component>>` map
-  - Replace the `{#if}...{/if}` section with `<svelte:component this={configComponents[wallGenStyle.val] ?? null} />`
+    - Define a `configComponents: Partial<Record<WallpaperStyle, Component>>` map
+    - Replace the `{#if}...{/if}` section with `<svelte:component this={configComponents[wallGenStyle.val] ?? null} />`
 
 ---
 
@@ -69,80 +69,79 @@ central files become loops.
 ### Tasks
 
 - [ ] Update `src/routes/+page.ts`:
-  - Instead of manually extracting each param, return `url.searchParams` directly
-    so downstream code can call `.get()` itself:
-    ```ts
-    export const load = ({ url }) => ({ searchParams: url.searchParams });
-    ```
-  - Remove the `WallGenQueryProps` return type annotation from this file
-  - Keep `WallGenQueryProps` in `types.ts` for now (may be unused after Part 3)
+    - Instead of manually extracting each param, return `url.searchParams` directly
+      so downstream code can call `.get()` itself:
+        ```ts
+        export const load = ({ url }) => ({ searchParams: url.searchParams });
+        ```
+    - Remove the `WallGenQueryProps` return type annotation from this file
+    - Keep `WallGenQueryProps` in `types.ts` for now (may be unused after Part 3)
 
 - [ ] In each style state file that has URL config params, add two exports:
-  `appendToUrl(url: URL): void` and `parseFromSearchParams(params: URLSearchParams): void`
+      `appendToUrl(url: URL): void` and `parseFromSearchParams(params: URLSearchParams): void`
+    - [ ] `wallGenStyleConfigGradientState.svelte.ts`
+        - `appendToUrl`: append `gradientAngle`
+        - `parseFromSearchParams`: parse and call `setGradientStyleConfigAngle`
 
-  - [ ] `wallGenStyleConfigGradientState.svelte.ts`
-    - `appendToUrl`: append `gradientAngle`
-    - `parseFromSearchParams`: parse and call `setGradientStyleConfigAngle`
+    - [ ] `wallGenStyleConfigColourSwatchState.svelte.ts`
+        - `appendToUrl`: append `swatchPosX`, `swatchPosY`, `swatchDirection`,
+          `swatchItemShape`, `swatchItemSize`, `swatchItemSpacing`
+        - `parseFromSearchParams`: parse and call each setter (include enum validation
+          for direction and itemShape — move that logic here from `+page.svelte`)
 
-  - [ ] `wallGenStyleConfigColourSwatchState.svelte.ts`
-    - `appendToUrl`: append `swatchPosX`, `swatchPosY`, `swatchDirection`,
-      `swatchItemShape`, `swatchItemSize`, `swatchItemSpacing`
-    - `parseFromSearchParams`: parse and call each setter (include enum validation
-      for direction and itemShape — move that logic here from `+page.svelte`)
+    - [ ] `wallGenStyleConfigPaletteState.svelte.ts`
+        - `appendToUrl`: append `paletteAngle`, `paletteSize`, `palettePosition`
+        - `parseFromSearchParams`: parse and call each setter
 
-  - [ ] `wallGenStyleConfigPaletteState.svelte.ts`
-    - `appendToUrl`: append `paletteAngle`, `paletteSize`, `palettePosition`
-    - `parseFromSearchParams`: parse and call each setter
+    - [ ] `wallGenStyleConfigHorizonState.svelte.ts`
+        - `appendToUrl`: append `horizonShowCore`, `horizonSize`, `horizonPosition`
+        - `parseFromSearchParams`: parse and call each setter (include boolean parsing
+          for `horizonShowCore` — move that logic here from `+page.svelte`)
 
-  - [ ] `wallGenStyleConfigHorizonState.svelte.ts`
-    - `appendToUrl`: append `horizonShowCore`, `horizonSize`, `horizonPosition`
-    - `parseFromSearchParams`: parse and call each setter (include boolean parsing
-      for `horizonShowCore` — move that logic here from `+page.svelte`)
+    - [ ] `wallGenStyleConfigPopArtSquareState.svelte.ts`
+        - `appendToUrl`: append `popArtSquareSize`, `popArtSquarePositionX`, `popArtSquarePositionY`
+        - `parseFromSearchParams`: parse and call each setter
 
-  - [ ] `wallGenStyleConfigPopArtSquareState.svelte.ts`
-    - `appendToUrl`: append `popArtSquareSize`, `popArtSquarePositionX`, `popArtSquarePositionY`
-    - `parseFromSearchParams`: parse and call each setter
+    - [ ] `wallGenStyleConfigTwilightState.svelte.ts`
+        - `appendToUrl`: append `twilightSize`, `twilightPosition`, `twilightRippleIntensity`
+        - `parseFromSearchParams`: parse and call each setter
 
-  - [ ] `wallGenStyleConfigTwilightState.svelte.ts`
-    - `appendToUrl`: append `twilightSize`, `twilightPosition`, `twilightRippleIntensity`
-    - `parseFromSearchParams`: parse and call each setter
+    - [ ] `wallGenStyleConfigPieManState.svelte.ts`
+        - `appendToUrl`: append `pieManSize`, `pieManAngle`
+        - `parseFromSearchParams`: parse and call each setter
 
-  - [ ] `wallGenStyleConfigPieManState.svelte.ts`
-    - `appendToUrl`: append `pieManSize`, `pieManAngle`
-    - `parseFromSearchParams`: parse and call each setter
-
-  - Note: Solid style has no config params — no changes needed to its state
+    - Note: Solid style has no config params — no changes needed to its state
 
 - [ ] Update `src/routes/Studio.svelte` — replace `computeShareableUrl()` switch:
-  - Import all `appendToUrl` functions from each style state file
-  - Define an `urlAppenders` map:
-    ```ts
-    const urlAppenders: Partial<Record<WallpaperStyle, (url: URL) => void>> = {
-        [WallpaperStyle.GRADIENT]:      appendToUrl as imported from gradient state,
-        // ... one entry per style with config
-    };
-    ```
-  - Replace the entire `switch` block with:
-    ```ts
-    urlAppenders[wallGenStyle.val]?.(url);
-    ```
-  - Remove the now-unused individual config state imports
-    (`gradientStyleConfig`, `paletteStyleConfig`, etc.)
+    - Import all `appendToUrl` functions from each style state file
+    - Define an `urlAppenders` map:
+        ```ts
+        const urlAppenders: Partial<Record<WallpaperStyle, (url: URL) => void>> = {
+            [WallpaperStyle.GRADIENT]:      appendToUrl as imported from gradient state,
+            // ... one entry per style with config
+        };
+        ```
+    - Replace the entire `switch` block with:
+        ```ts
+        urlAppenders[wallGenStyle.val]?.(url);
+        ```
+    - Remove the now-unused individual config state imports
+      (`gradientStyleConfig`, `paletteStyleConfig`, etc.)
 
 - [ ] Update `src/routes/+page.svelte` — replace all `tryParseNumericConfig` calls:
-  - Change `export let data: WallGenQueryProps` to `export let data: { searchParams: URLSearchParams }`
-  - Import all `parseFromSearchParams` functions from each style state file
-  - Replace the ~30 lines of parse calls with:
-    ```ts
-    const allParsers = [
-        parseFromSearchParams as imported from gradient state,
-        parseFromSearchParams as imported from swatch state,
-        // ... one per style with config
-    ];
-    allParsers.forEach(parse => parse(data.searchParams));
-    ```
-  - Remove all the now-unused constant and setter imports
-    (`PALETTE_CONFIG_ANGLE_MAX_VALUE`, `setPaletteStyleAngle`, etc.)
+    - Change `export let data: WallGenQueryProps` to `export let data: { searchParams: URLSearchParams }`
+    - Import all `parseFromSearchParams` functions from each style state file
+    - Replace the ~30 lines of parse calls with:
+        ```ts
+        const allParsers = [
+            parseFromSearchParams as imported from gradient state,
+            parseFromSearchParams as imported from swatch state,
+            // ... one per style with config
+        ];
+        allParsers.forEach(parse => parse(data.searchParams));
+        ```
+    - Remove all the now-unused constant and setter imports
+      (`PALETTE_CONFIG_ANGLE_MAX_VALUE`, `setPaletteStyleAngle`, etc.)
 
 ---
 
@@ -154,6 +153,7 @@ minor signature variations. New components must copy it again.
 **Fix:** Extract to a shared utility.
 
 Current variants:
+
 - Canonical (Palette, Horizon, Twilight, PieMan): positional `(e, setter, label, min, max)`
 - Object params (PopArtSquare): `({ event, setter, minValue, maxValue, valueLabel })`
 - Hardcoded min/max (ColourSwatch): `(e, setter, label)` — range captured from outer scope
@@ -162,13 +162,13 @@ Current variants:
 ### Tasks
 
 - [ ] Create `src/lib/styleConfigUtils.ts`
-  - Export `handleSliderChange(e: InputEvent, setter: (v: number) => void, label: string, min: number, max: number): void`
-  - Copy the body from `StyleConfigPieMan` (the cleanest existing version)
+    - Export `handleSliderChange(e: InputEvent, setter: (v: number) => void, label: string, min: number, max: number): void`
+    - Copy the body from `StyleConfigPieMan` (the cleanest existing version)
 
 - [ ] Update `StyleConfigPieMan.svelte`
-  - Import `handleSliderChange` from `src/lib/styleConfigUtils.js`
-  - Remove local `handleDataChange` function and `InputEvent` import
-  - Update both `changeHandler` props to call `handleSliderChange`
+    - Import `handleSliderChange` from `src/lib/styleConfigUtils.js`
+    - Remove local `handleDataChange` function and `InputEvent` import
+    - Update both `changeHandler` props to call `handleSliderChange`
 
 - [ ] Update `StyleConfigHorizon.svelte` — same changes as PieMan
 
@@ -177,16 +177,16 @@ Current variants:
 - [ ] Update `StyleConfigPalette.svelte` — same changes as PieMan
 
 - [ ] Update `StyleConfigColourPopArtSquare.svelte`
-  - Import `handleSliderChange` from `src/lib/styleConfigUtils.js`
-  - Remove local `handleNumericDataChange` function and its type definition
-  - Remove `InputEvent` import
-  - Update three `changeHandler` props — flatten from object params to positional
+    - Import `handleSliderChange` from `src/lib/styleConfigUtils.js`
+    - Remove local `handleNumericDataChange` function and its type definition
+    - Remove `InputEvent` import
+    - Update three `changeHandler` props — flatten from object params to positional
 
 - [ ] Update `StyleConfigColourSwatch.svelte`
-  - Import `handleSliderChange` from `src/lib/styleConfigUtils.js`
-  - Remove local `handleDataChange` function
-  - Update four `changeHandler` props — pass `SWATCH_CONFIG_MIN_VALUE` and
-    `SWATCH_CONFIG_MAX_VALUE` explicitly (currently captured from closure)
+    - Import `handleSliderChange` from `src/lib/styleConfigUtils.js`
+    - Remove local `handleDataChange` function
+    - Update four `changeHandler` props — pass `SWATCH_CONFIG_MIN_VALUE` and
+      `SWATCH_CONFIG_MAX_VALUE` explicitly (currently captured from closure)
 
 ---
 
@@ -202,6 +202,7 @@ concern, so it works for any combination of controls: one slider, two sliders, r
 buttons, dropdowns, or a mix.
 
 Props:
+
 ```ts
 let { title, onreset, children } = $props();
 ```
@@ -216,24 +217,24 @@ into `StyleConfigFieldset`. This keeps both components usable on their own.
 ### Tasks
 
 - [ ] Create `src/components/StyleConfigFieldset.svelte`
-  - Props: `title: string`, `onreset: () => void`, `children: Snippet`
-  - Render: `<fieldset>` → `<legend><h4>{title}</h4></legend>` → `{@render children()}`
-    → reset button div
-  - Use generic class names: `StyleConfigFieldset`, `StyleConfigFieldset__Title`,
-    `StyleConfigFieldset__Actions`
-  - CSS: fieldset border, legend style, reset button alignment — everything currently
-    duplicated as `.XxxConfig__Item`, `.XxxConfig__ItemTitle`, `.XxxConfig__ActionsContainer`
-    across all files
+    - Props: `title: string`, `onreset: () => void`, `children: Snippet`
+    - Render: `<fieldset>` → `<legend><h4>{title}</h4></legend>` → `{@render children()}`
+      → reset button div
+    - Use generic class names: `StyleConfigFieldset`, `StyleConfigFieldset__Title`,
+      `StyleConfigFieldset__Actions`
+    - CSS: fieldset border, legend style, reset button alignment — everything currently
+      duplicated as `.XxxConfig__Item`, `.XxxConfig__ItemTitle`, `.XxxConfig__ActionsContainer`
+      across all files
 
 - [ ] Update `StyleConfigPieMan.svelte` (2 fieldsets)
-  - Import `StyleConfigFieldset`
-  - Replace both `<fieldset>` blocks — pass `<StyleConfigItemSlider>` as children:
-    ```svelte
-    <StyleConfigFieldset title="Size" onreset={resetPieManStyleSize}>
-        <StyleConfigItemSlider ... />
-    </StyleConfigFieldset>
-    ```
-  - Remove the now-redundant `__Item`, `__ItemTitle`, `__ActionsContainer` CSS rules
+    - Import `StyleConfigFieldset`
+    - Replace both `<fieldset>` blocks — pass `<StyleConfigItemSlider>` as children:
+        ```svelte
+        <StyleConfigFieldset title="Size" onreset={resetPieManStyleSize}>
+            <StyleConfigItemSlider ... />
+        </StyleConfigFieldset>
+        ```
+    - Remove the now-redundant `__Item`, `__ItemTitle`, `__ActionsContainer` CSS rules
 
 - [ ] Update `StyleConfigHorizon.svelte` (2 fieldsets) — same approach as PieMan
 
@@ -244,13 +245,13 @@ into `StyleConfigFieldset`. This keeps both components usable on their own.
 - [ ] Update `StyleConfigColourPopArtSquare.svelte` (3 fieldsets) — same approach as PieMan
 
 - [ ] Update `StyleConfigColourSwatch.svelte` (2 fieldsets)
-  - Import `StyleConfigFieldset`
-  - Position fieldset: pass both `<StyleConfigItemSlider>` elements as children,
-    `onreset={resetPosition}`
-  - Item settings fieldset: pass the radiogroup, dropdown, and both sliders as children,
-    `onreset={resetItemSettings}`
-  - Remove the now-redundant `__Fieldset`, `__FieldsetLegend`, `__FieldsetButtonsContainer`
-    CSS rules (keep the ColourSwatch-specific rules for the radiogroup and dropdown layout)
+    - Import `StyleConfigFieldset`
+    - Position fieldset: pass both `<StyleConfigItemSlider>` elements as children,
+      `onreset={resetPosition}`
+    - Item settings fieldset: pass the radiogroup, dropdown, and both sliders as children,
+      `onreset={resetItemSettings}`
+    - Remove the now-redundant `__Fieldset`, `__FieldsetLegend`, `__FieldsetButtonsContainer`
+      CSS rules (keep the ColourSwatch-specific rules for the radiogroup and dropdown layout)
 
 ---
 

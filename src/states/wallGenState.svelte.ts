@@ -192,7 +192,8 @@ export const wallGenStyle = createLocalStorageSyncedState({
     validationFunc: isWallGenStyleValid,
 }) as State<WallpaperStyle>;
 
-export const isSelectedStyle = (style: WallpaperStyle) => wallGenStyle.val === style;
+export const isSelectedStyle = (style: WallpaperStyle) =>
+    wallGenStyle.val === style;
 
 const currStyleInfo = $derived.by(() => {
     switch (wallGenStyle.val) {
