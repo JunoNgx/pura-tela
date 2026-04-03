@@ -667,10 +667,12 @@ const renderForTwilightStyle = ({
 
     const minHorizonY = size.height * 0;
     const maxHorizonY = size.height * 1;
-    const horizonY =
-        minHorizonY
-        + ((maxHorizonY - minHorizonY) * config.twilight.position)
-            / TWILIGHT_CONFIG_POSITION_MAX_VALUE;
+    const horizonY = deriveValueFromScale({
+        minValue: minHorizonY,
+        maxValue: maxHorizonY,
+        scaleValue: config.twilight.position,
+        maxScaleValue: TWILIGHT_CONFIG_POSITION_MAX_VALUE,
+    });
     const sunCenterX = size.width / 2;
 
     // Draw sky
@@ -685,10 +687,12 @@ const renderForTwilightStyle = ({
     const smallerSide = Math.min(size.width, size.height);
     const minSunRadius = smallerSide * 0.05;
     const maxSunRadius = smallerSide * 0.5;
-    const sunRadius =
-        minSunRadius
-        + ((maxSunRadius - minSunRadius) * config.twilight.size)
-            / TWILIGHT_CONFIG_SIZE_MAX_VALUE;
+    const sunRadius = deriveValueFromScale({
+        minValue: minSunRadius,
+        maxValue: maxSunRadius,
+        scaleValue: config.twilight.size,
+        maxScaleValue: TWILIGHT_CONFIG_SIZE_MAX_VALUE
+    });
 
     // Draw full sun circle
     ctx.beginPath();
@@ -698,12 +702,12 @@ const renderForTwilightStyle = ({
 
     const minStripeCount = 5;
     const maxStripeCount = 20;
-    const stripeCount = Math.round(
-        minStripeCount
-            + ((maxStripeCount - minStripeCount)
-                * config.twilight.rippleIntensity)
-                / TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
-    );
+    const stripeCount = Math.round(deriveValueFromScale({
+        minValue: minStripeCount,
+        maxValue: maxStripeCount,
+        scaleValue: config.twilight.rippleIntensity,
+        maxScaleValue: TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
+    }));
 
     const stripeHeightAtMin = sunRadius * 0.1;
     const stripeHeightAtMax = sunRadius * 0.03;
@@ -712,6 +716,12 @@ const renderForTwilightStyle = ({
         + ((stripeHeightAtMax - stripeHeightAtMin)
             * config.twilight.rippleIntensity)
             / TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
+    // const stripeHeight = deriveValueFromScaleInversely({
+    //     minValue: stripeHeightAtMax,
+    //     maxValue: strikpeHeightAtMin,
+    //     scaleValue: config.twilight.rippleIntensity,
+    //     maxScaleValue: TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
+    // });
 
     const spacingAtMin = sunRadius * 0.2;
     const spacingAtMax = sunRadius * 0.05;
@@ -719,6 +729,12 @@ const renderForTwilightStyle = ({
         spacingAtMin
         + ((spacingAtMax - spacingAtMin) * config.twilight.rippleIntensity)
             / TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE;
+    // const spacing = deriveValueFromScaleInversely({
+    //     minValue: spacingAtMax,
+    //     maxValue: spacingAtMin,
+    //     scaleValue: config.twilight.rippleIntensity,
+    //     maxScaleValue: TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE
+    // });
 
     // Draw sea-coloured stripes over the lower half of the sun
     for (let i = 0; i < stripeCount; i++) {
