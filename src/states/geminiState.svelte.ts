@@ -12,9 +12,6 @@ const initialiseGemini = (apiKey: string) => {
 
 const gemini = $derived(geminiKey.val ? initialiseGemini(geminiKey.val) : null);
 
-const _isGeminiConfigured = $derived(geminiKey.val !== "");
-export const isGeminiConfigured = () => _isGeminiConfigured;
-
 export const buildPrompt = (theme: string) => {
     const prompt = `Generate a colour palette of 7 colours. Reply with only text, made up of hex colour codes, separated by comma. The theme is: ${theme}.`;
 

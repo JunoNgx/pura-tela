@@ -91,37 +91,6 @@ export const setWallGenColoursAtIndex = (index: number, newValue: string) => {
     tempArr[index].colour = newValue;
     wallGenColours.set(tempArr);
 };
-/**
- * This pulls the colour at the target index, and adds another random colour to
- * the end, to maintain the amount of `wallGenColours`.
- *
- * Also unused.
- * @param index The target index
- */
-export const retractWallGenColoursAtIndex = (index: number) => {
-    const befPortion = wallGenColours.val.slice(0, index);
-    const aftPortion = wallGenColours.val.slice(index + 1);
-    const newRandomisedColour = {
-        id: generateId(),
-        colour: getRandomHexCode(),
-    };
-    wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
-};
-
-// export const retractWallGenColoursById = (id: number) => {
-//     const targetIndex = wallGenColours.val.findIndex(colourObj => colourObj.id === id);
-//     if (targetIndex === -1) {
-//         throw new Error("Cannot find target colour for retracting in Wallpaper Generator");
-//     }
-
-//     const befPortion = wallGenColours.val.slice(0, targetIndex);
-//     const aftPortion = wallGenColours.val.slice(targetIndex + 1);
-//     const newRandomisedColour = {
-//         id: generateId(),
-//         colour: getRandomHexCode(),
-//     };
-//     wallGenColours.set([...befPortion, ...aftPortion, newRandomisedColour]);
-// };
 
 /**
  * Move the new colours onto WallGen, which might not completely fill up all colours
@@ -160,24 +129,6 @@ export const tryParseFromStringToWallGen = (inputStr: string) => {
     }));
     wallGenColours.set([...newValue]);
 };
-
-// export const moveWallGenColourItemUpAtIndex = (index: number) => {
-//     if (index <= 0) {
-//         throw new Error("Already at the first position");
-//     }
-
-//     const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index - 1);
-//     passSomeColourObjectsToWallpaperGenerator(newValue);
-// };
-
-// export const moveWallGenColourItemDownAtIndex = (index: number) => {
-//     if (index >= getWallGenColourInUseCount() - 1) {
-//         throw new Error("Already at the last position");
-//     }
-
-//     const newValue = moveItemWithinArray(derivedColourObjectsInUse, index, index + 1);
-//     passSomeColourObjectsToWallpaperGenerator(newValue);
-// };
 
 /**
  * Wallpaper mode data

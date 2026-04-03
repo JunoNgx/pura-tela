@@ -167,39 +167,3 @@ export const isEnumValueValid = <T extends Record<string, string | number>>(
 ): value is T[keyof T] => {
     return Object.values(enumSet).includes(value as T[keyof T]);
 };
-
-// Unused, kept for potential future use
-export const moveItemWithinArray = <T>(
-    arr: T[],
-    fromIndex: number,
-    toIndex: number
-) => {
-    const newTempVal = $state.snapshot(arr);
-
-    const movedItem = newTempVal.splice(fromIndex, 1)[0];
-    newTempVal.splice(toIndex, 0, movedItem);
-
-    return newTempVal;
-};
-
-// Unused, attempted to abstract `sortableJs`' `store.set` unsucessfully
-export const reorderColStateFromSortableJs = (
-    colState: State<ColObj[]>,
-    idOrder: string[]
-) => {
-    const newValue = idOrder.map((id) => {
-        const correspondingItem = colState.val.find(
-            (palGenItem) => palGenItem.id === parseInt(id)
-        );
-
-        if (!correspondingItem) {
-            throw new Error(
-                "Cannot find corresponding colour item while re-sorting after drag and drop"
-            );
-        }
-
-        return correspondingItem;
-    });
-
-    colState.set(newValue);
-};
