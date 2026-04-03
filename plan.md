@@ -139,8 +139,8 @@ into `StyleConfigFieldset`. This keeps both components usable on their own.
 
 ### Tasks
 
-- [ ] Create `src/components/StyleConfigFieldset.svelte`
-    - Props: `title: string`, `onreset: () => void`, `children: Snippet`
+- [x] Create `src/components/StyleConfigFieldset.svelte`
+    - Props: `title: string`, `onReset: () => void`, `children: Snippet`
     - Render: `<fieldset>` → `<legend><h4>{title}</h4></legend>` → `{@render children()}`
       → reset button div
     - Use generic class names: `StyleConfigFieldset`, `StyleConfigFieldset__Title`,
@@ -149,30 +149,30 @@ into `StyleConfigFieldset`. This keeps both components usable on their own.
       duplicated as `.XxxConfig__Item`, `.XxxConfig__ItemTitle`, `.XxxConfig__ActionsContainer`
       across all files
 
-- [ ] Update `StyleConfigPieMan.svelte` (2 fieldsets)
+- [x] Update `StyleConfigPieMan.svelte` (2 fieldsets)
     - Import `StyleConfigFieldset`
     - Replace both `<fieldset>` blocks — pass `<StyleConfigItemSlider>` as children:
         ```svelte
-        <StyleConfigFieldset title="Size" onreset={resetPieManStyleSize}>
+        <StyleConfigFieldset title="Size" onReset={resetPieManStyleSize}>
             <StyleConfigItemSlider ... />
         </StyleConfigFieldset>
         ```
     - Remove the now-redundant `__Item`, `__ItemTitle`, `__ActionsContainer` CSS rules
 
-- [ ] Update `StyleConfigHorizon.svelte` (2 fieldsets) — same approach as PieMan
+- [x] Update `StyleConfigHorizon.svelte` (2 fieldsets) — same approach as PieMan
 
-- [ ] Update `StyleConfigTwilight.svelte` (3 fieldsets) — same approach as PieMan
+- [x] Update `StyleConfigTwilight.svelte` (3 fieldsets) — same approach as PieMan
 
-- [ ] Update `StyleConfigPalette.svelte` (3 fieldsets) — same approach as PieMan
+- [x] Update `StyleConfigPalette.svelte` (3 fieldsets) — same approach as PieMan
 
-- [ ] Update `StyleConfigColourPopArtSquare.svelte` (3 fieldsets) — same approach as PieMan
+- [x] Update `StyleConfigColourPopArtSquare.svelte` (3 fieldsets) — same approach as PieMan
 
-- [ ] Update `StyleConfigColourSwatch.svelte` (2 fieldsets)
+- [x] Update `StyleConfigColourSwatch.svelte` (2 fieldsets)
     - Import `StyleConfigFieldset`
     - Position fieldset: pass both `<StyleConfigItemSlider>` elements as children,
-      `onreset={resetPosition}`
+      `onReset={resetPosition}`
     - Item settings fieldset: pass the radiogroup, dropdown, and both sliders as children,
-      `onreset={resetItemSettings}`
+      `onReset={resetItemSettings}`
     - Remove the now-redundant `__Fieldset`, `__FieldsetLegend`, `__FieldsetButtonsContainer`
       CSS rules (keep the ColourSwatch-specific rules for the radiogroup and dropdown layout)
 
