@@ -7,6 +7,7 @@ import {
     PIE_MAN_CONFIG_SIZE_MAX_VALUE,
     PIE_MAN_CONFIG_ANGLE_MAX_VALUE,
 } from "src/lib/constants.js";
+import { tryParseNumericData } from "src/lib/parseFuncs.js";
 
 const isPieManConfigValid = (data: any) => {
     if (!data) return false;
@@ -55,4 +56,31 @@ export const setPieManStyleAngle = (newValue: number) => {
 
 export const resetPieManStyleAngle = () => {
     setPieManStyleAngle(pieManStyleConfigDefaultValue.angle);
+};
+
+export const appendToUrl = (url: URL) => {
+    url.searchParams.append(
+        "pieManSize",
+        pieManStyleConfig.val.size.toString()
+    );
+    url.searchParams.append(
+        "pieManAngle",
+        pieManStyleConfig.val.angle.toString()
+    );
+};
+
+export const parseFromSearchParams = (params: URLSearchParams) => {
+    const size = tryParseNumericData(
+        params.get("pieManSize") ?? "",
+        0,
+        PIE_MAN_CONFIG_SIZE_MAX_VALUE
+    );
+    if (size !== null) setPieManStyleSize(size);
+
+    const angle = tryParseNumericData(
+        params.get("pieManAngle") ?? "",
+        0,
+        PIE_MAN_CONFIG_ANGLE_MAX_VALUE
+    );
+    if (angle !== null) setPieManStyleAngle(angle);
 };

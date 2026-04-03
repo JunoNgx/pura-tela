@@ -7,10 +7,12 @@ import {
     isValueWithinRange,
 } from "./stateUtils.svelte.js";
 import {
-    POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
     POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE,
+    POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
+    POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE,
     POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
 } from "src/lib/constants.js";
+import { tryParseNumericData } from "src/lib/parseFuncs.js";
 
 const isPopArtSquareConfigValid = (data: any) => {
     if (!data) return false;
@@ -97,4 +99,42 @@ export const resetPopArtSquareStylePositionY = () => {
     setPopArtSquareStylePositionY(
         popArtSquareStyleConfigDefaultValue.positionY
     );
+};
+
+export const appendToUrl = (url: URL) => {
+    url.searchParams.append(
+        "popArtSquareSize",
+        popArtSquareStyleConfig.val.size.toString()
+    );
+    url.searchParams.append(
+        "popArtSquarePositionX",
+        popArtSquareStyleConfig.val.positionX.toString()
+    );
+    url.searchParams.append(
+        "popArtSquarePositionY",
+        popArtSquareStyleConfig.val.positionY.toString()
+    );
+};
+
+export const parseFromSearchParams = (params: URLSearchParams) => {
+    const size = tryParseNumericData(
+        params.get("popArtSquareSize") ?? "",
+        POP_ART_SQUARE_CONFIG_SIZE_MIN_VALUE,
+        POP_ART_SQUARE_CONFIG_SIZE_MAX_VALUE
+    );
+    if (size !== null) setpopArtSquareStyleSize(size);
+
+    const posX = tryParseNumericData(
+        params.get("popArtSquarePositionX") ?? "",
+        POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
+        POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE
+    );
+    if (posX !== null) setPopArtSquareStylePositionX(posX);
+
+    const posY = tryParseNumericData(
+        params.get("popArtSquarePositionY") ?? "",
+        POP_ART_SQUARE_CONFIG_POSITION_MIN_VALUE,
+        POP_ART_SQUARE_CONFIG_POSITION_MAX_VALUE
+    );
+    if (posY !== null) setPopArtSquareStylePositionY(posY);
 };

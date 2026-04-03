@@ -13,6 +13,7 @@ import {
     SWATCH_CONFIG_MAX_VALUE,
     SWATCH_CONFIG_MIN_VALUE,
 } from "src/lib/constants.js";
+import { tryParseNumericData } from "src/lib/parseFuncs.js";
 
 const isColourSwatchConfigValid = (data: any) => {
     if (!data) return false;
@@ -138,4 +139,75 @@ export const setColourSwatchStyleItemSpacing = (newValue: number) => {
         ...colourSwatchStyleConfig.val,
         itemSpacing: newValue,
     });
+};
+
+export const appendToUrl = (url: URL) => {
+    url.searchParams.append(
+        "swatchPosX",
+        colourSwatchStyleConfig.val.positionX.toString()
+    );
+    url.searchParams.append(
+        "swatchPosY",
+        colourSwatchStyleConfig.val.positionY.toString()
+    );
+    url.searchParams.append(
+        "swatchDirection",
+        colourSwatchStyleConfig.val.direction
+    );
+    url.searchParams.append(
+        "swatchItemShape",
+        colourSwatchStyleConfig.val.itemShape
+    );
+    url.searchParams.append(
+        "swatchItemSize",
+        colourSwatchStyleConfig.val.itemSize.toString()
+    );
+    url.searchParams.append(
+        "swatchItemSpacing",
+        colourSwatchStyleConfig.val.itemSpacing.toString()
+    );
+};
+
+export const parseFromSearchParams = (params: URLSearchParams) => {
+    const posX = tryParseNumericData(
+        params.get("swatchPosX") ?? "",
+        SWATCH_CONFIG_MIN_VALUE,
+        SWATCH_CONFIG_MAX_VALUE
+    );
+    if (posX !== null) setColourSwatchStylePositionX(posX);
+
+    const posY = tryParseNumericData(
+        params.get("swatchPosY") ?? "",
+        SWATCH_CONFIG_MIN_VALUE,
+        SWATCH_CONFIG_MAX_VALUE
+    );
+    if (posY !== null) setColourSwatchStylePositionY(posY);
+
+    const itemSize = tryParseNumericData(
+        params.get("swatchItemSize") ?? "",
+        SWATCH_CONFIG_MIN_VALUE,
+        SWATCH_CONFIG_MAX_VALUE
+    );
+    if (itemSize !== null) setColourSwatchStyleItemSize(itemSize);
+
+    const itemSpacing = tryParseNumericData(
+        params.get("swatchItemSpacing") ?? "",
+        SWATCH_CONFIG_MIN_VALUE,
+        SWATCH_CONFIG_MAX_VALUE
+    );
+    if (itemSpacing !== null) setColourSwatchStyleItemSpacing(itemSpacing);
+
+    const direction = params.get("swatchDirection");
+    if (
+        direction
+        && isEnumValueValid(direction as any, ColourSwatchStyleDirection)
+    )
+        setColourSwatchStyleDirection(direction as ColourSwatchStyleDirection);
+
+    const itemShape = params.get("swatchItemShape");
+    if (
+        itemShape
+        && isEnumValueValid(itemShape as any, ColourSwatchStyleItemShape)
+    )
+        setColourSwatchStyleItemShape(itemShape as ColourSwatchStyleItemShape);
 };

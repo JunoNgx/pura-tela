@@ -3,6 +3,7 @@ import {
     createLocalStorageSyncedState,
     isValueWithinRange,
 } from "./stateUtils.svelte.js";
+import { tryParseNumericData } from "src/lib/parseFuncs.js";
 
 const isGradientConfigValid = (data: any) => {
     if (!data) return false;
@@ -29,4 +30,20 @@ export const setGradientStyleConfigAngle = (newValue: number) => {
         ...gradientStyleConfig.val,
         angleInDeg: newValue,
     });
+};
+
+export const appendToUrl = (url: URL) => {
+    url.searchParams.append(
+        "gradientAngle",
+        gradientStyleConfig.val.angleInDeg.toString()
+    );
+};
+
+export const parseFromSearchParams = (params: URLSearchParams) => {
+    const angle = tryParseNumericData(
+        params.get("gradientAngle") ?? "",
+        0,
+        360
+    );
+    if (angle !== null) setGradientStyleConfigAngle(angle);
 };

@@ -16,17 +16,27 @@
     import SizeInput from "src/routes/SizeInput.svelte";
     import SharePanel from "src/components/SharePanel.svelte";
     import { WallpaperStyle } from "src/lib/types.js";
-    import { gradientStyleConfig } from "src/states/wallGenStyleConfigGradientState.svelte.js";
-    import { colourSwatchStyleConfig } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
-    import { paletteStyleConfig } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
-    import { horizonStyleConfig } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
-    import { popArtSquareStyleConfig } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
-    import { twilightStyleConfig } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
-    import { pieManStyleConfig } from "src/states/wallGenStyleConfigPieManState.svelte.js";
+    import { appendToUrl as gradientAppendToUrl } from "src/states/wallGenStyleConfigGradientState.svelte.js";
+    import { appendToUrl as swatchAppendToUrl } from "src/states/wallGenStyleConfigColourSwatchState.svelte.js";
+    import { appendToUrl as paletteAppendToUrl } from "src/states/wallGenStyleConfigPaletteState.svelte.js";
+    import { appendToUrl as horizonAppendToUrl } from "src/states/wallGenStyleConfigHorizonState.svelte.js";
+    import { appendToUrl as popArtSquareAppendToUrl } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
+    import { appendToUrl as twilightAppendToUrl } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
+    import { appendToUrl as pieManAppendToUrl } from "src/states/wallGenStyleConfigPieManState.svelte.js";
     import StudioPreview from "./StudioPreview.svelte";
 
     const handleResize = () => {
         refitCanvasToContainer();
+    };
+
+    const urlAppenders: Partial<Record<WallpaperStyle, (url: URL) => void>> = {
+        [WallpaperStyle.GRADIENT]: gradientAppendToUrl,
+        [WallpaperStyle.COLOUR_SWATCH]: swatchAppendToUrl,
+        [WallpaperStyle.PALETTE]: paletteAppendToUrl,
+        [WallpaperStyle.HORIZON]: horizonAppendToUrl,
+        [WallpaperStyle.POP_ART_SQUARE]: popArtSquareAppendToUrl,
+        [WallpaperStyle.TWILIGHT]: twilightAppendToUrl,
+        [WallpaperStyle.PIE_MAN]: pieManAppendToUrl,
     };
 
     const computeShareableUrl = () => {
@@ -35,107 +45,7 @@
         url.searchParams.append("colours", getColourStringsInUse().toString());
         url.searchParams.append("width", wallGenSize.val.width.toString());
         url.searchParams.append("height", wallGenSize.val.height.toString());
-
-        switch (wallGenStyle.val) {
-            case WallpaperStyle.GRADIENT:
-                url.searchParams.append(
-                    "gradientAngle",
-                    gradientStyleConfig.val.angleInDeg.toString()
-                );
-                break;
-            case WallpaperStyle.COLOUR_SWATCH:
-                url.searchParams.append(
-                    "swatchPosX",
-                    colourSwatchStyleConfig.val.positionX.toString()
-                );
-                url.searchParams.append(
-                    "swatchPosY",
-                    colourSwatchStyleConfig.val.positionY.toString()
-                );
-                url.searchParams.append(
-                    "swatchDirection",
-                    colourSwatchStyleConfig.val.direction
-                );
-                url.searchParams.append(
-                    "swatchItemShape",
-                    colourSwatchStyleConfig.val.itemShape
-                );
-                url.searchParams.append(
-                    "swatchItemSize",
-                    colourSwatchStyleConfig.val.itemSize.toString()
-                );
-                url.searchParams.append(
-                    "swatchItemSpacing",
-                    colourSwatchStyleConfig.val.itemSpacing.toString()
-                );
-                break;
-            case WallpaperStyle.PALETTE:
-                url.searchParams.append(
-                    "paletteAngle",
-                    paletteStyleConfig.val.angleInDeg.toString()
-                );
-                url.searchParams.append(
-                    "paletteSize",
-                    paletteStyleConfig.val.size.toString()
-                );
-                url.searchParams.append(
-                    "palettePosition",
-                    paletteStyleConfig.val.position.toString()
-                );
-                break;
-            case WallpaperStyle.HORIZON:
-                url.searchParams.append(
-                    "horizonShowCore",
-                    horizonStyleConfig.val.shouldShowCore.toString()
-                );
-                url.searchParams.append(
-                    "horizonSize",
-                    horizonStyleConfig.val.size.toString()
-                );
-                url.searchParams.append(
-                    "horizonPosition",
-                    horizonStyleConfig.val.position.toString()
-                );
-                break;
-            case WallpaperStyle.POP_ART_SQUARE:
-                url.searchParams.append(
-                    "popArtSquareSize",
-                    popArtSquareStyleConfig.val.size.toString()
-                );
-                url.searchParams.append(
-                    "popArtSquarePositionX",
-                    popArtSquareStyleConfig.val.positionX.toString()
-                );
-                url.searchParams.append(
-                    "popArtSquarePositionY",
-                    popArtSquareStyleConfig.val.positionY.toString()
-                );
-                break;
-            case WallpaperStyle.TWILIGHT:
-                url.searchParams.append(
-                    "twilightSize",
-                    twilightStyleConfig.val.size.toString()
-                );
-                url.searchParams.append(
-                    "twilightPosition",
-                    twilightStyleConfig.val.position.toString()
-                );
-                url.searchParams.append(
-                    "twilightRippleIntensity",
-                    twilightStyleConfig.val.rippleIntensity.toString()
-                );
-                break;
-            case WallpaperStyle.PIE_MAN:
-                url.searchParams.append(
-                    "pieManSize",
-                    pieManStyleConfig.val.size.toString()
-                );
-                url.searchParams.append(
-                    "pieManAngle",
-                    pieManStyleConfig.val.angle.toString()
-                );
-        }
-
+        urlAppenders[wallGenStyle.val]?.(url);
         return url.toString();
     };
 
