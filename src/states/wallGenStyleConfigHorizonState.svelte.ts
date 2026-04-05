@@ -33,7 +33,7 @@ const isHorizonConfigValid = (data: any) => {
 
 const horizonStyleConfigDefaultValue = {
     shouldShowCore: true,
-    size: 4,
+    size: 3,
     position: 50,
 };
 
