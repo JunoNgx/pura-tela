@@ -2,12 +2,14 @@
     {
         "name": "Pixel series",
         "width": "1344",
-        "height": "2992"
+        "height": "2992",
+        "isFeatured": true
     },
     {
         "name": "iPhone series",
         "width": "1320",
-        "height": "2868"
+        "height": "2868",
+        "isFeatured": true
     },
     {
         "name": "Fairphone 6",
@@ -17,7 +19,8 @@
     {
         "name": "Mobile 20:9",
         "width": "1200",
-        "height": "2600"
+        "height": "2600",
+        "isFeatured": true
     },
     {
         "name": "Portrait 16:9",
@@ -32,7 +35,8 @@
     {
         "name": "Desktop 16:9",
         "width": "3840",
-        "height": "2160"
+        "height": "2160",
+        "isFeatured": true
     },
     {
         "name": "Desktop 21:9",
@@ -47,7 +51,8 @@
     {
         "name": "Square",
         "width": "1920",
-        "height": "1920"
+        "height": "1920",
+        "isFeatured": true
     },
     {
         "name": "Jolla Phone 2026",
