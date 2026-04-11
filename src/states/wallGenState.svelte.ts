@@ -9,7 +9,7 @@ import {
     type State,
     type WallpaperStyleInfo,
 } from "src/lib/types.js";
-import { getRandomHexCode, isHexCodeValid } from "src/lib/utils.js";
+import { isHexCodeValid } from "src/lib/utils.js";
 import { sizeGallery } from "./sizeGalleryState.svelte.js";
 import {
     MAX_COLOUR_COUNT,
