@@ -31,6 +31,7 @@ export type SizeItem = {
     name: string;
     width: number;
     height: number;
+    isFeatured?: boolean;
 };
 
 export type SizeData = {

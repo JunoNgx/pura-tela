@@ -1,5 +1,4 @@
-// @ts-ignore
-import palettesJson from "src/data/palettes.json";
+import palettesJson from "src/data/palettes.json" with { type: "json" };
 import {
     createLocalStorageSyncedState,
     isValidBoolean,

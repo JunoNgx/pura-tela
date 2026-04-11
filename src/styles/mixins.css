@@ -155,7 +155,7 @@
 
 .SplitBtn .SplitBtn__Sec {
     width: 2.5rem;
-    height: 100%;
+    align-self: stretch;
 }
 
 .SplitBtn .SplitBtn__Sec .SplitBtn__SecBtn {

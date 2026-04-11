@@ -28,6 +28,7 @@
     let isOpen = $state(false);
     let buttonEl: HTMLButtonElement;
     let menuEl: HTMLUListElement | undefined = $state();
+    let dropdownEl: HTMLDivElement;
     const defaultPosition: DropdownPosition = "bottom-left";
     let position: DropdownPosition = $state(defaultPosition);
 
@@ -45,7 +46,7 @@
     const handleClickOutside = (event: MouseEvent) => {
         const isClickedOutside = !event
             .composedPath()
-            .includes(document.querySelector(".Dropdown") as EventTarget);
+            .includes(dropdownEl as EventTarget);
         if (isOpen && isClickedOutside) {
             isOpen = false;
         }
@@ -107,6 +108,7 @@
 
 <div
     class="Dropdown"
+    bind:this={dropdownEl}
     class:SplitBtn__Sec={isSplitBtnPart}
     class:Dropdown--TopLeft={position === "top-left"}
     class:Dropdown--TopRight={position === "top-right"}

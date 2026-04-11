@@ -83,15 +83,15 @@ export const tryParseNumericData = (
     }
 };
 
-export const tryParseBooleanData = (valueStr: string) => {
+export const tryParseBooleanData = (valueStr: string | undefined | null) => {
+    if (valueStr) {
+        return false;
+    }
+
     const parsedValue = valueStr?.toLowerCase();
     if (parsedValue === "true") {
         return true;
     }
 
-    if (parsedValue === "false") {
-        return false;
-    }
-
-    return null;
+    return false;
 };

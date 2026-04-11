@@ -7,9 +7,11 @@
         setWallGenSizeWidth,
         wallGenSize,
     } from "src/states/wallGenState.svelte.js";
+    import { sizeGallery } from "src/states/sizeGalleryState.svelte.js";
+    import DropdownMenu from "src/components/DropdownMenu.svelte";
 
-    let width = $state(wallGenSize.val.width);
-    let height = $state(wallGenSize.val.height);
+    let width = $derived(wallGenSize.val.width);
+    let height = $derived(wallGenSize.val.height);
     let shouldShowIncorrectInput = $state(false);
 
     const onWidthChange = (value: string) => {
@@ -47,6 +49,19 @@
     const goToSizeGallery = () => {
         goto("/sizes");
     };
+
+    const presetActionItems = sizeGallery
+        .filter(preset => preset.isFeatured)
+        .map((preset) => ({
+            id: preset.name,
+            label: `${preset.name} (${preset.width}×${preset.height})`,
+            action: () => {
+                console.log("fksdjk")
+                setWallGenSizeWidth(preset.width);
+                setWallGenSizeHeight(preset.height);
+            },
+        })
+    );
 </script>
 
 <section class="SizeInput">
@@ -95,7 +110,7 @@
                     max={MAX_HEIGHT}
                     title="Height of the wallpaper"
                     aria-label="Height of the wallpaper"
-                    bind:value={height}
+                    value={height}
                     oninput={(e) => {
                         onHeightChange((e.target as HTMLInputElement).value);
                     }}
@@ -104,14 +119,20 @@
         </div>
 
         <div class="SizeInput__RightSide">
-            <button
-                class="SizeInput__ActionBtn"
-                onclick={goToSizeGallery}
-                title="View list of size presets"
-                aria-label="View list of size presets"
-            >
-                View presets
-            </button>
+            <div class="SplitBtn">
+                <button
+                    class="SizeInput__ActionBtn SplitBtn__Pri"
+                    onclick={goToSizeGallery}
+                    title="View list of size presets"
+                    aria-label="View list of size presets"
+                >
+                    Presets
+                </button>
+                <DropdownMenu
+                    actionItems={presetActionItems}
+                    isSplitBtnPart={true}
+                />
+            </div>
         </div>
     </div>
 </section>

@@ -1,5 +1,4 @@
-// @ts-ignore
-import defaultColourGallery from "src/data/colours.json";
+import defaultColourGallery from "src/data/colours.json" with { type: "json" };
 import type { ColourItem, State } from "src/lib/types.js";
 import { isHexCodeValid } from "src/lib/utils.js";
 import { createLocalStorageSyncedState } from "src/states/stateUtils.svelte.js";
