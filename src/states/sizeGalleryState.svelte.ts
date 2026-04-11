@@ -1,5 +1,4 @@
-// @ts-ignore
-import defaultSizeGallery from "src/data/sizes.json";
+import defaultSizeGallery from "src/data/sizes.json" with { type: "json" };
 
 /**
  * Size gallery

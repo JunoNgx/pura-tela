@@ -1,5 +1,4 @@
-// @ts-ignore
-import defaultPaletteGallery from "src/data/palettes.json";
+import defaultPaletteGallery from "src/data/palettes.json" with { type: "json" };
 import {
     MAX_COLOUR_COUNT,
     MIN_COLOUR_COUNT_PALETTE,
