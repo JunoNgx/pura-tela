@@ -8,8 +8,8 @@
         wallGenSize,
     } from "src/states/wallGenState.svelte.js";
 
-    let width = $state(wallGenSize.val.width);
-    let height = $state(wallGenSize.val.height);
+    let width = $derived(wallGenSize.val.width);
+    let height = $derived(wallGenSize.val.height);
     let shouldShowIncorrectInput = $state(false);
 
     const onWidthChange = (value: string) => {
@@ -95,7 +95,7 @@
                     max={MAX_HEIGHT}
                     title="Height of the wallpaper"
                     aria-label="Height of the wallpaper"
-                    bind:value={height}
+                    value={height}
                     oninput={(e) => {
                         onHeightChange((e.target as HTMLInputElement).value);
                     }}
