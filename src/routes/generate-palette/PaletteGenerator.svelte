@@ -260,7 +260,7 @@
     }
 
     .PaletteGenerator__ActionsContainerLower {
-        justify-content: flex-start;
+        justify-content: space-between;
     }
 
     .PaletteGenerator__ShareContainer {
@@ -276,10 +276,6 @@
 
         .PaletteGenerator__ItemWrapper {
             height: 7.5rem;
-        }
-
-        .PaletteGenerator__ActionsContainerLower {
-            justify-content: flex-end;
         }
     }
 </style>
