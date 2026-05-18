@@ -1,6 +1,6 @@
 {
     "name": "pura-tela",
-    "version": "1.0.0",
+    "version": "2.2.0",
     "author": "Juno Nguyen",
     "scripts": {
         "dev": "vite dev",
