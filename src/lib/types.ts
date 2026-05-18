@@ -4,6 +4,14 @@ export enum ThemeMode {
     AUTO = "auto",
 }
 
+export enum PaletteGenerationMode {
+    TRUE_RANDOM = "trueRandom",
+    SMART_RANDOM = "smartRandom",
+    ANALOGOUS = "analogous",
+    COMPLEMENTARY = "complementary",
+    TRIADIC = "triadic",
+}
+
 export type ColourItem = {
     name: string;
     hexCode: string;
