@@ -6,6 +6,7 @@ import {
 import { getRandomHexCode } from "src/lib/utils.js";
 import {
     generateTrueRandom,
+    generateSmartRandom,
     generateAnalogous,
     generateComplementary,
 } from "src/lib/paletteGeneration.js";
@@ -77,7 +78,7 @@ const isPaletteGenerationModeValid = (data: any) => {
 
 export const paletteGenerationMode = createLocalStorageSyncedState({
     key: "paletteGenerationMode",
-    defaultValue: PaletteGenerationMode.TRUE_RANDOM,
+    defaultValue: PaletteGenerationMode.SMART_RANDOM,
     validationFunc: isPaletteGenerationModeValid,
 }) as State<PaletteGenerationMode>;
 
@@ -129,20 +130,19 @@ export const generateUnlockedColoursForPalGen = () => {
     let generatedColours: string[];
 
     switch (paletteGenerationMode.val) {
+        case PaletteGenerationMode.SMART_RANDOM:
+        default:
+            generatedColours = generateSmartRandom(lockedColours, unlockedCount);
+            break;
         case PaletteGenerationMode.ANALOGOUS:
             generatedColours = generateAnalogous(lockedColours, unlockedCount);
             break;
-
         case PaletteGenerationMode.COMPLEMENTARY:
-            generatedColours = generateComplementary(
-                lockedColours,
-                unlockedCount
-            );
+            generatedColours = generateComplementary(lockedColours, unlockedCount);
             break;
-
         case PaletteGenerationMode.TRUE_RANDOM:
-        default:
             generatedColours = generateTrueRandom(unlockedCount);
+            break;
     }
 
     let colourIndex = 0;
