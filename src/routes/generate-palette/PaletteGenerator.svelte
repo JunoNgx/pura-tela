@@ -105,18 +105,18 @@
             icon: MaterialSymbolsColorize,
         },
         {
-            id: "generateAi",
-            label: "Generate with AI",
-            tooltip: "Generate a palette using AI with a theme prompt",
-            action: generatePaletteWithAi,
-            icon: MaterialSymbolsNetworkIntelligence,
-        },
-        {
             id: "import",
             label: "Import from string",
             tooltip: "Enter a string of data to recover a palette",
             action: parseFromString,
             icon: MaterialSymbolsConvertToTextOutlineSharp,
+        },
+        {
+            id: "generateAi",
+            label: "Generate with AI",
+            tooltip: "Generate a palette using AI with a theme prompt",
+            action: generatePaletteWithAi,
+            icon: MaterialSymbolsNetworkIntelligence,
         },
     ];
 
