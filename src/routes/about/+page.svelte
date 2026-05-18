@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { version as buildVersion } from "$app/environment";
+    import pkg from "../../../package.json" with { type: "json" };
     import LogoIconColoured from "src/components/LogoIconColoured.svelte";
 </script>
 
@@ -8,6 +10,8 @@
     </div>
 
     <h2 class="H2WithMargin">Welcome to Pura Tela</h2>
+    <!-- buildVersion is the git commit SHA from svelte.config.js -->
+    <p class="VersionInfo">v{pkg.version} ({buildVersion.slice(0, 7)})</p>
 
     <h3>What is this?</h3>
     <p>
