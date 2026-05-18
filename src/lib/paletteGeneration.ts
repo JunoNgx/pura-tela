@@ -132,83 +132,66 @@ export const generateTrueRandom = (count: number): string[] => {
     return Array.from({ length: count }, () => getRandomHexCode());
 };
 
-// Pick a random locked colour as parent per slot,
-// vary lightness/chroma by ±30% for variety,
-// use full 0–360° hue range
 export const generateSmartRandom = (lockedColours: string[], count: number): string[] => {
     if (count === 0) return [];
     if (lockedColours.length === 0) return generateTrueRandom(count);
 
-    const lockedOklch = lockedColours.map(hexToOklch);
+    const { lMin, lMax, cMin, cMax } = analyseBounds(lockedColours);
 
     return Array.from({ length: count }, () => {
-        const randomParentIndex = Math.floor(Math.random() * lockedOklch.length);
-        const parent = lockedOklch[randomParentIndex];
-        const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
-        const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
+        const l = clamp(random(lMin, lMax), 0, 1);
+        const c = clamp(random(cMin, cMax), 0, 0.4);
         const h = random(0, 360);
 
         return oklchToHex({ l, c, h });
     });
 };
 
-// Pick a random locked colour as parent per slot,
-// offset hue ±15–30° for analogous harmony,
-// vary lightness/chroma by ±30%
 export const generateAnalogous = (lockedColours: string[], count: number): string[] => {
     if (count === 0) return [];
     if (lockedColours.length === 0) return generateTrueRandom(count);
 
-    const lockedOklch = lockedColours.map(hexToOklch);
+    const { lMin, lMax, cMin, cMax, avgHue } = analyseBounds(lockedColours);
 
     return Array.from({ length: count }, () => {
-        const parent = lockedOklch[Math.floor(Math.random() * lockedOklch.length)];
-        const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
-        const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
+        const l = clamp(random(lMin, lMax), 0, 1);
+        const c = clamp(random(cMin, cMax), 0, 0.4);
         const offset = Math.random() > 0.5 ? random(15, 45) : random(-45, -15);
-        const h = normaliseHue(parent.h + offset);
+        const h = normaliseHue(avgHue + offset);
 
         return oklchToHex({ l, c, h });
     });
 };
 
-// Pick a random locked colour as parent per slot,
-// offset hue 160–200° for complementary harmony with variety,
-// vary lightness/chroma by ±30%
 export const generateComplementary = (lockedColours: string[], count: number): string[] => {
     if (count === 0) return [];
     if (lockedColours.length === 0) return generateTrueRandom(count);
 
-    const lockedOklch = lockedColours.map(hexToOklch);
+    const { lMin, lMax, cMin, cMax, avgHue } = analyseBounds(lockedColours);
 
     return Array.from({ length: count }, () => {
-        const parent = lockedOklch[Math.floor(Math.random() * lockedOklch.length)];
-        const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
-        const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
-        const h = normaliseHue(parent.h + 180 + random(-20, 20));
+        const l = clamp(random(lMin, lMax), 0, 1);
+        const c = clamp(random(cMin, cMax), 0, 0.4);
+        const h = normaliseHue(avgHue + 180 + random(-20, 20));
 
         return oklchToHex({ l, c, h });
     });
 };
 
-// Pick a random locked colour as parent per slot,
-// offset hue by 120° or 240° for triadic harmony,
-// vary lightness/chroma by ±30%
 export const generateTriadic = (lockedColours: string[], count: number): string[] => {
     if (count === 0) return [];
     if (lockedColours.length === 0) return generateTrueRandom(count);
 
-    const lockedOklch = lockedColours.map(hexToOklch);
+    const { lMin, lMax, cMin, cMax, avgHue } = analyseBounds(lockedColours);
     const triadicOffsets = [120, 240];
 
     return Array.from({ length: count }, () => {
-        const parent = lockedOklch[Math.floor(Math.random() * lockedOklch.length)];
-        const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
-        const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
+        const l = clamp(random(lMin, lMax), 0, 1);
+        const c = clamp(random(cMin, cMax), 0, 0.4);
         const randomOffsetIndex = Math.floor(Math.random() * triadicOffsets.length);
         const baseOffset = triadicOffsets[randomOffsetIndex];
         const offset = baseOffset + random(-15, 15);
-        const rawHue = parent.h + offset;
+        const rawHue = avgHue + offset;
         const h = normaliseHue(rawHue);
 
         return oklchToHex({ l, c, h });
