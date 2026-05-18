@@ -146,6 +146,16 @@
                 : MaterialSymbolsRadioButtonUnchecked,
         },
         {
+            id: PaletteGenerationMode.COMPLEMENTARY,
+            label: "Complementary",
+            tooltip: "Opposite colours on the colour wheel",
+            action: () =>
+                paletteGenerationMode.set(PaletteGenerationMode.COMPLEMENTARY),
+            icon: paletteGenerationMode.val === PaletteGenerationMode.COMPLEMENTARY
+                ? MaterialSymbolsRadioButtonChecked
+                : MaterialSymbolsRadioButtonUnchecked,
+        },
+        {
             id: PaletteGenerationMode.TRUE_RANDOM,
             label: "True Random",
             tooltip: "Completely random colours",
