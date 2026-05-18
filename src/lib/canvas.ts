@@ -548,9 +548,6 @@ export const renderForPaletteStyle = ({
     }
 
     // Due to this translation, the centerpoint is now (0, 0)
-    // ctx.fillStyle = "blue";
-    // ctx.fillRect(0, 0, 10, 10);
-
     ctx.translate(size.width / 2, size.height / 2);
     ctx.rotate((config.palette.angleInDeg * Math.PI) / 180);
 
@@ -560,8 +557,8 @@ export const renderForPaletteStyle = ({
 
     const { shorterSide, longerSide } = getRelativeSides(size);
 
-    const maxBaseSize = longerSide / colours.length;
-    const minBaseSize = shorterSide / colours.length;
+    const maxBaseSize = shorterSide / colours.length;
+    const minBaseSize = shorterSide / (colours.length * 8) ;
     const baseSize = mapToRange({
         outputMin: minBaseSize,
         outputMax: maxBaseSize,
@@ -569,9 +566,8 @@ export const renderForPaletteStyle = ({
         inputMax: PALETTE_CONFIG_SIZE_MAX_VALUE,
     });
 
-    const leftmostPosition = -longerSide / 2;
-    const minStartingPos = leftmostPosition + maxBaseSize;
-    const maxStartingPos = 0;
+    const minStartingPos = -longerSide / 2;
+    const maxStartingPos = longerSide / 2;
     const startingPos = mapToRange({
         outputMin: minStartingPos,
         outputMax: maxStartingPos,
