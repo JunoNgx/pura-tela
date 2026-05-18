@@ -104,8 +104,8 @@ const analyseBounds = (lockedColours: string[]) => {
     }
 
     const avgHue = hueSum / oklchColours.length;
-    const lRange = lMax - lMin;
-    const cRange = cMax - cMin;
+    const lRange = Math.max(lMax - lMin, 0.3);
+    const cRange = Math.max(cMax - cMin, 0.15);
 
     return {
         lMin: Math.max(0, lMin - lRange * 0.3),
