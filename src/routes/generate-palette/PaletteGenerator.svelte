@@ -231,7 +231,7 @@
     </div>
 
     <div class="PaletteGenerator__ActionsContainerLower">
-        <div class="SplitBtn SplitBtn--IsPri">
+        <div class="SplitBtn SplitBtn--IsSec">
             <button
                 class="IconButtonWithLabel SplitBtn__Pri"
                 onclick={passToWallpaperGenerator}
