@@ -126,14 +126,15 @@
 
     const generationModeItems = $derived.by(() => [
         {
-            id: PaletteGenerationMode.SMART_RANDOM,
-            label: "Smart Random",
-            tooltip: "Random colours constrained to locked colours' range",
+            id: PaletteGenerationMode.TRUE_RANDOM,
+            label: "Random",
+            tooltip: "Completely random colours",
             action: () =>
-                paletteGenerationMode.set(PaletteGenerationMode.SMART_RANDOM),
-            icon: paletteGenerationMode.val === PaletteGenerationMode.SMART_RANDOM
-                ? MaterialSymbolsRadioButtonChecked
-                : MaterialSymbolsRadioButtonUnchecked,
+                paletteGenerationMode.set(PaletteGenerationMode.TRUE_RANDOM),
+            icon:
+                paletteGenerationMode.val === PaletteGenerationMode.TRUE_RANDOM
+                    ? MaterialSymbolsRadioButtonChecked
+                    : MaterialSymbolsRadioButtonUnchecked,
         },
         {
             id: PaletteGenerationMode.ANALOGOUS,
@@ -141,9 +142,10 @@
             tooltip: "Colours near each other on the colour wheel",
             action: () =>
                 paletteGenerationMode.set(PaletteGenerationMode.ANALOGOUS),
-            icon: paletteGenerationMode.val === PaletteGenerationMode.ANALOGOUS
-                ? MaterialSymbolsRadioButtonChecked
-                : MaterialSymbolsRadioButtonUnchecked,
+            icon:
+                paletteGenerationMode.val === PaletteGenerationMode.ANALOGOUS
+                    ? MaterialSymbolsRadioButtonChecked
+                    : MaterialSymbolsRadioButtonUnchecked,
         },
         {
             id: PaletteGenerationMode.COMPLEMENTARY,
@@ -151,19 +153,11 @@
             tooltip: "Opposite colours on the colour wheel",
             action: () =>
                 paletteGenerationMode.set(PaletteGenerationMode.COMPLEMENTARY),
-            icon: paletteGenerationMode.val === PaletteGenerationMode.COMPLEMENTARY
-                ? MaterialSymbolsRadioButtonChecked
-                : MaterialSymbolsRadioButtonUnchecked,
-        },
-        {
-            id: PaletteGenerationMode.TRUE_RANDOM,
-            label: "True Random",
-            tooltip: "Completely random colours",
-            action: () =>
-                paletteGenerationMode.set(PaletteGenerationMode.TRUE_RANDOM),
-            icon: paletteGenerationMode.val === PaletteGenerationMode.TRUE_RANDOM
-                ? MaterialSymbolsRadioButtonChecked
-                : MaterialSymbolsRadioButtonUnchecked,
+            icon:
+                paletteGenerationMode.val
+                === PaletteGenerationMode.COMPLEMENTARY
+                    ? MaterialSymbolsRadioButtonChecked
+                    : MaterialSymbolsRadioButtonUnchecked,
         },
     ]);
 
