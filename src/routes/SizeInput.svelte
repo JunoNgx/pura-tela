@@ -51,17 +51,15 @@
     };
 
     const presetActionItems = sizeGallery
-        .filter(preset => preset.isFeatured)
+        .filter((preset) => preset.isFeatured)
         .map((preset) => ({
             id: preset.name,
             label: `${preset.name} (${preset.width}×${preset.height})`,
             action: () => {
-                console.log("fksdjk")
                 setWallGenSizeWidth(preset.width);
                 setWallGenSizeHeight(preset.height);
             },
-        })
-    );
+        }));
 </script>
 
 <section class="SizeInput">

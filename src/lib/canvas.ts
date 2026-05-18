@@ -558,7 +558,7 @@ export const renderForPaletteStyle = ({
     const { shorterSide, longerSide } = getRelativeSides(size);
 
     const maxBaseSize = shorterSide / colours.length;
-    const minBaseSize = shorterSide / (colours.length * 8) ;
+    const minBaseSize = shorterSide / (colours.length * 8);
     const baseSize = mapToRange({
         outputMin: minBaseSize,
         outputMax: maxBaseSize,
