@@ -124,6 +124,10 @@ const random = (min: number, max: number): number => {
     return min + Math.random() * (max - min);
 };
 
+const normaliseHue = (hue: number): number => {
+    return ((hue % 360) + 360) % 360;
+};
+
 export const generateTrueRandom = (count: number): string[] => {
     return Array.from({ length: count }, () => getRandomHexCode());
 };
@@ -161,7 +165,7 @@ export const generateAnalogous = (lockedColours: string[], count: number): strin
         const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
         const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
         const offset = Math.random() > 0.5 ? random(15, 30) : random(-30, -15);
-        const h = parent.h + offset;
+        const h = normaliseHue(parent.h + offset);
 
         return oklchToHex({ l, c, h });
     });
@@ -180,9 +184,8 @@ export const generateComplementary = (lockedColours: string[], count: number): s
         const parent = lockedOklch[Math.floor(Math.random() * lockedOklch.length)];
         const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
         const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
-        const h = parent.h + 180 + random(-20, 20);
-        const result = oklchToHex({ l, c, h });
+        const h = normaliseHue(parent.h + 180 + random(-20, 20));
 
-        return result;
+        return oklchToHex({ l, c, h });
     });
 };
