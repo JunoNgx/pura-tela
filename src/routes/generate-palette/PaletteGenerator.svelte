@@ -233,22 +233,6 @@
     <div class="PaletteGenerator__ActionsContainerLower">
         <div class="SplitBtn SplitBtn--IsPri">
             <button
-                class="PaletteGenerator__ActionBtn IconButtonWithLabel SplitBtn__Pri"
-                onclick={generatePalette}
-                title={"Generate new palettes"}
-                aria-label={"Generate new palettes"}
-            >
-                <MaterialSymbolsGesture />
-                <span>Generate</span>
-            </button>
-            <DropdownMenu
-                actionItems={generationModeItems}
-                isSplitBtnPart={true}
-            />
-        </div>
-
-        <div class="SplitBtn SplitBtn--IsPri">
-            <button
                 class="IconButtonWithLabel SplitBtn__Pri"
                 onclick={passToWallpaperGenerator}
                 title={"Pass the palette to Wallpaper Generator"}
@@ -259,6 +243,22 @@
             </button>
             <DropdownMenu
                 actionItems={otherActionItems}
+                isSplitBtnPart={true}
+            />
+        </div>
+
+        <div class="SplitBtn SplitBtn--IsPri">
+            <button
+                class="PaletteGenerator__ActionBtn IconButtonWithLabel SplitBtn__Pri"
+                onclick={generatePalette}
+                title={"Generate new palettes"}
+                aria-label={"Generate new palettes"}
+            >
+                <MaterialSymbolsGesture />
+                <span>Generate</span>
+            </button>
+            <DropdownMenu
+                actionItems={generationModeItems}
                 isSplitBtnPart={true}
             />
         </div>
