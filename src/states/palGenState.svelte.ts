@@ -133,13 +133,19 @@ export const generateUnlockedColoursForPalGen = () => {
     switch (paletteGenerationMode.val) {
         case PaletteGenerationMode.SMART_RANDOM:
         default:
-            generatedColours = generateSmartRandom(lockedColours, unlockedCount);
+            generatedColours = generateSmartRandom(
+                lockedColours,
+                unlockedCount
+            );
             break;
         case PaletteGenerationMode.ANALOGOUS:
             generatedColours = generateAnalogous(lockedColours, unlockedCount);
             break;
         case PaletteGenerationMode.COMPLEMENTARY:
-            generatedColours = generateComplementary(lockedColours, unlockedCount);
+            generatedColours = generateComplementary(
+                lockedColours,
+                unlockedCount
+            );
             break;
         case PaletteGenerationMode.TRIADIC:
             generatedColours = generateTriadic(lockedColours, unlockedCount);

@@ -8,9 +8,7 @@ type Oklch = {
 };
 
 const srgbToLinear = (c: number): number => {
-    return c <= 0.04045
-        ? c / 12.92
-        : Math.pow((c + 0.055) / 1.055, 2.4);
+    return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
 };
 
 const linearToSrgb = (c: number): number => {
@@ -20,7 +18,11 @@ const linearToSrgb = (c: number): number => {
         : 1.055 * Math.pow(clamped, 1 / 2.4) - 0.055;
 };
 
-const rgbToOklab = ({ red, green, blue }: RgbColour): { l: number; a: number; b: number } => {
+const rgbToOklab = ({
+    red,
+    green,
+    blue,
+}: RgbColour): { l: number; a: number; b: number } => {
     const r = srgbToLinear(red / 255);
     const g = srgbToLinear(green / 255);
     const b = srgbToLinear(blue / 255);
@@ -34,24 +36,30 @@ const rgbToOklab = ({ red, green, blue }: RgbColour): { l: number; a: number; b:
     const sCbrt = Math.cbrt(s);
 
     return {
-        l: 0.2104542553 * lCbrt + 0.7936177850 * mCbrt - 0.0040720468 * sCbrt,
-        a: 1.9779984951 * lCbrt - 2.4285922050 * mCbrt + 0.4505937099 * sCbrt,
-        b: 0.0259040371 * lCbrt + 0.7827717662 * mCbrt - 0.8086757660 * sCbrt,
+        l: 0.2104542553 * lCbrt + 0.793617785 * mCbrt - 0.0040720468 * sCbrt,
+        a: 1.9779984951 * lCbrt - 2.428592205 * mCbrt + 0.4505937099 * sCbrt,
+        b: 0.0259040371 * lCbrt + 0.7827717662 * mCbrt - 0.808675766 * sCbrt,
     };
 };
 
 const oklabToRgb = (lab: { l: number; a: number; b: number }): RgbColour => {
     const lCbrt = lab.l + 0.3963377774 * lab.a + 0.2158037573 * lab.b;
     const mCbrt = lab.l - 0.1055613458 * lab.a - 0.0638541728 * lab.b;
-    const sCbrt = lab.l - 0.0894841775 * lab.a - 1.2914855480 * lab.b;
+    const sCbrt = lab.l - 0.0894841775 * lab.a - 1.291485548 * lab.b;
 
     const l = lCbrt * lCbrt * lCbrt;
     const m = mCbrt * mCbrt * mCbrt;
     const s = sCbrt * sCbrt * sCbrt;
 
-    const r = linearToSrgb(+4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s);
-    const g = linearToSrgb(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s);
-    const b = linearToSrgb(-0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s);
+    const r = linearToSrgb(
+        +4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s
+    );
+    const g = linearToSrgb(
+        -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s
+    );
+    const b = linearToSrgb(
+        -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s
+    );
 
     return {
         red: Math.round(r * 255),
@@ -91,8 +99,10 @@ const analyseBounds = (lockedColours: string[]) => {
     }
 
     const oklchColours = lockedColours.map(hexToOklch);
-    let lMin = Infinity, lMax = -Infinity;
-    let cMin = Infinity, cMax = -Infinity;
+    let lMin = Infinity,
+        lMax = -Infinity;
+    let cMin = Infinity,
+        cMax = -Infinity;
     let hueSum = 0;
 
     for (const colour of oklchColours) {
@@ -132,7 +142,10 @@ export const generateTrueRandom = (count: number): string[] => {
     return Array.from({ length: count }, () => getRandomHexCode());
 };
 
-export const generateSmartRandom = (lockedColours: string[], count: number): string[] => {
+export const generateSmartRandom = (
+    lockedColours: string[],
+    count: number
+): string[] => {
     if (count === 0) return [];
     if (lockedColours.length === 0) return generateTrueRandom(count);
 
@@ -147,7 +160,10 @@ export const generateSmartRandom = (lockedColours: string[], count: number): str
     });
 };
 
-export const generateAnalogous = (lockedColours: string[], count: number): string[] => {
+export const generateAnalogous = (
+    lockedColours: string[],
+    count: number
+): string[] => {
     if (count === 0) return [];
     if (lockedColours.length === 0) return generateTrueRandom(count);
 
@@ -163,7 +179,10 @@ export const generateAnalogous = (lockedColours: string[], count: number): strin
     });
 };
 
-export const generateComplementary = (lockedColours: string[], count: number): string[] => {
+export const generateComplementary = (
+    lockedColours: string[],
+    count: number
+): string[] => {
     if (count === 0) return [];
     if (lockedColours.length === 0) return generateTrueRandom(count);
 
@@ -178,7 +197,10 @@ export const generateComplementary = (lockedColours: string[], count: number): s
     });
 };
 
-export const generateTriadic = (lockedColours: string[], count: number): string[] => {
+export const generateTriadic = (
+    lockedColours: string[],
+    count: number
+): string[] => {
     if (count === 0) return [];
     if (lockedColours.length === 0) return generateTrueRandom(count);
 
@@ -188,7 +210,9 @@ export const generateTriadic = (lockedColours: string[], count: number): string[
     return Array.from({ length: count }, () => {
         const l = clamp(random(lMin, lMax) + random(-0.1, 0.1), 0, 1);
         const c = clamp(random(cMin, cMax) + random(-0.05, 0.05), 0, 0.4);
-        const randomOffsetIndex = Math.floor(Math.random() * triadicOffsets.length);
+        const randomOffsetIndex = Math.floor(
+            Math.random() * triadicOffsets.length
+        );
         const baseOffset = triadicOffsets[randomOffsetIndex];
         const offset = baseOffset + random(-15, 15);
         const rawHue = avgHue + offset;
