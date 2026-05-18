@@ -9,6 +9,7 @@ import {
     generateSmartRandom,
     generateAnalogous,
     generateComplementary,
+    generateTriadic,
 } from "src/lib/paletteGeneration.js";
 import {
     createColState,
@@ -139,6 +140,9 @@ export const generateUnlockedColoursForPalGen = () => {
             break;
         case PaletteGenerationMode.COMPLEMENTARY:
             generatedColours = generateComplementary(lockedColours, unlockedCount);
+            break;
+        case PaletteGenerationMode.TRIADIC:
+            generatedColours = generateTriadic(lockedColours, unlockedCount);
             break;
         case PaletteGenerationMode.TRUE_RANDOM:
             generatedColours = generateTrueRandom(unlockedCount);

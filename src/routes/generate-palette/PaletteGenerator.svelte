@@ -156,6 +156,16 @@
                 : MaterialSymbolsRadioButtonUnchecked,
         },
         {
+            id: PaletteGenerationMode.TRIADIC,
+            label: "Triadic",
+            tooltip: "Evenly spaced colours on the colour wheel",
+            action: () =>
+                paletteGenerationMode.set(PaletteGenerationMode.TRIADIC),
+            icon: paletteGenerationMode.val === PaletteGenerationMode.TRIADIC
+                ? MaterialSymbolsRadioButtonChecked
+                : MaterialSymbolsRadioButtonUnchecked,
+        },
+        {
             id: PaletteGenerationMode.TRUE_RANDOM,
             label: "True Random",
             tooltip: "Completely random colours",

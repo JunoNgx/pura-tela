@@ -189,3 +189,23 @@ export const generateComplementary = (lockedColours: string[], count: number): s
         return oklchToHex({ l, c, h });
     });
 };
+
+// Pick a random locked colour as parent per slot,
+// offset hue by 120° or 240° for triadic harmony,
+// vary lightness/chroma by ±30%
+export const generateTriadic = (lockedColours: string[], count: number): string[] => {
+    if (count === 0) return [];
+    if (lockedColours.length === 0) return generateTrueRandom(count);
+
+    const lockedOklch = lockedColours.map(hexToOklch);
+    const triadicOffsets = [120, 240];
+
+    return Array.from({ length: count }, () => {
+        const parent = lockedOklch[Math.floor(Math.random() * lockedOklch.length)];
+        const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
+        const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
+        const h = normaliseHue(parent.h + triadicOffsets[Math.floor(Math.random() * triadicOffsets.length)]);
+
+        return oklchToHex({ l, c, h });
+    });
+};
