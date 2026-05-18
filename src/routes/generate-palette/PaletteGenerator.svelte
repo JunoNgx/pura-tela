@@ -96,14 +96,7 @@
 
     const flipDurationMs = 200;
 
-    const dropdownActionItems = [
-        {
-            id: "savePalette",
-            label: "Save as palette",
-            tooltip: "Save current settings as a palette",
-            action: savePalette,
-            icon: MaterialSymbolsViewWeekSharp,
-        },
+    const otherActionItems = [
         {
             id: "passToWallGen",
             label: "Pass to Wallpaper Generator",
@@ -180,18 +173,28 @@
     </div>
 
     <div class="PaletteGenerator__ActionsContainerLower">
+        <button
+            class="PaletteGenerator__ActionBtn IconButtonWithLabel"
+            onclick={generatePalette}
+            title={"Generate new palettes"}
+            aria-label={"Generate new palettes"}
+        >
+            <MaterialSymbolsGesture />
+            <span>Generate</span>
+        </button>
+
         <div class="SplitBtn SplitBtn--IsPri">
             <button
-                class="PaletteGenerator__ActionBtn IconButtonWithLabel SplitBtn__Pri"
-                onclick={generatePalette}
-                title={"Generate new palettes"}
-                aria-label={"Generate new palettes"}
+                class="IconButtonWithLabel SplitBtn__Pri"
+                onclick={savePalette}
+                title={"Save current settings as a palette"}
+                aria-label={"Save current settings as a palette"}
             >
-                <MaterialSymbolsGesture />
-                <span>Generate</span>
+                <MaterialSymbolsViewWeekSharp />
+                <span>Save as palette</span>
             </button>
             <DropdownMenu
-                actionItems={dropdownActionItems}
+                actionItems={otherActionItems}
                 isSplitBtnPart={true}
             />
         </div>
