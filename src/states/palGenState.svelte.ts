@@ -5,6 +5,10 @@ import {
 } from "src/lib/constants.js";
 import { getRandomHexCode } from "src/lib/utils.js";
 import {
+    generateTrueRandom,
+    generateSmartRandom,
+} from "src/lib/paletteGeneration.js";
+import {
     createColState,
     createLocalStorageSyncedState,
     isEnumValueValid,
@@ -113,16 +117,31 @@ export const removePalGenColoursLockAtIndex = (index: number) => {
     palGenColours.set([...befPortion, ...aftPortion]);
 };
 
-export const randomiseUnlockedColoursForPalGen = () => {
+export const generateUnlockedColoursForPalGen = () => {
+    const lockedColours = palGenColours.val
+        .filter((item) => item.isLocked)
+        .map((item) => item.colour);
+    const unlockedCount = palGenColours.val.filter(
+        (item) => !item.isLocked
+    ).length;
+
+    const generatedColours =
+        paletteGenerationMode.val === PaletteGenerationMode.TRUE_RANDOM
+            ? generateTrueRandom(unlockedCount)
+            : generateSmartRandom(lockedColours, unlockedCount);
+
+    let colourIndex = 0;
     const newVal = palGenColours.val.map((palGenItem) => {
         if (palGenItem.isLocked) {
             return palGenItem;
         }
 
+        const colour = generatedColours[colourIndex];
+        colourIndex++;
         return {
             id: generateId(),
             isLocked: false,
-            colour: getRandomHexCode(),
+            colour,
         };
     });
 

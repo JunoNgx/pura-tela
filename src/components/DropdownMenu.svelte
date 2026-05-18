@@ -138,7 +138,11 @@
                     aria-label={actionItem.tooltip}
                     onclick={() => executeAction(actionItem)}
                 >
-                    <span class="Dropdown__ItemIcon"><actionItem.icon /></span>
+                    {#if actionItem.icon}
+                        <span class="Dropdown__ItemIcon"
+                            ><actionItem.icon /></span
+                        >
+                    {/if}
                     <span class="Dropdown__ItemLabel">{actionItem.label}</span>
                 </button>
             {/each}

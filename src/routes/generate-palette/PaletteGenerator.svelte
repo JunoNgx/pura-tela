@@ -19,14 +19,18 @@
     import MaterialSymbolsViewWeekSharp from "~icons/material-symbols/view-week-sharp";
     import MaterialSymbolsNetworkIntelligence from "~icons/material-symbols/network-intelligence";
     import MaterialSymbolsConvertToTextOutlineSharp from "~icons/material-symbols/convert-to-text-outline-sharp";
+    import MaterialSymbolsRadioButtonChecked from "~icons/material-symbols/radio-button-checked";
+    import MaterialSymbolsRadioButtonUnchecked from "~icons/material-symbols/radio-button-unchecked";
 
     import {
         addToPalGenColours,
         exportToStringFromPalGen,
         palGenColours,
         tryParseFromStringToPalGen,
-        randomiseUnlockedColoursForPalGen,
+        generateUnlockedColoursForPalGen,
+        paletteGenerationMode,
     } from "src/states/palGenState.svelte.js";
+    import { PaletteGenerationMode } from "src/lib/types.js";
     import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
     import {
         passSomeColourStringsToWallpaperGenerator,
@@ -42,7 +46,7 @@
     };
 
     const generatePalette = () => {
-        randomiseUnlockedColoursForPalGen();
+        generateUnlockedColoursForPalGen();
     };
 
     const passToWallpaperGenerator = () => {
@@ -120,6 +124,29 @@
         },
     ];
 
+    const generationModeItems = $derived.by(() => [
+        {
+            id: PaletteGenerationMode.TRUE_RANDOM,
+            label: "True Random",
+            tooltip: "Completely random colours",
+            action: () =>
+                paletteGenerationMode.set(PaletteGenerationMode.TRUE_RANDOM),
+            icon: paletteGenerationMode.val === PaletteGenerationMode.TRUE_RANDOM
+                ? MaterialSymbolsRadioButtonChecked
+                : MaterialSymbolsRadioButtonUnchecked,
+        },
+        {
+            id: PaletteGenerationMode.SMART_RANDOM,
+            label: "Smart Random",
+            tooltip: "Random colours constrained to locked colours' range",
+            action: () =>
+                paletteGenerationMode.set(PaletteGenerationMode.SMART_RANDOM),
+            icon: paletteGenerationMode.val === PaletteGenerationMode.SMART_RANDOM
+                ? MaterialSymbolsRadioButtonChecked
+                : MaterialSymbolsRadioButtonUnchecked,
+        },
+    ]);
+
     const handleKeydown = (e: KeyboardEvent) => {
         if (e.code === "Space") {
             generatePalette();
@@ -173,15 +200,21 @@
     </div>
 
     <div class="PaletteGenerator__ActionsContainerLower">
-        <button
-            class="PaletteGenerator__ActionBtn IconButtonWithLabel"
-            onclick={generatePalette}
-            title={"Generate new palettes"}
-            aria-label={"Generate new palettes"}
-        >
-            <MaterialSymbolsGesture />
-            <span>Generate</span>
-        </button>
+        <div class="SplitBtn SplitBtn--IsPri">
+            <button
+                class="PaletteGenerator__ActionBtn IconButtonWithLabel SplitBtn__Pri"
+                onclick={generatePalette}
+                title={"Generate new palettes"}
+                aria-label={"Generate new palettes"}
+            >
+                <MaterialSymbolsGesture />
+                <span>Generate</span>
+            </button>
+            <DropdownMenu
+                actionItems={generationModeItems}
+                isSplitBtnPart={true}
+            />
+        </div>
 
         <div class="SplitBtn SplitBtn--IsPri">
             <button
