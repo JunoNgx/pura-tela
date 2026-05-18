@@ -165,7 +165,7 @@ export const generateAnalogous = (lockedColours: string[], count: number): strin
         const parent = lockedOklch[Math.floor(Math.random() * lockedOklch.length)];
         const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
         const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
-        const offset = Math.random() > 0.5 ? random(15, 30) : random(-30, -15);
+        const offset = Math.random() > 0.5 ? random(15, 45) : random(-45, -15);
         const h = normaliseHue(parent.h + offset);
 
         return oklchToHex({ l, c, h });
