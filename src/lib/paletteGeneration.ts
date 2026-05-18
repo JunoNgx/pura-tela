@@ -142,7 +142,8 @@ export const generateSmartRandom = (lockedColours: string[], count: number): str
     const lockedOklch = lockedColours.map(hexToOklch);
 
     return Array.from({ length: count }, () => {
-        const parent = lockedOklch[Math.floor(Math.random() * lockedOklch.length)];
+        const randomParentIndex = Math.floor(Math.random() * lockedOklch.length);
+        const parent = lockedOklch[randomParentIndex];
         const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
         const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
         const h = random(0, 360);
@@ -205,7 +206,8 @@ export const generateTriadic = (lockedColours: string[], count: number): string[
         const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
         const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
         const randomOffsetIndex = Math.floor(Math.random() * triadicOffsets.length);
-        const offset = triadicOffsets[randomOffsetIndex];
+        const baseOffset = triadicOffsets[randomOffsetIndex];
+        const offset = baseOffset + random(-15, 15);
         const rawHue = parent.h + offset;
         const h = normaliseHue(rawHue);
 
