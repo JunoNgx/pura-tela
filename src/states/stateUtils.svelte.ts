@@ -30,7 +30,7 @@ export const createLocalStorageSyncedState = <T>({
     try {
         const existingData = localStorage.getItem(key);
         if (existingData === null) {
-            console.log(
+            console.info(
                 `INFO: localStorage data for ${key} is empty, using fallback data`
             );
             localStorage.setItem(key, JSON.stringify(defaultValue));
@@ -105,7 +105,7 @@ export const createColState = ({
     try {
         const existingData = localStorage.getItem(key);
         if (existingData === null) {
-            console.log(
+            console.info(
                 `INFO: localStorage data for ${key} is empty, using fallback data`
             );
             localStorage.setItem(key, JSON.stringify(defaultValue));
