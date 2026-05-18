@@ -32,14 +32,14 @@ const isPaletteConfigValid = (data: any) => {
 
 const paletteStyleConfigDefaultValue = {
     angleInDeg: 90,
-    size: 0,
-    position: 10,
+    size: 10,
+    position: 25,
 };
 
 const paletteStyleConfigLandscapeDefaultValue = {
     angleInDeg: 0,
     size: 10,
-    position: 0,
+    position: 25,
 };
 
 export const paletteStyleConfig = <State<PaletteStyleConfigProps>>(
