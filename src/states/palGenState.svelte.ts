@@ -6,12 +6,18 @@ import {
 import { getRandomHexCode } from "src/lib/utils.js";
 import {
     createColState,
+    createLocalStorageSyncedState,
+    isEnumValueValid,
     isValidBoolean,
 } from "src/states/stateUtils.svelte.js";
 import { isHexCodeValid } from "src/lib/utils.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
 import { generateId } from "./idGenState.svelte.js";
-import type { PalGenColObj, State } from "src/lib/types.js";
+import {
+    PaletteGenerationMode,
+    type PalGenColObj,
+    type State,
+} from "src/lib/types.js";
 import { paletteGallery } from "./paletteGalleryState.svelte.js";
 
 /**
@@ -58,6 +64,17 @@ export const palGenColours = <State<PalGenColObj[]>>createColState({
     defaultValue: generateDefaultPalGenColours(),
     validationFunc: isPalGenColoursValid,
 });
+
+const isPaletteGenerationModeValid = (data: any) => {
+    if (!isEnumValueValid(data, PaletteGenerationMode)) return false;
+    return true;
+};
+
+export const paletteGenerationMode = createLocalStorageSyncedState({
+    key: "paletteGenerationMode",
+    defaultValue: PaletteGenerationMode.SMART_RANDOM,
+    validationFunc: isPaletteGenerationModeValid,
+}) as State<PaletteGenerationMode>;
 
 export const setPalGenColoursHexAtIndex = (index: number, newValue: string) => {
     const tempVal = [...palGenColours.val];
