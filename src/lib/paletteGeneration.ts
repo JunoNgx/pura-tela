@@ -204,7 +204,10 @@ export const generateTriadic = (lockedColours: string[], count: number): string[
         const parent = lockedOklch[Math.floor(Math.random() * lockedOklch.length)];
         const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
         const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
-        const h = normaliseHue(parent.h + triadicOffsets[Math.floor(Math.random() * triadicOffsets.length)]);
+        const randomOffsetIndex = Math.floor(Math.random() * triadicOffsets.length);
+        const offset = triadicOffsets[randomOffsetIndex];
+        const rawHue = parent.h + offset;
+        const h = normaliseHue(rawHue);
 
         return oklchToHex({ l, c, h });
     });
