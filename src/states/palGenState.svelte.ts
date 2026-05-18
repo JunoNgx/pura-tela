@@ -5,13 +5,26 @@ import {
 } from "src/lib/constants.js";
 import { getRandomHexCode } from "src/lib/utils.js";
 import {
+    generateTrueRandom,
+    generateSmartRandom,
+    generateAnalogous,
+    generateComplementary,
+    generateTriadic,
+} from "src/lib/paletteGeneration.js";
+import {
     createColState,
+    createLocalStorageSyncedState,
+    isEnumValueValid,
     isValidBoolean,
 } from "src/states/stateUtils.svelte.js";
 import { isHexCodeValid } from "src/lib/utils.js";
 import { tryParseColours } from "src/lib/parseFuncs.js";
 import { generateId } from "./idGenState.svelte.js";
-import type { PalGenColObj, State } from "src/lib/types.js";
+import {
+    PaletteGenerationMode,
+    type PalGenColObj,
+    type State,
+} from "src/lib/types.js";
 import { paletteGallery } from "./paletteGalleryState.svelte.js";
 
 /**
@@ -59,6 +72,17 @@ export const palGenColours = <State<PalGenColObj[]>>createColState({
     validationFunc: isPalGenColoursValid,
 });
 
+const isPaletteGenerationModeValid = (data: any) => {
+    if (!isEnumValueValid(data, PaletteGenerationMode)) return false;
+    return true;
+};
+
+export const paletteGenerationMode = createLocalStorageSyncedState({
+    key: "paletteGenerationMode",
+    defaultValue: PaletteGenerationMode.SMART_RANDOM,
+    validationFunc: isPaletteGenerationModeValid,
+}) as State<PaletteGenerationMode>;
+
 export const setPalGenColoursHexAtIndex = (index: number, newValue: string) => {
     const tempVal = [...palGenColours.val];
     tempVal[index].colour = newValue;
@@ -96,16 +120,47 @@ export const removePalGenColoursLockAtIndex = (index: number) => {
     palGenColours.set([...befPortion, ...aftPortion]);
 };
 
-export const randomiseUnlockedColoursForPalGen = () => {
+export const generateUnlockedColoursForPalGen = () => {
+    const lockedColours = palGenColours.val
+        .filter((item) => item.isLocked)
+        .map((item) => item.colour);
+    const unlockedCount = palGenColours.val.filter(
+        (item) => !item.isLocked
+    ).length;
+
+    let generatedColours: string[];
+
+    switch (paletteGenerationMode.val) {
+        case PaletteGenerationMode.SMART_RANDOM:
+        default:
+            generatedColours = generateSmartRandom(lockedColours, unlockedCount);
+            break;
+        case PaletteGenerationMode.ANALOGOUS:
+            generatedColours = generateAnalogous(lockedColours, unlockedCount);
+            break;
+        case PaletteGenerationMode.COMPLEMENTARY:
+            generatedColours = generateComplementary(lockedColours, unlockedCount);
+            break;
+        case PaletteGenerationMode.TRIADIC:
+            generatedColours = generateTriadic(lockedColours, unlockedCount);
+            break;
+        case PaletteGenerationMode.TRUE_RANDOM:
+            generatedColours = generateTrueRandom(unlockedCount);
+            break;
+    }
+
+    let colourIndex = 0;
     const newVal = palGenColours.val.map((palGenItem) => {
         if (palGenItem.isLocked) {
             return palGenItem;
         }
 
+        const colour = generatedColours[colourIndex];
+        colourIndex++;
         return {
             id: generateId(),
             isLocked: false,
-            colour: getRandomHexCode(),
+            colour,
         };
     });
 

@@ -19,14 +19,18 @@
     import MaterialSymbolsViewWeekSharp from "~icons/material-symbols/view-week-sharp";
     import MaterialSymbolsNetworkIntelligence from "~icons/material-symbols/network-intelligence";
     import MaterialSymbolsConvertToTextOutlineSharp from "~icons/material-symbols/convert-to-text-outline-sharp";
+    import MaterialSymbolsRadioButtonChecked from "~icons/material-symbols/radio-button-checked";
+    import MaterialSymbolsRadioButtonUnchecked from "~icons/material-symbols/radio-button-unchecked";
 
     import {
         addToPalGenColours,
         exportToStringFromPalGen,
         palGenColours,
         tryParseFromStringToPalGen,
-        randomiseUnlockedColoursForPalGen,
+        generateUnlockedColoursForPalGen,
+        paletteGenerationMode,
     } from "src/states/palGenState.svelte.js";
+    import { PaletteGenerationMode } from "src/lib/types.js";
     import { addToPaletteGalleryFromPaletteGenerator } from "src/states/paletteGalleryState.svelte.js";
     import {
         passSomeColourStringsToWallpaperGenerator,
@@ -42,7 +46,7 @@
     };
 
     const generatePalette = () => {
-        randomiseUnlockedColoursForPalGen();
+        generateUnlockedColoursForPalGen();
     };
 
     const passToWallpaperGenerator = () => {
@@ -96,14 +100,7 @@
 
     const flipDurationMs = 200;
 
-    const dropdownActionItems = [
-        {
-            id: "savePalette",
-            label: "Save as palette",
-            tooltip: "Save current settings as a palette",
-            action: savePalette,
-            icon: MaterialSymbolsViewWeekSharp,
-        },
+    const otherActionItems = [
         {
             id: "passToWallGen",
             label: "Pass to Wallpaper Generator",
@@ -112,20 +109,73 @@
             icon: MaterialSymbolsColorize,
         },
         {
-            id: "generateAi",
-            label: "Generate with AI",
-            tooltip: "Generate a palette using AI with a theme prompt",
-            action: generatePaletteWithAi,
-            icon: MaterialSymbolsNetworkIntelligence,
-        },
-        {
             id: "import",
             label: "Import from string",
             tooltip: "Enter a string of data to recover a palette",
             action: parseFromString,
             icon: MaterialSymbolsConvertToTextOutlineSharp,
         },
+        {
+            id: "generateAi",
+            label: "Generate with AI",
+            tooltip: "Generate a palette using AI with a theme prompt",
+            action: generatePaletteWithAi,
+            icon: MaterialSymbolsNetworkIntelligence,
+        },
     ];
+
+    const generationModeItems = $derived.by(() => [
+        {
+            id: PaletteGenerationMode.SMART_RANDOM,
+            label: "Smart Random",
+            tooltip: "Random colours constrained to locked colours' range",
+            action: () =>
+                paletteGenerationMode.set(PaletteGenerationMode.SMART_RANDOM),
+            icon: paletteGenerationMode.val === PaletteGenerationMode.SMART_RANDOM
+                ? MaterialSymbolsRadioButtonChecked
+                : MaterialSymbolsRadioButtonUnchecked,
+        },
+        {
+            id: PaletteGenerationMode.ANALOGOUS,
+            label: "Analogous",
+            tooltip: "Colours near each other on the colour wheel",
+            action: () =>
+                paletteGenerationMode.set(PaletteGenerationMode.ANALOGOUS),
+            icon: paletteGenerationMode.val === PaletteGenerationMode.ANALOGOUS
+                ? MaterialSymbolsRadioButtonChecked
+                : MaterialSymbolsRadioButtonUnchecked,
+        },
+        {
+            id: PaletteGenerationMode.COMPLEMENTARY,
+            label: "Complementary",
+            tooltip: "Opposite colours on the colour wheel",
+            action: () =>
+                paletteGenerationMode.set(PaletteGenerationMode.COMPLEMENTARY),
+            icon: paletteGenerationMode.val === PaletteGenerationMode.COMPLEMENTARY
+                ? MaterialSymbolsRadioButtonChecked
+                : MaterialSymbolsRadioButtonUnchecked,
+        },
+        {
+            id: PaletteGenerationMode.TRIADIC,
+            label: "Triadic",
+            tooltip: "Evenly spaced colours on the colour wheel",
+            action: () =>
+                paletteGenerationMode.set(PaletteGenerationMode.TRIADIC),
+            icon: paletteGenerationMode.val === PaletteGenerationMode.TRIADIC
+                ? MaterialSymbolsRadioButtonChecked
+                : MaterialSymbolsRadioButtonUnchecked,
+        },
+        {
+            id: PaletteGenerationMode.TRUE_RANDOM,
+            label: "True Random",
+            tooltip: "Completely random colours",
+            action: () =>
+                paletteGenerationMode.set(PaletteGenerationMode.TRUE_RANDOM),
+            icon: paletteGenerationMode.val === PaletteGenerationMode.TRUE_RANDOM
+                ? MaterialSymbolsRadioButtonChecked
+                : MaterialSymbolsRadioButtonUnchecked,
+        },
+    ]);
 
     const handleKeydown = (e: KeyboardEvent) => {
         if (e.code === "Space") {
@@ -191,7 +241,23 @@
                 <span>Generate</span>
             </button>
             <DropdownMenu
-                actionItems={dropdownActionItems}
+                actionItems={generationModeItems}
+                isSplitBtnPart={true}
+            />
+        </div>
+
+        <div class="SplitBtn SplitBtn--IsPri">
+            <button
+                class="IconButtonWithLabel SplitBtn__Pri"
+                onclick={savePalette}
+                title={"Save current settings as a palette"}
+                aria-label={"Save current settings as a palette"}
+            >
+                <MaterialSymbolsViewWeekSharp />
+                <span>Save as palette</span>
+            </button>
+            <DropdownMenu
+                actionItems={otherActionItems}
                 isSplitBtnPart={true}
             />
         </div>
@@ -257,7 +323,7 @@
     }
 
     .PaletteGenerator__ActionsContainerLower {
-        justify-content: flex-start;
+        justify-content: space-between;
     }
 
     .PaletteGenerator__ShareContainer {
@@ -273,10 +339,6 @@
 
         .PaletteGenerator__ItemWrapper {
             height: 7.5rem;
-        }
-
-        .PaletteGenerator__ActionsContainerLower {
-            justify-content: flex-end;
         }
     }
 </style>
