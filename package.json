@@ -4,16 +4,16 @@
     "author": "Juno Nguyen",
     "scripts": {
         "dev": "vite dev",
-        "build": "vite build && npm run package",
+        "build": "vite build && pnpm package",
         "preview": "vite preview",
         "package": "svelte-kit sync && svelte-package && publint",
-        "prepublishOnly": "npm run package",
+        "prepublishOnly": "pnpm package",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
         "format": "prettier --write .",
         "lint": "prettier --check . && eslint .",
         "test:unit": "vitest",
-        "test": "npm run test:unit -- --run"
+        "test": "pnpm test:unit -- --run"
     },
     "files": [
         "dist",
@@ -41,6 +41,7 @@
     },
     "devDependencies": {
         "@eslint/compat": "^2.0.3",
+        "@eslint/js": "^10.0.1",
         "@iconify-json/material-symbols": "^1.2.64",
         "@iconify-json/material-symbols-light": "^1.2.64",
         "@sveltejs/adapter-auto": "^7.0.1",

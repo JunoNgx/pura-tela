@@ -32,7 +32,7 @@ The application is made with a minimal stack, including **SvelteKit 5** and **Ty
 
 ## Running locally
 
-`yarn && yarn dev`
+`pnpm install && pnpm dev`
 
 ## PWA icons update utility
 
