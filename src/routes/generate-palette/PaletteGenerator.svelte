@@ -102,11 +102,11 @@
 
     const otherActionItems = [
         {
-            id: "passToWallGen",
-            label: "Pass to Wallpaper Generator",
-            tooltip: "Pass the palette to Wallpaper Generator",
-            action: passToWallpaperGenerator,
-            icon: MaterialSymbolsColorize,
+            id: "savePalette",
+            label: "Save as palette",
+            tooltip: "Save current settings as a palette",
+            action: savePalette,
+            icon: MaterialSymbolsViewWeekSharp,
         },
         {
             id: "import",
@@ -250,12 +250,12 @@
         <div class="SplitBtn SplitBtn--IsPri">
             <button
                 class="IconButtonWithLabel SplitBtn__Pri"
-                onclick={savePalette}
-                title={"Save current settings as a palette"}
-                aria-label={"Save current settings as a palette"}
+                onclick={passToWallpaperGenerator}
+                title={"Pass the palette to Wallpaper Generator"}
+                aria-label={"Pass the palette to Wallpaper Generator"}
             >
-                <MaterialSymbolsViewWeekSharp />
-                <span>Save as palette</span>
+                <MaterialSymbolsColorize />
+                <span>Pass to Wallpaper</span>
             </button>
             <DropdownMenu
                 actionItems={otherActionItems}
