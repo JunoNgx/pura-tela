@@ -190,7 +190,7 @@
         preview panel in the <strong>Wallpaper Generator</strong>.
     </p>
     <p>
-        Press <kbd>Spacebar</kbd> to randomly generate palette in the
+        Press <kbd>Spacebar</kbd> to generate palette using the chosen mode in the
         <strong>Palette Generator</strong>.
     </p>
 
