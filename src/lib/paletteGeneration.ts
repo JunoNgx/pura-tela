@@ -146,3 +146,23 @@ export const generateSmartRandom = (lockedColours: string[], count: number): str
         return oklchToHex({ l, c, h });
     });
 };
+
+// Pick a random locked colour as parent per slot,
+// offset hue ±15–30° for analogous harmony,
+// vary lightness/chroma by ±30%
+export const generateAnalogous = (lockedColours: string[], count: number): string[] => {
+    if (count === 0) return [];
+    if (lockedColours.length === 0) return generateTrueRandom(count);
+
+    const lockedOklch = lockedColours.map(hexToOklch);
+
+    return Array.from({ length: count }, () => {
+        const parent = lockedOklch[Math.floor(Math.random() * lockedOklch.length)];
+        const l = clamp(parent.l + random(-0.3, 0.3), 0, 1);
+        const c = clamp(parent.c + random(-0.15, 0.15), 0, 0.4);
+        const offset = Math.random() > 0.5 ? random(15, 30) : random(-30, -15);
+        const h = parent.h + offset;
+
+        return oklchToHex({ l, c, h });
+    });
+};

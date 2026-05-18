@@ -7,6 +7,7 @@ import { getRandomHexCode } from "src/lib/utils.js";
 import {
     generateTrueRandom,
     generateSmartRandom,
+    generateAnalogous,
 } from "src/lib/paletteGeneration.js";
 import {
     createColState,
@@ -125,10 +126,20 @@ export const generateUnlockedColoursForPalGen = () => {
         (item) => !item.isLocked
     ).length;
 
-    const generatedColours =
-        paletteGenerationMode.val === PaletteGenerationMode.TRUE_RANDOM
-            ? generateTrueRandom(unlockedCount)
-            : generateSmartRandom(lockedColours, unlockedCount);
+    let generatedColours: string[];
+
+    switch (paletteGenerationMode.val) {
+        case PaletteGenerationMode.SMART_RANDOM:
+        default:
+            generatedColours = generateSmartRandom(lockedColours, unlockedCount);
+            break;
+        case PaletteGenerationMode.ANALOGOUS:
+            generatedColours = generateAnalogous(lockedColours, unlockedCount);
+            break;
+        case PaletteGenerationMode.TRUE_RANDOM:
+            generatedColours = generateTrueRandom(unlockedCount);
+            break;
+    }
 
     let colourIndex = 0;
     const newVal = palGenColours.val.map((palGenItem) => {
