@@ -139,8 +139,8 @@ export const generateSmartRandom = (lockedColours: string[], count: number): str
     const { lMin, lMax, cMin, cMax } = analyseBounds(lockedColours);
 
     return Array.from({ length: count }, () => {
-        const l = clamp(random(lMin, lMax), 0, 1);
-        const c = clamp(random(cMin, cMax), 0, 0.4);
+        const l = clamp(random(lMin, lMax) + random(-0.1, 0.1), 0, 1);
+        const c = clamp(random(cMin, cMax) + random(-0.05, 0.05), 0, 0.4);
         const h = random(0, 360);
 
         return oklchToHex({ l, c, h });
@@ -154,8 +154,8 @@ export const generateAnalogous = (lockedColours: string[], count: number): strin
     const { lMin, lMax, cMin, cMax, avgHue } = analyseBounds(lockedColours);
 
     return Array.from({ length: count }, () => {
-        const l = clamp(random(lMin, lMax), 0, 1);
-        const c = clamp(random(cMin, cMax), 0, 0.4);
+        const l = clamp(random(lMin, lMax) + random(-0.1, 0.1), 0, 1);
+        const c = clamp(random(cMin, cMax) + random(-0.05, 0.05), 0, 0.4);
         const offset = Math.random() > 0.5 ? random(15, 45) : random(-45, -15);
         const h = normaliseHue(avgHue + offset);
 
@@ -170,8 +170,8 @@ export const generateComplementary = (lockedColours: string[], count: number): s
     const { lMin, lMax, cMin, cMax, avgHue } = analyseBounds(lockedColours);
 
     return Array.from({ length: count }, () => {
-        const l = clamp(random(lMin, lMax), 0, 1);
-        const c = clamp(random(cMin, cMax), 0, 0.4);
+        const l = clamp(random(lMin, lMax) + random(-0.1, 0.1), 0, 1);
+        const c = clamp(random(cMin, cMax) + random(-0.05, 0.05), 0, 0.4);
         const h = normaliseHue(avgHue + 180 + random(-20, 20));
 
         return oklchToHex({ l, c, h });
@@ -186,8 +186,8 @@ export const generateTriadic = (lockedColours: string[], count: number): string[
     const triadicOffsets = [120, 240];
 
     return Array.from({ length: count }, () => {
-        const l = clamp(random(lMin, lMax), 0, 1);
-        const c = clamp(random(cMin, cMax), 0, 0.4);
+        const l = clamp(random(lMin, lMax) + random(-0.1, 0.1), 0, 1);
+        const c = clamp(random(cMin, cMax) + random(-0.05, 0.05), 0, 0.4);
         const randomOffsetIndex = Math.floor(Math.random() * triadicOffsets.length);
         const baseOffset = triadicOffsets[randomOffsetIndex];
         const offset = baseOffset + random(-15, 15);
