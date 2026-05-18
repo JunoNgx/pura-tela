@@ -179,6 +179,7 @@
 
     const handleKeydown = (e: KeyboardEvent) => {
         if (e.code === "Space") {
+            e.preventDefault();
             generatePalette();
         }
     };
