@@ -35,6 +35,7 @@
     } from "src/states/wallGenState.svelte.js";
     import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
     import { computeBaseUrl } from "src/lib/utils.js";
+    import { onDestroy, onMount } from "svelte";
 
     const addColour = () => {
         addToPalGenColours();
@@ -125,6 +126,20 @@
             icon: MaterialSymbolsConvertToTextOutlineSharp,
         },
     ];
+
+    const handleKeydown = (e: KeyboardEvent) => {
+        if (e.code === "Space") {
+            generatePalette();
+        }
+    };
+
+    onMount(() => {
+        window.addEventListener("keydown", handleKeydown);
+    });
+
+    onDestroy(() => {
+        window.removeEventListener("keydown", handleKeydown);
+    });
 </script>
 
 <div class="PaletteGenerator">

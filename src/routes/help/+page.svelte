@@ -189,6 +189,10 @@
         Press <kbd>Cmd</kbd> / <kbd>Ctrl</kbd> + <kbd>;</kbd> to toggle the
         preview panel in the <strong>Wallpaper Generator</strong>.
     </p>
+    <p>
+        Press <kbd>Spacebar</kbd> to randomly generate palette in the
+        <strong>Palette Generator</strong>.
+    </p>
 
     <h3>Sharing</h3>
     <p>
