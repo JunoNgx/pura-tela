@@ -206,5 +206,13 @@
     {
         "name": "Muted Terrace",
         "colours": ["2d3142", "b8473a", "4f7c82", "d4a56a", "8c6f6f", "a3c4b5", "efe9df"]
+    },
+    {
+        "name": "Hoarfrost",
+        "colours": ["a8d5ba", "7ab8a3", "558c8c", "3d6072", "293a52"]
+    },
+    {
+        "name": "Amber Grove",
+        "colours": ["e8b85a", "c09a5a", "7a9a6a", "4a7a6a", "3a4a6a"]
     }
 ]
