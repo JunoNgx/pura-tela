@@ -181,18 +181,6 @@
     border-right: var(--lineWeight) solid var(--colPri);
 }
 
-.SplitBtn--IsSec .SplitBtn__Pri,
-.SplitBtn--IsSec .SplitBtn__Sec .SplitBtn__SecBtn {
-    background-color: transparent;
-    border-color: var(--colPri);
-}
-
-.SplitBtn--IsSec .SplitBtn__Pri:hover,
-.SplitBtn--IsSec .SplitBtn__Sec .SplitBtn__SecBtn:hover {
-    color: var(--colBg);
-    background-color: var(--colPri);
-    border-color: var(--colPri);
-}
 
 .RightAlignedButtonsContainer {
     margin-top: 2rem;
