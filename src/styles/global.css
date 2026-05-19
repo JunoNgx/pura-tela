@@ -1,5 +1,5 @@
 @import "src/styles/vars.css";
-@import "src/styles/mixins.css";
+@import "src/styles/utilities.css";
 
 @font-face {
     font-family: "Source Code Pro";
