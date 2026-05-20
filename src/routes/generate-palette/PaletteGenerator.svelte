@@ -224,6 +224,22 @@
     </div>
 
     <div class="PaletteGenerator__ActionsContainerUpper">
+        <div class="PaletteGenerator__GenerateBtn SplitBtn SplitBtn--IsPri">
+            <button
+                class="IconButtonWithLabel SplitBtn__Pri"
+                onclick={generatePalette}
+                title={"Generate new palettes"}
+                aria-label={"Generate new palettes"}
+            >
+                <MaterialSymbolsGesture />
+                <span>Generate</span>
+            </button>
+            <DropdownMenu
+                actionItems={generationModeItems}
+                isSplitBtnPart={true}
+            />
+        </div>
+
         <button
             class="PaletteGenerator__AddBtn IconButtonWithLabel"
             disabled={palGenColours.val.length >= MAX_COLOUR_COUNT}
@@ -249,22 +265,6 @@
             </button>
             <DropdownMenu
                 actionItems={otherActionItems}
-                isSplitBtnPart={true}
-            />
-        </div>
-
-        <div class="SplitBtn SplitBtn--IsPri">
-            <button
-                class="PaletteGenerator__ActionBtn IconButtonWithLabel SplitBtn__Pri"
-                onclick={generatePalette}
-                title={"Generate new palettes"}
-                aria-label={"Generate new palettes"}
-            >
-                <MaterialSymbolsGesture />
-                <span>Generate</span>
-            </button>
-            <DropdownMenu
-                actionItems={generationModeItems}
                 isSplitBtnPart={true}
             />
         </div>
@@ -319,18 +319,18 @@
 
     .PaletteGenerator__ActionsContainerUpper,
     .PaletteGenerator__ActionsContainerLower {
-        margin-top: 2rem;
+        margin: 1rem 0;
         display: flex;
         flex-wrap: wrap;
-        gap: 2rem;
+        gap: 1rem;
     }
 
     .PaletteGenerator__ActionsContainerUpper {
-        justify-content: flex-end;
+        justify-content: space-between;
     }
 
     .PaletteGenerator__ActionsContainerLower {
-        justify-content: space-between;
+        justify-content: flex-end;
     }
 
     .PaletteGenerator__ShareContainer {
@@ -341,11 +341,21 @@
         .PaletteGenerator__PaletteBox {
             display: flex;
             flex-direction: column;
-            min-height: 60vh;
+            height: 70vh;
         }
 
         .PaletteGenerator__ItemWrapper {
             height: 7.5rem;
+        }
+    }
+
+    @media screen and (width < 370px) {
+        .PaletteGenerator__ActionsContainerUpper {
+            flex-direction: row-reverse;
+        }
+
+        .PaletteGenerator__GenerateBtn {
+            order: 1;
         }
     }
 </style>
