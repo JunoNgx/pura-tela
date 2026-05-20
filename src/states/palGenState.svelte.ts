@@ -164,7 +164,7 @@ export const generateUnlockedColoursForPalGen = () => {
         const colour = generatedColours[colourIndex];
         colourIndex++;
         return {
-            id: generateId(),
+            id: palGenItem.id,
             isLocked: false,
             colour,
         };
