@@ -12,13 +12,17 @@
     });
 
     const isOpenaiActive = $derived(
-        aiModeVal === AI_MODE_OPENAI
-        || (aiModeVal === AI_MODE_AUTO && openaiKey.val)
+        openaiKey.val && (
+            aiModeVal === AI_MODE_OPENAI
+            || aiModeVal === AI_MODE_AUTO
+        )
     );
 
     const isGeminiActive = $derived(
-        aiModeVal === AI_MODE_GEMINI
-        || (aiModeVal === AI_MODE_AUTO && !openaiKey.val && geminiKey.val)
+        geminiKey.val && (
+            aiModeVal === AI_MODE_GEMINI
+            || (aiModeVal === AI_MODE_AUTO && !openaiKey.val)
+        )
     );
 
     const saveGeminiKey = () => {
