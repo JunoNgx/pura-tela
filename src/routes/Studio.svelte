@@ -1,6 +1,9 @@
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
-    import { renderCanvas, refitCanvasToContainer } from "src/lib/canvas.js";
+    import {
+        renderCanvas,
+        refitCanvasToContainer,
+    } from "src/lib/canvas/canvas.js";
     import { computeBaseUrl } from "src/lib/utils.js";
     import {
         getHexColourCodesInUse,

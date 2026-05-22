@@ -4,7 +4,7 @@
 
     import Checkbox from "src/components/Checkbox.svelte";
 
-    import { generateImage } from "src/lib/canvas.js";
+    import { generateImage } from "src/lib/canvas/canvas.js";
     import { computeFilename } from "src/lib/utils.js";
     import { colourGallery } from "src/states/colourGalleryState.svelte.js";
     import {

@@ -12,28 +12,14 @@ import {
     PALETTE_CONFIG_POSITION_MAX_VALUE,
     PALETTE_CONFIG_SIZE_MAX_VALUE,
     SWATCH_CONFIG_MAX_VALUE,
-} from "./constants.js";
+} from "src/lib/constants.js";
 import {
     ColourSwatchStyleDirection,
     ColourSwatchStyleItemShape,
     WallpaperStyle,
     type RenderStyleConfig,
     type SizeData,
-} from "./types.js";
-
-const CANVAS_ID = "Canvas";
-
-export type CanvasRenderOptions = {
-    size: SizeData;
-    colours: string[];
-    style: WallpaperStyle;
-    config?: RenderStyleConfig;
-};
-
-type StyleRenderOptions = CanvasRenderOptions & {
-    ctx: CanvasRenderingContext2D;
-};
-
+} from "src/lib/types.js";
 import {
     drawSquare,
     drawSquareFromCenter,
@@ -50,6 +36,19 @@ import {
     mapToRange,
     type ShapeProps,
 } from "./canvasUtils.js";
+
+const CANVAS_ID = "Canvas";
+
+export type CanvasRenderOptions = {
+    size: SizeData;
+    colours: string[];
+    style: WallpaperStyle;
+    config?: RenderStyleConfig;
+};
+
+type StyleRenderOptions = CanvasRenderOptions & {
+    ctx: CanvasRenderingContext2D;
+};
 
 // ---- Core logic
 
