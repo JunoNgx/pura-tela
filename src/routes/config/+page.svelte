@@ -184,6 +184,10 @@
         padding-left: 1.5rem;
     }
 
+    .ConfigSection__InfoList li {
+        margin-bottom: 0.5rem;
+    }
+
     .ConfigSection__InfoPrivacy {
         color: var(--colTxtSec);
         margin-top: 0.5rem;
