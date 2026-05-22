@@ -77,14 +77,14 @@
             <button class="IconButtonWithLabel" onclick={clearOpenaiKey}>
                 Clear
             </button>
+            <button
+                class="IconButtonWithLabel"
+                onclick={useOpenai}
+                disabled={aiModeVal === AI_MODE_OPENAI}
+            >
+                Use
+            </button>
         {/if}
-        <button
-            class="IconButtonWithLabel"
-            onclick={useOpenai}
-            disabled={!openaiKey.val || aiModeVal === AI_MODE_OPENAI}
-        >
-            Use
-        </button>
     </div>
 
     <p class="ConfigSection__Status">
@@ -119,14 +119,14 @@
             <button class="IconButtonWithLabel" onclick={clearGeminiKey}>
                 Clear
             </button>
+            <button
+                class="IconButtonWithLabel"
+                onclick={useGemini}
+                disabled={aiModeVal === AI_MODE_GEMINI}
+            >
+                Use
+            </button>
         {/if}
-        <button
-            class="IconButtonWithLabel"
-            onclick={useGemini}
-            disabled={!geminiKey.val || aiModeVal === AI_MODE_GEMINI}
-        >
-            Use
-        </button>
     </div>
 
     <p class="ConfigSection__Status">
