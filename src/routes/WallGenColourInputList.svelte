@@ -29,7 +29,7 @@
     } from "src/states/wallGenState.svelte.js";
     import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
     import { passWallGenToPaletteGenerator } from "src/states/palGenState.svelte.js";
-    import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
+    import { generatePaletteWithAi } from "src/states/aiProviderState.svelte.js";
 
     const handleRemoveColour = () => {
         decreaseWallGenColourInUseCount();
@@ -48,8 +48,8 @@
         addToPaletteGalleryFromWallpaperGenerator();
     };
 
-    const generatePaletteWithAi = async () => {
-        const response = await generatePaletteWithGemini();
+    const generatePaletteWithAiAction = async () => {
+        const response = await generatePaletteWithAi();
         if (!response) return;
 
         tryParseFromStringToWallGen(response);
@@ -85,7 +85,7 @@
             id: "generateAi",
             label: "Generate with AI",
             tooltip: "Generate a palette using AI",
-            action: generatePaletteWithAi,
+            action: generatePaletteWithAiAction,
             icon: MaterialSymbolsNetworkIntelligence,
         },
     ];

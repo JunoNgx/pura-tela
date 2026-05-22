@@ -1,10 +1,5 @@
 import { geminiKey } from "./geminiKeyState.svelte.js";
-
-export const buildPrompt = (theme: string) => {
-    const prompt = `Generate a colour palette of 7 colours. Reply with only text, made up of hex colour codes, separated by comma. The theme is: ${theme}.`;
-
-    return prompt;
-};
+import { buildPrompt } from "src/lib/aiPrompt.js";
 
 export const generatePaletteWithGemini = async () => {
     if (!geminiKey.val) {

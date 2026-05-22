@@ -37,7 +37,7 @@
         readjustWallGenColoursInUseCount,
         setWallGenColourInUseCount,
     } from "src/states/wallGenState.svelte.js";
-    import { generatePaletteWithGemini } from "src/states/geminiState.svelte.js";
+    import { generatePaletteWithAi } from "src/states/aiProviderState.svelte.js";
     import { computeBaseUrl } from "src/lib/utils.js";
     import { onDestroy, onMount } from "svelte";
 
@@ -72,8 +72,8 @@
         tryParseFromStringToPalGen(inputData);
     };
 
-    const generatePaletteWithAi = async () => {
-        const response = await generatePaletteWithGemini();
+    const generatePaletteWithAiAction = async () => {
+        const response = await generatePaletteWithAi();
         if (!response) return;
 
         tryParseFromStringToPalGen(response);
@@ -119,7 +119,7 @@
             id: "generateAi",
             label: "Generate with AI",
             tooltip: "Generate a palette using AI with a theme prompt",
-            action: generatePaletteWithAi,
+            action: generatePaletteWithAiAction,
             icon: MaterialSymbolsNetworkIntelligence,
         },
     ];
