@@ -208,25 +208,20 @@
     <p>
         From <strong>Wallpaper Generator</strong> and the
         <strong>Palette Generator</strong>, from the dropdown menu, it is
-        possible to generate a colour palette via a Google's
-        <code>Large language model</code>
-        <code>Gemini</code>. You will prompted to enter the theme of the output,
+        possible to generate a colour palette via a
+        Large Language Model. You will be prompted to enter the theme of the output,
         which should return a {MAX_COLOUR_COUNT}-colour palette.
     </p>
     <p>
-        This feature requires a Gemini API key, which can be configured in the
-        <a href="/config">Config</a> page. You can obtain a free key from
-        <a
-            href="https://aistudio.google.com/apikey"
-            target="_blank"
-            rel="noopener noreferrer">Google AI Studio</a
-        >.
+        This feature requires an API key from either OpenAI or Google Gemini,
+        which can be configured in the
+        <a href="/config">Config</a> page.
     </p>
 
     <p>
         This is meant to be a fun, experimental, and entirely optional feature
         of the app. It is expected that queries made via these endpoints are
-        used to further train Google's Gemini. If privacy or related political
+        used to further train the AI provider. If privacy or related political
         believes are concerned, you are advised to refrain from using this
         option. This is also the only operation of the app where data is
         transmitted away from your device.
@@ -258,7 +253,7 @@
 
     <p>
         The use of <a href="#ai">AI Generation</a> is the only possible data operation
-        where data might be collected (by Google), and you are advised to refrain
+        where data might be collected (by the respective AI provider), and you are advised to refrain
         from using this option, if it is a concern.
     </p>
 
