@@ -108,16 +108,22 @@
         imported into this app).
     </p>
     <p>
-        The Twilight and Pie-Man wallpaper styles were inspired by <a
+        The Twilight, Pie-Man, and Baumkuchen wallpaper styles were respectively inspired by <a
+            href="https://cssbattle.dev/play/91"
+            target="_blank"
+            rel="noopener noreferrer">target #91</a
+        >
+        ,
+        <a
             href="https://cssbattle.dev/play/6"
             target="_blank"
             rel="noopener noreferrer">target #6</a
         >
         and
         <a
-            href="https://cssbattle.dev/play/91"
+            href="https://cssbattle.dev/play/234"
             target="_blank"
-            rel="noopener noreferrer">target #91</a
+            rel="noopener noreferrer">target #234</a
         >
         from
         <a
