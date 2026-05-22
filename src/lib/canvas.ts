@@ -52,7 +52,7 @@ type ArcProps = {
     startAngle: number,
     endAngle: number,
     isCounterClockwise?: boolean,
-}
+};
 
 // ---- Util draw functions
 
