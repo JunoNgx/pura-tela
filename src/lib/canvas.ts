@@ -727,16 +727,26 @@ export const renderForHorizonStyle = ({
         const coreRadius = fgBlockSize * 0.35;
 
         // Upper core
-        ctx.beginPath();
-        ctx.arc(size.width / 2, yPos, coreRadius, Math.PI, Math.PI * 2);
-        ctx.fillStyle = colours[4];
-        ctx.fill();
+        drawFilledArc({
+            ctx,
+            colour: colours[4],
+            x: size.width / 2,
+            y: yPos,
+            radius: coreRadius,
+            startAngle: Math.PI,
+            endAngle: Math.PI * 2,
+        });
 
         // Lower core
-        ctx.beginPath();
-        ctx.arc(size.width / 2, yPos, coreRadius, 0, Math.PI);
-        ctx.fillStyle = colours[5];
-        ctx.fill();
+        drawFilledArc({
+            ctx,
+            colour: colours[5],
+            x: size.width / 2,
+            y: yPos,
+            radius: coreRadius,
+            startAngle: 0,
+            endAngle: Math.PI,
+        });
     }
 };
 
@@ -780,10 +790,15 @@ const renderForTwilightStyle = ({
     });
 
     // Draw full sun circle
-    ctx.beginPath();
-    ctx.arc(sunCenterX, horizonY, sunRadius, 0, Math.PI * 2);
-    ctx.fillStyle = colours[0];
-    ctx.fill();
+    drawFilledArc({
+        ctx,
+        colour: colours[0],
+        x: sunCenterX,
+        y: horizonY,
+        radius: sunRadius,
+        startAngle: 0,
+        endAngle: Math.PI * 2,
+    });
 
     const minStripeCount = 5;
     const maxStripeCount = 20;
@@ -862,12 +877,15 @@ const renderForPieManStyle = ({
         const startAngle = missingStartAngle + (Math.PI / 2) * (i + 1);
         const endAngle = startAngle + Math.PI / 2;
 
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY);
-        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-        ctx.closePath();
-        ctx.fillStyle = colours[i + 1];
-        ctx.fill();
+        drawFilledArc({
+            ctx,
+            colour: colours[i + 1],
+            x: centerX,
+            y: centerY,
+            radius,
+            startAngle,
+            endAngle,
+        });
     }
 };
 
