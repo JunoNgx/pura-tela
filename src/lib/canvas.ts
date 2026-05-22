@@ -932,12 +932,14 @@ const renderForBaumkuchenStyle = ({
         size: baseDiameter,
     });
 
+    const baseRadius = baseDiameter / 2;
+
     drawCircle({
         ctx,
         colour: colours[1],
         x: corePosX,
         y: corePosY,
-        radius: baseDiameter,
+        radius: baseRadius * 2,
     });
 
     drawCircle({
@@ -945,7 +947,7 @@ const renderForBaumkuchenStyle = ({
         colour: colours[2],
         x: corePosX,
         y: corePosY,
-        radius: baseDiameter * 0.75,
+        radius: baseRadius * 1.5,
     });
 
     drawCircle({
@@ -953,7 +955,7 @@ const renderForBaumkuchenStyle = ({
         colour: colours[3],
         x: corePosX,
         y: corePosY,
-        radius: baseDiameter * 0.5,
+        radius: baseRadius,
     });
 
     // Corner arc
@@ -968,7 +970,7 @@ const renderForBaumkuchenStyle = ({
     });
 
     // Two halves of core
-    const coreRadius = baseDiameter * 0.25;
+    const coreRadius = baseRadius * 0.5;
 
     drawFilledArc({
         ctx,
