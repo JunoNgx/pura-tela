@@ -80,7 +80,26 @@ const drawRhombus = ({ ctx, colour, x, y, size }: ShapeProps) => {
     ctx.fill();
 };
 
-const drawCircle = ({ ctx, colour, x, y, size }: ShapeProps) => {
+const drawCircle = ({
+    ctx,
+    colour,
+    x,
+    y,
+    radius,
+}: {
+    ctx: CanvasRenderingContext2D;
+    colour: string;
+    x: number;
+    y: number;
+    radius: number;
+}) => {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
+
+const drawShapeCircle = ({ ctx, colour, x, y, size }: ShapeProps) => {
     ctx.beginPath();
     ctx.arc(x, y, size / 2, 0, 2 * Math.PI);
     ctx.fillStyle = colour;
@@ -444,7 +463,7 @@ const renderForColourSwatchStyle = ({
             drawFunc = drawSquareFromCenter;
             break;
         case ColourSwatchStyleItemShape.CIRCLE:
-            drawFunc = drawCircle;
+            drawFunc = drawShapeCircle;
             break;
         case ColourSwatchStyleItemShape.RHOMBUS:
             drawFunc = drawRhombus;
@@ -918,7 +937,7 @@ const renderForBaumkuchenStyle = ({
         colour: colours[1],
         x: corePosX,
         y: corePosY,
-        size: baseDiameter * 2,
+        radius: baseDiameter,
     });
 
     drawCircle({
@@ -926,7 +945,7 @@ const renderForBaumkuchenStyle = ({
         colour: colours[2],
         x: corePosX,
         y: corePosY,
-        size: baseDiameter * 1.5,
+        radius: baseDiameter * 0.75,
     });
 
     drawCircle({
@@ -934,7 +953,7 @@ const renderForBaumkuchenStyle = ({
         colour: colours[3],
         x: corePosX,
         y: corePosY,
-        size: baseDiameter * 1,
+        radius: baseDiameter * 0.5,
     });
 
     // Corner arc
