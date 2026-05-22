@@ -1,7 +1,7 @@
 <script lang="ts">
     import { geminiKey } from "src/states/geminiKeyState.svelte.js";
     import { openaiKey } from "src/states/openaiKeyState.svelte.js";
-    import { aiMode, AI_MODE_AUTO, AI_MODE_OPENAI, AI_MODE_GEMINI } from "src/states/aiProviderState.svelte.js";
+    import { aiMode, AI_MODE_OPENAI, AI_MODE_GEMINI } from "src/states/aiProviderState.svelte.js";
 
     let geminiInputValue = $state(geminiKey.val);
     let openaiInputValue = $state(openaiKey.val);
@@ -12,17 +12,11 @@
     });
 
     const isOpenaiActive = $derived(
-        openaiKey.val && (
-            aiModeVal === AI_MODE_OPENAI
-            || aiModeVal === AI_MODE_AUTO
-        )
+        openaiKey.val && (aiModeVal === AI_MODE_OPENAI || !aiModeVal)
     );
 
     const isGeminiActive = $derived(
-        geminiKey.val && (
-            aiModeVal === AI_MODE_GEMINI
-            || (aiModeVal === AI_MODE_AUTO && !openaiKey.val)
-        )
+        geminiKey.val && (aiModeVal === AI_MODE_GEMINI || (!aiModeVal && !openaiKey.val))
     );
 
     const saveGeminiKey = () => {

@@ -5,17 +5,14 @@ import { generatePaletteWithGemini } from "./geminiState.svelte.js";
 import { generatePaletteWithOpenai } from "./openaiState.svelte.js";
 import type { State } from "src/lib/types.js";
 
-export const AI_MODE_AUTO = "auto";
 export const AI_MODE_OPENAI = "openai";
 export const AI_MODE_GEMINI = "gemini";
 
 export const aiMode = createLocalStorageSyncedState({
     key: "aiMode",
-    defaultValue: AI_MODE_AUTO,
+    defaultValue: "",
     validationFunc: (data: any) =>
-        data === AI_MODE_AUTO
-        || data === AI_MODE_OPENAI
-        || data === AI_MODE_GEMINI,
+        data === AI_MODE_OPENAI || data === AI_MODE_GEMINI || data === "",
 }) as State<string>;
 
 let _isGenerating = $state(false);
