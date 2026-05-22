@@ -1,9 +1,25 @@
 <script lang="ts">
     import { geminiKey } from "src/states/geminiKeyState.svelte.js";
     import { openaiKey } from "src/states/openaiKeyState.svelte.js";
+    import { aiMode, AI_MODE_AUTO, AI_MODE_OPENAI, AI_MODE_GEMINI } from "src/states/aiProviderState.svelte.js";
 
     let geminiInputValue = $state(geminiKey.val);
     let openaiInputValue = $state(openaiKey.val);
+    let aiModeVal = $state(aiMode.val);
+
+    $effect(() => {
+        aiMode.set(aiModeVal);
+    });
+
+    const isOpenaiActive = $derived(
+        aiModeVal === AI_MODE_OPENAI
+        || (aiModeVal === AI_MODE_AUTO && openaiKey.val)
+    );
+
+    const isGeminiActive = $derived(
+        aiModeVal === AI_MODE_GEMINI
+        || (aiModeVal === AI_MODE_AUTO && !openaiKey.val && geminiKey.val)
+    );
 
     const saveGeminiKey = () => {
         geminiKey.set(geminiInputValue.trim());
@@ -22,6 +38,14 @@
         openaiInputValue = "";
         openaiKey.set("");
     };
+
+    const useOpenai = () => {
+        aiModeVal = AI_MODE_OPENAI;
+    };
+
+    const useGemini = () => {
+        aiModeVal = AI_MODE_GEMINI;
+    };
 </script>
 
 <h2>Config</h2>
@@ -29,7 +53,12 @@
 <section class="ConfigSection">
     <h3>AI API Keys</h3>
 
-    <h4>OpenAI</h4>
+    <h4>
+        OpenAI
+        {#if isOpenaiActive}
+            <span class="ConfigSection__Active">(active)</span>
+        {/if}
+    </h4>
     <div class="ConfigSection__InputRow">
         <input
             class="ConfigSection__Input"
@@ -49,6 +78,13 @@
                 Clear
             </button>
         {/if}
+        <button
+            class="IconButtonWithLabel"
+            onclick={useOpenai}
+            disabled={!openaiKey.val || aiModeVal === AI_MODE_OPENAI}
+        >
+            Use
+        </button>
     </div>
 
     <p class="ConfigSection__Status">
@@ -59,7 +95,12 @@
         {/if}
     </p>
 
-    <h4>Gemini</h4>
+    <h4>
+        Gemini
+        {#if isGeminiActive}
+            <span class="ConfigSection__Active">(active)</span>
+        {/if}
+    </h4>
     <div class="ConfigSection__InputRow">
         <input
             class="ConfigSection__Input"
@@ -79,6 +120,13 @@
                 Clear
             </button>
         {/if}
+        <button
+            class="IconButtonWithLabel"
+            onclick={useGemini}
+            disabled={!geminiKey.val || aiModeVal === AI_MODE_GEMINI}
+        >
+            Use
+        </button>
     </div>
 
     <p class="ConfigSection__Status">
@@ -120,6 +168,11 @@
     .ConfigSection__Status {
         color: var(--colPri);
         margin-top: 1rem;
+    }
+
+    .ConfigSection__Active {
+        color: var(--colInfo);
+        font-weight: normal;
     }
 
     .ConfigSection__Info {
