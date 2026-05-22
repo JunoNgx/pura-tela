@@ -6,7 +6,7 @@
 
 <div class:AiRequestStatus--Right={shouldAlignRight}>
     {#if isAiGenerating.val}
-        <p class="AiRequestStatus AiRequestStatus--Loading">Generating palette…</p>
+        <p class="AiRequestStatus AiRequestStatus--Loading">Awaiting response...</p>
     {/if}
     {#if lastAiError.val}
         <p class="AiRequestStatus AiRequestStatus--Error">{lastAiError.val}</p>
