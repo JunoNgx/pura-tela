@@ -28,21 +28,8 @@
 
 <section class="ConfigSection">
     <h3>AI API Keys</h3>
-    <p class="RouteInstruction">
-        API keys are stored locally in your browser and never sent anywhere except
-        the respective AI provider's API. At least one key is required for AI
-        palette generation.
-    </p>
 
     <h4>OpenAI</h4>
-    <p class="RouteInstruction">
-        <a
-            href="https://platform.openai.com/api-keys"
-            target="_blank"
-            rel="noopener noreferrer">Get a key from OpenAI.</a
-        >
-    </p>
-
     <div class="ConfigSection__InputRow">
         <input
             class="ConfigSection__Input"
@@ -73,14 +60,6 @@
     </p>
 
     <h4>Gemini</h4>
-    <p class="RouteInstruction">
-        <a
-            href="https://aistudio.google.com/apikey"
-            target="_blank"
-            rel="noopener noreferrer">Get a key from Google AI Studio.</a
-        >
-    </p>
-
     <div class="ConfigSection__InputRow">
         <input
             class="ConfigSection__Input"
@@ -109,6 +88,15 @@
             No Gemini key set.
         {/if}
     </p>
+
+    <p class="ConfigSection__Info">Get your keys:</p>
+
+    <ul class="ConfigSection__InfoList">
+        <li><a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">OpenAI</a> — needs chat completions access (model <code>gpt-4o-mini</code>)</li>
+        <li><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">Gemini</a> — free tier (model <code>gemini-flash-latest</code>)</li>
+    </ul>
+
+    <p class="ConfigSection__InfoPrivacy">Keys are stored locally and only sent to the respective API.</p>
 </section>
 
 <style>
@@ -132,5 +120,21 @@
     .ConfigSection__Status {
         color: var(--colPri);
         margin-top: 1rem;
+    }
+
+    .ConfigSection__Info {
+        margin-top: 2rem;
+        color: var(--colTxtSec);
+    }
+
+    .ConfigSection__InfoList {
+        color: var(--colTxtSec);
+        margin-top: 0.5rem;
+        padding-left: 1.5rem;
+    }
+
+    .ConfigSection__InfoPrivacy {
+        color: var(--colTxtSec);
+        margin-top: 0.5rem;
     }
 </style>
