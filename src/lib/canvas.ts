@@ -869,7 +869,7 @@ const renderForBaumkuchenStyle = ({
     // Draw bottom left square
     drawSquare({
         ctx,
-        colour: colours[4],
+        colour: colours[3],
         x: corePosX - baseRadius,
         y: corePosY,
         size: baseRadius,
@@ -884,13 +884,28 @@ const renderForBaumkuchenStyle = ({
         size: baseRadius,
     });
 
-    // Draw outermost circle
     drawCircle({
         ctx,
         colour: colours[1],
         x: corePosX,
         y: corePosY,
         size: baseRadius * 2,
+    });
+
+    drawCircle({
+        ctx,
+        colour: colours[2],
+        x: corePosX,
+        y: corePosY,
+        size: baseRadius * 1.5,
+    });
+
+    drawCircle({
+        ctx,
+        colour: colours[3],
+        x: corePosX,
+        y: corePosY,
+        size: baseRadius * 1,
     });
 };
 
