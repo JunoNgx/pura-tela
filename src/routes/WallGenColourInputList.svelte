@@ -9,6 +9,7 @@
 
     import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
     import DropdownMenu from "src/components/DropdownMenu.svelte";
+    import AiRequestStatus from "src/components/AiRequestStatus.svelte";
     import type { ColObj } from "src/lib/types.js";
 
     import MaterialSymbolsAdd from "~icons/material-symbols/add";
@@ -154,21 +155,24 @@
     </div>
 
     <div class="ColourInputContainer__ActionContainer">
-        <div class="SplitBtn">
-            <button
-                class="ColourInputContainer__Btn SplitBtn__Pri IconButtonWithLabel"
-                disabled={getWallGenColourInUseCount() <= 1}
-                onclick={handleSavePalette}
-                title="Save the current colours as a Palette"
-                aria-label="Save the current colours as a Palette"
-            >
-                <MaterialSymbolsViewWeekSharp />
-                <span>Save palette</span>
-            </button>
-            <DropdownMenu
-                actionItems={dropdownActionItems}
-                isSplitBtnPart={true}
-            />
+        <div class="AiRequestGroup">
+            <div class="SplitBtn">
+                <button
+                    class="ColourInputContainer__Btn SplitBtn__Pri IconButtonWithLabel"
+                    disabled={getWallGenColourInUseCount() <= 1}
+                    onclick={handleSavePalette}
+                    title="Save the current colours as a Palette"
+                    aria-label="Save the current colours as a Palette"
+                >
+                    <MaterialSymbolsViewWeekSharp />
+                    <span>Save palette</span>
+                </button>
+                <DropdownMenu
+                    actionItems={dropdownActionItems}
+                    isSplitBtnPart={true}
+                />
+            </div>
+            <AiRequestStatus />
         </div>
     </div>
 </div>

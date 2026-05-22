@@ -181,6 +181,11 @@
     border-right: var(--lineWeight) solid var(--colPri);
 }
 
+.AiRequestGroup {
+    display: flex;
+    flex-direction: column;
+}
+
 .RightAlignedButtonsContainer {
     margin-top: 2rem;
     display: flex;

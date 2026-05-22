@@ -8,6 +8,7 @@
     import { flip } from "svelte/animate";
 
     import SharePanel from "src/components/SharePanel.svelte";
+    import AiRequestStatus from "src/components/AiRequestStatus.svelte";
     import DropdownMenu from "src/components/DropdownMenu.svelte";
     import PaletteGeneratorItem from "src/routes/generate-palette/PaletteGeneratorItem.svelte";
     import type { PalGenColObj } from "src/lib/types.js";
@@ -253,20 +254,23 @@
     </div>
 
     <div class="PaletteGenerator__ActionsContainerLower">
-        <div class="SplitBtn">
-            <button
-                class="IconButtonWithLabel SplitBtn__Pri"
-                onclick={passToWallpaperGenerator}
-                title={"Pass the palette to Wallpaper Generator"}
-                aria-label={"Pass the palette to Wallpaper Generator"}
-            >
-                <MaterialSymbolsColorize />
-                <span>Pass to Wallpaper</span>
-            </button>
-            <DropdownMenu
-                actionItems={otherActionItems}
-                isSplitBtnPart={true}
-            />
+        <div class="AiRequestGroup">
+            <div class="SplitBtn">
+                <button
+                    class="IconButtonWithLabel SplitBtn__Pri"
+                    onclick={passToWallpaperGenerator}
+                    title={"Pass the palette to Wallpaper Generator"}
+                    aria-label={"Pass the palette to Wallpaper Generator"}
+                >
+                    <MaterialSymbolsColorize />
+                    <span>Pass to Wallpaper</span>
+                </button>
+                <DropdownMenu
+                    actionItems={otherActionItems}
+                    isSplitBtnPart={true}
+                />
+            </div>
+            <AiRequestStatus shouldAlignRight />
         </div>
     </div>
 
