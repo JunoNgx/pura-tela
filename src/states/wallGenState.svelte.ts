@@ -27,6 +27,7 @@ import { horizonStyleConfig } from "./wallGenStyleConfigHorizonState.svelte.js";
 import { popArtSquareStyleConfig } from "./wallGenStyleConfigPopArtSquareState.svelte.js";
 import { twilightStyleConfig } from "./wallGenStyleConfigTwilightState.svelte.js";
 import { pieManStyleConfig } from "./wallGenStyleConfigPieManState.svelte.js";
+import { baumkuchenStyleConfig } from "./wallGenStyleConfigBaumkuchenState.svelte.js";
 
 /**
  * Wallpaper Generator current colours
@@ -194,6 +195,13 @@ const currStyleInfo = $derived.by(() => {
                 defaultColourCount: 4,
                 minColourCount: 4,
                 maxColourCount: 4,
+            };
+
+        case WallpaperStyle.BAUMKUCHEN:
+            return {
+                defaultColourCount: 5,
+                minColourCount: 5,
+                maxColourCount: 5,
             };
 
         default:
@@ -408,6 +416,7 @@ const derivedHorizonConfig = $derived(horizonStyleConfig.val);
 const derivedPopArtSquareConfig = $derived(popArtSquareStyleConfig.val);
 const derivedTwilightConfig = $derived(twilightStyleConfig.val);
 const derivedPieManConfig = $derived(pieManStyleConfig.val);
+const derivedBaumkuchenConfig = $derived(baumkuchenStyleConfig.val);
 const derivedStyleConfig = $derived({
     colourSwatch: derivedColourSwatchStyleConfig,
     gradient: derivedGradientStyleConfig,
@@ -416,6 +425,7 @@ const derivedStyleConfig = $derived({
     popArtSquare: derivedPopArtSquareConfig,
     twilight: derivedTwilightConfig,
     pieman: derivedPieManConfig,
+    baumkuchen: derivedBaumkuchenConfig,
 });
 export const getStyleConfig = () => {
     return derivedStyleConfig;
