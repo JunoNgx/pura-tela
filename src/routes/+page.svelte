@@ -16,6 +16,7 @@
     import { parseFromSearchParams as parsePopArtSquare } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
     import { parseFromSearchParams as parseTwilight } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
     import { parseFromSearchParams as parsePieMan } from "src/states/wallGenStyleConfigPieManState.svelte.js";
+    import { parseFromSearchParams as parseBaumkuchen } from "src/states/wallGenStyleConfigBaumkuchenState.svelte.js";
     import { isEnumValueValid } from "src/states/stateUtils.svelte.js";
 
     export let data: { searchParams: URLSearchParams };
@@ -63,6 +64,7 @@
         parsePopArtSquare,
         parseTwilight,
         parsePieMan,
+        parseBaumkuchen,
     ];
     allParsers.forEach((parse) => parse(data.searchParams));
 </script>

@@ -6,6 +6,8 @@ import {
     TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
     TWILIGHT_CONFIG_SIZE_MAX_VALUE,
     PIE_MAN_CONFIG_SIZE_MAX_VALUE,
+    BAUMKUCHEN_CONFIG_SIZE_MAX_VALUE,
+    BAUMKUCHEN_CONFIG_POSITION_MAX_VALUE,
     TWILIGHT_CONFIG_POSITION_MAX_VALUE,
     PALETTE_CONFIG_POSITION_MAX_VALUE,
     PALETTE_CONFIG_SIZE_MAX_VALUE,
@@ -241,6 +243,10 @@ export const renderCanvas = ({
 
         case WallpaperStyle.PIE_MAN:
             renderForPieManStyle(renderOptions);
+            break;
+
+        case WallpaperStyle.BAUMKUCHEN:
+            renderForBaumkuchenStyle(renderOptions);
             break;
 
         case WallpaperStyle.SOLID:
@@ -815,6 +821,10 @@ const renderForPieManStyle = ({
         ctx.fillStyle = colours[i + 1];
         ctx.fill();
     }
+};
+
+const renderForBaumkuchenStyle = (_renderOptions: StyleRenderOptions) => {
+    // TODO: implement baumkuchen rendering
 };
 
 // ---- Size fitting logic
