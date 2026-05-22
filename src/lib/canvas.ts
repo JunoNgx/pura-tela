@@ -43,6 +43,17 @@ type ShapeProps = {
     isVertical?: boolean;
 };
 
+type ArcProps = {
+    ctx: CanvasRenderingContext2D;
+    colour: string;
+    x: number;
+    y: number;
+    radius: number;
+    startAngle: number,
+    endAngle: number,
+    isCounterClockwise?: boolean,
+}
+
 // ---- Util draw functions
 
 const drawSquare = ({ ctx, colour, x, y, size }: ShapeProps) => {
@@ -72,6 +83,17 @@ const drawRhombus = ({ ctx, colour, x, y, size }: ShapeProps) => {
 const drawCircle = ({ ctx, colour, x, y, size }: ShapeProps) => {
     ctx.beginPath();
     ctx.arc(x, y, size / 2, 0, 2 * Math.PI);
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
+
+const drawFilledArc = ({
+    ctx, colour, x, y, radius, startAngle, endAngle, isCounterClockwise = false,
+}: ArcProps) => {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, radius, startAngle, endAngle, isCounterClockwise);
+    ctx.closePath();
     ctx.fillStyle = colour;
     ctx.fill();
 };
@@ -906,6 +928,41 @@ const renderForBaumkuchenStyle = ({
         x: corePosX,
         y: corePosY,
         size: baseRadius * 1,
+    });
+
+    // Corner arc
+    drawFilledArc({
+        ctx,
+        colour: colours[4],
+        x: corePosX,
+        y: corePosY,
+        radius: baseRadius,
+        startAngle: 0,
+        endAngle: Math.PI / 2,
+    });
+
+    // Two halves of core
+    const coreRadius = baseRadius * 0.5;
+
+    drawFilledArc({
+        ctx,
+        colour: colours[4],
+        x: corePosX,
+        y: corePosY,
+        radius: coreRadius / 2,
+        startAngle: 0,
+        endAngle: Math.PI,
+        isCounterClockwise: true,
+    });
+
+    drawFilledArc({
+        ctx,
+        colour: colours[1],
+        x: corePosX,
+        y: corePosY,
+        radius: coreRadius / 2,
+        startAngle: 0,
+        endAngle: Math.PI,
     });
 };
 
