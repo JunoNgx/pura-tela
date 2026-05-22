@@ -254,7 +254,7 @@
     </div>
 
     <div class="PaletteGenerator__ActionsContainerLower">
-        <div class="AiRequestGroup">
+        <div class="AiRequestGroup AiRequestGroup--FlexEnd">
             <div class="SplitBtn">
                 <button
                     class="IconButtonWithLabel SplitBtn__Pri"

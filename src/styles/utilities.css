@@ -186,6 +186,10 @@
     flex-direction: column;
 }
 
+.AiRequestGroup--FlexEnd {
+    align-items: flex-end;
+}
+
 .RightAlignedButtonsContainer {
     margin-top: 2rem;
     display: flex;
