@@ -201,11 +201,27 @@
     },
     {
         "name": "Chaos Bloom",
-        "colours": ["c64a4a", "70cd70", "ffb69a", "efd16e", "9e505f", "45608f", "87fffd"]
+        "colours": [
+            "c64a4a",
+            "70cd70",
+            "ffb69a",
+            "efd16e",
+            "9e505f",
+            "45608f",
+            "87fffd"
+        ]
     },
     {
         "name": "Muted Terrace",
-        "colours": ["2d3142", "b8473a", "4f7c82", "d4a56a", "8c6f6f", "a3c4b5", "efe9df"]
+        "colours": [
+            "2d3142",
+            "b8473a",
+            "4f7c82",
+            "d4a56a",
+            "8c6f6f",
+            "a3c4b5",
+            "efe9df"
+        ]
     },
     {
         "name": "Hoarfrost",

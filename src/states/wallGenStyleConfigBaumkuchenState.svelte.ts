@@ -1,7 +1,4 @@
-import {
-    type BaumkuchenStyleConfigProps,
-    type State,
-} from "src/lib/types.js";
+import { type BaumkuchenStyleConfigProps, type State } from "src/lib/types.js";
 import {
     createLocalStorageSyncedState,
     isValueWithinRange,
@@ -83,9 +80,7 @@ export const setBaumkuchenStylePositionX = (newValue: number) => {
 };
 
 export const resetBaumkuchenStylePositionX = () => {
-    setBaumkuchenStylePositionX(
-        baumkuchenStyleConfigDefaultValue.positionX
-    );
+    setBaumkuchenStylePositionX(baumkuchenStyleConfigDefaultValue.positionX);
 };
 
 export const setBaumkuchenStylePositionY = (newValue: number) => {
@@ -96,9 +91,7 @@ export const setBaumkuchenStylePositionY = (newValue: number) => {
 };
 
 export const resetBaumkuchenStylePositionY = () => {
-    setBaumkuchenStylePositionY(
-        baumkuchenStyleConfigDefaultValue.positionY
-    );
+    setBaumkuchenStylePositionY(baumkuchenStyleConfigDefaultValue.positionY);
 };
 
 export const appendToUrl = (url: URL) => {

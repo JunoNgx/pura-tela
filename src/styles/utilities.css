@@ -181,7 +181,6 @@
     border-right: var(--lineWeight) solid var(--colPri);
 }
 
-
 .RightAlignedButtonsContainer {
     margin-top: 2rem;
     display: flex;

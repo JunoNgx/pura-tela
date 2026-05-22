@@ -49,9 +49,9 @@ type ArcProps = {
     x: number;
     y: number;
     radius: number;
-    startAngle: number,
-    endAngle: number,
-    isCounterClockwise?: boolean,
+    startAngle: number;
+    endAngle: number;
+    isCounterClockwise?: boolean;
 };
 
 // ---- Util draw functions
@@ -88,7 +88,14 @@ const drawCircle = ({ ctx, colour, x, y, size }: ShapeProps) => {
 };
 
 const drawFilledArc = ({
-    ctx, colour, x, y, radius, startAngle, endAngle, isCounterClockwise = false,
+    ctx,
+    colour,
+    x,
+    y,
+    radius,
+    startAngle,
+    endAngle,
+    isCounterClockwise = false,
 }: ArcProps) => {
     ctx.beginPath();
     ctx.moveTo(x, y);
