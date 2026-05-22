@@ -861,17 +861,17 @@ const renderForBaumkuchenStyle = ({
 
     const smallerCanvasSide = Math.min(size.width, size.height);
 
-    const minBaseRadius = smallerCanvasSide / 16;
-    const maxBaseRadius = smallerCanvasSide / 2;
-    const baseRadius = mapToRange({
-        outputMin: minBaseRadius,
-        outputMax: maxBaseRadius,
+    const minBaseDiameter = smallerCanvasSide / 16;
+    const maxBaseDiameter = smallerCanvasSide / 2;
+    const baseDiameter = mapToRange({
+        outputMin: minBaseDiameter,
+        outputMax: maxBaseDiameter,
         input: config.baumkuchen.size,
         inputMax: BAUMKUCHEN_CONFIG_SIZE_MAX_VALUE,
     });
 
-    const minCorePosX = baseRadius;
-    const maxCorePosX = size.width - baseRadius;
+    const minCorePosX = baseDiameter;
+    const maxCorePosX = size.width - baseDiameter;
     const corePosX = mapToRange({
         outputMin: minCorePosX,
         outputMax: maxCorePosX,
@@ -879,8 +879,8 @@ const renderForBaumkuchenStyle = ({
         inputMax: BAUMKUCHEN_CONFIG_POSITION_MAX_VALUE,
     });
 
-    const minCorePosY = baseRadius;
-    const maxCorePosY = size.height - baseRadius;
+    const minCorePosY = baseDiameter;
+    const maxCorePosY = size.height - baseDiameter;
     const corePosY = mapToRange({
         outputMin: minCorePosY,
         outputMax: maxCorePosY,
@@ -892,9 +892,9 @@ const renderForBaumkuchenStyle = ({
     drawSquare({
         ctx,
         colour: colours[3],
-        x: corePosX - baseRadius,
+        x: corePosX - baseDiameter,
         y: corePosY,
-        size: baseRadius,
+        size: baseDiameter,
     });
 
     // Draw bottom right square
@@ -903,7 +903,7 @@ const renderForBaumkuchenStyle = ({
         colour: colours[1],
         x: corePosX,
         y: corePosY,
-        size: baseRadius,
+        size: baseDiameter,
     });
 
     drawCircle({
@@ -911,7 +911,7 @@ const renderForBaumkuchenStyle = ({
         colour: colours[1],
         x: corePosX,
         y: corePosY,
-        size: baseRadius * 2,
+        size: baseDiameter * 2,
     });
 
     drawCircle({
@@ -919,7 +919,7 @@ const renderForBaumkuchenStyle = ({
         colour: colours[2],
         x: corePosX,
         y: corePosY,
-        size: baseRadius * 1.5,
+        size: baseDiameter * 1.5,
     });
 
     drawCircle({
@@ -927,7 +927,7 @@ const renderForBaumkuchenStyle = ({
         colour: colours[3],
         x: corePosX,
         y: corePosY,
-        size: baseRadius * 1,
+        size: baseDiameter * 1,
     });
 
     // Corner arc
@@ -936,20 +936,20 @@ const renderForBaumkuchenStyle = ({
         colour: colours[4],
         x: corePosX,
         y: corePosY,
-        radius: baseRadius,
+        radius: baseDiameter,
         startAngle: 0,
         endAngle: Math.PI / 2,
     });
 
     // Two halves of core
-    const coreRadius = baseRadius * 0.5;
+    const coreRadius = baseDiameter * 0.25;
 
     drawFilledArc({
         ctx,
         colour: colours[4],
         x: corePosX,
         y: corePosY,
-        radius: coreRadius / 2,
+        radius: coreRadius,
         startAngle: 0,
         endAngle: Math.PI,
         isCounterClockwise: true,
@@ -960,7 +960,7 @@ const renderForBaumkuchenStyle = ({
         colour: colours[1],
         x: corePosX,
         y: corePosY,
-        radius: coreRadius / 2,
+        radius: coreRadius,
         startAngle: 0,
         endAngle: Math.PI,
     });
