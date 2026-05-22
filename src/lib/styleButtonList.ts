@@ -47,4 +47,9 @@ export const WALLPAPER_STYLES: WallpaperStyleButtonProps[] = [
         label: "Pie-Man",
         image: "/styleImages/style-pieman.png",
     },
+    {
+        style: WallpaperStyle.BAUMKUCHEN,
+        label: "Baumkuchen",
+        image: "/styleImages/style-baumkuchen.png",
+    },
 ];

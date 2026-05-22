@@ -14,6 +14,7 @@
     import StyleConfigColourPopArtSquare from "./StyleConfigColourPopArtSquare.svelte";
     import StyleConfigTwilight from "./StyleConfigTwilight.svelte";
     import StyleConfigPieMan from "./StyleConfigPieMan.svelte";
+    import StyleConfigColourBaumkuchen from "./StyleConfigColourBaumkuchen.svelte";
 
     // Solid style doesn't have config UI
     const configComponents: Partial<Record<WallpaperStyle, Component>> = {
@@ -24,6 +25,7 @@
         [WallpaperStyle.POP_ART_SQUARE]: StyleConfigColourPopArtSquare,
         [WallpaperStyle.TWILIGHT]: StyleConfigTwilight,
         [WallpaperStyle.PIE_MAN]: StyleConfigPieMan,
+        [WallpaperStyle.BAUMKUCHEN]: StyleConfigColourBaumkuchen,
     };
 
     const handleWallpaperStyleChange = (e: MouseButtonEvent) => {

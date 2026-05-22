@@ -6,6 +6,8 @@ import {
     TWILIGHT_CONFIG_RIPPLE_INTENSITY_MAX_VALUE,
     TWILIGHT_CONFIG_SIZE_MAX_VALUE,
     PIE_MAN_CONFIG_SIZE_MAX_VALUE,
+    BAUMKUCHEN_CONFIG_SIZE_MAX_VALUE,
+    BAUMKUCHEN_CONFIG_POSITION_MAX_VALUE,
     TWILIGHT_CONFIG_POSITION_MAX_VALUE,
     PALETTE_CONFIG_POSITION_MAX_VALUE,
     PALETTE_CONFIG_SIZE_MAX_VALUE,
@@ -41,6 +43,17 @@ type ShapeProps = {
     isVertical?: boolean;
 };
 
+type ArcProps = {
+    ctx: CanvasRenderingContext2D;
+    colour: string;
+    x: number;
+    y: number;
+    radius: number;
+    startAngle: number,
+    endAngle: number,
+    isCounterClockwise?: boolean,
+}
+
 // ---- Util draw functions
 
 const drawSquare = ({ ctx, colour, x, y, size }: ShapeProps) => {
@@ -70,6 +83,17 @@ const drawRhombus = ({ ctx, colour, x, y, size }: ShapeProps) => {
 const drawCircle = ({ ctx, colour, x, y, size }: ShapeProps) => {
     ctx.beginPath();
     ctx.arc(x, y, size / 2, 0, 2 * Math.PI);
+    ctx.fillStyle = colour;
+    ctx.fill();
+};
+
+const drawFilledArc = ({
+    ctx, colour, x, y, radius, startAngle, endAngle, isCounterClockwise = false,
+}: ArcProps) => {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, radius, startAngle, endAngle, isCounterClockwise);
+    ctx.closePath();
     ctx.fillStyle = colour;
     ctx.fill();
 };
@@ -241,6 +265,10 @@ export const renderCanvas = ({
 
         case WallpaperStyle.PIE_MAN:
             renderForPieManStyle(renderOptions);
+            break;
+
+        case WallpaperStyle.BAUMKUCHEN:
+            renderForBaumkuchenStyle(renderOptions);
             break;
 
         case WallpaperStyle.SOLID:
@@ -815,6 +843,127 @@ const renderForPieManStyle = ({
         ctx.fillStyle = colours[i + 1];
         ctx.fill();
     }
+};
+
+const renderForBaumkuchenStyle = ({
+    ctx,
+    colours,
+    size,
+    config,
+}: StyleRenderOptions) => {
+    if (!config?.baumkuchen) {
+        throw new Error("Cannot access Baumkuchen config");
+    }
+
+    // Draw background
+    ctx.fillStyle = colours[0];
+    ctx.fillRect(0, 0, size.width, size.height);
+
+    const smallerCanvasSide = Math.min(size.width, size.height);
+
+    const minBaseDiameter = smallerCanvasSide / 16;
+    const maxBaseDiameter = smallerCanvasSide / 2;
+    const baseDiameter = mapToRange({
+        outputMin: minBaseDiameter,
+        outputMax: maxBaseDiameter,
+        input: config.baumkuchen.size,
+        inputMax: BAUMKUCHEN_CONFIG_SIZE_MAX_VALUE,
+    });
+
+    const minCorePosX = baseDiameter;
+    const maxCorePosX = size.width - baseDiameter;
+    const corePosX = mapToRange({
+        outputMin: minCorePosX,
+        outputMax: maxCorePosX,
+        input: config.baumkuchen.positionX,
+        inputMax: BAUMKUCHEN_CONFIG_POSITION_MAX_VALUE,
+    });
+
+    const minCorePosY = baseDiameter;
+    const maxCorePosY = size.height - baseDiameter;
+    const corePosY = mapToRange({
+        outputMin: minCorePosY,
+        outputMax: maxCorePosY,
+        input: config.baumkuchen.positionY,
+        inputMax: BAUMKUCHEN_CONFIG_POSITION_MAX_VALUE,
+    });
+
+    // Draw bottom left square
+    drawSquare({
+        ctx,
+        colour: colours[3],
+        x: corePosX - baseDiameter,
+        y: corePosY,
+        size: baseDiameter,
+    });
+
+    // Draw bottom right square
+    drawSquare({
+        ctx,
+        colour: colours[1],
+        x: corePosX,
+        y: corePosY,
+        size: baseDiameter,
+    });
+
+    drawCircle({
+        ctx,
+        colour: colours[1],
+        x: corePosX,
+        y: corePosY,
+        size: baseDiameter * 2,
+    });
+
+    drawCircle({
+        ctx,
+        colour: colours[2],
+        x: corePosX,
+        y: corePosY,
+        size: baseDiameter * 1.5,
+    });
+
+    drawCircle({
+        ctx,
+        colour: colours[3],
+        x: corePosX,
+        y: corePosY,
+        size: baseDiameter * 1,
+    });
+
+    // Corner arc
+    drawFilledArc({
+        ctx,
+        colour: colours[4],
+        x: corePosX,
+        y: corePosY,
+        radius: baseDiameter,
+        startAngle: 0,
+        endAngle: Math.PI / 2,
+    });
+
+    // Two halves of core
+    const coreRadius = baseDiameter * 0.25;
+
+    drawFilledArc({
+        ctx,
+        colour: colours[4],
+        x: corePosX,
+        y: corePosY,
+        radius: coreRadius,
+        startAngle: 0,
+        endAngle: Math.PI,
+        isCounterClockwise: true,
+    });
+
+    drawFilledArc({
+        ctx,
+        colour: colours[1],
+        x: corePosX,
+        y: corePosY,
+        radius: coreRadius,
+        startAngle: 0,
+        endAngle: Math.PI,
+    });
 };
 
 // ---- Size fitting logic

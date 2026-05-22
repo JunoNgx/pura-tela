@@ -23,6 +23,7 @@
     import { appendToUrl as popArtSquareAppendToUrl } from "src/states/wallGenStyleConfigPopArtSquareState.svelte.js";
     import { appendToUrl as twilightAppendToUrl } from "src/states/wallGenStyleConfigTwilightState.svelte.js";
     import { appendToUrl as pieManAppendToUrl } from "src/states/wallGenStyleConfigPieManState.svelte.js";
+    import { appendToUrl as baumkuchenAppendToUrl } from "src/states/wallGenStyleConfigBaumkuchenState.svelte.js";
     import StudioPreview from "./StudioPreview.svelte";
 
     const handleResize = () => {
@@ -37,6 +38,7 @@
         [WallpaperStyle.POP_ART_SQUARE]: popArtSquareAppendToUrl,
         [WallpaperStyle.TWILIGHT]: twilightAppendToUrl,
         [WallpaperStyle.PIE_MAN]: pieManAppendToUrl,
+        [WallpaperStyle.BAUMKUCHEN]: baumkuchenAppendToUrl,
     };
 
     const computeShareableUrl = () => {

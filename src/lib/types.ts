@@ -73,6 +73,7 @@ export enum WallpaperStyle {
     HORIZON = "horizon",
     TWILIGHT = "twilight",
     PIE_MAN = "pie-man",
+    BAUMKUCHEN = "baumkuchen",
 }
 
 export type WallpaperStyleInfo = {
@@ -154,6 +155,12 @@ export type PieManStyleConfigProps = {
     angle: number;
 };
 
+export type BaumkuchenStyleConfigProps = {
+    size: number;
+    positionX: number;
+    positionY: number;
+};
+
 export type RenderStyleConfig = {
     colourSwatch: ColourSwatchStyleConfigProps;
     gradient: GradientStyleConfigProps;
@@ -162,6 +169,7 @@ export type RenderStyleConfig = {
     popArtSquare: PopArtSquareStyleConfigProps;
     twilight: TwilightStyleConfigProps;
     pieman: PieManStyleConfigProps;
+    baumkuchen: BaumkuchenStyleConfigProps;
 };
 
 export type ShareItem = {
