@@ -823,8 +823,75 @@ const renderForPieManStyle = ({
     }
 };
 
-const renderForBaumkuchenStyle = (_renderOptions: StyleRenderOptions) => {
-    // TODO: implement baumkuchen rendering
+const renderForBaumkuchenStyle = ({
+    ctx,
+    colours,
+    size,
+    config,
+}: StyleRenderOptions) => {
+    if (!config?.baumkuchen) {
+        throw new Error("Cannot access Baumkuchen config");
+    }
+
+    // Draw background
+    ctx.fillStyle = colours[0];
+    ctx.fillRect(0, 0, size.width, size.height);
+
+    const smallerCanvasSide = Math.min(size.width, size.height);
+
+    const minBaseRadius = smallerCanvasSide / 16;
+    const maxBaseRadius = smallerCanvasSide / 2;
+    const baseRadius = mapToRange({
+        outputMin: minBaseRadius,
+        outputMax: maxBaseRadius,
+        input: config.baumkuchen.size,
+        inputMax: BAUMKUCHEN_CONFIG_SIZE_MAX_VALUE,
+    });
+
+    const minCorePosX = baseRadius;
+    const maxCorePosX = size.width - baseRadius;
+    const corePosX = mapToRange({
+        outputMin: minCorePosX,
+        outputMax: maxCorePosX,
+        input: config.baumkuchen.positionX,
+        inputMax: BAUMKUCHEN_CONFIG_POSITION_MAX_VALUE,
+    });
+
+    const minCorePosY = baseRadius;
+    const maxCorePosY = size.height - baseRadius;
+    const corePosY = mapToRange({
+        outputMin: minCorePosY,
+        outputMax: maxCorePosY,
+        input: config.baumkuchen.positionY,
+        inputMax: BAUMKUCHEN_CONFIG_POSITION_MAX_VALUE,
+    });
+
+    // Draw bottom left square
+    drawSquare({
+        ctx,
+        colour: colours[4],
+        x: corePosX - baseRadius,
+        y: corePosY,
+        size: baseRadius,
+    });
+
+    // Draw bottom right square
+    drawSquare({
+        ctx,
+        colour: colours[1],
+        x: corePosX,
+        y: corePosY,
+        size: baseRadius,
+    });
+
+    // Draw outermost circle
+    drawCircle({
+        ctx,
+        colour: colours[1],
+        x: corePosX,
+        y: corePosY,
+        size: baseRadius * 2,
+    });
 };
 
 // ---- Size fitting logic
