@@ -1,3 +1,12 @@
+import type { SizeData, RenderStyleConfig } from "src/lib/types.js";
+
+export type RenderOptions = {
+    ctx: CanvasRenderingContext2D;
+    colours: string[];
+    size: SizeData;
+    config?: RenderStyleConfig;
+};
+
 type ArcProps = {
     ctx: CanvasRenderingContext2D;
     colour: string;
@@ -41,7 +50,13 @@ export const drawSquare = ({ ctx, colour, x, y, size }: ShapeProps) => {
     ctx.fillRect(x, y, size, size);
 };
 
-export const drawSquareFromCenter = ({ ctx, colour, x, y, size }: ShapeProps) => {
+export const drawSquareFromCenter = ({
+    ctx,
+    colour,
+    x,
+    y,
+    size,
+}: ShapeProps) => {
     ctx.fillStyle = colour;
     ctx.fillRect(x - size / 2, y - size / 2, size, size);
 };
@@ -142,7 +157,13 @@ export const drawTriangle = ({ ctx, colour, x, y, size }: ShapeProps) => {
     });
 };
 
-export const drawInvertedTriangle = ({ ctx, colour, x, y, size }: ShapeProps) => {
+export const drawInvertedTriangle = ({
+    ctx,
+    colour,
+    x,
+    y,
+    size,
+}: ShapeProps) => {
     drawPolygon({
         sideCount: 3,
         radius: size / 2,
@@ -166,7 +187,14 @@ export const drawHexagon = ({ ctx, colour, x, y, size }: ShapeProps) => {
     });
 };
 
-export const drawThinStrip = ({ ctx, colour, x, y, size, isVertical }: ShapeProps) => {
+export const drawThinStrip = ({
+    ctx,
+    colour,
+    x,
+    y,
+    size,
+    isVertical,
+}: ShapeProps) => {
     const longEdge = size;
     const shortEdge = size / 8;
     const drawOptions: [number, number, number, number] = isVertical
