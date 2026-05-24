@@ -198,10 +198,11 @@
     .Dropdown__Item {
         display: flex;
         align-items: center;
-        gap: 1rem;
+        gap: 0.75rem;
         border: none;
         width: 100%;
         white-space: nowrap;
+        padding: 0.5rem;
     }
 
     .Dropdown__ItemIcon {
