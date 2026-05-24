@@ -1,5 +1,6 @@
 import { geminiKey } from "./geminiKeyState.svelte.js";
 import { buildPrompt } from "src/lib/aiPrompt.js";
+import { DEFAULT_PROMPT_MESSAGE } from "src/lib/constants.js";
 
 export const generatePaletteWithGemini = async () => {
     if (!geminiKey.val) {
@@ -7,9 +8,7 @@ export const generatePaletteWithGemini = async () => {
         return;
     }
 
-    const input = window.prompt(
-        'Enter the theme of the colour as prompt (e.g. "autumn"):'
-    );
+    const input = window.prompt(DEFAULT_PROMPT_MESSAGE);
     if (!input) {
         return;
     }

@@ -26,3 +26,6 @@ export const BAUMKUCHEN_CONFIG_SIZE_MIN_VALUE = 0;
 export const BAUMKUCHEN_CONFIG_SIZE_MAX_VALUE = 20;
 export const BAUMKUCHEN_CONFIG_POSITION_MIN_VALUE = 0;
 export const BAUMKUCHEN_CONFIG_POSITION_MAX_VALUE = 100;
+
+export const DEFAULT_PROMPT_MESSAGE =
+    'Enter the theme prompting for the palette (e.g. "autumn"):';
