@@ -6,7 +6,7 @@
     import { type Component } from "svelte";
     import type { SVGAttributes } from "svelte/elements";
 
-    type ActionItem = {
+    export type DropdownMenuItem = {
         id: string;
         label: string;
         hasTopSeparator?: boolean;
@@ -16,7 +16,7 @@
     };
 
     type DropdownProps = {
-        actionItems: ActionItem[];
+        actionItems: DropdownMenuItem[];
         isSplitBtnPart?: boolean;
     };
     type DropdownPosition =
@@ -37,7 +37,7 @@
         isOpen = !isOpen;
     };
 
-    const executeAction = (actionItem: ActionItem) => {
+    const executeAction = (actionItem: DropdownMenuItem) => {
         isOpen = false;
         setTimeout(() => {
             actionItem.action();
