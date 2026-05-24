@@ -11,13 +11,8 @@
         aiMode.set(aiModeVal);
     });
 
-    const isOpenaiActive = $derived(
-        openaiKey.val && (aiModeVal === AI_MODE_OPENAI || !aiModeVal)
-    );
-
-    const isGeminiActive = $derived(
-        geminiKey.val && (aiModeVal === AI_MODE_GEMINI || (!aiModeVal && !openaiKey.val))
-    );
+    const isOpenaiActive = $derived(openaiKey.val && aiModeVal === AI_MODE_OPENAI);
+    const isGeminiActive = $derived(geminiKey.val && aiModeVal === AI_MODE_GEMINI);
 
     const aiSetupSummary = $derived.by(() => {
         if (isOpenaiActive) return "Using OpenAI";
