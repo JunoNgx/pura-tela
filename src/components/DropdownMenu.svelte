@@ -9,6 +9,7 @@
     type ActionItem = {
         id: string;
         label: string;
+        hasTopSeparator?: boolean;
         tooltip?: string;
         action: () => void;
         icon?: Component<SVGAttributes<SVGSVGElement>>;
@@ -131,6 +132,9 @@
             transition:fade={{ duration: 150 }}
         >
             {#each actionItems as actionItem (actionItem.id)}
+                {#if actionItem.hasTopSeparator}
+                    <hr class="Dropdown__Separator" />
+                {/if}
                 <button
                     class="Dropdown__Item"
                     role={"listitem"}
@@ -193,6 +197,12 @@
     .Dropdown--BottomRight .Dropdown__Menu {
         top: 100%;
         left: 0;
+    }
+
+    .Dropdown__Separator {
+        border: none;
+        border-top: var(--lineWeight) solid var(--colPri);
+        margin: 0.25rem 0;
     }
 
     .Dropdown__Item {

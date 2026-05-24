@@ -116,13 +116,6 @@
             action: parseFromString,
             icon: MaterialSymbolsConvertToTextOutlineSharp,
         },
-        {
-            id: "generateAi",
-            label: "Generate with AI",
-            tooltip: "Generate a palette using AI with a theme prompt",
-            action: generatePaletteWithAiAction,
-            icon: MaterialSymbolsNetworkIntelligence,
-        },
     ];
 
     const generationModeItems = $derived.by(() => [
@@ -181,6 +174,14 @@
                 paletteGenerationMode.val === PaletteGenerationMode.TRUE_RANDOM
                     ? MaterialSymbolsRadioButtonChecked
                     : MaterialSymbolsRadioButtonUnchecked,
+        },
+        {
+            id: "generateAi",
+            label: "Generate with AI",
+            tooltip: "Generate a palette using AI with a theme prompt",
+            action: generatePaletteWithAiAction,
+            icon: MaterialSymbolsNetworkIntelligence,
+            hasTopSeparator: true,
         },
     ]);
 
