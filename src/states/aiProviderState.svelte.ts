@@ -15,6 +15,12 @@ export const aiMode = createLocalStorageSyncedState({
         data === AI_MODE_OPENAI || data === AI_MODE_GEMINI || data === "",
 }) as State<string>;
 
+export const hasAiProvider = {
+    get val() {
+        return !!(openaiKey.val || geminiKey.val);
+    },
+};
+
 let _isGenerating = $state(false);
 let _lastError = $state<string | null>(null);
 
