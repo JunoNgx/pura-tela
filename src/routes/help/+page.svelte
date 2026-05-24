@@ -60,17 +60,18 @@
     </p>
 
     <p>
-        Pura Tela comes with a dedicated <a href="/generate-palette">Palette Generator</a> route
-        to assist with the composing process.
+        Pura Tela comes with a dedicated <a href="/generate-palette"
+            >Palette Generator</a
+        > route to assist with the composing process.
     </p>
 
     <p>
-        From the <a href="/palettes">Palette Gallery</a> route, palettes can be passed
-        to either the
+        From the <a href="/palettes">Palette Gallery</a> route, palettes can be
+        passed to either the
         <a href="/">Wallpaper Generator</a>
         or the <a href="/generate-palette">Palette Generator</a>. Like the
-        <a href="/colours">Colour Gallery</a>, paletes can also be removed or reset to
-        default.
+        <a href="/colours">Colour Gallery</a>, paletes can also be removed or
+        reset to default.
     </p>
 
     <h3 id="resetting">Resetting</h3>
@@ -97,13 +98,12 @@
     <h3>Sizes</h3>
 
     <p>
-        The output size (width and height) of <a href="/"
-            >Wallpaper Generator</a
+        The output size (width and height) of <a href="/">Wallpaper Generator</a
         >
         can be adjusted at the bottom of the panel. While these can be fine tune as
         you want or need, the
-        <a href="/sizes">Size Gallery</a> provides a list of common presets to get you
-        started.
+        <a href="/sizes">Size Gallery</a> provides a list of common presets to get
+        you started.
     </p>
 
     <p>
@@ -134,9 +134,9 @@
 
     <h3 id="import">Importing palette from external sources</h3>
     <p>
-        From <a href="/generate-palette">Palette Generator</a>, it is possible to import colour
-        palettes from an external source as a string. The format is required to
-        follow the following rules:
+        From <a href="/generate-palette">Palette Generator</a>, it is possible
+        to import colour palettes from an external source as a string. The
+        format is required to follow the following rules:
     </p>
     <ul>
         <li>Each colour is represented by a hex code.</li>
@@ -207,10 +207,10 @@
     <h3 id="ai">Generate with AI</h3>
     <p>
         From <a href="/">Wallpaper Generator</a> and the
-        <a href="/generate-palette">Palette Generator</a>, from the dropdown menu, it is
-        possible to generate a colour palette via a
-        Large Language Model. You will be prompted to enter the theme of the output,
-        which should return a {MAX_COLOUR_COUNT}-colour palette.
+        <a href="/generate-palette">Palette Generator</a>, from the dropdown
+        menu, it is possible to generate a colour palette via a Large Language
+        Model. You will be prompted to enter the theme of the output, which
+        should return a {MAX_COLOUR_COUNT}-colour palette.
     </p>
     <p>
         This feature requires an API key from either OpenAI or Google Gemini,
@@ -219,18 +219,9 @@
     </p>
 
     <p>
-        This is meant to be a fun, experimental, and entirely optional feature
-        of the app. It is expected that queries made via these endpoints are
-        used to further train the AI provider. If privacy or related political
-        believes are concerned, you are advised to refrain from using this
-        option. This is also the only operation of the app where data is
-        transmitted away from your device.
-    </p>
-
-    <p>
-        It is also recommended that you try out your own prompts in your own
+        In addition to the built-in interface, it is also possible to use your
         Large Language Model of choice and import the output into this app (<a
-            href="#import">see above</a
+            href="#import">see importing externally section</a
         >).
     </p>
 
@@ -252,9 +243,10 @@
     </p>
 
     <p>
-        The use of <a href="#ai">AI Generation</a> is the only possible data operation
-        where data might be collected (by the respective AI provider), and you are advised to refrain
-        from using this option, if it is a concern.
+        The use of <a href="#ai">AI Generation</a> with LLM is the only instance where
+        data is transmitted beyond your device, following the terms and services of
+        the platform providers. User is recommended to exercise discretion regarding
+        any financial, political, or privacy concern.
     </p>
 
     <h3>Contribution</h3>
