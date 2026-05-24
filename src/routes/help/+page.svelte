@@ -16,7 +16,7 @@
 
     <h3>Wallpaper</h3>
     <p>
-        The application starts from the <strong>Wallpaper Generator</strong> route,
+        The application starts from the <a href="/">Wallpaper Generator</a> route,
         where a wallpaper can be generated from a set of data.
     </p>
 
@@ -33,20 +33,20 @@
         The data input to the wallpaper are made up of colours. Pura Tela is
         mainly <strong>hex codes</strong>-driven, though an alternative colour
         picker can be used (represented by a square coloured block). From the
-        <strong>Wallpaper Generator</strong> route, colours can be saved.
+        <a href="/">Wallpaper Generator</a> route, colours can be saved.
     </p>
 
     <p>
-        A list of saved colours can be accessed from the <strong
-            >Colour Gallery</strong
+        A list of saved colours can be accessed from the <a href="/colours"
+            >Colour Gallery</a
         >
         route. This list can be modified or loaded to the
-        <strong>Wallpaper Generator</strong>.
+        <a href="/">Wallpaper Generator</a>.
     </p>
 
     <p>
         Colours can also be removed. This process is permanent and irreversible.
-        To restore data, refer to the <strong>Resetting</strong> section.
+        To restore data, refer to the <a href="#resetting">Resetting</a> section.
     </p>
 
     <h3>Palettes</h3>
@@ -60,24 +60,24 @@
     </p>
 
     <p>
-        Pura Tela comes with a dedicated <strong>Palette Generator</strong> route
+        Pura Tela comes with a dedicated <a href="/generate-palette">Palette Generator</a> route
         to assist with the composing process.
     </p>
 
     <p>
-        From the <strong>Palette Gallery</strong> route, palettes can be passed
+        From the <a href="/palettes">Palette Gallery</a> route, palettes can be passed
         to either the
-        <strong>Wallpaper Generator</strong>
-        or the <strong>Palette Generator</strong>. Like the
-        <strong>Colour Gallery</strong>, paletes can also be removed or reset to
+        <a href="/">Wallpaper Generator</a>
+        or the <a href="/generate-palette">Palette Generator</a>. Like the
+        <a href="/colours">Colour Gallery</a>, paletes can also be removed or reset to
         default.
     </p>
 
-    <h3>Resetting</h3>
+    <h3 id="resetting">Resetting</h3>
 
     <p>
-        Both <strong>Colours gallery</strong> and
-        <strong>Palette Gallery</strong>
+        Both <a href="/colours">Colours gallery</a> and
+        <a href="/palettes">Palette Gallery</a>
         can be resetted in different ways:
     </p>
     <ul>
@@ -97,12 +97,12 @@
     <h3>Sizes</h3>
 
     <p>
-        The output size (width and height) of <strong
-            >Wallpaper Generator</strong
+        The output size (width and height) of <a href="/"
+            >Wallpaper Generator</a
         >
         can be adjusted at the bottom of the panel. While these can be fine tune as
         you want or need, the
-        <strong>Size Gallery</strong> provides a list of common presets to get you
+        <a href="/sizes">Size Gallery</a> provides a list of common presets to get you
         started.
     </p>
 
@@ -134,7 +134,7 @@
 
     <h3 id="import">Importing palette from external sources</h3>
     <p>
-        From <strong>Palette Generator</strong>, it is possible to import colour
+        From <a href="/generate-palette">Palette Generator</a>, it is possible to import colour
         palettes from an external source as a string. The format is required to
         follow the following rules:
     </p>
@@ -187,18 +187,18 @@
     <h3>Keyboard Shortcuts</h3>
     <p>
         Press <kbd>Cmd</kbd> / <kbd>Ctrl</kbd> + <kbd>;</kbd> to toggle the
-        preview panel in the <strong>Wallpaper Generator</strong>.
+        preview panel in the <a href="/">Wallpaper Generator</a>.
     </p>
     <p>
         Press <kbd>Spacebar</kbd> to generate palette using the chosen mode in
         the
-        <strong>Palette Generator</strong>.
+        <a href="/generate-palette">Palette Generator</a>.
     </p>
 
     <h3>Sharing</h3>
     <p>
-        To restore the exact preset of settings for the <strong
-            >Wallpaper Generator</strong
+        To restore the exact preset of settings for the <a href="/"
+            >Wallpaper Generator</a
         >, store the URL provided at the bottom of the page at a safe place and
         re-access. You are encourage to do so for either your own personal
         storage, or sharing with friends.
@@ -206,8 +206,8 @@
 
     <h3 id="ai">Generate with AI</h3>
     <p>
-        From <strong>Wallpaper Generator</strong> and the
-        <strong>Palette Generator</strong>, from the dropdown menu, it is
+        From <a href="/">Wallpaper Generator</a> and the
+        <a href="/generate-palette">Palette Generator</a>, from the dropdown menu, it is
         possible to generate a colour palette via a
         Large Language Model. You will be prompted to enter the theme of the output,
         which should return a {MAX_COLOUR_COUNT}-colour palette.
