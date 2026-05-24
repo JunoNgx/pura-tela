@@ -10,6 +10,7 @@
     import SharePanel from "src/components/SharePanel.svelte";
     import AiRequestStatus from "src/components/AiRequestStatus.svelte";
     import DropdownMenu from "src/components/DropdownMenu.svelte";
+    import type { DropdownMenuItem } from "src/components/DropdownMenu.svelte";
     import PaletteGeneratorItem from "src/routes/generate-palette/PaletteGeneratorItem.svelte";
     import type { PalGenColObj } from "src/lib/types.js";
     import { MAX_COLOUR_COUNT } from "src/lib/constants.js";
@@ -38,7 +39,7 @@
         readjustWallGenColoursInUseCount,
         setWallGenColourInUseCount,
     } from "src/states/wallGenState.svelte.js";
-    import { generatePaletteWithAi } from "src/states/aiProviderState.svelte.js";
+    import { generatePaletteWithAi, hasAiProvider } from "src/states/aiProviderState.svelte.js";
     import { computeBaseUrl } from "src/lib/utils.js";
     import { onDestroy, onMount } from "svelte";
 
@@ -118,72 +119,80 @@
         },
     ];
 
-    const generationModeItems = $derived.by(() => [
-        {
-            id: PaletteGenerationMode.SMART_RANDOM,
-            label: "Smart Random",
-            tooltip: "Random colours constrained to locked colours' range",
-            action: () =>
-                paletteGenerationMode.set(PaletteGenerationMode.SMART_RANDOM),
-            icon:
-                paletteGenerationMode.val === PaletteGenerationMode.SMART_RANDOM
-                    ? MaterialSymbolsRadioButtonChecked
-                    : MaterialSymbolsRadioButtonUnchecked,
-        },
-        {
-            id: PaletteGenerationMode.ANALOGOUS,
-            label: "Analogous",
-            tooltip: "Colours near each other on the colour wheel",
-            action: () =>
-                paletteGenerationMode.set(PaletteGenerationMode.ANALOGOUS),
-            icon:
-                paletteGenerationMode.val === PaletteGenerationMode.ANALOGOUS
-                    ? MaterialSymbolsRadioButtonChecked
-                    : MaterialSymbolsRadioButtonUnchecked,
-        },
-        {
-            id: PaletteGenerationMode.COMPLEMENTARY,
-            label: "Complementary",
-            tooltip: "Opposite colours on the colour wheel",
-            action: () =>
-                paletteGenerationMode.set(PaletteGenerationMode.COMPLEMENTARY),
-            icon:
-                paletteGenerationMode.val
-                === PaletteGenerationMode.COMPLEMENTARY
-                    ? MaterialSymbolsRadioButtonChecked
-                    : MaterialSymbolsRadioButtonUnchecked,
-        },
-        {
-            id: PaletteGenerationMode.TRIADIC,
-            label: "Triadic",
-            tooltip: "Evenly spaced colours on the colour wheel",
-            action: () =>
-                paletteGenerationMode.set(PaletteGenerationMode.TRIADIC),
-            icon:
-                paletteGenerationMode.val === PaletteGenerationMode.TRIADIC
-                    ? MaterialSymbolsRadioButtonChecked
-                    : MaterialSymbolsRadioButtonUnchecked,
-        },
-        {
-            id: PaletteGenerationMode.TRUE_RANDOM,
-            label: "True Random",
-            tooltip: "Completely random colours",
-            action: () =>
-                paletteGenerationMode.set(PaletteGenerationMode.TRUE_RANDOM),
-            icon:
-                paletteGenerationMode.val === PaletteGenerationMode.TRUE_RANDOM
-                    ? MaterialSymbolsRadioButtonChecked
-                    : MaterialSymbolsRadioButtonUnchecked,
-        },
-        {
-            id: "generateAi",
-            label: "Generate with AI",
-            tooltip: "Generate a palette using AI with a theme prompt",
-            action: generatePaletteWithAiAction,
-            icon: MaterialSymbolsNetworkIntelligence,
-            hasTopSeparator: true,
-        },
-    ]);
+    const generationModeItems = $derived.by((): DropdownMenuItem[] => {
+        const items: DropdownMenuItem[] = [
+            {
+                id: PaletteGenerationMode.SMART_RANDOM,
+                label: "Smart Random",
+                tooltip: "Random colours constrained to locked colours' range",
+                action: () =>
+                    paletteGenerationMode.set(PaletteGenerationMode.SMART_RANDOM),
+                icon:
+                    paletteGenerationMode.val === PaletteGenerationMode.SMART_RANDOM
+                        ? MaterialSymbolsRadioButtonChecked
+                        : MaterialSymbolsRadioButtonUnchecked,
+            },
+            {
+                id: PaletteGenerationMode.ANALOGOUS,
+                label: "Analogous",
+                tooltip: "Colours near each other on the colour wheel",
+                action: () =>
+                    paletteGenerationMode.set(PaletteGenerationMode.ANALOGOUS),
+                icon:
+                    paletteGenerationMode.val === PaletteGenerationMode.ANALOGOUS
+                        ? MaterialSymbolsRadioButtonChecked
+                        : MaterialSymbolsRadioButtonUnchecked,
+            },
+            {
+                id: PaletteGenerationMode.COMPLEMENTARY,
+                label: "Complementary",
+                tooltip: "Opposite colours on the colour wheel",
+                action: () =>
+                    paletteGenerationMode.set(PaletteGenerationMode.COMPLEMENTARY),
+                icon:
+                    paletteGenerationMode.val
+                    === PaletteGenerationMode.COMPLEMENTARY
+                        ? MaterialSymbolsRadioButtonChecked
+                        : MaterialSymbolsRadioButtonUnchecked,
+            },
+            {
+                id: PaletteGenerationMode.TRIADIC,
+                label: "Triadic",
+                tooltip: "Evenly spaced colours on the colour wheel",
+                action: () =>
+                    paletteGenerationMode.set(PaletteGenerationMode.TRIADIC),
+                icon:
+                    paletteGenerationMode.val === PaletteGenerationMode.TRIADIC
+                        ? MaterialSymbolsRadioButtonChecked
+                        : MaterialSymbolsRadioButtonUnchecked,
+            },
+            {
+                id: PaletteGenerationMode.TRUE_RANDOM,
+                label: "True Random",
+                tooltip: "Completely random colours",
+                action: () =>
+                    paletteGenerationMode.set(PaletteGenerationMode.TRUE_RANDOM),
+                icon:
+                    paletteGenerationMode.val === PaletteGenerationMode.TRUE_RANDOM
+                        ? MaterialSymbolsRadioButtonChecked
+                        : MaterialSymbolsRadioButtonUnchecked,
+            },
+        ];
+
+        if (hasAiProvider.val) {
+            const generateAiItem = {
+                id: "generateAi",
+                label: "Generate with AI",
+                tooltip: "Generate a palette using AI with a theme prompt",
+                action: generatePaletteWithAiAction,
+                icon: MaterialSymbolsNetworkIntelligence,
+                hasTopSeparator: true,
+            };
+            items.push(generateAiItem);
+        }
+
+        return items;
+    });
 
     const handleKeydown = (e: KeyboardEvent) => {
         if (e.code === "Space") {

@@ -9,6 +9,7 @@
 
     import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
     import DropdownMenu from "src/components/DropdownMenu.svelte";
+    import type { DropdownMenuItem } from "src/components/DropdownMenu.svelte";
     import AiRequestStatus from "src/components/AiRequestStatus.svelte";
     import type { ColObj } from "src/lib/types.js";
 
@@ -30,7 +31,7 @@
     } from "src/states/wallGenState.svelte.js";
     import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
     import { passWallGenToPaletteGenerator } from "src/states/palGenState.svelte.js";
-    import { generatePaletteWithAi } from "src/states/aiProviderState.svelte.js";
+    import { generatePaletteWithAi, hasAiProvider } from "src/states/aiProviderState.svelte.js";
 
     const handleRemoveColour = () => {
         decreaseWallGenColourInUseCount();
@@ -74,22 +75,30 @@
 
     const flipDurationMs = 200;
 
-    const dropdownActionItems = [
-        {
-            id: "passToPalGen",
-            label: "Pass to Palette Generator",
-            tooltip: "Pass the current colours to the Palette Generator",
-            action: passColoursToPaletteGenerator,
-            icon: MaterialSymbolsPaletteOutline,
-        },
-        {
-            id: "generateAi",
-            label: "Generate with AI",
-            tooltip: "Generate a palette using AI",
-            action: generatePaletteWithAiAction,
-            icon: MaterialSymbolsNetworkIntelligence,
-        },
-    ];
+    const dropdownActionItems = $derived.by((): DropdownMenuItem[] => {
+        const items: DropdownMenuItem[] = [
+            {
+                id: "passToPalGen",
+                label: "Pass to Palette Generator",
+                tooltip: "Pass the current colours to the Palette Generator",
+                action: passColoursToPaletteGenerator,
+                icon: MaterialSymbolsPaletteOutline,
+            },
+        ];
+
+        if (hasAiProvider.val) {
+            const generateAiItem = {
+                id: "generateAi",
+                label: "Generate with AI",
+                tooltip: "Generate a palette using AI",
+                action: generatePaletteWithAiAction,
+                icon: MaterialSymbolsNetworkIntelligence,
+            };
+            items.push(generateAiItem);
+        }
+
+        return items;
+    });
 </script>
 
 <div class="ColourInputContainer">
