@@ -39,7 +39,10 @@
         readjustWallGenColoursInUseCount,
         setWallGenColourInUseCount,
     } from "src/states/wallGenState.svelte.js";
-    import { generatePaletteWithAi, hasAiProvider } from "src/states/aiProviderState.svelte.js";
+    import {
+        generatePaletteWithAi,
+        hasAiProvider,
+    } from "src/states/aiProviderState.svelte.js";
     import { computeBaseUrl } from "src/lib/utils.js";
     import { onDestroy, onMount } from "svelte";
 
@@ -126,9 +129,12 @@
                 label: "Smart Random",
                 tooltip: "Random colours constrained to locked colours' range",
                 action: () =>
-                    paletteGenerationMode.set(PaletteGenerationMode.SMART_RANDOM),
+                    paletteGenerationMode.set(
+                        PaletteGenerationMode.SMART_RANDOM
+                    ),
                 icon:
-                    paletteGenerationMode.val === PaletteGenerationMode.SMART_RANDOM
+                    paletteGenerationMode.val
+                    === PaletteGenerationMode.SMART_RANDOM
                         ? MaterialSymbolsRadioButtonChecked
                         : MaterialSymbolsRadioButtonUnchecked,
             },
@@ -139,7 +145,8 @@
                 action: () =>
                     paletteGenerationMode.set(PaletteGenerationMode.ANALOGOUS),
                 icon:
-                    paletteGenerationMode.val === PaletteGenerationMode.ANALOGOUS
+                    paletteGenerationMode.val
+                    === PaletteGenerationMode.ANALOGOUS
                         ? MaterialSymbolsRadioButtonChecked
                         : MaterialSymbolsRadioButtonUnchecked,
             },
@@ -148,7 +155,9 @@
                 label: "Complementary",
                 tooltip: "Opposite colours on the colour wheel",
                 action: () =>
-                    paletteGenerationMode.set(PaletteGenerationMode.COMPLEMENTARY),
+                    paletteGenerationMode.set(
+                        PaletteGenerationMode.COMPLEMENTARY
+                    ),
                 icon:
                     paletteGenerationMode.val
                     === PaletteGenerationMode.COMPLEMENTARY
@@ -171,9 +180,12 @@
                 label: "True Random",
                 tooltip: "Completely random colours",
                 action: () =>
-                    paletteGenerationMode.set(PaletteGenerationMode.TRUE_RANDOM),
+                    paletteGenerationMode.set(
+                        PaletteGenerationMode.TRUE_RANDOM
+                    ),
                 icon:
-                    paletteGenerationMode.val === PaletteGenerationMode.TRUE_RANDOM
+                    paletteGenerationMode.val
+                    === PaletteGenerationMode.TRUE_RANDOM
                         ? MaterialSymbolsRadioButtonChecked
                         : MaterialSymbolsRadioButtonUnchecked,
             },

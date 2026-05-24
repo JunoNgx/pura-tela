@@ -1,7 +1,12 @@
 <script lang="ts">
     import { geminiKey } from "src/states/geminiKeyState.svelte.js";
     import { openaiKey } from "src/states/openaiKeyState.svelte.js";
-    import { aiMode, AI_MODE_OPENAI, AI_MODE_GEMINI, hasAiProvider } from "src/states/aiProviderState.svelte.js";
+    import {
+        aiMode,
+        AI_MODE_OPENAI,
+        AI_MODE_GEMINI,
+        hasAiProvider,
+    } from "src/states/aiProviderState.svelte.js";
 
     let geminiInputValue = $state(geminiKey.val);
     let openaiInputValue = $state(openaiKey.val);
@@ -11,13 +16,18 @@
         aiMode.set(aiModeVal);
     });
 
-    const isOpenaiActive = $derived(openaiKey.val && aiModeVal === AI_MODE_OPENAI);
-    const isGeminiActive = $derived(geminiKey.val && aiModeVal === AI_MODE_GEMINI);
+    const isOpenaiActive = $derived(
+        openaiKey.val && aiModeVal === AI_MODE_OPENAI
+    );
+    const isGeminiActive = $derived(
+        geminiKey.val && aiModeVal === AI_MODE_GEMINI
+    );
 
     const aiSetupSummary = $derived.by(() => {
         if (isOpenaiActive) return "Using OpenAI";
         if (isGeminiActive) return "Using Gemini";
-        if (hasAiProvider.val) return "Key configured, choose one service to activate";
+        if (hasAiProvider.val)
+            return "Key configured, choose one service to activate";
         return "No API key configured";
     });
 
@@ -53,7 +63,10 @@
 <section class="ConfigSection">
     <h3>AI API Keys</h3>
 
-    <p class="ConfigSection__Status" class:ConfigSection__Setup={hasAiProvider.val}>
+    <p
+        class="ConfigSection__Status"
+        class:ConfigSection__Setup={hasAiProvider.val}
+    >
         {aiSetupSummary}
     </p>
 
@@ -144,11 +157,27 @@
     <p class="ConfigSection__Info">Get your keys:</p>
 
     <ul class="ConfigSection__InfoList">
-        <li><a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer">OpenAI</a> — needs chat completions access (model <code>gpt-4o-mini</code>)</li>
-        <li><a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener noreferrer">Gemini</a> — free tier (model <code>gemini-flash-latest</code>)</li>
+        <li>
+            <a
+                href="https://platform.openai.com/api-keys"
+                target="_blank"
+                rel="noopener noreferrer">OpenAI</a
+            >
+            — needs chat completions access (model <code>gpt-4o-mini</code>)
+        </li>
+        <li>
+            <a
+                href="https://aistudio.google.com/apikey"
+                target="_blank"
+                rel="noopener noreferrer">Gemini</a
+            >
+            — free tier (model <code>gemini-flash-latest</code>)
+        </li>
     </ul>
 
-    <p class="ConfigSection__InfoPrivacy">Keys are stored locally and only sent to the respective API.</p>
+    <p class="ConfigSection__InfoPrivacy">
+        Keys are stored locally and only sent to the respective API.
+    </p>
 </section>
 
 <style>

@@ -31,7 +31,10 @@
     } from "src/states/wallGenState.svelte.js";
     import { addToPaletteGalleryFromWallpaperGenerator } from "src/states/paletteGalleryState.svelte.js";
     import { passWallGenToPaletteGenerator } from "src/states/palGenState.svelte.js";
-    import { generatePaletteWithAi, hasAiProvider } from "src/states/aiProviderState.svelte.js";
+    import {
+        generatePaletteWithAi,
+        hasAiProvider,
+    } from "src/states/aiProviderState.svelte.js";
 
     const handleRemoveColour = () => {
         decreaseWallGenColourInUseCount();
