@@ -3,17 +3,7 @@
 
     import MaterialSymbolsKeyboardArrowDown from "~icons/material-symbols/keyboard-arrow-down";
 
-    import { type Component } from "svelte";
-    import type { SVGAttributes } from "svelte/elements";
-
-    export type DropdownMenuItem = {
-        id: string;
-        label: string;
-        hasTopSeparator?: boolean;
-        tooltip?: string;
-        action: () => void;
-        icon?: Component<SVGAttributes<SVGSVGElement>>;
-    };
+    import type { DropdownMenuItem } from "src/lib/types.js";
 
     type DropdownProps = {
         actionItems: DropdownMenuItem[];

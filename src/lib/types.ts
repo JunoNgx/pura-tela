@@ -1,3 +1,6 @@
+import type { Component } from "svelte";
+import type { SVGAttributes } from "svelte/elements";
+
 export enum ThemeMode {
     LIGHT = "light",
     DARK = "dark",
@@ -178,4 +181,13 @@ export type ShareItem = {
     shareText: string;
     shareTitle: string;
     isContentPlainText?: boolean;
+};
+
+export type DropdownMenuItem = {
+    id: string;
+    label: string;
+    hasTopSeparator?: boolean;
+    tooltip?: string;
+    action: () => void;
+    icon?: Component<SVGAttributes<SVGSVGElement>>;
 };

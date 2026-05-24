@@ -9,7 +9,7 @@
 
     import WallGenColourInputItem from "src/routes/WallGenColourInputItem.svelte";
     import DropdownMenu from "src/components/DropdownMenu.svelte";
-    import type { DropdownMenuItem } from "src/components/DropdownMenu.svelte";
+    import type { DropdownMenuItem } from "src/lib/types.js";
     import AiRequestStatus from "src/components/AiRequestStatus.svelte";
     import type { ColObj } from "src/lib/types.js";
 
