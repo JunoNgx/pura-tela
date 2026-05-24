@@ -1,7 +1,7 @@
 <script lang="ts">
     import { geminiKey } from "src/states/geminiKeyState.svelte.js";
     import { openaiKey } from "src/states/openaiKeyState.svelte.js";
-    import { aiMode, AI_MODE_OPENAI, AI_MODE_GEMINI } from "src/states/aiProviderState.svelte.js";
+    import { aiMode, AI_MODE_OPENAI, AI_MODE_GEMINI, hasAiProvider } from "src/states/aiProviderState.svelte.js";
 
     let geminiInputValue = $state(geminiKey.val);
     let openaiInputValue = $state(openaiKey.val);
@@ -18,6 +18,13 @@
     const isGeminiActive = $derived(
         geminiKey.val && (aiModeVal === AI_MODE_GEMINI || (!aiModeVal && !openaiKey.val))
     );
+
+    const aiSetupSummary = $derived.by(() => {
+        if (isOpenaiActive) return "Using OpenAI";
+        if (isGeminiActive) return "Using Gemini";
+        if (hasAiProvider.val) return "Key configured, choose one service to activate";
+        return "No API key configured";
+    });
 
     const saveGeminiKey = () => {
         geminiKey.set(geminiInputValue.trim());
@@ -50,6 +57,10 @@
 
 <section class="ConfigSection">
     <h3>AI API Keys</h3>
+
+    <p class="ConfigSection__Status" class:ConfigSection__Setup={hasAiProvider.val}>
+        {aiSetupSummary}
+    </p>
 
     <h4>
         OpenAI
@@ -171,6 +182,10 @@
     .ConfigSection__Active {
         color: var(--colInfo);
         font-weight: normal;
+    }
+
+    .ConfigSection__Setup {
+        color: var(--colInfo);
     }
 
     .ConfigSection__Info {
